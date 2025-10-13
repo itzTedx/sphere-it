@@ -1,4 +1,4 @@
-import { Albert_Sans, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
 export const inter = localFont({
@@ -57,9 +57,48 @@ export const inter = localFont({
   ],
 });
 
-export const sans = Albert_Sans({
+export const sans = localFont({
   variable: "--font-sans",
-  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  src: [
+    {
+      weight: "100",
+      path: "./albert-sans/albert-sans-100.woff2",
+    },
+    {
+      weight: "200",
+      path: "./albert-sans/albert-sans-200.woff2",
+    },
+    {
+      weight: "300",
+      path: "./albert-sans/albert-sans-300.woff2",
+    },
+    {
+      weight: "400",
+      path: "./albert-sans/albert-sans-400.woff2",
+    },
+    {
+      weight: "500",
+      path: "./albert-sans/albert-sans-500.woff2",
+    },
+    {
+      weight: "600",
+      path: "./albert-sans/albert-sans-600.woff2",
+    },
+    {
+      weight: "700",
+      path: "./albert-sans/albert-sans-700.woff2",
+    },
+    {
+      weight: "800",
+      path: "./albert-sans/albert-sans-800.woff2",
+    },
+    {
+      weight: "900",
+      path: "./albert-sans/albert-sans-900.woff2",
+    },
+  ],
   fallback: [
     "-apple-system",
     "BlinkMacSystemFont",
