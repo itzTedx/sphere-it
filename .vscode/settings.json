@@ -8,30 +8,12 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "tailwindCSS.experimental.configFile": "src/app/globals.css",
+  "tailwindCSS.experimental.configFile": "src/styles/globals.css",
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
 
-  "cSpell.words": [
-    "Backorders",
-    "Embla",
-    "esbuild",
-    "Foneflip",
-    "NAVLINK",
-    "neue",
-    "nuqs",
-    "orpc",
-    "presigner",
-    "Saji",
-    "setex",
-    "sonner",
-    "Swapy",
-    "upserted",
-    "ziron",
-    "zmdeals"
-  ],
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   }

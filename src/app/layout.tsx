@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 
 import { Navbar } from "@/components/layout/navbar";
 
-const inter = Inter({
-  variable: "--font-sans",
-});
+import { inter, mono, sans } from "@/assets/fonts";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${geistMono.variable} antialiased`}>
+      <body className={cn(inter.className, sans.variable, mono.variable, "antialiased")}>
         <Navbar />
         {children}
       </body>
