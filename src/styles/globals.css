@@ -83,6 +83,10 @@
   --text-label: 0.875rem;
   --text-label--line-height: 1; 
   --text-label--letter-spacing: -0.02rem;   
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
 }
 
 :root {
@@ -126,6 +130,33 @@
   --ring: oklch(0.627 0.1933 297.24);
   
   --radius: 0.625rem;
+
+  --shadow-sm:
+    0 0 0 1px color-mix(in oklab, var(--primary-900) 6%, transparent),
+    0 1px 1px 0.5px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 3px 3px -1.5px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 6px 9px -4.5px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 12px 16px -8px color-mix(in oklab, var(--primary-900) 4%, transparent);
+
+  --shadow-md:
+    0 0 0 1px color-mix(in oklab, oklch(55.3% 0.013 58.071) 10%, transparent),
+    0 1px 1px -0.5px color-mix(in oklab, var(--primary-950) 6%, transparent),
+    0 3px 3px -1.5px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 6px 6px -3px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 12px 12px -6px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 16px 16px -8px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 32px 32px -16px color-mix(in oklab, var(--primary-900) 2%, transparent);
+
+  --shadow-lg:
+    0 0 0 1px color-mix(in oklab, oklch(55.3% 0.013 58.071) 10%, transparent),
+    0 1px 1px -0.5px color-mix(in oklab, var(--primary-950) 8%, transparent),
+    0 3px 3px -1.5px color-mix(in oklab, var(--primary-900) 6%, transparent),
+    0 6px 6px -3px color-mix(in oklab, var(--primary-900) 6%, transparent),
+    0 12px 12px -6px color-mix(in oklab, var(--primary-900) 6%, transparent),
+    0 16px 16px -8px color-mix(in oklab, var(--primary-900) 6%, transparent),
+    0 32px 32px -16px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 48px 48px -24px color-mix(in oklab, var(--primary-900) 4%, transparent),
+    0 64px 64px -32px color-mix(in oklab, var(--primary-900) 4%, transparent);
 }
 
 
@@ -174,4 +205,9 @@
   strong {
     @apply font-medium
   }
+}
+
+.card:hover {
+  transform: perspective(1200px) translateZ(80px);
+  z-index: 1;
 }

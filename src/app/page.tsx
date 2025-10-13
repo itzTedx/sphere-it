@@ -11,6 +11,11 @@ export default function Home() {
       </Button> */}
       <DashedSeparator />
       <FieldHear />
+      <div className="flex items-center gap-8">
+        <div className="size-20 rounded-xl bg-card shadow-sm" />
+        <div className="card size-20 rounded-xl bg-card shadow-md transition-transform hover:shadow-lg" />
+        <div className="size-20 rounded-xl bg-card shadow-lg" />
+      </div>
       <h1>
         Trusted by 150,000+ Content Creators, SEOs, Agencies, and Teams The quick brown fox jumps over the lazy dog.
       </h1>

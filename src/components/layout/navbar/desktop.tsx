@@ -8,10 +8,24 @@ const NAVBAR_LINKS_CLASSNAMES = "font-medium";
 export const DesktopNavLinks = () => {
   return (
     <ul className="flex items-center gap-4">
-      {NAV_LINKS.map(({ id, label, href }) => (
+      {NAV_LINKS.map(({ id, label, href, submenu }) => (
         <li key={id}>
-          {/* // Conditionally renders a Next.js link if `href` is provided, otherwise renders a `span` element. */}
-          {href ? (
+          {href && submenu ? (
+            <>
+              <Link className={cn(NAVBAR_LINKS_CLASSNAMES)} href={href}>
+                {label}
+              </Link>
+              <ul>
+                {submenu.map((menu) => (
+                  <li key={menu.id}>
+                    <Link className={cn(NAVBAR_LINKS_CLASSNAMES)} href={menu.href}>
+                      {menu.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : href ? (
             <Link className={cn(NAVBAR_LINKS_CLASSNAMES)} href={href}>
               {label}
             </Link>
