@@ -211,3 +211,27 @@
   transform: perspective(1200px) translateZ(80px);
   z-index: 1;
 }
+
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @media (width >= 64rem /* 1024px */) {
+    padding-inline: 2rem;
+    max-width: 68rem;
+  }
+
+  @media (width >= 80rem /* 1280px */) {
+    padding-inline: 3.5rem;
+    max-width: 82rem;
+  }
+  @media (width >= 96rem /* 1536px */) {
+    padding-inline: 4rem;
+    max-width: 98rem;
+  }
+  @media (width >= 120rem /* 1536px */) {
+    padding-inline: 4.5rem;
+    max-width: 120rem;
+  }
+}
