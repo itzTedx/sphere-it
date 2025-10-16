@@ -113,12 +113,6 @@
   }
 }
 
-@layer typography {
-  strong {
-    @apply font-medium
-  }
-}
-
 .card:hover {
   transform: perspective(1200px) translateZ(80px);
   z-index: 1;

@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, sans.variable, mono.variable, "antialiased")}>
+      <body className={cn(inter.variable, sans.className, mono.variable, "antialiased")}>
         <Navbar />
         {children}
       </body>
