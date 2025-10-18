@@ -1,4 +1,8 @@
-import { NavLink } from "@/types/layout";
+import type { Route } from "next";
+
+import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
+
+import { Footer, NavLink } from "@/types/layout";
 
 export const NAV_LINKS: NavLink[] = [
   {
@@ -26,7 +30,7 @@ export const NAV_LINKS: NavLink[] = [
   },
 ];
 
-export const FOOTER = [
+export const FOOTER: Footer[] = [
   {
     id: 1,
     heading: "Services",
@@ -34,33 +38,33 @@ export const FOOTER = [
     links: [
       {
         id: 1,
-        Icon: "",
+        Icon: IconElevate,
         label: "Elevate",
-        href: "/services/elevate",
+        href: "/services/elevate" as Route,
       },
       {
         id: 2,
-        Icon: "",
+        Icon: IconAutomate,
         label: "Automate",
-        href: "/services/automate",
+        href: "/services/automate" as Route,
       },
       {
         id: 3,
-        Icon: "",
+        Icon: IconEvaluate,
         label: "Evaluate",
-        href: "/services/evaluate",
+        href: "/services/evaluate" as Route,
       },
       {
         id: 4,
-        Icon: "",
+        Icon: IconAssure,
         label: "Assure",
-        href: "/services/assure",
+        href: "/services/assure" as Route,
       },
       {
         id: 5,
-        Icon: "",
+        Icon: IconAugment,
         label: "Augment",
-        href: "/services/augment",
+        href: "/services/augment" as Route,
       },
     ],
   },
@@ -81,7 +85,7 @@ export const FOOTER = [
       {
         id: 3,
         label: "Contact",
-        href: "/Contact",
+        href: "/contact",
       },
     ],
   },
