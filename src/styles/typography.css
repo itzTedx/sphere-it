@@ -1,75 +1,79 @@
 
 @theme {
-    --text-title-1: 4rem;
-    --text-title-1--line-height: 1.25; 
-    --text-title-1--letter-spacing: -0.02em; 
-    --text-title-1--font-weight: 700; 
-  
-    --text-title-2: 3rem;
-    --text-title-2--line-height: 1.16; 
-    --text-title-2--letter-spacing: -0.02em; 
-    --text-title-2--font-weight: 600; 
-  
-    --text-title-3: 2.5rem;
-    --text-title-3--line-height: 1.16; 
-    --text-title-3--letter-spacing: -0.015em; 
-    --text-title-3--font-weight: 600; 
-  
-    --text-title-4: 2rem;
-    --text-title-4--line-height: 1.25; 
-    --text-title-4--letter-spacing: -0.01em; 
-    --text-title-4--font-weight: 600; 
-  
-    --text-title-5: 1.5rem;
-    --text-title-5--line-height: 1.33; 
-    --text-title-5--letter-spacing: -0.005em; 
-    --text-title-5--font-weight: 500; 
-  
-    --text-title-6: 1.25rem;
-    --text-title-6--line-height: 1.33; 
-    --text-title-6--letter-spacing: -0.005em; 
-    --text-title-6--font-weight: 500; 
-  
-    --text-4xl--line-height: 1.65; 
-    --text-4xl--letter-spacing: -0.085rem;
-  
-    --text-3xl--line-height: 1.65; 
-    --text-3xl--letter-spacing: -0.085rem;
-  
-    --text-2xl--line-height: 1.75; 
-    --text-2xl--letter-spacing: -0.05rem;
-  
-    --text-xl--line-height: 1.75; 
-    --text-xl--letter-spacing: -0.015rem;
-  
-    --text-lg--line-height: 1.75; 
-    --text-lg--letter-spacing: -0.015rem;
-  
-    --text-base--line-height: 1.65; 
-    --text-base--letter-spacing: -0.015rem;
-  
-    --text-sm--line-height: 1.5; 
-    --text-sm--letter-spacing: -0.0175rem;
-  
-    --text-xs--line-height: 1.33; 
-    --text-xs--letter-spacing: -0.012rem;
-  
-    --text-lead: 1.125rem;
-    --text-lead--line-height: 1.75; 
-    --text-lead--letter-spacing: -0.015rem;
-  
-    --text-badge: 0.75rem;
-    --text-badge--line-height: 1; 
-    --text-badge--letter-spacing: -0.015rem;
-    --text-badge--font-weight: 500;
-  
-    --text-label: 0.875rem;
-    --text-label--line-height: 1; 
-    --text-label--letter-spacing: -0.02rem;   
-  
-    --shadow-sm: var(--shadow-sm);
-    --shadow-md: var(--shadow-md);
-    --shadow-lg: var(--shadow-lg);
+  --text-base--line-height: 1.65; 
+  --text-base--letter-spacing: -0.015em;
+
+
+  --text-title-1: 4rem;
+  --text-title-1--line-height: 1.25; 
+  --text-title-1--letter-spacing: -0.02em; 
+  --text-title-1--font-weight: 700; 
+
+  --text-title-2: 3rem;
+  --text-title-2--line-height: 1.16; 
+  --text-title-2--letter-spacing: -0.02em; 
+  --text-title-2--font-weight: 600; 
+
+  --text-title-3: 2.5rem;
+  --text-title-3--line-height: 1.16; 
+  --text-title-3--letter-spacing: -0.015em; 
+  --text-title-3--font-weight: 600; 
+
+  --text-title-4: 2rem;
+  --text-title-4--line-height: 1.25; 
+  --text-title-4--letter-spacing: -0.01em; 
+  --text-title-4--font-weight: 600; 
+
+  --text-title-5: 1.5rem;
+  --text-title-5--line-height: 1.33; 
+  --text-title-5--letter-spacing: -0.005em; 
+  --text-title-5--font-weight: 500; 
+
+  --text-title-6: 1.25rem;
+  --text-title-6--line-height: 1.33; 
+  --text-title-6--letter-spacing: -0.005em; 
+  --text-title-6--font-weight: 500; 
+
+  --text-4xl--line-height: 1.65; 
+  --text-4xl--letter-spacing: -0.085rem;
+
+  --text-3xl--line-height: 1.65; 
+  --text-3xl--letter-spacing: -0.085rem;
+
+  --text-2xl--line-height: 1.75; 
+  --text-2xl--letter-spacing: -0.05rem;
+
+  --text-xl--line-height: 1.75; 
+  --text-xl--letter-spacing: -0.015rem;
+
+  --text-lg--line-height: 1.75; 
+  --text-lg--letter-spacing: -0.015rem;
+
+  --text-base--line-height: 1.65; 
+  --text-base--letter-spacing: -0.015rem;
+
+  --text-sm--line-height: 1.5; 
+  --text-sm--letter-spacing: -0.0175rem;
+
+  --text-xs--line-height: 1.33; 
+  --text-xs--letter-spacing: -0.012rem;
+
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.75; 
+  --text-lead--letter-spacing: -0.015rem;
+
+  --text-badge: 0.75rem;
+  --text-badge--line-height: 1; 
+  --text-badge--letter-spacing: -0.015rem;
+  --text-badge--font-weight: 500;
+
+  --text-label: 0.875rem;
+  --text-label--line-height: 1; 
+  --text-label--letter-spacing: -0.02rem;   
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
 }
 
 @layer typography {

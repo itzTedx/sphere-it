@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { IconArrowRight } from "@/assets/icons/arrows";
-import { IconAiGear } from "@/assets/icons/gear";
+
+import { BEST_AT } from "@/data/constants";
+import { SERVICES } from "@/data/services";
 
 export default function Home() {
   return (
@@ -66,88 +68,44 @@ export default function Home() {
               </svg>
             </div>
             <div className="container max-w-6xl">
-              <TabsContent
-                className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1.5"
-                value="elevate"
-              >
-                <div className="grid grid-cols-5 gap-8 rounded-3xl bg-card px-12 py-16">
-                  <div className="col-span-2 space-y-8">
-                    <div className="space-y-4">
-                      <Badge showDashes>Elevate</Badge>
-                      <h2 className="text-primary-900 text-title-4">Powering Intelligent Transformation</h2>
-                      <p className="text-balance text-lg text-stone-800">
-                        Unlock the power of AI with compliant, ready-to-use solutions that deliver results faster.
-                      </p>
-                      <ul className="space-y-6">
-                        <li className="flex items-center gap-3">
-                          <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
-                            <IconAiGear className="text-primary-600" />
-                          </div>
-                          <p className="text-stone-700">
-                            Accelerate AI adoption with 60+ reusable, compliant components.
-                          </p>
-                        </li>
-                        <li className="flex items-center gap-3">
-                          <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
-                            <IconAiGear className="text-primary-600" />
-                          </div>
-                          <p className="text-stone-700">
-                            Deliver enterprise-grade intelligence powered by Agile and DevOps precision.
-                          </p>
-                        </li>
-                      </ul>
+              {SERVICES.map((service) => (
+                <TabsContent
+                  className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1.5"
+                  key={service.id}
+                  value={service.id}
+                >
+                  <div className="grid grid-cols-5 gap-8 rounded-3xl bg-card px-12 py-16">
+                    <div className="col-span-2 space-y-8">
+                      <div className="space-y-4">
+                        <Badge className="text-badge" showDashes>
+                          {service.id}
+                        </Badge>
+                        <h2 className="text-primary-900 text-title-4">{service.title}</h2>
+                        <p className="text-balance text-lg text-stone-800">{service.description}</p>
+                        <ul className="space-y-6">
+                          {service.lists.map(({ id, Icon, feature }) => (
+                            <li className="flex items-center gap-3" key={id}>
+                              <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
+                                <Icon className="text-primary-600" />
+                              </div>
+                              <p className="text-sm text-stone-700">{feature}</p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <Button asChild>
+                        <Link href="/services">
+                          Learn more <IconArrowRight />
+                        </Link>
+                      </Button>
                     </div>
-                    <Button asChild>
-                      <Link href="/services">
-                        Learn more <IconArrowRight />
-                      </Link>
-                    </Button>
-                  </div>
-                  <div className="relative col-span-3">
-                    <Image alt="" className="object-contain" fill src="/svg/elevate.svg" />
-                  </div>
-                </div>
-              </TabsContent>
-              <TabsContent
-                className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1.5"
-                value="automate"
-              >
-                <div className="grid grid-cols-5 gap-8 rounded-3xl bg-card px-12 py-16">
-                  <div className="col-span-2 space-y-8">
-                    <div className="space-y-4">
-                      <Badge>Automate</Badge>
-                      <h2 className="text-primary-900 text-title-4">Simplifying Processes, Amplifying Performance</h2>
-                      <p className="text-balance text-lg text-stone-800">
-                        Streamline critical processes with low-code automation that saves time and reduces errors.
-                      </p>
-                      <ul className="space-y-6">
-                        <li className="flex items-center gap-3">
-                          <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
-                            <IconAiGear className="text-primary-600" />
-                          </div>
-                          <p className="text-stone-700">Streamline operations with low-code and no-code automation.</p>
-                        </li>
-                        <li className="flex items-center gap-3">
-                          <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
-                            <IconAiGear className="text-primary-600" />
-                          </div>
-                          <p className="text-stone-700">
-                            Cut cycle times and reduce errors - without disrupting workflows.
-                          </p>
-                        </li>
-                      </ul>
+                    <div className="relative col-span-3">
+                      <Image alt="" className="object-contain" fill src="/svg/elevate.svg" />
                     </div>
-                    <Button asChild>
-                      <Link href="/services">
-                        Learn more <IconArrowRight />
-                      </Link>
-                    </Button>
                   </div>
-                  <div className="relative col-span-3">
-                    <Image alt="" className="object-contain" fill src="/svg/elevate.svg" />
-                  </div>
-                </div>
-              </TabsContent>
+                </TabsContent>
+              ))}
+
               <MiniCta className="-mt-14 mx-14" />
             </div>
           </Tabs>
@@ -172,7 +130,7 @@ export default function Home() {
       <section className="container">
         <div className="container mx-auto max-w-7xl border-x">
           <div className="container max-w-3xl space-y-5 py-16">
-            <Badge>Technology. Talent. Transformation.</Badge>
+            <Badge className="text-badge">Technology. Talent. Transformation.</Badge>
             <h2 className="text-primary-900 text-title-2">
               Delivering with <span className="text-primary-600">Precision and Pragmatism</span>
             </h2>
@@ -196,6 +154,56 @@ export default function Home() {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+      <section className="container border-y">
+        <div className="mx-auto max-w-7xl border-x">
+          <div className="container space-y-10 rounded-4xl bg-card px-12 py-16">
+            <div className="space-y-5">
+              <Badge className="text-badge">We’re best at</Badge>
+              <h2 className="text-primary-900 text-title-2">
+                Turning Complexity Into <span className="text-primary-600">Clarity</span>
+              </h2>
+              <p className="max-w-4xl text-balance">
+                We design AI and automation frameworks that integrate seamlessly with enterprise ecosystems - aligning
+                with ISO/IEC 42001 standards to ensure security, transparency, and scalable performance at every layer.
+              </p>
+              <Button asChild variant="ghost">
+                <Link href="/services">
+                  See what our customer says
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
+                    <IconArrowRight className="text-stone-500" />
+                  </span>
+                </Link>
+              </Button>
+            </div>
+            <ul className="grid grid-cols-4 gap-3">
+              {BEST_AT.map((t) => (
+                <li className="rounded-2xl border border-stone-500/10 bg-stone-500/10 p-1.5" key={t.id}>
+                  <div className="h-full rounded-xl bg-card p-5 shadow-sm">
+                    <h3 className="text-primary-800">{t.title}</h3>
+                    <p>{t.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="container">
+          <div className="container h-24 max-w-7xl border-x" />
+        </div>
+        <div className="mx-3 rounded-3xl bg-card p-20">
+          <div className="mx-auto max-w-7xl">
+            <Badge variant="secondary">Why sphere it</Badge>
+            <h2 className="text-primary-900 text-title-2">
+              What sets <span className="text-primary-600">Sphere IT apart</span>
+            </h2>
+          </div>
+        </div>
+        <div className="container">
+          <div className="container h-24 max-w-7xl border-x" />
         </div>
       </section>
     </main>
