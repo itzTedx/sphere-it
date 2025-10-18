@@ -26,6 +26,109 @@ export const NAV_LINKS: NavLink[] = [
   },
 ];
 
+export const FOOTER = [
+  {
+    id: 1,
+    heading: "Services",
+    href: "/services",
+    links: [
+      {
+        id: 1,
+        Icon: "",
+        label: "Elevate",
+        href: "/services/elevate",
+      },
+      {
+        id: 2,
+        Icon: "",
+        label: "Automate",
+        href: "/services/automate",
+      },
+      {
+        id: 3,
+        Icon: "",
+        label: "Evaluate",
+        href: "/services/evaluate",
+      },
+      {
+        id: 4,
+        Icon: "",
+        label: "Assure",
+        href: "/services/assure",
+      },
+      {
+        id: 5,
+        Icon: "",
+        label: "Augment",
+        href: "/services/augment",
+      },
+    ],
+  },
+  {
+    id: 2,
+    heading: "Company",
+    links: [
+      {
+        id: 1,
+        label: "About",
+        href: "/about",
+      },
+      {
+        id: 2,
+        label: "Careers",
+        href: "/careers",
+      },
+      {
+        id: 3,
+        label: "Contact",
+        href: "/Contact",
+      },
+    ],
+  },
+  {
+    id: 3,
+    heading: "Resources",
+    links: [
+      {
+        id: 1,
+        label: "Faqs",
+        href: "/resources/faqs",
+      },
+      {
+        id: 2,
+        label: "Testimonials",
+        href: "/resources/testimonials",
+      },
+      {
+        id: 3,
+        label: "Case studies",
+        href: "/resources/case-studies",
+      },
+      {
+        id: 4,
+        label: "Insights",
+        href: "/resources/insights",
+      },
+    ],
+  },
+  {
+    id: 4,
+    heading: "Locations",
+    links: [
+      {
+        id: 1,
+        label: "Dubai",
+        href: "/",
+      },
+      {
+        id: 2,
+        label: "India",
+        href: "/",
+      },
+    ],
+  },
+];
+
 export const BEST_AT = [
   {
     id: 1,

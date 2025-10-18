@@ -1,10 +1,42 @@
 import Link from "next/link";
 
 import { IconAiCloud, IconArrowUpRight } from "@/assets/icons";
+import { LogoOutline } from "@/assets/logo";
 
 import { cn } from "@/lib/utils";
 
+import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+
+export const Cta = () => {
+  return (
+    <section>
+      <div className="container">
+        <div className="container h-24 max-w-7xl border-x" />
+      </div>
+      <div className="border-y">
+        <div className="mx-auto max-w-7xl border-x">
+          <div className="relative overflow-hidden rounded-3xl bg-primary-950 p-16">
+            <div className="max-w-2xl space-y-4">
+              <Badge>Your IT success story starts here</Badge>
+              <h4 className="text-balance text-primary-100 text-title-2">
+                Let’s build your next IT success story together.
+              </h4>
+              <p className="text-balance text-lg text-primary-300">
+                Get the accuracy, scalability, and impact your business needs - delivered with precision and pragmatism.
+              </p>
+              <Button>Start the Conversation</Button>
+            </div>
+            <LogoOutline className="-translate-y-1/4 -translate-x-1/6 absolute top-16 left-1/2 rotate-30 text-primary-400" />
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="container h-24 max-w-7xl border-x" />
+      </div>
+    </section>
+  );
+};
 
 interface CtaProps {
   title?: string;
