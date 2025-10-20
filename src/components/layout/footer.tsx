@@ -8,7 +8,7 @@ import { FOOTER } from "@/data/constants";
 export const Footer = () => {
   return (
     <footer className="bg-foreground">
-      <div className="container max-w-7xl border-x py-16 text-stone-200">
+      <div className="container max-w-7xl space-y-10 border-x py-16 text-stone-200">
         <div className="grid grid-cols-2 gap-4">
           <div className="max-w-md space-y-6">
             <Logo className="text-primary-50" />
@@ -46,6 +46,19 @@ export const Footer = () => {
               </div>
             ))}
           </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <p className="text-muted-foreground">
+            Copyright © {new Date().getFullYear()} Sphere IT Global. All rights reserved.
+          </p>
+          <ul className="flex items-center gap-6">
+            <li>
+              <Link href="/legal/privacy">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link href="/legal/terms-of-services">Terms of Service</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
