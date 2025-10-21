@@ -1,10 +1,17 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+
+import { IconCheckmark } from "@/assets/icons";
 
 export const Hero = () => {
   return (
     <header className="container bg-card">
       <section className="container max-w-7xl border-x pt-28 pb-9 text-center">
         <div className="mx-auto max-w-3xl space-y-6">
+          <Badge className="mx-auto" showDashes>
+            <IconCheckmark className="text-accent" />
+            ISO/IEC 42001 Certified
+          </Badge>
           <h1 className="text-primary-900 text-title-1">
             Delivering <span className="text-primary-700">Accuracy.</span> Driving Outcomes.
           </h1>

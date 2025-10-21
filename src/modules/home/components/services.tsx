@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { IconArrowRight } from "@/assets/icons/arrows";
+import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
 
 import { SERVICES } from "@/data/services";
 
@@ -24,11 +27,36 @@ export const Services = () => {
             </svg>
             <div className="flex h-16 items-center justify-center bg-card">
               <TabsList className="flex items-center justify-center rounded-none bg-card">
-                <TabsTrigger value="elevate">Elevate</TabsTrigger>
-                <TabsTrigger value="automate">Automate</TabsTrigger>
-                <TabsTrigger value="evaluate">Evaluate</TabsTrigger>
-                <TabsTrigger value="assure">Assure</TabsTrigger>
-                <TabsTrigger value="augment">Augment</TabsTrigger>
+                <TabsTrigger className="pl-1" value="elevate">
+                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                    <IconElevate className="m-auto text-stone-500" />
+                  </div>
+                  Elevate
+                </TabsTrigger>
+                <TabsTrigger className="pl-1" value="automate">
+                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                    <IconAutomate className="m-auto text-stone-500" />
+                  </div>
+                  Automate
+                </TabsTrigger>
+                <TabsTrigger className="pl-1" value="evaluate">
+                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                    <IconEvaluate className="m-auto text-stone-500" />
+                  </div>
+                  Evaluate
+                </TabsTrigger>
+                <TabsTrigger className="pl-1" value="assure">
+                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                    <IconAssure className="m-auto text-stone-500" />
+                  </div>
+                  Assure
+                </TabsTrigger>
+                <TabsTrigger className="pl-1" value="augment">
+                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                    <IconAugment className="m-auto text-stone-500" />
+                  </div>
+                  Augment
+                </TabsTrigger>
               </TabsList>
             </div>
             <svg fill="none" height="64" viewBox="0 0 86 64" width="86" xmlns="http://www.w3.org/2000/svg">
@@ -39,16 +67,17 @@ export const Services = () => {
             </svg>
           </div>
           <div className="container max-w-6xl">
-            {SERVICES.map((service) => (
+            {SERVICES.map(({ Icon, ...service }) => (
               <TabsContent
                 className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1.5"
                 key={service.id}
                 value={service.id}
               >
-                <div className="grid grid-cols-5 gap-8 rounded-3xl bg-card px-12 py-16">
+                <div className="grid grid-cols-5 gap-8 rounded-3xl bg-card px-12 py-16 shadow-md">
                   <div className="col-span-2 space-y-8">
                     <div className="space-y-4">
-                      <Badge className="text-badge" showDashes>
+                      <Badge variant="secondary">
+                        <Icon />
                         {service.id}
                       </Badge>
                       <h2 className="text-primary-900 text-title-4">{service.title}</h2>
@@ -59,7 +88,7 @@ export const Services = () => {
                             <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
                               <Icon className="text-primary-600" />
                             </div>
-                            <p className="text-sm text-stone-700">{feature}</p>
+                            <p className="font-medium text-sm text-stone-700">{feature}</p>
                           </li>
                         ))}
                       </ul>

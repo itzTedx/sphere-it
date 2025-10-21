@@ -1,9 +1,10 @@
 import { IconAiGear } from "@/assets/icons";
+import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
 
 export const SERVICES = [
   {
     id: "elevate",
-    Icon: "",
+    Icon: IconElevate,
     title: "Powering Intelligent Transformation",
     description: "Unlock the power of AI with compliant, ready-to-use solutions that deliver results faster.",
     image: "/svg/elevate.svg",
@@ -22,7 +23,7 @@ export const SERVICES = [
   },
   {
     id: "automate",
-    Icon: "",
+    Icon: IconAutomate,
     title: "Simplifying Processes, Amplifying Performance",
     description: "Streamline critical processes with low-code automation that saves time and reduces errors.",
     image: "/svg/elevate.svg",
@@ -41,7 +42,7 @@ export const SERVICES = [
   },
   {
     id: "evaluate",
-    Icon: "",
+    Icon: IconEvaluate,
     title: "Turning Data into Decisive Action",
     description: "Gain real-time insights and dashboards to make confident, data-driven decisions.",
     image: "/svg/elevate.svg",
@@ -60,7 +61,7 @@ export const SERVICES = [
   },
   {
     id: "assure",
-    Icon: "",
+    Icon: IconAssure,
     title: "Building Confidence through Continuity",
     description: "Keep mission-critical platforms resilient, secure, and performing at their best.",
     image: "/svg/elevate.svg",
@@ -79,7 +80,7 @@ export const SERVICES = [
   },
   {
     id: "augment",
-    Icon: "",
+    Icon: IconAugment,
     title: "Expanding Capability, On Demand",
     description: "Scale your teams flexibly with the right tech talent, when you need it.",
     image: "/svg/elevate.svg",
