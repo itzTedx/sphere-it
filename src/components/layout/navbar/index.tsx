@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "@/assets/logo";
 
 import { DesktopNavLinks } from "./desktop";
+import { MobileNav } from "./mobile";
 
 export const Navbar = () => {
   return (
@@ -13,10 +14,15 @@ export const Navbar = () => {
         <Link href="/">
           <Logo className="text-[#111111]" />
         </Link>
-        <DesktopNavLinks />
-        <Button asChild>
-          <Link href="/contact">Get in touch</Link>
-        </Button>
+        <div className="hidden md:block">
+          <DesktopNavLinks />
+        </div>
+        <div className="flex items-center gap-4">
+          <Button asChild className="hidden md:inline-flex">
+            <Link href="/contact">Get in touch</Link>
+          </Button>
+          <MobileNav />
+        </div>
       </div>
     </header>
   );
