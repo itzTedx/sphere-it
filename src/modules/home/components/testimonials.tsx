@@ -37,8 +37,8 @@ export const Testimonials = () => {
           <div className="absolute inset-x-0 bottom-0 z-10 h-48 bg-gradient-to-t from-20% from-background to-transparent" />
         </div>
         <div className="-mt-6 relative z-10 mx-auto flex w-fit items-center justify-center gap-1.5 rounded-full bg-card p-1.5 shadow-lg">
-          <p className="px-3">View the impact on our clients</p>
-          <Button>Browse customer stories</Button>
+          <p className="px-3 font-sans text-muted-foreground">View the impact on our clients</p>
+          <Button className="bg-primary-950">Browse customer stories</Button>
         </div>
       </div>
     </section>

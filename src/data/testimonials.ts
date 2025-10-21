@@ -17,6 +17,15 @@ export const TESTIMONIALS: Testimonial[] = [
       "We scaled our digital transformation team within weeks thanks to Sphere IT’s augmentation services. The talent they provided was highly skilled and aligned perfectly with our objectives.",
     industry: "Talent & Resource Augmentation",
   },
+  {
+    id: 3,
+    name: "Maya El-Sayed",
+    designation: "Head of Innovation, Global Manufacturing Inc.",
+    avatar: "/",
+    content:
+      "The AI solutions Sphere IT implemented exceeded expectations. They balanced innovation with usability, giving our teams powerful tools without unnecessary complexity.",
+    industry: "Talent & Resource Augmentation",
+  },
 ];
 
 export type Testimonial = {

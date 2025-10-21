@@ -126,7 +126,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground slashed-zero;
+    @apply bg-background text-foreground slashed-zero tracking-tight;
     
     text-rendering: optimizeLegibility;
     hanging-punctuation: first allow-end last;
