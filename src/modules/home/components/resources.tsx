@@ -39,7 +39,7 @@ export const Resources = () => {
           </div>
           <ul className="flex items-center divide-x border-b">
             {RESOURCES_LINKS.map((link) => (
-              <li className="relative w-full p-3" key={link.id}>
+              <li className="relative p-3 md:w-full" key={link.id}>
                 <Link className="absolute inset-0" href="/resources/insights" />
                 <div className="rounded-xl bg-card p-4 shadow-sm md:p-6">
                   <h3 className="text-primary-600 text-subhead-sm md:text-subhead-lg">{link.title}</h3>
