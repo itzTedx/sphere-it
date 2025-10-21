@@ -10,29 +10,33 @@ import { Button } from "../ui/button";
 
 export const Cta = () => {
   return (
-    <section>
-      <div className="container">
-        <div className="container h-24 max-w-7xl border-x" />
+    <section className="max-md:container max-sm:pb-12">
+      <div className="md:container">
+        <div className="max-w-7xl md:container sm:h-16 md:h-20 md:border-x lg:h-24" />
       </div>
       <div className="border-y">
         <div className="mx-auto max-w-7xl border-x">
-          <div className="relative overflow-hidden rounded-3xl bg-primary-950 p-16">
-            <div className="max-w-2xl space-y-4">
-              <Badge>Your IT success story starts here</Badge>
-              <h4 className="text-balance text-primary-100 text-title-2">
-                Let’s build your next IT success story together.
+          <div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 sm:rounded-3xl sm:p-8 md:p-12 lg:p-16">
+            <div className="max-w-2xl space-y-3 sm:space-y-4">
+              <Badge className="bg-primary-400/10 text-primary-500 text-xs sm:text-sm">
+                Your IT success story starts here
+              </Badge>
+              <h4 className="text-balance text-primary-100 text-xl leading-tight sm:text-2xl md:text-title-3 lg:text-title-2">
+                Let's build your next IT success story together.
               </h4>
-              <p className="text-balance text-lg text-primary-300">
+              <p className="text-balance text-primary-300 text-sm sm:text-base md:text-lg">
                 Get the accuracy, scalability, and impact your business needs - delivered with precision and pragmatism.
               </p>
-              <Button>Start the Conversation</Button>
+              <Button className="w-full sm:w-auto" size="lg">
+                Start the Conversation
+              </Button>
             </div>
-            <LogoOutline className="-translate-y-1/4 -translate-x-1/6 absolute top-16 left-1/2 rotate-30 text-primary-400" />
+            <LogoOutline className="-translate-x-1/2 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 sm:top-8 sm:opacity-80 md:top-12 lg:top-16 lg:opacity-100" />
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="container h-24 max-w-7xl border-x" />
+      <div className="md:container">
+        <div className="max-w-7xl md:container sm:h-16 md:h-20 md:border-x lg:h-24" />
       </div>
     </section>
   );
@@ -54,32 +58,40 @@ export const MiniCta = ({
   return (
     <div
       className={cn(
-        "relative z-10000 flex flex-col items-center gap-4 rounded-2xl bg-foreground px-3 py-4 md:flex-row md:px-6 md:py-8",
+        "relative z-10000 flex flex-col items-center gap-3 rounded-xl bg-foreground px-3 py-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 md:flex-row md:px-6 md:py-8",
         className
       )}
     >
-      <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary-950">
+      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-950 sm:size-12">
         <IconAiCloud className="text-purple-400" />
       </div>
-      <div className="flex w-full flex-col items-center justify-between md:flex-row">
-        <div className={cn(layout === "vertical" && "flex items-center gap-6")}>
+      <div className="flex w-full flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
+        <div
+          className={cn(
+            "text-center md:text-left",
+            layout === "vertical" && "flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
+          )}
+        >
           <h4
-            className="font-semibold text-card text-xl leading-tight tracking-[0.01em] md:text-2xl [&>span]:text-accent"
+            className="font-semibold text-card text-lg leading-tight tracking-[0.01em] sm:text-xl md:text-2xl [&>span]:text-accent"
             dangerouslySetInnerHTML={{ __html: title }}
           />
           <p
             className={cn(
               "text-muted-background",
-              layout === "vertical" ? "text-balance font-medium text-lg leading-tight md:text-xl" : "text-xs md:text-sm"
+              layout === "vertical"
+                ? "text-balance font-medium text-base leading-tight sm:text-lg md:text-xl"
+                : "text-xs leading-relaxed sm:text-sm"
             )}
           >
             {description}
           </p>
         </div>
-        <Button asChild className="bg-primary-900 pl-5 text-primary-400" size="lg" variant="ghost">
+        <Button asChild className="w-full bg-primary-900 pl-4 text-primary-400 sm:w-auto" size="lg" variant="ghost">
           <Link href="/services">
-            Explore Solutions
-            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-400">
+            <span className="hidden sm:inline">Explore Solutions</span>
+            <span className="sm:hidden">Explore</span>
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
               <IconArrowUpRight className="text-primary-900" />
             </span>
           </Link>

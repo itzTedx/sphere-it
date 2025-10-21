@@ -6,40 +6,49 @@ import { Card, CardContent, CardHeader, CardMedia, CardTitle } from "@/component
 
 import { IconChevronDownFill } from "@/assets/icons";
 
+const RESOURCES_LINKS = [
+  {
+    id: 1,
+    title: "Insights",
+    description: "The latest articles, news, blogs, and learnings.",
+    href: "/resources/insights",
+  },
+  {
+    id: 2,
+    title: "Case Studies",
+    description: "Success stories from companies like yours.",
+    href: "/resources/case-Studies",
+  },
+  {
+    id: 3,
+    title: "Research Papers",
+    description: "Deep dives into technology trends and proven methods.",
+    href: "/resources/case-Studies",
+  },
+];
+
 export const Resources = () => {
   return (
     <section className="border-y">
       <div className="mx-auto max-w-7xl border-x">
         <div className="rounded-3xl border bg-card">
           <div className="border-b p-8">
-            <h2 className="text-primary-900 text-title-2">
+            <h2 className="text-primary-900 text-title-4 md:text-title-2">
               Real Stories. <span className="text-primary-600">Real Impact.</span>
             </h2>
           </div>
           <ul className="flex items-center divide-x border-b">
-            <li className="relative w-full p-3">
-              <Link className="absolute inset-0" href="/resources/insights" />
-              <div className="rounded-xl bg-card p-6 shadow-sm">
-                <h3 className="text-primary-600 text-subhead-lg">Insights</h3>
-                <p className="text-sm text-stone-700">The latest articles, news, blogs, and learnings.</p>
-              </div>
-            </li>
-            <li className="relative w-full p-3">
-              <Link className="absolute inset-0" href="/resources/insights" />
-              <div className="rounded-xl bg-card p-6 shadow-sm">
-                <h3 className="text-primary-600 text-subhead-lg">Case Studies</h3>
-                <p className="text-sm text-stone-700">Success stories from companies like yours.</p>
-              </div>
-            </li>
-            <li className="relative w-full p-3">
-              <Link className="absolute inset-0" href="/resources/insights" />
-              <div className="rounded-xl bg-card p-6 shadow-sm">
-                <h3 className="text-primary-600 text-subhead-lg">Research Papers</h3>
-                <p className="text-sm text-stone-700">Deep dives into technology trends and proven methods.</p>
-              </div>
-            </li>
+            {RESOURCES_LINKS.map((link) => (
+              <li className="relative w-full p-3" key={link.id}>
+                <Link className="absolute inset-0" href="/resources/insights" />
+                <div className="rounded-xl bg-card p-4 shadow-sm md:p-6">
+                  <h3 className="text-primary-600 text-subhead-sm md:text-subhead-lg">{link.title}</h3>
+                  <p className="hidden text-sm text-stone-700 md:inline">{link.description}</p>
+                </div>
+              </li>
+            ))}
           </ul>
-          <article className="grid grid-cols-3 gap-6 p-8">
+          <article className="grid gap-6 p-8 md:grid-cols-3">
             <Card className="card">
               <CardMedia alt="" className="aspect-4/3" src="/images/banking.webp" />
               <CardContent>
