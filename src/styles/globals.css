@@ -135,7 +135,7 @@
 }
 
 .card:hover {
-  transform: perspective(1200px) translateZ(80px);
+  transform: perspective(1200px) translateZ(24px);
   z-index: 1;
 }
 
