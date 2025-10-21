@@ -159,3 +159,56 @@ export const BEST_AT = [
       "Flexible architectures that integrate seamlessly with your existing stack, enabling growth without disruption.",
   },
 ];
+
+export const CLIENTS = [
+  {
+    id: 1,
+    src: "/brands/adcb.svg",
+    name: "ADCB",
+  },
+  {
+    id: 2,
+    src: "/brands/al-ghurair.svg",
+    name: "Al Ghurair",
+  },
+  {
+    id: 3,
+    src: "/brands/cbj.svg",
+    name: "Captial Bank of jordon",
+  },
+  {
+    id: 4,
+    src: "/brands/coforge.svg",
+    name: "CoForge",
+  },
+  {
+    id: 5,
+    src: "/brands/enbd.svg",
+    name: "Emirates NBD",
+  },
+  {
+    id: 6,
+    src: "/brands/igt-solution.svg",
+    name: "IGT Solution",
+  },
+  {
+    id: 7,
+    src: "/brands/mashreq.svg",
+    name: "Mashreq Bank",
+  },
+  {
+    id: 8,
+    src: "/brands/ag-cars.png",
+    name: "AG Cars",
+  },
+  {
+    id: 9,
+    src: "/brands/cbd.svg",
+    name: "Commercial Bank of Dubai",
+  },
+  {
+    id: 10,
+    src: "/brands/gems.png",
+    name: "GEMS Education",
+  },
+];

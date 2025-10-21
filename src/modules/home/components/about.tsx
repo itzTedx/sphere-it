@@ -1,9 +1,15 @@
 import Link from "next/link";
 
+import {
+  PreviewCard,
+  PreviewCardPanel,
+  PreviewCardTrigger,
+} from "@/components/animate-ui/components/base/preview-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 
-import { IconArrowRight } from "@/assets/icons";
+import { IconArrowRight, IconBank, IconCar } from "@/assets/icons";
 
 import { BEST_AT } from "@/data/constants";
 
@@ -11,8 +17,8 @@ export const About = () => {
   return (
     <>
       <section className="container">
-        <div className="container mx-auto max-w-7xl border-x">
-          <div className="container max-w-3xl space-y-5 py-16">
+        <div className="container relative mx-auto max-w-7xl overflow-hidden border-x">
+          <div className="container relative z-10 max-w-3xl space-y-5 py-16">
             <Badge className="text-badge">Technology. Talent. Transformation.</Badge>
             <h2 className="text-primary-900 text-title-2">
               Delivering with <span className="text-primary-600">Precision and Pragmatism</span>
@@ -25,18 +31,64 @@ export const About = () => {
               <span className="font-medium text-primary-600">precise delivery with pragmatic execution,</span> helping
               organizations balance time, quality, and cost. Every engagement is designed to be accurate, scalable, and
               outcome-driven - so you see measurable results, faster. <br />
-              We are a global IT consulting company with deep domain expertise across banking, automotive, insurance,
-              and mobility sectors.
+              We are a global IT consulting company with deep domain expertise across{" "}
+              <PreviewCard delay={100}>
+                <PreviewCardTrigger className="cursor-pointer underline transition-colors hover:text-primary-600">
+                  banking
+                </PreviewCardTrigger>
+                <PreviewCardPanel className="w-fit bg-primary-400" side="top">
+                  <IconBank className="size-9 text-primary-950" />
+                </PreviewCardPanel>
+              </PreviewCard>
+              ,{" "}
+              <PreviewCard delay={100}>
+                <PreviewCardTrigger className="cursor-pointer underline transition-colors hover:text-primary-600">
+                  automotive
+                </PreviewCardTrigger>
+                <PreviewCardPanel className="w-fit bg-primary-400" side="top">
+                  <IconCar className="size-9 text-primary-950" />
+                </PreviewCardPanel>
+              </PreviewCard>
+              ,{" "}
+              <PreviewCard delay={100}>
+                <PreviewCardTrigger className="cursor-pointer underline transition-colors hover:text-primary-600">
+                  insurance
+                </PreviewCardTrigger>
+                <PreviewCardPanel className="w-fit bg-primary-400" side="top">
+                  <IconCar className="size-9 text-primary-950" />
+                </PreviewCardPanel>
+              </PreviewCard>
+              , and{" "}
+              <PreviewCard delay={100}>
+                <PreviewCardTrigger className="cursor-pointer underline transition-colors hover:text-primary-600">
+                  mobility
+                </PreviewCardTrigger>
+                <PreviewCardPanel className="w-fit bg-primary-400" side="top">
+                  <IconCar className="size-9 text-primary-950" />
+                </PreviewCardPanel>
+              </PreviewCard>{" "}
+              sectors.
             </p>
             <Button asChild variant="ghost">
               <Link href="/services">
-                Explore Solutions
+                Explore our Capabilities
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
                   <IconArrowRight className="text-stone-500" />
                 </span>
               </Link>
             </Button>
           </div>
+
+          <FlickeringGrid
+            className="absolute inset-0 z-1 opacity-50"
+            color="#D6D3D1"
+            flickerChance={0.1}
+            gridGap={4}
+            height={1080}
+            maxOpacity={0.5}
+            squareSize={4}
+            width={1920}
+          />
         </div>
       </section>
       <section className="container border-y">

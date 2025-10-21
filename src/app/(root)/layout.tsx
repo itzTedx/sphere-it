@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 
+import ReactLenis from "lenis/react";
+
+import { BreakpointIndicator } from "@/components/dev/breakpoint-ind";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 
@@ -22,8 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.variable, sans.className, mono.variable, "antialiased")}>
         <Navbar />
-        {children}
+        <ReactLenis root>{children}</ReactLenis>
         <Footer />
+        <BreakpointIndicator />
       </body>
     </html>
   );
