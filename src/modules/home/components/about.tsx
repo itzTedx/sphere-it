@@ -92,7 +92,7 @@ export const About = () => {
           <div className="container space-y-10 rounded-4xl bg-card px-12 py-16">
             <div className="space-y-5">
               <Badge className="text-badge">We’re best at</Badge>
-              <h2 className="text-primary-900 text-title-2">
+              <h2 className="text-primary-900 text-title-4 md:text-title-2">
                 Turning Complexity Into <span className="text-primary-600">Clarity</span>
               </h2>
               <p className="max-w-4xl text-balance">
