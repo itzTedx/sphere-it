@@ -10,7 +10,7 @@ import {
   type PreviewCardProps as PreviewCardPrimitiveProps,
   PreviewCardTrigger as PreviewCardTriggerPrimitive,
   type PreviewCardTriggerProps as PreviewCardTriggerPrimitiveProps,
-} from "@/components/animate-ui/primitives/base/preview-card";
+} from "@/components/ui/primitives/base/preview-card";
 
 import { cn } from "@/lib/utils";
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -31,6 +32,13 @@ export const WhyUs = () => {
             <ScalableCard />
             <ReliabilityCard />
             <TechStackCard />
+            <div className="col-span-full">
+              <MiniCta
+                description="We make it work for your business, reducing complexity and accelerating value."
+                layout="vertical"
+                title="We don’t just <span>design technology</span>"
+              />
+            </div>
           </div>
         </div>
       </div>

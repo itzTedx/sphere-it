@@ -1,11 +1,7 @@
 import Link from "next/link";
 
-import {
-  PreviewCard,
-  PreviewCardPanel,
-  PreviewCardTrigger,
-} from "@/components/animate-ui/components/base/preview-card";
 import { Badge } from "@/components/ui/badge";
+import { PreviewCard, PreviewCardPanel, PreviewCardTrigger } from "@/components/ui/base/preview-card";
 import { Button } from "@/components/ui/button";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 
