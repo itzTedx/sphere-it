@@ -106,7 +106,7 @@ export const About = () => {
               <Button asChild variant="ghost">
                 <Link href="/services">
                   See what our customer says
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300 transition-colors">
                     <IconArrowRight className="text-stone-500" />
                   </span>
                 </Link>
@@ -115,9 +115,14 @@ export const About = () => {
             <ul className="grid grid-cols-4 gap-3">
               {BEST_AT.map((t) => (
                 <li className="rounded-2xl border border-stone-500/10 bg-stone-500/10 p-1.5" key={t.id}>
-                  <div className="h-full rounded-xl bg-card p-5 shadow-sm">
-                    <h3 className="text-primary-800">{t.title}</h3>
-                    <p>{t.description}</p>
+                  <div className="h-full space-y-6 rounded-xl bg-card p-5 shadow-sm">
+                    <div>
+                      <IconBank className="text-primary-500" />
+                    </div>
+                    <div className="space-y-3">
+                      <h3 className="text-primary-800 text-subhead-lg">{t.title}</h3>
+                      <p className="text-base">{t.description}</p>
+                    </div>
                   </div>
                 </li>
               ))}
