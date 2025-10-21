@@ -10,13 +10,50 @@ export const NAV_LINKS: NavLink[] = [
     label: "Services",
     href: "/services",
     submenu: [
-      { id: 1, label: "Elevate", href: "/services" },
-      { id: 2, label: "Automate", href: "/services" },
+      {
+        id: 1,
+        Icon: IconElevate,
+        label: "Elevate",
+        description: "Build and Scale AI with Precision & Pragmatism",
+        href: "/services",
+      },
+      {
+        id: 2,
+        Icon: IconAutomate,
+        label: "Automate",
+        description: "Simplify Core Processes, Reduce Errors, Maximize Value",
+        href: "/services",
+      },
+      {
+        id: 3,
+        Icon: IconEvaluate,
+        label: "Evaluate",
+        description: "Turn Data Into Reliable, Actionable Insights",
+        href: "/services",
+      },
+      {
+        id: 4,
+        Icon: IconAssure,
+        label: "Assure",
+        description: "Keep Your Platforms Stable, Secure, and Compliant",
+        href: "/services",
+      },
+      {
+        id: 5,
+        Icon: IconAugment,
+        label: "Augment",
+        description: "Scale Your Team with the Right Talent, On Demand",
+        href: "/services",
+      },
     ],
   },
   {
     id: 2,
     label: "Resources",
+    submenu: [
+      { id: 1, label: "Elevate", href: "/services" },
+      { id: 2, label: "Automate", href: "/services" },
+    ],
   },
   {
     id: 3,

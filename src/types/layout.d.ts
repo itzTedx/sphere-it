@@ -10,8 +10,9 @@ export type NavLink = {
 export type SubmenuLink = {
   id: number;
   label: string;
+  description?: string;
   href: Route;
-  Icon?: SVGProps;
+  Icon?: (props: SVGProps) => JSX.Element;
 };
 
 export type Footer = {

@@ -15,6 +15,7 @@ export const Hero = () => {
           <h1 className="text-primary-900 text-title-3 md:text-title-1">
             Delivering <span className="text-primary-700">Accuracy.</span> Driving Outcomes.
           </h1>
+
           <p className="text-xl md:text-2xl">
             Empowering forward-looking organizations with talent and technology that deliver measurable outcomes.
           </p>
