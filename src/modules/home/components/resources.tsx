@@ -40,7 +40,7 @@ export const Resources = () => {
             </li>
           </ul>
           <article className="grid grid-cols-3 gap-6 p-8">
-            <Card>
+            <Card className="card">
               <CardMedia alt="" className="aspect-4/3" src="/images/banking.webp" />
               <CardContent>
                 <CardHeader>
@@ -49,7 +49,7 @@ export const Resources = () => {
                 </CardHeader>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="card">
               <CardMedia alt="" className="aspect-4/3" src="/images/banking.webp" />
               <CardContent>
                 <CardHeader>
@@ -58,7 +58,7 @@ export const Resources = () => {
                 </CardHeader>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="card">
               <CardMedia alt="" className="aspect-4/3" src="/images/banking.webp" />
               <CardContent>
                 <CardHeader>
