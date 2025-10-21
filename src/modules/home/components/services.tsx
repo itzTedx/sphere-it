@@ -6,7 +6,8 @@ import Link from "next/link";
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsContents, TabsList, TabsTrigger } from "@/components/ui/radix/tabs";
 
 import { IconArrowRight } from "@/assets/icons/arrows";
 import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
@@ -67,45 +68,42 @@ export const Services = () => {
             </svg>
           </div>
           <div className="container max-w-6xl">
-            {SERVICES.map(({ Icon, ...service }) => (
-              <TabsContent
-                className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1.5"
-                key={service.id}
-                value={service.id}
-              >
-                <div className="grid grid-cols-5 gap-8 rounded-3xl bg-card px-12 py-16 shadow-md">
-                  <div className="col-span-2 space-y-8">
-                    <div className="space-y-4">
-                      <Badge variant="secondary">
-                        <Icon />
-                        {service.id}
-                      </Badge>
-                      <h2 className="text-primary-900 text-title-4">{service.title}</h2>
-                      <p className="text-balance text-lg text-stone-800">{service.description}</p>
-                      <ul className="space-y-6">
-                        {service.lists.map(({ id, Icon, feature }) => (
-                          <li className="flex items-center gap-3" key={id}>
-                            <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
-                              <Icon className="text-primary-600" />
-                            </div>
-                            <p className="font-medium text-sm text-stone-700">{feature}</p>
-                          </li>
-                        ))}
-                      </ul>
+            <Card className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1.5 shadow-none">
+              <TabsContents className="rounded-3xl bg-card px-12 py-16 shadow-md" mode="auto-height">
+                {SERVICES.map(({ Icon, ...service }) => (
+                  <TabsContent className="grid grid-cols-5 gap-8" key={service.id} value={service.id}>
+                    <div className="col-span-2 space-y-8">
+                      <div className="space-y-4">
+                        <Badge variant="secondary">
+                          <Icon />
+                          {service.id}
+                        </Badge>
+                        <h2 className="text-primary-900 text-title-4">{service.title}</h2>
+                        <p className="text-balance text-lg text-stone-800">{service.description}</p>
+                        <ul className="space-y-6">
+                          {service.lists.map(({ id, Icon, feature }) => (
+                            <li className="flex items-center gap-3" key={id}>
+                              <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
+                                <Icon className="text-primary-600" />
+                              </div>
+                              <p className="font-medium text-sm text-stone-700">{feature}</p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <Button asChild>
+                        <Link href="/services">
+                          Learn more <IconArrowRight />
+                        </Link>
+                      </Button>
                     </div>
-                    <Button asChild>
-                      <Link href="/services">
-                        Learn more <IconArrowRight />
-                      </Link>
-                    </Button>
-                  </div>
-                  <div className="relative col-span-3">
-                    <Image alt="" className="object-contain" fill src="/svg/elevate.svg" />
-                  </div>
-                </div>
-              </TabsContent>
-            ))}
-
+                    <div className="relative col-span-3">
+                      <Image alt="" className="object-contain" fill src="/svg/elevate.svg" />
+                    </div>
+                  </TabsContent>
+                ))}
+              </TabsContents>
+            </Card>
             <MiniCta className="-mt-14 mx-14" />
           </div>
         </Tabs>

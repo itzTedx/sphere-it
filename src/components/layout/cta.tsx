@@ -50,7 +50,7 @@ export const MiniCta = ({
   className,
 }: CtaProps) => {
   return (
-    <div className={cn("flex items-center gap-4 rounded-2xl bg-foreground px-6 py-8", className)}>
+    <div className={cn("relative z-10000 flex items-center gap-4 rounded-2xl bg-foreground px-6 py-8", className)}>
       <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary-950">
         <IconAiCloud className="text-purple-400" />
       </div>
