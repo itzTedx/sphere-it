@@ -11,16 +11,16 @@ export const DesktopNavLinks = () => {
   return (
     <ul className="flex items-center gap-4">
       {NAV_LINKS.map(({ id, label, href, submenu }) => (
-        <li key={id} className="group">
+        <li className="group" key={id}>
           {href && submenu ? (
             <>
               <Link className={cn(NAVBAR_LINKS_CLASSNAMES, "flex items-center gap-2")} href={href}>
                 {label}
                 <IconChevronDownFill className="text-stone-500/20" />
               </Link>
-              <ul className="hidden absolute group-hover:flex w-full top-16 left-0 bg-card gap-6 p-6">
+              <ul className="absolute top-16 left-0 hidden w-full gap-6 bg-card p-6 group-hover:flex">
                 {submenu.map((menu) => (
-                  <li key={menu.id} >
+                  <li key={menu.id}>
                     <Link className={cn(NAVBAR_LINKS_CLASSNAMES)} href={menu.href}>
                       {menu.label}
                     </Link>

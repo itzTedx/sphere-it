@@ -17,17 +17,24 @@ import { SERVICES } from "@/data/services";
 export const Services = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50">
-      <div className="container">
-        <Tabs className="container max-w-7xl border-x pb-12" defaultValue="elevate">
-          <div className="-space-x-px relative mx-auto inline-flex pb-4">
-            <svg fill="none" height="64" viewBox="0 0 86 64" width="86" xmlns="http://www.w3.org/2000/svg">
+      <div className="container max-sm:px-0">
+        <Tabs className="container max-w-7xl pb-12 max-sm:px-0 md:border-x" defaultValue="elevate">
+          <div className="-space-x-px max-smpx-4 relative mx-auto inline-flex pb-4">
+            <svg
+              className="hidden md:block"
+              fill="none"
+              height="64"
+              viewBox="0 0 86 64"
+              width="86"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M50.5 45C57.8095 56.6952 71.7084 63.9997 85.5 64V0H0.5C14.2915 0 27.1905 7.30481 34.5 19L50.5 45Z"
                 fill="white"
               />
             </svg>
-            <div className="flex h-16 items-center justify-center bg-card">
-              <TabsList className="flex items-center justify-center rounded-none bg-card">
+            <div className="flex items-center justify-center bg-card md:h-16">
+              <TabsList className="flex h-auto flex-wrap items-center justify-center rounded-none bg-card">
                 <TabsTrigger className="pl-1" value="elevate">
                   <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconElevate className="m-auto text-stone-500" />
@@ -60,7 +67,14 @@ export const Services = () => {
                 </TabsTrigger>
               </TabsList>
             </div>
-            <svg fill="none" height="64" viewBox="0 0 86 64" width="86" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              className="hidden md:block"
+              fill="none"
+              height="64"
+              viewBox="0 0 86 64"
+              width="86"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M35.5 45C28.1905 56.6952 14.2916 63.9997 0.5 64V0H85.5C71.7085 0 58.8095 7.30481 51.5 19L35.5 45Z"
                 fill="white"
@@ -68,18 +82,18 @@ export const Services = () => {
             </svg>
           </div>
           <div className="container max-w-6xl">
-            <Card className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1.5 shadow-none">
-              <TabsContents className="rounded-3xl bg-card px-12 py-16 shadow-md" mode="auto-height">
+            <Card className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1 shadow-none md:p-1.5">
+              <TabsContents className="rounded-3xl bg-card p-6 shadow-md md:px-12 md:py-16" mode="auto-height">
                 {SERVICES.map(({ Icon, ...service }) => (
-                  <TabsContent className="grid grid-cols-5 gap-8" key={service.id} value={service.id}>
-                    <div className="col-span-2 space-y-8">
+                  <TabsContent className="grid gap-8 md:grid-cols-5" key={service.id} value={service.id}>
+                    <div className="space-y-8 md:col-span-2">
                       <div className="space-y-4">
                         <Badge variant="secondary">
                           <Icon />
                           {service.id}
                         </Badge>
-                        <h2 className="text-primary-900 text-title-4">{service.title}</h2>
-                        <p className="text-balance text-lg text-stone-800">{service.description}</p>
+                        <h2 className="text-primary-900 text-title-5 md:text-title-4">{service.title}</h2>
+                        <p className="text-balance text-stone-800 md:text-lg">{service.description}</p>
                         <ul className="space-y-6">
                           {service.lists.map(({ id, Icon, feature }) => (
                             <li className="flex items-center gap-3" key={id}>
@@ -91,20 +105,20 @@ export const Services = () => {
                           ))}
                         </ul>
                       </div>
-                      <Button asChild>
+                      <Button asChild className="w-full">
                         <Link href="/services">
                           Learn more <IconArrowRight />
                         </Link>
                       </Button>
                     </div>
-                    <div className="relative col-span-3">
+                    <div className="relative md:col-span-3">
                       <Image alt="" className="object-contain" fill src="/svg/elevate.svg" />
                     </div>
                   </TabsContent>
                 ))}
               </TabsContents>
             </Card>
-            <MiniCta className="-mt-14 mx-14" />
+            <MiniCta className="md:-mt-14 mt-4 md:mx-14" />
           </div>
         </Tabs>
       </div>

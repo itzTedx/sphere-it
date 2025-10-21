@@ -52,20 +52,25 @@ export const MiniCta = ({
   layout = "horizontal",
 }: CtaProps) => {
   return (
-    <div className={cn("relative z-10000 flex items-center gap-4 rounded-2xl bg-foreground px-6 py-8", className)}>
+    <div
+      className={cn(
+        "relative z-10000 flex flex-col items-center gap-4 rounded-2xl bg-foreground px-3 py-4 md:flex-row md:px-6 md:py-8",
+        className
+      )}
+    >
       <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary-950">
         <IconAiCloud className="text-purple-400" />
       </div>
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full flex-col items-center justify-between md:flex-row">
         <div className={cn(layout === "vertical" && "flex items-center gap-6")}>
           <h4
-            className="font-semibold text-2xl text-card leading-tight tracking-[0.01em] [&>span]:text-accent"
+            className="font-semibold text-card text-xl leading-tight tracking-[0.01em] md:text-2xl [&>span]:text-accent"
             dangerouslySetInnerHTML={{ __html: title }}
           />
           <p
             className={cn(
               "text-muted-background",
-              layout === "vertical" ? "text-balance font-medium text-xl leading-tight" : "text-sm"
+              layout === "vertical" ? "text-balance font-medium text-lg leading-tight md:text-xl" : "text-xs md:text-sm"
             )}
           >
             {description}

@@ -6,21 +6,23 @@ import { IconCheckmark } from "@/assets/icons";
 export const Hero = () => {
   return (
     <header className="container bg-card">
-      <section className="container max-w-7xl border-x pt-28 pb-9 text-center">
+      <section className="container max-w-7xl pt-28 pb-9 text-center md:border-x">
         <div className="mx-auto max-w-3xl space-y-6">
           <Badge className="mx-auto" showDashes>
             <IconCheckmark className="text-accent" />
             ISO/IEC 42001 Certified
           </Badge>
-          <h1 className="text-primary-900 text-title-1">
+          <h1 className="text-primary-900 text-title-3 md:text-title-1">
             Delivering <span className="text-primary-700">Accuracy.</span> Driving Outcomes.
           </h1>
-          <p className="text-2xl">
+          <p className="text-xl md:text-2xl">
             Empowering forward-looking organizations with talent and technology that deliver measurable outcomes.
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <Button>Explore Services</Button>
-            <Button variant="ghost">Contact us</Button>
+          <div className="flex items-center justify-center gap-4 max-sm:flex-col">
+            <Button className="max-sm:w-full">Explore Services</Button>
+            <Button className="max-sm:w-full" variant="ghost">
+              Contact us
+            </Button>
           </div>
         </div>
         <div className="flex items-center gap-6 py-12">
