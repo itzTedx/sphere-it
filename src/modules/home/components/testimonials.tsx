@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
 
@@ -14,9 +15,9 @@ export const Testimonials = () => {
             Wall of <span className="text-primary-600">love</span>
           </h2>
         </div>
-        <div className="relative grid h-[80svh] grid-cols-3 gap-4">
+        <div className="relative grid h-[90svh] grid-cols-3 gap-4">
           <div className="absolute inset-x-0 z-10 h-40 bg-gradient-to-b from-background to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-background to-transparent" />
+
           <Marquee className="[--duration:10s]" vertical>
             {TESTIMONIALS.map((t) => (
               <TestimonialCard data={t} key={t.id} />
@@ -32,6 +33,12 @@ export const Testimonials = () => {
               <TestimonialCard data={t} key={t.id} />
             ))}
           </Marquee>
+
+          <div className="absolute inset-x-0 bottom-0 z-10 h-48 bg-gradient-to-t from-20% from-background to-transparent" />
+        </div>
+        <div className="-mt-6 relative z-10 mx-auto flex w-fit items-center justify-center gap-1.5 rounded-full bg-card p-1.5 shadow-lg">
+          <p className="px-3">View the impact on our clients</p>
+          <Button>Browse customer stories</Button>
         </div>
       </div>
     </section>
