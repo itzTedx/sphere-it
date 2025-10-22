@@ -19,9 +19,9 @@ export const Services = () => {
     <section className="relative overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50">
       <div className="container max-sm:px-0">
         <Tabs className="container max-w-7xl pb-12 max-sm:px-0 md:border-x" defaultValue="elevate">
-          <div className="-space-x-px max-smpx-4 relative mx-auto inline-flex pb-4">
+          <div className="-space-x-px relative mx-auto inline-flex bg-card max-sm:px-4 md:pb-4">
             <svg
-              className="hidden md:block"
+              className="hidden shrink-0 sm:block"
               fill="none"
               height="64"
               viewBox="0 0 86 64"
@@ -33,7 +33,7 @@ export const Services = () => {
                 fill="white"
               />
             </svg>
-            <div className="flex items-center justify-center bg-card md:h-16">
+            <div className="flex items-center justify-center bg-card sm:h-11 md:h-16">
               <TabsList className="flex h-auto flex-wrap items-center justify-center rounded-none bg-card">
                 <TabsTrigger className="pl-1" value="elevate">
                   <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
@@ -68,7 +68,7 @@ export const Services = () => {
               </TabsList>
             </div>
             <svg
-              className="hidden md:block"
+              className="hidden shrink-0 sm:block"
               fill="none"
               height="64"
               viewBox="0 0 86 64"
@@ -85,7 +85,11 @@ export const Services = () => {
             <Card className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1 shadow-none md:p-1.5">
               <TabsContents className="rounded-3xl bg-card p-6 shadow-md md:px-12 md:py-16" mode="auto-height">
                 {SERVICES.map(({ Icon, ...service }) => (
-                  <TabsContent className="grid gap-8 md:grid-cols-5" key={service.id} value={service.id}>
+                  <TabsContent
+                    className="grid gap-4 sm:gap-6 md:grid-cols-5 md:gap-8"
+                    key={service.id}
+                    value={service.id}
+                  >
                     <div className="space-y-8 md:col-span-2">
                       <div className="space-y-4">
                         <Badge variant="secondary">
@@ -94,11 +98,11 @@ export const Services = () => {
                         </Badge>
                         <h2 className="text-primary-900 text-title-5 md:text-title-4">{service.title}</h2>
                         <p className="text-balance text-stone-800 md:text-lg">{service.description}</p>
-                        <ul className="space-y-6">
+                        <ul className="space-y-4 sm:space-y-5 md:space-y-6">
                           {service.lists.map(({ id, Icon, feature }) => (
                             <li className="flex items-center gap-3" key={id}>
-                              <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary-400/16">
-                                <Icon className="text-primary-600" />
+                              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary-400/16 sm:size-12">
+                                <Icon className="size-6 text-primary-600 sm:size-7" />
                               </div>
                               <p className="font-medium text-sm text-stone-700">{feature}</p>
                             </li>
@@ -111,8 +115,8 @@ export const Services = () => {
                         </Link>
                       </Button>
                     </div>
-                    <div className="relative md:col-span-3">
-                      <Image alt="" className="object-contain" fill src="/svg/elevate.svg" />
+                    <div className="relative aspect-6/4 overflow-hidden rounded-2xl sm:aspect-auto md:col-span-3">
+                      <Image alt="" className="object-cover sm:object-contain" fill src="/svg/elevate.svg" />
                     </div>
                   </TabsContent>
                 ))}
