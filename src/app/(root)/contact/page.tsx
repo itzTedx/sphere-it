@@ -7,6 +7,8 @@ import { IconArrowRight, IconChevronDown } from "@/assets/icons";
 import { IconCopy } from "@/assets/icons/copy";
 import { IconSocialInstagram, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
 
+import { EnquiryForm } from "@/modules/form/enquiry-form";
+
 export default function ContactPage() {
   return (
     <main>
@@ -82,11 +84,14 @@ export default function ContactPage() {
           </p>
         </div>
         <div className="rounded-2xl bg-card p-10">
-          <Badge variant="ghost">General Inquiries</Badge>
-          <h3 className="text-primary-800 text-title-3">Shall we talk</h3>
-          <p className="text-lg text-stone-500">
-            Fill in your details our team will contact you to understand your needs and present Sphere solutions
-          </p>
+          <div className="mb-6">
+            <Badge variant="ghost">General Inquiries</Badge>
+            <h3 className="text-primary-800 text-title-3">Shall we talk</h3>
+            <p className="text-lg text-stone-500">
+              Fill in your details our team will contact you to understand your needs and present Sphere solutions
+            </p>
+          </div>
+          <EnquiryForm />
         </div>
       </section>
       <section className="container grid max-w-7xl grid-cols-3 gap-6 pb-24">
