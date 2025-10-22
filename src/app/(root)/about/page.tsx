@@ -297,11 +297,7 @@ export default function AboutPage() {
               </span>
             </Link>
           </Button>
-          <div
-            aria-label="Company core values"
-            className="my-9 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            role="list"
-          >
+          <div aria-label="Company core values" className="my-9 grid grid-cols-1 gap-6 sm:grid-cols-2" role="list">
             {OUR_VALUES.map((value) => (
               <article className="overflow-hidden rounded-2xl bg-card shadow-md" key={value.id} role="listitem">
                 <div className="relative aspect-5/3 bg-gradient-to-b from-primary-500/40 to-transparent">

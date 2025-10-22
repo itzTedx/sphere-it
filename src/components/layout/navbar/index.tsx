@@ -19,12 +19,12 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 z-9999 w-full bg-[size:4px_4px] transition-all duration-500 ease-out md:top-2 md:mx-3 md:rounded-md",
-        scrollDir === "up" ? "translate-y-0 text-foreground" : "-translate-y-24",
+        "fixed top-0 z-9999 w-full bg-[size:4px_4px] text-foreground transition-all duration-500 ease-out md:top-2 md:mx-3 md:rounded-md",
+        scrollDir === "up" ? "translate-y-0" : "-translate-y-24",
         isScrolled
-          ? "bg-[radial-gradient(transparent_1px,_#fff)] bg-card/60 text-foreground backdrop-blur-xl"
+          ? "bg-[radial-gradient(transparent_1px,_#fff)] bg-card/60 backdrop-blur-xl"
           : "bg-[radial-gradient(transparent)] bg-transparent",
-        (pathname === "/about") !== isScrolled ? "text-background" : "text-foreground"
+        pathname === "/about" && !isScrolled && "text-background"
       )}
     >
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between">
