@@ -101,7 +101,7 @@ export const TIMELINE = [
 export const OUR_VALUES = [
   {
     id: 1,
-    image: "/svg/pragmatism.svg",
+    image: "/svg/precision.svg",
     badge: "We never leave room for doubt.",
     title: "Precision",
     description:
@@ -109,7 +109,7 @@ export const OUR_VALUES = [
   },
   {
     id: 2,
-    image: "/svg/precision.svg",
+    image: "/svg/pragmatism.svg",
     badge: "We never leave room for doubt.",
     title: "Precision",
     description:
