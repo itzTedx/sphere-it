@@ -160,7 +160,7 @@ export const EnquiryForm = () => {
         />
         <FieldDescription>
           By filling out this form you agree to the terms in our{" "}
-          <Link className="underline" href="/legal/privacy">
+          <Link className="underline" href="/legal/privacy" target="_blank">
             privacy policy.
           </Link>
         </FieldDescription>
