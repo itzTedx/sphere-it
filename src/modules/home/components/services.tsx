@@ -115,8 +115,10 @@ export const Services = () => {
                         </Link>
                       </Button>
                     </div>
-                    <div className="relative aspect-6/4 overflow-hidden rounded-2xl sm:aspect-auto md:col-span-3">
-                      <Image alt="" className="object-cover sm:object-contain" fill src="/svg/elevate.svg" />
+                    <div className="aspect-6/4 overflow-hidden rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1))] border bg-stone-500/10 p-1 sm:aspect-auto md:col-span-3">
+                      <div className="relative aspect-auto size-full overflow-hidden rounded-3xl">
+                        <Image alt="" className="object-cover object-left" fill src="/svg/elevate.svg" />
+                      </div>
                     </div>
                   </TabsContent>
                 ))}

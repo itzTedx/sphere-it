@@ -70,7 +70,7 @@ export function LogoCarousel({
   }, []);
 
   return (
-    <div className={cn("flex justify-center gap-4 py-4", className)}>
+    <div className={cn("flex justify-center gap-2 py-2 md:gap-4 md:py-4", className)}>
       {logoColumns.map((columnLogos, index) => (
         <LogoColumn columnIndex={index} currentTime={time} key={index} logos={columnLogos} />
       ))}
@@ -89,7 +89,7 @@ function LogoColumn({ logos, columnIndex, currentTime }: LogoColumnProps) {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="relative aspect-16/6 w-24 overflow-hidden md:w-36"
+      className="relative aspect-16/6 w-32 overflow-hidden md:w-36"
       initial={{ opacity: 0, y: 20 }}
       transition={{
         delay: columnIndex * 0.1,

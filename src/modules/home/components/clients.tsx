@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { LogoCarousel } from "@/components/ui/logo-carousel";
@@ -5,12 +7,14 @@ import { LogoCarousel } from "@/components/ui/logo-carousel";
 import { IconChevronRight } from "@/assets/icons";
 
 import { CLIENTS } from "@/data/constants";
+import { useIsMobile } from "@/hooks/use-is-mobile";
 
 export const Clients = () => {
+  const isMobile = useIsMobile();
   return (
     <section className="container border-y">
       <div className="mx-auto max-w-7xl border-x">
-        <div className="space-y-4 rounded-3xl border bg-card px-16 py-10">
+        <div className="space-y-4 rounded-3xl border bg-card px-6 py-9 md:px-16 md:py-10">
           <h3 className="text-center text-title-5">
             Trusted by <span className="text-primary">500+ Leading</span> Organizations
           </h3>
@@ -25,12 +29,12 @@ export const Clients = () => {
             </div>
             <LogoCarousel
               className="transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs"
-              columns={7}
+              columns={isMobile ? 3 : 7}
               logos={CLIENTS}
             />
             <LogoCarousel
               className="transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs"
-              columns={7}
+              columns={isMobile ? 3 : 7}
               logos={CLIENTS}
             />
           </div>
