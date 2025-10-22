@@ -58,7 +58,7 @@ export const MiniCta = ({
   return (
     <div
       className={cn(
-        "relative z-10000 flex flex-col items-center gap-3 rounded-xl bg-foreground px-3 py-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 md:flex-row md:px-6 md:py-8",
+        "relative z-999 flex flex-col items-center gap-3 rounded-xl bg-foreground px-3 py-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 md:flex-row md:px-6 md:py-8",
         className
       )}
     >
