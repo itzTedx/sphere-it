@@ -49,6 +49,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-5xl: 3rem;
 
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -178,16 +179,13 @@
   }
 
   @media (width >= 80rem /* 1280px */) {
-    padding-inline: 3.5rem;
+    padding-inline: 2.5rem;
     max-width: 82rem;
   }
   @media (width >= 96rem /* 1536px */) {
-    padding-inline: 4rem;
+    padding-inline: 3rem;
     max-width: 98rem;
   }
-  @media (width >= 120rem /* 1536px */) {
-    padding-inline: 4.5rem;
-    max-width: 120rem;
-  }
+ 
 }
 

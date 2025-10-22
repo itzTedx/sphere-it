@@ -140,3 +140,10 @@ export const CORE_VALUES = [
     content: "We design systems and strategies that grow with your business needs.",
   },
 ];
+
+export const HIRING_CTA = [
+  "Competitive salary & equity",
+  "Cutting-edge tools & tech",
+  "Remote flexibility",
+  "Continuous learning support",
+];

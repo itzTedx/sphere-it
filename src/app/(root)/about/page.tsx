@@ -2,17 +2,22 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
+import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/radix/accordion";
 
-import { IconArrowRight } from "@/assets/icons";
+import { CheckmarkIconBox } from "@/assets/checkmark-iconbox";
+import { IconArrowRight, IconCheckmark } from "@/assets/icons";
+import { IconSocialLinkedin } from "@/assets/icons/social";
 import { IconTimeline } from "@/assets/icons/timeline";
 import { LogoOutline } from "@/assets/logo";
 
-import { CORE_VALUES, OUR_VALUES, TIMELINE } from "@/data/about";
-import { Clients } from "@/modules/home/components";
+import { CORE_VALUES, HIRING_CTA, OUR_VALUES, TIMELINE } from "@/data/about";
+import { Clients } from "@/modules/views";
 
 export default function AboutPage() {
   return (
@@ -44,9 +49,40 @@ export default function AboutPage() {
         </div>
         <LogoOutline className="-top-1/2 absolute left-1/2 z-1000 rotate-35 text-primary-300 opacity-50" />
       </header>
-      <div className="my-24 border-y">
+      <div className="mt-24 border-y">
         <Clients />
       </div>
+      <section className="container relative my-12 max-w-7xl overflow-hidden md:my-12">
+        <div className="container max-w-4xl py-12">
+          <Badge showDashes>About us</Badge>
+          <h2 className="my-4 text-primary-900 text-title-2">Our story started with our founders, in 2016</h2>
+          <div className="space-y-3">
+            <p className="text-xl">
+              Sphere IT has grown from a software provider for banks, insurance and automotive platforms into a trusted
+              partner for forward-looking organizations across the GCC. We deliver technology and talent solutions that
+              balance precision with pragmatism; helping clients achieve efficiency, resilience and measurable growth.
+            </p>
+            <p className="text-xl">
+              Technology is only as powerful as the outcomes it creates. At Sphere IT, we exist to remove complexity and
+              make technology work for business. Our mission is clear: to deliver solutions that are{" "}
+              <span className="font-semibold text-primary-600">
+                precisely engineered, practically applied, and built for real-world impact.
+              </span>
+            </p>
+          </div>
+        </div>
+        <FlickeringGrid
+          aria-hidden="true"
+          className="absolute inset-0 z-1 opacity-50"
+          color="#D6D3D1"
+          flickerChance={0.1}
+          gridGap={4}
+          height={1080}
+          maxOpacity={0.5}
+          squareSize={4}
+          width={1920}
+        />
+      </section>
       <section className="relative z-50 mx-4 rounded-4xl border bg-card">
         <div className="mx-auto max-w-7xl py-12">
           <Badge className="mx-auto" showDashes>
@@ -110,13 +146,9 @@ export default function AboutPage() {
                 <Image alt="" className="object-cover" fill src={value.image} />
               </div>
               <div className="space-y-2 px-8 py-6">
-                <Badge variant="secondary">We never leave room for doubt.</Badge>
-                <h3 className="text-primary-900 text-title-3">Precision</h3>
-                <p>
-                  Every engagement reflects accuracy, reliability, and clarity. We believe in getting it right the first
-                  time; through tested, validated solutions that clients can depend on. Precision is how we earn trust
-                  and keep it, project after project.
-                </p>
+                <Badge variant="secondary">{value.badge}</Badge>
+                <h3 className="text-primary-900 text-title-3">{value.title}</h3>
+                <p className="font-display text-lg text-stone-600">{value.description}</p>
               </div>
             </article>
           ))}
@@ -142,15 +174,84 @@ export default function AboutPage() {
         </div>
       </section>
       <section className="border-y">
-        <div className="container max-w-7xl rounded-4xl border bg-card py-12">
-          <Badge>Our People, Our Precision</Badge>
-          <h2 className="mt-6 text-primary-900 text-title-2">Meet the Minds Behind Sphere IT</h2>
-          <p className="text-lg text-stone-600">
-            Sphere IT is led by industry experts in financial technology, IT services, and enterprise transformation.
-            Our leadership team shares one belief: technology should serve people, not the other way around.
-          </p>
+        <div className="container max-w-7xl space-y-6 rounded-4xl border bg-card py-12">
+          <div>
+            <Badge>Our People, Our Precision</Badge>
+
+            <div className="max-w-4xl">
+              <h2 className="mt-6 text-primary-900 text-title-2">Meet the Minds Behind Sphere IT</h2>
+              <p className="mt-3 text-balance text-lg text-stone-600">
+                Sphere IT is led by industry experts in financial technology, IT services, and enterprise
+                transformation. Our leadership team shares one belief: technology should serve people, not the other way
+                around.
+              </p>
+            </div>
+          </div>
+
+          <Item className="border-border" size="sm" variant="muted">
+            <ItemMedia>
+              <IconCheckmark className="size-5 text-stone-600" />
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle className="font-display text-subhead-lg">
+                <h3 className="text-stone-600">Leadership That Sets the Direction</h3>
+              </ItemTitle>
+            </ItemContent>
+          </Item>
+
+          <div className="grid grid-cols-3 gap-4">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <TeamCard i={i} key={i} />
+            ))}
+          </div>
+
+          <Item className="border-border" size="sm" variant="muted">
+            <ItemMedia>
+              <IconCheckmark className="size-5 text-stone-600" />
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle className="font-display text-subhead-lg">
+                <h3 className="text-stone-600">Experts Who Make It Happen</h3>
+              </ItemTitle>
+            </ItemContent>
+          </Item>
+
+          <div className="grid grid-cols-4 gap-4">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <TeamCard i={i} key={i} />
+            ))}
+          </div>
         </div>
       </section>
+      <section className="container max-w-7xl py-20">
+        <Badge>We’re Hiring</Badge>
+        <div className="mt-6 flex items-end justify-between">
+          <div>
+            <h3 className="text-primary-900 text-title-2">Join team Sphere IT</h3>
+            <p className="mt-3 max-w-xl text-balance text-lg">
+              We’re always looking for thinkers, builders, and problem-solvers who thrive on precision and purposeful
+              innovation.
+            </p>
+          </div>
+          <Button asChild variant="ghost">
+            <Link aria-label="Explore our service capabilities" href="/services">
+              Explore open Opportunities
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
+                <IconArrowRight className="text-stone-500" />
+              </span>
+            </Link>
+          </Button>
+        </div>
+        <ul className="mt-8 grid grid-cols-4 gap-3">
+          {HIRING_CTA.map((cta, i) => (
+            <li className="flex items-center gap-2 rounded-2xl bg-card p-3 shadow-md" key={`${i}-${cta}`}>
+              <CheckmarkIconBox className="size-11" />{" "}
+              <p className="font-display font-medium text-primary-900 text-subhead-base">{cta}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <Cta />
     </main>
   );
 }
@@ -168,6 +269,28 @@ function DashedLine() {
       >
         <path d="M0.750002 0L0.75 42" stroke="currentColor" strokeDasharray="6 4" strokeWidth="1.5" />
       </svg>
+    </div>
+  );
+}
+
+function TeamCard({ i }: { i: number }) {
+  return (
+    <div className="p-4" key={i}>
+      <div className="relative aspect-square overflow-hidden rounded-5xl shadow-sm">
+        <Image
+          alt=""
+          className="object-cover transition-transform hover:scale-105"
+          fill
+          src={`/images/avatar-${i + 1}.jpg`}
+        />
+      </div>
+      <div className="mt-4 flex items-center justify-between px-4">
+        <div className="space-y-1 font-display">
+          <h4 className="text-stone-900 text-subhead-lg">Person Name</h4>
+          <p className="text-stone-500 text-subhead-base">Designation</p>
+        </div>
+        <IconSocialLinkedin className="text-stone-700" />
+      </div>
     </div>
   );
 }

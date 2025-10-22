@@ -10,10 +10,7 @@ import { Button } from "../ui/button";
 
 export const Cta = () => {
   return (
-    <section className="max-md:container max-sm:pb-12">
-      <div className="md:container">
-        <div className="max-w-7xl md:container sm:h-16 md:h-20 md:border-x lg:h-24" />
-      </div>
+    <section className="mb-12 max-md:container max-sm:pb-12">
       <div className="border-y">
         <div className="mx-auto max-w-7xl border-x">
           <div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 sm:rounded-3xl sm:p-8 md:p-12 lg:p-16">
@@ -34,9 +31,6 @@ export const Cta = () => {
             <LogoOutline className="-translate-x-1/2 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 sm:top-8 sm:opacity-80 md:top-12 lg:top-16 lg:opacity-100" />
           </div>
         </div>
-      </div>
-      <div className="md:container">
-        <div className="max-w-7xl md:container sm:h-16 md:h-20 md:border-x lg:h-24" />
       </div>
     </section>
   );

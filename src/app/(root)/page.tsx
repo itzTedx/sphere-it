@@ -1,8 +1,6 @@
 import { Cta } from "@/components/layout/cta";
 
-import { About, Clients, Hero, Services, WhyUs } from "@/modules/home/components/";
-import { Resources } from "@/modules/home/components/resources";
-import { Testimonials } from "@/modules/home/components/testimonials";
+import { About, Clients, Hero, Resources, Services, Testimonials, WhyUs } from "@/modules/views";
 
 export default function Home() {
   return (
