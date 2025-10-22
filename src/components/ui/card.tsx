@@ -41,8 +41,8 @@ function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
   return <h3 className={cn("text-title-6", className)} data-slot="card-title" {...props} />;
 }
 
-function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
-  return <div className={cn("text-muted-foreground text-sm", className)} data-slot="card-description" {...props} />;
+function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
+  return <p className={cn("text-muted-foreground text-sm", className)} data-slot="card-description" {...props} />;
 }
 
 function CardAction({ className, ...props }: React.ComponentProps<"div">) {
