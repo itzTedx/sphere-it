@@ -21,3 +21,16 @@ export const IconChevronRight = (props: SVGProps) => {
     </svg>
   );
 };
+
+export const IconChevronDown = (props: SVGProps) => {
+  return (
+    <svg {...props} fill="none" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M3.75 6.5625L7.91593 11.0062C8.70607 11.849 10.0439 11.849 10.8341 11.0062L15 6.5625"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="1.5"
+      />
+    </svg>
+  );
+};
