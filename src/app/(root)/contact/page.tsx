@@ -76,9 +76,9 @@ export default function ContactPage() {
         </section>
       </header>
       <section className="container grid max-w-7xl grid-cols-2 gap-12 pb-24">
-        <div className="sticky top-[8vh] h-fit">
-          <h2>Accelerate Your Growth with Sphere IT Global Solutions</h2>
-          <p>
+        <div className="sticky top-[11vh] h-fit space-y-3">
+          <h2 className="text-primary-900 text-title-2">Accelerate Your Growth with Sphere IT Global Solutions</h2>
+          <p className="text-lg text-stone-600">
             Whether it’s IT consulting, project management, or custom solutions, our specialists are here to guide you
             every step of the way.
           </p>
