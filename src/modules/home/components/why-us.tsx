@@ -68,7 +68,7 @@ function PrecisionCard() {
           className="object-cover"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          src="/svg/precision.svg"
+          src="/svg/guides.svg"
         />
       </div>
       <footer className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8 lg:p-10">

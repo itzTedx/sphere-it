@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +10,7 @@ import { IconArrowRight } from "@/assets/icons";
 import { IconTimeline } from "@/assets/icons/timeline";
 import { LogoOutline } from "@/assets/logo";
 
-import { TIMELINE } from "@/data/about";
+import { OUR_VALUES, TIMELINE } from "@/data/about";
 import { Clients } from "@/modules/home/components";
 
 export default function AboutPage() {
@@ -101,6 +102,24 @@ export default function AboutPage() {
             </span>
           </Link>
         </Button>
+        <div className="my-9 grid grid-cols-2 gap-6">
+          {OUR_VALUES.map((value) => (
+            <article className="overflow-hidden rounded-2xl bg-card shadow-md" key={value.id}>
+              <div className="relative aspect-5/3 bg-gradient-to-b from-primary-500/40 to-transparent">
+                <Image alt="" className="object-cover" fill src={value.image} />
+              </div>
+              <div className="space-y-2 px-8 py-6">
+                <Badge variant="secondary">We never leave room for doubt.</Badge>
+                <h3 className="text-primary-900 text-title-3">Precision</h3>
+                <p>
+                  Every engagement reflects accuracy, reliability, and clarity. We believe in getting it right the first
+                  time; through tested, validated solutions that clients can depend on. Precision is how we earn trust
+                  and keep it, project after project.
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </main>
   );
