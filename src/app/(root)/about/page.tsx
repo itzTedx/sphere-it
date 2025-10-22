@@ -297,7 +297,11 @@ export default function AboutPage() {
               </span>
             </Link>
           </Button>
-          <div aria-label="Company core values" className="my-9 grid grid-cols-2 gap-6" role="list">
+          <div
+            aria-label="Company core values"
+            className="my-9 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            role="list"
+          >
             {OUR_VALUES.map((value) => (
               <article className="overflow-hidden rounded-2xl bg-card shadow-md" key={value.id} role="listitem">
                 <div className="relative aspect-5/3 bg-gradient-to-b from-primary-500/40 to-transparent">
@@ -364,7 +368,11 @@ export default function AboutPage() {
               </ItemContent>
             </Item>
 
-            <div aria-label="Leadership team" className="grid grid-cols-3 gap-4" role="list">
+            <div
+              aria-label="Leadership team"
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              role="list"
+            >
               {Array.from({ length: 6 }).map((_, i) => (
                 <TeamCard i={i} key={i} />
               ))}
@@ -381,7 +389,11 @@ export default function AboutPage() {
               </ItemContent>
             </Item>
 
-            <div aria-label="Expert team members" className="grid grid-cols-4 gap-4" role="list">
+            <div
+              aria-label="Expert team members"
+              className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+              role="list"
+            >
               {Array.from({ length: 6 }).map((_, i) => (
                 <TeamCard i={i} key={i} />
               ))}
@@ -409,7 +421,11 @@ export default function AboutPage() {
               </Link>
             </Button>
           </div>
-          <ul aria-label="Career benefits" className="mt-8 grid grid-cols-4 gap-3" role="list">
+          <ul
+            aria-label="Career benefits"
+            className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            role="list"
+          >
             {HIRING_CTA.map((cta, i) => (
               <li
                 className="flex items-center gap-2 rounded-2xl bg-card p-3 shadow-md"
