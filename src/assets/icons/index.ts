@@ -4,3 +4,6 @@ export * from "./checkmarks";
 export * from "./chevrons";
 export * from "./gear";
 export * from "./industries";
+export * from "./layout";
+export * from "./services";
+export * from "./timeline";

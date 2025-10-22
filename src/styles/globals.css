@@ -132,6 +132,34 @@
     hanging-punctuation: first allow-end last;
     font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1, "zero" 1, "calt" 1;
   }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+    
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px var(--background);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-500);
+  }
+
+  /* Handle on active */
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--primary-600);
+  }
 }
 
 .card:hover {
@@ -162,3 +190,4 @@
     max-width: 120rem;
   }
 }
+

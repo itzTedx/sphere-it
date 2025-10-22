@@ -5,12 +5,13 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/radix/accordion";
 
 import { IconArrowRight } from "@/assets/icons";
 import { IconTimeline } from "@/assets/icons/timeline";
 import { LogoOutline } from "@/assets/logo";
 
-import { OUR_VALUES, TIMELINE } from "@/data/about";
+import { CORE_VALUES, OUR_VALUES, TIMELINE } from "@/data/about";
 import { Clients } from "@/modules/home/components";
 
 export default function AboutPage() {
@@ -119,6 +120,35 @@ export default function AboutPage() {
               </div>
             </article>
           ))}
+        </div>
+        <div className="overflow-hidden rounded-xl border">
+          <h4 className="p-6 text-lead text-muted-foreground">Our core values that drive us forward:</h4>
+          <Accordion className="w-full" type={"multiple"}>
+            {CORE_VALUES.map((item, index) => (
+              <AccordionItem
+                className="px-6 py-4 transition-colors data-[state=open]:bg-card"
+                key={index}
+                value={`item-${index + 1}`}
+              >
+                <AccordionTrigger className="decoration-2 decoration-primary-300 underline-offset-2" showArrow={true}>
+                  <h5 className="text-stone-800 text-title-5">{item.value}</h5>
+                </AccordionTrigger>
+                <AccordionContent className="max-w-2xl text-balance text-stone-700" keepRendered={true}>
+                  {item.content}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+      <section className="border-y">
+        <div className="container max-w-7xl rounded-4xl border bg-card py-12">
+          <Badge>Our People, Our Precision</Badge>
+          <h2 className="mt-6 text-primary-900 text-title-2">Meet the Minds Behind Sphere IT</h2>
+          <p className="text-lg text-stone-600">
+            Sphere IT is led by industry experts in financial technology, IT services, and enterprise transformation.
+            Our leadership team shares one belief: technology should serve people, not the other way around.
+          </p>
         </div>
       </section>
     </main>

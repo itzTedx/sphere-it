@@ -110,9 +110,33 @@ export const OUR_VALUES = [
   {
     id: 2,
     image: "/svg/pragmatism.svg",
-    badge: "We never leave room for doubt.",
-    title: "Precision",
+    badge: "We make technology work in the real world.",
+    title: "Pragmatism",
     description:
-      "Every engagement reflects accuracy, reliability, and clarity. We believe in getting it right the first time; through tested, validated solutions that clients can depend on. Precision is how we earn trust and keep it, project after project.",
+      "We design solutions that are powerful yet practical, balancing innovation with usability and cost-effectiveness. Pragmatism is what ensures our clients see measurable outcomes quickly, without unnecessary complexity or delays.",
+  },
+];
+
+export const CORE_VALUES = [
+  {
+    id: 1,
+    value: "Collaboration Over Silos",
+    content:
+      "We believe in partnerships, not transactions — working side by side with our clients as an extension of their teams.",
+  },
+  {
+    id: 2,
+    value: "Innovation With Purpose",
+    content: "Our solutions are designed to solve real-world problems and open new opportunities for growth.",
+  },
+  {
+    id: 3,
+    value: "Accountability at Every Level",
+    content: "We take ownership of outcomes, delivering measurable results with quality and reliability.",
+  },
+  {
+    id: 4,
+    value: "Scalability in Mind",
+    content: "We design systems and strategies that grow with your business needs.",
   },
 ];
