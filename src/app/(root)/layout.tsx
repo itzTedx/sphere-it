@@ -100,6 +100,10 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className={cn(inter.variable, sans.className, mono.variable, "antialiased")}>
+        <div className="pointer-events-none fixed inset-0 z-20 mx-auto flex h-full w-full max-w-7xl justify-between">
+          <div className="h-full w-px bg-border" />
+          <div className="h-full w-px bg-border" />
+        </div>
         <Navbar />
         <ReactLenis root>{children}</ReactLenis>
         <Footer />

@@ -1,29 +1,45 @@
 import { useEffect, useState } from "react";
 
-export function useScroll() {
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState<"down" | "up">("up");
+interface UseScrollOptions {
+  scrollDirThreshold?: number; // px to detect direction change
+  scrollBgThreshold?: number; // px from top to trigger background
+}
+
+export function useScroll({ scrollDirThreshold = 10, scrollBgThreshold = 50 }: UseScrollOptions = {}) {
+  const [scrollDir, setScrollDir] = useState<"up" | "down">("up");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.pageYOffset;
-      setScrollY(currentScrollY);
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
 
-      if (currentScrollY > lastScrollTop) {
-        setScrollDirection("down");
-      } else if (currentScrollY < lastScrollTop) {
-        setScrollDirection("up");
+    const updateScroll = () => {
+      const scrollY = window.pageYOffset;
+
+      // 👉 Trigger background after a certain scroll distance
+      setIsScrolled(scrollY > scrollBgThreshold);
+
+      const diff = scrollY - lastScrollY;
+
+      // 👉 Only update direction if passed direction threshold
+      if (Math.abs(diff) >= scrollDirThreshold) {
+        setScrollDir(diff > 0 ? "down" : "up");
+        lastScrollY = scrollY > 0 ? scrollY : 0;
       }
-      setLastScrollTop(currentScrollY <= 0 ? 0 : currentScrollY); // Ensure lastScrollTop is never negative
+
+      ticking = false;
     };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
     };
-  }, [lastScrollTop]); // Re-run effect when lastScrollTop changes to update direction
 
-  return { scrollY, scrollDirection };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDirThreshold, scrollBgThreshold]);
+
+  return { scrollDir, isScrolled };
 }

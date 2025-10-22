@@ -13,7 +13,7 @@ export const WhyUs = () => {
       <div className="container">
         <div className="container h-8 max-w-7xl border-x sm:h-12 md:h-16 lg:h-24" />
       </div>
-      <div className="bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 lg:p-20">
+      <div className="relative z-50 bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 lg:p-20">
         <div className="mx-auto max-w-7xl space-y-8 lg:space-y-12">
           <header className="space-y-4">
             <Badge variant="secondary">Why sphere it</Badge>
