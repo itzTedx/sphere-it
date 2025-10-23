@@ -67,7 +67,7 @@ function ListItem({
             </IconBox>
           )}
           <div>
-            <div className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-700">
+            <div className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-500">
               {title}
             </div>
             <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500">
@@ -109,7 +109,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
 
 function ResourcesMegaMenu({ data }: { data: SubmenuLink[] }) {
   return (
-    <li className="grid gap-5 lg:grid-cols-2">
+    <li className="grid gap-5 font-display lg:grid-cols-2">
       <div>
         <span className="font-display font-medium text-sm text-stone-400 uppercase">Explore</span>
         <NavigationMenuLink asChild>

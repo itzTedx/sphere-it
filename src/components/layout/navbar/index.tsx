@@ -27,7 +27,7 @@ export const Navbar = () => {
         pathname === "/about" && !isScrolled && "text-background"
       )}
     >
-      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between">
+      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between font-display">
         <Link href="/">
           <Logo />
         </Link>

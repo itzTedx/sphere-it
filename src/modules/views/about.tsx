@@ -15,7 +15,7 @@ export const About = () => {
       <section aria-labelledby="about-hero-heading" className="relative mx-auto max-w-7xl overflow-hidden">
         <div className="container relative z-10 max-w-3xl space-y-4 py-8 sm:space-y-5 sm:py-12 lg:py-16">
           <Badge className="text-badge">Technology. Talent. Transformation.</Badge>
-          <h2 className="text-primary-900 text-title-3 sm:text-title-2 xl:text-title-1" id="about-hero-heading">
+          <h2 className="text-primary-900 text-title-4 sm:text-title-3 xl:text-title-2" id="about-hero-heading">
             Delivering with <span className="text-primary-600">Precision and Pragmatism</span>
           </h2>
           <p className="text-justify text-lg text-stone-800 tracking-tighter sm:text-xl xl:text-2xl">
