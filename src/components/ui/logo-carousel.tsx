@@ -18,6 +18,7 @@ interface LogoColumnProps {
   logos: Logo[];
   columnIndex: number;
   currentTime: number;
+  containerClassName?: string;
 }
 
 // Main component
@@ -25,10 +26,12 @@ export function LogoCarousel({
   columns = 2,
   logos,
   className,
+  containerClassName,
 }: {
   columns?: number;
   logos: Logo[];
   className?: string;
+  containerClassName?: string;
 }) {
   const [logoColumns, setLogoColumns] = useState<Logo[][]>([]);
   const [time, setTime] = useState(0);
@@ -72,14 +75,20 @@ export function LogoCarousel({
   return (
     <div className={cn("flex justify-center gap-2 py-2 md:gap-4 md:py-4", className)}>
       {logoColumns.map((columnLogos, index) => (
-        <LogoColumn columnIndex={index} currentTime={time} key={index} logos={columnLogos} />
+        <LogoColumn
+          columnIndex={index}
+          containerClassName={containerClassName}
+          currentTime={time}
+          key={index}
+          logos={columnLogos}
+        />
       ))}
     </div>
   );
 }
 
 // Column component
-function LogoColumn({ logos, columnIndex, currentTime }: LogoColumnProps) {
+function LogoColumn({ logos, columnIndex, currentTime, containerClassName }: LogoColumnProps) {
   const CYCLE_DURATION = 3000;
   const columnDelay = columnIndex * 200;
   const adjustedTime = (currentTime + columnDelay) % (CYCLE_DURATION * logos.length);
@@ -89,7 +98,7 @@ function LogoColumn({ logos, columnIndex, currentTime }: LogoColumnProps) {
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="relative aspect-16/6 w-32 overflow-hidden md:w-36"
+      className={cn("relative aspect-16/6 w-32 overflow-hidden md:w-36", containerClassName)}
       initial={{ opacity: 0, y: 20 }}
       transition={{
         delay: columnIndex * 0.1,

@@ -1,16 +1,10 @@
-"use client";
-
 import Link from "next/link";
-
-import { LogoCarousel } from "@/components/ui/logo-carousel";
 
 import { IconChevronRight } from "@/assets/icons";
 
-import { CLIENTS } from "@/data/constants";
-import { useIsMobile } from "@/hooks/use-is-mobile";
+import { ClientLogos } from "./components/client-logos";
 
 export const Clients = () => {
-  const isMobile = useIsMobile();
   return (
     <section className="container border-y">
       <div className="mx-auto max-w-7xl border-x">
@@ -27,16 +21,7 @@ export const Clients = () => {
                 <IconChevronRight className="ml-1 inline-block size-3" />
               </Link>
             </div>
-            <LogoCarousel
-              className="transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs"
-              columns={isMobile ? 3 : 7}
-              logos={CLIENTS}
-            />
-            <LogoCarousel
-              className="transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs"
-              columns={isMobile ? 3 : 7}
-              logos={CLIENTS}
-            />
+            <ClientLogos />
           </div>
 
           {/* <Marquee className="[--duration:60s]" pauseOnHover repeat={3}>

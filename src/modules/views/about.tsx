@@ -133,7 +133,7 @@ export const About = () => {
             >
               {BEST_AT.map((capability) => (
                 <li
-                  className="rounded-2xl border border-stone-500/10 bg-stone-500/10 p-1.5"
+                  className="rounded-2xl border border-stone-alpha-10 bg-stone-alpha-10 p-1.5"
                   key={capability.id}
                   role="listitem"
                 >

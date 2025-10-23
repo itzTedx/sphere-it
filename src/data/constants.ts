@@ -211,7 +211,7 @@ export const CLIENTS = [
   {
     id: 3,
     src: "/brands/cbj.svg",
-    name: "Captial Bank of jordon",
+    name: "Capital Bank of Jordan",
   },
   {
     id: 4,
@@ -247,5 +247,28 @@ export const CLIENTS = [
     id: 10,
     src: "/brands/gems.png",
     name: "GEMS Education",
+  },
+];
+
+export const WHY_MATTERS = [
+  {
+    badge: "Data Driven",
+    title: "AI Platforms",
+    description: "Deliver adaptive, data-driven systems that evolve with your business.",
+  },
+  {
+    badge: "Core expertise",
+    title: "Automation Framework",
+    description: "Streamline enterprise operations through intelligent automation pipelines.",
+  },
+  {
+    badge: "Built for enterprise",
+    title: "Proven Reliability",
+    description: "ISO/IEC 42001-aligned processes ensure trust, transparency, and governance",
+  },
+  {
+    badge: "Modular Impact",
+    title: "Scalable by Design",
+    description: "Modular frameworks integrate wit your existing stack, reducing time-to-value.",
   },
 ];

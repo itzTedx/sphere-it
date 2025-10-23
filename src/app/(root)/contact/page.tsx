@@ -22,7 +22,7 @@ export default function ContactPage() {
               Whether you have questions about Sphere IT's offerings, partnerships, or just want to say hello!
             </p>
             <ul className="mt-8 space-y-4">
-              <li className="flex items-center justify-between rounded-xl bg-stone-500/10 p-3">
+              <li className="flex items-center justify-between rounded-xl bg-stone-alpha-10 p-3">
                 <div>
                   <label className="font-mono text-badge text-muted-background uppercase" htmlFor="email">
                     Email
@@ -35,7 +35,7 @@ export default function ContactPage() {
                   <IconCopy className="text-stone-400" />
                 </button>
               </li>
-              <li className="flex items-center justify-between rounded-xl bg-stone-500/10 p-3">
+              <li className="flex items-center justify-between rounded-xl bg-stone-alpha-10 p-3">
                 <div>
                   <label className="font-mono text-badge text-muted-background uppercase" htmlFor="email">
                     Form
@@ -50,7 +50,7 @@ export default function ContactPage() {
               </li>
             </ul>
           </div>
-          <div className="flex flex-col justify-between rounded-lg bg-stone-500/10 px-10 py-12">
+          <div className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 px-10 py-12">
             <div>
               <h2 className="text-stone-800 text-title-4">Sales</h2>
               <p className="mt-3 text-lg text-muted-foreground">
@@ -59,7 +59,7 @@ export default function ContactPage() {
             </div>
             <Button className="w-fit">Contact now</Button>
           </div>
-          <div className="flex flex-col justify-between rounded-lg bg-stone-500/10 px-10 py-12">
+          <div className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 px-10 py-12">
             <div>
               <h2 className="text-stone-800 text-title-4">Careers</h2>
               <p className="mt-3 text-lg text-muted-foreground">View opportunities to join our amazing team.</p>

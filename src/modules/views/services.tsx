@@ -82,7 +82,7 @@ export const Services = () => {
             </svg>
           </div>
           <div className="container max-w-6xl">
-            <Card className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-500/10 bg-stone-500/10 p-1 shadow-none md:p-1.5">
+            <Card className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none md:p-1.5">
               <TabsContents className="rounded-3xl bg-card p-6 shadow-md md:px-12 md:py-16" mode="auto-height">
                 {SERVICES.map(({ Icon, ...service }) => (
                   <TabsContent
@@ -115,9 +115,9 @@ export const Services = () => {
                         </Link>
                       </Button>
                     </div>
-                    <div className="aspect-6/4 overflow-hidden rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1))] border bg-stone-500/10 p-1 sm:aspect-auto md:col-span-3">
+                    <div className="aspect-6/4 overflow-hidden rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1))] border bg-stone-alpha-10 p-1 sm:aspect-auto md:col-span-3">
                       <div className="relative aspect-auto size-full overflow-hidden rounded-3xl">
-                        <Image alt="" className="object-cover object-left" fill src="/svg/elevate.svg" />
+                        <Image alt="" className="object-cover object-left" fill src={service.image} />
                       </div>
                     </div>
                   </TabsContent>

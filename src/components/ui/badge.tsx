@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "!font-mono !text-badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-full border px-3 py-1.5 uppercase transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-[>svg]:pl-2 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-5",
+  "!font-mono !text-badge inline-flex w-fit shrink-0 items-center justify-center gap-3 overflow-hidden whitespace-nowrap rounded-full border px-3 py-1.5 uppercase transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-[>svg]:pl-2 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-5",
   {
     variants: {
       variant: {
@@ -36,7 +36,7 @@ function Badge({
 
   return (
     <Comp
-      className={cn(badgeVariants({ variant }), "flex items-center gap-1.5", className)}
+      className={cn(badgeVariants({ variant }), "flex items-center", showDashes ? "gap-1.5" : null, className)}
       data-slot="badge"
       {...props}
     >
