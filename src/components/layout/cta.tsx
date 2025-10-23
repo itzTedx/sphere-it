@@ -86,8 +86,7 @@ export const MiniCta = ({
         {showButton && (
           <Button asChild className="w-full bg-primary-900 pl-4 text-primary-400 sm:w-auto" size="lg" variant="ghost">
             <Link href="/services">
-              <span className="hidden sm:inline">Explore Solutions</span>
-              <span className="sm:hidden">Explore</span>
+              Explore Solutions
               <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
                 <IconArrowUpRight className="text-primary-900" />
               </span>

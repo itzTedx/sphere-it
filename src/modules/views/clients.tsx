@@ -6,11 +6,11 @@ import { ClientLogos } from "./components/client-logos";
 
 export const Clients = () => {
   return (
-    <section className="container border-y">
-      <div className="mx-auto max-w-7xl border-x">
+    <section className="border-y">
+      <div className="mx-auto max-w-7xl max-xl:container">
         <div className="space-y-4 rounded-3xl border bg-card px-6 py-9 md:px-16 md:py-10">
           <h3 className="text-center text-title-5">
-            Trusted by <span className="text-primary">500+ Leading</span> Organizations
+            Trusted by <span className="text-primary">Leading Organizations</span>
           </h3>
 
           <div className="group relative space-y-3">
