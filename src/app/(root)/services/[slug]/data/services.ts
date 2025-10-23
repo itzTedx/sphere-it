@@ -154,31 +154,32 @@ export const SERVICES: Service[] = [
     id: "automate",
     Icon: IconAutomate,
     image: "/svg/automate.svg",
-    title: "Simplifying Processes, Amplifying Performance",
-    description: "Streamline critical processes with low-code automation that saves time and reduces errors.",
+    title: "Streamline Core Processes. Accelerate Growth.",
+    description:
+      "Simplify how work gets done with low-code and no-code automation designed for regulated industries. Built using UiPath, Camunda, and Microsoft Power Automate, Automate delivers precision, compliance, and scalability",
     overview:
       "Simplify critical processes with low-code automation tailored to regulated industries. By cutting cycle times, reducing errors, and ensuring compliance, we make operations more efficient and auditable-without unnecessary complexity.",
     key: [
       {
         id: 1,
         Icon: IconPuzzle,
-        title: "Reusable Components",
+        title: "Packaged Automation",
         description:
-          "Accelerate AI adoption with <strong>60+ reusable AI/ML modules,</strong> built for rapid customization and deployment across enterprise environments.",
+          "Industry-ready automation templates built for BFSI processes—loan processing, KYC, and compliance reporting.",
       },
       {
         id: 2,
         Icon: IconPuzzle,
-        title: "Certified Frameworks",
+        title: "Low-Code Efficiency",
         description:
-          "Ensure governance, compliance, and ethical AI with <strong>ISO/IEC 42001, AIAA,</strong> and <strong>PMI CPMAI</strong> certifications, trusted by regulated industries like BFSI.",
+          "Rapid configuration and deployment with minimal coding—reducing cycle times and freeing teams for high-value work.",
       },
       {
         id: 3,
         Icon: IconPuzzle,
-        title: "Agile & DevOps Precision",
+        title: "Auditable & Scalable",
         description:
-          "Deliver value faster with AI development built on <strong>Agile</strong> principles and continuous integration through <strong>DevOps pipelines.</strong>",
+          "Transparent logs and traceability for every workflow; scalability without heavy development overhead.",
       },
     ],
     feature: {

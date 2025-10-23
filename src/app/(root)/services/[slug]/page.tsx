@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -24,6 +25,57 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const service = SERVICES.find((s) => s.id === slug);
+
+  if (!service) {
+    return {
+      title: "Service Not Found",
+      description: "The requested service could not be found.",
+    };
+  }
+
+  return {
+    title: `${service.title} | Sphere Global`,
+    description: service.description,
+    keywords: [
+      service.id,
+      "AI services",
+      "enterprise automation",
+      "artificial intelligence",
+      "digital transformation",
+      "business intelligence",
+      "process automation",
+      "data analytics",
+      "machine learning",
+      "Sphere Global",
+    ],
+    openGraph: {
+      title: service.title,
+      description: service.description,
+      type: "website",
+      images: [
+        {
+          url: service.image,
+          width: 1200,
+          height: 630,
+          alt: service.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: service.title,
+      description: service.description,
+      images: [service.image],
+    },
+    alternates: {
+      canonical: `/services/${service.id}`,
+    },
+  };
+}
+
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
 
@@ -33,156 +85,191 @@ export default async function ServicePage({ params }: Props) {
 
   const Icon = service.Icon;
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    provider: {
+      "@type": "Organization",
+      name: "Sphere Global",
+      url: "https://sphereglobal.ae",
+    },
+    serviceType: service.id,
+    offers: {
+      "@type": "Offer",
+      description: service.description,
+    },
+  };
+
   return (
-    <main>
-      <header className="space-y-14 border-b bg-card py-16 sm:py-20 md:py-28">
-        <div className="container grid max-w-7xl grid-cols-2 items-center gap-7">
-          <div className="space-y-6">
-            <Badge>
-              <Icon /> {service.id}
-            </Badge>
-            <h1 className="text-primary-900 text-title-2">{service.title}</h1>
-            <p className="text-xl">{service.description}</p>
-            <div>
-              <Button>
-                Get Started
-                <span className="w-7">
-                  <IconArrowRight />
-                </span>
-              </Button>
+    <>
+      <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} type="application/ld+json" />
+      <main>
+        <header className="space-y-8 border-b bg-card py-12 sm:space-y-12 sm:py-16 md:space-y-14 md:py-20 lg:py-28">
+          <div className="container grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+            <div className="space-y-6">
+              <Badge>
+                <Icon /> {service.id}
+              </Badge>
+              <h1 className="text-primary-900 text-title-2 lg:text-title-1">{service.title}</h1>
+              <p className="text-lg sm:text-xl">{service.description}</p>
+              <div>
+                <Button size="lg">
+                  Get Started
+                  <span className="w-7">
+                    <IconArrowRight />
+                  </span>
+                </Button>
+              </div>
+            </div>
+            <div className="relative order-first aspect-10/7 lg:order-last">
+              <Image
+                alt={service.title}
+                className="object-contain"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                src={service.image}
+              />
             </div>
           </div>
-          <div className="relative aspect-10/7">
-            <Image alt={service.title} className="object-contain" fill src={service.image} />
-          </div>
-        </div>
-        <ul className="container grid max-w-7xl grid-cols-3 gap-4">
-          {service.key.map((key) => (
-            <KeyFeatureCard data={key} key={key.id} />
-          ))}
-        </ul>
-      </header>
-      <section className="container max-w-7xl py-12">
-        <header>
-          <Badge showDashes>
-            <Icon /> Key Features
-          </Badge>
-          <div className="mt-4 grid grid-cols-2 gap-9">
-            <h2 className="text-primary-900 text-title-2">{service.feature.title}</h2>
-            <p className="text-lg text-muted-foreground">{service.feature.description}</p>
-          </div>
-        </header>
-        <div className="grid grid-cols-2 gap-6 pt-9">
-          {service.feature.features.map((feature) => (
-            <Card className="space-y-6 rounded-3xl p-6 shadow-md" key={feature.title}>
-              <IconBox state="active">
-                <feature.Icon />
-              </IconBox>
-              <div className="space-y-3">
-                <h3 className="text-primary-900 text-title-5">{feature.title}</h3>
-                <p className="text-lg text-stone-800 tracking-tight">{feature.description}</p>
-              </div>
-            </Card>
-          ))}
-          <MiniCta
-            className="col-span-full"
-            description="So you can focus on growth instead of complexity"
-            layout="horizontal"
-            showButton={false}
-            title="Elevate makes AI simple to Build and Scale"
-          />
-        </div>
-      </section>
-      <section className="relative z-50 mx-4 rounded-3xl border bg-card">
-        <div className="mx-auto max-w-7xl space-y-6 py-20">
-          <header className="max-w-2xl space-y-4">
-            <Badge>How {service.id} Transforms</Badge>
-            <h2 className="text-primary-900 text-title-2">
-              Scale Smarter. <span className="text-primary-600">Grow Faster.</span> Lead with Data.
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Harness the power of intelligent automation and predictive analytics to accelerate growth, enhance
-              efficiency, and make data-driven decisions with confidence.
-            </p>
-          </header>
-          <article className="grid grid-cols-3 gap-3">
-            {service.transformation.features.map((feature, i) => (
-              <div
-                className="card overflow-hidden rounded-2xl bg-gradient-to-b from-transparent to-primary-600/40 shadow-md transition-all hover:shadow-lg"
-                key={`${i}-${feature.title}`}
-              >
-                <div className="p-6">
-                  <h3 className="text-primary-900 text-title-5">{feature.title}</h3>
-                  <p className="text-base text-stone-700">{feature.description}</p>
-                </div>
-                <div className="relative aspect-16/15">
-                  <Image alt={feature.title} className="object-cover" fill src={feature.image} />
-                </div>
-              </div>
-            ))}
-          </article>
-          <ul className="grid grid-cols-4 gap-4">
-            {service.transformation.metrics.map((metric, i) => (
-              <li
-                className="card rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.5))] bg-stone-alpha-10 p-1.5 shadow-sm transition-all hover:shadow-md"
-                key={`${i}-${metric.value}`}
-              >
-                <div className="h-full space-y-3 rounded-xl bg-card p-6 shadow-sm">
-                  <h4 className="text-primary-800 text-title-4">{metric.value}</h4>
-                  <p className="text-muted-foreground">{metric.description}</p>
-                </div>
-              </li>
+          <ul className="container grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {service.key.map((key) => (
+              <KeyFeatureCard data={key} key={key.id} />
             ))}
           </ul>
-        </div>
-      </section>
-      <section className="my-20 border-y">
-        <div className="container max-w-7xl space-y-9 rounded-3xl border bg-card p-9">
-          <header className="space-y-4">
-            <Badge>Industries we serve</Badge>
-            <div className="grid grid-cols-2 gap-4">
-              <h2 className="text-primary-900 text-title-2">Driving Growth across Priority Sectors</h2>
-              <p className="text-lg text-stone-600">
-                We apply enterprise-grade AI where reliability and governance matter most—starting with BFSI and
-                extending to priority enterprise sectors across the GCC.
-              </p>
+        </header>
+        <section className="container max-w-7xl py-12">
+          <header>
+            <Badge showDashes>
+              <Icon /> Key Features
+            </Badge>
+            <div className="mt-4 grid gap-6 lg:grid-cols-2 lg:gap-9">
+              <h2 className="text-primary-900 text-title-2 lg:text-title-1">{service.feature.title}</h2>
+              <p className="text-lg text-muted-foreground">{service.feature.description}</p>
             </div>
           </header>
-          <ul className="grid grid-cols-5 gap-4">
-            {service.industries.map((industry, i) => (
-              <li className="rounded-3xl bg-card p-6 shadow-md" key={`${i}-${industry.title}`}>
-                <PreviewCard delay={50}>
-                  <PreviewCardTrigger aria-label="Automotive sector expertise" className="cursor-pointer">
-                    <IconBox>
-                      <industry.Icon className="text-stone-500" />
-                    </IconBox>
-                    <h3
-                      className="mt-6 text-primary-900 text-title-6 leading-none [&>span]:text-sm"
-                      dangerouslySetInnerHTML={{ __html: industry.title }}
+          <div className="grid gap-6 pt-9 sm:grid-cols-2 lg:grid-cols-2">
+            {service.feature.features.map((feature) => (
+              <Card className="space-y-6 rounded-3xl p-6 shadow-md" key={feature.title}>
+                <IconBox state="active">
+                  <feature.Icon />
+                </IconBox>
+                <div className="space-y-3">
+                  <h3 className="text-primary-900 text-title-5">{feature.title}</h3>
+                  <p className="text-base text-stone-800 tracking-tight sm:text-lg">{feature.description}</p>
+                </div>
+              </Card>
+            ))}
+            <MiniCta
+              className="col-span-full"
+              description="So you can focus on growth instead of complexity"
+              layout="horizontal"
+              showButton={false}
+              title="Elevate makes AI simple to Build and Scale"
+            />
+          </div>
+        </section>
+        <section className="relative z-50 mx-4 rounded-3xl border bg-card">
+          <div className="mx-auto max-w-7xl space-y-6 py-12 sm:py-16 lg:py-20">
+            <header className="max-w-2xl space-y-4">
+              <Badge>How {service.id} Transforms</Badge>
+              <h2 className="text-primary-900 text-title-2 lg:text-title-1">
+                Scale Smarter. <span className="text-primary-600">Grow Faster.</span> Lead with Data.
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Harness the power of intelligent automation and predictive analytics to accelerate growth, enhance
+                efficiency, and make data-driven decisions with confidence.
+              </p>
+            </header>
+            <article className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {service.transformation.features.map((feature, i) => (
+                <div
+                  className="card overflow-hidden rounded-2xl bg-gradient-to-b from-transparent to-primary-600/40 shadow-md transition-all hover:shadow-lg"
+                  key={`${i}-${feature.title}`}
+                >
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-primary-900 text-title-5">{feature.title}</h3>
+                    <p className="text-sm text-stone-700 sm:text-base">{feature.description}</p>
+                  </div>
+                  <div className="relative aspect-16/15">
+                    <Image
+                      alt={feature.title}
+                      className="object-cover"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      src={feature.image}
                     />
-                  </PreviewCardTrigger>
-                  <PreviewCardPanel className="w-72 p-0" side="top">
-                    <div className="flex items-center gap-2 border-b p-3">
-                      <IconBox state="active">
-                        <industry.Icon className="text-primary-500" />
+                  </div>
+                </div>
+              ))}
+            </article>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {service.transformation.metrics.map((metric, i) => (
+                <li
+                  className="card rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.5))] bg-stone-alpha-10 p-1.5 shadow-sm transition-all hover:shadow-md"
+                  key={`${i}-${metric.value}`}
+                >
+                  <div className="h-full space-y-3 rounded-xl bg-card p-4 shadow-sm sm:p-6">
+                    <h4 className="text-primary-800 text-title-4">{metric.value}</h4>
+                    <p className="text-muted-foreground text-sm sm:text-base">{metric.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+        <section className="my-12 border-y sm:my-16 lg:my-20">
+          <div className="container max-w-7xl space-y-6 rounded-3xl border bg-card p-6 sm:space-y-9 sm:p-9">
+            <header className="space-y-4">
+              <Badge>Industries we serve</Badge>
+              <div className="grid gap-4 lg:grid-cols-2">
+                <h2 className="text-primary-900 text-title-2 lg:text-title-1">
+                  Driving Growth across Priority Sectors
+                </h2>
+                <p className="text-lg text-stone-600">
+                  We apply enterprise-grade AI where reliability and governance matter most—starting with BFSI and
+                  extending to priority enterprise sectors across the GCC.
+                </p>
+              </div>
+            </header>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {service.industries.map((industry, i) => (
+                <li className="rounded-3xl bg-card p-4 shadow-md sm:p-6" key={`${i}-${industry.title}`}>
+                  <PreviewCard delay={50}>
+                    <PreviewCardTrigger aria-label={`${industry.title} sector expertise`} className="cursor-pointer">
+                      <IconBox>
+                        <industry.Icon className="text-stone-500" />
                       </IconBox>
                       <h3
-                        className="text-primary-900 text-title-6 leading-none [&>span]:hidden"
+                        className="mt-4 text-primary-900 text-title-6 leading-none sm:mt-6 [&>span]:text-sm"
                         dangerouslySetInnerHTML={{ __html: industry.title }}
                       />
-                    </div>
-                    <div className="p-3">
-                      <span className="font-mono text-stone-400 text-xs uppercase">Overview</span>
-                      <p className="font-display text-stone-700">{industry.description}</p>
-                    </div>
-                  </PreviewCardPanel>
-                </PreviewCard>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-      <Cta />
-    </main>
+                    </PreviewCardTrigger>
+                    <PreviewCardPanel className="w-72 p-0" side="top">
+                      <div className="flex items-center gap-2 border-b p-3">
+                        <IconBox state="active">
+                          <industry.Icon className="text-primary-500" />
+                        </IconBox>
+                        <h3
+                          className="text-primary-900 text-title-6 leading-none [&>span]:hidden"
+                          dangerouslySetInnerHTML={{ __html: industry.title }}
+                        />
+                      </div>
+                      <div className="p-3">
+                        <span className="font-mono text-stone-400 text-xs uppercase">Overview</span>
+                        <p className="font-display text-stone-700">{industry.description}</p>
+                      </div>
+                    </PreviewCardPanel>
+                  </PreviewCard>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+        <Cta />
+      </main>
+    </>
   );
 }
