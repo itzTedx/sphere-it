@@ -1,37 +1,9 @@
 import { JSX } from "react";
 
-import { IconAiGear } from "@/assets/icons";
+import { IconAiGear, IconBank } from "@/assets/icons";
 import { IconIso } from "@/assets/icons/iso";
 import { IconPuzzle } from "@/assets/icons/puzzle";
 import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
-
-export interface Service {
-  id: string;
-  Icon: (props: SVGProps) => JSX.Element;
-  image: string;
-  title: string;
-  description: string;
-  overview: string;
-  key: KeyFeature[];
-  feature: {
-    title: string;
-    description: string;
-    features: Feature[];
-  };
-}
-
-export interface KeyFeature {
-  id: number;
-  Icon: (props: SVGProps) => JSX.Element;
-  title: string;
-  description: string;
-}
-
-export interface Feature {
-  Icon: (props: SVGProps) => JSX.Element;
-  title: string;
-  description: string;
-}
 
 export const SERVICES: Service[] = [
   {
@@ -66,6 +38,7 @@ export const SERVICES: Service[] = [
           "Deliver value faster with AI development built on <strong>Agile</strong> principles and continuous integration through <strong>DevOps pipelines.</strong>",
       },
     ],
+
     feature: {
       title: "Enterprise Automation and Optimization Framework",
       description:
@@ -103,6 +76,79 @@ export const SERVICES: Service[] = [
         },
       ],
     },
+
+    transformation: {
+      features: [
+        {
+          image: "/svg/growth.svg",
+          title: "Accelerated Growth",
+          description:
+            "Deploy scalable AI solutions that reduce costs, boost operational efficiency, and unlock new revenue opportunities.",
+        },
+        {
+          image: "/svg/data.svg",
+          title: "Turn Data Into Action",
+          description:
+            "Transform raw data into predictive insights that help you make faster, smarter business decisions with measurable impact.",
+        },
+        {
+          image: "/svg/scale.svg",
+          title: "Scale Seamlessly",
+          description:
+            "Expand your AI architecture effortlessly as your business grows—ensuring agility, reliability, and long-term value.",
+        },
+      ],
+      metrics: [
+        {
+          value: "30-60%",
+          description: "Reduction in operational costs through process optimization and intelligent automation.",
+        },
+        {
+          value: "Up to 2×",
+          description: "Faster process turnaround, enabling teams to focus on innovation and strategic priorities.",
+        },
+        {
+          value: "Improved",
+          description: "Data accuracy and compliance, minimizing human error and strengthening governance.",
+        },
+        {
+          value: "Greater",
+          description: "Transparency across workflows for smarter, accountable decision-making.",
+        },
+      ],
+    },
+    industries: [
+      {
+        Icon: IconBank,
+        title: "Banking",
+        description:
+          "Regulatory insights, compliance tracking, risk analytics, and customer intelligence to improve decisions and speed to value.",
+      },
+      {
+        Icon: IconBank,
+        title: "Insurance",
+        description:
+          "Claims analytics, fraud detection, and policy servicing powered by governed, reusable AI components.",
+      },
+      {
+        Icon: IconBank,
+        title: "Conglomerates <span>(Enterprise Groups)</span>",
+        description:
+          "Cross-unit knowledge access and decision support “ask once, know all” for leaders across diverse businesses.",
+      },
+      {
+        Icon: IconBank,
+        title: "Telecommunications",
+        description:
+          "AI-assisted service insights and network-operations decision support to improve performance and customer experience.",
+      },
+      {
+        Icon: IconBank,
+        title: "Energy & Utilities",
+        description:
+          "Forecasting and operations decisioning that supports reliability, safety, and compliance at scale.",
+      },
+    ],
   },
   {
     id: "automate",
@@ -233,3 +279,53 @@ export const SERVICES: Service[] = [
     ],
   },
 ];
+
+export interface Service {
+  id: string;
+  Icon: (props: SVGProps) => JSX.Element;
+  image: string;
+  title: string;
+  description: string;
+  overview: string;
+  key: KeyFeature[];
+  feature: {
+    title: string;
+    description: string;
+    features: Feature[];
+  };
+  transformation: {
+    features: TransformationFeature[];
+    metrics: TransformationMetrics[];
+  };
+  industries: Industries[];
+}
+
+export interface KeyFeature {
+  id: number;
+  Icon: (props: SVGProps) => JSX.Element;
+  title: string;
+  description: string;
+}
+
+export interface Feature {
+  Icon: (props: SVGProps) => JSX.Element;
+  title: string;
+  description: string;
+}
+
+export interface TransformationFeature {
+  image: string;
+  title: string;
+  description: string;
+}
+
+export interface TransformationMetrics {
+  value: string;
+  description: string;
+}
+
+export interface Industries {
+  Icon: (props: SVGProps) => JSX.Element;
+  title: string;
+  description: string;
+}
