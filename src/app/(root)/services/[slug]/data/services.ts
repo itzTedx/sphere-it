@@ -243,53 +243,39 @@ export const SERVICES: Service[] = [
       ],
       metrics: [
         {
-          value: "30-60%",
-          description: "Reduction in operational costs through process optimization and intelligent automation.",
+          value: "30–50%",
+          description: " Reduction in operational effort through process automation.",
         },
         {
-          value: "Up to 2×",
-          description: "Faster process turnaround, enabling teams to focus on innovation and strategic priorities.",
+          value: "2× Faster",
+          description: "Turnaround for repetitive workflows like compliance reporting and claims processing.",
         },
         {
-          value: "Improved",
-          description: "Data accuracy and compliance, minimizing human error and strengthening governance.",
+          value: "Zero-Error Tolerance",
+          description: "Automation fine-tuned to industry regulations for accuracy and compliance.",
         },
         {
-          value: "Greater",
-          description: "Transparency across workflows for smarter, accountable decision-making.",
+          value: "Scalable Frameworks",
+          description: "Adapt quickly to changing business needs without over-engineering.",
         },
       ],
     },
     industries: [
       {
         Icon: IconBank,
-        title: "Banking",
+        title: "Banking & Financial Services",
         description:
           "Regulatory insights, compliance tracking, risk analytics, and customer intelligence to improve decisions and speed to value.",
       },
       {
         Icon: IconBank,
         title: "Insurance",
-        description:
-          "Claims analytics, fraud detection, and policy servicing powered by governed, reusable AI components.",
+        description: "Claims management and underwriting automation.",
       },
       {
         Icon: IconBank,
-        title: "Conglomerates <span>(Enterprise Groups)</span>",
-        description:
-          "Cross-unit knowledge access and decision support “ask once, know all” for leaders across diverse businesses.",
-      },
-      {
-        Icon: IconBank,
-        title: "Telecommunications",
-        description:
-          "AI-assisted service insights and network-operations decision support to improve performance and customer experience.",
-      },
-      {
-        Icon: IconBank,
-        title: "Energy & Utilities",
-        description:
-          "Forecasting and operations decisioning that supports reliability, safety, and compliance at scale.",
+        title: "Fintech",
+        description: "Scalable low-code frameworks for rapid growth.",
       },
     ],
   },

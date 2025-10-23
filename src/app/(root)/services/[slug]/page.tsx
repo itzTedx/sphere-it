@@ -112,7 +112,7 @@ export default async function ServicePage({ params }: Props) {
               <Badge>
                 <Icon /> {service.id}
               </Badge>
-              <h1 className="text-primary-900 text-title-2 lg:text-title-1">{service.title}</h1>
+              <h1 className="text-primary-900 text-title-4 sm:text-title-3 lg:text-title-2">{service.title}</h1>
               <p className="text-lg sm:text-xl">{service.description}</p>
               <div>
                 <Button size="lg">
