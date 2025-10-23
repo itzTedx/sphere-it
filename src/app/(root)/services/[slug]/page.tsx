@@ -92,6 +92,20 @@ export default async function ServicePage({ params }: Props) {
           />
         </div>
       </section>
+      <section className="relative z-50 mx-4 rounded-3xl border bg-card">
+        <div className="mx-auto max-w-7xl py-20">
+          <div className="max-w-2xl space-y-4">
+            <Badge>How {service.id} Transforms</Badge>
+            <h2 className="text-primary-900 text-title-2">
+              Scale Smarter. <span className="text-primary-600">Grow Faster.</span> Lead with Data.
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Harness the power of intelligent automation and predictive analytics to accelerate growth, enhance
+              efficiency, and make data-driven decisions with confidence.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
