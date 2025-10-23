@@ -181,6 +181,116 @@ export const SERVICES: Service[] = [
           "Deliver value faster with AI development built on <strong>Agile</strong> principles and continuous integration through <strong>DevOps pipelines.</strong>",
       },
     ],
+    feature: {
+      title: "Enterprise Automation and Optimization Framework",
+      description:
+        "From predictive analytics to intelligent workflow automation, Elevate provides a unified framework that empowers teams, streamlines operations, and uncovers opportunities for smarter, data-driven growth.",
+      features: [
+        {
+          Icon: IconPuzzle,
+          title: "Process Automation",
+          description:
+            "Automate repetitive workflows across finance, HR, logistics, and operations—freeing your teams to focus on higher-value initiatives.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "AI-Driven Insights",
+          description:
+            "Leverage predictive analytics to make faster, data-backed decisions that improve accuracy and business foresight.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "System Integration",
+          description:
+            "Connect your entire tech ecosystem seamlessly—CRMs, ERPs, and communication tools—for a single, cohesive flow of information.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "Performance Intelligence",
+          description:
+            "Gain total visibility with real-time dashboards and reporting that enhance performance, reliability, and accountability.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "Scalable Infrastructure",
+          description:
+            "Deploy modular automation that evolves with your business, supporting agility, growth, and long-term innovation.",
+        },
+      ],
+    },
+
+    transformation: {
+      features: [
+        {
+          image: "/svg/growth.svg",
+          title: "Accelerated Growth",
+          description:
+            "Deploy scalable AI solutions that reduce costs, boost operational efficiency, and unlock new revenue opportunities.",
+        },
+        {
+          image: "/svg/data.svg",
+          title: "Turn Data Into Action",
+          description:
+            "Transform raw data into predictive insights that help you make faster, smarter business decisions with measurable impact.",
+        },
+        {
+          image: "/svg/scale.svg",
+          title: "Scale Seamlessly",
+          description:
+            "Expand your AI architecture effortlessly as your business grows—ensuring agility, reliability, and long-term value.",
+        },
+      ],
+      metrics: [
+        {
+          value: "30-60%",
+          description: "Reduction in operational costs through process optimization and intelligent automation.",
+        },
+        {
+          value: "Up to 2×",
+          description: "Faster process turnaround, enabling teams to focus on innovation and strategic priorities.",
+        },
+        {
+          value: "Improved",
+          description: "Data accuracy and compliance, minimizing human error and strengthening governance.",
+        },
+        {
+          value: "Greater",
+          description: "Transparency across workflows for smarter, accountable decision-making.",
+        },
+      ],
+    },
+    industries: [
+      {
+        Icon: IconBank,
+        title: "Banking",
+        description:
+          "Regulatory insights, compliance tracking, risk analytics, and customer intelligence to improve decisions and speed to value.",
+      },
+      {
+        Icon: IconBank,
+        title: "Insurance",
+        description:
+          "Claims analytics, fraud detection, and policy servicing powered by governed, reusable AI components.",
+      },
+      {
+        Icon: IconBank,
+        title: "Conglomerates <span>(Enterprise Groups)</span>",
+        description:
+          "Cross-unit knowledge access and decision support “ask once, know all” for leaders across diverse businesses.",
+      },
+      {
+        Icon: IconBank,
+        title: "Telecommunications",
+        description:
+          "AI-assisted service insights and network-operations decision support to improve performance and customer experience.",
+      },
+      {
+        Icon: IconBank,
+        title: "Energy & Utilities",
+        description:
+          "Forecasting and operations decisioning that supports reliability, safety, and compliance at scale.",
+      },
+    ],
   },
   {
     id: "evaluate",
@@ -211,6 +321,116 @@ export const SERVICES: Service[] = [
         title: "Agile & DevOps Precision",
         description:
           "Deliver value faster with AI development built on <strong>Agile</strong> principles and continuous integration through <strong>DevOps pipelines.</strong>",
+      },
+    ],
+    feature: {
+      title: "Enterprise Automation and Optimization Framework",
+      description:
+        "From predictive analytics to intelligent workflow automation, Elevate provides a unified framework that empowers teams, streamlines operations, and uncovers opportunities for smarter, data-driven growth.",
+      features: [
+        {
+          Icon: IconPuzzle,
+          title: "Process Automation",
+          description:
+            "Automate repetitive workflows across finance, HR, logistics, and operations—freeing your teams to focus on higher-value initiatives.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "AI-Driven Insights",
+          description:
+            "Leverage predictive analytics to make faster, data-backed decisions that improve accuracy and business foresight.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "System Integration",
+          description:
+            "Connect your entire tech ecosystem seamlessly—CRMs, ERPs, and communication tools—for a single, cohesive flow of information.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "Performance Intelligence",
+          description:
+            "Gain total visibility with real-time dashboards and reporting that enhance performance, reliability, and accountability.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "Scalable Infrastructure",
+          description:
+            "Deploy modular automation that evolves with your business, supporting agility, growth, and long-term innovation.",
+        },
+      ],
+    },
+
+    transformation: {
+      features: [
+        {
+          image: "/svg/growth.svg",
+          title: "Accelerated Growth",
+          description:
+            "Deploy scalable AI solutions that reduce costs, boost operational efficiency, and unlock new revenue opportunities.",
+        },
+        {
+          image: "/svg/data.svg",
+          title: "Turn Data Into Action",
+          description:
+            "Transform raw data into predictive insights that help you make faster, smarter business decisions with measurable impact.",
+        },
+        {
+          image: "/svg/scale.svg",
+          title: "Scale Seamlessly",
+          description:
+            "Expand your AI architecture effortlessly as your business grows—ensuring agility, reliability, and long-term value.",
+        },
+      ],
+      metrics: [
+        {
+          value: "30-60%",
+          description: "Reduction in operational costs through process optimization and intelligent automation.",
+        },
+        {
+          value: "Up to 2×",
+          description: "Faster process turnaround, enabling teams to focus on innovation and strategic priorities.",
+        },
+        {
+          value: "Improved",
+          description: "Data accuracy and compliance, minimizing human error and strengthening governance.",
+        },
+        {
+          value: "Greater",
+          description: "Transparency across workflows for smarter, accountable decision-making.",
+        },
+      ],
+    },
+    industries: [
+      {
+        Icon: IconBank,
+        title: "Banking",
+        description:
+          "Regulatory insights, compliance tracking, risk analytics, and customer intelligence to improve decisions and speed to value.",
+      },
+      {
+        Icon: IconBank,
+        title: "Insurance",
+        description:
+          "Claims analytics, fraud detection, and policy servicing powered by governed, reusable AI components.",
+      },
+      {
+        Icon: IconBank,
+        title: "Conglomerates <span>(Enterprise Groups)</span>",
+        description:
+          "Cross-unit knowledge access and decision support “ask once, know all” for leaders across diverse businesses.",
+      },
+      {
+        Icon: IconBank,
+        title: "Telecommunications",
+        description:
+          "AI-assisted service insights and network-operations decision support to improve performance and customer experience.",
+      },
+      {
+        Icon: IconBank,
+        title: "Energy & Utilities",
+        description:
+          "Forecasting and operations decisioning that supports reliability, safety, and compliance at scale.",
       },
     ],
   },
@@ -245,6 +465,116 @@ export const SERVICES: Service[] = [
           "Deliver value faster with AI development built on <strong>Agile</strong> principles and continuous integration through <strong>DevOps pipelines.</strong>",
       },
     ],
+    feature: {
+      title: "Enterprise Automation and Optimization Framework",
+      description:
+        "From predictive analytics to intelligent workflow automation, Elevate provides a unified framework that empowers teams, streamlines operations, and uncovers opportunities for smarter, data-driven growth.",
+      features: [
+        {
+          Icon: IconPuzzle,
+          title: "Process Automation",
+          description:
+            "Automate repetitive workflows across finance, HR, logistics, and operations—freeing your teams to focus on higher-value initiatives.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "AI-Driven Insights",
+          description:
+            "Leverage predictive analytics to make faster, data-backed decisions that improve accuracy and business foresight.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "System Integration",
+          description:
+            "Connect your entire tech ecosystem seamlessly—CRMs, ERPs, and communication tools—for a single, cohesive flow of information.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "Performance Intelligence",
+          description:
+            "Gain total visibility with real-time dashboards and reporting that enhance performance, reliability, and accountability.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "Scalable Infrastructure",
+          description:
+            "Deploy modular automation that evolves with your business, supporting agility, growth, and long-term innovation.",
+        },
+      ],
+    },
+
+    transformation: {
+      features: [
+        {
+          image: "/svg/growth.svg",
+          title: "Accelerated Growth",
+          description:
+            "Deploy scalable AI solutions that reduce costs, boost operational efficiency, and unlock new revenue opportunities.",
+        },
+        {
+          image: "/svg/data.svg",
+          title: "Turn Data Into Action",
+          description:
+            "Transform raw data into predictive insights that help you make faster, smarter business decisions with measurable impact.",
+        },
+        {
+          image: "/svg/scale.svg",
+          title: "Scale Seamlessly",
+          description:
+            "Expand your AI architecture effortlessly as your business grows—ensuring agility, reliability, and long-term value.",
+        },
+      ],
+      metrics: [
+        {
+          value: "30-60%",
+          description: "Reduction in operational costs through process optimization and intelligent automation.",
+        },
+        {
+          value: "Up to 2×",
+          description: "Faster process turnaround, enabling teams to focus on innovation and strategic priorities.",
+        },
+        {
+          value: "Improved",
+          description: "Data accuracy and compliance, minimizing human error and strengthening governance.",
+        },
+        {
+          value: "Greater",
+          description: "Transparency across workflows for smarter, accountable decision-making.",
+        },
+      ],
+    },
+    industries: [
+      {
+        Icon: IconBank,
+        title: "Banking",
+        description:
+          "Regulatory insights, compliance tracking, risk analytics, and customer intelligence to improve decisions and speed to value.",
+      },
+      {
+        Icon: IconBank,
+        title: "Insurance",
+        description:
+          "Claims analytics, fraud detection, and policy servicing powered by governed, reusable AI components.",
+      },
+      {
+        Icon: IconBank,
+        title: "Conglomerates <span>(Enterprise Groups)</span>",
+        description:
+          "Cross-unit knowledge access and decision support “ask once, know all” for leaders across diverse businesses.",
+      },
+      {
+        Icon: IconBank,
+        title: "Telecommunications",
+        description:
+          "AI-assisted service insights and network-operations decision support to improve performance and customer experience.",
+      },
+      {
+        Icon: IconBank,
+        title: "Energy & Utilities",
+        description:
+          "Forecasting and operations decisioning that supports reliability, safety, and compliance at scale.",
+      },
+    ],
   },
   {
     id: "augment",
@@ -275,6 +605,116 @@ export const SERVICES: Service[] = [
         title: "Agile & DevOps Precision",
         description:
           "Deliver value faster with AI development built on <strong>Agile</strong> principles and continuous integration through <strong>DevOps pipelines.</strong>",
+      },
+    ],
+    feature: {
+      title: "Enterprise Automation and Optimization Framework",
+      description:
+        "From predictive analytics to intelligent workflow automation, Elevate provides a unified framework that empowers teams, streamlines operations, and uncovers opportunities for smarter, data-driven growth.",
+      features: [
+        {
+          Icon: IconPuzzle,
+          title: "Process Automation",
+          description:
+            "Automate repetitive workflows across finance, HR, logistics, and operations—freeing your teams to focus on higher-value initiatives.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "AI-Driven Insights",
+          description:
+            "Leverage predictive analytics to make faster, data-backed decisions that improve accuracy and business foresight.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "System Integration",
+          description:
+            "Connect your entire tech ecosystem seamlessly—CRMs, ERPs, and communication tools—for a single, cohesive flow of information.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "Performance Intelligence",
+          description:
+            "Gain total visibility with real-time dashboards and reporting that enhance performance, reliability, and accountability.",
+        },
+        {
+          Icon: IconPuzzle,
+          title: "Scalable Infrastructure",
+          description:
+            "Deploy modular automation that evolves with your business, supporting agility, growth, and long-term innovation.",
+        },
+      ],
+    },
+
+    transformation: {
+      features: [
+        {
+          image: "/svg/growth.svg",
+          title: "Accelerated Growth",
+          description:
+            "Deploy scalable AI solutions that reduce costs, boost operational efficiency, and unlock new revenue opportunities.",
+        },
+        {
+          image: "/svg/data.svg",
+          title: "Turn Data Into Action",
+          description:
+            "Transform raw data into predictive insights that help you make faster, smarter business decisions with measurable impact.",
+        },
+        {
+          image: "/svg/scale.svg",
+          title: "Scale Seamlessly",
+          description:
+            "Expand your AI architecture effortlessly as your business grows—ensuring agility, reliability, and long-term value.",
+        },
+      ],
+      metrics: [
+        {
+          value: "30-60%",
+          description: "Reduction in operational costs through process optimization and intelligent automation.",
+        },
+        {
+          value: "Up to 2×",
+          description: "Faster process turnaround, enabling teams to focus on innovation and strategic priorities.",
+        },
+        {
+          value: "Improved",
+          description: "Data accuracy and compliance, minimizing human error and strengthening governance.",
+        },
+        {
+          value: "Greater",
+          description: "Transparency across workflows for smarter, accountable decision-making.",
+        },
+      ],
+    },
+    industries: [
+      {
+        Icon: IconBank,
+        title: "Banking",
+        description:
+          "Regulatory insights, compliance tracking, risk analytics, and customer intelligence to improve decisions and speed to value.",
+      },
+      {
+        Icon: IconBank,
+        title: "Insurance",
+        description:
+          "Claims analytics, fraud detection, and policy servicing powered by governed, reusable AI components.",
+      },
+      {
+        Icon: IconBank,
+        title: "Conglomerates <span>(Enterprise Groups)</span>",
+        description:
+          "Cross-unit knowledge access and decision support “ask once, know all” for leaders across diverse businesses.",
+      },
+      {
+        Icon: IconBank,
+        title: "Telecommunications",
+        description:
+          "AI-assisted service insights and network-operations decision support to improve performance and customer experience.",
+      },
+      {
+        Icon: IconBank,
+        title: "Energy & Utilities",
+        description:
+          "Forecasting and operations decisioning that supports reliability, safety, and compliance at scale.",
       },
     ],
   },
