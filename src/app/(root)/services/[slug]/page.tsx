@@ -106,7 +106,7 @@ export default async function ServicePage({ params }: Props) {
     <>
       <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} type="application/ld+json" />
       <main>
-        <header className="space-y-8 border-b bg-card py-12 sm:space-y-12 sm:py-16 md:space-y-14 md:py-20 lg:py-28">
+        <header className="space-y-8 border-b bg-card py-20 sm:space-y-12 md:space-y-14 lg:py-28">
           <div className="container grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
             <div className="space-y-6">
               <Badge>
@@ -146,7 +146,7 @@ export default async function ServicePage({ params }: Props) {
               <Icon /> Key Features
             </Badge>
             <div className="mt-4 grid gap-6 lg:grid-cols-2 lg:gap-9">
-              <h2 className="text-primary-900 text-title-2 lg:text-title-1">{service.feature.title}</h2>
+              <h2 className="text-primary-900 text-title-4 md:text-title-2">{service.feature.title}</h2>
               <p className="text-lg text-muted-foreground">{service.feature.description}</p>
             </div>
           </header>
@@ -171,11 +171,11 @@ export default async function ServicePage({ params }: Props) {
             />
           </div>
         </section>
-        <section className="relative z-50 mx-4 rounded-3xl border bg-card">
-          <div className="mx-auto max-w-7xl space-y-6 py-12 sm:py-16 lg:py-20">
+        <section className="relative z-50 border bg-card sm:mx-4 sm:rounded-3xl">
+          <div className="mx-auto max-w-7xl space-y-6 py-12 max-sm:container sm:py-16 lg:py-20">
             <header className="max-w-2xl space-y-4">
               <Badge>How {service.id} Transforms</Badge>
-              <h2 className="text-primary-900 text-title-2 lg:text-title-1">
+              <h2 className="text-primary-900 text-title-4 lg:text-title-2">
                 Scale Smarter. <span className="text-primary-600">Grow Faster.</span> Lead with Data.
               </h2>
               <p className="text-lg text-muted-foreground">
@@ -190,7 +190,7 @@ export default async function ServicePage({ params }: Props) {
                   key={`${i}-${feature.title}`}
                 >
                   <div className="p-4 sm:p-6">
-                    <h3 className="text-primary-900 text-title-5">{feature.title}</h3>
+                    <h3 className="text-primary-900 text-title-6 sm:text-title-5">{feature.title}</h3>
                     <p className="text-sm text-stone-700 sm:text-base">{feature.description}</p>
                   </div>
                   <div className="relative aspect-16/15">
@@ -225,7 +225,7 @@ export default async function ServicePage({ params }: Props) {
             <header className="space-y-4">
               <Badge>Industries we serve</Badge>
               <div className="grid gap-4 lg:grid-cols-2">
-                <h2 className="text-primary-900 text-title-2 lg:text-title-1">
+                <h2 className="text-primary-900 text-title-4 lg:text-title-2">
                   Driving Growth across Priority Sectors
                 </h2>
                 <p className="text-lg text-stone-600">
@@ -234,7 +234,7 @@ export default async function ServicePage({ params }: Props) {
                 </p>
               </div>
             </header>
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <ul className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-5">
               {service.industries.map((industry, i) => (
                 <li className="rounded-3xl bg-card p-4 shadow-md sm:p-6" key={`${i}-${industry.title}`}>
                   <PreviewCard delay={50}>
