@@ -10,10 +10,10 @@ import { Button } from "../ui/button";
 
 export const Cta = () => {
   return (
-    <section className="mb-12 max-md:container max-sm:pb-12">
-      <div className="border-y">
-        <div className="mx-auto max-w-7xl border-x">
-          <div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 sm:rounded-3xl sm:p-8 md:p-12 lg:p-16">
+    <section className="max-md:container max-sm:pb-12 xl:mb-12">
+      <div className="xl:border-y">
+        <div className="mx-auto max-w-7xl">
+          <div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 sm:p-8 md:p-12 lg:rounded-none lg:p-16 xl:rounded-3xl">
             <div className="max-w-2xl space-y-3 sm:space-y-4">
               <Badge className="bg-primary-400/10 text-primary-500 text-xs sm:text-sm">
                 Your IT success story starts here

@@ -38,11 +38,17 @@ function CardMedia({ className, ...props }: React.ComponentProps<typeof Image> &
 }
 
 function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
-  return <h3 className={cn("text-title-6", className)} data-slot="card-title" {...props} />;
+  return <h3 className={cn("font-medium text-base xl:text-title-6", className)} data-slot="card-title" {...props} />;
 }
 
 function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
-  return <p className={cn("text-muted-foreground text-sm", className)} data-slot="card-description" {...props} />;
+  return (
+    <p
+      className={cn("text-muted-foreground text-sm lg:text-xs xl:text-sm", className)}
+      data-slot="card-description"
+      {...props}
+    />
+  );
 }
 
 function CardAction({ className, ...props }: React.ComponentProps<"div">) {

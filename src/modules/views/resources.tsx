@@ -30,20 +30,20 @@ const RESOURCES_LINKS = [
 export const Resources = () => {
   return (
     <section className="border-y">
-      <div className="mx-auto max-w-7xl border-x">
+      <div className="mx-auto max-w-7xl max-xl:container">
         <div className="rounded-3xl border bg-card">
           <div className="border-b p-8">
-            <h2 className="text-primary-900 text-title-4 md:text-title-2">
+            <h2 className="text-primary-900 text-title-4 md:text-title-3 xl:text-title-2">
               Real Stories. <span className="text-primary-600">Real Impact.</span>
             </h2>
           </div>
           <ul className="flex items-center divide-x border-b">
             {RESOURCES_LINKS.map((link) => (
-              <li className="relative p-3 md:w-full" key={link.id}>
+              <li className="relative p-2 md:w-full xl:p-3" key={link.id}>
                 <Link className="absolute inset-0" href="/resources/insights" />
-                <div className="rounded-xl bg-card p-4 shadow-sm md:p-6">
+                <div className="rounded-xl bg-card p-3 shadow-sm xl:p-6">
                   <h3 className="text-primary-600 text-subhead-sm md:text-subhead-lg">{link.title}</h3>
-                  <p className="hidden text-sm text-stone-700 md:inline">{link.description}</p>
+                  <p className="hidden text-stone-700 text-xs md:inline xl:text-sm">{link.description}</p>
                 </div>
               </li>
             ))}
