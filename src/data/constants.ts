@@ -1,6 +1,7 @@
 import type { Route } from "next";
 
 import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
+import { IconSocialInstagram, IconSocialLinkedin, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
 
 import { Footer, NavLink } from "@/types/layout";
 
@@ -167,6 +168,29 @@ export const FOOTER: Footer[] = [
         href: "/",
       },
     ],
+  },
+];
+
+export const SOCIALS = [
+  {
+    id: 1,
+    Icon: IconSocialLinkedin,
+    href: "/",
+  },
+  {
+    id: 2,
+    Icon: IconSocialInstagram,
+    href: "/",
+  },
+  {
+    id: 3,
+    Icon: IconSocialWhatsapp,
+    href: "/",
+  },
+  {
+    id: 4,
+    Icon: IconSocialX,
+    href: "/",
   },
 ];
 

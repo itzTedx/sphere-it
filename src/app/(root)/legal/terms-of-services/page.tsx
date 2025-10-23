@@ -1,3 +1,9 @@
+import { Header } from "../components/header";
+
 export default function TermsOfServicesPage() {
-  return <div>TermsOfServicesPage</div>;
+  return (
+    <main>
+      <Header title="Terms of Service" />
+    </main>
+  );
 }

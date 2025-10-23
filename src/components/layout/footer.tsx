@@ -1,33 +1,39 @@
+import type { Route } from "next";
 import Link from "next/link";
 
 import { IconChevronRight } from "@/assets/icons";
 import { Logo } from "@/assets/logo";
 
-import { FOOTER } from "@/data/constants";
+import { FOOTER, SOCIALS } from "@/data/constants";
 
 export const Footer = () => {
   return (
     <footer className="bg-foreground" role="contentinfo">
       <div className="text-stone-200">
-        {/* Main footer content */}
         <div className="container max-w-7xl border-x py-8 md:py-16">
-          {/* Mobile-first responsive grid */}
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-            {/* Company info section */}
-            <div className="max-w-md space-y-6">
-              <Logo className="text-primary-50" />
-              <p className="text-balance text-muted-background">
-                Innovating the way businesses connect, operate, and grow with cutting-edge technology solutions.
-              </p>
-              {/* Contact info for SEO */}
-              <div className="space-y-2 text-muted-background text-sm">
-                <p>
-                  <strong>Headquarters:</strong> Dubai, UAE
-                </p>
-                <p>
-                  <strong>Global Presence:</strong> India
+            <div className="flex max-w-md flex-col justify-between gap-3">
+              <div className="space-y-4 md:space-y-6">
+                <Link href="/">
+                  <Logo className="text-primary-50" />
+                </Link>
+                <p className="mt-6 text-balance text-muted-background">
+                  Innovating the way businesses connect, operate, and grow with cutting-edge technology solutions.
                 </p>
               </div>
+
+              <ul className="flex items-center gap-2">
+                {SOCIALS.map((social) => (
+                  <li key={social.id}>
+                    <Link
+                      className="group flex size-10 items-center justify-center rounded-md border bg-stone-alpha-10 shadow-sm transition-colors hover:bg-stone-700"
+                      href={social.href as Route}
+                    >
+                      <social.Icon className="text-stone-300 transition-colors group-hover:text-primary-300" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Navigation sections */}

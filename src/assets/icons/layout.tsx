@@ -29,3 +29,13 @@ export const IconInfoCircle = (props: SVGProps) => {
     </svg>
   );
 };
+
+export const IconMenu = (props: SVGProps) => {
+  return (
+    <svg {...props} fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.5 5H2.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+      <path d="M12.5 10H2.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+      <path d="M14.1667 15H2.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+    </svg>
+  );
+};

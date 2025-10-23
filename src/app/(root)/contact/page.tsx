@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -9,138 +10,221 @@ import { IconSocialInstagram, IconSocialWhatsapp, IconSocialX } from "@/assets/i
 
 import { EnquiryForm } from "@/modules/form/enquiry-form";
 
+export const metadata: Metadata = {
+  title: "Contact Us - Get in Touch with Sphere Global",
+  description:
+    "Contact Sphere Global for AI solutions, technology consulting, and digital transformation. Get expert guidance on automation frameworks and enterprise technology solutions.",
+  keywords: [
+    "contact sphere global",
+    "AI consulting contact",
+    "technology solutions contact",
+    "digital transformation consulting",
+    "automation frameworks contact",
+    "enterprise technology support",
+    "AI platform consultation",
+    "business automation contact",
+  ],
+  openGraph: {
+    title: "Contact Us - Sphere Global AI & Technology Solutions",
+    description:
+      "Get in touch with Sphere Global for expert AI solutions, technology consulting, and digital transformation services.",
+    url: "https://sphere-global.com/contact",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us - Sphere Global",
+    description: "Get expert guidance on AI solutions and technology consulting from Sphere Global.",
+  },
+  alternates: {
+    canonical: "https://sphere-global.com/contact",
+  },
+};
+
 export default function ContactPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Sphere Global",
+    description: "Contact Sphere Global for AI solutions, technology consulting, and digital transformation services.",
+    url: "https://sphere-global.com/contact",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Sphere Global",
+      url: "https://sphere-global.com",
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+971-XX-XXXXXXX",
+          contactType: "customer service",
+          email: "info@sphereitglobal.com",
+          availableLanguage: "English",
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: "sales@sphereitglobal.com",
+          availableLanguage: "English",
+        },
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "AE",
+        addressLocality: "Dubai",
+      },
+      sameAs: ["https://twitter.com/sphereglobal", "https://instagram.com/sphereglobal", "https://wa.me/sphereglobal"],
+    },
+  };
+
   return (
-    <main>
-      <header className="container max-w-7xl py-28">
-        <Badge showDashes>Contact us</Badge>
-        <h1 className="text-primary-900 text-title-1">Here to help</h1>
-        <section className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-          <div className="rounded-lg bg-card px-10 py-12 shadow-md">
-            <h2 className="text-stone-800 text-title-4">Support</h2>
-            <p className="mt-3 text-lg text-muted-foreground">
-              Whether you have questions about Sphere IT's offerings, partnerships, or just want to say hello!
+    <>
+      <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} type="application/ld+json" />
+      <main>
+        <header className="container max-w-7xl py-16 sm:py-20 md:py-28">
+          <Badge showDashes>Contact us</Badge>
+          <h1 className="text-primary-900 text-title-1">Here to help</h1>
+          <section className="mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+            <article className="rounded-lg bg-card px-6 py-8 shadow-md sm:px-10 sm:py-12">
+              <h2 className="text-stone-800 text-title-4">Support</h2>
+              <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+                Whether you have questions about Sphere IT's offerings, partnerships, or just want to say hello!
+              </p>
+              <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
+                <li className="flex items-center justify-between rounded-xl bg-stone-alpha-10 p-3">
+                  <div className="min-w-0 flex-1">
+                    <label className="font-mono text-badge text-muted-background uppercase" htmlFor="email">
+                      Email
+                    </label>
+                    <p className="text-base sm:text-lg" id="email">
+                      info@sphereitglobal.com
+                    </p>
+                  </div>
+                  <button aria-label="Copy email address" className="ml-2 flex-shrink-0">
+                    <IconCopy className="text-stone-400" />
+                  </button>
+                </li>
+                <li className="flex items-center justify-between rounded-xl bg-stone-alpha-10 p-3">
+                  <div className="min-w-0 flex-1">
+                    <label className="font-mono text-badge text-muted-background uppercase" htmlFor="inquiry-form">
+                      Form
+                    </label>
+                    <p className="text-base sm:text-lg" id="inquiry-form">
+                      Submit an inquiry
+                    </p>
+                  </div>
+                  <button aria-label="Go to inquiry form" className="ml-2 flex-shrink-0">
+                    <IconArrowRight className="text-stone-400" />
+                  </button>
+                </li>
+              </ul>
+            </article>
+            <article className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 px-6 py-8 sm:px-10 sm:py-12">
+              <div>
+                <h2 className="text-stone-800 text-title-4">Sales</h2>
+                <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+                  Connect with our sales team to talk about pricing or to request a demo.
+                </p>
+              </div>
+              <Button className="mt-6 w-fit sm:mt-0">Contact now</Button>
+            </article>
+            <article className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 px-6 py-8 sm:px-10 sm:py-12">
+              <div>
+                <h2 className="text-stone-800 text-title-4">Careers</h2>
+                <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+                  View opportunities to join our amazing team.
+                </p>
+              </div>
+              <Button asChild className="mt-6 w-fit sm:mt-0" variant="ghost">
+                <Link aria-label="Explore career opportunities at Sphere Global" href="/careers">
+                  Explore Open Opportunities
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
+                    <IconChevronDown aria-hidden="true" className="text-stone-500" />
+                  </span>
+                </Link>
+              </Button>
+            </article>
+          </section>
+        </header>
+        <section className="container grid max-w-7xl gap-8 pb-16 sm:gap-12 sm:pb-24 lg:grid-cols-2">
+          <div className="space-y-3 lg:sticky lg:top-[11vh] lg:h-fit">
+            <h2 className="text-primary-900 text-title-2">Accelerate Your Growth with Sphere IT Global Solutions</h2>
+            <p className="text-base text-stone-600 sm:text-lg">
+              Whether it's IT consulting, project management, or custom solutions, our specialists are here to guide you
+              every step of the way.
             </p>
-            <ul className="mt-8 space-y-4">
-              <li className="flex items-center justify-between rounded-xl bg-stone-alpha-10 p-3">
-                <div>
-                  <label className="font-mono text-badge text-muted-background uppercase" htmlFor="email">
-                    Email
-                  </label>
-                  <p className="text-lg" id="email">
-                    info@sphereitglobal.com
-                  </p>
-                </div>
-                <button>
-                  <IconCopy className="text-stone-400" />
-                </button>
-              </li>
-              <li className="flex items-center justify-between rounded-xl bg-stone-alpha-10 p-3">
-                <div>
-                  <label className="font-mono text-badge text-muted-background uppercase" htmlFor="email">
-                    Form
-                  </label>
-                  <p className="text-lg" id="email">
-                    Submit an inquiry
-                  </p>
-                </div>
-                <button>
-                  <IconArrowRight className="text-stone-400" />
-                </button>
-              </li>
-            </ul>
           </div>
-          <div className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 px-10 py-12">
-            <div>
-              <h2 className="text-stone-800 text-title-4">Sales</h2>
-              <p className="mt-3 text-lg text-muted-foreground">
-                Connect with our sales team to talk about pricing or to request a demo.
+          <div className="rounded-2xl bg-card p-6 sm:p-10">
+            <div className="mb-6">
+              <Badge variant="ghost">General Inquiries</Badge>
+              <h3 className="text-primary-800 text-title-3">Shall we talk</h3>
+              <p className="text-base text-stone-500 sm:text-lg">
+                Fill in your details our team will contact you to understand your needs and present Sphere solutions
               </p>
             </div>
-            <Button className="w-fit">Contact now</Button>
-          </div>
-          <div className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 px-10 py-12">
-            <div>
-              <h2 className="text-stone-800 text-title-4">Careers</h2>
-              <p className="mt-3 text-lg text-muted-foreground">View opportunities to join our amazing team.</p>
-            </div>
-            <Button asChild className="w-fit" variant="ghost">
-              <Link aria-label="Read client testimonials and feedback" href="/resources/testimonials">
-                Explore Open Opportunities
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
-                  <IconChevronDown aria-hidden="true" className="text-stone-500" />
-                </span>
-              </Link>
-            </Button>
+            <EnquiryForm />
           </div>
         </section>
-      </header>
-      <section className="container grid max-w-7xl grid-cols-2 gap-12 pb-24">
-        <div className="sticky top-[11vh] h-fit space-y-3">
-          <h2 className="text-primary-900 text-title-2">Accelerate Your Growth with Sphere IT Global Solutions</h2>
-          <p className="text-lg text-stone-600">
-            Whether it’s IT consulting, project management, or custom solutions, our specialists are here to guide you
-            every step of the way.
-          </p>
-        </div>
-        <div className="rounded-2xl bg-card p-10">
-          <div className="mb-6">
-            <Badge variant="ghost">General Inquiries</Badge>
-            <h3 className="text-primary-800 text-title-3">Shall we talk</h3>
-            <p className="text-lg text-stone-500">
-              Fill in your details our team will contact you to understand your needs and present Sphere solutions
-            </p>
-          </div>
-          <EnquiryForm />
-        </div>
-      </section>
-      <section className="container grid max-w-7xl grid-cols-3 gap-6 pb-24">
-        <div className="card flex flex-col items-center justify-center gap-6 rounded-3xl bg-card px-6 py-10 shadow-md transition-all hover:shadow-lg">
-          <IconSocialX className="size-14 text-stone-300" />
-          <div className="text-center">
-            <h4 className="text-stone-700 text-subhead-lg">
-              X <span className="font-normal text-base text-stone-400">(Formerly Twitter)</span>
-            </h4>
-            <p className="text-muted-foreground text-sm">
-              Stay updated with real-time updates, product launches, automation, and AI-driven transformation.
-            </p>
-          </div>
-        </div>
-        <div className="card flex flex-col items-center justify-center gap-6 rounded-3xl bg-card px-6 py-10 shadow-md transition-all hover:shadow-lg">
-          <IconSocialInstagram className="size-14 text-stone-300" />
-          <div className="text-center">
-            <h4 className="text-stone-700 text-subhead-lg">Instagram</h4>
-            <p className="text-muted-foreground text-sm">
-              Connect with us on LinkedIn to explore thought leadership, company updates, and industry insights.
-            </p>
-          </div>
-        </div>
-        <div className="card flex flex-col items-center justify-center gap-6 rounded-3xl bg-card px-6 py-10 shadow-md transition-all hover:shadow-lg">
-          <IconSocialWhatsapp className="size-14 text-stone-300" />
-          <div className="text-center">
-            <h4 className="text-stone-700 text-subhead-lg">Instagram</h4>
-            <p className="text-muted-foreground text-sm">
-              Join our WhatsApp channel for instant updates, and announcements - delivered right to your chat.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className="container grid max-w-7xl grid-cols-2 gap-6 pb-24">
-        <div className="card rounded-xl border px-6 py-10 text-center transition-all hover:border-0 hover:bg-card hover:shadow-md">
-          <div className="mb-6">
-            <h5 className="text-stone-700 text-title-4">FAQs</h5>
-            <p className="text-lg text-muted-foreground">View all frequently asked questions in the community.</p>
-          </div>
-          <Button variant="secondary">Read our FAQs</Button>
-        </div>
-        <div className="card rounded-xl border px-6 py-10 text-center transition-all hover:border-0 hover:bg-card hover:shadow-md">
-          <div className="mb-6">
-            <h5 className="text-stone-700 text-title-4">Client Stories</h5>
-            <p className="text-lg text-muted-foreground">View all frequently asked questions in the community.</p>
-          </div>
-          <Button variant="secondary">Read our Client Stories</Button>
-        </div>
-      </section>
-    </main>
+        <section className="container grid max-w-7xl gap-4 pb-16 sm:gap-6 sm:pb-24 md:grid-cols-2 lg:grid-cols-3">
+          <article className="card flex flex-col items-center justify-center gap-4 rounded-3xl bg-card px-4 py-8 shadow-md transition-all hover:shadow-lg sm:gap-6 sm:px-6 sm:py-10">
+            <IconSocialX className="size-12 text-stone-300 sm:size-14" />
+            <div className="text-center">
+              <h4 className="text-stone-700 text-subhead-lg">
+                X <span className="font-normal text-sm text-stone-400 sm:text-base">(Formerly Twitter)</span>
+              </h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">
+                Stay updated with real-time updates, product launches, automation, and AI-driven transformation.
+              </p>
+            </div>
+          </article>
+          <article className="card flex flex-col items-center justify-center gap-4 rounded-3xl bg-card px-4 py-8 shadow-md transition-all hover:shadow-lg sm:gap-6 sm:px-6 sm:py-10">
+            <IconSocialInstagram className="size-12 text-stone-300 sm:size-14" />
+            <div className="text-center">
+              <h4 className="text-stone-700 text-subhead-lg">Instagram</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">
+                Connect with us on Instagram to explore our visual content, company updates, and behind-the-scenes
+                insights.
+              </p>
+            </div>
+          </article>
+          <article className="card flex flex-col items-center justify-center gap-4 rounded-3xl bg-card px-4 py-8 shadow-md transition-all hover:shadow-lg sm:gap-6 sm:px-6 sm:py-10 md:col-span-2 lg:col-span-1">
+            <IconSocialWhatsapp className="size-12 text-stone-300 sm:size-14" />
+            <div className="text-center">
+              <h4 className="text-stone-700 text-subhead-lg">WhatsApp</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">
+                Join our WhatsApp channel for instant updates, and announcements - delivered right to your chat.
+              </p>
+            </div>
+          </article>
+        </section>
+        <section className="container grid max-w-7xl gap-4 pb-16 sm:gap-6 sm:pb-24 md:grid-cols-2">
+          <article className="card rounded-xl border px-4 py-8 text-center transition-all hover:border-0 hover:bg-card hover:shadow-md sm:px-6 sm:py-10">
+            <div className="mb-4 sm:mb-6">
+              <h5 className="text-stone-700 text-title-4">FAQs</h5>
+              <p className="text-base text-muted-foreground sm:text-lg">
+                View all frequently asked questions in the community.
+              </p>
+            </div>
+            <Button asChild variant="secondary">
+              <Link aria-label="Read frequently asked questions" href="/resources/faqs">
+                Read our FAQs
+              </Link>
+            </Button>
+          </article>
+          <article className="card rounded-xl border px-4 py-8 text-center transition-all hover:border-0 hover:bg-card hover:shadow-md sm:px-6 sm:py-10">
+            <div className="mb-4 sm:mb-6">
+              <h5 className="text-stone-700 text-title-4">Client Stories</h5>
+              <p className="text-base text-muted-foreground sm:text-lg">
+                Discover how we've helped businesses transform with our solutions.
+              </p>
+            </div>
+            <Button asChild variant="secondary">
+              <Link aria-label="Read client success stories and case studies" href="/resources/case-studies">
+                Read our Client Stories
+              </Link>
+            </Button>
+          </article>
+        </section>
+      </main>
+    </>
   );
 }
