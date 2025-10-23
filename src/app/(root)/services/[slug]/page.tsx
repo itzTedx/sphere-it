@@ -18,10 +18,8 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const routes = ["elevate", "automate", "elevate", "assure", "augment"];
-
-  return routes.map((slug) => ({
-    slug,
+  return SERVICES.map((service) => ({
+    slug: service.id,
   }));
 }
 
