@@ -1,8 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { IconChevronRight } from "@/assets/icons";
 
-import { ClientLogos } from "./components/client-logos";
+import { CLIENTS } from "@/data/constants";
 
 export const Clients = () => {
   return (
@@ -15,25 +16,24 @@ export const Clients = () => {
 
           <div className="group relative space-y-3">
             <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
-              <Link className="block font-medium text-sm duration-150 hover:opacity-75" href="/">
+              <Link
+                className="block font-display font-medium text-sm text-stone-600 duration-150 hover:opacity-75"
+                href="/"
+              >
                 <span> Meet Our Customers</span>
 
                 <IconChevronRight className="ml-1 inline-block size-3" />
               </Link>
             </div>
-            <ClientLogos />
+            <ul className="grid grid-cols-6 items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs">
+              {CLIENTS.map((client) => (
+                <li className="relative m-9 aspect-16/6" key={client.id}>
+                  <Image alt="" className="object-contain object-center" fill src={client.src} />
+                </li>
+              ))}
+            </ul>
+            {/* <ClientLogos /> */}
           </div>
-
-          {/* <Marquee className="[--duration:60s]" pauseOnHover repeat={3}>
-            {CLIENTS.map((client) => (
-              <TestimonialCard img={client.img} key={client.id} />
-            ))}
-          </Marquee>
-          <Marquee className="[--duration:60s]" pauseOnHover repeat={3} reverse>
-            {CLIENTS.map((client) => (
-              <TestimonialCard img={client.img} key={client.id} />
-            ))}
-          </Marquee> */}
         </div>
       </div>
     </section>

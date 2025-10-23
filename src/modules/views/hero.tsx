@@ -17,7 +17,7 @@ export const Hero = () => {
             Driving Outcomes.
           </h1>
 
-          <p className="text-lg md:text-xl xl:text-2xl">
+          <p className="text-balance text-lg md:text-xl xl:text-2xl">
             Empowering forward-looking organizations with talent and technology that deliver measurable outcomes.
           </p>
           <div className="flex items-center justify-center gap-4 max-sm:flex-col">
