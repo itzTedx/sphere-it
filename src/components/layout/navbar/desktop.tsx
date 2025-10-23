@@ -25,7 +25,15 @@ export const DesktopNavLinks = () => {
           <NavigationMenuItem key={id}>
             {submenu ? (
               <>
-                <NavigationMenuTrigger>{label}</NavigationMenuTrigger>
+                <NavigationMenuTrigger>
+                  {href ? (
+                    <NavigationMenuLink asChild>
+                      <Link href={href}>{label}</Link>
+                    </NavigationMenuLink>
+                  ) : (
+                    label
+                  )}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-2 md:w-[400px] lg:w-[1180]">
                     {id === 1 && <ServicesMegaMenu data={submenu} />}
@@ -82,7 +90,7 @@ function ListItem({
 
 function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
   return (
-    <li className="grid gap-5 lg:grid-cols-[.30fr_1fr]">
+    <li className="grid gap-5 lg:grid-cols-[.35fr_1fr]">
       <NavigationMenuLink asChild>
         <Link
           className="flex h-full w-full select-none flex-col justify-end rounded-md bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md md:p-6"
