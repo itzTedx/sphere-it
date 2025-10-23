@@ -24,6 +24,8 @@
   --color-primary-900: var(--primary-900);
   --color-primary-950: var(--primary-950);
 
+  --color-stone-alpha-10: --alpha(theme('colors.stone.500') / 10%);
+
   --color-destructive: var(--destructive);
 
   --color-accent: var(--accent);

@@ -3,16 +3,28 @@ import { cn } from "@/lib/utils";
 interface Props {
   children: React.ReactNode;
   className?: string;
+  state?: "active" | "ghost";
 }
 
-export const IconBox = ({ children, className }: Props) => {
+export const IconBox = ({ children, className, state = "ghost" }: Props) => {
   return (
-    <div className={cn("relative flex size-10 items-center justify-center rounded-full border bg-card p-1", className)}>
+    <div
+      className={cn(
+        "relative flex size-10 items-center justify-center rounded-full border p-1",
+        state === "active" ? "bg-primary-100" : "bg-card",
+        className
+      )}
+    >
       <div className="relative flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full border bg-stone-100/20 [&>svg]:relative [&>svg]:z-10 [&>svg]:shrink-0">
         {children}
-        <div className="absolute inset-x-0 bottom-0 z-1 h-1/2 bg-gradient-to-t from-background to-transparent transition group-hover:from-primary-500/20" />
-        <div className="absolute inset-0">
-          <LineGrid className="group-hover:text-primary-500" />
+        <div
+          className={cn(
+            "absolute inset-x-0 bottom-0 z-1 h-1/2 bg-gradient-to-t to-transparent transition group-hover:from-primary-500/20",
+            state === "active" ? "from-primary-500/20" : "from-background"
+          )}
+        />
+        <div className="mask-radial-at-center mask-radial-from-80% absolute inset-0">
+          <LineGrid className={cn("group-hover:text-primary-500", state === "active" && "text-primary-500")} />
         </div>
       </div>
     </div>
