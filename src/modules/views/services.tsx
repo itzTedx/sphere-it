@@ -17,7 +17,7 @@ import { SERVICES } from "@/data/services";
 export const Services = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50">
-      <div className="container max-sm:px-0">
+      <div className="max-sm:px-0">
         <Tabs className="container max-w-7xl pb-12 max-sm:px-0 md:border-x" defaultValue="elevate">
           <div className="-space-x-px relative mx-auto inline-flex max-sm:bg-card max-sm:px-4 md:pb-4">
             <svg
