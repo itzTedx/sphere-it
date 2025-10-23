@@ -15,14 +15,14 @@ export const WhyUs = () => {
       aria-labelledby="why-us-heading"
       className="relative z-50 my-20 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
     >
-      <div className="mx-auto max-w-7xl space-y-8 lg:space-y-12">
+      <div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
         <header className="space-y-4">
           <Badge variant="secondary">Why sphere it</Badge>
           <div className="grid grid-cols-2 gap-4">
             <h2 className="text-primary-900 text-title-4 md:text-title-3 xl:text-title-2" id="why-us-heading">
               What sets <span className="text-primary-600">Sphere IT apart</span>
             </h2>
-            <p className="text-balance text-base xl:text-lg">
+            <p className="text-balance text-base text-muted-foreground">
               We believe technology should be both precisely engineered and practically applied. That's why
               forward-looking organizations across the GCC trust us to deliver AI-driven platforms, intelligent
               automation, resilient infrastructure, and on-demand expertise that create measurable outcomes.
