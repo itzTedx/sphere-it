@@ -41,13 +41,15 @@ interface CtaProps {
   description?: string;
   className?: string;
   layout?: "vertical" | "horizontal";
+  showButton?: boolean;
 }
 
 export const MiniCta = ({
   title = "Empower Your Business with <span>Next-Gen IT</span> Solutions",
   description = "Explore cloud, cybersecurity, and digital transformation services built to scale with your growth.",
   className,
-  layout = "horizontal",
+  layout = "vertical",
+  showButton = true,
 }: CtaProps) => {
   return (
     <div
@@ -63,7 +65,7 @@ export const MiniCta = ({
         <div
           className={cn(
             "text-center md:text-left",
-            layout === "vertical" && "flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
+            layout === "horizontal" && "flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
           )}
         >
           <h4
@@ -73,7 +75,7 @@ export const MiniCta = ({
           <p
             className={cn(
               "text-muted-background",
-              layout === "vertical"
+              layout === "horizontal"
                 ? "text-balance font-medium text-base leading-tight sm:text-lg md:text-xl"
                 : "text-xs leading-relaxed sm:text-sm"
             )}
@@ -81,15 +83,17 @@ export const MiniCta = ({
             {description}
           </p>
         </div>
-        <Button asChild className="w-full bg-primary-900 pl-4 text-primary-400 sm:w-auto" size="lg" variant="ghost">
-          <Link href="/services">
-            <span className="hidden sm:inline">Explore Solutions</span>
-            <span className="sm:hidden">Explore</span>
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
-              <IconArrowUpRight className="text-primary-900" />
-            </span>
-          </Link>
-        </Button>
+        {showButton && (
+          <Button asChild className="w-full bg-primary-900 pl-4 text-primary-400 sm:w-auto" size="lg" variant="ghost">
+            <Link href="/services">
+              <span className="hidden sm:inline">Explore Solutions</span>
+              <span className="sm:hidden">Explore</span>
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
+                <IconArrowUpRight className="text-primary-900" />
+              </span>
+            </Link>
+          </Button>
+        )}
       </div>
     </div>
   );

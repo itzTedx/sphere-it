@@ -11,7 +11,7 @@ export const IconBox = ({ children, className, state = "ghost" }: Props) => {
     <div
       className={cn(
         "relative flex size-10 items-center justify-center rounded-full border p-1",
-        state === "active" ? "bg-primary-100" : "bg-card",
+        state === "active" ? "bg-primary-100 text-primary-500" : "bg-card",
         className
       )}
     >
