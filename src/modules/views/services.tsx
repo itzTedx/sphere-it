@@ -109,8 +109,8 @@ export const Services = () => {
                           ))}
                         </ul>
                       </div>
-                      <Button asChild className="w-full">
-                        <Link href="/services">
+                      <Button asChild className="w-full sm:w-auto">
+                        <Link href={`/services/${service.id}`}>
                           Learn more <IconArrowRight />
                         </Link>
                       </Button>
