@@ -24,3 +24,19 @@ export const IconEmail = (props: SVGProps) => {
     </svg>
   );
 };
+
+export const IconEnvelope = (props: SVGProps) => {
+  return (
+    <svg {...props} fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M9.99998 9.91257L19.1666 5.8385V5.55554C19.1666 4.33035 18.045 3.33331 16.6666 3.33331H3.33331C1.95498 3.33331 0.833313 4.33035 0.833313 5.55554V5.8385L9.99998 9.91257Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.99998 11.5689L0.833313 7.49481V14.4444C0.833313 15.6696 1.95498 16.6667 3.33331 16.6667H16.6666C18.045 16.6667 19.1666 15.6696 19.1666 14.4444V7.49481L9.99998 11.5689Z"
+        fill="currentColor"
+        opacity="0.4"
+      />
+    </svg>
+  );
+};

@@ -139,11 +139,23 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
         ) : (
           <div className="space-y-3 border-l p-3" key={link.id}>
             <h5 className="font-display font-medium text-sm text-stone-400 uppercase">{link.id}</h5>
-            <ul className="grid gap-2">
+            <ul className="space-y-4">
               {link.links.map((menu) => (
-                <ListItem href={menu.href} Icon={menu.Icon} key={menu.label} title={menu.label}>
-                  {menu.description}
-                </ListItem>
+                <li className="group" key={menu.label}>
+                  <Link className="flex items-center gap-3" href={menu.href}>
+                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:bg-primary-300 group-hover:shadow-md">
+                      <menu.Icon className="size-5 shrink-0" />
+                    </div>
+                    <div>
+                      <span className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-600">
+                        {menu.label}
+                      </span>
+                      <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500">
+                        {menu.description}
+                      </p>
+                    </div>
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>

@@ -1,7 +1,13 @@
 import type { Route } from "next";
 
+import { IconCheckmark } from "@/assets/icons";
+import { IconBookmark } from "@/assets/icons/books";
+import { IconBriefcase } from "@/assets/icons/briefcase";
+import { IconCalloutQuote } from "@/assets/icons/callout";
+import { IconEnvelope } from "@/assets/icons/email";
 import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
 import { IconSocialInstagram, IconSocialLinkedin, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
+import { IconUserFill } from "@/assets/icons/user";
 
 import { Footer, NavLink } from "@/types/layout";
 
@@ -73,19 +79,19 @@ export const NAV_LINKS: NavLink[] = [
         id: "company",
         links: [
           {
-            Icon: IconElevate,
+            Icon: IconUserFill,
             label: "About",
             description: "Company, Values, and team",
             href: "/about",
           },
           {
-            Icon: IconElevate,
+            Icon: IconBriefcase,
             label: "Careers",
             description: "Join the team",
             href: "/careers",
           },
           {
-            Icon: IconElevate,
+            Icon: IconEnvelope,
             label: "Contact Support",
             description: "Reach out to support",
             href: "/contact",
@@ -96,19 +102,19 @@ export const NAV_LINKS: NavLink[] = [
         id: "updates",
         links: [
           {
-            Icon: IconElevate,
+            Icon: IconCheckmark,
             label: "Case Studies",
             description: "Proof of success",
             href: "/resources/case-studies",
           },
           {
-            Icon: IconElevate,
+            Icon: IconBookmark,
             label: "Research Papers",
             description: "Proof of success",
             href: "/resources/research-papers",
           },
           {
-            Icon: IconElevate,
+            Icon: IconCalloutQuote,
             label: "Testimonials",
             description: "Hear from our clients",
             href: "/resources/testimonials",

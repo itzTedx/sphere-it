@@ -14,7 +14,7 @@ export type ResourcesSubmenu = {
 };
 
 export type ResourcesSubmenuLink = {
-  Icon?: (props: SVGProps) => JSX.Element;
+  Icon: (props: SVGProps) => JSX.Element;
   label: string;
   description: string;
   href: Route;
