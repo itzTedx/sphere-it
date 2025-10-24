@@ -1,3 +1,4 @@
+import { Cta } from "@/components/layout/cta";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 import { LEGAL_HANDLING_EMAIL, SERVICE_DEFINITIONS } from "@/data/legal";
@@ -196,10 +197,11 @@ export default function TermsOfServicesPage() {
             </div>
           </div>
         </article>
-        <div className="col-span-full border-t p-12 text-center">
-          <h5 className="text-badge text-stone-400">Last Updated: {TERMS_SERVICES_LAST_UPDATED}</h5>
-        </div>
       </section>
+      <div className="col-span-full border-t p-12 text-center">
+        <h5 className="text-badge text-stone-400">Last Updated: {TERMS_SERVICES_LAST_UPDATED}</h5>
+      </div>
+      <Cta />
     </main>
   );
 }

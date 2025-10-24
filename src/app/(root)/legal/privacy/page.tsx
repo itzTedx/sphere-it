@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Cta } from "@/components/layout/cta";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 import { LEGAL_HANDLING_EMAIL, PRIVACY_DEFINITIONS } from "@/data/legal";
@@ -242,11 +243,11 @@ export default function PrivacyPage() {
             </div>
           </div>
         </article>
-
-        <div className="col-span-full border-t p-12 text-center">
-          <h5 className="text-badge text-stone-400">Last Updated: {POLICY_LAST_UPDATED}</h5>
-        </div>
       </section>
+      <div className="col-span-full border-t p-12 text-center">
+        <h5 className="text-badge text-stone-400">Last Updated: {POLICY_LAST_UPDATED}</h5>
+      </div>
+      <Cta />
     </main>
   );
 }

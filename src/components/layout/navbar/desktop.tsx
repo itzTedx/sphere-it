@@ -15,15 +15,15 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { NAV_LINKS } from "@/data/constants";
-import { SubmenuLink } from "@/types/layout";
+import { ResourcesSubmenu, SubmenuLink } from "@/types/layout";
 
 export const DesktopNavLinks = () => {
   return (
     <NavigationMenu viewport={true}>
       <NavigationMenuList>
-        {NAV_LINKS.map(({ id, label, href, submenu }) => (
+        {NAV_LINKS.map(({ id, label, href, submenu, resources }) => (
           <NavigationMenuItem key={id}>
-            {submenu ? (
+            {submenu || resources ? (
               <>
                 <NavigationMenuTrigger>
                   {href ? (
@@ -36,8 +36,8 @@ export const DesktopNavLinks = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-2 md:w-[400px] lg:w-[1180]">
-                    {id === 1 && <ServicesMegaMenu data={submenu} />}
-                    {id === 2 && <ResourcesMegaMenu data={submenu} />}
+                    {id === 1 && submenu && <ServicesMegaMenu data={submenu} />}
+                    {id === 2 && resources && <ResourcesMegaMenu data={resources} />}
                   </ul>
                 </NavigationMenuContent>
               </>
@@ -115,32 +115,40 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
   );
 }
 
-function ResourcesMegaMenu({ data }: { data: SubmenuLink[] }) {
+function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
   return (
-    <li className="grid gap-5 font-display lg:grid-cols-2">
-      <div>
-        <span className="font-display font-medium text-sm text-stone-400 uppercase">Explore</span>
-        <NavigationMenuLink asChild>
-          <Link
-            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md md:p-6"
-            href="/services"
-          >
-            <div className="font-medium text-lg sm:mt-4">Services</div>
-            <p className="text-muted-foreground text-sm leading-tight">We are best at:</p>
-          </Link>
-        </NavigationMenuLink>
-      </div>
-
-      <div className="space-y-3 p-3">
-        <h5 className="font-display font-medium text-sm text-stone-400 uppercase">Explore</h5>
-        <ul className="grid grid-cols-2 gap-2">
-          {data.map((menu) => (
-            <ListItem href={menu.href} Icon={menu.Icon} key={menu.id} title={menu.label}>
-              {menu.description}
-            </ListItem>
-          ))}
-        </ul>
-      </div>
+    <li className="grid gap-5 font-display lg:grid-cols-[1fr_.60fr_.60fr]">
+      {data.map((link) =>
+        link.id === "explore" ? (
+          <div key={link.id}>
+            <span className="font-display font-medium text-sm text-stone-400 uppercase">{link.id}</span>
+            <div className="grid h-full flex-1 grid-cols-2 gap-4">
+              {link.links.map((link) => (
+                <NavigationMenuLink asChild key={link.label}>
+                  <Link
+                    className="flex h-full w-full flex-1 select-none flex-col justify-end rounded-md bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md md:p-6"
+                    href="/services"
+                  >
+                    <div className="font-medium text-lg sm:mt-4">{link.label}</div>
+                    <p className="text-muted-foreground text-sm leading-tight">{link.description}</p>
+                  </Link>
+                </NavigationMenuLink>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-3 border-l p-3" key={link.id}>
+            <h5 className="font-display font-medium text-sm text-stone-400 uppercase">{link.id}</h5>
+            <ul className="grid gap-2">
+              {link.links.map((menu) => (
+                <ListItem href={menu.href} Icon={menu.Icon} key={menu.label} title={menu.label}>
+                  {menu.description}
+                </ListItem>
+              ))}
+            </ul>
+          </div>
+        )
+      )}
     </li>
   );
 }

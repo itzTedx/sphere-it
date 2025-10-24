@@ -51,9 +51,70 @@ export const NAV_LINKS: NavLink[] = [
   {
     id: 2,
     label: "Resources",
-    submenu: [
-      { id: 1, label: "Elevate", href: "/services" },
-      { id: 2, label: "Automate", href: "/services" },
+    resources: [
+      {
+        id: "explore",
+        links: [
+          {
+            Icon: IconElevate,
+            label: "FAQs",
+            description: "Frequently Asked Questions",
+            href: "/resources/faqs",
+          },
+          {
+            Icon: IconElevate,
+            label: "Blogs",
+            description: "Frequently Asked Questions",
+            href: "/resources/blogs",
+          },
+        ],
+      },
+      {
+        id: "company",
+        links: [
+          {
+            Icon: IconElevate,
+            label: "About",
+            description: "Company, Values, and team",
+            href: "/about",
+          },
+          {
+            Icon: IconElevate,
+            label: "Careers",
+            description: "Join the team",
+            href: "/careers",
+          },
+          {
+            Icon: IconElevate,
+            label: "Contact Support",
+            description: "Reach out to support",
+            href: "/contact",
+          },
+        ],
+      },
+      {
+        id: "updates",
+        links: [
+          {
+            Icon: IconElevate,
+            label: "Case Studies",
+            description: "Proof of success",
+            href: "/resources/case-studies",
+          },
+          {
+            Icon: IconElevate,
+            label: "Research Papers",
+            description: "Proof of success",
+            href: "/resources/research-papers",
+          },
+          {
+            Icon: IconElevate,
+            label: "Testimonials",
+            description: "Hear from our clients",
+            href: "/resources/testimonials",
+          },
+        ],
+      },
     ],
   },
   {
@@ -149,7 +210,7 @@ export const FOOTER: Footer[] = [
       {
         id: 4,
         label: "Insights",
-        href: "/resources/insights",
+        href: "/resources/blogs",
       },
     ],
   },

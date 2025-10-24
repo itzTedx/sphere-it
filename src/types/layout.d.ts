@@ -5,6 +5,19 @@ export type NavLink = {
   label: string;
   href?: Route;
   submenu?: SubmenuLink[];
+  resources?: ResourcesSubmenu[];
+};
+
+export type ResourcesSubmenu = {
+  id: string;
+  links: ResourcesSubmenuLink[];
+};
+
+export type ResourcesSubmenuLink = {
+  Icon?: (props: SVGProps) => JSX.Element;
+  label: string;
+  description: string;
+  href: Route;
 };
 
 export type SubmenuLink = {
