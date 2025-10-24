@@ -11,7 +11,7 @@ export function ServiceCard({ service }: { service: Service }) {
       className="group relative grid grid-cols-1 gap-4 rounded-2xl bg-card p-4 shadow-md sm:gap-6 sm:rounded-3xl sm:p-6 md:grid-cols-2 md:rounded-4xl"
       key={service.id}
     >
-      <Link className="absolute inset-0" href={`/services/${service.id}`} />
+      <Link className="absolute inset-0" href={`/services/${service.id}`} title={service.serviceTitle} />
       <div className="relative aspect-[1.44/1] overflow-hidden rounded-xl sm:aspect-[1.2/1] sm:rounded-2xl md:aspect-[1.44/1] md:rounded-3xl group-even:md:order-2">
         <Image
           alt={`${service.serviceTitle} - Sphere IT Services`}

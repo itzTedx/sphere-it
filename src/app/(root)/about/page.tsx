@@ -93,7 +93,11 @@ export default function AboutPage() {
                   opportunities.
                 </p>
                 <Button asChild className="bg-stone-200/30 text-muted" variant="ghost">
-                  <Link aria-label="Explore our service capabilities and opportunities" href="/services">
+                  <Link
+                    aria-label="Explore our service capabilities and opportunities"
+                    href="/services"
+                    title="Explore our capabilities"
+                  >
                     Explore Open Opportunities
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300/50">
                       <IconArrowRight aria-hidden="true" className="text-stone-100" />
@@ -216,7 +220,11 @@ export default function AboutPage() {
             deliver technology and how we build trust with every client we serve.
           </p>
           <Button asChild className="mt-6" variant="ghost">
-            <Link aria-label="Read client testimonials and feedback" href="/resources/testimonials">
+            <Link
+              aria-label="Read client testimonials and feedback"
+              href="/resources/testimonials"
+              title="See what our client says"
+            >
               See what our client says
               <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
                 <IconArrowRight aria-hidden="true" className="text-stone-500" />
@@ -335,7 +343,11 @@ export default function AboutPage() {
               </p>
             </div>
             <Button asChild variant="ghost">
-              <Link aria-label="View current job openings and career opportunities" href="/careers">
+              <Link
+                aria-label="View current job openings and career opportunities"
+                href="/careers"
+                title="Explore open Opportunities"
+              >
                 Explore open Opportunities
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
                   <IconArrowRight aria-hidden="true" className="text-stone-500" />

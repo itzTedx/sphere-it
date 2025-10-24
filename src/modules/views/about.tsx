@@ -15,7 +15,9 @@ export const About = memo(() => {
     <>
       <section aria-labelledby="about-hero-heading" className="relative mx-auto max-w-7xl overflow-hidden">
         <div className="container relative z-10 max-w-3xl space-y-4 py-8 sm:space-y-5 sm:py-12 lg:py-16">
-          <Badge className="text-badge">Technology. Talent. Transformation.</Badge>
+          <Badge aria-label="Company focus areas" className="text-badge" role="text">
+            Technology. Talent. Transformation.
+          </Badge>
           <h2 className="text-primary-900 text-title-4 sm:text-title-3 xl:text-title-2" id="about-hero-heading">
             Delivering with <span className="text-primary-600">Precision and Pragmatism</span>
           </h2>
@@ -32,11 +34,13 @@ export const About = memo(() => {
               <PreviewCardTrigger
                 aria-label="Banking sector expertise"
                 className="cursor-pointer underline transition-colors hover:text-primary-600"
+                role="button"
+                tabIndex={0}
               >
                 banking
               </PreviewCardTrigger>
-              <PreviewCardPanel className="w-fit bg-primary-400" side="top">
-                <IconBank className="size-9 text-primary-950" />
+              <PreviewCardPanel aria-hidden="true" className="w-fit bg-primary-400" role="tooltip" side="top">
+                <IconBank aria-hidden="true" className="size-9 text-primary-950" />
               </PreviewCardPanel>
             </PreviewCard>
             ,{" "}
@@ -44,11 +48,13 @@ export const About = memo(() => {
               <PreviewCardTrigger
                 aria-label="Automotive sector expertise"
                 className="cursor-pointer underline transition-colors hover:text-primary-600"
+                role="button"
+                tabIndex={0}
               >
                 automotive
               </PreviewCardTrigger>
-              <PreviewCardPanel className="w-fit bg-primary-400" side="top">
-                <IconCar className="size-9 text-primary-950" />
+              <PreviewCardPanel aria-hidden="true" className="w-fit bg-primary-400" role="tooltip" side="top">
+                <IconCar aria-hidden="true" className="size-9 text-primary-950" />
               </PreviewCardPanel>
             </PreviewCard>
             ,{" "}
@@ -56,11 +62,13 @@ export const About = memo(() => {
               <PreviewCardTrigger
                 aria-label="Insurance sector expertise"
                 className="cursor-pointer underline transition-colors hover:text-primary-600"
+                role="button"
+                tabIndex={0}
               >
                 insurance
               </PreviewCardTrigger>
-              <PreviewCardPanel className="w-fit bg-primary-400" side="top">
-                <IconCar className="size-9 text-primary-950" />
+              <PreviewCardPanel aria-hidden="true" className="w-fit bg-primary-400" role="tooltip" side="top">
+                <IconCar aria-hidden="true" className="size-9 text-primary-950" />
               </PreviewCardPanel>
             </PreviewCard>
             , and{" "}
@@ -68,11 +76,13 @@ export const About = memo(() => {
               <PreviewCardTrigger
                 aria-label="Mobility sector expertise"
                 className="cursor-pointer underline transition-colors hover:text-primary-600"
+                role="button"
+                tabIndex={0}
               >
                 mobility
               </PreviewCardTrigger>
-              <PreviewCardPanel className="w-fit bg-primary-400" side="top">
-                <IconCar className="size-9 text-primary-950" />
+              <PreviewCardPanel aria-hidden="true" className="w-fit bg-primary-400" role="tooltip" side="top">
+                <IconCar aria-hidden="true" className="size-9 text-primary-950" />
               </PreviewCardPanel>
             </PreviewCard>{" "}
             sectors.

@@ -293,7 +293,9 @@ export default function TermsOfServicesPage() {
                 <div className="mt-4 space-y-2">
                   <p className="flex items-center gap-2">
                     <span>📧</span>
-                    <Link href={`mailto:${LEGAL_HANDLING_EMAIL}`}>{LEGAL_HANDLING_EMAIL}</Link>
+                    <Link href={`mailto:${LEGAL_HANDLING_EMAIL}`} title="Contact us via Email">
+                      {LEGAL_HANDLING_EMAIL}
+                    </Link>
                   </p>
                   <p className="flex items-center gap-2">
                     <span>🌐</span>

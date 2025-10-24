@@ -123,12 +123,14 @@ export const TableOfContent = ({ className }: Props) => {
           {headings.map((heading) => (
             <li key={heading.id}>
               <Link
+                aria-label={`Jump to ${heading.title}`}
                 className={cn(
                   "ml-px block border-stone-500/5 border-l-2 px-2 py-1 font-display text-sm transition-all hover:bg-stone-100",
                   activeId === heading.id ? "font-semibold text-stone-900" : "text-stone-600"
                 )}
                 href={`#${heading.id}` as Route}
                 style={{ paddingLeft: `${(heading.level - 1) * 12 + 8}px` }}
+                title={`Jump to ${heading.title}`}
               >
                 {heading.title}
               </Link>

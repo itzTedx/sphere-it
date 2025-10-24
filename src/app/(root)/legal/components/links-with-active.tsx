@@ -20,6 +20,7 @@ export const HeaderLink = ({ children, href }: Props) => {
         pathname === href ? "text-primary-600 shadow-[0_2px_0_0] shadow-primary-600" : "text-stone-600"
       )}
       href={href}
+      title={children as string}
     >
       {children}
     </Link>

@@ -178,7 +178,9 @@ export default function PrivacyPage() {
                     We may use your Personal Data to contact you with newsletters, marketing or promotional materials
                     and other information that may be of interest to you. You may opt out of receiving any, or all, of
                     these communications from us by following the unsubscribe link or by emailing at{" "}
-                    <Link href={`mailto:${email}`}>{email}</Link>
+                    <Link href={`mailto:${email}`} title="Contact us via email">
+                      {email}
+                    </Link>
                   </p>
                   <h3 id="usage-data">Usage Data</h3>
                   <p>
@@ -289,7 +291,10 @@ export default function PrivacyPage() {
                     <li>Withdraw consent for data processing at any time</li>
                   </ul>
                   <p>
-                    To exercise these rights, please contact us at <Link href={`mailto:${email}`}>{email}</Link>
+                    To exercise these rights, please contact us at{" "}
+                    <Link href={`mailto:${email}`} title="Contact us via Email">
+                      {email}
+                    </Link>
                   </p>
                 </div>
                 <SectionTitle href="#links" index={8}>
@@ -332,7 +337,9 @@ export default function PrivacyPage() {
                 <div className="mt-4 space-y-2">
                   <p className="flex items-center gap-2">
                     <span>📧</span>
-                    <Link href={`mailto:${email}`}>{email}</Link>
+                    <Link href={`mailto:${email}`} title="Contact us via Email">
+                      {email}
+                    </Link>
                   </p>
                   <p className="flex items-center gap-2">
                     <span>🌐</span>

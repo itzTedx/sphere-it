@@ -42,7 +42,7 @@ export const EnquiryForm = () => {
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)}>
+    <form aria-labelledby="enquiry-form-heading" onSubmit={form.handleSubmit(onSubmit)}>
       <FieldGroup>
         <Controller
           control={form.control}

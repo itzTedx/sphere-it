@@ -14,9 +14,16 @@ import { SERVICES } from "@/data/services";
 
 export const Services = memo(() => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50">
+    <section
+      aria-labelledby="services-heading"
+      className="relative overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50"
+    >
       <div className="max-sm:px-0">
-        <Tabs className="container max-w-7xl pb-12 max-sm:px-0 md:border-x" defaultValue="elevate">
+        <Tabs
+          aria-label="Services navigation"
+          className="container max-w-7xl pb-12 max-sm:px-0 md:border-x"
+          defaultValue="elevate"
+        >
           <div className="-space-x-px relative mx-auto inline-flex max-sm:bg-card max-sm:px-4 md:pb-4">
             <svg
               className="hidden shrink-0 sm:block"
@@ -32,32 +39,66 @@ export const Services = memo(() => {
               />
             </svg>
             <div className="flex items-center justify-center bg-card sm:h-11 md:h-16">
-              <TabsList className="flex h-auto flex-wrap items-center justify-center rounded-none bg-card">
-                <TabsTrigger className="pl-1" value="elevate">
+              <TabsList
+                aria-label="Service categories"
+                className="flex h-auto flex-wrap items-center justify-center rounded-none bg-card"
+                role="tablist"
+              >
+                <TabsTrigger
+                  aria-controls="elevate-panel"
+                  aria-selected="true"
+                  className="pl-1"
+                  role="tab"
+                  value="elevate"
+                >
                   <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconElevate className="m-auto text-stone-500" />
                   </div>
                   Elevate
                 </TabsTrigger>
-                <TabsTrigger className="pl-1" value="automate">
+                <TabsTrigger
+                  aria-controls="automate-panel"
+                  aria-selected="false"
+                  className="pl-1"
+                  role="tab"
+                  value="automate"
+                >
                   <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconAutomate className="m-auto text-stone-500" />
                   </div>
                   Automate
                 </TabsTrigger>
-                <TabsTrigger className="pl-1" value="evaluate">
+                <TabsTrigger
+                  aria-controls="evaluate-panel"
+                  aria-selected="false"
+                  className="pl-1"
+                  role="tab"
+                  value="evaluate"
+                >
                   <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconEvaluate className="m-auto text-stone-500" />
                   </div>
                   Evaluate
                 </TabsTrigger>
-                <TabsTrigger className="pl-1" value="assure">
+                <TabsTrigger
+                  aria-controls="assure-panel"
+                  aria-selected="false"
+                  className="pl-1"
+                  role="tab"
+                  value="assure"
+                >
                   <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconAssure className="m-auto text-stone-500" />
                   </div>
                   Assure
                 </TabsTrigger>
-                <TabsTrigger className="pl-1" value="augment">
+                <TabsTrigger
+                  aria-controls="augment-panel"
+                  aria-selected="false"
+                  className="pl-1"
+                  role="tab"
+                  value="augment"
+                >
                   <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconAugment className="m-auto text-stone-500" />
                   </div>
@@ -84,8 +125,11 @@ export const Services = memo(() => {
               <TabsContents className="rounded-3xl bg-card p-6 shadow-md md:px-12 md:py-16" mode="auto-height">
                 {SERVICES.map(({ Icon, ...service }) => (
                   <TabsContent
+                    aria-labelledby={`${service.id}-tab`}
                     className="grid gap-4 sm:gap-6 md:grid-cols-5 md:gap-8"
+                    id={`${service.id}-panel`}
                     key={service.id}
+                    role="tabpanel"
                     value={service.id}
                   >
                     <div className="space-y-8 md:col-span-2">
@@ -116,7 +160,7 @@ export const Services = memo(() => {
                     <div className="aspect-6/4 overflow-hidden rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1))] border bg-stone-alpha-10 p-1 sm:aspect-auto md:col-span-3">
                       <div className="relative aspect-auto size-full overflow-hidden rounded-3xl">
                         <Image
-                          alt={`${service.title} - ${service.description}`}
+                          alt={`Illustration showing ${service.title} service capabilities and features`}
                           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                           className="object-cover object-left"
                           fetchPriority={service.id === "elevate" ? "high" : "auto"}

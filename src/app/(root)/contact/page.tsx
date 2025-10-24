@@ -108,7 +108,11 @@ export default function ContactPage() {
                 </p>
               </div>
               <Button asChild className="mt-6 w-fit sm:mt-0" variant="ghost">
-                <Link aria-label="Explore career opportunities at Sphere Global" href="/careers">
+                <Link
+                  aria-label="Explore career opportunities at Sphere Global"
+                  href="/careers"
+                  title="Explore open Opportunities"
+                >
                   Explore Open Opportunities
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
                     <IconChevronDown aria-hidden="true" className="text-stone-500" />
@@ -178,7 +182,7 @@ export default function ContactPage() {
               </p>
             </div>
             <Button asChild variant="secondary">
-              <Link aria-label="Read frequently asked questions" href="/resources/faqs">
+              <Link aria-label="Read frequently asked questions" href="/resources/faqs" title="Read our FAQs">
                 Read our FAQs
               </Link>
             </Button>
@@ -191,7 +195,11 @@ export default function ContactPage() {
               </p>
             </div>
             <Button asChild variant="secondary">
-              <Link aria-label="Read client success stories and case studies" href="/resources/case-studies">
+              <Link
+                aria-label="Read client success stories and case studies"
+                href="/resources/case-studies"
+                title="Read our Client Stories"
+              >
                 Read our Client Stories
               </Link>
             </Button>

@@ -70,6 +70,14 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className={cn(inter.variable, sans.className, mono.variable, "antialiased")}>
+        {/* Skip Navigation Links */}
+        <a
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary-600 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+          href="#main-content"
+        >
+          Skip to main content
+        </a>
+
         <div className="pointer-events-none fixed inset-0 z-20 mx-auto flex h-full w-full max-w-7xl justify-between">
           <div className="h-full w-px bg-border" />
           <div className="h-full w-px bg-border" />
@@ -78,6 +86,9 @@ export default function RootLayout({
         <ReactLenis root>{children}</ReactLenis>
         <Footer />
         <BreakpointIndicator />
+
+        {/* Live region for screen reader announcements */}
+        <div aria-atomic="true" aria-live="polite" className="sr-only" id="live-region" />
       </body>
     </html>
   );

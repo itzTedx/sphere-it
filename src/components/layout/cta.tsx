@@ -11,25 +11,35 @@ import { Button } from "../ui/button";
 
 export const Cta = memo(() => {
   return (
-    <section className="max-md:container max-sm:pb-12 xl:mb-12">
+    <section aria-labelledby="cta-heading" className="max-md:container max-sm:pb-12 xl:mb-12">
       <div className="xl:border-y">
         <div className="mx-auto max-w-7xl">
           <div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 sm:p-8 md:p-12 lg:rounded-none lg:p-16 xl:rounded-3xl">
             <div className="max-w-2xl space-y-3 sm:space-y-4">
-              <Badge className="bg-primary-400/10 text-primary-500 text-xs sm:text-sm">
+              <Badge
+                aria-label="Call to action category"
+                className="bg-primary-400/10 text-primary-500 text-xs sm:text-sm"
+                role="text"
+              >
                 Your IT success story starts here
               </Badge>
-              <h4 className="text-balance text-primary-100 text-xl leading-tight sm:text-2xl md:text-title-3 lg:text-title-2">
+              <h4
+                className="text-balance text-primary-100 text-xl leading-tight sm:text-2xl md:text-title-3 lg:text-title-2"
+                id="cta-heading"
+              >
                 Let's build your next IT success story together.
               </h4>
               <p className="text-balance text-primary-300 text-sm sm:text-base md:text-lg">
                 Get the accuracy, scalability, and impact your business needs - delivered with precision and pragmatism.
               </p>
-              <Button className="w-full sm:w-auto" size="lg">
+              <Button aria-describedby="cta-description" className="w-full sm:w-auto" size="lg">
                 Start the Conversation
               </Button>
             </div>
-            <LogoOutline className="-translate-x-1/2 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 sm:top-8 sm:opacity-80 md:top-12 lg:top-16 lg:opacity-100" />
+            <LogoOutline
+              aria-hidden="true"
+              className="-translate-x-1/2 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 sm:top-8 sm:opacity-80 md:top-12 lg:top-16 lg:opacity-100"
+            />
           </div>
         </div>
       </div>
@@ -72,7 +82,7 @@ export const MiniCta = memo(
               layout === "horizontal" && "flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
             )}
           >
-            <h4
+            <h3
               className="font-semibold text-card text-lg leading-tight tracking-[0.01em] sm:text-xl md:text-2xl [&>span]:text-accent"
               dangerouslySetInnerHTML={{ __html: title }}
             />
@@ -89,8 +99,8 @@ export const MiniCta = memo(
           </div>
           {showButton && (
             <Button asChild className="w-full bg-primary-900 pl-4 text-primary-400 sm:w-auto" size="lg" variant="ghost">
-              <Link href="/services">
-                Explore Solutions
+              <Link href="/services" title="Explore our services">
+                Explore Services
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
                   <IconArrowUpRight className="text-primary-900" />
                 </span>
