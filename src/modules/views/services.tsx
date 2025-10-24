@@ -34,31 +34,31 @@ export const Services = memo(() => {
             <div className="flex items-center justify-center bg-card sm:h-11 md:h-16">
               <TabsList className="flex h-auto flex-wrap items-center justify-center rounded-none bg-card">
                 <TabsTrigger className="pl-1" value="elevate">
-                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconElevate className="m-auto text-stone-500" />
                   </div>
                   Elevate
                 </TabsTrigger>
                 <TabsTrigger className="pl-1" value="automate">
-                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconAutomate className="m-auto text-stone-500" />
                   </div>
                   Automate
                 </TabsTrigger>
                 <TabsTrigger className="pl-1" value="evaluate">
-                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconEvaluate className="m-auto text-stone-500" />
                   </div>
                   Evaluate
                 </TabsTrigger>
                 <TabsTrigger className="pl-1" value="assure">
-                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconAssure className="m-auto text-stone-500" />
                   </div>
                   Assure
                 </TabsTrigger>
                 <TabsTrigger className="pl-1" value="augment">
-                  <div className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
                     <IconAugment className="m-auto text-stone-500" />
                   </div>
                   Augment
