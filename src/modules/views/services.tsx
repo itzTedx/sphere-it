@@ -122,7 +122,6 @@ export const Services = memo(() => {
                           fill
                           placeholder="blur"
                           priority={service.id === "elevate"}
-                          quality={85}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           src={service.image}
                         />

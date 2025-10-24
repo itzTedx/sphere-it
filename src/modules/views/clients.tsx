@@ -34,7 +34,6 @@ export const Clients = memo(() => {
                     className="object-contain object-center"
                     fill
                     loading="lazy"
-                    quality={75}
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 16vw, 12vw"
                     src={client.src}
                   />

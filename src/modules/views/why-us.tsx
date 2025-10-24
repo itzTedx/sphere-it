@@ -74,7 +74,6 @@ function PrecisionCard({ className }: CardProps) {
           className="object-cover"
           fill
           loading="lazy"
-          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/guides.svg"
         />
@@ -106,7 +105,6 @@ function PartnerCard({ className }: CardProps) {
           className="object-cover object-top"
           fill
           loading="lazy"
-          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw"
           src="/svg/trusted.svg"
         />
@@ -130,7 +128,6 @@ function ScalableCard({ className }: CardProps) {
           className="object-cover object-center transition-transform group-hover:scale-105"
           fill
           loading="lazy"
-          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/flexible.svg"
         />
@@ -164,7 +161,6 @@ function TechStackCard({ className }: CardProps) {
           className="object-contain"
           fill
           loading="lazy"
-          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw"
           src="/svg/techstack.svg"
         />
@@ -190,7 +186,6 @@ function ReliabilityCard({ className }: CardProps) {
           className="object-contain"
           fill
           loading="lazy"
-          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/reliability.svg"
         />
