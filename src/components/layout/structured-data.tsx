@@ -8,7 +8,7 @@ export function StructuredData() {
     description:
       "Empowering forward-looking organizations with talent and technology that deliver measurable outcomes. ISO/IEC 42001 certified AI platforms, automation frameworks, and scalable solutions.",
     url: BASE_URL,
-    logo: "https://sphere-global.com/images/logo.png",
+    logo: [`${BASE_URL}/logo.png`],
     image: "https://sphere-global.com/images/og-image.jpg",
     foundingDate: "2020",
     address: {
@@ -28,8 +28,8 @@ export function StructuredData() {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "25.2048",
-        longitude: "55.2708",
+        latitude: "25.269711",
+        longitude: "55.309446",
       },
       geoRadius: "5000",
     },
@@ -112,18 +112,18 @@ export function StructuredData() {
     },
   };
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: BASE_URL,
-      },
-    ],
-  };
+  // const breadcrumbSchema = {
+  //   "@context": "https://schema.org",
+  //   "@type": "BreadcrumbList",
+  //   itemListElement: [
+  //     {
+  //       "@type": "ListItem",
+  //       position: 1,
+  //       name: "Home",
+  //       item: BASE_URL,
+  //     },
+  //   ],
+  // };
 
   return (
     <>
@@ -139,12 +139,12 @@ export function StructuredData() {
         }}
         type="application/ld+json"
       />
-      <script
+      {/* <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
         type="application/ld+json"
-      />
+      /> */}
     </>
   );
 }

@@ -40,7 +40,7 @@ export const Resources = () => {
           <ul className="flex items-center divide-x border-b">
             {RESOURCES_LINKS.map((link) => (
               <li className="relative p-2 md:w-full xl:p-3" key={link.id}>
-                <Link className="absolute inset-0" href="/resources/insights" />
+                <Link className="absolute inset-0" href="/resources/blogs" />
                 <div className="rounded-xl bg-card p-3 shadow-sm xl:p-6">
                   <h3 className="text-primary-600 text-subhead-sm md:text-subhead-lg">{link.title}</h3>
                   <p className="hidden text-stone-700 text-xs md:inline xl:text-sm">{link.description}</p>
@@ -78,7 +78,7 @@ export const Resources = () => {
             </Card>
             <div />
             <Button asChild className="mx-auto w-fit" variant="ghost">
-              <Link href="/resources/insights">
+              <Link href="/resources/blogs">
                 Explore Resources
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300 transition-colors">
                   <IconChevronDownFill className="text-stone-500" />

@@ -27,17 +27,6 @@ export const Hero = () => {
             </Button>
           </div>
         </div>
-        {/* <div className="flex items-center gap-6 py-12">
-          <div className="flex flex-1 items-center">
-            <div className="h-0.5 w-full bg-gradient-to-l from-primary-700 to-stone-100" />
-            <div className="size-1.5 shrink-0 rounded-full bg-primary-700" />
-          </div>
-          <p className="font-mono text-muted-foreground uppercase">We can help you Manage</p>
-          <div className="flex flex-1 items-center">
-            <div className="size-1.5 shrink-0 rounded-full bg-primary-700" />
-            <div className="h-0.5 w-full bg-gradient-to-r from-primary-700 to-stone-100" />
-          </div>
-        </div> */}
       </section>
     </header>
   );
