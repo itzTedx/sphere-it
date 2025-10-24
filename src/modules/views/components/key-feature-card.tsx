@@ -1,6 +1,6 @@
 import { IconBox } from "@/components/icon-box";
 
-import { KeyFeature } from "@/app/(root)/services/[slug]/data/services";
+import { KeyFeature } from "@/app/(root)/services/data/services";
 
 export const KeyFeatureCard = ({ data }: { data: KeyFeature }) => {
   return (

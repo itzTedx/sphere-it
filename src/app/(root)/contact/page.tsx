@@ -8,13 +8,20 @@ import { IconArrowRight, IconChevronDown } from "@/assets/icons";
 import { IconCopy } from "@/assets/icons/copy";
 import { IconSocialInstagram, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
 
-import { BASE_URL, EMAIL_INFO, EMAIL_SALES } from "@/data/site-config";
+import { BASE_URL, EMAIL_INFO } from "@/data/site-config";
 import { EnquiryForm } from "@/modules/form/enquiry-form";
 
-export const metadata: Metadata = {
-  title: "Contact Us - Get in Touch with Sphere Global",
+import { structuredData } from "./structured-data";
+
+const meta = {
+  title: "Contact Sphere IT | Connect with Our IT Experts",
   description:
-    "Contact Sphere Global for AI solutions, technology consulting, and digital transformation. Get expert guidance on automation frameworks and enterprise technology solutions.",
+    "Get in touch with Sphere IT for IT consulting, digital transformation, or project collaboration. Reach us via email, phone, or WhatsApp - we’re here to help you scale.",
+};
+
+export const metadata: Metadata = {
+  title: meta.title,
+  description: meta.description,
   keywords: [
     "contact sphere global",
     "AI consulting contact",
@@ -26,16 +33,15 @@ export const metadata: Metadata = {
     "business automation contact",
   ],
   openGraph: {
-    title: "Contact Us - Sphere Global AI & Technology Solutions",
-    description:
-      "Get in touch with Sphere Global for expert AI solutions, technology consulting, and digital transformation services.",
+    title: meta.title,
+    description: meta.description,
     url: `${BASE_URL}/contact`,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us - Sphere Global",
-    description: "Get expert guidance on AI solutions and technology consulting from Sphere Global.",
+    title: meta.title,
+    description: meta.description,
   },
   alternates: {
     canonical: `${BASE_URL}/contact`,
@@ -43,40 +49,6 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: "Contact Sphere Global",
-    description: "Contact Sphere Global for AI solutions, technology consulting, and digital transformation services.",
-    url: `${BASE_URL}/contact`,
-    mainEntity: {
-      "@type": "Organization",
-      name: "Sphere Global",
-      url: BASE_URL,
-      contactPoint: [
-        {
-          "@type": "ContactPoint",
-          telephone: "+971-XX-XXXXXXX",
-          contactType: "customer service",
-          email: EMAIL_INFO,
-          availableLanguage: "English",
-        },
-        {
-          "@type": "ContactPoint",
-          contactType: "sales",
-          email: EMAIL_SALES,
-          availableLanguage: "English",
-        },
-      ],
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: "AE",
-        addressLocality: "Dubai",
-      },
-      sameAs: ["https://twitter.com/sphereglobal", "https://instagram.com/sphereglobal", "https://wa.me/sphereglobal"],
-    },
-  };
-
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} type="application/ld+json" />

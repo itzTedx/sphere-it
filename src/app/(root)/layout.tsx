@@ -10,17 +10,11 @@ import { StructuredData } from "@/components/layout/structured-data";
 
 import { inter, mono, sans } from "@/assets/fonts";
 
-import { BASE_URL } from "@/data/site-config";
+import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: {
-    default: "Sphere Global - AI & Technology Solutions",
-    template: "%s | Sphere Global",
-  },
-  description:
-    "Empowering forward-looking organizations with talent and technology that deliver measurable outcomes. ISO/IEC 42001 certified AI platforms, automation frameworks, and scalable solutions.",
   keywords: [
     "AI solutions",
     "technology consulting",
@@ -35,39 +29,16 @@ export const metadata: Metadata = {
     "data analytics",
     "business automation",
   ],
-  authors: [{ name: "Sphere Global" }],
-  creator: "Sphere Global",
-  publisher: "Sphere Global",
+
+  authors: [{ name: COMPANY_NAME }],
+  creator: COMPANY_NAME,
+  publisher: COMPANY_NAME,
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: BASE_URL,
-    siteName: "Sphere Global",
-    title: "Sphere Global - AI & Technology Solutions",
-    description:
-      "Empowering forward-looking organizations with talent and technology that deliver measurable outcomes. ISO/IEC 42001 certified AI platforms and automation frameworks.",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Sphere Global - AI & Technology Solutions",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sphere Global - AI & Technology Solutions",
-    description:
-      "Empowering forward-looking organizations with talent and technology that deliver measurable outcomes.",
-    images: ["/images/twitter-image.jpg"],
-    creator: "@sphereglobal",
-  },
+
   robots: {
     index: true,
     follow: true,
@@ -84,9 +55,7 @@ export const metadata: Metadata = {
     yandex: "your-yandex-verification-code",
     yahoo: "your-yahoo-verification-code",
   },
-  alternates: {
-    canonical: BASE_URL,
-  },
+
   category: "technology",
 };
 

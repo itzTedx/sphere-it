@@ -11,9 +11,10 @@ import { Card } from "@/components/ui/card";
 
 import { IconArrowRight } from "@/assets/icons";
 
+import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { KeyFeatureCard } from "@/modules/views/components/key-feature-card";
 
-import { SERVICES } from "./data/services";
+import { SERVICES } from "../data/services";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -37,24 +38,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${service.title} | Sphere Global`,
+    title: `${service.title} - ${service.id.charAt(0).toUpperCase() + service.id.slice(1)} | ${COMPANY_NAME}`,
     description: service.description,
     keywords: [
-      service.id,
-      "AI services",
-      "enterprise automation",
-      "artificial intelligence",
+      ...service.meta.keywords,
+      COMPANY_NAME,
+      "Dubai technology",
+      "UAE technology",
+      "GCC technology",
+      "enterprise solutions",
       "digital transformation",
-      "business intelligence",
-      "process automation",
-      "data analytics",
-      "machine learning",
-      "Sphere Global",
     ],
+
     openGraph: {
       title: service.title,
       description: service.description,
       type: "website",
+      url: `${BASE_URL}/services/${service.id}`,
+      siteName: COMPANY_NAME,
+      locale: "en_US",
       images: [
         {
           url: service.image,
@@ -69,9 +71,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: service.title,
       description: service.description,
       images: [service.image],
+      creator: "@sphereitglobal",
+      site: "@sphereitglobal",
     },
     alternates: {
-      canonical: `/services/${service.id}`,
+      canonical: `${BASE_URL}/services/${service.id}`,
+    },
+    category: service.meta.category,
+    classification: `${service.title}, ${service.meta.category}, Digital Transformation`,
+    other: {
+      "geo.region": "AE",
+      "geo.country": "United Arab Emirates",
+      "geo.placename": "Dubai",
+      "DC.title": service.title,
+      "DC.description": service.description,
+      "DC.subject": `${service.title}, ${service.meta.category}, Digital Transformation`,
+      "DC.creator": COMPANY_NAME,
+      "DC.publisher": COMPANY_NAME,
+      "DC.language": "en",
+      "DC.coverage": "Global",
+      "DC.rights": "© 2024 Sphere IT. All rights reserved.",
+      "service.category": service.meta.category,
+      "service.industries": service.meta.industry.join(", "),
+      "service.certifications": service.meta.certifications.join(", "),
+      "service.technologies": service.meta.technologies.join(", "),
+      "service.benefits": service.meta.benefits.join(", "),
     },
   };
 }
@@ -92,14 +116,43 @@ export default async function ServicePage({ params }: Props) {
     description: service.description,
     provider: {
       "@type": "Organization",
-      name: "Sphere Global",
-      url: "https://sphereglobal.ae",
+      name: COMPANY_NAME,
+      url: "${BASE_URL}",
     },
-    serviceType: service.id,
+    serviceType: service.meta.category,
+    category: service.meta.category,
+    keywords: service.meta.keywords.join(", "),
+    areaServed: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
     offers: {
       "@type": "Offer",
       description: service.description,
+      category: service.meta.category,
     },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Industries Served",
+        value: service.meta.industry.join(", "),
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Certifications",
+        value: service.meta.certifications.join(", "),
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Technologies",
+        value: service.meta.technologies.join(", "),
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Benefits",
+        value: service.meta.benefits.join(", "),
+      },
+    ],
   };
 
   return (

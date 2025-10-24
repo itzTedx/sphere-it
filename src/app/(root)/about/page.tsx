@@ -21,10 +21,17 @@ import { CORE_VALUES, HIRING_CTA, OUR_VALUES, TIMELINE } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
 import { Clients } from "@/modules/views";
 
-export const metadata: Metadata = {
-  title: "About Sphere IT Global - Leading IT Solutions & Technology Services",
+import { breadcrumbStructuredData, structuredData } from "./structed-data";
+
+const meta = {
+  title: "About Sphere IT Global - Digital Transformation & IT Innovation Partner",
   description:
-    "Learn about Sphere IT Global's journey from 2016, delivering precision-engineered IT solutions across GCC. Discover our values, timeline, and expert team driving digital transformation.",
+    "Learn how Sphere IT drives enterprise transformation through AI, automation, and cloud engineering. Discover our mission, leadership, and global team powering innovation across industries.",
+};
+
+export const metadata: Metadata = {
+  title: meta.title,
+  description: meta.description,
   keywords: [
     "Sphere IT Global",
     "IT solutions",
@@ -38,9 +45,8 @@ export const metadata: Metadata = {
     "pragmatic solutions",
   ],
   openGraph: {
-    title: "About Sphere IT Global - Leading IT Solutions & Technology Services",
-    description:
-      "Learn about Sphere IT Global's journey from 2016, delivering precision-engineered IT solutions across GCC. Discover our values, timeline, and expert team driving digital transformation.",
+    title: meta.title,
+    description: meta.description,
     type: "website",
     url: `${BASE_URL}/about`,
     siteName: "Sphere IT Global",
@@ -55,22 +61,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Sphere IT Global - Leading IT Solutions & Technology Services",
-    description:
-      "Learn about Sphere IT Global's journey from 2016, delivering precision-engineered IT solutions across GCC.",
+    title: meta.title,
+    description: meta.description,
     images: ["/images/banking.webp"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+
   alternates: {
     canonical: `${BASE_URL}/about`,
   },
@@ -415,73 +410,3 @@ function TeamCard({ i }: { i: number }) {
     </article>
   );
 }
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Sphere IT Global",
-  url: BASE_URL,
-  logo: `${BASE_URL}/logo.png`,
-  description:
-    "Sphere IT Global delivers future-ready IT solutions — from software and cloud to design and resourcing. With decades of cross-industry expertise, we turn complex challenges into growth opportunities.",
-  foundingDate: "2016",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "UAE",
-  },
-  sameAs: ["https://linkedin.com/company/sphere-it-global"],
-  knowsAbout: [
-    "IT Solutions",
-    "Digital Transformation",
-    "BFSI Technology",
-    "Software Development",
-    "Cloud Solutions",
-    "Technology Services",
-  ],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "IT Services",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Software Development",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Cloud Solutions",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Digital Transformation",
-        },
-      },
-    ],
-  },
-};
-
-const breadcrumbStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: BASE_URL,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "About",
-      item: `${BASE_URL}/about`,
-    },
-  ],
-};
