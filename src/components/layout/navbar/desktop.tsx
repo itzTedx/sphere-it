@@ -37,7 +37,7 @@ export const DesktopNavLinks = () => {
                   )}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent aria-label={`${label} submenu`} role="menu">
-                  <ul className="grid gap-2 md:w-[400px] lg:w-[1180]" role="none">
+                  <ul className="grid gap-2 md:w-[400px] lg:w-[1180px]" role="none">
                     {id === 1 && submenu && <ServicesMegaMenu data={submenu} />}
                     {id === 2 && resources && <ResourcesMegaMenu data={resources} />}
                   </ul>
@@ -99,7 +99,7 @@ function ListItem({
 
 function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
   return (
-    <li className="grid gap-5 lg:grid-cols-[.35fr_1fr]">
+    <li className="grid gap-5 p-2 lg:grid-cols-[.35fr_1fr]">
       <NavigationMenuLink asChild>
         <Link
           className="flex h-full w-full select-none flex-col justify-end rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md focus-visible:border-primary-500 md:p-6"
@@ -127,12 +127,12 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
 
 function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
   return (
-    <li className="grid gap-5 font-display lg:grid-cols-[1fr_.60fr_.60fr]">
+    <li className="grid font-display lg:grid-cols-[1fr_.60fr_.60fr]">
       {data.map((link) =>
         link.id === "explore" ? (
-          <div key={link.id}>
-            <span className="font-display font-medium text-sm text-stone-400 uppercase">{link.id}</span>
-            <div className="grid h-full flex-1 grid-cols-2 gap-4">
+          <div className="p-2" key={link.id}>
+            <span className="px-2 pb-3 font-display font-medium text-sm text-stone-400 uppercase">{link.id}</span>
+            <div className="grid grid-cols-2 gap-2">
               {link.links.map((link) => (
                 <NavigationMenuLink asChild className="group" key={link.label}>
                   <Link
@@ -151,13 +151,13 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
             </div>
           </div>
         ) : (
-          <div className="space-y-3 border-l p-3" key={link.id}>
-            <h5 className="font-display font-medium text-sm text-stone-400 uppercase">{link.id}</h5>
+          <div className="space-y-3 border-l p-2" key={link.id}>
+            <span className="px-3 font-display font-medium text-sm text-stone-400 uppercase">{link.id}</span>
             <ul className="space-y-4">
               {link.links.map((menu) => (
                 <li className="" key={menu.label}>
                   <Link
-                    className="group -m-1 flex items-center gap-3 rounded-md p-1"
+                    className="group flex items-center gap-3 rounded-md p-3 hover:bg-stone-500/5"
                     href={menu.href}
                     title={menu.label}
                   >
