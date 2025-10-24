@@ -8,6 +8,7 @@ import { IconArrowRight, IconChevronDown } from "@/assets/icons";
 import { IconCopy } from "@/assets/icons/copy";
 import { IconSocialInstagram, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
 
+import { BASE_URL, EMAIL_INFO, EMAIL_SALES } from "@/data/site-config";
 import { EnquiryForm } from "@/modules/form/enquiry-form";
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     title: "Contact Us - Sphere Global AI & Technology Solutions",
     description:
       "Get in touch with Sphere Global for expert AI solutions, technology consulting, and digital transformation services.",
-    url: "https://sphere-global.com/contact",
+    url: `${BASE_URL}/contact`,
     type: "website",
   },
   twitter: {
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     description: "Get expert guidance on AI solutions and technology consulting from Sphere Global.",
   },
   alternates: {
-    canonical: "https://sphere-global.com/contact",
+    canonical: `${BASE_URL}/contact`,
   },
 };
 
@@ -47,23 +48,23 @@ export default function ContactPage() {
     "@type": "ContactPage",
     name: "Contact Sphere Global",
     description: "Contact Sphere Global for AI solutions, technology consulting, and digital transformation services.",
-    url: "https://sphere-global.com/contact",
+    url: `${BASE_URL}/contact`,
     mainEntity: {
       "@type": "Organization",
       name: "Sphere Global",
-      url: "https://sphere-global.com",
+      url: BASE_URL,
       contactPoint: [
         {
           "@type": "ContactPoint",
           telephone: "+971-XX-XXXXXXX",
           contactType: "customer service",
-          email: "info@sphereitglobal.com",
+          email: EMAIL_INFO,
           availableLanguage: "English",
         },
         {
           "@type": "ContactPoint",
           contactType: "sales",
-          email: "sales@sphereitglobal.com",
+          email: EMAIL_SALES,
           availableLanguage: "English",
         },
       ],
@@ -96,7 +97,7 @@ export default function ContactPage() {
                       Email
                     </label>
                     <p className="text-base sm:text-lg" id="email">
-                      info@sphereitglobal.com
+                      {EMAIL_INFO}
                     </p>
                   </div>
                   <button aria-label="Copy email address" className="ml-2 flex-shrink-0">

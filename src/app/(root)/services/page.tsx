@@ -7,6 +7,7 @@ import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 
 import { SERVICES } from "@/data/services";
+import { BASE_URL } from "@/data/site-config";
 import { WhyMatters } from "@/modules/views/why-matters";
 import { Service } from "@/types/service";
 
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     description:
       "Transform your business with Sphere IT's comprehensive IT services including AI solutions, process automation, data analytics, managed platforms, and talent augmentation.",
     type: "website",
-    url: "https://sphereit.com/services",
+    url: `${BASE_URL}/services`,
     images: [
       {
         url: "/images/services-og.jpg",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     images: ["/images/services-og.jpg"],
   },
   alternates: {
-    canonical: "https://sphereit.com/services",
+    canonical: `${BASE_URL}/services`,
   },
 };
 
@@ -67,7 +68,7 @@ export default function ServicesPage() {
             provider: {
               "@type": "Organization",
               name: "Sphere IT",
-              url: "https://sphereit.com",
+              url: BASE_URL,
             },
             serviceType: "IT Services",
             areaServed: "Global",

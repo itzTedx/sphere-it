@@ -10,10 +10,11 @@ import { StructuredData } from "@/components/layout/structured-data";
 
 import { inter, mono, sans } from "@/assets/fonts";
 
+import { BASE_URL } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sphere-global.com"),
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "Sphere Global - AI & Technology Solutions",
     template: "%s | Sphere Global",
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://sphere-global.com",
+    url: BASE_URL,
     siteName: "Sphere Global",
     title: "Sphere Global - AI & Technology Solutions",
     description:
@@ -84,7 +85,7 @@ export const metadata: Metadata = {
     yahoo: "your-yahoo-verification-code",
   },
   alternates: {
-    canonical: "https://sphere-global.com",
+    canonical: BASE_URL,
   },
   category: "technology",
 };

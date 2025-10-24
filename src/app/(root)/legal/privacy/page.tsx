@@ -4,6 +4,7 @@ import { Cta } from "@/components/layout/cta";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 import { LEGAL_HANDLING_EMAIL, PRIVACY_DEFINITIONS } from "@/data/legal";
+import { BASE_URL } from "@/data/site-config";
 
 import { Header } from "../components/header";
 import { SectionTitle } from "../components/section-title";
@@ -238,7 +239,7 @@ export default function PrivacyPage() {
                 please contact us at:
               </p>
               <p>📧 {email}</p>
-              <p>🌐 www.sphereitglobal.com</p>
+              <p>🌐 {BASE_URL.replace("https://", "")}</p>
               <p>📍 Dubai, United Arab Emirates</p>
             </div>
           </div>

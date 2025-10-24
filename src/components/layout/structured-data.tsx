@@ -1,3 +1,5 @@
+import { BASE_URL } from "@/data/site-config";
+
 export function StructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -5,7 +7,7 @@ export function StructuredData() {
     name: "Sphere Global",
     description:
       "Empowering forward-looking organizations with talent and technology that deliver measurable outcomes. ISO/IEC 42001 certified AI platforms, automation frameworks, and scalable solutions.",
-    url: "https://sphere-global.com",
+    url: BASE_URL,
     logo: "https://sphere-global.com/images/logo.png",
     image: "https://sphere-global.com/images/og-image.jpg",
     foundingDate: "2020",
@@ -102,16 +104,11 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Sphere Global",
-    url: "https://sphere-global.com",
+    url: BASE_URL,
     description: "AI & Technology Solutions - Delivering Accuracy. Driving Outcomes.",
     publisher: {
       "@type": "Organization",
       name: "Sphere Global",
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://sphere-global.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string",
     },
   };
 
@@ -123,7 +120,7 @@ export function StructuredData() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://sphere-global.com",
+        item: BASE_URL,
       },
     ],
   };

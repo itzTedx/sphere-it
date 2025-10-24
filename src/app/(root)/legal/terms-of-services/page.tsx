@@ -2,6 +2,7 @@ import { Cta } from "@/components/layout/cta";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 import { LEGAL_HANDLING_EMAIL, SERVICE_DEFINITIONS } from "@/data/legal";
+import { BASE_URL } from "@/data/site-config";
 
 import { Header } from "../components/header";
 import { SectionTitle } from "../components/section-title";
@@ -21,9 +22,9 @@ export default function TermsOfServicesPage() {
           <div>
             <p>Welcome to Sphere IT Global ("Sphere IT", "we", "our", or "us").</p>
             <p>
-              By accessing or using our website www.sphereitglobal.com (the “Site”) and submitting information through
-              our contact form or any other means, you agree to comply with these Terms of Service (“Terms”). If you do
-              not agree, please do not use this Site.
+              By accessing or using our website {BASE_URL.replace("https://", "")} (the “Site”) and submitting
+              information through our contact form or any other means, you agree to comply with these Terms of Service
+              (“Terms”). If you do not agree, please do not use this Site.
             </p>
           </div>
           <div className="-mb-4 relative pt-4">
@@ -192,7 +193,7 @@ export default function TermsOfServicesPage() {
                 please contact us at:
               </p>
               <p>📧 {LEGAL_HANDLING_EMAIL}</p>
-              <p>🌐 www.sphereitglobal.com</p>
+              <p>🌐{BASE_URL.replace("https://", "")}</p>
               <p>📍 Dubai, United Arab Emirates</p>
             </div>
           </div>
