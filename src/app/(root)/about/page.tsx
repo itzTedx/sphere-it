@@ -21,7 +21,7 @@ import { CORE_VALUES, HIRING_CTA, OUR_VALUES, TIMELINE } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
 import { Clients } from "@/modules/views";
 
-import { breadcrumbStructuredData, structuredData } from "./structed-data";
+import { breadcrumbStructuredData, structuredData } from "./structured-data";
 
 const meta = {
   title: "About Sphere IT Global - Digital Transformation & IT Innovation Partner",
@@ -172,11 +172,11 @@ export default function AboutPage() {
                 <Fragment key={timeline.serial}>
                   <article
                     aria-labelledby={`timeline-${timeline.serial}-title`}
-                    className="rounded-xl bg-muted p-1.5"
+                    className="rounded-[calc(var(--radius-2xl)+calc(var(--spacing)*1.5)))] bg-muted p-1.5"
                     role="listitem"
                   >
-                    <Card>
-                      <CardHeader className="px-4 py-2">
+                    <Card className="rounded-2xl">
+                      <CardHeader className="px-2 py-1">
                         <div className="flex items-center gap-4">
                           <span
                             aria-label={`Step ${timeline.serial}`}
@@ -190,13 +190,13 @@ export default function AboutPage() {
                           <CardDescription className="text-subhead-base">{timeline.title}</CardDescription>
                         </div>
                       </CardHeader>
-                      <CardContent className="space-y-4 rounded-lg bg-card p-6 shadow-sm">
-                        <p className="text-stone-500 text-xl">{timeline.description}</p>
-                        <ul className="space-y-3" role="list">
+                      <CardContent className="space-y-4 rounded-lg bg-card p-4 shadow-sm">
+                        <p className="text-base text-stone-500">{timeline.description}</p>
+                        <ul className="grid grid-cols-2 gap-6" role="list">
                           {timeline.lists.map(({ id, Icon, item }) => (
                             <li className="flex items-center gap-3" key={id}>
-                              <Icon aria-hidden="true" className="text-accent" />
-                              <p className="font-display text-stone-800 text-subhead-lg">{item}</p>
+                              <Icon aria-hidden="true" className="size-4 text-accent" />
+                              <p className="font-display text-stone-800 text-subhead-sm">{item}</p>
                             </li>
                           ))}
                         </ul>
@@ -384,12 +384,12 @@ function DashedLine() {
       <svg
         className="text-stone-300"
         fill="none"
-        height="42"
-        viewBox="0 0 2 42"
+        height="24"
+        viewBox="0 0 2 24"
         width="2"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M0.750002 0L0.75 42" stroke="currentColor" strokeDasharray="6 4" strokeWidth="1.5" />
+        <path d="M0.750002 0L0.75 24" stroke="currentColor" strokeDasharray="6 4" strokeWidth="1.5" />
       </svg>
     </div>
   );
