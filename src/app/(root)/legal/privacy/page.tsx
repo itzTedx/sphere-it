@@ -227,18 +227,18 @@ export default function PrivacyPage() {
                   Policy are effective when they are posted on this page.
                 </p>
               </div>
-              <SectionTitle href="#contact" index={10}>
-                Contact Us
-              </SectionTitle>
-              <div className="ml-12 pb-4">
-                <p>
-                  If you have any questions, requests, or concerns about this Privacy Policy or how we handle your data,
-                  please contact us at:
-                </p>
-                <p>📧 {email}</p>
-                <p>🌐 www.sphereitglobal.com</p>
-                <p>📍 Dubai, United Arab Emirates</p>
-              </div>
+            </div>
+            <SectionTitle href="#contact" index={10}>
+              Contact Us
+            </SectionTitle>
+            <div className="ml-12 pb-4">
+              <p>
+                If you have any questions, requests, or concerns about this Privacy Policy or how we handle your data,
+                please contact us at:
+              </p>
+              <p>📧 {email}</p>
+              <p>🌐 www.sphereitglobal.com</p>
+              <p>📍 Dubai, United Arab Emirates</p>
             </div>
           </div>
         </article>

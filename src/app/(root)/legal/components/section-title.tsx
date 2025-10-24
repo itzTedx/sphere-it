@@ -8,7 +8,7 @@ export function SectionTitle({ children, href, index }: { children: React.ReactN
     <div className="not-prose">
       <Link className="group relative flex items-center gap-4 py-0" href={href}>
         <div className="flex size-8 flex-none items-center justify-center rounded-full border border-gray-200 bg-white">
-          <p className="font-bold font-display text-stone-700 group-hover:hidden">{index}</p>
+          <p className="font-display font-medium text-stone-500 text-xs group-hover:hidden">{index}</p>
           <IconLink
             aria-hidden="true"
             aria-label="Link to section"

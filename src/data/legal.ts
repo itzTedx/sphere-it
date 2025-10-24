@@ -40,3 +40,34 @@ export const PRIVACY_DEFINITIONS = [
       "The individual using our Service - this corresponds to the Data Subject, who is the subject of Personal Data.",
   },
 ];
+
+export const SERVICE_DEFINITIONS = [
+  {
+    title: "Service",
+    value: "Sphere IT website and related services offered on www.sphereitglobal.com",
+  },
+  {
+    title: "Personal Data",
+    value: "Data about a living individual that can be identified from those data or combined with other information.",
+  },
+  {
+    title: "Usage Data",
+    value: "Data collected automatically, such as page visit duration.",
+  },
+  {
+    title: "Cookies",
+    value: "Small files stored on your device to improve your experience.",
+  },
+  {
+    title: "Data Controller",
+    value: "The entity determining how and why personal data is processed (Sphere IT).",
+  },
+  {
+    title: "Data Processor",
+    value: "Any party processing personal data on behalf of Sphere IT.",
+  },
+  {
+    title: "User / Data Subject",
+    value: "Any individual using the Site or submitting personal data.",
+  },
+];
