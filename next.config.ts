@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ["@radix-ui/react-tabs", "@radix-ui/react-navigation-menu", "lucide-react"],
+    turbopackFileSystemCacheForDev: true,
   },
 
   reactCompiler: true,
@@ -20,17 +21,6 @@ const nextConfig: NextConfig = {
 
   // Compression
   compress: true,
-
-  // Bundle analyzer (uncomment for analysis)
-  // webpack: (config, { isServer }) => {
-  //   if (!isServer) {
-  //     config.resolve.fallback = {
-  //       ...config.resolve.fallback,
-  //       fs: false,
-  //     };
-  //   }
-  //   return config;
-  // },
 
   // Headers for performance
   async headers() {
