@@ -95,7 +95,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html className={cn("scroll-smooth")} lang="en">
       <head>
         <StructuredData />
       </head>
