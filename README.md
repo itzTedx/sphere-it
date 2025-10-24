@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sphere Global
 
-## Getting Started
+A modern, responsive website for Sphere Global built with Next.js 16, React 19, and TypeScript. This project showcases our services, company information, and provides a platform for client engagement.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 16 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **UI Components**: Radix UI primitives with custom components
+- **Animations**: Motion (Framer Motion)
+- **Forms**: React Hook Form with Zod validation
+- **Icons**: Lucide React
+- **Linting & Formatting**: Biome
+- **Package Manager**: pnpm
+
+## 📁 Project Structure
+
+```
+sphere-global/
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   ├── assets/                 # Static assets (fonts, icons, illustrations)
+│   ├── components/             # Reusable UI components
+│   ├── data/                   # Static data and configuration
+│   ├── hooks/                  # Custom React hooks
+│   ├── lib/                    # Utility functions and configurations
+│   ├── modules/                # Feature-specific modules
+│   ├── styles/                 # Global styles and typography
+│   └── types/                  # TypeScript type definitions
+├── public/                     # Static public assets
+├── docs/                       # Project documentation
+└── configuration files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Development Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18+ 
+- pnpm (recommended) or npm
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd sphere-global
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install dependencies:
+```bash
+pnpm install
+# or
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Start the development server:
+```bash
+pnpm dev
+# or
+npm run dev
+```
 
-## Deploy on Vercel
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📜 Available Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run Biome linter and formatter
+- `pnpm format` - Format code with Biome
+
+## 🏗️ Architecture
+
+### App Router Structure
+- Uses Next.js 16 App Router for file-based routing
+- Server Components by default for optimal performance
+- Client Components only when necessary (interactivity, browser APIs)
+
+### Component Organization
+- **UI Components**: Reusable, accessible components in `src/components/ui/`
+- **Layout Components**: Navigation, footer, and layout-specific components
+- **Feature Modules**: Self-contained modules in `src/modules/`
+
+### Styling Approach
+- **Tailwind CSS**: Utility-first CSS framework
+- **Custom Components**: Built on Radix UI primitives
+- **Typography**: Custom font system with Albert Sans and Inter Display
+- **Responsive Design**: Mobile-first approach
+
+## 📚 Documentation
+
+- [File Structure Guide](./docs/file-structure.md) - Detailed explanation of project organization
+- [Code Conventions](./docs/code-conventions.md) - Coding standards and best practices
+- [Development Workflow](./docs/development-workflow.md) - Development setup and processes
+
+## 🚀 Deployment
+
+The project is optimized for deployment on Vercel, but can be deployed to any platform that supports Next.js.
+
+### Environment Variables
+
+Create a `.env.local` file for local development:
+
+```env
+# Add any required environment variables here
+```
+
+### Production Build
+
+```bash
+pnpm build
+pnpm start
+```
+
+
+## 📄 License
+
+This project is proprietary to Sphere Global.
+
+---
+
+For detailed information about the project structure and conventions, please refer to the documentation in the `docs/` directory.
