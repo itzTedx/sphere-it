@@ -28,7 +28,7 @@ export const Navbar = () => {
       )}
     >
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between font-display">
-        <Link href="/">
+        <Link className="-m-1 rounded-md p-1" href="/">
           <Logo />
         </Link>
         <div className="hidden md:block">

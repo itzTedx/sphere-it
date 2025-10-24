@@ -1,40 +1,9 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 
 import { Cta } from "@/components/layout/cta";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-
-// Dynamic imports for non-critical components
-const About = dynamic(() => import("@/modules/views/about").then((mod) => ({ default: mod.About })), {
-  loading: () => <div className="h-96 animate-pulse rounded-3xl bg-stone-100" />,
-});
-
-const Clients = dynamic(() => import("@/modules/views/clients").then((mod) => ({ default: mod.Clients })), {
-  loading: () => <div className="h-32 animate-pulse rounded-3xl bg-stone-100" />,
-});
-
-const Resources = dynamic(() => import("@/modules/views/resources").then((mod) => ({ default: mod.Resources })), {
-  loading: () => <div className="h-96 animate-pulse rounded-3xl bg-stone-100" />,
-});
-
-const Services = dynamic(() => import("@/modules/views/services").then((mod) => ({ default: mod.Services })), {
-  loading: () => <div className="h-96 animate-pulse rounded-3xl bg-stone-100" />,
-});
-
-const Testimonials = dynamic(
-  () => import("@/modules/views/testimonials").then((mod) => ({ default: mod.Testimonials })),
-  {
-    loading: () => <div className="h-96 animate-pulse rounded-3xl bg-stone-100" />,
-  }
-);
-
-const WhyUs = dynamic(() => import("@/modules/views/why-us").then((mod) => ({ default: mod.WhyUs })), {
-  loading: () => <div className="h-96 animate-pulse rounded-3xl bg-stone-100" />,
-});
-
-// Keep Hero as static import for above-the-fold content
-import { Hero } from "@/modules/views";
+import { About, Clients, Hero, Resources, Services, Testimonials, WhyUs } from "@/modules/views";
 
 const meta = {
   title: "Sphere IT - Digital Transformation Partner in UAE & GCC",

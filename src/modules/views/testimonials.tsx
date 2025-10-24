@@ -20,12 +20,12 @@ export const Testimonials = memo(() => {
         <div className="relative grid h-[90svh] gap-1 md:grid-cols-3 xl:gap-4">
           <div className="absolute inset-x-0 z-10 h-40 bg-gradient-to-b from-background to-transparent" />
 
-          <Marquee className="[--duration:10s]" vertical>
+          <Marquee className="[--duration:15s]" vertical>
             {TESTIMONIALS.map((t) => (
               <TestimonialCard data={t} key={t.id} />
             ))}
           </Marquee>
-          <Marquee className="hidden [--duration:10s] md:flex" reverse vertical>
+          <Marquee className="hidden [--duration:18s] md:flex" reverse vertical>
             {TESTIMONIALS.map((t) => (
               <TestimonialCard data={t} key={t.id} />
             ))}

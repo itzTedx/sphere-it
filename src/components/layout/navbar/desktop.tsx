@@ -28,7 +28,9 @@ export const DesktopNavLinks = () => {
                 <NavigationMenuTrigger>
                   {href ? (
                     <NavigationMenuLink asChild>
-                      <Link href={href}>{label}</Link>
+                      <Link href={href} tabIndex={-1}>
+                        {label}
+                      </Link>
                     </NavigationMenuLink>
                   ) : (
                     label
@@ -67,18 +69,21 @@ function ListItem({
 }) {
   return (
     <li {...props}>
-      <NavigationMenuLink asChild className="group rounded-xl px-4 py-5 transition-colors hover:bg-stone-100">
+      <NavigationMenuLink
+        asChild
+        className="group rounded-xl border border-transparent px-4 py-5 transition-colors hover:bg-stone-100 focus-visible:border-primary-500"
+      >
         <Link className="flex-row items-center gap-2" href={href as "/services"}>
           {Icon && (
             <IconBox>
-              <Icon className="group-hover:text-primary-600" />
+              <Icon className="group-hover:text-primary-600 group-focus-visible:text-primary-600" />
             </IconBox>
           )}
           <div>
-            <div className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-500">
+            <div className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
               {title}
             </div>
-            <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500">
+            <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
               {children}
             </p>
           </div>
@@ -93,7 +98,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
     <li className="grid gap-5 lg:grid-cols-[.35fr_1fr]">
       <NavigationMenuLink asChild>
         <Link
-          className="flex h-full w-full select-none flex-col justify-end rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md md:p-6"
+          className="flex h-full w-full select-none flex-col justify-end rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md focus-visible:border-primary-500 md:p-6"
           href="/services"
         >
           <div className="font-medium text-lg sm:mt-4">Services</div>
@@ -126,10 +131,10 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
               {link.links.map((link) => (
                 <NavigationMenuLink asChild className="group" key={link.label}>
                   <Link
-                    className="flex h-full w-full flex-1 select-none flex-col justify-between rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md group-hover:border-primary-500 md:p-6"
+                    className="flex h-full w-full flex-1 select-none flex-col justify-between rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md group-hover:border-primary-500 group-focus-visible:border-primary-500 group-focus-visible:bg-primary-100 md:p-6"
                     href="/services"
                   >
-                    <link.Icon className="size-7 text-stone-500 transition-colors group-hover:text-primary-600" />
+                    <link.Icon className="size-7 text-stone-500 transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600" />
                     <div>
                       <div className="font-medium text-lg sm:mt-4">{link.label}</div>
                       <p className="text-muted-foreground text-sm leading-tight">{link.description}</p>
@@ -144,16 +149,16 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
             <h5 className="font-display font-medium text-sm text-stone-400 uppercase">{link.id}</h5>
             <ul className="space-y-4">
               {link.links.map((menu) => (
-                <li className="group" key={menu.label}>
-                  <Link className="flex items-center gap-3" href={menu.href}>
-                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:border-primary-500 group-hover:bg-primary-500/10">
-                      <menu.Icon className="size-5 shrink-0 text-stone-500 transition-colors group-hover:text-primary-600" />
+                <li className="" key={menu.label}>
+                  <Link className="group -m-1 flex items-center gap-3 rounded-md p-1" href={menu.href}>
+                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:border-primary-500 group-hover:bg-primary-500/10 group-focus-visible:border-primary-600 group-focus-visible:bg-primary-500/10">
+                      <menu.Icon className="size-5 shrink-0 text-stone-500 transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600" />
                     </div>
                     <div>
-                      <span className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-600">
+                      <span className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600">
                         {menu.label}
                       </span>
-                      <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500">
+                      <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
                         {menu.description}
                       </p>
                     </div>
