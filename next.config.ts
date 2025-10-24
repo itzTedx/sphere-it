@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ["@radix-ui/react-tabs", "@radix-ui/react-navigation-menu", "lucide-react"],
-    turbopackFileSystemCacheForDev: true,
   },
 
   reactCompiler: true,

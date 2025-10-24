@@ -1,3 +1,5 @@
+"use client";
+
 import type { SVGProps } from "react";
 import Link from "next/link";
 
@@ -73,7 +75,7 @@ function ListItem({
     <li {...props}>
       <NavigationMenuLink
         asChild
-        className="group rounded-xl border border-transparent px-4 py-5 transition-colors hover:bg-stone-100 focus-visible:border-primary-500"
+        className="group rounded-xl border border-transparent px-4 py-5 transition-colors hover:bg-stone-100/50 focus-visible:border-primary-500"
       >
         <Link className="flex-row items-center gap-2" href={href as "/services"} title={title}>
           {Icon && (
@@ -81,11 +83,11 @@ function ListItem({
               <Icon className="group-hover:text-primary-600 group-focus-visible:text-primary-600" />
             </IconBox>
           )}
-          <div>
+          <div className="space-y-1">
             <div className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
               {title}
             </div>
-            <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
+            <p className="line-clamp-2 font-display font-light text-muted-foreground text-xs transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
               {children}
             </p>
           </div>
