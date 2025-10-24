@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,7 +12,7 @@ import { IconArrowRight, IconAssure, IconAugment, IconAutomate, IconElevate, Ico
 
 import { SERVICES } from "@/data/services";
 
-export const Services = () => {
+export const Services = memo(() => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50">
       <div className="max-sm:px-0">
@@ -114,7 +115,17 @@ export const Services = () => {
                     </div>
                     <div className="aspect-6/4 overflow-hidden rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1))] border bg-stone-alpha-10 p-1 sm:aspect-auto md:col-span-3">
                       <div className="relative aspect-auto size-full overflow-hidden rounded-3xl">
-                        <Image alt="" className="object-cover object-left" fill src={service.image} />
+                        <Image
+                          alt={`${service.title} - ${service.description}`}
+                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                          className="object-cover object-left"
+                          fill
+                          placeholder="blur"
+                          priority={service.id === "elevate"}
+                          quality={85}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          src={service.image}
+                        />
                       </div>
                     </div>
                   </TabsContent>
@@ -127,4 +138,6 @@ export const Services = () => {
       </div>
     </section>
   );
-};
+});
+
+Services.displayName = "Services";

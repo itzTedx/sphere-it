@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +10,7 @@ import { IconArrowRight, IconBank, IconCar } from "@/assets/icons";
 
 import { BEST_AT } from "@/data/constants";
 
-export const About = () => {
+export const About = memo(() => {
   return (
     <>
       <section aria-labelledby="about-hero-heading" className="relative mx-auto max-w-7xl overflow-hidden">
@@ -153,4 +154,6 @@ export const About = () => {
       </section>
     </>
   );
-};
+});
+
+About.displayName = "About";

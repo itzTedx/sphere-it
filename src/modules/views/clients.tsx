@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,7 +6,7 @@ import { IconChevronRight } from "@/assets/icons";
 
 import { CLIENTS } from "@/data/constants";
 
-export const Clients = () => {
+export const Clients = memo(() => {
   return (
     <section className="border-y">
       <div className="mx-auto max-w-7xl max-xl:container">
@@ -28,7 +29,15 @@ export const Clients = () => {
             <ul className="grid grid-cols-6 items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs">
               {CLIENTS.map((client) => (
                 <li className="relative m-9 aspect-16/6" key={client.id}>
-                  <Image alt="" className="object-contain object-center" fill src={client.src} />
+                  <Image
+                    alt={`${client.name} logo`}
+                    className="object-contain object-center"
+                    fill
+                    loading="lazy"
+                    quality={75}
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 16vw, 12vw"
+                    src={client.src}
+                  />
                 </li>
               ))}
             </ul>
@@ -38,4 +47,6 @@ export const Clients = () => {
       </div>
     </section>
   );
-};
+});
+
+Clients.displayName = "Clients";

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -27,7 +28,7 @@ const RESOURCES_LINKS = [
   },
 ];
 
-export const Resources = () => {
+export const Resources = memo(() => {
   return (
     <section className="border-y">
       <div className="mx-auto max-w-7xl max-xl:container">
@@ -90,4 +91,6 @@ export const Resources = () => {
       </div>
     </section>
   );
-};
+});
+
+Resources.displayName = "Resources";

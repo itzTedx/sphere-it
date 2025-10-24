@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +10,7 @@ import { IconArrowRight } from "@/assets/icons";
 
 import { cn } from "@/lib/utils";
 
-export const WhyUs = () => {
+export const WhyUs = memo(() => {
   return (
     <section
       aria-labelledby="why-us-heading"
@@ -46,7 +47,9 @@ export const WhyUs = () => {
       </div>
     </section>
   );
-};
+});
+
+WhyUs.displayName = "WhyUs";
 
 interface CardProps {
   className?: string;
@@ -70,6 +73,8 @@ function PrecisionCard({ className }: CardProps) {
           alt="Precision and pragmatism in technology solutions - technical accuracy meets business sense"
           className="object-cover"
           fill
+          loading="lazy"
+          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/guides.svg"
         />
@@ -100,6 +105,8 @@ function PartnerCard({ className }: CardProps) {
           alt="Trusted partner in banking, financial, and industries requiring security and scalability"
           className="object-cover object-top"
           fill
+          loading="lazy"
+          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw"
           src="/svg/trusted.svg"
         />
@@ -122,6 +129,8 @@ function ScalableCard({ className }: CardProps) {
           alt="Flexible and scalable talent models for enterprise technology solutions"
           className="object-cover object-center transition-transform group-hover:scale-105"
           fill
+          loading="lazy"
+          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/flexible.svg"
         />
@@ -154,6 +163,8 @@ function TechStackCard({ className }: CardProps) {
           alt="Proven delivery framework for enterprise-scale technology transformation and results-driven methodology"
           className="object-contain"
           fill
+          loading="lazy"
+          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw"
           src="/svg/techstack.svg"
         />
@@ -178,6 +189,8 @@ function ReliabilityCard({ className }: CardProps) {
           alt="Reliability at the core of technology solutions - reducing complexity and accelerating business value"
           className="object-contain"
           fill
+          loading="lazy"
+          quality={85}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/reliability.svg"
         />

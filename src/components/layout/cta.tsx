@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 
 import { IconAiCloud, IconArrowUpRight } from "@/assets/icons";
@@ -8,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
-export const Cta = () => {
+export const Cta = memo(() => {
   return (
     <section className="max-md:container max-sm:pb-12 xl:mb-12">
       <div className="xl:border-y">
@@ -34,7 +35,9 @@ export const Cta = () => {
       </div>
     </section>
   );
-};
+});
+
+Cta.displayName = "Cta";
 
 interface CtaProps {
   title?: string;
@@ -44,56 +47,60 @@ interface CtaProps {
   showButton?: boolean;
 }
 
-export const MiniCta = ({
-  title = "Empower Your Business with <span>Next-Gen IT</span> Solutions",
-  description = "Explore cloud, cybersecurity, and digital transformation services built to scale with your growth.",
-  className,
-  layout = "vertical",
-  showButton = true,
-}: CtaProps) => {
-  return (
-    <div
-      className={cn(
-        "relative z-999 flex flex-col items-center gap-3 rounded-xl bg-foreground px-3 py-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 md:flex-row md:px-6 md:py-8",
-        className
-      )}
-    >
-      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-950 sm:size-12">
-        <IconAiCloud className="text-purple-400" />
-      </div>
-      <div className="flex w-full flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
-        <div
-          className={cn(
-            "text-center md:text-left",
-            layout === "horizontal" && "flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
-          )}
-        >
-          <h4
-            className="font-semibold text-card text-lg leading-tight tracking-[0.01em] sm:text-xl md:text-2xl [&>span]:text-accent"
-            dangerouslySetInnerHTML={{ __html: title }}
-          />
-          <p
+export const MiniCta = memo(
+  ({
+    title = "Empower Your Business with <span>Next-Gen IT</span> Solutions",
+    description = "Explore cloud, cybersecurity, and digital transformation services built to scale with your growth.",
+    className,
+    layout = "vertical",
+    showButton = true,
+  }: CtaProps) => {
+    return (
+      <div
+        className={cn(
+          "relative z-999 flex flex-col items-center gap-3 rounded-xl bg-foreground px-3 py-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 md:flex-row md:px-6 md:py-8",
+          className
+        )}
+      >
+        <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-950 sm:size-12">
+          <IconAiCloud className="text-purple-400" />
+        </div>
+        <div className="flex w-full flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
+          <div
             className={cn(
-              "text-muted-background",
-              layout === "horizontal"
-                ? "text-balance font-medium text-base leading-tight sm:text-lg md:text-xl"
-                : "text-xs leading-relaxed sm:text-sm"
+              "text-center md:text-left",
+              layout === "horizontal" && "flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
             )}
           >
-            {description}
-          </p>
+            <h4
+              className="font-semibold text-card text-lg leading-tight tracking-[0.01em] sm:text-xl md:text-2xl [&>span]:text-accent"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
+            <p
+              className={cn(
+                "text-muted-background",
+                layout === "horizontal"
+                  ? "text-balance font-medium text-base leading-tight sm:text-lg md:text-xl"
+                  : "text-xs leading-relaxed sm:text-sm"
+              )}
+            >
+              {description}
+            </p>
+          </div>
+          {showButton && (
+            <Button asChild className="w-full bg-primary-900 pl-4 text-primary-400 sm:w-auto" size="lg" variant="ghost">
+              <Link href="/services">
+                Explore Solutions
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
+                  <IconArrowUpRight className="text-primary-900" />
+                </span>
+              </Link>
+            </Button>
+          )}
         </div>
-        {showButton && (
-          <Button asChild className="w-full bg-primary-900 pl-4 text-primary-400 sm:w-auto" size="lg" variant="ghost">
-            <Link href="/services">
-              Explore Solutions
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
-                <IconArrowUpRight className="text-primary-900" />
-              </span>
-            </Link>
-          </Button>
-        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
+
+MiniCta.displayName = "MiniCta";

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -5,7 +7,7 @@ import { Marquee } from "@/components/ui/marquee";
 
 import { TESTIMONIALS, Testimonial } from "@/data/testimonials";
 
-export const Testimonials = () => {
+export const Testimonials = memo(() => {
   return (
     <section className="container">
       <div className="max-w-7xl py-12 md:container md:py-16 xl:py-20">
@@ -43,7 +45,9 @@ export const Testimonials = () => {
       </div>
     </section>
   );
-};
+});
+
+Testimonials.displayName = "Testimonials";
 
 function TestimonialCard({ data }: { data: Testimonial }) {
   return (
