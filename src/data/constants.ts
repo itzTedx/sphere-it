@@ -5,8 +5,10 @@ import { IconBookmark } from "@/assets/icons/books";
 import { IconBriefcase } from "@/assets/icons/briefcase";
 import { IconCalloutQuote } from "@/assets/icons/callout";
 import { IconEnvelope } from "@/assets/icons/email";
+import { IconFeather } from "@/assets/icons/feather";
 import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
 import { IconSocialInstagram, IconSocialLinkedin, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
+import { IconSupport } from "@/assets/icons/support";
 import { IconUserFill } from "@/assets/icons/user";
 
 import { Footer, NavLink } from "@/types/layout";
@@ -62,13 +64,13 @@ export const NAV_LINKS: NavLink[] = [
         id: "explore",
         links: [
           {
-            Icon: IconElevate,
+            Icon: IconSupport,
             label: "FAQs",
             description: "Frequently Asked Questions",
             href: "/resources/faqs",
           },
           {
-            Icon: IconElevate,
+            Icon: IconFeather,
             label: "Blogs",
             description: "Frequently Asked Questions",
             href: "/resources/blogs",

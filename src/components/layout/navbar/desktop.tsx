@@ -93,7 +93,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
     <li className="grid gap-5 lg:grid-cols-[.35fr_1fr]">
       <NavigationMenuLink asChild>
         <Link
-          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md md:p-6"
+          className="flex h-full w-full select-none flex-col justify-end rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md md:p-6"
           href="/services"
         >
           <div className="font-medium text-lg sm:mt-4">Services</div>
@@ -124,13 +124,16 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
             <span className="font-display font-medium text-sm text-stone-400 uppercase">{link.id}</span>
             <div className="grid h-full flex-1 grid-cols-2 gap-4">
               {link.links.map((link) => (
-                <NavigationMenuLink asChild key={link.label}>
+                <NavigationMenuLink asChild className="group" key={link.label}>
                   <Link
-                    className="flex h-full w-full flex-1 select-none flex-col justify-end rounded-md bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md md:p-6"
+                    className="flex h-full w-full flex-1 select-none flex-col justify-between rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md group-hover:border-primary-500 md:p-6"
                     href="/services"
                   >
-                    <div className="font-medium text-lg sm:mt-4">{link.label}</div>
-                    <p className="text-muted-foreground text-sm leading-tight">{link.description}</p>
+                    <link.Icon className="size-7 text-stone-500 transition-colors group-hover:text-primary-600" />
+                    <div>
+                      <div className="font-medium text-lg sm:mt-4">{link.label}</div>
+                      <p className="text-muted-foreground text-sm leading-tight">{link.description}</p>
+                    </div>
                   </Link>
                 </NavigationMenuLink>
               ))}
@@ -143,8 +146,8 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
               {link.links.map((menu) => (
                 <li className="group" key={menu.label}>
                   <Link className="flex items-center gap-3" href={menu.href}>
-                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:bg-primary-300 group-hover:shadow-md">
-                      <menu.Icon className="size-5 shrink-0" />
+                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:border-primary-500 group-hover:bg-primary-500/10">
+                      <menu.Icon className="size-5 shrink-0 text-stone-500 transition-colors group-hover:text-primary-600" />
                     </div>
                     <div>
                       <span className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-600">
