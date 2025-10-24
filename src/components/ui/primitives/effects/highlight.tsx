@@ -140,16 +140,16 @@ function Highlight<T extends React.ElementType = "div">({ ref, ...props }: Highl
     [activeValue, onValueChange]
   );
 
+  const boundsOffset = (props as ParentModeHighlightProps)?.boundsOffset ?? {
+    top: 0,
+    left: 0,
+    width: 0,
+    height: 0,
+  };
+
   const safeSetBounds = React.useCallback(
     (bounds: DOMRect) => {
       if (!localRef.current) return;
-
-      const boundsOffset = (props as ParentModeHighlightProps)?.boundsOffset ?? {
-        top: 0,
-        left: 0,
-        width: 0,
-        height: 0,
-      };
 
       const containerRect = localRef.current.getBoundingClientRect();
       const newBounds: Bounds = {
@@ -172,7 +172,7 @@ function Highlight<T extends React.ElementType = "div">({ ref, ...props }: Highl
         return newBounds;
       });
     },
-    [props]
+    [boundsOffset]
   );
 
   const clearBounds = React.useCallback(() => {
@@ -249,7 +249,7 @@ function Highlight<T extends React.ElementType = "div">({ ref, ...props }: Highl
 
       return children;
     },
-    [mode, Component, props, boundsState, transition, exitDelay, style, className, activeClassNameState]
+    [mode, Component, boundsState, transition, exitDelay, style, className, activeClassNameState]
   );
 
   return (

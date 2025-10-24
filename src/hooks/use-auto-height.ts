@@ -83,7 +83,8 @@ export function useAutoHeight<T extends HTMLElement = HTMLDivElement>(
       ro.disconnect();
       roRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // biome-ignore lint/correctness/useExhaustiveDependencies: Dynamic Deps
   }, deps);
 
   React.useLayoutEffect(() => {

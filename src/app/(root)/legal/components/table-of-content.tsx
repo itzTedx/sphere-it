@@ -30,21 +30,20 @@ export const TableOfContent = ({ className }: Props) => {
 
   const OFFSET = 12;
 
-  const updateActiveItemPosition = (id: string) => {
-    if (!navRef.current) return;
-
-    const activeElement = navRef.current.querySelector(`a[href="#${id}"]`);
-    if (activeElement) {
-      const rect = activeElement.getBoundingClientRect();
-      const navRect = navRef.current.getBoundingClientRect();
-      setActiveItemPosition({
-        top: rect.top - navRect.top + OFFSET / 2,
-        height: rect.height - OFFSET,
-      });
-    }
-  };
-
   useEffect(() => {
+    const updateActiveItemPosition = (id: string) => {
+      if (!navRef.current) return;
+
+      const activeElement = navRef.current.querySelector(`a[href="#${id}"]`);
+      if (activeElement) {
+        const rect = activeElement.getBoundingClientRect();
+        const navRect = navRef.current.getBoundingClientRect();
+        setActiveItemPosition({
+          top: rect.top - navRect.top + OFFSET / 2,
+          height: rect.height - OFFSET,
+        });
+      }
+    };
     // Extract headings with IDs from the page, excluding footer headings
     const headingElements = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");
     const filteredHeadings = Array.from(headingElements).filter(

@@ -26,7 +26,7 @@
   --color-primary-900: var(--primary-900);
   --color-primary-950: var(--primary-950);
 
-  --color-stone-alpha-10: --alpha(theme('colors.stone.500') / 10%);
+  --color-stone-alpha-10: --alpha(theme("colors.stone.500") / 10%);
 
   --color-destructive: var(--destructive);
 
@@ -70,7 +70,7 @@
       transform: translateX(calc(-100% - var(--gap)));
     }
   }
- 
+
   @keyframes marquee-vertical {
     from {
       transform: translateY(0);
@@ -99,32 +99,31 @@
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
-  
+
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  
+
   --primary: oklch(0.4609 0.2255 295.79);
   --primary-foreground: oklch(0.9424 0.0277 301.75);
-  
+
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
-  
+
   --muted: oklch(0.9636 0.0086 67.72);
   --muted-foreground: oklch(0.545 0.0226 304.98);
   --muted-background: oklch(0.7085 0.0273 305.7);
-  
+
   --accent: oklch(0.6 0.2272 26.55);
   --accent-foreground: oklch(0.9325 0.0343 15.57);
-  
+
   --destructive: oklch(0.577 0.245 27.325);
-  
+
   --border: oklch(0.5534 0.0116 58.07 / 10%);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.627 0.1933 297.24);
-  
+
   --radius: 0.625rem;
 }
-
 
 @layer base {
   * {
@@ -132,10 +131,15 @@
   }
   body {
     @apply bg-background text-foreground slashed-zero tracking-tight;
-    
+
     text-rendering: optimizeLegibility;
     hanging-punctuation: first allow-end last;
-    font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1, "zero" 1, "calt" 1;
+    font-feature-settings:
+      "ss01" 1,
+      "ss02" 1,
+      "ss03" 1,
+      "zero" 1,
+      "calt" 1;
   }
 
   /* width */
@@ -146,7 +150,6 @@
   /* Track */
   ::-webkit-scrollbar-track {
     background: var(--background);
-    
   }
 
   /* Handle */
@@ -172,7 +175,6 @@
   z-index: 1;
 }
 
-
 @utility container {
   margin-inline: auto;
   padding-inline: 1.5rem;
@@ -190,6 +192,4 @@
     padding-inline: 3rem;
     max-width: 98rem;
   }
- 
 }
-
