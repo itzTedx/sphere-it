@@ -1,6 +1,6 @@
 # Code Conventions
 
-This document outlines the coding standards, conventions, and best practices for the Sphere Global project.
+This document outlines the coding standards, conventions, and best practices for the Sphere Global project. It's designed to be accessible for developers of all experience levels, including those new to React and modern web development.
 
 ## 🎯 General Principles
 
@@ -33,23 +33,26 @@ This document outlines the coding standards, conventions, and best practices for
 
 ## 🏗️ Component Structure
 
+### What are React Components?
+React components are like custom HTML elements that you can create and reuse. Think of them as LEGO blocks - you can combine them to build complex interfaces.
+
 ### Component File Organization
 
 ```typescript
 // 1. Imports (grouped and sorted)
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { useState } from 'react'  // React hook for managing state
+import { Button } from '@/components/ui/button'  // Custom button component
+import { Card } from '@/components/ui/card'  // Custom card component
 
-// 2. Types and Interfaces
+// 2. Types and Interfaces (TypeScript definitions)
 interface ComponentProps {
-  title: string
-  onAction: () => void
+  title: string  // The title text to display
+  onAction: () => void  // Function to call when button is clicked
 }
 
-// 3. Main Component
+// 3. Main Component (the actual component function)
 export function Component({ title, onAction }: ComponentProps) {
-  // Component logic
+  // Component logic goes here
   return (
     <Card>
       <h2>{title}</h2>
@@ -58,7 +61,7 @@ export function Component({ title, onAction }: ComponentProps) {
   )
 }
 
-// 4. Subcomponents (if any)
+// 4. Subcomponents (smaller components used within the main component)
 function SubComponent() {
   return <div>Sub component</div>
 }

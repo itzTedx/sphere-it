@@ -1,6 +1,6 @@
 # File Structure Guide
 
-This document provides a comprehensive overview of the Sphere Global project structure and explains the organization of files and directories.
+This document provides a comprehensive overview of the Sphere Global project structure and explains the organization of files and directories. It's designed to be accessible for developers of all experience levels, including those new to React and modern web development.
 
 ## 📁 Root Directory Structure
 
@@ -22,7 +22,11 @@ sphere-global/
 
 ### App Router (`src/app/`)
 
-The application uses Next.js 16 App Router for file-based routing:
+The application uses Next.js 16 App Router for file-based routing. This means:
+- **File-based Routing**: The URL structure is determined by the file and folder structure
+- **Automatic Routing**: Next.js automatically creates routes based on your file structure
+- **Server Components**: By default, components render on the server for better performance
+- **Client Components**: Components that need browser features are marked with `'use client'`
 
 ```
 src/app/
@@ -84,7 +88,7 @@ src/assets/
 
 ### Components (`src/components/`)
 
-Reusable UI components organized by purpose:
+Reusable UI components organized by purpose. In React, components are like building blocks that can be reused throughout the application:
 
 ```
 src/components/
@@ -146,7 +150,7 @@ src/data/
 
 ### Hooks (`src/hooks/`)
 
-Custom React hooks for reusable logic:
+Custom React hooks for reusable logic. Hooks are functions that let you "hook into" React features like state and lifecycle methods:
 
 ```
 src/hooks/
@@ -169,7 +173,7 @@ src/lib/
 
 ### Modules (`src/modules/`)
 
-Feature-specific modules:
+Feature-specific modules that contain related functionality grouped together:
 
 ```
 src/modules/
@@ -260,10 +264,10 @@ public/
 ## 📋 File Naming Conventions
 
 ### Pages and Components
-- **Pages**: `page.tsx` (App Router convention)
-- **Layouts**: `layout.tsx` (App Router convention)
-- **Components**: PascalCase (e.g., `UserProfile.tsx`)
-- **Hooks**: camelCase starting with `use` (e.g., `useAutoHeight.ts`)
+- **Pages**: `page.tsx` (Next.js App Router convention - this file creates a route)
+- **Layouts**: `layout.tsx` (Next.js App Router convention - wraps pages with common elements)
+- **Components**: PascalCase (e.g., `UserProfile.tsx`) - React components are typically capitalized
+- **Hooks**: camelCase starting with `use` (e.g., `useAutoHeight.ts`) - React hooks must start with "use"
 
 ### Directories
 - **Route Groups**: Parentheses (e.g., `(root)`)
@@ -292,22 +296,22 @@ public/
 
 ## 📝 Best Practices
 
-1. **Component Organization**: Group related components in directories
-2. **Asset Management**: Use appropriate formats (SVG for icons, WebP for images)
-3. **Type Safety**: Define types in dedicated files
-4. **Code Splitting**: Use dynamic imports for large components
-5. **Performance**: Optimize images and fonts
-6. **Accessibility**: Follow WCAG guidelines in component design
+1. **Component Organization**: Group related components in directories (like organizing tools in a toolbox)
+2. **Asset Management**: Use appropriate formats (SVG for icons, WebP for images) for optimal performance
+3. **Type Safety**: Define types in dedicated files to catch errors early and improve code quality
+4. **Code Splitting**: Use dynamic imports for large components to improve page load times
+5. **Performance**: Optimize images and fonts to ensure fast loading
+6. **Accessibility**: Follow WCAG guidelines to ensure the site works for all users
 
 ## 🚀 Adding New Features
 
 When adding new features:
 
-1. **Pages**: Add to appropriate route group in `src/app/`
-2. **Components**: Create in `src/components/` with proper organization
-3. **Data**: Add to `src/data/` for static content
-4. **Types**: Define in `src/types/` for TypeScript support
-5. **Styles**: Add to `src/styles/` for global styles
-6. **Assets**: Place in `public/` for static assets
+1. **Pages**: Add to appropriate route group in `src/app/` (creates new URLs)
+2. **Components**: Create in `src/components/` with proper organization (reusable UI pieces)
+3. **Data**: Add to `src/data/` for static content (text, images, configuration)
+4. **Types**: Define in `src/types/` for TypeScript support (helps catch errors)
+5. **Styles**: Add to `src/styles/` for global styles (affects the entire site)
+6. **Assets**: Place in `public/` for static assets (images, icons, fonts)
 
-This structure ensures maintainability, scalability, and follows Next.js best practices.
+This structure ensures maintainability, scalability, and follows Next.js best practices. Think of it like organizing a house - each room has a specific purpose, and everything has its place.
