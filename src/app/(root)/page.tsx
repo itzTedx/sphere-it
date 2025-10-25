@@ -88,7 +88,7 @@ export default function Home() {
       <WhyUs />
       <Resources />
       <Testimonials />
-      <Cta />
+      <Cta showForm />
     </main>
   );
 }

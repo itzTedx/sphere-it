@@ -26,9 +26,9 @@ export const Clients = memo(() => {
                 <IconChevronRight className="ml-1 inline-block size-3" />
               </Link>
             </div>
-            <ul className="grid grid-cols-6 items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs">
+            <ul className="sm:grid-col-4 grid grid-cols-3 items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs md:grid-cols-5 lg:grid-cols-6">
               {CLIENTS.map((client) => (
-                <li className="relative m-9 aspect-16/6" key={client.id}>
+                <li className="relative m-3 aspect-16/6 max-md:last:hidden md:m-9" key={client.id}>
                   <Image
                     alt={`${client.name} logo`}
                     className="object-contain object-center"

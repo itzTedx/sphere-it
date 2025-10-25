@@ -1,0 +1,157 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Field, FieldError, FieldGroup, FieldLabel, FieldLabelAsterisk } from "@/components/ui/field";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import { Textarea } from "@/components/ui/textarea";
+
+import { IconEmail } from "@/assets/icons/email";
+import { IconPhone } from "@/assets/icons/phone";
+import { IconUser } from "@/assets/icons/user";
+
+import { QuickEnquireType, quickEnquirySchema } from "./validators/enquiry-schema";
+
+export const QuickEnquiryForm = () => {
+  const form = useForm<QuickEnquireType>({
+    resolver: zodResolver(quickEnquirySchema),
+    mode: "onBlur",
+  });
+
+  function onSubmit(data: QuickEnquireType) {
+    toast("You submitted the following values:", {
+      description: (
+        <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
+          <code>{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+      position: "bottom-right",
+      classNames: {
+        content: "flex flex-col gap-2",
+      },
+      style: {
+        "--border-radius": "calc(var(--radius)  + 4px)",
+      } as React.CSSProperties,
+    });
+  }
+
+  return (
+    <form aria-labelledby="enquiry-form-heading" onSubmit={form.handleSubmit(onSubmit)}>
+      <FieldGroup>
+        <Controller
+          control={form.control}
+          name="name"
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel aria-invalid={fieldState.invalid} htmlFor={field.name}>
+                Name <FieldLabelAsterisk />
+              </FieldLabel>
+              <InputGroup>
+                <InputGroupInput
+                  placeholder="Your Name"
+                  {...field}
+                  aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                  aria-invalid={fieldState.invalid}
+                  id={field.name}
+                />
+                <InputGroupAddon>
+                  <IconUser />
+                </InputGroupAddon>
+              </InputGroup>
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+            </Field>
+          )}
+        />
+
+        <div className="grid grid-cols-2 gap-3">
+          <Controller
+            control={form.control}
+            name="email"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={field.name}>
+                  Email <FieldLabelAsterisk />
+                </FieldLabel>
+                <InputGroup>
+                  <InputGroupInput
+                    placeholder="We'll reply here"
+                    {...field}
+                    aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                    aria-invalid={fieldState.invalid}
+                    id={field.name}
+                  />
+                  <InputGroupAddon>
+                    <IconEmail />
+                  </InputGroupAddon>
+                </InputGroup>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+              </Field>
+            )}
+          />
+          <Controller
+            control={form.control}
+            name="phone"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={field.name}>Phone</FieldLabel>
+                <InputGroup>
+                  <InputGroupInput
+                    placeholder="+971 56 789 4321"
+                    {...field}
+                    aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                    aria-invalid={fieldState.invalid}
+                    id={field.name}
+                  />
+                  <InputGroupAddon>
+                    <IconPhone className="size-3.5" />
+                  </InputGroupAddon>
+                </InputGroup>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+              </Field>
+            )}
+          />
+        </div>
+        <Controller
+          control={form.control}
+          name="message"
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor={field.name}>
+                Enquiry <FieldLabelAsterisk />
+              </FieldLabel>
+
+              <Textarea
+                {...field}
+                aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                aria-invalid={fieldState.invalid}
+                className="field-sizing-fixed min-h-[96px]"
+                id={field.name}
+                placeholder="Share your questions with our expert…"
+              />
+
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+            </Field>
+          )}
+        />
+
+        <Button className="relative" type="submit">
+          Send Message
+        </Button>
+        <div className="flex items-center gap-3">
+          <div className="-space-x-1 flex flex-1 items-center justify-center">
+            <div className="h-0.5 w-full bg-gradient-to-r from-stone-200 to-primary-600" />
+            <div className="size-1.5 rounded-full bg-primary-600" />
+          </div>
+          <span className="font-display text-muted-foreground">or continue with</span>
+          <div className="-space-x-1 flex flex-1 items-center justify-center">
+            <div className="size-1.5 rounded-full bg-primary-600" />
+            <div className="h-0.5 w-full bg-gradient-to-l from-stone-200 to-primary-600" />
+          </div>
+        </div>
+      </FieldGroup>
+    </form>
+  );
+};

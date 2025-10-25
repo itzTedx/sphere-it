@@ -5,7 +5,6 @@ import Link from "next/link";
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Marquee } from "@/components/ui/marquee";
 
 import { IconArrowRight } from "@/assets/icons";
 
@@ -18,9 +17,9 @@ export const WhyUs = memo(() => {
       className="relative z-50 my-20 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
     >
       <div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
-        <header className="space-y-4">
+        <header className="space-y-2 md:space-y-4">
           <Badge variant="secondary">Why sphere it</Badge>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid gap-2 md:grid-cols-2 md:gap-4">
             <h2 className="text-primary-900 text-title-4 md:text-title-3 xl:text-title-2" id="why-us-heading">
               What sets <span className="text-primary-600">Sphere IT apart</span>
             </h2>
@@ -124,7 +123,7 @@ function ScalableCard({ className }: CardProps) {
   return (
     <article className={cn("group rounded-2xl bg-card shadow-md", className)}>
       <div className="relative aspect-6/4 w-full overflow-hidden lg:aspect-6/3 xl:aspect-6/4">
-        <div>
+        {/* <div>
           <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
             <div className="aspect-video h-24 rounded-xl bg-muted" />
           </Marquee>
@@ -134,15 +133,15 @@ function ScalableCard({ className }: CardProps) {
           <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
             <div className="aspect-video h-24 rounded-xl bg-muted" />
           </Marquee>
-        </div>
-        {/* <Image
+        </div> */}
+        <Image
           alt="Flexible and scalable talent models for enterprise technology solutions"
           className="object-cover object-center transition-transform group-hover:scale-105"
           fill
           loading="lazy"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/flexible.svg"
-        /> */}
+        />
       </div>
       <div className="p-6 pt-0 sm:p-8 sm:pt-0 xl:p-10 xl:pt-0">
         <h3 className="text-center font-semibold text-primary-900 text-title-5 xl:text-title-3">

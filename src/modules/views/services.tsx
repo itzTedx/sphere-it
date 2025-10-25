@@ -6,6 +6,7 @@ import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 import { Tabs, TabsContent, TabsContents, TabsList, TabsTrigger } from "@/components/ui/radix/tabs";
 
 import { IconArrowRight, IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons";
@@ -18,10 +19,10 @@ export const Services = memo(() => {
       aria-labelledby="services-heading"
       className="relative overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50"
     >
-      <div className="max-sm:px-0">
+      <div className="relative max-sm:px-0">
         <Tabs
           aria-label="Services navigation"
-          className="container max-w-7xl pb-12 max-sm:px-0 md:border-x"
+          className="container relative z-10 max-w-7xl pb-12 max-sm:px-0 md:border-x"
           defaultValue="elevate"
         >
           <div className="-space-x-px relative mx-auto inline-flex max-sm:bg-card max-sm:px-4 md:pb-4">
@@ -121,7 +122,7 @@ export const Services = memo(() => {
             </svg>
           </div>
           <div className="container max-w-6xl">
-            <Card className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none md:p-1.5">
+            <Card className="rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none backdrop-blur-md md:p-1.5">
               <TabsContents className="rounded-3xl bg-card p-6 shadow-md md:px-12 md:py-16" mode="auto-height">
                 {SERVICES.map(({ Icon, ...service }) => (
                   <TabsContent
@@ -179,6 +180,17 @@ export const Services = memo(() => {
             <MiniCta className="md:-mt-14 mt-4 md:mx-14" />
           </div>
         </Tabs>
+        <FlickeringGrid
+          aria-hidden="true"
+          className="absolute inset-0 z-1 opacity-50 [mask-image:radial-gradient(820px_circle_at_top,white,transparent)]"
+          color="#C3A5FA"
+          flickerChance={0.1}
+          gridGap={4}
+          height={1080}
+          maxOpacity={0.5}
+          squareSize={4}
+          width={1920}
+        />
       </div>
     </section>
   );
