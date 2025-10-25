@@ -13,7 +13,7 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 z-9999  bg-[radial-gradient(transparent_1px,_#fff)] bg-[size:4px_4px] bg-card/80 text-foreground backdrop-blur-xl transition-all duration-500 ease-out md:top-2 md:inset-x-3 md:rounded-md"
+        "fixed top-0 z-9999 bg-[radial-gradient(transparent_1px,_#fff)] bg-[size:4px_4px] bg-card/80 text-foreground backdrop-blur-xl transition-all duration-500 ease-out max-md:w-full md:inset-x-3 md:top-2 md:rounded-md"
       )}
     >
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between font-display">

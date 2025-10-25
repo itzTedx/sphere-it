@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/ui/marquee";
 
 import { IconArrowRight } from "@/assets/icons";
 
@@ -123,14 +124,25 @@ function ScalableCard({ className }: CardProps) {
   return (
     <article className={cn("group rounded-2xl bg-card shadow-md", className)}>
       <div className="relative aspect-6/4 w-full overflow-hidden lg:aspect-6/3 xl:aspect-6/4">
-        <Image
+        <div>
+          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
+            <div className="aspect-video h-24 rounded-xl bg-muted" />
+          </Marquee>
+          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]" reverse>
+            <div className="aspect-video h-24 rounded-xl bg-muted" />
+          </Marquee>
+          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
+            <div className="aspect-video h-24 rounded-xl bg-muted" />
+          </Marquee>
+        </div>
+        {/* <Image
           alt="Flexible and scalable talent models for enterprise technology solutions"
           className="object-cover object-center transition-transform group-hover:scale-105"
           fill
           loading="lazy"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/flexible.svg"
-        />
+        /> */}
       </div>
       <div className="p-6 pt-0 sm:p-8 sm:pt-0 xl:p-10 xl:pt-0">
         <h3 className="text-center font-semibold text-primary-900 text-title-5 xl:text-title-3">

@@ -196,7 +196,7 @@ export default function AboutPage() {
                           {timeline.lists.map(({ id, Icon, item }) => (
                             <li className="flex items-center gap-3" key={id}>
                               <Icon aria-hidden="true" className="size-4 text-accent" />
-                              <p className="font-display text-stone-800 text-subhead-sm">{item}</p>
+                              <p className="font-display text-stone-600 text-subhead-sm">{item}</p>
                             </li>
                           ))}
                         </ul>
