@@ -27,7 +27,10 @@ export const Cta = memo(
     description = "Get the accuracy, scalability, and impact your business needs - delivered with precision and pragmatism.",
   }: CtaProps) => {
     return (
-      <section aria-labelledby="cta-heading" className="relative max-md:container max-sm:pb-12 xl:mb-12">
+      <section
+        aria-labelledby="cta-heading"
+        className={cn("relative max-md:container max-sm:pb-12", showForm ? "md:mt-20 md:mb-32" : "xl:mb-12")}
+      >
         <div className="xl:border-y">
           <div className="relative mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 sm:p-8 md:p-12 lg:rounded-none lg:p-16 xl:rounded-3xl">

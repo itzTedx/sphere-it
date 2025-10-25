@@ -6,6 +6,7 @@ import { db } from "@/server";
 import { sendEmail } from "../emails";
 import InquiryReact, { InquiryPlainText } from "../emails/templates/quick-enquiry";
 import { env } from "../env/server";
+import redis from "../redis";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -44,30 +45,25 @@ export const auth = betterAuth({
   },
   // hooks: {
   //   after: createAuthMiddleware(async (ctx) => {
+  //     ctx.context.sco
   //     if (ctx.path.startsWith("/sign-in")) {
-  //       const session = ctx.context.session;
-  //       console.log("new session triggered");
-  //       console.log("session ", ctx.context);
-
-  //       if (session) {
-  //         const data = {
-  //           name: session.user.name,
-  //           email: session.user.email,
-  //           message: `New Inquiry via LinkedIn - ${session.user.name} Just Reached Out`,
-  //         };
-
-  //         console.log("sending email...");
-  //         sendEmail({
-  //           email: session?.user.email,
-  //           subject: "New Enquiry Received - sphereitglobal.com",
-  //           react: InquiryReact(data),
-  //           text: InquiryPlainText(data),
-  //         });
-  //         console.log("Email send successful");
-  //       }
+  //       console.log("after hook");
   //     }
   //   }),
   // },
+  secondaryStorage: {
+    get: async (key) => {
+      const value = await redis.get(`session:${key}`);
+      return value ?? null;
+    },
+    set: async (key, value, ttl) => {
+      if (ttl) await redis.setex(`session:${key}`, ttl, value);
+      else await redis.set(`session:${key}`, value);
+    },
+    delete: async (key) => {
+      await redis.del(`session:${key}`);
+    },
+  },
   advanced: {
     cookiePrefix: "sphere-it",
     database: {
