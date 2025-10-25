@@ -13,6 +13,7 @@ import { IconEmail } from "@/assets/icons/email";
 import { IconPhone } from "@/assets/icons/phone";
 import { IconUser } from "@/assets/icons/user";
 
+import { LinkedInAuthButton } from "../auth/components/linkedin-button";
 import { QuickEnquireType, quickEnquirySchema } from "./validators/enquiry-schema";
 
 export const QuickEnquiryForm = () => {
@@ -151,6 +152,7 @@ export const QuickEnquiryForm = () => {
             <div className="h-0.5 w-full bg-gradient-to-l from-stone-200 to-primary-600" />
           </div>
         </div>
+        <LinkedInAuthButton />
       </FieldGroup>
     </form>
   );
