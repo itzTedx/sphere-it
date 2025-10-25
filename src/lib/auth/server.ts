@@ -1,6 +1,5 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { createAuthMiddleware } from "better-auth/api";
 
 import { db } from "@/server";
 
@@ -24,6 +23,7 @@ export const auth = betterAuth({
     user: {
       create: {
         after: async (user) => {
+          console.log("new session triggered");
           const data = {
             name: user.name,
             email: user.email,
@@ -42,32 +42,32 @@ export const auth = betterAuth({
       },
     },
   },
-  hooks: {
-    after: createAuthMiddleware(async (ctx) => {
-      if (ctx.path.startsWith("/sign-in")) {
-        const session = ctx.context.session;
-        console.log("new session triggered");
-        console.log("session ", ctx.context);
+  // hooks: {
+  //   after: createAuthMiddleware(async (ctx) => {
+  //     if (ctx.path.startsWith("/sign-in")) {
+  //       const session = ctx.context.session;
+  //       console.log("new session triggered");
+  //       console.log("session ", ctx.context);
 
-        if (session) {
-          const data = {
-            name: session.user.name,
-            email: session.user.email,
-            message: `New Inquiry via LinkedIn - ${session.user.name} Just Reached Out`,
-          };
+  //       if (session) {
+  //         const data = {
+  //           name: session.user.name,
+  //           email: session.user.email,
+  //           message: `New Inquiry via LinkedIn - ${session.user.name} Just Reached Out`,
+  //         };
 
-          console.log("sending email...");
-          sendEmail({
-            email: session?.user.email,
-            subject: "New Enquiry Received - sphereitglobal.com",
-            react: InquiryReact(data),
-            text: InquiryPlainText(data),
-          });
-          console.log("Email send successful");
-        }
-      }
-    }),
-  },
+  //         console.log("sending email...");
+  //         sendEmail({
+  //           email: session?.user.email,
+  //           subject: "New Enquiry Received - sphereitglobal.com",
+  //           react: InquiryReact(data),
+  //           text: InquiryPlainText(data),
+  //         });
+  //         console.log("Email send successful");
+  //       }
+  //     }
+  //   }),
+  // },
   advanced: {
     cookiePrefix: "sphere-it",
     database: {
