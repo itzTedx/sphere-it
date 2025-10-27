@@ -399,7 +399,7 @@ function DashedLine() {
 function TeamCard({ data }: { data: Team }) {
   return (
     <article className="group p-4" role="listitem">
-      <div className="relative aspect-square overflow-hidden rounded-full shadow-sm">
+      <div className="relative aspect-square overflow-hidden rounded-full">
         {data.linkedin && (
           <Link
             aria-label="Connect with team member on LinkedIn"

@@ -6,7 +6,6 @@ import { db } from "@/server";
 import { sendEmail } from "../emails";
 import InquiryReact, { InquiryPlainText } from "../emails/templates/quick-enquiry";
 import { env } from "../env/server";
-import redis from "../redis";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -51,19 +50,7 @@ export const auth = betterAuth({
   //     }
   //   }),
   // },
-  secondaryStorage: {
-    get: async (key) => {
-      const value = await redis.get(`session:${key}`);
-      return value ?? null;
-    },
-    set: async (key, value, ttl) => {
-      if (ttl) await redis.setex(`session:${key}`, ttl, value);
-      else await redis.set(`session:${key}`, value);
-    },
-    delete: async (key) => {
-      await redis.del(`session:${key}`);
-    },
-  },
+
   advanced: {
     cookiePrefix: "sphere-it",
     database: {
