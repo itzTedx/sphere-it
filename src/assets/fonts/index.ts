@@ -1,4 +1,4 @@
-import { JetBrains_Mono } from "next/font/google";
+import { Chivo_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
 export const inter = localFont({
@@ -113,8 +113,9 @@ export const sans = localFont({
   ],
 });
 
-export const mono = JetBrains_Mono({
+export const mono = Chivo_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
+  weight: "500",
   fallback: ["SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
 });

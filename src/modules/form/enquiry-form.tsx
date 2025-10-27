@@ -21,7 +21,6 @@ import { EnquireType, enquirySchema } from "./validators/enquiry-schema";
 export const EnquiryForm = () => {
   const form = useForm<EnquireType>({
     resolver: zodResolver(enquirySchema),
-    mode: "onBlur",
   });
 
   function onSubmit(data: EnquireType) {
@@ -68,55 +67,55 @@ export const EnquiryForm = () => {
             </Field>
           )}
         />
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Controller
+            control={form.control}
+            name="email"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={field.name}>
+                  Email <FieldLabelAsterisk />
+                </FieldLabel>
+                <InputGroup>
+                  <InputGroupInput
+                    placeholder="We'll reply here"
+                    {...field}
+                    aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                    aria-invalid={fieldState.invalid}
+                    id={field.name}
+                  />
+                  <InputGroupAddon>
+                    <IconEmail />
+                  </InputGroupAddon>
+                </InputGroup>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+              </Field>
+            )}
+          />
 
-        <Controller
-          control={form.control}
-          name="email"
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor={field.name}>
-                Email <FieldLabelAsterisk />
-              </FieldLabel>
-              <InputGroup>
-                <InputGroupInput
-                  placeholder="We'll reply here"
-                  {...field}
-                  aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
-                  aria-invalid={fieldState.invalid}
-                  id={field.name}
-                />
-                <InputGroupAddon>
-                  <IconEmail />
-                </InputGroupAddon>
-              </InputGroup>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
-            </Field>
-          )}
-        />
-
-        <Controller
-          control={form.control}
-          name="phone"
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor={field.name}>Phone</FieldLabel>
-              <InputGroup>
-                <InputGroupInput
-                  placeholder="+971 56 789 4321"
-                  {...field}
-                  aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
-                  aria-invalid={fieldState.invalid}
-                  id={field.name}
-                />
-                <InputGroupAddon>
-                  <IconPhone className="size-3.5" />
-                </InputGroupAddon>
-              </InputGroup>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
-            </Field>
-          )}
-        />
-
+          <Controller
+            control={form.control}
+            name="phone"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={field.name}>Phone</FieldLabel>
+                <InputGroup>
+                  <InputGroupInput
+                    placeholder="+971 56 789 4321"
+                    {...field}
+                    aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                    aria-invalid={fieldState.invalid}
+                    id={field.name}
+                  />
+                  <InputGroupAddon>
+                    <IconPhone className="size-3.5" />
+                  </InputGroupAddon>
+                </InputGroup>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+              </Field>
+            )}
+          />
+        </div>
         <Controller
           control={form.control}
           name="subject"
@@ -149,7 +148,7 @@ export const EnquiryForm = () => {
                 {...field}
                 aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
                 aria-invalid={fieldState.invalid}
-                className="min-h-[120px]"
+                className="min-h-[90px]"
                 id={field.name}
                 placeholder="Share your questions with our expert…"
               />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -205,6 +206,7 @@ export default function ContactPage() {
             </Button>
           </article>
         </section>
+        <Cta />
       </main>
     </>
   );

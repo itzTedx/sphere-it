@@ -373,7 +373,7 @@ export default function AboutPage() {
             ))}
           </ul>
         </section>
-        <Cta />
+        <Cta showForm />
       </main>
     </>
   );

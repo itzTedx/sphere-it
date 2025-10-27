@@ -85,7 +85,7 @@
 
   --text-badge: 0.75rem;
   --text-badge--line-height: 1; 
-  --text-badge--letter-spacing: -0.015rem;
+  --text-badge--letter-spacing: 0.002rem;
   --text-badge--font-weight: 500;
 
   --text-label: 0.875rem;

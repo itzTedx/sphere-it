@@ -27,11 +27,9 @@ export const DesktopNavLinks = () => {
               <>
                 <NavigationMenuTrigger aria-expanded="false" aria-haspopup="true">
                   {href ? (
-                    <NavigationMenuLink asChild>
-                      <Link aria-label={label} href={href} tabIndex={-1} title={label}>
-                        {label}
-                      </Link>
-                    </NavigationMenuLink>
+                    <Link aria-label={label} href={href} tabIndex={-1} title={label}>
+                      {label}
+                    </Link>
                   ) : (
                     label
                   )}

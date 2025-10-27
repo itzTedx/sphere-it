@@ -44,8 +44,17 @@ export const TableOfContent = ({ className }: Props) => {
         });
       }
     };
-    // Extract headings with IDs from the page, excluding footer headings
-    const headingElements = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");
+    // Check if there's an article tag on the page
+    const articleElement = document.querySelector("article");
+
+    if (!articleElement) {
+      setHeadings([]);
+      setIsLoading(false);
+      return;
+    }
+
+    // Extract headings with IDs from within the article tag only
+    const headingElements = articleElement.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");
     const filteredHeadings = Array.from(headingElements).filter(
       (heading) => !heading.closest("footer") && !heading.id.startsWith("footer-heading-")
     );

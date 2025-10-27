@@ -104,7 +104,6 @@ export default function PrivacyPage() {
           <article
             aria-label="Privacy Policy Content"
             className="prose prose-stone container col-span-1 max-w-none border-l-0 py-6 prose-a:text-primary-600 prose-a:transition-colors prose-a:hover:text-accent lg:col-span-3 lg:border-l lg:py-12"
-            role="article"
           >
             <section aria-labelledby="introduction">
               <h2 className="sr-only" id="introduction">
