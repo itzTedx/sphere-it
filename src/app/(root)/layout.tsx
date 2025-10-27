@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 
+import Link from "next/link";
+
 import ReactLenis from "lenis/react";
 
 import { BreakpointIndicator } from "@/components/dev/breakpoint-ind";
@@ -74,12 +76,7 @@ export default function RootLayout({
       <body className={cn(inter.variable, sans.className, mono.variable, "antialiased")}>
         <Providers>
           {/* Skip Navigation Links */}
-          <a
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary-600 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
-            href="#main-content"
-          >
-            Skip to main content
-          </a>
+          <SkipToContent />
 
           <div className="pointer-events-none fixed inset-0 z-20 mx-auto flex h-full w-full max-w-7xl justify-between">
             <div className="h-full w-px bg-border" />
@@ -96,5 +93,16 @@ export default function RootLayout({
         <div aria-atomic="true" aria-live="polite" className="sr-only" id="live-region" />
       </body>
     </html>
+  );
+}
+
+function SkipToContent() {
+  return (
+    <Link
+      className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3.5 focus-visible:left-3 focus-visible:z-99999 focus-visible:inline-block focus-visible:rounded-md focus-visible:bg-muted focus-visible:px-3 focus-visible:py-2 focus-visible:font-display focus-visible:text-muted-foreground focus-visible:text-subhead-sm focus-visible:ring-primary-600"
+      href="#main-content"
+    >
+      Skip to main content
+    </Link>
   );
 }

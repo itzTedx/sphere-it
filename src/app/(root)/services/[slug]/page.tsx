@@ -158,7 +158,7 @@ export default async function ServicePage({ params }: Props) {
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} type="application/ld+json" />
-      <main>
+      <main id="main-content">
         <header className="space-y-8 border-b bg-card py-20 sm:space-y-12 md:space-y-14 lg:py-28">
           <div className="container grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
             <div className="space-y-6">

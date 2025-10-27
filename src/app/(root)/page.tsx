@@ -80,7 +80,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main id="main-content">
+    <main>
       <Hero />
       <Services />
       <Clients />

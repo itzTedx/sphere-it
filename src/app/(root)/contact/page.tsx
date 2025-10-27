@@ -123,7 +123,7 @@ export default function ContactPage() {
             </article>
           </section>
         </header>
-        <section className="container grid max-w-7xl gap-8 pb-16 sm:gap-12 sm:pb-24 lg:grid-cols-2">
+        <section className="container grid max-w-7xl gap-8 pb-16 sm:gap-12 sm:pb-24 lg:grid-cols-2" id="main-content">
           <div className="space-y-3 lg:sticky lg:top-[11vh] lg:h-fit">
             <h2 className="text-primary-900 text-title-2">Accelerate Your Growth with Sphere IT Global Solutions</h2>
             <p className="text-base text-stone-600 sm:text-lg">

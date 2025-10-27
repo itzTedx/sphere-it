@@ -84,15 +84,11 @@ export default function ServicesPage() {
             </div>
           </div>
         </header>
-        {/* <section>
-          <div className="container max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-            <p className="text-base text-stone-700 sm:text-lg">
-              Sphere IT helps organizations simplify complexity and accelerate results through five integrated service
-              lines - each designed to deliver measurable outcomes with precision and pragmatism.
-            </p>
-          </div>
-        </section> */}
-        <section className="relative z-50 mx-4 mt-12 rounded-2xl sm:mx-6 sm:rounded-3xl sm:p-8 md:rounded-4xl md:bg-card md:p-12 lg:p-16">
+
+        <section
+          className="relative z-50 mx-4 mt-12 rounded-2xl sm:mx-6 sm:rounded-3xl sm:p-8 md:rounded-4xl md:bg-card md:p-12 lg:p-16"
+          id="main-content"
+        >
           <ul className="space-y-8 sm:space-y-12 md:space-y-16">
             {SERVICES.map((service) => (
               <ServiceCard key={service.id} service={service} />
