@@ -24,6 +24,51 @@ export const TEAMS: Team[] = [
     designation: "Backend Engineer",
     image: "/images/team/abdul-rahman.webp",
   },
+  {
+    name: "Affan Shaikh",
+    designation: "Software Engineer",
+    image: "/images/team/affan-shaikh.webp",
+  },
+  {
+    name: "Ajay Jayakumar",
+    designation: "Application Engineer",
+    image: "/images/team/ajay-jayakumar.webp",
+  },
+  {
+    name: "Analisa Iype",
+    designation: "Intern COO Office",
+    image: "/images/team/analisa-iype.webp",
+  },
+  {
+    name: "Anusha Shahid",
+    designation: "HR Analyst",
+    image: "/images/team/anusha-shahid.webp",
+  },
+  {
+    name: "Ashfin Arif",
+    designation: "Account",
+    image: "/images/team/ashfin-arif.webp",
+  },
+  {
+    name: "Avantika Sai",
+    designation: "Junior IT Support",
+    image: "/images/team/avantika-sai.webp",
+  },
+  {
+    name: "Darryl Pais",
+    designation: "Head of Business Operations",
+    image: "/images/team/darryl-pais.webp",
+  },
+  {
+    name: "Ganapathy T",
+    designation: "Technical Recruiter",
+    image: "/images/team/ganapathy-t.webp",
+  },
+  {
+    name: "Ganapathy T",
+    designation: "Technical Recruiter",
+    image: "/images/team/ganapathy-t.webp",
+  },
 ];
 
 export type Team = {
