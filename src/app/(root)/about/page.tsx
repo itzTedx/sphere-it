@@ -19,7 +19,7 @@ import { LogoOutline } from "@/assets/logo";
 
 import { CORE_VALUES, HIRING_CTA, OUR_VALUES, TIMELINE } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
-import { TEAMS, Team } from "@/data/teams";
+import { LEADERS, TEAMS, Team } from "@/data/teams";
 import { Clients } from "@/modules/views";
 
 import { breadcrumbStructuredData, structuredData } from "./structured-data";
@@ -288,7 +288,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* <Item className="border-border" size="sm" variant="muted">
+            <Item className="border-border" size="sm" variant="muted">
               <ItemMedia>
                 <IconCheckmark aria-hidden="true" className="size-5 text-stone-600" />
               </ItemMedia>
@@ -304,10 +304,10 @@ export default function AboutPage() {
               className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
               role="list"
             >
-              {TEAMS.map((team, i) => (
+              {LEADERS.map((team, i) => (
                 <TeamCard data={team} key={i} />
               ))}
-            </div> */}
+            </div>
 
             <Item className="border-border" size="sm" variant="muted">
               <ItemMedia>
@@ -419,7 +419,7 @@ function TeamCard({ data }: { data: Team }) {
 
       <div className="mt-4 space-y-1 px-4 text-center font-display">
         <h4 className="text-stone-900 text-subhead-lg">{data.name}</h4>
-        <p className="text-stone-500 text-subhead-base">{data.designation}</p>
+        <p className="text-stone-500 text-subhead-sm">{data.designation}</p>
       </div>
     </article>
   );

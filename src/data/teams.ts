@@ -1,4 +1,51 @@
+export const LEADERS: Team[] = [
+  {
+    name: "Gireesh Ramachandran",
+    designation: "CEO",
+    image: "/images/team/gireesh-ramachandran.webp",
+  },
+  {
+    name: "Sheen Stanley",
+    designation: "Chief Operating Officer",
+    image: "/images/team/sheen-stanley.webp",
+  },
+  {
+    name: "Jayakrishnan Nair",
+    designation: "Head of IT Security",
+    image: "/images/team/jayakrishnan-nair.webp",
+  },
+  {
+    name: "Melwyn P",
+    designation: "Business Development Manager",
+    image: "/images/team/melwyn-p.webp",
+  },
+  {
+    name: "Mukul Adhikari",
+    designation: "Business Development Manager",
+    image: "/images/team/mukul-adhikari.webp",
+  },
+];
 export const TEAMS: Team[] = [
+  {
+    name: "Shabanash Ummer",
+    designation: "",
+    image: "/images/team/shabanash-ummer.webp",
+  },
+  {
+    name: "Vidya Chandran",
+    designation: "Technical IT Recruiter",
+    image: "/images/team/vidya-chandran.webp",
+  },
+  {
+    name: "Sreelekshmi Prithviraj",
+    designation: "Digital Media Specialist",
+    image: "/images/team/sreelekshmi-prithviraj.webp",
+  },
+  {
+    name: "Merlyn Dsouza",
+    designation: "HR Manager",
+    image: "/images/team/merlyn-dsouza.webp",
+  },
   {
     name: "Akansha Saran",
     designation: "Technical Recruiter",
@@ -58,11 +105,6 @@ export const TEAMS: Team[] = [
     name: "Darryl Pais",
     designation: "Head of Business Operations",
     image: "/images/team/darryl-pais.webp",
-  },
-  {
-    name: "Ganapathy T",
-    designation: "Technical Recruiter",
-    image: "/images/team/ganapathy-t.webp",
   },
   {
     name: "Ganapathy T",
