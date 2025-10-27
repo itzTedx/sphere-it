@@ -288,7 +288,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <Item className="border-border" size="sm" variant="muted">
+            {/* <Item className="border-border" size="sm" variant="muted">
               <ItemMedia>
                 <IconCheckmark aria-hidden="true" className="size-5 text-stone-600" />
               </ItemMedia>
@@ -307,7 +307,7 @@ export default function AboutPage() {
               {TEAMS.map((team, i) => (
                 <TeamCard data={team} key={i} />
               ))}
-            </div>
+            </div> */}
 
             <Item className="border-border" size="sm" variant="muted">
               <ItemMedia>
