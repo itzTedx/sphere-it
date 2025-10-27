@@ -19,6 +19,7 @@ import { LogoOutline } from "@/assets/logo";
 
 import { CORE_VALUES, HIRING_CTA, OUR_VALUES, TIMELINE } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
+import { TEAMS, Team } from "@/data/teams";
 import { Clients } from "@/modules/views";
 
 import { breadcrumbStructuredData, structuredData } from "./structured-data";
@@ -303,8 +304,8 @@ export default function AboutPage() {
               className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
               role="list"
             >
-              {Array.from({ length: 6 }).map((_, i) => (
-                <TeamCard i={i} key={i} />
+              {TEAMS.map((team, i) => (
+                <TeamCard data={team} key={i} />
               ))}
             </div>
 
@@ -324,8 +325,8 @@ export default function AboutPage() {
               className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
               role="list"
             >
-              {Array.from({ length: 6 }).map((_, i) => (
-                <TeamCard i={i} key={i} />
+              {TEAMS.map((team, i) => (
+                <TeamCard data={team} key={i} />
               ))}
             </div>
           </div>
@@ -395,29 +396,31 @@ function DashedLine() {
   );
 }
 
-function TeamCard({ i }: { i: number }) {
+function TeamCard({ data }: { data: Team }) {
   return (
-    <article className="p-4" key={i} role="listitem">
-      <div className="relative aspect-square overflow-hidden rounded-5xl shadow-sm">
+    <article className="group p-4" role="listitem">
+      <div className="relative aspect-square overflow-hidden rounded-full shadow-sm">
         <Image
-          alt={`Team member ${i + 1} profile photo`}
-          className="object-cover transition-transform hover:scale-105"
+          alt={`${data.name} - ${data.designation}`}
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
           fill
-          src={`/images/avatar-${i + 1}.jpg`}
+          src={data.image}
         />
       </div>
       <div className="mt-4 flex items-center justify-between px-4">
         <div className="space-y-1 font-display">
-          <h4 className="text-stone-900 text-subhead-lg">Person Name</h4>
-          <p className="text-stone-500 text-subhead-base">Designation</p>
+          <h4 className="text-stone-900 text-subhead-lg">{data.name}</h4>
+          <p className="text-stone-500 text-subhead-base">{data.designation}</p>
         </div>
-        <a
-          aria-label="Connect with team member on LinkedIn"
-          className="text-stone-700 transition-colors hover:text-primary-600"
-          href="https://linkedin.com/company/sphere-it-global"
-        >
-          <IconSocialLinkedin aria-hidden="true" />
-        </a>
+        {data.linkedin && (
+          <Link
+            aria-label="Connect with team member on LinkedIn"
+            className="text-stone-700 transition-colors hover:text-primary-600"
+            href="https://linkedin.com/company/sphere-it-global"
+          >
+            <IconSocialLinkedin aria-hidden="true" />
+          </Link>
+        )}
       </div>
     </article>
   );
