@@ -400,18 +400,6 @@ function TeamCard({ data }: { data: Team }) {
   return (
     <article className="group p-4" role="listitem">
       <div className="relative aspect-square overflow-hidden rounded-full shadow-sm">
-        <Image
-          alt={`${data.name} - ${data.designation}`}
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          fill
-          src={data.image}
-        />
-      </div>
-      <div className="mt-4 flex items-center justify-between px-4">
-        <div className="space-y-1 font-display">
-          <h4 className="text-stone-900 text-subhead-lg">{data.name}</h4>
-          <p className="text-stone-500 text-subhead-base">{data.designation}</p>
-        </div>
         {data.linkedin && (
           <Link
             aria-label="Connect with team member on LinkedIn"
@@ -421,6 +409,17 @@ function TeamCard({ data }: { data: Team }) {
             <IconSocialLinkedin aria-hidden="true" />
           </Link>
         )}
+        <Image
+          alt={`${data.name} - ${data.designation}`}
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          fill
+          src={data.image}
+        />
+      </div>
+
+      <div className="mt-4 space-y-1 px-4 text-center font-display">
+        <h4 className="text-stone-900 text-subhead-lg">{data.name}</h4>
+        <p className="text-stone-500 text-subhead-base">{data.designation}</p>
       </div>
     </article>
   );
