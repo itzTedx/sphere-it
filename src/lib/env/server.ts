@@ -6,11 +6,6 @@ export const env = createEnv({
     BASE_URL: z.url(),
     DATABASE_URL: z.url(),
 
-    // REDIS CONNECTION
-    REDIS_HOST: z.string(),
-    REDIS_PORT: z.string(),
-    REDIS_PASSWORD: z.string(),
-
     // LINKEDIN CREDENTIALS
     LINKEDIN_CLIENT_ID: z.string().min(1),
     LINKEDIN_CLIENT_SECRET: z.string().min(1),
