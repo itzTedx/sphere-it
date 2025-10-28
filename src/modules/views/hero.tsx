@@ -6,7 +6,7 @@ import { IconCheckmark } from "@/assets/icons";
 export const Hero = () => {
   return (
     <header className="bg-card" role="banner">
-      <section aria-labelledby="hero-heading" className="container max-w-7xl pt-20 pb-9 text-center md:pt-28">
+      <section aria-labelledby="hero-heading" className="container max-w-7xl pt-16 pb-9 text-center md:pt-12">
         <div className="mx-auto max-w-3xl space-y-6">
           <Badge className="mx-auto" showDashes>
             <IconCheckmark aria-hidden="true" className="text-accent" />
