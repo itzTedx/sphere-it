@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  typedRoutes: true,
+
   // Performance optimizations
   experimental: {
     optimizePackageImports: ["@radix-ui/react-tabs", "@radix-ui/react-navigation-menu", "lucide-react"],

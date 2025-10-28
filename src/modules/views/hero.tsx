@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -25,8 +27,8 @@ export const Hero = () => {
             className="flex items-center justify-center gap-4 max-sm:flex-col"
             role="group"
           >
-            <Button aria-describedby="hero-description" className="max-sm:w-full">
-              Explore Services
+            <Button aria-describedby="hero-description" asChild className="max-sm:w-full">
+              <Link href="/services">Explore Services</Link>
             </Button>
             <Button aria-describedby="hero-description" className="max-sm:w-full" variant="ghost">
               Contact us
