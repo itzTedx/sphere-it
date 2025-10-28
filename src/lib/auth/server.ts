@@ -1,3 +1,6 @@
+import { cache } from "react";
+import { headers } from "next/headers";
+
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
@@ -64,3 +67,6 @@ export const auth = betterAuth({
     },
   },
 });
+
+export const getSession = cache(async () => auth.api.getSession({ headers: await headers() }));
+export type AuthSession = Awaited<ReturnType<typeof getSession>>;
