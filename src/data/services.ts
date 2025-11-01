@@ -9,7 +9,7 @@ export const SERVICES: Service[] = [
     Icon: IconElevate,
     serviceTitle: "Elevate - Artificial Intelligence",
     title: "Powering Intelligent Transformation",
-    description: "Unlock the power of AI with compliant, ready-to-use solutions that deliver results faster.",
+    description: "Enterprise AI built for speed, scale, and precision.",
     overview:
       "Unlock the power of enterprise-grade AI through reusable components and compliant practices. Our AI solutions are rigorously tested, scalable, and designed to integrate seamlessly into your existing systems. So you see faster, safer, and smarter outcomes.",
     image: "/svg/elevate.svg",
