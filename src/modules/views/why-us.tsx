@@ -24,9 +24,9 @@ export const WhyUs = memo(() => {
               What sets <span className="text-primary-600">Sphere IT apart</span>
             </h2>
             <p className="text-balance text-base text-muted-foreground">
-              We believe technology should be both precisely engineered and practically applied. That's why
-              forward-looking organizations across the GCC trust us to deliver AI-driven platforms, intelligent
-              automation, resilient infrastructure, and on-demand expertise that create measurable outcomes.
+              We believe technology should be both precisely engineered and practically applied. That’s why
+              forward-looking technology organizations across the Middle East trust us to deliver AL-driven platforms,
+              intelligent automation, resilient infrastructure, and on-demand expertise that create measurable outcomes.
             </p>
           </div>
         </header>
