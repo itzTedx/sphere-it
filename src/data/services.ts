@@ -18,12 +18,12 @@ export const SERVICES: Service[] = [
       {
         id: 1,
         Icon: IconAiGear,
-        feature: "Accelerate AI adoption with 60+ reusable, compliant components.",
+        feature: "Enterprise grade Artificial Intelligence platform. ",
       },
       {
         id: 2,
         Icon: IconAiGear,
-        feature: "Deliver enterprise-grade intelligence powered by Agile and DevOps precision.",
+        feature: "Development with 60+ reuse accelerators. ",
       },
     ],
   },
@@ -32,7 +32,7 @@ export const SERVICES: Service[] = [
     Icon: IconAutomate,
     serviceTitle: "Automate - Process Excellence",
     title: "Simplifying Processes, Amplifying Performance",
-    description: "Streamline critical processes with low-code automation that saves time and reduces errors.",
+    description: "Technology enabled process engineering for measurable business outcomes.",
     overview:
       "Simplify critical processes with low-code automation tailored to regulated industries. By cutting cycle times, reducing errors, and ensuring compliance, we make operations more efficient and auditable-without unnecessary complexity.",
     image: "/svg/automate.svg",
@@ -41,12 +41,13 @@ export const SERVICES: Service[] = [
       {
         id: 1,
         Icon: IconAiGear,
-        feature: "Streamline operations with low-code and no-code automation.",
+        feature:
+          "Business process re-engineering to streamline core workflows, demonstrate early value, and adopt best-fit technologies.",
       },
       {
         id: 2,
         Icon: IconAiGear,
-        feature: "Cut cycle times and reduce errors - without disrupting workflows.",
+        feature: "Leverages RPA, low-code, and custom tools to automate and orchestrate rule-based processes.",
       },
     ],
   },
@@ -55,7 +56,7 @@ export const SERVICES: Service[] = [
     Icon: IconEvaluate,
     serviceTitle: "Evaluate - Data & Telemetry",
     title: "Turning Data into Decisive Action",
-    description: "Gain real-time insights and dashboards to make confident, data-driven decisions.",
+    description: "Master Data Management strategy with real-time, data-driven telemetry.",
     overview:
       "Turn data into action with real-time insights and proactive monitoring. Our telemetry-driven dashboards provide clarity for decision-makers, ensuring accurate reporting and early resolution of potential issues.",
     image: "/svg/evaluate.svg",
@@ -64,12 +65,12 @@ export const SERVICES: Service[] = [
       {
         id: 1,
         Icon: IconAiGear,
-        feature: "Gain real-time visibility with trusted, telemetry-driven insights.",
+        feature: "Real-time endpoint and application insights with proactive, data-driven telemetry.",
       },
       {
         id: 2,
         Icon: IconAiGear,
-        feature: "Empower leaders to act fast with accurate, proactive data.",
+        feature: "Trusted dashboards that deliver accurate real-time insights for executive decisions.",
       },
     ],
   },
@@ -78,7 +79,7 @@ export const SERVICES: Service[] = [
     Icon: IconAssure,
     serviceTitle: "Assure - Managed Platforms",
     title: "Building Confidence through Continuity",
-    description: "Keep mission-critical platforms resilient, secure, and performing at their best.",
+    description: "Implementation and managed services for core applications and infrastructure.",
     overview:
       "Keep your mission-critical platforms resilient, secure, and compliant. From stability and uptime to optimized infrastructure, we ensure systems perform at their best. So your business never misses a beat.",
     image: "/svg/assure.svg",
@@ -87,12 +88,12 @@ export const SERVICES: Service[] = [
       {
         id: 1,
         Icon: IconAiGear,
-        feature: "Keep mission-critical systems stable, secure, and compliant.",
+        feature: "Mission-critical banking platforms kept stable, secure, and compliant.",
       },
       {
         id: 2,
         Icon: IconAiGear,
-        feature: "Safeguard uptime and resilience with proactive monitoring.",
+        feature: "Core infrastructure kept resilient, available, and optimized.",
       },
     ],
   },
@@ -101,7 +102,7 @@ export const SERVICES: Service[] = [
     Icon: IconAugment,
     serviceTitle: "Augment - Talent on Demand",
     title: "Expanding Capability, On Demand",
-    description: "Scale your teams flexibly with the right tech talent, when you need it.",
+    description: "Outcome-driven technology talent that scales with your digital journey.",
     overview:
       "Scale your IT capabilities with flexible talent models. Whether you need niche expertise or long-term support, we provide outcome-aligned professionals who integrate seamlessly into your teams, reducing overhead and accelerating delivery.",
     image: "/svg/augment.svg",
@@ -110,12 +111,12 @@ export const SERVICES: Service[] = [
       {
         id: 1,
         Icon: IconAiGear,
-        feature: "Scale your teams with certified, outcome-driven professionals.",
+        feature: "Technology talent augmentation to support CIO and CTO-led digital initiatives.",
       },
       {
         id: 2,
         Icon: IconAiGear,
-        feature: "Access the right expertise, right when you need it.",
+        feature: "Flexible engagement models with outcome-aligned contracts.",
       },
     ],
   },
