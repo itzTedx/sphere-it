@@ -59,7 +59,7 @@ export const Cta = memo(
               />
             </div>
             {showForm && (
-              <div className="-translate-y-1/2 absolute top-1/2 right-9 z-50 w-lg rounded-2xl bg-card p-9 shadow-md">
+              <div className="md:-translate-y-1/2 z-50 mt-5 rounded-2xl bg-card p-9 shadow-md md:absolute md:top-1/2 md:right-9 md:mt-0 md:w-lg">
                 <h5 className="mb-4 text-stone-800 text-title-4">Shall we talk</h5>
                 <QuickEnquiryForm />
               </div>
