@@ -5,9 +5,14 @@ import Link from "next/link";
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/ui/marquee";
+import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 
-import { IconArrowRight } from "@/assets/icons";
+import { IconArrowRight, IconChevronRight } from "@/assets/icons";
+import { IconLayers } from "@/assets/icons/layers";
+import { LogoIcon } from "@/assets/logo";
 
+import { TECH_STACKS } from "@/data/constants";
 import { cn } from "@/lib/utils";
 
 export const WhyUs = memo(() => {
@@ -19,24 +24,23 @@ export const WhyUs = memo(() => {
       <div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
         <header className="space-y-2 md:space-y-4">
           <Badge variant="secondary">Why sphere it</Badge>
-          <div className="grid gap-2 md:grid-cols-2 md:gap-4">
+          <div className="grid gap-2 md:grid-cols-3 md:gap-4">
             <h2 className="text-primary-900 text-title-4 md:text-title-3 xl:text-title-2" id="why-us-heading">
               What sets <span className="text-primary-600">Sphere IT apart</span>
             </h2>
-            <p className="text-balance text-base text-muted-foreground">
+            <p className="text-balance text-base text-muted-foreground md:col-span-2">
               We believe technology should be both precisely engineered and practically applied. That’s why
               forward-looking technology organizations across the Middle East trust us to deliver AL-driven platforms,
               intelligent automation, resilient infrastructure, and on-demand expertise that create measurable outcomes.
             </p>
           </div>
         </header>
-        <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2 xl:grid-rows-3 xl:gap-6">
-          <PrecisionCard className="order-1 xl:row-span-2" />
-          <PartnerCard className="order-2 lg:col-span-2" />
-          <ScalableCard className="lg:order-3" />
-          <ReliabilityCard className="lg:order-4 lg:row-span-2 lg:hidden xl:grid" />
-          <TechStackCard className="md:flex-row lg:order-2 lg:col-span-2 xl:order-5" />
-          <div className="order-6 col-span-full">
+        <div className="grid gap-4 md:grid-cols-12 xl:gap-6">
+          <PrecisionCard className="md:col-span-4" />
+          <PartnerCard className="md:col-span-8" />
+          <TechStackCard className="md:col-span-6" />
+          <ReliabilityCard className="md:col-span-6" />
+          <div className="col-span-full">
             <MiniCta
               description="We make it work for your business, reducing complexity and accelerating value."
               layout="vertical"
@@ -57,7 +61,7 @@ interface CardProps {
 
 function PrecisionCard({ className }: CardProps) {
   return (
-    <article className={cn("flex flex-col justify-between rounded-2xl bg-card shadow-md", className)}>
+    <article className={cn("flex flex-col justify-between rounded-2xl border bg-background", className)}>
       <div className="space-y-2 p-6 xl:space-y-4 xl:p-10">
         <header>
           <Badge variant="ghost">Guided by</Badge>
@@ -68,16 +72,7 @@ function PrecisionCard({ className }: CardProps) {
           delivers.
         </p>
       </div>
-      <div className="relative aspect-video lg:hidden xl:block">
-        <Image
-          alt="Precision and pragmatism in technology solutions - technical accuracy meets business sense"
-          className="object-cover"
-          fill
-          loading="lazy"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          src="/svg/guides.svg"
-        />
-      </div>
+
       <footer className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between xl:p-10">
         <div>
           <h4 className="text-primary-800 text-subhead-sm">Your Next Advantage</h4>
@@ -98,55 +93,83 @@ function PrecisionCard({ className }: CardProps) {
 
 function PartnerCard({ className }: CardProps) {
   return (
-    <article className={cn("rounded-2xl bg-card shadow-md", className)}>
-      <div className="relative h-48 w-full sm:h-56 lg:h-48 xl:h-64">
-        <Image
-          alt="Trusted partner in banking, financial, and industries requiring security and scalability"
-          className="object-cover object-top"
-          fill
-          loading="lazy"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw"
-          src="/svg/trusted.svg"
-        />
-      </div>
-      <div className="p-6 sm:p-8 lg:p-6 xl:p-10">
-        <h3 className="text-primary-900 text-title-5 xl:text-title-3">Trusted Partner in BFSI and Beyond</h3>
-        <p className="text-base text-muted-foreground lg:text-sm xl:text-base">
-          Deep domain expertise across banking, financial, and industries that demand security, scalability, and speed.
-        </p>
-      </div>
-    </article>
-  );
-}
+    <article className={cn("relative overflow-hidden rounded-2xl border bg-background", className)}>
+      <figure className="relative">
+        <div className="mx-auto h-9 w-md rounded-b-4xl border border-t-0" />
+        <div className="relative py-9">
+          <LogoIcon className="-translate-1/2 absolute top-1/2 left-1/2 z-20" />
+          <div className="absolute inset-y-0 right-1/2 z-10 w-1/4 bg-[linear-gradient(-90deg,rgba(105,33,196,1)0%,rgba(105,33,196,0.50)5%,rgba(105,33,196,0.25)20%,rgba(105,33,196,0)100%)] opacity-40" />
+          <div className="absolute inset-y-0 right-1/2 z-10 w-1/3 bg-[linear-gradient(-90deg,rgba(105,33,196,0.8)0%,rgba(105,33,196,0.4)5%,rgba(105,33,196,0.2)20%,rgba(105,33,196,0)100%)] opacity-60" />
+          <svg
+            className="-translate-y-1/2 absolute top-1/2 left-0 z-20 hidden md:block"
+            fill="none"
+            height="180"
+            viewBox="0 0 54 180"
+            width="54"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 55.9321H17.839C35.7237 55.9321 50.222 70.4305 50.222 88.3151C50.222 106.2 35.7236 120.698 17.839 120.698H0"
+              stroke="#A3A3A3"
+              strokeOpacity="0.1"
+              strokeWidth="2"
+            />
+            <path d="M0 173.11H52.022M52.2406 165.79V180" stroke="#A3A3A3" stroke-opacity="0.1" stroke-width="2" />
+            <path d="M0 7.32056H52.022M52.2406 0V14.2105" stroke="#A3A3A3" stroke-opacity="0.1" stroke-width="2" />
+          </svg>
 
-function ScalableCard({ className }: CardProps) {
-  return (
-    <article className={cn("group rounded-2xl bg-card shadow-md", className)}>
-      <div className="relative aspect-6/4 w-full overflow-hidden lg:aspect-6/3 xl:aspect-6/4">
-        {/* <div>
-          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
-            <div className="aspect-video h-24 rounded-xl bg-muted" />
+          <div className="absolute z-10 h-full w-48 bg-gradient-to-r from-background via-25% via-background to-transparent" />
+          <Marquee className="z-10 w-full [--duration:40s] [--gap:0.75rem]" repeat={3} reverse>
+            {TECH_STACKS.map((review) => (
+              <div
+                className="flex aspect-square w-24 items-center justify-center rounded-full border p-1"
+                key={review.name}
+              >
+                <div className="flex aspect-square w-20 items-center justify-center rounded-full border bg-stone-alpha-10">
+                  <div className="relative aspect-square size-10">
+                    <Image alt={review.name} className="object-contain" fill src={review.img} />
+                  </div>
+                </div>
+              </div>
+            ))}
           </Marquee>
-          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]" reverse>
-            <div className="aspect-video h-24 rounded-xl bg-muted" />
-          </Marquee>
-          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
-            <div className="aspect-video h-24 rounded-xl bg-muted" />
-          </Marquee>
-        </div> */}
-        <Image
-          alt="Flexible and scalable talent models for enterprise technology solutions"
-          className="object-cover object-center transition-transform group-hover:scale-105"
-          fill
-          loading="lazy"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          src="/svg/flexible.svg"
+          <div className="absolute top-0 right-0 z-10 h-full w-48 bg-gradient-to-l from-background via-25% via-background to-transparent" />
+          <svg
+            className="-translate-y-1/2 absolute top-1/2 right-0 z-20 hidden md:block"
+            fill="none"
+            height="180"
+            viewBox="0 0 54 180"
+            width="54"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M53.2402 55.9321H35.4012C17.5166 55.9321 3.01823 70.4305 3.01823 88.3151C3.01823 106.2 17.5166 120.698 35.4012 120.698H52.5585"
+              stroke="#A3A3A3"
+              strokeOpacity="0.1"
+              strokeWidth="2"
+            />
+            <path d="M53.2402 173.11H1.2182M0.999623 165.79V180" stroke="#A3A3A3" strokeOpacity="0.1" strokeWidth="2" />
+            <path d="M53.2402 7.32056H1.2182M0.999623 0V14.2105" stroke="#A3A3A3" strokeOpacity="0.1" strokeWidth="2" />
+          </svg>
+        </div>
+
+        <div className="mx-auto h-9 w-md rounded-t-4xl border border-b-0" />
+        <FlickeringGrid
+          aria-hidden="true"
+          className="absolute inset-0 z-1 opacity-50 [mask-image:radial-gradient(160px_circle_at_center,white,transparent)]"
+          color="#C3A5FA"
+          flickerChance={0.1}
+          gridGap={4}
+          height={1080}
+          maxOpacity={0.5}
+          squareSize={4}
+          width={1920}
         />
-      </div>
-      <div className="p-6 pt-0 sm:p-8 sm:pt-0 xl:p-10 xl:pt-0">
-        <h3 className="text-center font-semibold text-primary-900 text-title-5 xl:text-title-3">
-          <span className="text-accent">Flexible,</span> Scalable <br />
-          Talent Models
+      </figure>
+
+      <div className="p-6 sm:p-8 lg:p-6 xl:p-10">
+        <h3 className="text-primary-900 text-title-5 xl:text-title-3">
+          Trusted Partner For Your Technology Transformation.
         </h3>
       </div>
     </article>
@@ -155,50 +178,81 @@ function ScalableCard({ className }: CardProps) {
 
 function TechStackCard({ className }: CardProps) {
   return (
-    <article className={cn("flex flex-col rounded-2xl bg-card shadow-md", className)}>
-      <div className="p-6 sm:p-8 lg:flex-1 lg:px-10 lg:pt-10">
+    <article className={cn("relative grid overflow-hidden rounded-2xl border bg-background md:grid-cols-2", className)}>
+      <div className="p-6 pr-0 sm:p-8 lg:flex-1">
         <header>
           <Badge variant="ghost">Results-Driven Delivery</Badge>
-          <h3 className="text-primary-900 text-title-5 xl:text-title-3">Proven Delivery Framework</h3>
+          <h3 className="text-primary-900 text-title-5 xl:text-title-3">Driven by People, Powered by Technology.</h3>
         </header>
-        <p className="text-base text-muted-foreground xl:text-lg">
-          Accelerate transformation with a results-driven methodology built for complex, enterprise-scale challenges.
-        </p>
       </div>
-
-      <div className="relative h-48 w-full lg:h-auto lg:flex-1">
-        <Image
-          alt="Proven delivery framework for enterprise-scale technology transformation and results-driven methodology"
-          className="object-contain"
-          fill
-          loading="lazy"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw"
-          src="/svg/techstack.svg"
+      <div className="relative">
+        <div className="relative z-10 m-6 mb-0 space-y-3 rounded-t-xl bg-stone-alpha-10 p-3 pb-0 shadow-lg backdrop-blur-md">
+          <span className="flex items-center gap-2 text-muted-background">
+            <IconLayers /> Tech Stack
+          </span>
+          <div className="relative flex h-[240px] w-full overflow-hidden rounded-xl bg-card shadow-md">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-1/4 bg-gradient-to-b from-background/80 to-transparent"
+            />
+            <Marquee className="w-full p-4 [--duration:40s] [--gap:0.75rem]" repeat={3} vertical>
+              {TECH_STACKS.map((review) => (
+                <StackCard key={review.name} {...review} />
+              ))}
+            </Marquee>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-gradient-to-t from-background to-transparent"
         />
       </div>
     </article>
   );
 }
 
+function StackCard({ img, name }: (typeof TECH_STACKS)[number]) {
+  return (
+    <figure className="group/stack flex w-full items-center justify-between gap-2.5">
+      <div className="flex items-center gap-2.5">
+        <div className="flex size-10 items-center justify-center rounded-lg bg-card shadow-sm transition-transform group-hover/stack:scale-110">
+          <Image alt={`Tech-stack: ${name}`} className="object-contain" height={24} src={img} width={24} />
+        </div>
+        <figcaption className="font-medium text-foreground text-sm">{name}</figcaption>
+      </div>
+      <div className="flex size-7 items-center justify-center rounded-full border">
+        <IconChevronRight />
+      </div>
+    </figure>
+  );
+}
+
 function ReliabilityCard({ className }: CardProps) {
   return (
-    <article className={cn("overflow-hidden rounded-2xl bg-card shadow-md", className)}>
-      <div className="p-6 sm:p-8 lg:px-10 lg:pt-10">
-        <h3 className="text-primary-900 text-title-5 xl:text-title-3">Reliability at the Core</h3>
-        <p className="text-base text-muted-foreground lg:text-sm xl:text-lg">
-          We don't just design technology — we make it work for your business, reducing complexity and accelerating
-          value.
-        </p>
+    <article className={cn("grid grid-cols-5 overflow-hidden rounded-2xl border bg-background", className)}>
+      <div className="col-span-3 p-6 sm:p-8 lg:px-10 lg:pt-10">
+        <h3 className="text-balance text-primary-900 text-title-5 xl:text-title-3">Reliability at the Core</h3>
       </div>
 
-      <div className="relative h-full w-full xl:aspect-9/13">
+      <div className="relative col-span-2 h-full w-full xl:aspect-square">
         <Image
           alt="Reliability at the core of technology solutions - reducing complexity and accelerating business value"
-          className="object-contain"
+          className="z-10 object-contain"
           fill
           loading="lazy"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src="/svg/reliability.svg"
+        />
+        <FlickeringGrid
+          aria-hidden="true"
+          className="absolute inset-0 z-1 opacity-50 [mask-image:radial-gradient(120px_circle_at_bottom,white,transparent)]"
+          color="#C3A5FA"
+          flickerChance={0.1}
+          gridGap={4}
+          height={1080}
+          maxOpacity={0.5}
+          squareSize={4}
+          width={1920}
         />
       </div>
     </article>
