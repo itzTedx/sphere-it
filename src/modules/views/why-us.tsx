@@ -19,24 +19,24 @@ export const WhyUs = memo(() => {
       <div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
         <header className="space-y-2 md:space-y-4">
           <Badge variant="secondary">Why sphere it</Badge>
-          <div className="grid gap-2 md:grid-cols-2 md:gap-4">
+          <div className="grid gap-2 md:grid-cols-3 md:gap-4">
             <h2 className="text-primary-900 text-title-4 md:text-title-3 xl:text-title-2" id="why-us-heading">
               What sets <span className="text-primary-600">Sphere IT apart</span>
             </h2>
-            <p className="text-balance text-base text-muted-foreground">
+            <p className="text-balance text-base text-muted-foreground md:col-span-2">
               We believe technology should be both precisely engineered and practically applied. That’s why
               forward-looking technology organizations across the Middle East trust us to deliver AL-driven platforms,
               intelligent automation, resilient infrastructure, and on-demand expertise that create measurable outcomes.
             </p>
           </div>
         </header>
-        <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2 xl:grid-rows-3 xl:gap-6">
-          <PrecisionCard className="order-1 xl:row-span-2" />
-          <PartnerCard className="order-2 lg:col-span-2" />
-          <ScalableCard className="lg:order-3" />
-          <ReliabilityCard className="lg:order-4 lg:row-span-2 lg:hidden xl:grid" />
-          <TechStackCard className="md:flex-row lg:order-2 lg:col-span-2 xl:order-5" />
-          <div className="order-6 col-span-full">
+        <div className="grid gap-4 md:grid-cols-12 xl:gap-6">
+          <PrecisionCard className="md:col-span-4" />
+          <PartnerCard className="md:col-span-8" />
+          {/* <ScalableCard className="md:col-span-6" /> */}
+          <TechStackCard className="md:col-span-6" />
+          <ReliabilityCard className="md:col-span-6" />
+          <div className="col-span-full">
             <MiniCta
               description="We make it work for your business, reducing complexity and accelerating value."
               layout="vertical"
@@ -68,16 +68,7 @@ function PrecisionCard({ className }: CardProps) {
           delivers.
         </p>
       </div>
-      <div className="relative aspect-video lg:hidden xl:block">
-        <Image
-          alt="Precision and pragmatism in technology solutions - technical accuracy meets business sense"
-          className="object-cover"
-          fill
-          loading="lazy"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          src="/svg/guides.svg"
-        />
-      </div>
+
       <footer className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between xl:p-10">
         <div>
           <h4 className="text-primary-800 text-subhead-sm">Your Next Advantage</h4>
@@ -159,7 +150,7 @@ function TechStackCard({ className }: CardProps) {
       <div className="p-6 sm:p-8 lg:flex-1 lg:px-10 lg:pt-10">
         <header>
           <Badge variant="ghost">Results-Driven Delivery</Badge>
-          <h3 className="text-primary-900 text-title-5 xl:text-title-3">Proven Delivery Framework</h3>
+          <h3 className="text-primary-900 text-title-5 xl:text-title-3">Driven by People, Powered by Technology.</h3>
         </header>
         <p className="text-base text-muted-foreground xl:text-lg">
           Accelerate transformation with a results-driven methodology built for complex, enterprise-scale challenges.
