@@ -3,12 +3,16 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+import { HeroPattern } from "@/assets/brand-pattern";
 import { IconCheckmark } from "@/assets/icons";
 
 export const Hero = () => {
   return (
     <header className="relative z-50 bg-card" role="banner">
-      <section aria-labelledby="hero-heading" className="container max-w-7xl pt-16 pb-9 text-center md:pt-12">
+      <section
+        aria-labelledby="hero-heading"
+        className="container relative z-10 max-w-7xl pt-16 pb-9 text-center md:pt-12"
+      >
         <div className="mx-auto max-w-4xl space-y-6">
           <Badge className="mx-auto" showDashes>
             <IconCheckmark aria-hidden="true" className="text-accent" />
@@ -18,7 +22,7 @@ export const Hero = () => {
             Transforming Business Through <span className="text-accent">Smart, Scalable Technology.</span>
           </h1>
 
-          <p className="text-balance text-lg md:text-xl xl:text-2xl">
+          <p className="text-balance text-lg md:text-xl">
             Trusted partner for Digital Transformation and Technology services in Middle East in the BFSI and critical
             industries.
           </p>
@@ -36,12 +40,18 @@ export const Hero = () => {
           </div>
         </div>
       </section>
-      <section aria-labelledby="hero-services-heading" className="container max-w-7xl pt-16 pb-9 text-center md:pt-12">
-        <Badge>Services</Badge>
+      <section
+        aria-labelledby="hero-services-heading"
+        className="container relative z-10 max-w-md pt-16 pb-9 text-center md:pt-12"
+      >
+        <Badge className="mx-auto" variant="ghost">
+          Services
+        </Badge>
         <h2 className="text-primary-900 text-title-5 md:text-title-4" id="hero-services-heading">
-          Delivering Technology That Works for You
+          Delivering Technology That <span className="text-accent">Works for You</span>
         </h2>
       </section>
+      <HeroPattern className="-translate-x-1/2 absolute bottom-0 left-1/2 z-0 text-stone-500" />
     </header>
   );
 };

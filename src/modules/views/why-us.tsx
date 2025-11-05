@@ -5,9 +5,12 @@ import Link from "next/link";
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/ui/marquee";
 
-import { IconArrowRight } from "@/assets/icons";
+import { IconArrowRight, IconChevronRight } from "@/assets/icons";
+import { IconLayers } from "@/assets/icons/layers";
 
+import { TECH_STACKS } from "@/data/constants";
 import { cn } from "@/lib/utils";
 
 export const WhyUs = memo(() => {
@@ -33,7 +36,6 @@ export const WhyUs = memo(() => {
         <div className="grid gap-4 md:grid-cols-12 xl:gap-6">
           <PrecisionCard className="md:col-span-4" />
           <PartnerCard className="md:col-span-8" />
-          {/* <ScalableCard className="md:col-span-6" /> */}
           <TechStackCard className="md:col-span-6" />
           <ReliabilityCard className="md:col-span-6" />
           <div className="col-span-full">
@@ -104,9 +106,6 @@ function PartnerCard({ className }: CardProps) {
         <h3 className="text-primary-900 text-title-5 xl:text-title-3">
           Trusted Partner For Your Technology Transformation.
         </h3>
-        {/* <p className="text-base text-muted-foreground lg:text-sm xl:text-base">
-          Deep domain expertise across banking, financial, and industries that demand security, scalability, and speed.
-        </p> */}
       </div>
     </article>
   );
@@ -114,28 +113,42 @@ function PartnerCard({ className }: CardProps) {
 
 function TechStackCard({ className }: CardProps) {
   return (
-    <article className={cn("grid grid-cols-2 rounded-2xl border bg-background", className)}>
+    <article className={cn("grid grid-cols-2 overflow-hidden rounded-2xl border bg-background", className)}>
       <div className="p-6 pr-0 sm:p-8 lg:flex-1">
         <header>
           <Badge variant="ghost">Results-Driven Delivery</Badge>
           <h3 className="text-primary-900 text-title-5 xl:text-title-3">Driven by People, Powered by Technology.</h3>
         </header>
-        {/* <p className="text-base text-muted-foreground xl:text-lg">
-          Accelerate transformation with a results-driven methodology built for complex, enterprise-scale challenges.
-        </p> */}
       </div>
-
-      {/* <div className="relative h-48 w-auto lg:h-auto lg:flex-1">
-        <Image
-          alt="Proven delivery framework for enterprise-scale technology transformation and results-driven methodology"
-          className="object-contain"
-          fill
-          loading="lazy"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw"
-          src="/svg/techstack.svg"
-        />
-      </div> */}
+      <div className="m-6 mb-0 space-y-3 rounded-t-xl bg-stone-alpha-10 p-3 pb-0 shadow-lg">
+        <span className="flex items-center gap-2 text-muted-background">
+          <IconLayers /> Tech Stack
+        </span>
+        <div className="relative flex h-[240px] w-full overflow-hidden rounded-xl bg-card shadow-md">
+          <Marquee className="w-full p-4 [--duration:40s] [--gap:0.75rem]" repeat={3} vertical>
+            {TECH_STACKS.map((review) => (
+              <StackCard key={review.name} {...review} />
+            ))}
+          </Marquee>
+        </div>
+      </div>
     </article>
+  );
+}
+
+function StackCard({ img, name }: (typeof TECH_STACKS)[number]) {
+  return (
+    <figure className="group/stack flex w-full items-center justify-between gap-2.5">
+      <div className="flex items-center gap-2.5">
+        <div className="flex size-10 items-center justify-center rounded-lg bg-card shadow-sm transition-transform group-hover/stack:scale-110">
+          <Image alt={`Tech-stack: ${name}`} className="object-contain" height={24} src={img} width={24} />
+        </div>
+        <figcaption className="font-medium text-foreground text-sm">{name}</figcaption>
+      </div>
+      <div className="flex size-7 items-center justify-center rounded-full border">
+        <IconChevronRight />
+      </div>
+    </figure>
   );
 }
 

@@ -365,3 +365,78 @@ export const WHY_MATTERS = [
     description: "Modular frameworks integrate wit your existing stack, reducing time-to-value.",
   },
 ];
+
+export const TECH_STACKS = [
+  {
+    name: "Angular",
+    img: "/images/tech-stacks/Angular.svg",
+  },
+  {
+    name: "React JS",
+    img: "/images/tech-stacks/React.svg",
+  },
+  {
+    name: "Vue JS",
+    img: "/images/tech-stacks/Vuejs.svg",
+  },
+  {
+    name: "Python",
+    img: "/images/tech-stacks/Python.svg",
+  },
+  {
+    name: "AWS",
+    img: "/images/tech-stacks/AWS.svg",
+  },
+  {
+    name: "Azure",
+    img: "/images/tech-stacks/Azure.svg",
+  },
+  {
+    name: "Bootstrap",
+    img: "/images/tech-stacks/Bootstrap.svg",
+  },
+  {
+    name: "Android",
+    img: "/images/tech-stacks/Android.svg",
+  },
+  {
+    name: "IBM BPM",
+    img: "/images/tech-stacks/IBM-BPM.svg",
+  },
+  {
+    name: "Apple",
+    img: "/images/tech-stacks/Apple.svg",
+  },
+  {
+    name: "Java",
+    img: "/images/tech-stacks/Java.svg",
+  },
+  {
+    name: "Kafka",
+    img: "/images/tech-stacks/Kafka.svg",
+  },
+  {
+    name: "Kotlin",
+    img: "/images/tech-stacks/Kotlin.svg",
+  },
+  {
+    name: "LAMP",
+    img: "/images/tech-stacks/LAMP.svg",
+  },
+  {
+    name: "Node",
+    img: "/images/tech-stacks/Node.svg",
+  },
+  {
+    name: "Oracle",
+    img: "/images/tech-stacks/Oracle.svg",
+  },
+  {
+    name: "MySql",
+    img: "/images/tech-stacks/MySql.svg",
+  },
+  {
+    name: "Spring",
+    img: "/images/tech-stacks/Spring.svg",
+  },
+];
