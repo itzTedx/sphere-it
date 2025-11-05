@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 
 import { SERVICES } from "@/data/services";
 import { BASE_URL } from "@/data/site-config";
-import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { WhyMatters } from "@/modules/views/why-matters";
 
 import { ServiceCard } from "./components/service-card";
@@ -63,12 +62,6 @@ export default function ServicesPage() {
       {structuredData.map((data, index) => (
         <script dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} key={index} type="application/ld+json" />
       ))}
-      <BreadcrumbJsonLd
-        items={[
-          { name: "Home", item: `${BASE_URL}` },
-          { name: "Services", item: `${BASE_URL}/services` },
-        ]}
-      />
       <main>
         <header className="border-b bg-card py-16 sm:py-20 md:py-28">
           <div className="container max-w-7xl">

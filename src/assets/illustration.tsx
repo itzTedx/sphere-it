@@ -87,30 +87,30 @@ export const Illustration = (props: SVGProps) => {
                 cx="237.25"
                 cy="675.5"
                 fill="url(#paint4_radial_978_6406)"
-                fill-opacity="0.6"
+                fillOpacity="0.6"
                 rx="98.5"
                 ry="96.5"
-                shape-rendering="crispEdges"
+                shapeRendering="crispEdges"
               />
               <ellipse
                 cx="237.25"
                 cy="675.5"
                 fill="url(#paint5_radial_978_6406)"
-                fill-opacity="0.6"
+                fillOpacity="0.6"
                 rx="98.5"
                 ry="96.5"
-                shape-rendering="crispEdges"
+                shapeRendering="crispEdges"
               />
               <path
                 d="M237.25 579.75C291.25 579.75 335 622.633 335 675.5C335 728.367 291.25 771.25 237.25 771.25C183.25 771.25 139.5 728.367 139.5 675.5C139.5 622.633 183.25 579.75 237.25 579.75Z"
-                shape-rendering="crispEdges"
+                shapeRendering="crispEdges"
                 stroke="#5C5C5C"
                 strokeOpacity="0.5"
                 strokeWidth="1.5"
               />
               <path
                 d="M237.25 579.75C291.25 579.75 335 622.633 335 675.5C335 728.367 291.25 771.25 237.25 771.25C183.25 771.25 139.5 728.367 139.5 675.5C139.5 622.633 183.25 579.75 237.25 579.75Z"
-                shape-rendering="crispEdges"
+                shapeRendering="crispEdges"
                 stroke="url(#paint6_linear_978_6406)"
                 strokeWidth="1.5"
               />
@@ -122,10 +122,10 @@ export const Illustration = (props: SVGProps) => {
               fill="#F5F5F4"
             />
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M72.5989 300.81C76.0843 297.488 80.1465 297.888 80.4884 297.929C80.7941 297.965 81.0351 298.206 81.0716 298.512C81.1124 298.853 81.5117 302.916 78.1899 306.401C76.1836 308.506 73.9437 309.216 73.1842 309.425C72.9531 309.488 72.7058 309.423 72.5363 309.253L69.7471 306.464C69.5777 306.294 69.5122 306.047 69.5756 305.816C69.7841 305.057 70.4938 302.817 72.5989 300.81Z"
               fill="#A8A29E"
-              fill-rule="evenodd"
+              fillRule="evenodd"
               opacity="0.6"
             />
             <path
@@ -137,10 +137,10 @@ export const Illustration = (props: SVGProps) => {
               fill="#A8A29E"
             />
             <path
-              clip-rule="evenodd"
+              clipRule="evenodd"
               d="M68.3686 307.783C68.5923 307.67 68.863 307.714 69.04 307.891L71.1094 309.961C71.2864 310.138 71.33 310.408 71.2175 310.632C70.8703 311.322 70.1581 311.808 69.3207 311.808H67.7726C67.452 311.808 67.1921 311.548 67.1921 311.228V309.68C67.1921 308.842 67.6784 308.13 68.3686 307.783Z"
               fill="#A8A29E"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             />
             <path
               d="M74.3283 309.034C74.3369 309.56 74.2896 310.015 74.2294 310.373C74.183 310.649 74.1292 310.865 74.0884 311.009C74.068 311.08 74.0509 311.134 74.0396 311.168C74.034 311.184 74.0298 311.196 74.0275 311.203L74.0254 311.208C73.9223 311.481 74.0077 311.788 74.2365 311.968C74.466 312.149 74.7862 312.159 75.0267 311.994L77.9334 309.994L77.9408 309.989C78.5382 309.566 78.8548 309.05 78.9545 308.439C79.0447 307.888 78.9471 307.298 78.8499 306.756L78.6865 305.844C78.531 306.031 78.3657 306.217 78.1898 306.401C76.8327 307.825 75.3687 308.611 74.3283 309.034Z"
@@ -174,10 +174,10 @@ export const Illustration = (props: SVGProps) => {
               </mask>
               <g mask="url(#mask2_978_6406)">
                 <path
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                   d="M229 336.333C233.05 336.333 236.333 339.617 236.333 343.667C236.333 344.884 236.037 346.033 235.512 347.043C235.304 347.443 234.876 347.667 234.425 347.667H223.575C223.124 347.667 222.696 347.443 222.488 347.043C221.963 346.033 221.667 344.884 221.667 343.667C221.667 339.617 224.95 336.333 229 336.333Z"
                   fill="#A8A29E"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                 />
               </g>
               <path
@@ -279,10 +279,10 @@ export const Illustration = (props: SVGProps) => {
               </mask>
               <g mask="url(#mask5_978_6406)">
                 <path
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                   d="M81.0443 440.235C81.4175 437.498 83.8028 435.333 86.6666 435.333C89.4972 435.333 91.7905 437.386 92.2604 440.053C93.814 440.335 94.9999 441.701 94.9999 443.333C94.9999 445.168 93.5015 446.667 91.6666 446.667H82.3333C80.4984 446.667 78.9999 445.168 78.9999 443.333C78.9999 441.94 79.8456 440.727 81.0443 440.235Z"
                   fill="#A8A29E"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                 />
               </g>
               <path
@@ -319,10 +319,10 @@ export const Illustration = (props: SVGProps) => {
               </mask>
               <g mask="url(#mask6_978_6406)">
                 <path
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                   d="M277.333 498.333C277.333 494.651 280.318 491.667 284 491.667C287.682 491.667 290.667 494.651 290.667 498.333C290.667 502.015 287.682 505 284 505C280.318 505 277.333 502.015 277.333 498.333Z"
                   fill="#A8A29E"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   opacity="0.6"
                 />
               </g>
@@ -345,7 +345,7 @@ export const Illustration = (props: SVGProps) => {
       </g>
       <defs>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="905"
           id="filter0_dddddddi_978_6406"
@@ -353,7 +353,7 @@ export const Illustration = (props: SVGProps) => {
           x="0"
           y="0"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -451,7 +451,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in2="shape" mode="normal" result="effect8_innerShadow_978_6406" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="240"
           id="filter1_dddd_978_6406"
@@ -459,7 +459,7 @@ export const Illustration = (props: SVGProps) => {
           x="125.75"
           y="577"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -503,7 +503,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in="SourceGraphic" in2="effect4_dropShadow_978_6406" mode="normal" result="shape" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="205"
           id="filter2_dd_978_6406"
@@ -511,7 +511,7 @@ export const Illustration = (props: SVGProps) => {
           x="124.75"
           y="573"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -539,7 +539,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in="SourceGraphic" in2="effect2_dropShadow_978_6406" mode="normal" result="shape" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="165"
           id="filter3_d_978_6406"
@@ -547,7 +547,7 @@ export const Illustration = (props: SVGProps) => {
           x="153.25"
           y="593.5"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -562,7 +562,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in="SourceGraphic" in2="effect1_dropShadow_978_6406" mode="normal" result="shape" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="205"
           id="filter4_dd_978_6406"
@@ -570,7 +570,7 @@ export const Illustration = (props: SVGProps) => {
           x="124.75"
           y="573"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -598,7 +598,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in="SourceGraphic" in2="effect2_dropShadow_978_6406" mode="normal" result="shape" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="57"
           id="filter5_ddd_978_6406"
@@ -606,7 +606,7 @@ export const Illustration = (props: SVGProps) => {
           x="47"
           y="289"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -640,7 +640,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in="SourceGraphic" in2="effect3_dropShadow_978_6406" mode="normal" result="shape" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="57"
           id="filter6_ddd_978_6406"
@@ -648,7 +648,7 @@ export const Illustration = (props: SVGProps) => {
           x="202"
           y="327"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -682,7 +682,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in="SourceGraphic" in2="effect3_dropShadow_978_6406" mode="normal" result="shape" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="57"
           id="filter7_ddd_978_6406"
@@ -690,7 +690,7 @@ export const Illustration = (props: SVGProps) => {
           x="317"
           y="389"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -724,7 +724,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in="SourceGraphic" in2="effect3_dropShadow_978_6406" mode="normal" result="shape" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="20.0508"
           id="filter8_f_978_6406"
@@ -732,12 +732,12 @@ export const Illustration = (props: SVGProps) => {
           x="332.616"
           y="393.616"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
           <feGaussianBlur result="effect1_foregroundBlur_978_6406" stdDeviation="2" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="57"
           id="filter9_ddd_978_6406"
@@ -745,7 +745,7 @@ export const Illustration = (props: SVGProps) => {
           x="59.9999"
           y="426"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -779,7 +779,7 @@ export const Illustration = (props: SVGProps) => {
           <feBlend in="SourceGraphic" in2="effect3_dropShadow_978_6406" mode="normal" result="shape" />
         </filter>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="57"
           id="filter10_ddd_978_6406"
@@ -787,7 +787,7 @@ export const Illustration = (props: SVGProps) => {
           x="257"
           y="483"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             result="hardAlpha"
@@ -822,7 +822,7 @@ export const Illustration = (props: SVGProps) => {
         </filter>
         <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_978_6406" x1="237" x2="237" y1="242" y2="587">
           <stop />
-          <stop offset="0.362745" stop-color="white" />
+          <stop offset="0.362745" stopColor="white" />
         </linearGradient>
         <radialGradient
           cx="0"
@@ -832,8 +832,8 @@ export const Illustration = (props: SVGProps) => {
           id="paint1_radial_978_6406"
           r="1"
         >
-          <stop offset="0.6" stop-color="#7B7B7B" stop-opacity="0" />
-          <stop offset="1" stop-color="#D1D1D1" stop-opacity="0.1" />
+          <stop offset="0.6" stop-opacity="0" stopColor="#7B7B7B" />
+          <stop offset="1" stop-opacity="0.1" stopColor="#D1D1D1" />
         </radialGradient>
         <linearGradient
           gradientUnits="userSpaceOnUse"
@@ -843,10 +843,10 @@ export const Illustration = (props: SVGProps) => {
           y1="675.5"
           y2="675.5"
         >
-          <stop stop-color="#7A33D6" />
-          <stop offset="0.35" stop-color="#7A33D6" stop-opacity="0" />
-          <stop offset="0.65" stop-color="#7A33D6" stop-opacity="0" />
-          <stop offset="1" stop-color="#7A33D6" />
+          <stop stopColor="#7A33D6" />
+          <stop offset="0.35" stop-opacity="0" stopColor="#7A33D6" />
+          <stop offset="0.65" stop-opacity="0" stopColor="#7A33D6" />
+          <stop offset="1" stopColor="#7A33D6" />
         </linearGradient>
         <radialGradient
           cx="0"
@@ -856,8 +856,8 @@ export const Illustration = (props: SVGProps) => {
           id="paint3_radial_978_6406"
           r="1"
         >
-          <stop offset="0.6" stop-color="#7B7B7B" stop-opacity="0" />
-          <stop offset="1" stop-color="#D1D1D1" stop-opacity="0.1" />
+          <stop offset="0.6" stop-opacity="0" stopColor="#7B7B7B" />
+          <stop offset="1" stop-opacity="0.1" stopColor="#D1D1D1" />
         </radialGradient>
         <radialGradient
           cx="0"
@@ -867,8 +867,8 @@ export const Illustration = (props: SVGProps) => {
           id="paint4_radial_978_6406"
           r="1"
         >
-          <stop stop-color="#7A33D6" />
-          <stop offset="1" stop-color="#7A33D6" stop-opacity="0" />
+          <stop stopColor="#7A33D6" />
+          <stop offset="1" stop-opacity="0" stopColor="#7A33D6" />
         </radialGradient>
         <radialGradient
           cx="0"
@@ -878,8 +878,8 @@ export const Illustration = (props: SVGProps) => {
           id="paint5_radial_978_6406"
           r="1"
         >
-          <stop stop-color="#7A33D6" />
-          <stop offset="1" stop-color="#7A33D6" stop-opacity="0" />
+          <stop stopColor="#7A33D6" />
+          <stop offset="1" stop-opacity="0" stopColor="#7A33D6" />
         </radialGradient>
         <linearGradient
           gradientUnits="userSpaceOnUse"
@@ -889,10 +889,10 @@ export const Illustration = (props: SVGProps) => {
           y1="675.5"
           y2="675.5"
         >
-          <stop stop-color="#7A33D6" />
-          <stop offset="0.35" stop-color="#7A33D6" stop-opacity="0" />
-          <stop offset="0.65" stop-color="#7A33D6" stop-opacity="0" />
-          <stop offset="1" stop-color="#7A33D6" />
+          <stop stopColor="#7A33D6" />
+          <stop offset="0.35" stop-opacity="0" stopColor="#7A33D6" />
+          <stop offset="0.65" stop-opacity="0" stopColor="#7A33D6" />
+          <stop offset="1" stopColor="#7A33D6" />
         </linearGradient>
         <clipPath id="clip0_978_6406">
           <path
