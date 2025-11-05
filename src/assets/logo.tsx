@@ -222,12 +222,12 @@ export const LogoIcon = (props: SVGProps) => {
         rx="72.6294"
         ry="71.0508"
         stroke="#78716C"
-        stroke-opacity="0.1"
+        strokeOpacity="0.1"
         strokeWidth="2"
       />
       <defs>
         <filter
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height="150.772"
           id="filter0_f_1302_26639"
@@ -235,7 +235,7 @@ export const LogoIcon = (props: SVGProps) => {
           x="0"
           y="0"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
           <feGaussianBlur result="effect1_foregroundBlur_1302_26639" stdDeviation="6" />
         </filter>

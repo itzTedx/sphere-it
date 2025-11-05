@@ -114,8 +114,8 @@ function PartnerCard({ className }: CardProps) {
               strokeOpacity="0.1"
               strokeWidth="2"
             />
-            <path d="M0 173.11H52.022M52.2406 165.79V180" stroke="#A3A3A3" stroke-opacity="0.1" stroke-width="2" />
-            <path d="M0 7.32056H52.022M52.2406 0V14.2105" stroke="#A3A3A3" stroke-opacity="0.1" stroke-width="2" />
+            <path d="M0 173.11H52.022M52.2406 165.79V180" stroke="#A3A3A3" stroke-width="2" strokeOpacity="0.1" />
+            <path d="M0 7.32056H52.022M52.2406 0V14.2105" stroke="#A3A3A3" stroke-width="2" strokeOpacity="0.1" />
           </svg>
 
           <div className="absolute z-10 h-full w-48 bg-gradient-to-r from-background via-25% via-background to-transparent" />

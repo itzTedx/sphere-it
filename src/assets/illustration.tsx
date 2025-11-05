@@ -67,13 +67,13 @@ export const Illustration = (props: SVGProps) => {
               <path
                 d="M237.25 579.75C291.25 579.75 335 622.633 335 675.5C335 728.367 291.25 771.25 237.25 771.25C183.25 771.25 139.5 728.367 139.5 675.5C139.5 622.633 183.25 579.75 237.25 579.75Z"
                 stroke="#5C5C5C"
-                stroke-opacity="0.5"
-                stroke-width="1.5"
+                strokeOpacity="0.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M237.25 579.75C291.25 579.75 335 622.633 335 675.5C335 728.367 291.25 771.25 237.25 771.25C183.25 771.25 139.5 728.367 139.5 675.5C139.5 622.633 183.25 579.75 237.25 579.75Z"
                 stroke="url(#paint2_linear_978_6406)"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
             </g>
             <g filter="url(#filter3_d_978_6406)">
@@ -105,14 +105,14 @@ export const Illustration = (props: SVGProps) => {
                 d="M237.25 579.75C291.25 579.75 335 622.633 335 675.5C335 728.367 291.25 771.25 237.25 771.25C183.25 771.25 139.5 728.367 139.5 675.5C139.5 622.633 183.25 579.75 237.25 579.75Z"
                 shape-rendering="crispEdges"
                 stroke="#5C5C5C"
-                stroke-opacity="0.5"
-                stroke-width="1.5"
+                strokeOpacity="0.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M237.25 579.75C291.25 579.75 335 622.633 335 675.5C335 728.367 291.25 771.25 237.25 771.25C183.25 771.25 139.5 728.367 139.5 675.5C139.5 622.633 183.25 579.75 237.25 579.75Z"
                 shape-rendering="crispEdges"
                 stroke="url(#paint6_linear_978_6406)"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
             </g>
           </g>
@@ -340,7 +340,7 @@ export const Illustration = (props: SVGProps) => {
         <path
           d="M40 1.5H434C442.56 1.5 449.5 8.43959 449.5 17V817C449.5 825.56 442.56 832.5 434 832.5H40C31.4396 832.5 24.5 825.56 24.5 817V17C24.5 8.43959 31.4396 1.5 40 1.5Z"
           stroke="#A3A3A3"
-          stroke-opacity="0.1"
+          strokeOpacity="0.1"
         />
       </g>
       <defs>
