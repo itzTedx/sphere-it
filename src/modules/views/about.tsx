@@ -2,18 +2,16 @@ import { memo } from "react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
-import { PreviewCard, PreviewCardPanel, PreviewCardTrigger } from "@/components/ui/base/preview-card";
 import { Button } from "@/components/ui/button";
-import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 
-import { IconArrowRight, IconBank, IconCar } from "@/assets/icons";
+import { IconArrowRight, IconBank } from "@/assets/icons";
 
 import { BEST_AT } from "@/data/constants";
 
 export const About = memo(() => {
   return (
     <>
-      <section aria-labelledby="about-hero-heading" className="relative mx-auto max-w-7xl overflow-hidden">
+      {/* <section aria-labelledby="about-hero-heading" className="relative mx-auto max-w-7xl overflow-hidden">
         <div className="container relative z-10 max-w-3xl space-y-4 py-8 sm:space-y-5 sm:py-12 lg:py-16">
           <Badge aria-label="Company focus areas" className="text-badge" role="text">
             Technology. Talent. Transformation.
@@ -108,7 +106,7 @@ export const About = memo(() => {
           squareSize={4}
           width={1920}
         />
-      </section>
+      </section> */}
 
       {/* Capabilities Section */}
       <section aria-labelledby="capabilities-heading" className="border-y">

@@ -13,6 +13,34 @@ import { IconArrowRight, IconAssure, IconAugment, IconAutomate, IconElevate, Ico
 
 import { SERVICES } from "@/data/services";
 
+const SERVICES_TABS_LISTS = [
+  {
+    id: "elevate",
+    Icon: IconElevate,
+    name: "Elevate",
+  },
+  {
+    id: "automate",
+    Icon: IconAutomate,
+    name: "Automate",
+  },
+  {
+    id: "evaluate",
+    Icon: IconEvaluate,
+    name: "Evaluate",
+  },
+  {
+    id: "assure",
+    Icon: IconAssure,
+    name: "Assure",
+  },
+  {
+    id: "augment",
+    Icon: IconAugment,
+    name: "Augment",
+  },
+];
+
 export const Services = memo(() => {
   return (
     <section
@@ -46,66 +74,14 @@ export const Services = memo(() => {
                 className="flex h-auto flex-wrap items-center justify-center rounded-none bg-card"
                 role="tablist"
               >
-                <TabsTrigger
-                  aria-controls="elevate-panel"
-                  aria-selected="true"
-                  className="pl-1"
-                  role="tab"
-                  value="elevate"
-                >
-                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
-                    <IconElevate className="m-auto text-stone-500" />
-                  </div>
-                  Elevate
-                </TabsTrigger>
-                <TabsTrigger
-                  aria-controls="automate-panel"
-                  aria-selected="false"
-                  className="pl-1"
-                  role="tab"
-                  value="automate"
-                >
-                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
-                    <IconAutomate className="m-auto text-stone-500" />
-                  </div>
-                  Automate
-                </TabsTrigger>
-                <TabsTrigger
-                  aria-controls="evaluate-panel"
-                  aria-selected="false"
-                  className="pl-1"
-                  role="tab"
-                  value="evaluate"
-                >
-                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
-                    <IconEvaluate className="m-auto text-stone-500" />
-                  </div>
-                  Evaluate
-                </TabsTrigger>
-                <TabsTrigger
-                  aria-controls="assure-panel"
-                  aria-selected="false"
-                  className="pl-1"
-                  role="tab"
-                  value="assure"
-                >
-                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
-                    <IconAssure className="m-auto text-stone-500" />
-                  </div>
-                  Assure
-                </TabsTrigger>
-                <TabsTrigger
-                  aria-controls="augment-panel"
-                  aria-selected="false"
-                  className="pl-1"
-                  role="tab"
-                  value="augment"
-                >
-                  <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
-                    <IconAugment className="m-auto text-stone-500" />
-                  </div>
-                  Augment
-                </TabsTrigger>
+                {SERVICES_TABS_LISTS.map(({ id, Icon, name }) => (
+                  <TabsTrigger aria-controls={`${id}-panel`} className="pl-1" key={id} role="tab" value={id}>
+                    <div aria-hidden="true" className="flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors">
+                      <Icon className="m-auto size-5 text-stone-500" />
+                    </div>
+                    {name}
+                  </TabsTrigger>
+                ))}
               </TabsList>
             </div>
             <svg
@@ -153,7 +129,7 @@ export const Services = memo(() => {
                           ))}
                         </ul>
                       </div>
-                      <Button asChild className="w-full sm:w-auto">
+                      <Button asChild className="w-full">
                         <Link href={`/services/${service.id}`}>
                           Learn more <IconArrowRight />
                         </Link>
@@ -178,7 +154,7 @@ export const Services = memo(() => {
                 ))}
               </TabsContents>
             </Card>
-            <MiniCta className="md:-mt-14 mt-4 md:mx-14" />
+            <MiniCta className="md:-mt-10 mt-4 md:mx-14" />
           </div>
         </Tabs>
         <FlickeringGrid

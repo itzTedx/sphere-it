@@ -4,6 +4,7 @@ import { Cta } from "@/components/layout/cta";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { About, Clients, Hero, Services, Testimonials, WhyUs } from "@/modules/views";
+import { Industries } from "@/modules/views/industries";
 
 const meta = {
   title: "Sphere IT - Digital Transformation Partner in UAE & GCC",
@@ -84,6 +85,7 @@ export default function Home() {
       <Hero />
       <Services />
       <Clients />
+      <Industries />
       <About />
       <WhyUs />
       {/* <Resources /> */}
