@@ -57,7 +57,7 @@ interface CardProps {
 
 function PrecisionCard({ className }: CardProps) {
   return (
-    <article className={cn("flex flex-col justify-between rounded-2xl bg-card shadow-md", className)}>
+    <article className={cn("flex flex-col justify-between rounded-2xl border bg-background", className)}>
       <div className="space-y-2 p-6 xl:space-y-4 xl:p-10">
         <header>
           <Badge variant="ghost">Guided by</Badge>
@@ -89,7 +89,7 @@ function PrecisionCard({ className }: CardProps) {
 
 function PartnerCard({ className }: CardProps) {
   return (
-    <article className={cn("rounded-2xl bg-card shadow-md", className)}>
+    <article className={cn("rounded-2xl border bg-background", className)}>
       <div className="relative h-48 w-full sm:h-56 lg:h-48 xl:h-64">
         <Image
           alt="Trusted partner in banking, financial, and industries requiring security and scalability"
@@ -101,10 +101,12 @@ function PartnerCard({ className }: CardProps) {
         />
       </div>
       <div className="p-6 sm:p-8 lg:p-6 xl:p-10">
-        <h3 className="text-primary-900 text-title-5 xl:text-title-3">Trusted Partner in BFSI and Beyond</h3>
-        <p className="text-base text-muted-foreground lg:text-sm xl:text-base">
+        <h3 className="text-primary-900 text-title-5 xl:text-title-3">
+          Trusted Partner For Your Technology Transformation.
+        </h3>
+        {/* <p className="text-base text-muted-foreground lg:text-sm xl:text-base">
           Deep domain expertise across banking, financial, and industries that demand security, scalability, and speed.
-        </p>
+        </p> */}
       </div>
     </article>
   );
@@ -112,7 +114,7 @@ function PartnerCard({ className }: CardProps) {
 
 function ScalableCard({ className }: CardProps) {
   return (
-    <article className={cn("group rounded-2xl bg-card shadow-md", className)}>
+    <article className={cn("group rounded-2xl border bg-background", className)}>
       <div className="relative aspect-6/4 w-full overflow-hidden lg:aspect-6/3 xl:aspect-6/4">
         {/* <div>
           <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
@@ -146,18 +148,18 @@ function ScalableCard({ className }: CardProps) {
 
 function TechStackCard({ className }: CardProps) {
   return (
-    <article className={cn("flex flex-col rounded-2xl bg-card shadow-md", className)}>
-      <div className="p-6 sm:p-8 lg:flex-1 lg:px-10 lg:pt-10">
+    <article className={cn("flex rounded-2xl border bg-background", className)}>
+      <div className="p-6 pr-0 sm:p-8 lg:flex-1">
         <header>
           <Badge variant="ghost">Results-Driven Delivery</Badge>
           <h3 className="text-primary-900 text-title-5 xl:text-title-3">Driven by People, Powered by Technology.</h3>
         </header>
-        <p className="text-base text-muted-foreground xl:text-lg">
+        {/* <p className="text-base text-muted-foreground xl:text-lg">
           Accelerate transformation with a results-driven methodology built for complex, enterprise-scale challenges.
-        </p>
+        </p> */}
       </div>
 
-      <div className="relative h-48 w-full lg:h-auto lg:flex-1">
+      <div className="relative h-48 w-auto lg:h-auto lg:flex-1">
         <Image
           alt="Proven delivery framework for enterprise-scale technology transformation and results-driven methodology"
           className="object-contain"
@@ -173,7 +175,7 @@ function TechStackCard({ className }: CardProps) {
 
 function ReliabilityCard({ className }: CardProps) {
   return (
-    <article className={cn("overflow-hidden rounded-2xl bg-card shadow-md", className)}>
+    <article className={cn("flex overflow-hidden rounded-2xl border bg-background", className)}>
       <div className="p-6 sm:p-8 lg:px-10 lg:pt-10">
         <h3 className="text-primary-900 text-title-5 xl:text-title-3">Reliability at the Core</h3>
         <p className="text-base text-muted-foreground lg:text-sm xl:text-lg">
