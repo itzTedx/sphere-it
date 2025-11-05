@@ -112,43 +112,9 @@ function PartnerCard({ className }: CardProps) {
   );
 }
 
-function ScalableCard({ className }: CardProps) {
-  return (
-    <article className={cn("group rounded-2xl border bg-background", className)}>
-      <div className="relative aspect-6/4 w-full overflow-hidden lg:aspect-6/3 xl:aspect-6/4">
-        {/* <div>
-          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
-            <div className="aspect-video h-24 rounded-xl bg-muted" />
-          </Marquee>
-          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]" reverse>
-            <div className="aspect-video h-24 rounded-xl bg-muted" />
-          </Marquee>
-          <Marquee className="p-1 [--duration:40s] [--gap:0.5rem]">
-            <div className="aspect-video h-24 rounded-xl bg-muted" />
-          </Marquee>
-        </div> */}
-        <Image
-          alt="Flexible and scalable talent models for enterprise technology solutions"
-          className="object-cover object-center transition-transform group-hover:scale-105"
-          fill
-          loading="lazy"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          src="/svg/flexible.svg"
-        />
-      </div>
-      <div className="p-6 pt-0 sm:p-8 sm:pt-0 xl:p-10 xl:pt-0">
-        <h3 className="text-center font-semibold text-primary-900 text-title-5 xl:text-title-3">
-          <span className="text-accent">Flexible,</span> Scalable <br />
-          Talent Models
-        </h3>
-      </div>
-    </article>
-  );
-}
-
 function TechStackCard({ className }: CardProps) {
   return (
-    <article className={cn("flex rounded-2xl border bg-background", className)}>
+    <article className={cn("grid grid-cols-2 rounded-2xl border bg-background", className)}>
       <div className="p-6 pr-0 sm:p-8 lg:flex-1">
         <header>
           <Badge variant="ghost">Results-Driven Delivery</Badge>
@@ -159,7 +125,7 @@ function TechStackCard({ className }: CardProps) {
         </p> */}
       </div>
 
-      <div className="relative h-48 w-auto lg:h-auto lg:flex-1">
+      {/* <div className="relative h-48 w-auto lg:h-auto lg:flex-1">
         <Image
           alt="Proven delivery framework for enterprise-scale technology transformation and results-driven methodology"
           className="object-contain"
@@ -168,7 +134,7 @@ function TechStackCard({ className }: CardProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw"
           src="/svg/techstack.svg"
         />
-      </div>
+      </div> */}
     </article>
   );
 }
