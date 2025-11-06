@@ -6,7 +6,7 @@ export function Header({ className, badge, children, ...props }: React.Component
   return (
     <header
       className={cn(
-        "prose-h2:mt-0 prose-p:mb-0 grid gap-6 pb-6 prose-headings:text-primary-900 prose-p:text-muted-foreground sm:grid-cols-2 sm:pb-8 md:pb-10",
+        "prose-h2:mt-0 prose-p:mb-0 grid gap-6 pb-3 prose-headings:text-primary-900 prose-p:text-muted-foreground sm:grid-cols-2 sm:pb-4 md:pb-6",
         className
       )}
       {...props}

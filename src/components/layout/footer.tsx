@@ -16,7 +16,7 @@ const SocialLink = memo(({ social }: { social: (typeof SOCIALS)[0] }) => (
       href={social.href as Route}
       title={`Follow us on ${social.Icon.name || "social media"}`}
     >
-      <social.Icon className="text-stone-300 transition-colors group-hover:text-primary-300" />
+      <social.Icon className="text-stone-300 transition-colors group-hover:text-primary-400" />
     </Link>
   </li>
 ));
