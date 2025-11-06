@@ -6,7 +6,11 @@ import { cn } from "@/lib/utils";
 export const CardGroup = ({ className, cols = 2, ...props }: React.ComponentProps<"div"> & { cols?: 2 | 3 }) => {
   return (
     <div
-      className={cn("not-prose grid gap-4", cols === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 md:grid-cols-3", className)}
+      className={cn(
+        "not-prose grid",
+        cols === 2 ? "gap-6 sm:grid-cols-2" : "gap-4 sm:grid-cols-2 md:grid-cols-3",
+        className
+      )}
       {...props}
     />
   );
