@@ -41,14 +41,14 @@ export function CardIcon({ icon }: { icon: React.ReactNode }) {
 }
 
 interface CardContentProps {
-  title: string;
+  title?: string;
   description: string;
 }
 
 export function CardContent({ title, description }: CardContentProps) {
   return (
     <div className="space-y-3">
-      <h3 className="text-primary-900 text-title-5">{title}</h3>
+      {title && <h3 className="text-primary-900 text-title-5">{title}</h3>}
       <p className="text-base text-stone-800 tracking-tight sm:text-lg">{description}</p>
     </div>
   );
