@@ -119,20 +119,22 @@ export default async function ServicePage({ params }: Props) {
               />
             </div>
           </div>
-          <div className="container flex max-w-7xl items-center justify-end gap-4">
-            <h2 className="font-display text-muted-foreground text-subhead-base">Partners:</h2>
-            <ul className="flex items-center gap-4 pr-6">
-              {service.metadata.partners.map((partner) => (
-                <Fragment key={partner}>
-                  <li>
-                    <Image alt="" height={30} src={partner} width={112} />
-                  </li>
+          {service.metadata.partners && (
+            <div className="container flex max-w-7xl items-center justify-end gap-4">
+              <h2 className="font-display text-muted-foreground text-subhead-base">Partners:</h2>
+              <ul className="flex items-center gap-4 pr-6">
+                {service.metadata.partners.map((partner) => (
+                  <Fragment key={partner}>
+                    <li>
+                      <Image alt="" height={30} src={partner} width={90} />
+                    </li>
 
-                  <li className="h-3 w-px bg-muted-background last:hidden" />
-                </Fragment>
-              ))}
-            </ul>
-          </div>
+                    <li className="h-3 w-px bg-muted-background last:hidden" />
+                  </Fragment>
+                ))}
+              </ul>
+            </div>
+          )}
         </header>
         <article className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-1 prose-h3:mb-2 max-w-none py-12 prose-h2:font-semibold prose-h2:text-title-2 prose-h3:text-title-3 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-p:text-lg">
           <MDXContent
