@@ -125,6 +125,16 @@
       "calt" 1;
   }
 
+  ::-moz-selection {
+    color: var(--accent-foreground);
+    background-color: var(--accent);
+  }
+  
+  ::selection {
+    color: var(--accent-foreground);
+    background-color: var(--accent);
+  }
+
   /* width */
   ::-webkit-scrollbar {
     width: 8px;

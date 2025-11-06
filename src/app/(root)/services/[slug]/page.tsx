@@ -9,12 +9,15 @@ import MDXContent from "@/components/markdown";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+import * as Icons from "@/assets/icons";
 import { IconArrowRight, IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons";
 
-import { Section } from "@/contents/components/section";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { getServiceBySlug } from "@/modules/services/actions";
+import { Card, CardContent, CardGroup, CardIcon } from "@/modules/services/components/card-list";
+import { Header } from "@/modules/services/components/header";
+import { Section } from "@/modules/services/components/section";
 
 import { SERVICES } from "../data/services";
 
@@ -44,7 +47,6 @@ export default async function ServicePage({ params }: Props) {
   } as const;
 
   const Icon = ICONS[service.metadata.badge as keyof typeof ICONS];
-  // <Icon /> wherever you need it
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -130,9 +132,20 @@ export default async function ServicePage({ params }: Props) {
             </ul>
           </div>
         </header>
-        <article className="prose prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-1 prose-h3:mb-2 prose-table:prose-p:mb-0 max-w-none py-12 prose-h2:font-semibold prose-h2:text-title-2 prose-h3:text-title-3 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-p:text-lg">
+        <article className="prose prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-1 prose-h3:mb-2 prose-table:prose-p:mb-0 max-w-none py-12 prose-h2:font-semibold prose-h2:text-title-2 prose-h3:text-title-3 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-p:text-lg">
           <MDXContent
-            components={{ Section, Badge, Cta: (props) => <MiniCta {...props} className="not-prose" />, IconBox }}
+            components={{
+              Section,
+              Header,
+              Badge,
+              CardGroup,
+              Card,
+              CardIcon,
+              CardContent,
+              IconBox,
+              ...Icons,
+              Cta: (props) => <MiniCta {...props} className="not-prose" />,
+            }}
             source={service.content}
           />
         </article>

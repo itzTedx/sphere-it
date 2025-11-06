@@ -12,7 +12,9 @@ meta:
   title: 100 Power Air Compressors SB (Synthetic) | High-Performance Aviation Gear Fluid
   description: 100 Power Air Compressors SB (Synthetic) is a synthetic hydrocarbon-based aviation gear fluid designed for landing gear systems, providing superior oxidation stability, anti-wear protection, and corrosion prevention. Meets BMS3-32A (Type II), DPM-6177, and Lockheed L1011 Tristar standards for reliable performance under severe operational conditions.
 ---
-<Section>
+import { IconPuzzle } from "@/assets/icons/puzzle";
+
+<Section className="pt-0">
     ### Elevate in Action
     <div className='max-w-2xl text-2xl not-prose text-balance'>
         **Connect your employees and customers with enterprise knowledge, data, and systems to get work done.**
@@ -23,27 +25,32 @@ meta:
 
 <Section>
     ## Core Platform Capabilities
-    
-    - <IconBox state="active">H</IconBox>
-        ### Enterprise-Grade AI Platform
-        Multi-modal RAG engine and Vector DB retrieval deliver precise, context-rich responses with configurable guardrails.
 
-    - ### Flexible Architecture
-        LLM-agnostic platform ensuring seamless integration across models and databases.
-
-    - ### Accelerated Innovation
-        Validate, derive, and measure AI use cases in rapid sprints, scaling efficiently across business lines.
-
-    - ### Optimized Efficiency
-        Architecture with optimized LLM token usage reduces overall TCO for AI use cases.
+    <CardGroup>
+        <Card variant="outlined">
+            <CardIcon icon={<IconPuzzle />} />
+            <CardContent title="Enterprise-Grade AI Platform" description="Multi-modal RAG engine and Vector DB retrieval deliver precise, context-rich responses with configurable guardrails." />
+        </Card>
+        <Card variant="outlined">
+            <CardIcon icon={<IconPuzzle />} />
+            <CardContent title="Flexible Architecture" description="LLM-agnostic platform ensuring seamless integration across models and databases." />
+        </Card>
+        <Card variant="outlined">
+            <CardIcon icon={<IconPuzzle />} />
+            <CardContent title="Accelerated Innovation" description="Validate, derive, and measure AI use cases in rapid sprints, scaling efficiently across business lines." />
+        </Card>
+        <Card variant="outlined">
+            <CardIcon icon={<IconPuzzle />} />
+            <CardContent title="Optimized Efficiency" description="Architecture with optimized LLM token usage reduces overall TCO for AI use cases." />
+        </Card>
+    </CardGroup>        
 </Section>
 
 <Section>
-    <Badge>Use Case Capabilities</Badge>
-    <div className='grid md:grid-cols-2 gap-4 md:gap-6 not-prose'>
+    <Header badge="Use Case Capabilities">
         ## Enterprise automation and optimization framework
 
         From predictive analytics to workflow automation, Elevate provides tools that empower your team, streamline operations, and uncover opportunities for growth.
-    </div>
+    </Header>
     <Cta title="Elevate makes AI simple to Build and Scale" description="So you can focus on growth instead of complexity" layout="horizontal" showButton={false} />
 </Section>
