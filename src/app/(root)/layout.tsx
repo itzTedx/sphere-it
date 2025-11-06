@@ -3,8 +3,6 @@ import "@/styles/globals.css";
 
 import Link from "next/link";
 
-import ReactLenis from "lenis/react";
-
 import { BreakpointIndicator } from "@/components/dev/breakpoint-ind";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
@@ -83,7 +81,8 @@ export default function RootLayout({
             <div className="h-full w-px bg-border" />
           </div>
           <Navbar />
-          <ReactLenis root>{children}</ReactLenis>
+          {/* <ReactLenis root>{children}</ReactLenis> */}
+          {children}
           <Footer />
           <Toaster position="top-center" richColors />
         </Providers>
