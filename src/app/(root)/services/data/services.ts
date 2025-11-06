@@ -378,6 +378,7 @@ export const SERVICES: Service[] = [
     },
     overview:
       "Turn data into action with real-time insights and proactive monitoring. Our telemetry-driven dashboards provide clarity for decision-makers, ensuring accurate reporting and early resolution of potential issues.",
+    inAction: "",
     key: [
       {
         id: 1,
@@ -549,6 +550,7 @@ export const SERVICES: Service[] = [
     },
     overview:
       "Keep your mission-critical platforms resilient, secure, and compliant. From stability and uptime to optimized infrastructure, we ensure systems perform at their best. So your business never misses a beat.",
+    inAction: "",
     key: [
       {
         id: 1,
@@ -720,6 +722,7 @@ export const SERVICES: Service[] = [
     },
     overview:
       "Scale your IT capabilities with flexible talent models. Whether you need niche expertise or long-term support, we provide outcome-aligned professionals who integrate seamlessly into your teams, reducing overhead and accelerating delivery.",
+    inAction: "",
     key: [
       {
         id: 1,
