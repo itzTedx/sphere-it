@@ -286,7 +286,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
               <div className="flex size-8 items-center justify-center rounded-md bg-stone-alpha-10 text-primary-600">
                 {item.node}
               </div>
-              <span className="font-display text-subhead-lg">{item.title}</span>
+              <span className="font-display text-subhead-sm sm:text-subhead-lg">{item.title}</span>
             </div>
             <div className="ml-[var(--logoloop-gap)] h-3 w-px bg-muted-background" />
           </>

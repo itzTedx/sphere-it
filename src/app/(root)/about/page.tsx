@@ -20,9 +20,10 @@ import { LogoOutline } from "@/assets/logo";
 import { CORE_VALUES, HIRING_CTA, OUR_VALUES, TIMELINE } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
 import { LEADERS, TEAMS, Team } from "@/data/teams";
+import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { Clients } from "@/modules/views";
 
-import { breadcrumbStructuredData, structuredData } from "./structured-data";
+import { structuredData } from "./structured-data";
 
 const meta = {
   title: "About Sphere IT Global - Digital Transformation & IT Innovation Partner",
@@ -76,9 +77,11 @@ export default function AboutPage() {
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} type="application/ld+json" />
-      <script
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-        type="application/ld+json"
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", item: `${BASE_URL}` },
+          { name: "About", item: `${BASE_URL}/about` },
+        ]}
       />
       <main>
         <header

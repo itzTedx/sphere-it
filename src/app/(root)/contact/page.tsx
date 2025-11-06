@@ -11,6 +11,7 @@ import { IconSocialInstagram, IconSocialWhatsapp, IconSocialX } from "@/assets/i
 
 import { BASE_URL, EMAIL_INFO } from "@/data/site-config";
 import { EnquiryForm } from "@/modules/form/enquiry-form";
+import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
 import { structuredData } from "./structured-data";
 
@@ -53,6 +54,12 @@ export default function ContactPage() {
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} type="application/ld+json" />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", item: `${BASE_URL}` },
+          { name: "Contact", item: `${BASE_URL}/contact` },
+        ]}
+      />
       <main>
         <header className="container max-w-7xl py-16 sm:py-20 md:py-28">
           <Badge showDashes>Contact us</Badge>
