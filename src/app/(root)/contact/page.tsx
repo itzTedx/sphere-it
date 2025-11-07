@@ -5,11 +5,12 @@ import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-import { IconArrowRight, IconChevronDown } from "@/assets/icons";
-import { IconCopy } from "@/assets/icons/copy";
+import { IconChevronDown } from "@/assets/icons";
 import { IconSocialInstagram, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
 
 import { BASE_URL, EMAIL_INFO } from "@/data/site-config";
+import { CopyButton } from "@/modules/form/components/copy-button";
+import { FocusForm } from "@/modules/form/components/focus-form";
 import { EnquiryForm } from "@/modules/form/enquiry-form";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
@@ -80,22 +81,16 @@ export default function ContactPage() {
                       {EMAIL_INFO}
                     </p>
                   </div>
-                  <button aria-label="Copy email address" className="ml-2 flex-shrink-0">
-                    <IconCopy className="text-stone-400" />
-                  </button>
+                  <CopyButton
+                    aria-label="Copy email address"
+                    className="flex-shrink-0"
+                    size="icon"
+                    text={EMAIL_INFO}
+                    variant="ghost"
+                  />
                 </li>
-                <li className="flex items-center justify-between rounded-xl bg-stone-alpha-10 p-3">
-                  <div className="min-w-0 flex-1">
-                    <label className="font-mono text-badge text-muted-background uppercase" htmlFor="inquiry-form">
-                      Form
-                    </label>
-                    <p className="text-base sm:text-lg" id="inquiry-form">
-                      Submit an inquiry
-                    </p>
-                  </div>
-                  <button aria-label="Go to inquiry form" className="ml-2 flex-shrink-0">
-                    <IconArrowRight className="text-stone-400" />
-                  </button>
+                <li className="rounded-xl bg-stone-alpha-10">
+                  <FocusForm />
                 </li>
               </ul>
             </article>
