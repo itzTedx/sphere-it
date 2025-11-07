@@ -41,7 +41,16 @@ export const CopyButton = ({ text, className, ...props }: React.ComponentProps<t
   }
 
   return (
-    <Button onClick={handleCopy} type="button" {...props} className={cn("relative inline-block", className)}>
+    <Button
+      onClick={handleCopy}
+      type="button"
+      {...props}
+      className={cn(
+        "relative inline-block transition-colors",
+        copied ? "bg-emerald-100" : "bg-stone-alpha-10",
+        className
+      )}
+    >
       <IconCopy
         className={cn(
           "m-auto text-stone-400 transition-all duration-300",
@@ -50,7 +59,7 @@ export const CopyButton = ({ text, className, ...props }: React.ComponentProps<t
       />
       <IconCheckmark
         className={cn(
-          "absolute inset-0 m-auto text-stone-400 transition-all duration-300",
+          "absolute inset-0 m-auto text-green-600 transition-all duration-300",
           copied
             ? "slide-in-from-bottom fade-in-0 animate-in"
             : "fade-out-0 slide-out-to-top pointer-events-none animate-out opacity-0"
