@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,18 +5,17 @@ import Link from "next/link";
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/radix/accordion";
 
 import { CheckmarkIconBox } from "@/assets/checkmark-iconbox";
 import { IconArrowRight, IconCheckmark } from "@/assets/icons";
+import { IconPdf } from "@/assets/icons/pdf";
 import { IconSocialLinkedin } from "@/assets/icons/social";
-import { IconTimeline } from "@/assets/icons/timeline";
-import { LogoOutline } from "@/assets/logo";
+import { IconChip } from "@/assets/icons/technology";
+import { LogoIcon, LogoOutline } from "@/assets/logo";
 
-import { CORE_VALUES, HIRING_CTA, OUR_VALUES, TIMELINE } from "@/data/about";
+import { HIRING_CTA, OUR_VALUES } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
 import { LEADERS, TEAMS, Team } from "@/data/teams";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
@@ -84,34 +82,35 @@ export default function AboutPage() {
         ]}
       />
       <main>
-        <header
-          className="relative h-[calc(100lvh-4rem)] overflow-hidden border-b bg-gradient-to-b from-primary-800 to-primary-900"
-          role="banner"
-        >
-          <div className="container flex h-full max-w-7xl flex-col justify-between py-16 text-background md:py-20">
+        <header className="relative z-50 h-[calc(100lvh-4rem)] overflow-hidden border-b bg-card" role="banner">
+          <div className="container flex h-full max-w-7xl flex-col justify-between py-16 md:py-20">
+            <div className="max-w-2xl">
+              <Badge variant="ghost">About</Badge>
+              <h1 className="text-primary-900 text-title-3 md:text-title-1">
+                Technology and talent that work where it matters most.
+              </h1>
+            </div>
             <div className="max-w-xl space-y-6">
-              <p className="text-balance md:text-lg">
-                Sphere IT Global delivers future-ready IT solutions — from software and cloud to design and resourcing.
-                With decades of cross-industry expertise, we turn complex challenges into growth opportunities.
+              <p className="text-balance text-stone-700 md:text-lg">
+                Technology is only as powerful as the outcomes it creates. At Sphere IT, we exist to remove complexity
+                and make technology work for business. Our mission is clear: to deliver solutions that are{" "}
+                <span className="text-primary-700">
+                  precisely engineered, practically applied, and built for real-world impact.
+                </span>
               </p>
-              <Button asChild className="bg-stone-200/30 text-muted" variant="ghost">
+              <Button asChild className="bg-stone-200/30 text-stone-700" variant="ghost">
                 <Link
                   aria-label="Explore our service capabilities and opportunities"
                   href="/services"
+                  target="_blank"
                   title="Explore our capabilities"
                 >
-                  Explore Open Opportunities
+                  View Our Intro Deck
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300/50">
-                    <IconArrowRight aria-hidden="true" className="text-stone-100" />
+                    <IconPdf aria-hidden="true" className="text-accent" />
                   </span>
                 </Link>
               </Button>
-            </div>
-            <div className="max-w-2xl">
-              <Badge variant="ghost">About</Badge>
-              <h1 className="text-title-3 md:text-title-1">
-                We're driving the new era of scalable, future-ready IT solutions.
-              </h1>
             </div>
           </div>
 
@@ -129,22 +128,27 @@ export default function AboutPage() {
           id="main-content"
         >
           <div className="container max-w-4xl py-12">
-            <Badge showDashes>About us</Badge>
+            <Badge showDashes>
+              <LogoIcon /> Our Story
+            </Badge>
             <h2 className="my-4 text-primary-900 text-title-2" id="about-heading">
-              Our story started with our founders, in 2016
+              Sphere IT was founded in 2016 with core mission
             </h2>
             <div className="space-y-3">
               <p className="text-xl">
-                Sphere IT has grown from a software provider for banks, insurance and automotive platforms into a
-                trusted partner for forward-looking organizations across the GCC. We deliver technology and talent
-                solutions that balance precision with pragmatism; helping clients achieve efficiency, resilience and
-                measurable growth.
+                To equip clients to adopt technology effectively through the right people, processes, and execution
+                expertise. Headquartered in Dubai, Sphere IT is a Middle East–focused IT services firm delivering
+                technology services and resources to leading banks and enterprises in the region. Sphere IT delivers
+                services across managed services, automated process workflows, data management and intelligence, AI
+                enablement, and specialized technology talent augmentation.
               </p>
               <p className="text-xl">
-                Technology is only as powerful as the outcomes it creates. At Sphere IT, we exist to remove complexity
-                and make technology work for business. Our mission is clear: to deliver solutions that are{" "}
+                With more than 300 professionals operating across the region and a Center of Excellence in Bangalore,
+                Sphere IT enables organisations in the Middle East to leverage technology with precision and pragmatism.
+                Sphere IT has built{" "}
                 <strong className="font-semibold text-primary-600">
-                  precisely engineered, practically applied, and built for real-world impact.
+                  deep domain expertise, proven delivery track records, and the trust of leading financial institutions
+                  across the region.
                 </strong>
               </p>
             </div>
@@ -161,60 +165,11 @@ export default function AboutPage() {
             width={1920}
           />
         </section>
-        <section aria-labelledby="timeline-heading" className="relative z-50 mx-4 rounded-4xl border bg-card">
-          <div className="mx-auto max-w-7xl py-12">
-            <Badge className="mx-auto" showDashes>
-              <IconTimeline aria-hidden="true" /> Timeline
-            </Badge>
-            <h2 className="mt-4 text-center text-primary-900 text-title-2" id="timeline-heading">
-              Our <span className="text-primary-600">Story</span>
-            </h2>
 
-            <div aria-label="Company timeline" className="container mt-9" role="list">
-              {TIMELINE.map((timeline, index) => (
-                <Fragment key={timeline.serial}>
-                  <article
-                    aria-labelledby={`timeline-${timeline.serial}-title`}
-                    className="rounded-[calc(var(--radius-2xl)+calc(var(--spacing)*1.5)))] bg-muted p-1.5"
-                    role="listitem"
-                  >
-                    <Card className="rounded-2xl">
-                      <CardHeader className="px-2 py-1">
-                        <div className="flex items-center gap-4">
-                          <span
-                            aria-label={`Step ${timeline.serial}`}
-                            className="flex size-8 items-center justify-center rounded-full bg-card font-mono text-badge shadow-sm"
-                          >
-                            {timeline.serial}
-                          </span>
-                          <CardTitle className="font-bold text-subhead-base" id={`timeline-${timeline.serial}-title`}>
-                            {timeline.year}
-                          </CardTitle>
-                          <CardDescription className="text-subhead-base">{timeline.title}</CardDescription>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-4 rounded-lg bg-card p-4 shadow-sm">
-                        <p className="text-base text-stone-500">{timeline.description}</p>
-                        <ul className="grid grid-cols-2 gap-6" role="list">
-                          {timeline.lists.map(({ id, Icon, item }) => (
-                            <li className="flex items-center gap-3" key={id}>
-                              <Icon aria-hidden="true" className="size-4 text-accent" />
-                              <p className="font-display text-stone-600 text-subhead-sm">{item}</p>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </article>
-
-                  {TIMELINE.length !== index + 1 ? <DashedLine /> : null}
-                </Fragment>
-              ))}
-            </div>
-          </div>
-        </section>
         <section aria-labelledby="values-heading" className="container max-w-7xl py-20">
-          <Badge showDashes>Our Values</Badge>
+          <Badge showDashes>
+            <IconChip className="text-accent" /> Our Values
+          </Badge>
           <h2 className="mt-6 text-primary-900 text-title-2" id="values-heading">
             Precision and Pragmatism
           </h2>
@@ -222,18 +177,7 @@ export default function AboutPage() {
             At Sphere IT, two values shape everything we do - Precision and Pragmatism. Together, they define how we
             deliver technology and how we build trust with every client we serve.
           </p>
-          <Button asChild className="mt-6" variant="ghost">
-            <Link
-              aria-label="Read client testimonials and feedback"
-              href="/resources/testimonials"
-              title="See what our client says"
-            >
-              See what our client says
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
-                <IconArrowRight aria-hidden="true" className="text-stone-500" />
-              </span>
-            </Link>
-          </Button>
+
           <div aria-label="Company core values" className="my-9 grid grid-cols-1 gap-6 sm:grid-cols-2" role="list">
             {OUR_VALUES.map((value) => (
               <article className="overflow-hidden rounded-2xl bg-card shadow-md" key={value.id} role="listitem">
@@ -252,25 +196,6 @@ export default function AboutPage() {
                 </div>
               </article>
             ))}
-          </div>
-          <div className="overflow-hidden rounded-xl border">
-            <h4 className="p-6 text-lead text-muted-foreground">Our core values that drive us forward:</h4>
-            <Accordion aria-label="Core values details" className="w-full" type={"multiple"}>
-              {CORE_VALUES.map((item, index) => (
-                <AccordionItem
-                  className="px-6 py-4 transition-colors data-[state=open]:bg-card"
-                  key={index}
-                  value={`item-${index + 1}`}
-                >
-                  <AccordionTrigger className="decoration-2 decoration-primary-300 underline-offset-2" showArrow={true}>
-                    <h5 className="text-stone-800 text-title-5">{item.value}</h5>
-                  </AccordionTrigger>
-                  <AccordionContent className="max-w-2xl text-balance text-stone-700" keepRendered={true}>
-                    {item.content}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
           </div>
         </section>
         <section aria-labelledby="team-heading" className="border-y">

@@ -105,7 +105,7 @@ export const OUR_VALUES = [
     badge: "We never leave room for doubt.",
     title: "Precision",
     description:
-      "Every engagement reflects accuracy, reliability, and clarity. We believe in getting it right the first time; through tested, validated solutions that clients can depend on. Precision is how we earn trust and keep it, project after project.",
+      "Precision means we never leave room for doubt. Every engagement reflects accuracy, reliability, and clarity. We believe in getting it right the first time; through tested, validated solutions that clients can depend on. Precision is how we earn trust and keep it, project after project.",
   },
   {
     id: 2,
@@ -113,7 +113,7 @@ export const OUR_VALUES = [
     badge: "We make technology work in the real world.",
     title: "Pragmatism",
     description:
-      "We design solutions that are powerful yet practical, balancing innovation with usability and cost-effectiveness. Pragmatism is what ensures our clients see measurable outcomes quickly, without unnecessary complexity or delays.",
+      "Pragmatism is about making technology work in the real world. We design solutions that are powerful yet practical, balancing innovation with usability and cost-effectiveness. Pragmatism is what ensures our clients see measurable outcomes quickly, without unnecessary complexity or delays.",
   },
 ];
 
