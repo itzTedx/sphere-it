@@ -86,4 +86,4 @@ export const quickEnquirySchema = z.object({
     .refine((val) => val.length >= 10, { error: "Message must be at least 10 characters after trimming" }),
 });
 
-export type QuickEnquireType = z.infer<typeof enquirySchema>;
+export type QuickEnquireType = z.infer<typeof quickEnquirySchema>;

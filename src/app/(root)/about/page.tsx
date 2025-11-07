@@ -115,10 +115,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* <LogoOutline
-            aria-hidden="true"
-            className="-top-1/2 absolute left-1/2 z-1000 rotate-35 text-primary-300 opacity-50"
-            /> */}
           <PathsBackground className="h-[calc(100lvh-4rem)] w-full" position={-1} />
         </header>
 
@@ -200,7 +196,7 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
-        <section aria-labelledby="team-heading" className="border-y">
+        <section aria-labelledby="team-heading" className="border-y" id="team">
           <div className="container max-w-7xl space-y-6 rounded-4xl border bg-card py-12">
             <div>
               <Badge>Our People, Our Precision</Badge>

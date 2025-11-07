@@ -36,7 +36,7 @@ export const Cta = memo(
       >
         <div className="xl:border-y">
           <div className="relative mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 sm:p-8 md:p-12 lg:rounded-none lg:p-16 xl:rounded-3xl">
+            <div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 shadow-2xl sm:p-8 md:p-12 lg:rounded-none lg:p-16 xl:rounded-3xl">
               <div className="relative z-10 max-w-2xl space-y-3 sm:space-y-4">
                 <Badge
                   aria-label="Call to action category"

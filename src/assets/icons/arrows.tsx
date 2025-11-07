@@ -23,3 +23,24 @@ export const IconArrowUpRight = (props: SVGProps) => {
     </svg>
   );
 };
+
+export const IconTrendUp = (props: SVGProps) => {
+  return (
+    <svg {...props} fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M21.0002 7L14.6398 13.3604C13.5847 14.4156 11.8279 14.2416 11.0002 13C10.1725 11.7584 8.41576 11.5844 7.36061 12.6396L3.00021 17"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+      <path
+        d="M15.5262 6.99773H20.9932V12.4647"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+};

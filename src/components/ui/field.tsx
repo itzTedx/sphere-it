@@ -30,7 +30,12 @@ function FieldLegend({
 }: React.ComponentProps<"legend"> & { variant?: "legend" | "label" }) {
   return (
     <legend
-      className={cn("mb-3 font-medium", "data-[variant=legend]:text-base", "data-[variant=label]:text-sm", className)}
+      className={cn(
+        "mb-3 font-display text-label",
+        "data-[variant=legend]:text-label",
+        "data-[variant=label]:text-label",
+        className
+      )}
       data-slot="field-legend"
       data-variant={variant}
       {...props}
