@@ -6,6 +6,7 @@ import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
+import { PathsBackground } from "@/components/ui/motion/lines-path-background";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 
 import { CheckmarkIconBox } from "@/assets/checkmark-iconbox";
@@ -13,7 +14,7 @@ import { IconArrowRight, IconCheckmark } from "@/assets/icons";
 import { IconPdf } from "@/assets/icons/pdf";
 import { IconSocialLinkedin } from "@/assets/icons/social";
 import { IconChip } from "@/assets/icons/technology";
-import { LogoIcon, LogoOutline } from "@/assets/logo";
+import { LogoIcon } from "@/assets/logo";
 
 import { HIRING_CTA, OUR_VALUES } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
@@ -114,11 +115,13 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <LogoOutline
+          {/* <LogoOutline
             aria-hidden="true"
             className="-top-1/2 absolute left-1/2 z-1000 rotate-35 text-primary-300 opacity-50"
-          />
+            /> */}
+          <PathsBackground className="h-[calc(100lvh-4rem)] w-full" position={-1} />
         </header>
+
         <div className="mt-24 border-y">
           <Clients />
         </div>
@@ -135,7 +138,7 @@ export default function AboutPage() {
               Sphere IT was founded in 2016 with core mission
             </h2>
             <div className="space-y-3">
-              <p className="text-xl">
+              <p>
                 To equip clients to adopt technology effectively through the right people, processes, and execution
                 expertise. Headquartered in Dubai, Sphere IT is a Middle East–focused IT services firm delivering
                 technology services and resources to leading banks and enterprises in the region. Sphere IT delivers
@@ -144,7 +147,7 @@ export default function AboutPage() {
               </p>
               <p className="text-xl">
                 With more than 300 professionals operating across the region and a Center of Excellence in Bangalore,
-                Sphere IT enables organisations in the Middle East to leverage technology with precision and pragmatism.
+                Sphere IT enables organizations in the Middle East to leverage technology with precision and pragmatism.
                 Sphere IT has built{" "}
                 <strong className="font-semibold text-primary-600">
                   deep domain expertise, proven delivery track records, and the trust of leading financial institutions
@@ -190,7 +193,6 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="space-y-2 px-8 py-6">
-                  <Badge variant="secondary">{value.badge}</Badge>
                   <h3 className="text-primary-900 text-title-3">{value.title}</h3>
                   <p className="font-display text-lg text-stone-600">{value.description}</p>
                 </div>

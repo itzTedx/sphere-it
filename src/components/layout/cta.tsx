@@ -1,4 +1,5 @@
 import { memo } from "react";
+import type { Route } from "next";
 import Link from "next/link";
 
 import { IconAiCloud, IconArrowUpRight } from "@/assets/icons";
@@ -16,12 +17,14 @@ interface CtaProps {
   description?: string;
   showForm?: boolean;
   buttonText?: string;
+  buttonLink?: Route;
 }
 
 export const Cta = memo(
   ({
     showForm = false,
     buttonText = "Start the Conversation",
+    buttonLink = "/contact",
     badge = "Your IT success story starts here",
     title = "Let's build your next IT success story together.",
     description = "Get the accuracy, scalability, and impact your business needs - delivered with precision and pragmatism.",
@@ -50,7 +53,7 @@ export const Cta = memo(
                 </h4>
                 <p className="text-balance text-primary-300 text-sm sm:text-base md:text-lg">{description}</p>
                 <Button aria-describedby="cta-description" className="w-full sm:w-auto" size="lg">
-                  {buttonText}
+                  <Link href={buttonLink}>{buttonText}</Link>
                 </Button>
               </div>
               <LogoOutline
