@@ -241,8 +241,8 @@ function RoleCard({ data }: { data: Role }) {
       </div>
       <div className="mt-auto flex items-center justify-between gap-3">
         <Badge variant="secondary">{data.department}</Badge>
-        <Button size="sm" variant="ghost">
-          View details
+        <Button asChild size="sm" variant="ghost">
+          <Link href={`/careers/${data.id}`}>View details</Link>
         </Button>
       </div>
     </article>

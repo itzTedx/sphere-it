@@ -28,6 +28,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 
 import { IconEmail } from "@/assets/icons/email";
 import { IconLocation } from "@/assets/icons/location";
+import { IconMessage } from "@/assets/icons/message";
 import { IconPhone } from "@/assets/icons/phone";
 import { IconUser } from "@/assets/icons/user";
 
@@ -331,7 +332,7 @@ export const JobApplicationForm = () => {
         </FieldDescription>
 
         <Button className="relative w-fit" type="submit">
-          Send Message
+          Send Message <IconMessage />
         </Button>
       </FieldGroup>
     </form>
