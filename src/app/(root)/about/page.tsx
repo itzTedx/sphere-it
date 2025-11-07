@@ -306,23 +306,6 @@ export default function AboutPage() {
   );
 }
 
-function DashedLine() {
-  return (
-    <div className="px-9">
-      <svg
-        className="text-stone-300"
-        fill="none"
-        height="24"
-        viewBox="0 0 2 24"
-        width="2"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M0.750002 0L0.75 24" stroke="currentColor" strokeDasharray="6 4" strokeWidth="1.5" />
-      </svg>
-    </div>
-  );
-}
-
 function TeamCard({ data }: { data: Team }) {
   return (
     <article className="group p-4" role="listitem">
