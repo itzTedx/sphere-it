@@ -132,9 +132,9 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
     <li className="grid font-display lg:grid-cols-[1fr_.60fr_.60fr]">
       {data.map((link) =>
         link.id === "explore" ? (
-          <div className="p-2" key={link.id}>
-            <span className="px-2 pb-3 font-display font-medium text-sm text-stone-400 uppercase">{link.id}</span>
-            <div className="grid grid-cols-2 gap-2">
+          <div className="flex h-full flex-col p-2" key={link.id}>
+            <small className="px-2 pb-3 font-display font-medium text-sm text-stone-400 uppercase">{link.id}</small>
+            <div className="grid h-full grid-cols-2 gap-2">
               {link.links.map((link) => (
                 <NavigationMenuLink asChild className="group" key={link.label}>
                   <Link
