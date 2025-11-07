@@ -1,7 +1,9 @@
 "use client";
 
-import type { SVGProps } from "react";
+import { type SVGProps, useState } from "react";
 import Link from "next/link";
+
+import { AnimatePresence, motion } from "motion/react";
 
 import { IconBox } from "@/components/icon-box";
 import {
@@ -15,6 +17,7 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { NAV_LINKS } from "@/data/constants";
+import { cn } from "@/lib/utils";
 import { ResourcesSubmenu, SubmenuLink } from "@/types/layout";
 
 export const DesktopNavLinks = () => {
@@ -124,6 +127,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
 }
 
 function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
+  const [hoveredIdx, setHoveredIdx] = useState<string | null>(null);
   return (
     <li className="grid font-display lg:grid-cols-[1fr_.60fr_.60fr]">
       {data.map((link) =>
@@ -149,17 +153,22 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
             </div>
           </div>
         ) : (
-          <div className="space-y-3 border-l p-2" key={link.id}>
+          <div className="space-y-1 border-l p-2" key={link.id}>
             <span className="px-3 font-display font-medium text-sm text-stone-400 uppercase">{link.id}</span>
-            <ul className="space-y-4">
+            <ul>
               {link.links.map((menu) => (
-                <li className="" key={menu.label}>
+                <li
+                  className="relative"
+                  key={menu.label}
+                  onMouseEnter={() => setHoveredIdx(menu.label)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                >
                   <Link
-                    className="group flex items-center gap-3 rounded-md p-3 hover:bg-stone-500/5"
+                    className="group relative z-10 flex items-center gap-3 rounded-md p-3"
                     href={menu.href}
                     title={menu.label}
                   >
-                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:border-primary-500 group-hover:bg-primary-500/10 group-focus-visible:border-primary-600 group-focus-visible:bg-primary-500/10">
+                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:border-primary-500/10 group-hover:bg-primary-500/10 group-focus-visible:border-primary-600 group-focus-visible:bg-primary-500/10">
                       <menu.Icon className="size-5 shrink-0 text-stone-500 transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600" />
                     </div>
                     <div>
@@ -171,6 +180,23 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
                       </p>
                     </div>
                   </Link>
+                  <AnimatePresence>
+                    {hoveredIdx === menu.label && (
+                      <motion.span
+                        animate={{
+                          opacity: 1,
+                          transition: { duration: 0.05 },
+                        }}
+                        className={cn("absolute inset-0 z-0 block h-full w-full rounded-xl bg-stone-100")}
+                        exit={{
+                          opacity: 0,
+                          transition: { duration: 0.01, delay: 0.1 },
+                        }}
+                        initial={{ opacity: 0 }}
+                        layoutId="cardHoverEffect"
+                      />
+                    )}
+                  </AnimatePresence>
                 </li>
               ))}
             </ul>

@@ -68,7 +68,7 @@ export const Services = memo(() => {
                 fill="white"
               />
             </svg>
-            <div className="flex items-center justify-center bg-card sm:h-11 md:h-16">
+            <div className="flex items-center justify-center bg-card max-sm:pb-3 sm:h-11 md:h-16">
               <TabsList
                 aria-label="Service categories"
                 className="flex h-auto flex-wrap items-center justify-center rounded-none bg-card"

@@ -10,7 +10,7 @@ import { TESTIMONIALS, Testimonial } from "@/data/testimonials";
 export const Testimonials = memo(() => {
   return (
     <section aria-labelledby="testimonials-heading" className="mx-auto max-w-7xl max-xl:container">
-      <div className="max-w-7xl py-12 md:container md:py-16 xl:py-20">
+      <div className="max-w-7xl pb-12 md:container md:pb-16 xl:pb-20">
         <div className="mb-12 flex flex-col items-center gap-4">
           <Badge aria-label="Section category" role="text">
             Client Testimonials

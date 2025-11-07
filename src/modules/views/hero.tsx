@@ -8,10 +8,10 @@ import { IconCheckmark } from "@/assets/icons";
 
 export const Hero = () => {
   return (
-    <header className="relative z-50 bg-card" role="banner">
+    <header className="relative z-50 overflow-hidden bg-card" role="banner">
       <section
         aria-labelledby="hero-heading"
-        className="container relative z-10 max-w-7xl pt-16 pb-9 text-center md:pt-12"
+        className="container relative z-10 max-w-7xl pt-12 pb-9 text-center sm:pt-16 md:pt-12"
       >
         <div className="mx-auto max-w-4xl space-y-6">
           <Badge className="mx-auto" showDashes>
@@ -34,21 +34,26 @@ export const Hero = () => {
             <Button aria-describedby="hero-description" asChild className="max-sm:w-full">
               <Link href="/services">Explore Services</Link>
             </Button>
-            <Button aria-describedby="hero-description" className="max-sm:w-full" variant="ghost">
-              Contact us
+            <Button
+              aria-describedby="hero-description"
+              asChild
+              className="backdrop-blur-md max-sm:w-full"
+              variant="ghost"
+            >
+              <Link href="/contact">Contact us</Link>
             </Button>
           </div>
         </div>
       </section>
       <section
         aria-labelledby="hero-services-heading"
-        className="container relative z-10 max-w-md pt-16 pb-9 text-center md:pt-12"
+        className="container relative z-10 max-w-md pt-16 pb-9 text-center md:pt-20"
       >
         <Badge className="mx-auto" variant="ghost">
           Services
         </Badge>
         <h2 className="text-primary-900 text-title-5 md:text-title-4" id="hero-services-heading">
-          Delivering Technology That <span className="text-accent">Works for You</span>
+          Delivering Technology That <span className="text-primary-700">Works for You</span>
         </h2>
       </section>
       <HeroPattern className="-translate-x-1/2 absolute bottom-0 left-1/2 z-0 text-stone-500" />
