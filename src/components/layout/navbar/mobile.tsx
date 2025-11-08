@@ -99,9 +99,9 @@ function MobileSubmenu({
         className="flex w-full items-center justify-between rounded-lg px-3 py-2 font-medium text-base transition-colors hover:bg-stone-100 focus:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span>{label}</span>
+        <span className="font-display">{label}</span>
         <span aria-hidden="true" className={`${isOpen ? "rotate-180" : ""} transition-transform`}>
-          <IconChevronDownFill />
+          <IconChevronDownFill className="text-stone-400" />
         </span>
       </button>
 
@@ -130,12 +130,12 @@ function MobileSubmenuItem({ item, onLinkClick }: { item: SubmenuLink; onLinkCli
       onClick={onLinkClick}
     >
       {item.Icon && (
-        <IconBox className="shrink-0">
-          <item.Icon aria-hidden="true" className="h-4 w-4" />
+        <IconBox className="shrink-0" state="active">
+          <item.Icon aria-hidden="true" className="size-5 text-primary-600" />
         </IconBox>
       )}
       <div className="min-w-0 flex-1">
-        <div className="font-medium">{item.label}</div>
+        <div className="font-display font-medium">{item.label}</div>
         {item.description && <p className="text-muted-foreground text-xs leading-tight">{item.description}</p>}
       </div>
     </Link>
@@ -162,9 +162,9 @@ function MobileResourcesSubmenu({
         className="flex w-full items-center justify-between rounded-lg px-3 py-2 font-medium text-base transition-colors hover:bg-stone-100 focus:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span>{label}</span>
+        <span className="font-display">{label}</span>
         <span aria-hidden="true" className={`${isOpen ? "rotate-180" : ""} transition-transform`}>
-          <IconChevronDownFill />
+          <IconChevronDownFill className="text-stone-400" />
         </span>
       </button>
 
@@ -190,7 +190,7 @@ function MobileResourcesSubmenu({
                     >
                       <link.Icon className="h-5 w-5 text-stone-500 transition-colors" />
                       <div>
-                        <div className="font-medium text-sm">{link.label}</div>
+                        <div className="font-display font-medium text-sm">{link.label}</div>
                         <p className="text-muted-foreground text-xs leading-tight">{link.description}</p>
                       </div>
                     </Link>
