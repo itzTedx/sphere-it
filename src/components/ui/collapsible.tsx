@@ -43,10 +43,12 @@ type CollapsibleContentProps = Omit<
 > &
   HTMLMotionProps<"div"> & {
     keepRendered?: boolean;
+    defaultOpen?: boolean;
   };
 
 function CollapsibleContent({
   keepRendered = false,
+  defaultOpen = true,
   transition = { duration: 0.35, ease: "easeInOut" },
   ...props
 }: CollapsibleContentProps) {
@@ -63,7 +65,7 @@ function CollapsibleContent({
                 : { opacity: 0, height: 0, overflow: "hidden", y: 20 }
             }
             data-slot="collapsible-content"
-            initial={{ opacity: 0, height: 0, overflow: "hidden", y: 20 }}
+            initial={defaultOpen ? undefined : { opacity: 0, height: 0, overflow: "hidden", y: 20 }}
             key="collapsible-content"
             layout
             transition={transition}

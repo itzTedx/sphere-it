@@ -1,44 +1,22 @@
 import Image from "next/image";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/animate-ui/primitives/radix/collapsible";
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { TabsContent } from "@/components/ui/tabs";
 
 import { IconChevronDown, IconChevronRight } from "@/assets/icons";
-import { IconSearch } from "@/assets/icons/search";
 
 import { cn } from "@/lib/utils";
+
+import { BlogsSidebar } from "../components/blogs-sidebar";
 
 export default function BlogsPage() {
   return (
     <TabsContent value="/resources/blogs">
       <div className="container grid max-w-7xl grid-cols-4 gap-8">
-        <aside className="sticky top-16 max-h-fit py-6">
-          <InputGroup>
-            <InputGroupInput placeholder="Search" />
-            <InputGroupAddon align="inline-end">
-              <IconSearch />
-            </InputGroupAddon>
-          </InputGroup>
-          <Collapsible defaultOpen>
-            <CollapsibleTrigger className="px-3 py-1.5 text-start">Recovery keys</CollapsibleTrigger>
-            <CollapsibleContent keepRendered>
-              <div className="px-3 pt-1.5 text-muted-foreground text-sm">
-                <div>alien-bean-pasta</div>
-                <div>wild-irish-burrito</div>
-                <div>horse-battery-staple</div>
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-        </aside>
+        <BlogsSidebar />
         <main className="col-span-3 mb-12">
           <article className="grid grid-cols-3 gap-4 py-6">
             <BlogCard className="col-span-full" />

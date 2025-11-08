@@ -60,6 +60,7 @@
   --color-input: var(--input);
   --color-border: var(--border);
 
+  --shadow-xs: var(--shadow-xs);
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
@@ -108,6 +109,10 @@
   --ring: oklch(0.627 0.1933 297.24);
 
   --radius: 0.625rem;
+
+  --shadow-xs:
+  0 2px 4px 0.5px color-mix(in oklab, var(--primary-900) 7%, transparent),
+  0 4px 8px -1.5px color-mix(in oklab, var(--primary-900) 6%, transparent),
 
   --shadow-sm:
   0 0 0 1px color-mix(in oklab, var(--primary-900) 6%, transparent),
@@ -211,5 +216,22 @@
   @media (width >= 96rem /* 1536px */) {
     padding-inline: 3rem;
     max-width: 98rem;
+  }
+}
+
+@layer utilities {
+  .dashed-stroke {
+    --color: var(--border);
+    --stroke: 1px;
+    --dash: 8px;
+    --gap: 6px;
+
+    height: var(--stroke);
+    width: 100%;
+    background: repeating-linear-gradient(
+      to right,
+      var(--color) 0 var(--dash),
+      transparent var(--dash) calc(var(--gap)*2)
+    );
   }
 }
