@@ -7,6 +7,7 @@ import { HelpCircle } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import z from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -36,7 +37,7 @@ import { cn } from "@/lib/utils";
 
 import { JobApplicationType, jobApplicationSchema, workMode } from "./validators/job-application-schema";
 
-const areaOfInterest = [
+const department = [
   {
     id: "engineering",
     title: "Engineering",
@@ -59,9 +60,19 @@ const areaOfInterest = [
   },
 ] as const;
 
-export const JobApplicationForm = () => {
+interface Props {
+  initialData?: { department: string; workMode: z.infer<typeof workMode> };
+}
+
+export const JobApplicationForm = ({ initialData }: Props) => {
+  const aot = department.find((a) => a.title === initialData?.department);
+
   const form = useForm<JobApplicationType>({
     resolver: zodResolver(jobApplicationSchema),
+    defaultValues: {
+      department: aot?.id ?? undefined,
+      preferredWorkMode: initialData?.workMode ?? undefined,
+    },
     mode: "onBlur",
   });
 
@@ -80,31 +91,33 @@ export const JobApplicationForm = () => {
   }
 
   return (
-    <form aria-labelledby="enquiry-form-heading" onSubmit={form.handleSubmit(onSubmit)}>
+    <form aria-labelledby="application-form-heading" onSubmit={form.handleSubmit(onSubmit)}>
       <FieldGroup>
         <Controller
           control={form.control}
           name="name"
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel aria-invalid={fieldState.invalid} htmlFor={field.name}>
-                Name <FieldLabelAsterisk />
-              </FieldLabel>
-              <InputGroup>
-                <InputGroupInput
-                  placeholder="Your Name"
-                  {...field}
-                  aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
-                  aria-invalid={fieldState.invalid}
-                  id={field.name}
-                />
-                <InputGroupAddon>
-                  <IconUser />
-                </InputGroupAddon>
-              </InputGroup>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
-            </Field>
-          )}
+          render={({ field, fieldState }) => {
+            return (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel aria-invalid={fieldState.invalid} htmlFor={field.name}>
+                  Name <FieldLabelAsterisk />
+                </FieldLabel>
+                <InputGroup>
+                  <InputGroupInput
+                    aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                    aria-invalid={fieldState.invalid}
+                    id={field.name}
+                    placeholder="Enter your name"
+                    {...field}
+                  />
+                  <InputGroupAddon>
+                    <IconUser />
+                  </InputGroupAddon>
+                </InputGroup>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+              </Field>
+            );
+          }}
         />
         <div className="grid gap-3 sm:grid-cols-2">
           <Controller
@@ -219,91 +232,97 @@ export const JobApplicationForm = () => {
           )}
         />
 
-        <Controller
-          control={form.control}
-          name="areaOfInterest"
-          render={({ field, fieldState }) => (
-            <FieldSet data-invalid={fieldState.invalid}>
-              <FieldLegend>Area of Interest</FieldLegend>
-              <RadioGroup
-                aria-invalid={fieldState.invalid}
-                name={field.name}
-                onValueChange={field.onChange}
-                value={field.value}
-              >
-                {areaOfInterest.map((interest) => (
-                  <FieldLabel htmlFor={`job-areaOfInterest-${interest.id}`} key={interest.id}>
-                    <Field aria-invalid={fieldState.invalid} className="bg-input/30" orientation="horizontal">
-                      <FieldContent>
-                        <FieldTitle>{interest.title}</FieldTitle>
-                      </FieldContent>
+        {!initialData?.department && (
+          <Controller
+            control={form.control}
+            name="department"
+            render={({ field, fieldState }) => (
+              <FieldSet data-invalid={fieldState.invalid} disabled={!!initialData}>
+                <FieldLegend>Area of Interest</FieldLegend>
+                <RadioGroup
+                  aria-invalid={fieldState.invalid}
+                  defaultValue={initialData?.department}
+                  name={field.name}
+                  onValueChange={field.onChange}
+                  value={field.value}
+                >
+                  {department.map((interest) => (
+                    <FieldLabel htmlFor={`job-areaOfInterest-${interest.id}`} key={interest.id}>
+                      <Field aria-invalid={fieldState.invalid} className="bg-input/30" orientation="horizontal">
+                        <FieldContent>
+                          <FieldTitle>{interest.title}</FieldTitle>
+                        </FieldContent>
+                        <RadioGroupItem
+                          aria-invalid={fieldState.invalid}
+                          id={`job-areaOfInterest-${interest.id}`}
+                          value={interest.id}
+                        />
+                      </Field>
+                    </FieldLabel>
+                  ))}
+                </RadioGroup>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+              </FieldSet>
+            )}
+          />
+        )}
+
+        {!initialData?.workMode && (
+          <Controller
+            control={form.control}
+            name="preferredWorkMode"
+            render={({ field, fieldState }) => (
+              <FieldSet data-invalid={fieldState.invalid}>
+                <FieldLegend>Preferred Work Mode </FieldLegend>
+
+                <RadioGroup
+                  aria-invalid={fieldState.invalid}
+                  className="inline-flex w-fit gap-0 divide-x overflow-hidden rounded-lg border bg-stone-alpha-10 capitalize"
+                  defaultValue={initialData?.workMode}
+                  name={field.name}
+                  onValueChange={field.onChange}
+                  value={field.value}
+                >
+                  {workMode.options.map((interest) => (
+                    <FieldLabel
+                      className="relative flex w-24 items-center justify-center py-3 text-muted-foreground has-data-[state=checked]:border-border has-data-[state=checked]:bg-transparent has-data-[state=checked]:text-primary-700"
+                      htmlFor={`job-areaOfInterest-${interest}`}
+                      key={interest}
+                    >
+                      <span className="relative z-10">{interest}</span>
+
                       <RadioGroupItem
                         aria-invalid={fieldState.invalid}
-                        id={`job-areaOfInterest-${interest.id}`}
-                        value={interest.id}
+                        className="sr-only"
+                        id={`job-areaOfInterest-${interest}`}
+                        value={interest}
                       />
-                    </Field>
-                  </FieldLabel>
-                ))}
-              </RadioGroup>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
-            </FieldSet>
-          )}
-        />
-
-        <Controller
-          control={form.control}
-          name="preferredWorkMode"
-          render={({ field, fieldState }) => (
-            <FieldSet data-invalid={fieldState.invalid}>
-              <FieldLegend>Area of Interest</FieldLegend>
-
-              <RadioGroup
-                aria-invalid={fieldState.invalid}
-                className="inline-flex w-fit gap-0 divide-x overflow-hidden rounded-lg border bg-stone-alpha-10 capitalize"
-                name={field.name}
-                onValueChange={field.onChange}
-                value={field.value}
-              >
-                {workMode.options.map((interest) => (
-                  <FieldLabel
-                    className="relative flex w-24 items-center justify-center py-3 text-muted-foreground has-data-[state=checked]:border-border has-data-[state=checked]:bg-transparent has-data-[state=checked]:text-primary-700"
-                    htmlFor={`job-areaOfInterest-${interest}`}
-                    key={interest}
-                  >
-                    <span className="relative z-10">{interest}</span>
-
-                    <RadioGroupItem
-                      aria-invalid={fieldState.invalid}
-                      className="sr-only"
-                      id={`job-areaOfInterest-${interest}`}
-                      value={interest}
-                    />
-                    <AnimatePresence>
-                      {field.value === interest && (
-                        <motion.span
-                          animate={{
-                            opacity: 1,
-                            transition: { duration: 0.05 },
-                          }}
-                          className={cn("absolute inset-0 z-0 block h-full w-full rounded-lg bg-card")}
-                          exit={{
-                            opacity: 0,
-                            transition: { duration: 0.01, delay: 0.1 },
-                          }}
-                          initial={{ opacity: 0 }}
-                          layoutId="cardHoverEffect"
-                          transition={{ ease: ["backOut"] }}
-                        />
-                      )}
-                    </AnimatePresence>
-                  </FieldLabel>
-                ))}
-              </RadioGroup>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
-            </FieldSet>
-          )}
-        />
+                      <AnimatePresence>
+                        {field.value === interest && (
+                          <motion.span
+                            animate={{
+                              opacity: 1,
+                              transition: { duration: 0.05 },
+                            }}
+                            className={cn("absolute inset-0 z-0 block h-full w-full rounded-lg bg-card")}
+                            exit={{
+                              opacity: 0,
+                              transition: { duration: 0.01, delay: 0.1 },
+                            }}
+                            initial={{ opacity: 0 }}
+                            layoutId="cardHoverEffect"
+                            transition={{ ease: ["backOut"] }}
+                          />
+                        )}
+                      </AnimatePresence>
+                    </FieldLabel>
+                  ))}
+                </RadioGroup>
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+              </FieldSet>
+            )}
+          />
+        )}
 
         <Controller
           control={form.control}

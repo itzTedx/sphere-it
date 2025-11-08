@@ -128,6 +128,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
 
 function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
   const [hoveredIdx, setHoveredIdx] = useState<string | null>(null);
+
   return (
     <li className="grid font-display lg:grid-cols-[1fr_.60fr_.60fr]">
       {data.map((link) =>

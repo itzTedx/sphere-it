@@ -30,7 +30,7 @@ export const jobApplicationSchema = z.object({
     .refine((val) => !val || /^[\+]?[0-9\s\-\(\)]{7,20}$/.test(val), { error: "Please enter a valid phone number" }),
   location: z.string().optional(),
   resume: z.file().optional(),
-  areaOfInterest: z.string().optional(),
+  department: z.string().optional(),
   preferredWorkMode: workMode.default("on-site").optional(),
   message: z
     .string({
