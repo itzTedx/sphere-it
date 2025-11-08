@@ -52,18 +52,21 @@ export const CopyButton = ({
 
   return (
     <Button
+      aria-label={copied ? "Copied to clipboard" : "Copy link to clipboard"}
       className={cn("group relative inline-block transition-colors", copied && "bg-emerald-100", className)}
       onClick={handleCopy}
       type="button"
       {...props}
     >
       <Icon
+        aria-hidden="true"
         className={cn(
           "m-auto text-stone-400 transition-all duration-300 group-hover:text-stone-100",
           copied ? "slide-out-to-top fade-out-0 animate-out opacity-0" : "slide-in-from-bottom fade-in-0 animate-in"
         )}
       />
       <IconCheckmark
+        aria-hidden="true"
         className={cn(
           "absolute inset-0 m-auto text-green-600 transition-all duration-300",
           copied

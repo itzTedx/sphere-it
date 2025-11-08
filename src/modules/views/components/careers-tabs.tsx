@@ -32,11 +32,16 @@ export const CareersTab = ({ children }: Props) => {
   );
 
   return (
-    <Tabs className="mt-6 w-full" onValueChange={setTab} value={currentTab}>
-      <TabsList className="h-auto w-full justify-start gap-2 rounded-none border-b bg-transparent px-0 py-1 text-foreground">
+    <Tabs aria-label="Job details navigation" className="mt-4 w-full sm:mt-6" onValueChange={setTab} value={currentTab}>
+      <TabsList
+        aria-label="Job information tabs"
+        className="h-auto w-full justify-start gap-2 rounded-none border-b bg-transparent px-0 py-1 text-foreground"
+      >
         {TABS.map((tab) => (
           <TabsTrigger
-            className="relative max-w-fit justify-start bg-transparent pr-24 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 hover:bg-muted hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+            aria-controls={`${tab.value}-panel`}
+            className="relative max-w-fit justify-start bg-transparent pr-12 text-sm after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 hover:bg-muted hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none sm:pr-24 sm:text-base"
+            id={`${tab.value}-tab`}
             key={tab.value}
             value={tab.value}
           >
@@ -48,6 +53,7 @@ export const CareersTab = ({ children }: Props) => {
                     opacity: 1,
                     transition: { duration: 0.05 },
                   }}
+                  aria-hidden="true"
                   className={cn("-bottom-1.5 absolute z-0 block h-0.5 w-full rounded-xl bg-primary-600")}
                   exit={{
                     opacity: 0,
@@ -81,7 +87,13 @@ export function ApplyNowButton({ className, ...props }: React.ComponentProps<typ
   }
 
   return (
-    <Button className={cn("md:px-12", className)} size="lg" {...props} onClick={handleClick}>
+    <Button
+      aria-label={props["aria-label"] || "Apply for this position"}
+      className={cn("md:px-12", className)}
+      size="lg"
+      {...props}
+      onClick={handleClick}
+    >
       Apply Now
     </Button>
   );
