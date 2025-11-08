@@ -1,0 +1,63 @@
+# Caddy Load Balancer Configuration
+# Caddy automatically handles DNS resolution for Docker Compose service names
+# When scaling with: docker compose up --scale app=3
+# Caddy will discover all app instances via Docker's internal DNS
+
+:80 {
+	# Reverse proxy with load balancing
+	reverse_proxy app:3000 {
+		# Load balancing policy: least connections
+		lb_policy least_conn
+		
+		# Health checks
+		health_uri /api/health
+		health_interval 10s
+		health_timeout 5s
+		health_status 200
+		
+		# Failover settings
+		fail_duration 30s
+		max_fails 3
+		unhealthy_status 503 500 502 504
+		
+		# Transport settings
+		transport http {
+			read_timeout 60s
+			write_timeout 60s
+			dial_timeout 10s
+		}
+		
+		# Headers
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-Host {http.request.host}
+		header_up X-Forwarded-Port {http.request.port}
+	}
+	
+	# Security headers
+	header {
+		# Security headers
+		X-Frame-Options "DENY"
+		X-Content-Type-Options "nosniff"
+		X-XSS-Protection "1; mode=block"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		
+		# Remove server header
+		-Server
+	}
+	
+	# Gzip compression
+	encode {
+		gzip
+		zstd
+	}
+	
+	# Logging
+	log {
+		output stdout
+		format console
+		level INFO
+	}
+}
+
