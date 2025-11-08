@@ -6,12 +6,14 @@ import MDXContent from "@/components/markdown";
 import { Button } from "@/components/ui/button";
 import { TabsContent } from "@/components/ui/tabs";
 
-import { IconArrowLeft, IconLink, IconSocialLinkedin, IconSocialX } from "@/assets/icons";
+import { IconArrowLeft } from "@/assets/icons";
 import { IconLocation } from "@/assets/icons/location";
 import { IconStopwatch } from "@/assets/icons/stopwatch";
 
+import { BASE_URL } from "@/data/site-config";
 import { JobApplicationForm } from "@/modules/form/job-application-form";
 import { ApplyNowButton, CareersTab } from "@/modules/views/components/careers-tabs";
+import { ShareButtons } from "@/modules/views/components/share-buttons";
 
 import { ROLES } from "../data/mockup-roles";
 
@@ -42,17 +44,7 @@ export default async function CareerPage({ params }: Props) {
           <div>
             <div className="flex items-center justify-between gap-4">
               <h1 className="text-title-3">{application.title}</h1>
-              <div className="inline-flex gap-3">
-                <Button size="icon" variant="outline">
-                  <IconLink />
-                </Button>
-                <Button size="icon" variant="outline">
-                  <IconSocialX />
-                </Button>
-                <Button size="icon" variant="outline">
-                  <IconSocialLinkedin />
-                </Button>
-              </div>
+              <ShareButtons title={application.title} url={`${BASE_URL}/careers/${id}`} />
             </div>
             <div className="mb-6 flex items-center gap-2 text-lg text-stone-700">
               <div className="flex items-center gap-2">

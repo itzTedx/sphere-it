@@ -10,7 +10,17 @@ import { IconCheckmark, IconCopy } from "@/assets/icons";
 
 import { cn } from "@/lib/utils";
 
-export const CopyButton = ({ text, className, ...props }: React.ComponentProps<typeof Button> & { text: string }) => {
+interface Props {
+  text: string;
+  Icon?: React.ComponentType<SVGProps>;
+}
+
+export const CopyButton = ({
+  text,
+  className,
+  Icon = IconCopy,
+  ...props
+}: React.ComponentProps<typeof Button> & Props) => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -42,18 +52,14 @@ export const CopyButton = ({ text, className, ...props }: React.ComponentProps<t
 
   return (
     <Button
+      className={cn("group relative inline-block transition-colors", copied && "bg-emerald-100", className)}
       onClick={handleCopy}
       type="button"
       {...props}
-      className={cn(
-        "relative inline-block transition-colors",
-        copied ? "bg-emerald-100" : "bg-stone-alpha-10",
-        className
-      )}
     >
-      <IconCopy
+      <Icon
         className={cn(
-          "m-auto text-stone-400 transition-all duration-300",
+          "m-auto text-stone-400 transition-all duration-300 group-hover:text-stone-100",
           copied ? "slide-out-to-top fade-out-0 animate-out opacity-0" : "slide-in-from-bottom fade-in-0 animate-in"
         )}
       />
