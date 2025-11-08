@@ -1,6 +1,6 @@
 import { TabsContent } from "@/components/ui/tabs";
 
-import { InsightsLayout } from "../components/layout";
+import { InsightsLayout } from "../components/insights-layout";
 
 export default function CaseStudiesPage() {
   return (

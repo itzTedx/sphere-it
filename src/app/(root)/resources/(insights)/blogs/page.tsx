@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
 import { BlogsSidebar } from "../components/blogs-sidebar";
-import { InsightsLayout } from "../components/layout";
+import { InsightsLayout } from "../components/insights-layout";
 import { BLOGS } from "./data/mock-blogs";
 import { structuredData } from "./structured-data";
 
@@ -124,8 +124,6 @@ interface BlogCardProps {
   data: (typeof BLOGS)[number];
 }
 export function BlogCard({ data, className, ...props }: React.ComponentProps<typeof Card> & BlogCardProps) {
-  console.log("transition name in blogs card: ", `title-${data.slug}`);
-
   return (
     <div className={cn("@container relative", className)} {...props}>
       <Card className={cn("card grid @sm:grid-cols-2 shadow-sm")}>
