@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 
-import { InsightsTabs } from "./components/insights-tabs";
+import { InsightsTabs } from "./insights-tabs";
 
 interface Props {
   children: ReactNode;
 }
 
-export default function InsightsLayout({ children }: Props) {
+export function InsightsLayout({ children }: Props) {
   return (
     <>
       <header className="relative z-50 bg-card">

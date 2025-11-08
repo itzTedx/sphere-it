@@ -1,5 +1,11 @@
 import { TabsContent } from "@/components/ui/tabs";
 
+import { InsightsLayout } from "../components/layout";
+
 export default function CaseStudiesPage() {
-  return <TabsContent value="/resources/case-studies">CaseStudiesPage</TabsContent>;
+  return (
+    <InsightsLayout>
+      <TabsContent value="/resources/case-studies">CaseStudiesPage</TabsContent>
+    </InsightsLayout>
+  );
 }

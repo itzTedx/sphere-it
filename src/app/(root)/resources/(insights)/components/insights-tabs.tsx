@@ -1,10 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { ViewTransition } from "react";
 import { Route } from "next";
 import { usePathname, useRouter } from "next/navigation";
-
-import { AnimatePresence, motion } from "motion/react";
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
