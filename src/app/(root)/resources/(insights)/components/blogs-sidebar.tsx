@@ -63,7 +63,6 @@ export const BlogsSidebar = () => {
                   >
                     <Checkbox
                       className="-ml-6 -translate-x-1 rounded-full transition-all duration-100 ease-linear data-[state=checked]:ml-0 data-[state=checked]:translate-x-0"
-                      defaultChecked={option.value === "social-media"}
                       id={option.value}
                       value={option.value}
                     />
