@@ -133,7 +133,7 @@ export function BlogCard({ data, className, ...props }: React.ComponentProps<typ
         <CardContent className="@sm:order-1 order-2 flex flex-col justify-between gap-2 @sm:p-6 p-3">
           <div className="@sm:order-1 order-2 @sm:space-y-2.5">
             <ViewTransition name={`title-${data.slug}`}>
-              <CardTitle className="font-semibold @sm:text-title-5 text-primary-900 @sm:xl:text-title-4">
+              <CardTitle className="font-semibold @sm:text-title-5 text-primary-900 leading-normal @sm:xl:text-title-5 xl:text-lg">
                 {data.title}
               </CardTitle>
             </ViewTransition>

@@ -55,7 +55,7 @@ export const BLOGS = [
       "Discover how Sphere IT helps organizations modernize operations, enhance agility, and achieve lasting digital growth through tailored technology solutions.",
     category: "Consultancy",
     publishedAt: "Sep 11, 2025",
-    image: "/images/blogs/banking.jpg",
+    image: "/images/blogs/ai.jpg",
     isFeatured: false,
     content: `
       
@@ -76,6 +76,60 @@ Sphere IT works with businesses to **integrate cloud, data, and automation** str
 ## Impact
 
 From SMEs to large enterprises, our clients experience **reduced costs, faster delivery, and improved decision-making** — building a foundation for long-term success in the digital era.
+    `,
+  },
+  {
+    slug: "modern-security",
+    title: "Sphere IT’s Approach to Modern Security",
+    excerpt:
+      "Explore how Sphere IT strengthens organizations with next-generation cybersecurity frameworks and proactive defense strategies.",
+    category: "Technology & Business",
+    publishedAt: "Sep 11, 2025",
+    image: "/images/blogs/cloud.jpg",
+    isFeatured: false,
+    content: `
+In an age of evolving digital threats, cybersecurity is no longer optional — it’s foundational. Sphere IT’s security-first approach helps businesses defend, detect, and respond to threats in real time.
+
+## A Proactive Security Mindset
+
+Instead of reacting to breaches, Sphere IT helps organizations build **cyber resilience** through intelligent monitoring and zero-trust frameworks.
+
+## Our Security Pillars
+
+- **Threat Intelligence:** AI-driven systems that detect anomalies before they escalate.  
+- **Cloud & Endpoint Security:** End-to-end protection for hybrid and remote environments.  
+- **Compliance Management:** Ensuring adherence to ISO, GDPR, and local data laws.
+
+## Why It Matters
+
+With cyberattacks becoming more sophisticated, resilience is about **preparation and adaptation** — and Sphere IT ensures your systems evolve faster than emerging threats.
+    `,
+  },
+  {
+    slug: "cloud-infrastructure",
+    title: "Optimizing Cloud Infrastructure with Sphere IT",
+    excerpt:
+      "Learn how Sphere IT helps businesses harness hybrid and multi-cloud strategies for scalability, efficiency, and control.",
+    category: "Technology & Business",
+    publishedAt: "Sep 11, 2025",
+    image: "/images/blogs/cloud.jpg",
+    isFeatured: false,
+    content: `
+As organizations evolve, so do their infrastructure needs. Sphere IT enables enterprises to leverage hybrid and multi-cloud environments — achieving the perfect balance of flexibility and performance.
+
+## The Power of Hybrid Cloud
+
+Hybrid models combine **on-premise control** with **cloud scalability**, empowering businesses to run workloads where they perform best.
+
+## Sphere IT’s Cloud Expertise
+
+- **Cloud Strategy & Migration**  
+- **Infrastructure Automation** using IaC tools  
+- **Cost Optimization** and **Performance Tuning**
+
+## Results
+
+Our clients experience up to **40% cost reduction**, enhanced agility, and improved disaster recovery — all while maintaining compliance and governance standards.
     `,
   },
 ];
