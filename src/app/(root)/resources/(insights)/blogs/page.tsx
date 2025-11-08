@@ -1,5 +1,10 @@
 import Image from "next/image";
 
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/animate-ui/primitives/radix/collapsible";
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,6 +28,16 @@ export default function BlogsPage() {
               <IconSearch />
             </InputGroupAddon>
           </InputGroup>
+          <Collapsible defaultOpen>
+            <CollapsibleTrigger className="px-3 py-1.5 text-start">Recovery keys</CollapsibleTrigger>
+            <CollapsibleContent keepRendered>
+              <div className="px-3 pt-1.5 text-muted-foreground text-sm">
+                <div>alien-bean-pasta</div>
+                <div>wild-irish-burrito</div>
+                <div>horse-battery-staple</div>
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
         </aside>
         <main className="col-span-3 mb-12">
           <article className="grid grid-cols-3 gap-4 py-6">
