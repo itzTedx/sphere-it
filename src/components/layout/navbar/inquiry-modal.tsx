@@ -14,7 +14,7 @@ export const InquiryModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="hidden md:inline-flex">Get in touch</Button>
+        <Button>Get in touch</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

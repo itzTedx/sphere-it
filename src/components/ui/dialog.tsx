@@ -45,7 +45,9 @@ function DialogClose(props: DialogCloseProps) {
 type DialogOverlayProps = DialogOverlayPrimitiveProps;
 
 function DialogOverlay({ className, ...props }: DialogOverlayProps) {
-  return <DialogOverlayPrimitive className={cn("fixed inset-0 z-50 bg-black/50", className)} {...props} />;
+  return (
+    <DialogOverlayPrimitive className={cn("fixed inset-0 z-9999 bg-black/50 backdrop-blur-lg", className)} {...props} />
+  );
 }
 
 type DialogContentProps = DialogContentPrimitiveProps & {
