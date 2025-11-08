@@ -2,15 +2,15 @@ export const BLOGS = [
   {
     slug: "digital-transformation-at-mashreq-bank-uae",
     title: "Digital Transformation at Mashreq Bank, UAE",
-    excerpt: " Stay ahead with fresh perspectives, expert insights, and stories that inspire.",
+    excerpt: "Stay ahead with fresh perspectives, expert insights, and stories that inspire.",
     category: "Consultancy",
     publishedAt: "Sep 12, 2025",
     image: "/images/blogs/banking.jpg",
     isFeatured: true,
     content: `
-        <p className="lead">
+        
         In today’s rapidly evolving financial landscape, digital transformation has become the backbone of modern banking. Mashreq Bank, one of the UAE’s leading financial institutions, stands out as a pioneer in adopting innovative technologies to reshape customer experiences, streamline operations, and redefine the future of banking in the region.
-        </p>
+    
 
         ## Pioneering Innovation in Banking
 
@@ -58,9 +58,9 @@ export const BLOGS = [
     image: "/images/blogs/banking.jpg",
     isFeatured: false,
     content: `
-        <p className='lead'>
+      
 Digital transformation isn’t just about technology — it’s about rethinking how businesses operate, innovate, and serve customers in a digital-first world. At Sphere IT, we help enterprises unlock the full potential of technology to achieve meaningful change.
-</p>
+
 
 ## Understanding True Digital Transformation
 

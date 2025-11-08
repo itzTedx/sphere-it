@@ -134,8 +134,8 @@ export const TableOfContent = ({ className }: Props) => {
               <Link
                 aria-label={`Jump to ${heading.title}`}
                 className={cn(
-                  "ml-px block border-stone-500/5 border-l-2 px-2 py-1 font-display text-sm transition-all hover:bg-stone-100",
-                  activeId === heading.id ? "font-semibold text-stone-900" : "text-stone-600"
+                  "ml-px block text-balance border-stone-500/5 border-l-2 py-1 pl-2 font-display text-sm transition-all hover:bg-stone-100",
+                  activeId === heading.id ? "text-stone-950" : "text-stone-500"
                 )}
                 href={`#${heading.id}` as Route}
                 style={{ paddingLeft: `${(heading.level - 1) * 12 + 8}px` }}

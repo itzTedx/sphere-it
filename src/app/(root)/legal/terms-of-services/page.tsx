@@ -6,10 +6,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 import { LEGAL_HANDLING_EMAIL, SERVICE_DEFINITIONS } from "@/data/legal";
 import { BASE_URL } from "@/data/site-config";
+import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { Header } from "../components/header";
 import { SectionTitle } from "../components/section-title";
-import { TableOfContent } from "../components/table-of-content";
 import { termsFAQStructuredData, termsStructuredData } from "./structured-data";
 
 const TERMS_SERVICES_LAST_UPDATED = "October 6, 2025";

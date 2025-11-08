@@ -10,6 +10,9 @@ import { Button } from "@/components/ui/button";
 
 import { IconArrowLeft } from "@/assets/icons";
 
+import { slugify } from "@/lib/utils";
+import { TableOfContent } from "@/modules/views/components/table-of-content";
+
 import { BLOGS } from "../data/mock-blogs";
 
 interface Props {
@@ -61,18 +64,30 @@ export default async function BlogPage({ params }: Props) {
             </div>
           </div>
           <ViewTransition name={`image-${blog.slug}`}>
-            <div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border p-2">
-              <div className="relative aspect-4/3 overflow-hidden rounded-xl">
+            <div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border bg-stone-alpha-10 p-2">
+              <div className="relative aspect-4/3 overflow-hidden rounded-xl shadow-lg">
                 <Image alt={blog.title} className="object-cover" fill src={blog.image} />
               </div>
             </div>
           </ViewTransition>
         </div>
       </header>
-      <div className="container grid max-w-7xl grid-cols-4 gap-4">
-        <aside>Table of Content</aside>
-        <article className="prose prose-stone prose-lg col-span-3 mt-4 max-w-none prose-h1:font-medium prose-headings:text-primary-900 sm:mt-6">
-          <MDXContent source={blog.content} />
+      <div className="container mb-24 grid max-w-7xl grid-cols-4 border-b">
+        <aside className="border-r py-6 pr-6">
+          <TableOfContent className="mt-0" />
+        </aside>
+        <article className="prose prose-stone prose-lg col-span-3 mx-auto py-4 prose-h1:font-medium prose-headings:text-primary-900 sm:py-6">
+          <MDXContent
+            components={{
+              h1: (props) => <h1 id={slugify(props.children)} {...props} />,
+              h2: (props) => <h2 id={slugify(props.children)} {...props} />,
+              h3: (props) => <h3 id={slugify(props.children)} {...props} />,
+              h4: (props) => <h4 id={slugify(props.children)} {...props} />,
+              h5: (props) => <h5 id={slugify(props.children)} {...props} />,
+              h6: (props) => <h6 id={slugify(props.children)} {...props} />,
+            }}
+            source={blog.content}
+          />
         </article>
       </div>
       <Cta showForm />

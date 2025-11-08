@@ -6,10 +6,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 import { LEGAL_HANDLING_EMAIL, PRIVACY_DEFINITIONS } from "@/data/legal";
 import { BASE_URL } from "@/data/site-config";
+import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { Header } from "../components/header";
 import { SectionTitle } from "../components/section-title";
-import { TableOfContent } from "../components/table-of-content";
 import { privacyFAQStructuredData, privacyStructuredData } from "./structured-data";
 
 export const email = LEGAL_HANDLING_EMAIL;
