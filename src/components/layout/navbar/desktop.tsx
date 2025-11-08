@@ -140,7 +140,7 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
                 <NavigationMenuLink asChild className="group" key={link.label}>
                   <Link
                     className="flex h-full w-full flex-1 select-none flex-col justify-between rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md group-hover:border-primary-500 group-focus-visible:border-primary-500 group-focus-visible:bg-primary-100 md:p-6"
-                    href="/services"
+                    href={link.href}
                     title="Explore our services"
                   >
                     <link.Icon className="size-7 text-stone-500 transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600" />

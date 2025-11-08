@@ -72,7 +72,7 @@ export const NAV_LINKS: NavLink[] = [
           {
             Icon: IconFeather,
             label: "Blogs",
-            description: "Frequently Asked Questions",
+            description: "Trends, strategies & expert opinions",
             href: "/resources/blogs",
           },
         ],

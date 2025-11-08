@@ -351,7 +351,7 @@ export const JobApplicationForm = ({ initialData }: Props) => {
         </FieldDescription>
 
         <Button className="relative w-fit" type="submit">
-          Send Message <IconMessage />
+          Submit Application <IconMessage />
         </Button>
       </FieldGroup>
     </form>

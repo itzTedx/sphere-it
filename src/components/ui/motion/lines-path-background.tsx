@@ -19,8 +19,8 @@ export function PathsBackground({ position, className }: { position: number; cla
   }));
 
   return (
-    <div className={cn("pointer-events-none absolute inset-0", className)}>
-      <svg className="h-full w-full text-stone-alpha-10" fill="none" viewBox="0 0 696 316">
+    <div aria-hidden="true" className={cn("pointer-events-none absolute inset-0", className)}>
+      <svg aria-hidden="true" className="h-full w-full text-stone-alpha-10" fill="none" viewBox="0 0 696 316">
         {paths.map((path) => (
           <motion.path
             animate={{
