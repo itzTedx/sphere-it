@@ -1,11 +1,13 @@
 import { memo } from "react";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
 
-import { TESTIMONIALS, Testimonial } from "@/data/testimonials";
+import { TESTIMONIALS } from "@/data/testimonials";
+
+import { TestimonialCard } from "./components/testimonial-card";
 
 export const Testimonials = memo(() => {
   return (
@@ -30,17 +32,17 @@ export const Testimonials = memo(() => {
           />
 
           <Marquee aria-label="Testimonials column 1" className="[--duration:15s]" vertical>
-            {TESTIMONIALS.map((t) => (
+            {TESTIMONIALS.slice(0, 4).map((t) => (
               <TestimonialCard data={t} key={t.id} />
             ))}
           </Marquee>
           <Marquee aria-label="Testimonials column 2" className="hidden [--duration:18s] md:flex" reverse vertical>
-            {TESTIMONIALS.map((t) => (
+            {TESTIMONIALS.slice(4, 8).map((t) => (
               <TestimonialCard data={t} key={t.id} />
             ))}
           </Marquee>
           <Marquee aria-label="Testimonials column 3" className="hidden [--duration:20s] md:flex" vertical>
-            {TESTIMONIALS.map((t) => (
+            {TESTIMONIALS.slice(8, 12).map((t) => (
               <TestimonialCard data={t} key={t.id} />
             ))}
           </Marquee>
@@ -52,7 +54,9 @@ export const Testimonials = memo(() => {
         </div>
         <div className="-mt-6 relative z-10 mx-auto flex w-fit items-center justify-center gap-1.5 rounded-full bg-card p-1.5 shadow-lg">
           <p className="px-3 font-sans text-muted-foreground text-xs lg:text-base">View the impact on our clients</p>
-          <Button className="bg-primary-950">Browse customer stories</Button>
+          <Button asChild variant="secondary">
+            <Link href="/resources/testimonials">Browse customer stories</Link>
+          </Button>
         </div>
       </div>
     </section>
@@ -60,22 +64,3 @@ export const Testimonials = memo(() => {
 });
 
 Testimonials.displayName = "Testimonials";
-
-function TestimonialCard({ data }: { data: Testimonial }) {
-  return (
-    <Card aria-labelledby={`testimonial-${data.id}-name`} className="rounded-xl p-0 shadow-md" role="article">
-      <CardHeader className="border-b bg-muted p-3 xl:p-4">
-        <CardTitle className="leading-none" id={`testimonial-${data.id}-name`}>
-          {data.name}
-        </CardTitle>
-        <CardDescription>{data.designation}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <blockquote className="text-sm text-stone-700 xl:text-base">"{data.content}"</blockquote>
-        <span aria-label={`Industry: ${data.industry}`} className="text-stone-400 text-xs xl:text-sm">
-          {data.industry}
-        </span>
-      </CardContent>
-    </Card>
-  );
-}

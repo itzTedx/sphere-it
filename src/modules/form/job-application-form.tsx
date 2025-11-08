@@ -35,6 +35,7 @@ import { IconUser } from "@/assets/icons/user";
 
 import { cn } from "@/lib/utils";
 
+import { FileUpload } from "./components/upload-input";
 import { JobApplicationType, jobApplicationSchema, workMode } from "./validators/job-application-schema";
 
 const department = [
@@ -209,8 +210,8 @@ export const JobApplicationForm = ({ initialData }: Props) => {
           render={({ field: { name, onBlur, onChange, ref, value, disabled }, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor={name}>Resume</FieldLabel>
-              <InputGroup>
-                <InputGroupInput
+
+              {/* <Input
                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
                   aria-describedby={fieldState.invalid ? `${name}-error` : undefined}
                   aria-invalid={fieldState.invalid}
@@ -224,8 +225,9 @@ export const JobApplicationForm = ({ initialData }: Props) => {
                   }}
                   ref={ref}
                   type="file"
-                />
-              </InputGroup>
+                /> */}
+              <FileUpload className="w-full max-w-full" />
+
               {value instanceof File && <FieldDescription>Selected file: {value.name}</FieldDescription>}
               {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${name}-error`} />}
             </Field>

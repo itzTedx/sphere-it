@@ -18,10 +18,12 @@ interface CtaProps {
   showForm?: boolean;
   buttonText?: string;
   buttonLink?: Route;
+  className?: string;
 }
 
 export const Cta = memo(
   ({
+    className,
     showForm = false,
     buttonText = "Start the Conversation",
     buttonLink = "/contact",
@@ -32,7 +34,7 @@ export const Cta = memo(
     return (
       <section
         aria-labelledby="cta-heading"
-        className={cn("relative max-md:container max-sm:pb-12", showForm ? "md:mt-20 md:mb-32" : "xl:mb-12")}
+        className={cn("relative max-md:container max-sm:pb-12", showForm ? "md:mt-20 md:mb-32" : "xl:mb-12", className)}
       >
         <div className="xl:border-y">
           <div className="relative mx-auto max-w-7xl">

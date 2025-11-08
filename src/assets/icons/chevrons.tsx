@@ -14,7 +14,7 @@ export const IconChevronRight = (props: SVGProps) => {
     <svg {...props} fill="none" height="14" viewBox="0 0 14 14" width="14" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M5.10419 11.0835L8.21451 8.16757C9.05733 7.37742 9.05733 6.03957 8.21451 5.24942L5.10419 2.3335"
-        stroke="#A8A29E"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeWidth="1.5"
       />

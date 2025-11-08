@@ -1,67 +1,68 @@
+"use client";
+
+/**
+ * @author: @kokonut-labs
+ * @description: Slide Text Button with animated vertical text transition
+ * @version: 1.0.0
+ * @date: 2025-11-02
+ * @license: MIT
+ * @website: https://kokonutui.com
+ * @github: https://github.com/kokonut-labs/kokonutui
+ */
+
+import { Route } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
-import { NAV_LINKS } from "@/data/constants";
+import { motion } from "motion/react";
 
-export default function TestPage() {
-  if (process.env.NODE_ENV !== "development") return redirect("/");
+import { cn } from "@/lib/utils";
+
+interface SlideTextButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  text?: string;
+  hoverText?: string;
+  href?: string;
+  className?: string;
+  variant?: "default" | "ghost";
+}
+
+export default function SlideTextButton({
+  text = "Browse Components",
+  hoverText,
+  href = "/docs/components/liquid-glass-card",
+  className,
+  variant = "default",
+  ...props
+}: SlideTextButtonProps) {
+  const slideText = hoverText ?? text;
+  const variantStyles =
+    variant === "ghost"
+      ? "border border-black/10 text-black hover:bg-black/5 dark:border-white/10 dark:text-white dark:hover:bg-white/5"
+      : "bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90";
 
   return (
-    <div className="container min-h-svh max-w-7xl py-12">
-      {NAV_LINKS.map((link) => (
-        <li className="grid bg-card font-display lg:grid-cols-[1fr_.60fr_.60fr]" key={link.id}>
-          {link.resources?.map((link) =>
-            link.id === "explore" ? (
-              <div className="flex flex-col p-2" key={link.id}>
-                <small className="px-2 pb-3 font-display font-medium text-sm text-stone-400 uppercase">{link.id}</small>
-                <div className="grid h-full grid-cols-2 gap-2">
-                  {link.links.map((link) => (
-                    <Link
-                      className="flex h-full w-full flex-1 select-none flex-col justify-between rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md group-hover:border-primary-500 group-focus-visible:border-primary-500 group-focus-visible:bg-primary-100 md:p-6"
-                      href="/services"
-                      key={link.href}
-                      title="Explore our services"
-                    >
-                      <link.Icon className="size-7 text-stone-500 transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600" />
-                      <div>
-                        <div className="font-medium text-lg sm:mt-4">{link.label}</div>
-                        <p className="text-muted-foreground text-sm leading-tight">{link.description}</p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-1 border-l p-2" key={link.id}>
-                <span className="px-3 font-display font-medium text-sm text-stone-400 uppercase">{link.id}</span>
-                <ul>
-                  {link.links.map((menu) => (
-                    <li className="relative" key={menu.label}>
-                      <Link
-                        className="group relative z-10 flex items-center gap-3 rounded-md p-3"
-                        href={menu.href}
-                        title={menu.label}
-                      >
-                        <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:border-primary-500/10 group-hover:bg-primary-500/10 group-focus-visible:border-primary-600 group-focus-visible:bg-primary-500/10">
-                          <menu.Icon className="size-5 shrink-0 text-stone-500 transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600" />
-                        </div>
-                        <div>
-                          <span className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600">
-                            {menu.label}
-                          </span>
-                          <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
-                            {menu.description}
-                          </p>
-                        </div>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          )}
-        </li>
-      ))}
-    </div>
+    <motion.div
+      animate={{ x: 0, opacity: 1, transition: { duration: 0.2 } }}
+      className="relative"
+      initial={{ x: 200, opacity: 0 }}
+    >
+      <Link
+        className={cn(
+          "group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-lg px-8 font-medium text-md tracking-tighter transition-all duration-300 md:min-w-56",
+          variantStyles,
+          className
+        )}
+        href={href as Route}
+        {...props}
+      >
+        <span className="group-hover:-translate-y-full relative inline-block transition-transform duration-300 ease-in-out">
+          <span className="flex items-center gap-2 opacity-100 transition-opacity duration-300 group-hover:opacity-0">
+            <span className="font-medium">{text}</span>
+          </span>
+          <span className="absolute top-full left-0 flex items-center gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <span className="font-medium">{slideText}</span>
+          </span>
+        </span>
+      </Link>
+    </motion.div>
   );
 }
