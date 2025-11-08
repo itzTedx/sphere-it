@@ -1,5 +1,4 @@
 "use client";
-
 import React, { ViewTransition } from "react";
 import { Route } from "next";
 import { usePathname, useRouter } from "next/navigation";
@@ -44,7 +43,7 @@ export const InsightsTabs = ({ children }: Props) => {
     <Tabs
       aria-label="Job details navigation"
       className="w-full"
-      onValueChange={(value) => {
+      onValueChange={(value: string) => {
         router.push(value as Route);
       }}
       value={pathname}
@@ -64,23 +63,14 @@ export const InsightsTabs = ({ children }: Props) => {
                 value={tab.link}
               >
                 {tab.title}
-                <AnimatePresence>
-                  {pathname === tab.link && (
-                    <motion.span
-                      animate={{
-                        opacity: 1,
-                        transition: { duration: 0.05 },
-                      }}
+                {pathname === tab.link && (
+                  <ViewTransition name={"tab-indicator"}>
+                    <span
                       aria-hidden="true"
                       className={cn("-bottom-1.5 absolute z-0 block h-0.5 w-full rounded-xl bg-primary-600")}
-                      exit={{
-                        opacity: 0,
-                        transition: { duration: 0.01, delay: 0.1 },
-                      }}
-                      layoutId="cardHoverEffect"
                     />
-                  )}
-                </AnimatePresence>
+                  </ViewTransition>
+                )}
               </TabsTrigger>
             );
           })}

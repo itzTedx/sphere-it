@@ -15,6 +15,7 @@ import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
+  title: "Sphere It Global",
   metadataBase: new URL(BASE_URL),
   keywords: [
     "AI solutions",

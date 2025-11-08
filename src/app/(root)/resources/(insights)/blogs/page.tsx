@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -123,32 +124,46 @@ interface BlogCardProps {
   data: (typeof BLOGS)[number];
 }
 export function BlogCard({ data, className, ...props }: React.ComponentProps<typeof Card> & BlogCardProps) {
+  console.log("transition name in blogs card: ", `title-${data.slug}`);
+
   return (
     <div className={cn("@container relative", className)} {...props}>
       <Card className={cn("card grid @sm:grid-cols-2 shadow-sm")}>
         <Link className="absolute inset-0 z-10" href={`/resources/blogs/${data.slug}`} />
         <CardContent className="@sm:order-1 order-2 flex flex-col justify-between gap-2 @sm:p-6 p-3">
           <div className="@sm:order-1 order-2 @sm:space-y-2.5">
-            <CardTitle className="font-semibold @sm:text-title-5 text-primary-900 @sm:xl:text-title-4">
-              {data.title}
-            </CardTitle>
-            <CardDescription className="@max-sm:hidden @sm:xl:text-lg">{data.excerpt}</CardDescription>
-            <Button className="group/link relative z-20 @max-sm:hidden text-accent" size="sm" variant="link">
-              Read More{" "}
-              <IconChevronRight className="size-3 translate-y-1 text-accent opacity-0 transition-all duration-300 group-hover/link:translate-y-0 group-hover/link:opacity-100 motion-reduce:transition-none" />
+            <ViewTransition name={`title-${data.slug}`}>
+              <CardTitle className="font-semibold @sm:text-title-5 text-primary-900 @sm:xl:text-title-4">
+                {data.title}
+              </CardTitle>
+            </ViewTransition>
+            <ViewTransition name={`excerpt-${data.slug}`}>
+              <CardDescription className="@max-sm:hidden @sm:xl:text-lg">{data.excerpt}</CardDescription>
+            </ViewTransition>
+            <Button asChild className="group/link relative z-20 @max-sm:hidden text-accent" size="sm" variant="link">
+              <Link href={`/resources/blogs/${data.slug}`}>
+                Read More{" "}
+                <IconChevronRight className="size-3 translate-y-1 text-accent opacity-0 transition-all duration-300 group-hover/link:translate-y-0 group-hover/link:opacity-100 motion-reduce:transition-none" />
+              </Link>
             </Button>
           </div>
           <div className="@sm:order-2 order-1 flex items-center justify-between">
-            <Badge variant="secondary">{data.category}</Badge>
-            <Badge className="@max-sm:hidden bg-muted text-muted-foreground shadow-none">{data.publishedAt}</Badge>
+            <ViewTransition name={`category-${data.slug}`}>
+              <Badge variant="secondary">{data.category}</Badge>
+            </ViewTransition>
+            <ViewTransition name={`date-${data.slug}`}>
+              <Badge className="@max-sm:hidden bg-muted text-muted-foreground shadow-none">{data.publishedAt}</Badge>
+            </ViewTransition>
           </div>
         </CardContent>
-        <div className="relative @sm:order-2 order-1 flex aspect-4/3 items-end justify-end overflow-hidden rounded-xl p-4 @sm:shadow-md">
-          <Image alt="" className="object-cover" fill src="/images/blogs/banking.jpg" />
-          <Badge className="z-10 @sm:hidden bg-stone-700/80 px-2 text-muted shadow-none backdrop-blur-lg">
-            {data.publishedAt}
-          </Badge>
-        </div>
+        <ViewTransition name={`image-${data.slug}`}>
+          <div className="relative @sm:order-2 order-1 flex aspect-4/3 items-end justify-end overflow-hidden rounded-xl p-4 @sm:shadow-md">
+            <Image alt="" className="object-cover" fill src={data.image} />
+            <Badge className="z-10 @sm:hidden bg-stone-700/80 px-2 text-muted shadow-none backdrop-blur-lg">
+              {data.publishedAt}
+            </Badge>
+          </div>
+        </ViewTransition>
       </Card>
     </div>
   );

@@ -5,6 +5,7 @@ export const BLOGS = [
     excerpt: " Stay ahead with fresh perspectives, expert insights, and stories that inspire.",
     category: "Consultancy",
     publishedAt: "Sep 12, 2025",
+    image: "/images/blogs/banking.jpg",
     isFeatured: true,
     content: `
         <p className="lead">
@@ -54,6 +55,8 @@ export const BLOGS = [
       "Discover how Sphere IT helps organizations modernize operations, enhance agility, and achieve lasting digital growth through tailored technology solutions.",
     category: "Consultancy",
     publishedAt: "Sep 11, 2025",
+    image: "/images/blogs/banking.jpg",
+    isFeatured: false,
     content: `
         <p className='lead'>
 Digital transformation isn’t just about technology — it’s about rethinking how businesses operate, innovate, and serve customers in a digital-first world. At Sphere IT, we help enterprises unlock the full potential of technology to achieve meaningful change.
