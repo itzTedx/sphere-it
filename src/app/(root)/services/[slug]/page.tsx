@@ -17,6 +17,7 @@ import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { getServiceBySlug } from "@/modules/services/actions";
 import { Card, CardContent, CardGroup, CardIcon } from "@/modules/services/components/card-list";
 import { Certificate } from "@/modules/services/components/certifications";
+import { FeatureItem, FeatureList } from "@/modules/services/components/feature-list";
 import { Header } from "@/modules/services/components/header";
 import { Industry } from "@/modules/services/components/industry";
 import { Section } from "@/modules/services/components/section";
@@ -104,7 +105,11 @@ export default async function ServicePage({ params }: Props) {
                   </span>
                 </Button>
                 <Button size="lg" variant="ghost">
-                  Request a Demo
+                  {service.metadata.badge === "assure"
+                    ? "Request a Assure"
+                    : service.metadata.badge === "augment"
+                      ? "Explore Talent Models"
+                      : "Request a Demo"}
                 </Button>
               </div>
             </div>
@@ -136,17 +141,20 @@ export default async function ServicePage({ params }: Props) {
             </div>
           )}
         </header>
-        <article className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-1 prose-h3:mb-2 max-w-none py-12 prose-h2:font-semibold prose-h2:text-title-2 prose-h3:text-title-3 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-p:text-lg">
+        <article className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-1 prose-h3:mb-4 max-w-none py-12 prose-h2:font-semibold prose-h2:text-title-2 prose-h3:text-title-3 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-p:text-lg">
           <MDXContent
             components={{
               Section,
               Header,
               Badge,
+              Button,
               CardGroup,
               Card,
               CardIcon,
               CardContent,
               Certificate,
+              FeatureList,
+              FeatureItem,
               Industry,
               IconBox,
               ...Icons,
@@ -156,7 +164,7 @@ export default async function ServicePage({ params }: Props) {
           />
         </article>
 
-        <Cta />
+        <Cta title={service.metadata.badge === "evaluate" ? "Empower Decisions with Data That Delivers." : undefined} />
       </main>
     </>
   );
