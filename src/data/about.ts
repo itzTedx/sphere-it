@@ -142,8 +142,8 @@ export const CORE_VALUES = [
 ];
 
 export const HIRING_CTA = [
-  "Competitive salary & equity",
-  "Cutting-edge tools & tech",
-  "Remote flexibility",
+  "Precision in Practice",
+  "Pragmatism in Action",
+  "People First",
   "Continuous learning support",
 ];

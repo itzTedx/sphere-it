@@ -98,7 +98,7 @@ function LogoColumn({ logos, columnIndex, currentTime, containerClassName }: Log
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className={cn("relative aspect-16/6 w-32 overflow-hidden md:w-36", containerClassName)}
+      className={cn("relative aspect-16/5 w-32 overflow-hidden md:aspect-16/6 md:w-36", containerClassName)}
       initial={{ opacity: 0, y: 20 }}
       transition={{
         delay: columnIndex * 0.1,
@@ -128,8 +128,8 @@ function LogoColumn({ logos, columnIndex, currentTime, containerClassName }: Log
         >
           <Image
             alt={currentLogo.name}
-            className="h-auto max-h-[80%] w-auto max-w-[80%] object-contain"
-            height={40}
+            className="h-auto w-auto object-contain md:max-h-[80%] md:max-w-[80%]"
+            height={60}
             src={currentLogo.src}
             width={120}
           />

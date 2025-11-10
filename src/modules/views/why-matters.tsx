@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -44,13 +45,41 @@ export const WhyMatters = () => {
           <h3 className="text-center font-display text-stone-600 text-subhead-base">
             Trusted by <span className="text-primary-500">500+ Leading</span> Organizations
           </h3>
-          <ClientLogos columns={1} containerClassName="md:w-40" />
+          <ClientLogos columns={1} containerClassName="w-40 md:w-40" />
         </div>
 
         {/* Features Grid - Responsive Layout */}
         <div className="space-y-4">
           <h3 className="sr-only">Key Features and Benefits</h3>
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+          <AnimatedGroup
+            as="ul"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+            variants={{
+              container: {
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.05,
+                  },
+                },
+              },
+              item: {
+                hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                  transition: {
+                    duration: 1.2,
+                    type: "spring",
+                    bounce: 0.3,
+                  },
+                },
+              },
+            }}
+          >
             {WHY_MATTERS.map((why, index) => (
               <li key={why.badge}>
                 <Card
@@ -72,7 +101,7 @@ export const WhyMatters = () => {
                 </Card>
               </li>
             ))}
-          </ul>
+          </AnimatedGroup>
         </div>
       </div>
     </section>
