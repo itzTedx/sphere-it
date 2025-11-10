@@ -12,7 +12,7 @@ export const SERVICES: Service[] = [
     description: "Enterprise AI built for speed, scale, and precision.",
     overview:
       "Unlock the power of enterprise-grade AI through reusable components and compliant practices. Our AI solutions are rigorously tested, scalable, and designed to integrate seamlessly into your existing systems. So you see faster, safer, and smarter outcomes.",
-    image: "/svg/elevate.svg",
+    image: "/images/services/elevate.png",
     tags: ["60+ Reusable Components", "ISO/IEC 42001 & AIAA Certified", "Agile & DevOps Practices"],
     lists: [
       {
@@ -35,7 +35,7 @@ export const SERVICES: Service[] = [
     description: "Technology enabled process engineering for measurable business outcomes.",
     overview:
       "Simplify critical processes with low-code automation tailored to regulated industries. By cutting cycle times, reducing errors, and ensuring compliance, we make operations more efficient and auditable-without unnecessary complexity.",
-    image: "/svg/automate.svg",
+    image: "/images/services/automate.png",
     tags: ["Low-Code Frameworks", "Compliance-Ready for BFSI", "Reducing Errors"],
     lists: [
       {
@@ -59,7 +59,7 @@ export const SERVICES: Service[] = [
     description: "Master Data Management strategy with real-time, data-driven telemetry.",
     overview:
       "Turn data into action with real-time insights and proactive monitoring. Our telemetry-driven dashboards provide clarity for decision-makers, ensuring accurate reporting and early resolution of potential issues.",
-    image: "/svg/evaluate.svg",
+    image: "/images/services/evaluate.png",
     tags: ["Real-Time Telemetry", "Executive Dashboards", "Proactive Monitoring"],
     lists: [
       {
@@ -82,7 +82,7 @@ export const SERVICES: Service[] = [
     description: "Implementation and managed services for core applications and infrastructure.",
     overview:
       "Keep your mission-critical platforms resilient, secure, and compliant. From stability and uptime to optimized infrastructure, we ensure systems perform at their best. So your business never misses a beat.",
-    image: "/svg/assure.svg",
+    image: "/images/services/assure.png",
     tags: ["Mission-Critical Stability", "Security Benchmarks", "Business Continuity"],
     lists: [
       {
@@ -105,7 +105,7 @@ export const SERVICES: Service[] = [
     description: "Outcome-driven technology talent that scales with your digital journey.",
     overview:
       "Scale your IT capabilities with flexible talent models. Whether you need niche expertise or long-term support, we provide outcome-aligned professionals who integrate seamlessly into your teams, reducing overhead and accelerating delivery.",
-    image: "/svg/augment.svg",
+    image: "/images/services/augment.png",
     tags: ["On-Demand IT Specialists", "Flexible Engagement Models", "Outcome-Driven Contracts"],
     lists: [
       {
