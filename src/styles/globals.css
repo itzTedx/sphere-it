@@ -112,7 +112,7 @@
 
   --shadow-xs:
   0 2px 4px 0.5px color-mix(in oklab, var(--primary-900) 7%, transparent),
-  0 4px 8px -1.5px color-mix(in oklab, var(--primary-900) 6%, transparent),
+  0 4px 8px -1.5px color-mix(in oklab, var(--primary-900) 6%, transparent);
 
   --shadow-sm:
   0 0 0 1px color-mix(in oklab, var(--primary-900) 6%, transparent),
