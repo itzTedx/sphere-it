@@ -22,6 +22,8 @@ export type ResourcesSubmenuLink = {
 
 export type SubmenuLink = {
   id: number;
+  hoveredIdx?: string | null;
+  image: string;
   label: string;
   description?: string;
   href: Route;

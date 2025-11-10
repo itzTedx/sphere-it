@@ -1,6 +1,8 @@
 "use client";
 
 import { type SVGProps, useState } from "react";
+import { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { AnimatePresence, motion } from "motion/react";
@@ -28,7 +30,7 @@ export const DesktopNavLinks = () => {
           <NavigationMenuItem key={id}>
             {submenu || resources ? (
               <>
-                <NavigationMenuTrigger aria-expanded="false" aria-haspopup="true">
+                <NavigationMenuTrigger>
                   {href ? (
                     <Link aria-label={label} href={href} tabIndex={-1} title={label}>
                       {label}
@@ -64,34 +66,57 @@ export const DesktopNavLinks = () => {
 function ListItem({
   title,
   children,
+  hoveredIdx,
   href,
   Icon,
   ...props
 }: React.ComponentPropsWithoutRef<"li"> & {
-  href: string;
+  href: Route;
   title: string;
+  hoveredIdx?: string | null;
   Icon?: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
 }) {
+  const isHovered = hoveredIdx === title;
+
+  console.log(isHovered);
+
   return (
     <li {...props}>
       <NavigationMenuLink
         asChild
-        className="group rounded-xl border border-transparent px-4 py-5 transition-colors hover:bg-stone-100/50 focus-visible:border-primary-500"
+        className="group rounded-xl border border-transparent px-4 py-5 transition-colors hover:bg-transparent focus-visible:border-primary-600"
       >
-        <Link className="flex-row items-center gap-2" href={href as "/services"} title={title}>
+        <Link className="relative flex-row items-center gap-2" href={href} title={title}>
           {Icon && (
             <IconBox>
-              <Icon className="group-hover:text-primary-600 group-focus-visible:text-primary-600" />
+              <Icon className="delay-100 group-hover:text-primary-600 group-focus-visible:text-primary-600" />
             </IconBox>
           )}
-          <div className="space-y-1">
-            <div className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
+          <div className="relative z-10 space-y-1">
+            <div className="font-display text-subhead-base leading-none transition-colors delay-100 group-hover:text-primary-600 group-focus-visible:text-primary-600">
               {title}
             </div>
-            <p className="line-clamp-2 font-display font-light text-muted-foreground text-xs transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
+            <p className="line-clamp-2 font-display text-muted-foreground text-xs transition-colors delay-100 group-hover:text-primary-600 group-focus-visible:text-primary-600">
               {children}
             </p>
           </div>
+          <AnimatePresence>
+            {isHovered && (
+              <motion.span
+                animate={{
+                  opacity: 1,
+                  transition: { duration: 0.05 },
+                }}
+                className={cn("absolute inset-0 z-0 block h-full w-full rounded-xl bg-stone-100")}
+                exit={{
+                  opacity: 0,
+                  transition: { duration: 0.01, delay: 0.1 },
+                }}
+                initial={{ opacity: 0 }}
+                layoutId="cardHoverEffect"
+              />
+            )}
+          </AnimatePresence>
         </Link>
       </NavigationMenuLink>
     </li>
@@ -99,29 +124,56 @@ function ListItem({
 }
 
 function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
-  return (
-    <li className="grid gap-5 p-2 lg:grid-cols-[.35fr_1fr]">
-      <NavigationMenuLink asChild>
-        <Link
-          className="flex h-full w-full select-none flex-col justify-end rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md focus-visible:border-primary-500 md:p-6"
-          href="/services"
-          title="Explore our services"
-        >
-          <div className="font-medium text-lg sm:mt-4">Services</div>
-          <p className="text-muted-foreground text-sm leading-tight">We are best at:</p>
-        </Link>
-      </NavigationMenuLink>
+  const [hoveredIdx, setHoveredIdx] = useState<string | null>(null);
 
+  return (
+    <li className="grid gap-5 p-2 lg:grid-cols-[1fr_.75fr]">
       <div className="space-y-3 p-3">
         <h5 className="font-display font-medium text-sm text-stone-400 uppercase">Explore</h5>
-        <ul className="grid grid-cols-2 gap-2">
+        <ul className="grid grid-cols-2">
           {data.map((menu) => (
-            <ListItem href={menu.href} Icon={menu.Icon} key={menu.id} title={menu.label}>
+            <ListItem
+              hoveredIdx={hoveredIdx}
+              href={menu.href}
+              Icon={menu.Icon}
+              key={menu.id}
+              onMouseLeave={() => setHoveredIdx(null)}
+              onMouseOver={() => setHoveredIdx(menu.label)}
+              title={menu.label}
+            >
               {menu.description}
             </ListItem>
           ))}
         </ul>
       </div>
+      <NavigationMenuLink asChild className="overflow-hidden rounded-xl">
+        <Link
+          className="relative flex h-full w-full select-none flex-col justify-end border bg-primary-900 p-4 no-underline outline-hidden transition-all duration-200 focus:shadow-md focus-visible:border-primary-600 md:p-6"
+          href="/services"
+          title="Explore our services"
+        >
+          <div className="relative z-10 font-medium text-background text-lg sm:mt-4">Services</div>
+          <p className="relative z-10 text-muted-background text-sm leading-tight">We are best at:</p>
+          <div className="absolute inset-x-0 bottom-0 z-9 h-1/4 bg-gradient-to-t from-primary-900 to-transparent" />
+          <AnimatePresence mode="wait">
+            <motion.div
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              className="absolute inset-0"
+              exit={{ opacity: 0.5, x: -20, filter: "blur(10px)" }}
+              initial={{ opacity: 0.5, x: 20, filter: "blur(10px)" }}
+              key={hoveredIdx}
+              transition={{ duration: 0.1, ease: "easeIn" }}
+            >
+              <Image
+                alt=""
+                className={cn("object-cover")}
+                fill
+                src={data.find((menu) => menu.label === hoveredIdx)?.image || "/images/dubai-city.webp"}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </Link>
+      </NavigationMenuLink>
     </li>
   );
 }
@@ -139,7 +191,7 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
               {link.links.map((link) => (
                 <NavigationMenuLink asChild className="group" key={link.label}>
                   <Link
-                    className="flex h-full w-full flex-1 select-none flex-col justify-between rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md group-hover:border-primary-500 group-focus-visible:border-primary-500 group-focus-visible:bg-primary-100 md:p-6"
+                    className="flex h-full w-full flex-1 select-none flex-col justify-between rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md group-hover:border-primary-600 group-focus-visible:border-primary-600 group-focus-visible:bg-primary-100 md:p-6"
                     href={link.href}
                     title="Explore our services"
                   >
@@ -169,14 +221,14 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
                     href={menu.href}
                     title={menu.label}
                   >
-                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:border-primary-500/10 group-hover:bg-primary-500/10 group-focus-visible:border-primary-600 group-focus-visible:bg-primary-500/10">
+                    <div className="flex size-12 items-center justify-center rounded-md border transition-colors group-hover:border-primary-600/10 group-hover:bg-primary-600/10 group-focus-visible:border-primary-600 group-focus-visible:bg-primary-600/10">
                       <menu.Icon className="size-5 shrink-0 text-stone-500 transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600" />
                     </div>
                     <div>
                       <span className="font-display text-subhead-base leading-none transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600">
                         {menu.label}
                       </span>
-                      <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-500 group-focus-visible:text-primary-500">
+                      <p className="line-clamp-2 font-display text-muted-foreground text-sm transition-colors group-hover:text-primary-600 group-focus-visible:text-primary-600">
                         {menu.description}
                       </p>
                     </div>

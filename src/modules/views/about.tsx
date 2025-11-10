@@ -122,7 +122,7 @@ export const About = memo(() => {
                 with ISO/IEC 42001 standards to ensure security, transparency, and scalable performance at every layer.
               </p>
               <Button asChild className="mt-4" variant="ghost">
-                <Link aria-label="Read customer testimonials" href="/services">
+                <Link aria-label="Read customer testimonials" href="/resources/testimonials">
                   See what our customer says
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300 transition-colors">
                     <IconArrowRight className="text-stone-500" />
