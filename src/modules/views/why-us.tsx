@@ -35,6 +35,7 @@ export const WhyUs = memo(() => {
             </p>
           </div>
         </header>
+
         <div className="grid gap-4 md:grid-cols-12 xl:gap-6">
           <PrecisionCard className="md:col-span-4" />
           <PartnerCard className="md:col-span-8" />
@@ -43,7 +44,7 @@ export const WhyUs = memo(() => {
           <div className="col-span-full">
             <MiniCta
               description="We make it work for your business, reducing complexity and accelerating value."
-              layout="vertical"
+              layout="horizontal"
               title="We don't just <span>design technology</span>"
             />
           </div>

@@ -2,6 +2,7 @@ import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Button } from "@/components/ui/button";
 
 import { CLIENTS } from "@/data/constants";
@@ -41,9 +42,40 @@ export const Clients = memo(() => {
                 </Link>
               </Button>
             </div>
-            <ul className="sm:grid-col-4 grid grid-cols-3 items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs md:grid-cols-5 lg:grid-cols-6">
+            <AnimatedGroup
+              as="ul"
+              className="sm:grid-col-4 grid grid-cols-3 items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs md:grid-cols-5"
+              variants={{
+                container: {
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.05,
+                    },
+                  },
+                },
+                item: {
+                  hidden: {
+                    opacity: 0,
+                    filter: "blur(12px)",
+                    y: -20,
+                    rotateX: 90,
+                  },
+                  visible: {
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    y: 0,
+                    rotateX: 0,
+                    transition: {
+                      type: "spring",
+                      bounce: 0.3,
+                      duration: 1,
+                    },
+                  },
+                },
+              }}
+            >
               {CLIENTS.map((client) => (
-                <li className="relative m-3 aspect-16/6 max-md:last:hidden md:m-9" key={client.id}>
+                <li className="relative m-3 aspect-16/3 max-md:last:hidden md:m-6" key={client.id}>
                   <Image
                     alt={`${client.name} logo`}
                     className="object-contain object-center"
@@ -54,8 +86,7 @@ export const Clients = memo(() => {
                   />
                 </li>
               ))}
-            </ul>
-            {/* <ClientLogos /> */}
+            </AnimatedGroup>
           </div>
         </div>
       </div>

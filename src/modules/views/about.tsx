@@ -1,6 +1,7 @@
 import { memo } from "react";
 import Link from "next/link";
 
+import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -132,10 +133,34 @@ export const About = memo(() => {
             </div>
 
             {/* Responsive Grid */}
-            <ul
+            <AnimatedGroup
               aria-label="Our core capabilities"
+              as="ul"
               className="grid gap-2 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4"
-              role="list"
+              variants={{
+                container: {
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: {
+                      staggerChildren: 0.05,
+                    },
+                  },
+                },
+                item: {
+                  hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    transition: {
+                      duration: 1.2,
+                      type: "spring",
+                      bounce: 0.3,
+                    },
+                  },
+                },
+              }}
             >
               {BEST_AT.map((capability) => (
                 <li
@@ -156,7 +181,7 @@ export const About = memo(() => {
                   </article>
                 </li>
               ))}
-            </ul>
+            </AnimatedGroup>
           </div>
         </div>
       </section>

@@ -18,6 +18,7 @@ export const Hero = () => {
             <IconCheckmark aria-hidden="true" className="text-accent" />
             ISO/IEC 42001 Certified
           </Badge>
+
           <h1 className="text-primary-900 text-title-3 md:text-title-2 xl:text-title-1" id="hero-heading">
             Transforming Business Through <span className="text-accent">Smart, Scalable Technology.</span>
           </h1>

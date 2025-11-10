@@ -97,7 +97,7 @@ export const MiniCta = memo(
     return (
       <div
         className={cn(
-          "relative z-999 flex flex-col items-center justify-between gap-9 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*3))] bg-foreground p-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 md:flex-row md:px-6 md:py-8",
+          "relative z-999 flex flex-col items-center justify-between gap-3 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*3))] bg-foreground p-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 md:flex-row md:px-6 md:py-8",
           className
         )}
       >
@@ -106,7 +106,11 @@ export const MiniCta = memo(
             <IconAiCloud className="text-purple-400" />
           </div>
           <div className="flex w-full flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
-            <div className={cn(layout === "horizontal" && "flex flex-col items-center gap-4 sm:flex-row sm:gap-6")}>
+            <div
+              className={cn(
+                layout === "horizontal" && "flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 sm:gap-6"
+              )}
+            >
               <h3
                 className="text-balance font-semibold text-card text-lg leading-tight tracking-[0.01em] sm:text-xl md:text-2xl [&>span]:text-accent"
                 dangerouslySetInnerHTML={{ __html: title }}
@@ -127,7 +131,7 @@ export const MiniCta = memo(
         {showButton && (
           <Button
             asChild
-            className="w-full justify-between bg-primary-900 pl-4 text-primary-300 sm:w-auto"
+            className="w-full justify-between bg-primary-900 pl-4 text-primary-300 hover:bg-primary-900 hover:text-primary-200 hover:brightness-150 sm:w-auto"
             size="lg"
             variant="ghost"
           >
