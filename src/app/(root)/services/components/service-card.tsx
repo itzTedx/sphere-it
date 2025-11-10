@@ -17,7 +17,7 @@ export function ServiceCard({ service }: { service: Service }) {
           alt={`${service.serviceTitle} - Sphere IT Services`}
           className="object-cover"
           fill
-          priority={false}
+          priority={service.id === "elevate"}
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 40vw"
           src={service.image}
         />
