@@ -86,7 +86,7 @@ export default async function ServicePage({ params }: Props) {
         ]}
       />
       <main id="main-content">
-        <header className="relative z-50 space-y-4 border-b bg-card py-20 sm:space-y-6">
+        <header className="relative z-50 space-y-4 border-b bg-card py-9 sm:space-y-6 sm:py-12 md:py-16 lg:py-20">
           <div className="container grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
             <div className="space-y-6">
               <Badge>
@@ -97,6 +97,22 @@ export default async function ServicePage({ params }: Props) {
                 {service.metadata.title}
               </h1>
               <p className="text-lg sm:text-xl">{service.metadata.description}</p>
+              {service.metadata.partners && (
+                <div className="flex items-start gap-4 md:hidden">
+                  <h2 className="font-display text-muted-foreground text-subhead-base">Partners:</h2>
+                  <ul className="flex flex-wrap items-center gap-4">
+                    {service.metadata.partners.map((partner) => (
+                      <Fragment key={partner}>
+                        <li>
+                          <Image alt="" height={30} src={partner} width={90} />
+                        </li>
+
+                        <li className="h-3 w-px bg-muted-background last:hidden" />
+                      </Fragment>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className="space-x-4">
                 <Button size="lg">
                   Get Started
@@ -125,7 +141,7 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </div>
           {service.metadata.partners && (
-            <div className="container flex max-w-7xl items-center justify-end gap-4">
+            <div className="container hidden max-w-7xl items-center justify-end gap-4 md:flex">
               <h2 className="font-display text-muted-foreground text-subhead-base">Partners:</h2>
               <ul className="flex items-center gap-4 pr-6">
                 {service.metadata.partners.map((partner) => (
@@ -141,7 +157,7 @@ export default async function ServicePage({ params }: Props) {
             </div>
           )}
         </header>
-        <article className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-1 prose-h3:mb-4 max-w-none py-12 prose-h2:font-semibold prose-h2:text-title-2 prose-h3:text-title-3 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-p:text-lg">
+        <article className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-1 prose-h3:mb-4 max-w-none py-12 prose-h2:font-semibold prose-h2:text-title-4 prose-h3:text-title-5 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-h2:text-title-3 sm:prose-h3:text-title-4 sm:prose-li:prose-p:text-lg sm:prose-li:text-lg sm:prose-p:text-lg lg:prose-h2:text-title-2 lg:prose-h3:text-title-3 lg:prose-p:text-xl">
           <MDXContent
             components={{
               Section,
@@ -164,7 +180,20 @@ export default async function ServicePage({ params }: Props) {
           />
         </article>
 
-        <Cta title={service.metadata.badge === "evaluate" ? "Empower Decisions with Data That Delivers." : undefined} />
+        <Cta
+          buttonText={
+            service.metadata.badge === "elevate" || service.metadata.badge === "evaluate"
+              ? "Speak With an Expert"
+              : undefined
+          }
+          title={
+            service.metadata.badge === "elevate"
+              ? "Ready to Elevate Your Enterprise with AI That Works?"
+              : service.metadata.badge === "evaluate"
+                ? "Empower Decisions with Data That Delivers."
+                : undefined
+          }
+        />
       </main>
     </>
   );
