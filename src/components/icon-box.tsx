@@ -23,7 +23,7 @@ export const IconBox = ({ children, className, state = "ghost" }: Props) => {
             state === "active" ? "from-primary-500/20" : "from-background"
           )}
         />
-        <div className="mask-radial-at-center mask-radial-from-80% absolute inset-0">
+        <div className="mask-radial-at-center mask-radial-from-20% mask-radial-to-0 absolute inset-0">
           <LineGrid className={cn("group-hover:text-primary-500", state === "active" && "text-primary-500")} />
         </div>
       </div>

@@ -70,7 +70,7 @@ export default function ServicesPage() {
         ]}
       />
       <main>
-        <header className="border-b bg-card py-16 sm:py-20 md:py-28">
+        <header className="border-b bg-card py-9 sm:py-12 md:py-16">
           <div className="container max-w-7xl">
             <Badge>Services</Badge>
             <div className="mt-4 max-w-4xl space-y-4 sm:space-y-6">
@@ -92,10 +92,7 @@ export default function ServicesPage() {
           </div>
         </header>
 
-        <section
-          className="relative z-50 mx-4 mt-12 rounded-2xl sm:mx-6 sm:rounded-3xl sm:p-8 md:rounded-4xl md:bg-card md:p-12 lg:p-16"
-          id="main-content"
-        >
+        <section className="container relative z-50 mt-12 max-w-7xl" id="main-content">
           <ul className="space-y-8 sm:space-y-12 md:space-y-16">
             {SERVICES.map((service) => (
               <ServiceCard key={service.id} service={service} />
