@@ -106,11 +106,7 @@ export const MiniCta = memo(
             <IconAiCloud className="text-purple-400" />
           </div>
           <div className="flex w-full flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
-            <div
-              className={cn(
-                layout === "horizontal" && "flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 sm:gap-6"
-              )}
-            >
+            <div className={cn(layout === "horizontal" && "flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4")}>
               <h3
                 className="text-balance font-semibold text-card text-lg leading-tight tracking-[0.01em] sm:text-xl md:text-2xl [&>span]:text-accent"
                 dangerouslySetInnerHTML={{ __html: title }}
