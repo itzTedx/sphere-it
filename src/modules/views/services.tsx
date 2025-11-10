@@ -99,7 +99,7 @@ export const Services = memo(() => {
             </svg>
           </div>
           <div className="container max-w-6xl">
-            <Card className="mask-b-from-78% mask-b-to-99% rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none backdrop-blur-md md:p-1.5">
+            <Card className="md:mask-b-from-78% md:mask-b-to-99% rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none backdrop-blur-md md:p-1.5">
               <TabsContents className="rounded-3xl bg-card p-6 shadow-md md:px-12 md:pt-16 md:pb-28" mode="auto-height">
                 {SERVICES.map(({ Icon, ...service }) => (
                   <TabsContent
