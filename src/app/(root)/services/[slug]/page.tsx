@@ -93,10 +93,19 @@ export default async function ServicePage({ params }: Props) {
                 <Icon />
                 {service.metadata.badge}
               </Badge>
-              <h1 className="text-primary-900 text-title-4 sm:text-title-3 lg:text-title-2">
-                {service.metadata.title}
-              </h1>
-              <p className="text-lg sm:text-xl">{service.metadata.description}</p>
+              <h1 className="text-primary-900 text-title-4 md:text-title-3">{service.metadata.title}</h1>
+              {Array.isArray(service.metadata.description) ? (
+                <ul className="space-y-2 text-lg sm:text-xl">
+                  {service.metadata.description.map((item, index) => (
+                    <li className="flex gap-2" key={index}>
+                      <Icons.IconCheckmark className="mt-2.5 size-3.5 shrink-0 text-primary-600" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-lg sm:text-xl">{service.metadata.description}</p>
+              )}
               {service.metadata.partners && (
                 <div className="flex items-start gap-4 md:hidden">
                   <h2 className="font-display text-muted-foreground text-subhead-base">Partners:</h2>

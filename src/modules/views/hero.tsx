@@ -32,8 +32,15 @@ export const Hero = () => {
             className="flex items-center justify-center gap-4 max-sm:flex-col"
             role="group"
           >
-            <Button aria-describedby="hero-description" asChild className="max-sm:w-full">
-              <Link href="/services">Explore Services</Link>
+            <Button
+              aria-describedby="hero-description"
+              asChild
+              className="group relative overflow-hidden max-sm:w-full"
+            >
+              <Link href="/services">
+                Explore Services
+                <div className="-translate-x-64 absolute z-50 h-[150%] w-9 rotate-12 bg-gradient-to-r from-transparent via-primary-300/20 to-transparent opacity-0 mix-blend-plus-lighter transition-[translate_opacity] duration-500 ease-out group-hover:translate-x-64 group-hover:opacity-100" />
+              </Link>
             </Button>
             <Button
               aria-describedby="hero-description"

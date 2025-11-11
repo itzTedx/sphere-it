@@ -6,7 +6,7 @@ export type Service = {
 export type ServiceMetadata = {
   id: number;
   title: string;
-  description: string;
+  description: string | string[];
   partners: string[];
   badge: string;
   slug: string;
