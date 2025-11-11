@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Cta } from "@/components/layout/cta";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { About, Clients, Hero, Services, Testimonials, WhyUs } from "@/modules/views";
+import { Clients, Hero, Services, Testimonials, WhyUs } from "@/modules/views";
 import { Industries } from "@/modules/views/industries";
 
 const meta = {
@@ -86,7 +86,7 @@ export default function Home() {
       <Services />
       <Clients />
       <Industries />
-      <About />
+      {/* <About /> */}
       <WhyUs />
       {/* <Resources /> */}
       <Testimonials />

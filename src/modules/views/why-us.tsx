@@ -19,11 +19,11 @@ export const WhyUs = memo(() => {
   return (
     <section
       aria-labelledby="why-us-heading"
-      className="relative z-50 my-20 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
+      className="relative z-50 mb-20 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
     >
       <div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
         <header className="space-y-2 md:space-y-4">
-          <Badge variant="secondary">Why sphere it</Badge>
+          {/* <Badge variant="secondary">Why sphere it</Badge> */}
           <div className="grid gap-2 md:grid-cols-3 md:gap-4">
             <h2 className="text-primary-900 text-title-4 md:text-title-3 xl:text-title-2" id="why-us-heading">
               What sets <span className="text-primary-600">Sphere IT apart</span>

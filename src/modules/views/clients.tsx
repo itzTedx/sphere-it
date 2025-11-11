@@ -44,7 +44,7 @@ export const Clients = memo(() => {
             </div>
             <AnimatedGroup
               as="ul"
-              className="grid grid-cols-3 items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs sm:grid-cols-4 md:grid-cols-5"
+              className="grid grid-cols-2 items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs sm:grid-cols-4"
               variants={{
                 container: {
                   visible: {
@@ -75,13 +75,13 @@ export const Clients = memo(() => {
               }}
             >
               {CLIENTS.map((client) => (
-                <li className="relative m-3 aspect-16/4 md:m-6 md:aspect-16/3" key={client.id}>
+                <li className="relative m-3 aspect-6/2 md:m-6 md:aspect-11/4" key={client.id}>
                   <Image
                     alt={`${client.name} logo`}
                     className="object-contain object-center"
                     fill
                     loading="lazy"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 16vw, 12vw"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 42vw, 33vw"
                     src={client.src}
                   />
                 </li>

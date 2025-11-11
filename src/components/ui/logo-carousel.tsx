@@ -98,7 +98,7 @@ function LogoColumn({ logos, columnIndex, currentTime, containerClassName }: Log
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className={cn("relative aspect-16/5 w-32 overflow-hidden md:aspect-16/6 md:w-36", containerClassName)}
+      className={cn("relative aspect-10/4 w-32 overflow-hidden md:aspect-11/4 md:w-72", containerClassName)}
       initial={{ opacity: 0, y: 20 }}
       transition={{
         delay: columnIndex * 0.1,

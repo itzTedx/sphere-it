@@ -21,6 +21,19 @@ export const IconArrowLeft = (props: SVGProps) => {
     </svg>
   );
 };
+export const IconArrowDown = (props: SVGProps) => {
+  return (
+    <svg {...props} fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M6.75 13.75L12 19.25L17.25 13.75M12 4.75L12 19"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+      />
+    </svg>
+  );
+};
 
 export const IconArrowUpRight = (props: SVGProps) => {
   return (

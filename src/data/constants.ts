@@ -64,6 +64,7 @@ export const NAV_LINKS: NavLink[] = [
   {
     id: 2,
     label: "Resources",
+    href: "/resources/blogs",
     resources: [
       {
         id: "explore",
@@ -298,53 +299,43 @@ export const BEST_AT = [
 export const CLIENTS = [
   {
     id: 1,
-    src: "/brands/adcb.svg",
-    name: "ADCB",
+    src: "/images/clients/cbd.svg",
+    name: "Commercial Bank of Dubai",
   },
   {
     id: 2,
-    src: "/brands/al-ghurair.svg",
-    name: "Al Ghurair",
+    src: "/images/clients/adcb.svg",
+    name: "Abu Dhabi Commercial Bank",
   },
   {
     id: 3,
-    src: "/brands/cbj.svg",
-    name: "Capital Bank of Jordan",
+    src: "/images/clients/al-ghurair.png",
+    name: "Al Ghurair",
   },
   {
     id: 4,
-    src: "/brands/coforge.svg",
-    name: "CoForge",
+    src: "/images/clients/capital.png",
+    name: "Capital Bank of Jordan",
   },
   {
     id: 5,
-    src: "/brands/enbd.svg",
-    name: "Emirates NBD",
+    src: "/images/clients/coforge.svg",
+    name: "Coforge",
   },
   {
     id: 6,
-    src: "/brands/igt-solution.svg",
-    name: "IGT Solution",
+    src: "/images/clients/enbd.svg",
+    name: "Emirates NBD",
   },
   {
     id: 7,
-    src: "/brands/mashreq.svg",
+    src: "/images/clients/mashreq.svg",
     name: "Mashreq Bank",
   },
   {
     id: 8,
-    src: "/brands/ag-cars.png",
-    name: "AG Cars",
-  },
-  {
-    id: 9,
-    src: "/brands/cbd.svg",
-    name: "Commercial Bank of Dubai",
-  },
-  {
-    id: 10,
-    src: "/brands/gems.png",
-    name: "GEMS Education",
+    src: "/images/clients/dev-dynamics.png",
+    name: "Dev Dynamics",
   },
 ];
 

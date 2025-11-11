@@ -31,7 +31,7 @@ export const ClientLogos = ({ columns = 2, containerClassName }: Props) => {
   return Array.from({ length: columns }, (_, i) => (
     <LogoCarousel
       className="transition-all duration-500 group-hover:opacity-50 group-hover:blur-xs"
-      columns={isMobile ? 3 : 7}
+      columns={isMobile ? 3 : 4}
       containerClassName={containerClassName}
       key={i}
       logos={shuffledLogos}

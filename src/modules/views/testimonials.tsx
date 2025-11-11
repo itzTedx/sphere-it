@@ -1,7 +1,6 @@
 import { memo } from "react";
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
 
@@ -14,11 +13,11 @@ export const Testimonials = memo(() => {
     <section aria-labelledby="testimonials-heading" className="mx-auto max-w-7xl max-xl:container">
       <div className="max-w-7xl pb-12 md:container md:pb-16 xl:pb-20">
         <div className="mb-12 flex flex-col items-center gap-4">
-          <Badge aria-label="Section category" role="text">
+          {/* <Badge aria-label="Section category" role="text">
             Client Testimonials
-          </Badge>
+          </Badge> */}
           <h2 className="text-primary-900 text-title-4 md:text-title-3 xl:text-title-2" id="testimonials-heading">
-            Wall of <span className="text-primary-600">love</span>
+            Client <span className="text-primary-600">Testimonials</span>
           </h2>
         </div>
         <div

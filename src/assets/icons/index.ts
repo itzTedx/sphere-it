@@ -1,7 +1,7 @@
 // AI Icons
 export { IconAiCloud } from "./ai";
 // Arrow Icons
-export { IconArrowLeft, IconArrowRight, IconArrowUpRight, IconTrendUp } from "./arrows";
+export { IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconTrendUp } from "./arrows";
 // Book Icons
 export { IconBookmark } from "./books";
 // Briefcase Icons
