@@ -13,7 +13,7 @@ import { IconArrowRight } from "@/assets/icons";
 
 import { SERVICES } from "@/data/services";
 
-import { ServicesTabs } from "./components/service-tabs";
+import { ServicesTabs } from "./components/home/service-tabs";
 
 export const Services = memo(() => {
   return (
