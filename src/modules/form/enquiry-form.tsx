@@ -18,26 +18,45 @@ import { IconUser } from "@/assets/icons/user";
 
 import { EnquireType, enquirySchema } from "./validators/enquiry-schema";
 
-export const EnquiryForm = () => {
+interface EnquiryFormProps {
+  onSubmit?: (data: EnquireType) => void | Promise<void> | boolean | Promise<boolean>;
+  submitButtonText?: string;
+  isSubmitting?: boolean;
+}
+
+export const EnquiryForm = ({
+  onSubmit: customOnSubmit,
+  submitButtonText = "Send Message",
+  isSubmitting = false,
+}: EnquiryFormProps = {}) => {
   const form = useForm<EnquireType>({
     resolver: zodResolver(enquirySchema),
   });
 
-  function onSubmit(data: EnquireType) {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-center",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
-    });
+  async function onSubmit(data: EnquireType) {
+    if (customOnSubmit) {
+      const result = await customOnSubmit(data);
+      // Reset form only if submission was successful (returns truthy value)
+      if (result === true || result === undefined) {
+        form.reset();
+      }
+    } else {
+      toast("You submitted the following values:", {
+        description: (
+          <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
+            <code>{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        ),
+        position: "bottom-center",
+        classNames: {
+          content: "flex flex-col gap-2",
+        },
+        style: {
+          "--border-radius": "calc(var(--radius)  + 4px)",
+        } as React.CSSProperties,
+      });
+      form.reset();
+    }
   }
 
   return (
@@ -164,8 +183,8 @@ export const EnquiryForm = () => {
           </Link>
         </FieldDescription>
 
-        <Button className="relative" type="submit">
-          Send Message
+        <Button className="relative" disabled={isSubmitting} type="submit">
+          {submitButtonText}
         </Button>
       </FieldGroup>
     </form>

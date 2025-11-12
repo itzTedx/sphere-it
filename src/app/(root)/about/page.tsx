@@ -11,7 +11,6 @@ import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid"
 
 import { CheckmarkIconBox } from "@/assets/checkmark-iconbox";
 import { IconArrowRight, IconCheckmark } from "@/assets/icons";
-import { IconPdf } from "@/assets/icons/pdf";
 import { IconSocialLinkedin } from "@/assets/icons/social";
 import { IconChip } from "@/assets/icons/technology";
 import { LogoIcon } from "@/assets/logo";
@@ -19,6 +18,7 @@ import { LogoIcon } from "@/assets/logo";
 import { HIRING_CTA, OUR_VALUES } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
 import { LEADERS, TEAMS, Team } from "@/data/teams";
+import { DownloadDeck } from "@/modules/auth/components/download-deck";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { Clients } from "@/modules/views";
 
@@ -102,19 +102,7 @@ export default function AboutPage() {
                   precisely engineered, practically applied, and built for real-world impact.
                 </span>
               </p>
-              <Button asChild className="bg-stone-200/30 text-stone-700" variant="ghost">
-                <Link
-                  aria-label="Explore our service capabilities and opportunities"
-                  href="/services"
-                  target="_blank"
-                  title="Explore our capabilities"
-                >
-                  View Our Intro Deck
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300/50">
-                    <IconPdf aria-hidden="true" className="text-accent" />
-                  </span>
-                </Link>
-              </Button>
+              <DownloadDeck />
             </div>
           </div>
 

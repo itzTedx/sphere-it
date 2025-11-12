@@ -166,7 +166,7 @@ export default async function ServicePage({ params }: Props) {
             </div>
           )}
         </header>
-        <article className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-1 prose-h3:mb-4 max-w-none py-12 prose-h2:font-semibold prose-h2:text-title-4 prose-h3:text-title-5 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-h2:text-title-3 sm:prose-h3:text-title-4 sm:prose-li:prose-p:text-lg sm:prose-li:text-lg sm:prose-p:text-lg lg:prose-h2:text-title-2 lg:prose-h3:text-title-3 lg:prose-p:text-xl">
+        <article className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-6 prose-h3:mb-4 prose-headings:mb-4 max-w-none pb-12 prose-h2:font-semibold prose-h2:text-title-4 prose-h3:text-title-5 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-h2:text-title-3 sm:prose-h3:text-title-4 sm:prose-li:prose-p:text-lg sm:prose-li:text-lg sm:prose-p:text-lg lg:prose-h2:text-title-2 lg:prose-h3:text-title-3 lg:prose-p:text-xl">
           <MDXContent
             components={{
               Section,
@@ -195,6 +195,7 @@ export default async function ServicePage({ params }: Props) {
               ? "Speak With an Expert"
               : undefined
           }
+          showForm
           title={
             service.metadata.badge === "elevate"
               ? "Ready to Elevate Your Enterprise with AI That Works?"

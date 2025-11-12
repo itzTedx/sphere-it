@@ -57,6 +57,8 @@ export const Hero = () => {
           className="mask-b-to-95% pointer-events-none absolute inset-0 h-full w-full object-cover"
           loop
           muted
+          playsInline
+          slot="media"
         >
           <source src="/videos/hero-reel.webm" type="video/webm" />
           Your browser does not support the video tag.
