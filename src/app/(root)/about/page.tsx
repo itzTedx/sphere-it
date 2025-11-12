@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +11,7 @@ import { PathsBackground } from "@/components/ui/motion/lines-path-background";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 
 import { CheckmarkIconBox } from "@/assets/checkmark-iconbox";
-import { IconArrowRight, IconCheckmark } from "@/assets/icons";
+import { IconArrowRight, IconCheckmark, IconPdf } from "@/assets/icons";
 import { IconSocialLinkedin } from "@/assets/icons/social";
 import { IconChip } from "@/assets/icons/technology";
 import { LogoIcon } from "@/assets/logo";
@@ -102,7 +103,21 @@ export default function AboutPage() {
                   precisely engineered, practically applied, and built for real-world impact.
                 </span>
               </p>
-              <DownloadDeck />
+              <Suspense
+                fallback={
+                  <Button className="bg-stone-200/30 text-stone-700" variant="ghost">
+                    View Our Intro Deck
+                    <span
+                      aria-hidden="true"
+                      className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300/50"
+                    >
+                      <IconPdf aria-hidden="true" className="text-accent" />
+                    </span>
+                  </Button>
+                }
+              >
+                <DownloadDeck />
+              </Suspense>
             </div>
           </div>
 
