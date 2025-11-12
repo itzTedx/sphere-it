@@ -10,7 +10,6 @@ import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid"
 
 import { IconArrowRight, IconChevronRight } from "@/assets/icons";
 import { IconLayers } from "@/assets/icons/layers";
-import { LogoIcon } from "@/assets/logo";
 
 import { TECH_STACKS } from "@/data/constants";
 import { cn } from "@/lib/utils";
@@ -94,15 +93,20 @@ function PrecisionCard({ className }: CardProps) {
 
 function PartnerCard({ className }: CardProps) {
   return (
-    <article className={cn("relative overflow-hidden rounded-2xl border bg-background", className)}>
+    <article
+      className={cn(
+        "relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-background",
+        className
+      )}
+    >
       <figure className="relative">
         <div className="mx-auto h-9 w-md rounded-b-4xl border border-t-0" />
-        <div className="relative py-9">
-          <LogoIcon className="-translate-1/2 absolute top-1/2 left-1/2 z-20" />
-          <div className="absolute inset-y-0 right-1/2 z-10 w-1/4 bg-[linear-gradient(-90deg,rgba(105,33,196,1)0%,rgba(105,33,196,0.50)5%,rgba(105,33,196,0.25)20%,rgba(105,33,196,0)100%)] opacity-40" />
-          <div className="absolute inset-y-0 right-1/2 z-10 w-1/3 bg-[linear-gradient(-90deg,rgba(105,33,196,0.8)0%,rgba(105,33,196,0.4)5%,rgba(105,33,196,0.2)20%,rgba(105,33,196,0)100%)] opacity-60" />
+        <div className="relative py-6">
+          {/* <LogoIcon className="-translate-1/2 absolute top-1/2 left-1/2 z-20" /> */}
+          {/* <div className="absolute inset-y-0 right-1/2 z-10 w-1/4 bg-[linear-gradient(-90deg,rgba(105,33,196,1)0%,rgba(105,33,196,0.50)5%,rgba(105,33,196,0.25)20%,rgba(105,33,196,0)100%)] opacity-40" />
+          <div className="absolute inset-y-0 right-1/2 z-10 w-1/3 bg-[linear-gradient(-90deg,rgba(105,33,196,0.8)0%,rgba(105,33,196,0.4)5%,rgba(105,33,196,0.2)20%,rgba(105,33,196,0)100%)] opacity-60" /> */}
           <svg
-            className="-translate-y-1/2 absolute top-1/2 left-0 z-20 hidden md:block"
+            className="-translate-y-1/2 absolute top-1/2 left-0 z-70 hidden md:block"
             fill="none"
             height="180"
             viewBox="0 0 54 180"
@@ -119,14 +123,14 @@ function PartnerCard({ className }: CardProps) {
             <path d="M0 7.32056H52.022M52.2406 0V14.2105" stroke="#A3A3A3" strokeOpacity="0.1" strokeWidth="2" />
           </svg>
 
-          <div className="absolute z-10 h-full w-48 bg-gradient-to-r from-background via-25% via-background to-transparent" />
-          <Marquee className="z-10 w-full [--duration:40s] [--gap:0.75rem]" repeat={3} reverse>
+          <div className="absolute z-60 h-full w-48 bg-gradient-to-r from-background via-25% via-background to-transparent" />
+          <Marquee className="relative z-50 w-full [--duration:40s] [--gap:0.75rem]" repeat={3} reverse>
             {TECH_STACKS.map((review) => (
               <div
                 className="flex aspect-square w-24 items-center justify-center rounded-full border p-1"
                 key={review.name}
               >
-                <div className="flex aspect-square w-20 items-center justify-center rounded-full border bg-stone-alpha-10">
+                <div className="flex aspect-square w-20 items-center justify-center rounded-full border bg-stone-alpha-10 backdrop-blur-md">
                   <div className="relative aspect-square size-10">
                     <Image alt={review.name} className="object-contain" fill src={review.img} />
                   </div>
@@ -134,9 +138,9 @@ function PartnerCard({ className }: CardProps) {
               </div>
             ))}
           </Marquee>
-          <div className="absolute top-0 right-0 z-10 h-full w-48 bg-gradient-to-l from-background via-25% via-background to-transparent" />
+          <div className="absolute top-0 right-0 z-60 h-full w-48 bg-gradient-to-l from-background via-25% via-background to-transparent" />
           <svg
-            className="-translate-y-1/2 absolute top-1/2 right-0 z-20 hidden md:block"
+            className="-translate-y-1/2 absolute top-1/2 right-0 z-70 hidden md:block"
             fill="none"
             height="180"
             viewBox="0 0 54 180"

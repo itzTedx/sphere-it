@@ -92,7 +92,7 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
       onValueChange={handleTabClick}
       value={currentTab}
     >
-      <div className="-space-x-px relative mx-auto inline-flex max-sm:bg-card max-sm:px-4 md:pb-4">
+      <div className="-space-x-0.5 relative mx-auto inline-flex max-sm:bg-foreground max-sm:px-4 md:pb-4">
         <svg
           className="hidden shrink-0 sm:block"
           fill="none"
@@ -103,13 +103,13 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
         >
           <path
             d="M50.5 45C57.8095 56.6952 71.7084 63.9997 85.5 64V0H0.5C14.2915 0 27.1905 7.30481 34.5 19L50.5 45Z"
-            fill="white"
+            fill="currentColor"
           />
         </svg>
-        <div className="flex items-center justify-center bg-card max-sm:pb-3 sm:h-11 md:h-16">
+        <div className="flex items-center justify-center bg-foreground max-sm:pb-3 sm:h-11 md:h-16">
           <TabsList
             aria-label="Service categories"
-            className="flex h-auto flex-wrap items-center justify-center rounded-none bg-card"
+            className="flex h-auto flex-wrap items-center justify-center rounded-none bg-foreground"
             role="tablist"
           >
             {SERVICES_TABS_LISTS.map(({ id, Icon, name }) => (
@@ -122,16 +122,16 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
               >
                 <div
                   aria-hidden="true"
-                  className="relative z-10 flex size-6 rounded-md bg-stone-300 shadow-sm transition-colors"
+                  className="relative z-10 flex size-6 rounded-md bg-stone-alpha-10 shadow-sm transition-colors"
                 >
-                  <Icon className="m-auto size-5 text-stone-500" />
+                  <Icon className="m-auto size-5 text-stone-200" />
                 </div>
                 <span className="relative z-10">{name}</span>
                 {currentTab === id && (
                   <span aria-hidden="true" className="absolute inset-x-0 bottom-0 z-0 h-full bg-transparent">
                     <motion.span
                       animate={{ width: "100%" }}
-                      className="block h-full rounded-r-[calc(var(--radius-md)-3px)] bg-stone-300"
+                      className="block h-full rounded-r-[calc(var(--radius-md)-3px)] bg-stone-200/15"
                       initial={{ width: "0%" }}
                       key={currentTab}
                       transition={{ duration: INTERVAL / 1000, ease: "linear" }}
@@ -152,7 +152,7 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
         >
           <path
             d="M35.5 45C28.1905 56.6952 14.2916 63.9997 0.5 64V0H85.5C71.7085 0 58.8095 7.30481 51.5 19L35.5 45Z"
-            fill="white"
+            fill="currentColor"
           />
         </svg>
       </div>

@@ -25,7 +25,7 @@ type TabsListProps = TabsListPrimitiveProps;
 
 function TabsList({ className, ...props }: TabsListProps) {
   return (
-    <TabsHighlightPrimitive className="absolute inset-0 z-0 rounded-md border border-transparent bg-card shadow-sm">
+    <TabsHighlightPrimitive className="absolute inset-0 z-0 rounded-md border border-transparent bg-stone-800 shadow-sm">
       <TabsListPrimitive
         className={cn(
           "inline-flex h-10 w-fit items-center justify-center gap-4 rounded-lg bg-muted p-[3px] text-stone-600",
@@ -44,9 +44,9 @@ function TabsTrigger({ className, ...props }: TabsTriggerProps) {
     <TabsHighlightItemPrimitive className="w-fit cursor-pointer" value={props.value}>
       <TabsTriggerPrimitive
         className={cn(
-          "inline-flex h-[calc(100%-1px)] w-fit flex-1 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-md border bg-stone-alpha-10/50 px-2 py-1 font-medium text-muted-foreground text-sm transition-colors duration-500 ease-in-out focus-visible:border-ring focus-visible:outline-1 focus-visible:outline-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-foreground [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+          "inline-flex h-[calc(100%-1px)] w-fit flex-1 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-md border bg-stone-400/20 px-2 py-1 font-medium text-muted-background text-sm transition-colors duration-500 ease-in-out focus-visible:border-ring focus-visible:outline-1 focus-visible:outline-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
           // Active State
-          "data-[state=active]:border-transparent data-[state=active]:text-primary-900 data-[state=active]:[&_div]:bg-accent data-[state=active]:[&_svg]:text-card",
+          "data-[state=active]:border-transparent data-[state=active]:text-card data-[state=active]:[&_div]:bg-accent data-[state=active]:[&_svg]:text-card",
           className
         )}
         {...props}
