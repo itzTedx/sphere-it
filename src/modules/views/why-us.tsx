@@ -165,10 +165,10 @@ function PartnerCard({ className }: CardProps) {
           color="#C3A5FA"
           flickerChance={0.1}
           gridGap={4}
-          height={1080}
+          height={560}
           maxOpacity={0.5}
           squareSize={4}
-          width={1920}
+          width={560}
         />
       </figure>
 
@@ -254,10 +254,10 @@ function ReliabilityCard({ className }: CardProps) {
           color="#C3A5FA"
           flickerChance={0.1}
           gridGap={4}
-          height={1080}
+          height={360}
           maxOpacity={0.5}
           squareSize={4}
-          width={1920}
+          width={360}
         />
       </div>
     </article>

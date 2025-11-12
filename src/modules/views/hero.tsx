@@ -54,7 +54,7 @@ export const Hero = () => {
         </div>
         <video
           autoPlay
-          className="mask-b-to-90% pointer-events-none absolute inset-0 h-full w-full object-cover"
+          className="mask-b-to-95% pointer-events-none absolute inset-0 h-full w-full object-cover"
           loop
           muted
         >
