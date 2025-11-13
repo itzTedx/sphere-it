@@ -80,7 +80,35 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
           {service.partners && (
             <div>
               <h4 className="mb-3 text-primary-500 text-subhead-xs">Partners</h4>
-              <ul className="flex flex-wrap items-center gap-2">
+              <AnimatedGroup
+                as="ul"
+                className="flex flex-wrap items-center gap-2"
+                variants={{
+                  container: {
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.2,
+                        delay: 0.4,
+                      },
+                    },
+                  },
+                  item: {
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+
+                      transition: {
+                        duration: 1.2,
+                        type: "spring",
+                        bounce: 0.3,
+                      },
+                    },
+                  },
+                }}
+              >
                 {service.partners.map((partner) => (
                   <li
                     className="flex h-8 items-center justify-center rounded-md bg-muted px-2 py-1 md:h-10 md:rounded-xl md:px-4 md:py-1.5"
@@ -95,7 +123,7 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
                     />
                   </li>
                 ))}
-              </ul>
+              </AnimatedGroup>
             </div>
           )}
         </AnimatedGroup>
@@ -106,10 +134,10 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
           color="#C3A5FA"
           flickerChance={0.1}
           gridGap={4}
-          height={1080}
+          height={440}
           maxOpacity={0.5}
           squareSize={4}
-          width={1920}
+          width={550}
         />
       </div>
     </div>
