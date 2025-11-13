@@ -14,8 +14,8 @@ import { IconArrowRight } from "@/assets/icons";
 import { SERVICES } from "@/data/services";
 import { ServiceListItem } from "@/types/service";
 
-import { ServiceCard } from "./components/home/service-card";
 import { ServicesTabs } from "./components/home/service-tabs";
+import { ServiceCard } from "./components/service-card";
 
 export const Services = memo(() => {
   return (

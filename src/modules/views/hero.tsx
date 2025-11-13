@@ -16,7 +16,7 @@ export const Hero = () => {
             </h1>
 
             <p className="text-balance text-lg md:text-xl">
-              Trusted partner for Digital Transformation and Technology services in Middle East in the BFSI and critical
+              Trusted partner for digital transformation and technology services in Middle East in the BFSI and critical
               industries.
             </p>
             <div

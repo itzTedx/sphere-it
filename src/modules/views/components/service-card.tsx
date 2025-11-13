@@ -6,11 +6,11 @@ import { AnimatedGroup } from "@/components/ui/animated-group";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 import { TextEffect } from "@/components/ui/text-effect";
 
-import { IconCheckmark } from "@/assets/icons";
+import { IconAssure, IconAugment, IconAutomate, IconCheckmark, IconElevate, IconEvaluate } from "@/assets/icons";
 
 import { Service, ServiceListItem } from "@/types/service";
 
-import { ServiceCardSkeleton } from "./service-card-skeleton";
+import { ServiceCardSkeleton } from "./home/service-card-skeleton";
 
 type ServiceCardProps = {
   service: Omit<Service, "Icon" | "lists"> & {
@@ -18,14 +18,24 @@ type ServiceCardProps = {
   };
 };
 
+const ICONS = {
+  elevate: IconElevate,
+  automate: IconAutomate,
+  evaluate: IconEvaluate,
+  assure: IconAssure,
+  augment: IconAugment,
+} as const;
+
 export const ServiceCard = ({ service }: ServiceCardProps) => {
+  const Icon = ICONS[service.id as keyof typeof ICONS];
+
   return (
     <div className="aspect-square overflow-hidden rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1))] border bg-stone-alpha-10 p-1 md:col-span-3 md:aspect-auto">
       <div className="relative aspect-auto size-full overflow-hidden rounded-3xl bg-radial-[at_50%_100%] from-primary-950 to-primary-800">
-        <div className="absolute top-10 left-1/4 z-10 size-full rounded-3xl border-2 border-primary-500 bg-primary-300/15 backdrop-blur-md md:top-12">
+        <div className="absolute top-10 left-1/4 z-10 size-full rounded-3xl border-2 border-primary-500 bg-primary-800/90 md:top-12">
           <div className="flex items-center gap-4 p-6">
             <div className="flex size-9 items-center justify-center rounded-lg border-2 border-primary-500 bg-primary-800 shadow-xl md:size-12 md:rounded-xl">
-              {/* <Icon className="size-5 text-card md:size-6" /> */}
+              <Icon className="size-5 text-card md:size-6" />
             </div>
             <TextEffect
               as="h3"
@@ -38,7 +48,7 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
           </div>
           <ServiceCardSkeleton />
         </div>
-        <div className="-translate-x-1 md:-translate-x-0 absolute top-20 left-1/6 z-9 size-full rounded-3xl border-2 border-primary-500/50 bg-primary-500/5 backdrop-blur-md md:top-24" />
+        <div className="-translate-x-1 md:-translate-x-0 absolute top-20 left-1/6 z-9 size-full rounded-3xl border-2 border-primary-500/50 bg-primary-900/50 md:top-24" />
 
         <AnimatedGroup
           className="absolute bottom-6 left-6 z-50 flex flex-col gap-3 lg:gap-2 xl:bottom-8 xl:left-8 xl:gap-3"
@@ -111,7 +121,7 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
               >
                 {service.partners.map((partner) => (
                   <li
-                    className="flex h-8 items-center justify-center rounded-md bg-muted px-2 py-1 md:h-9 md:rounded-xl md:px-3 md:py-1.5"
+                    className="flex h-8 items-center justify-center rounded-md bg-muted px-2 py-1 md:h-9 md:rounded-lg md:px-3 md:py-1.5"
                     key={partner}
                   >
                     <Image

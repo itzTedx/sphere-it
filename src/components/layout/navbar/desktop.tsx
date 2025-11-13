@@ -1,8 +1,8 @@
 "use client";
 
 import { type SVGProps, useState } from "react";
+
 import { Route } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import { AnimatePresence, motion } from "motion/react";
@@ -19,8 +19,11 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { NAV_LINKS } from "@/data/constants";
+import { SERVICES } from "@/data/services";
 import { cn } from "@/lib/utils";
+import { ServiceCard } from "@/modules/views/components/service-card";
 import { ResourcesSubmenu, SubmenuLink } from "@/types/layout";
+import { Service, ServiceListItem } from "@/types/service";
 
 export const DesktopNavLinks = () => {
   return (
@@ -126,6 +129,11 @@ function ListItem({
 function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
   const [hoveredIdx, setHoveredIdx] = useState<string | null>(null);
 
+  const fallbackService = SERVICES[0];
+  const matchedService = hoveredIdx ? SERVICES.find((service) => service.id === hoveredIdx.toLowerCase()) : undefined;
+  const baseService = matchedService ?? fallbackService;
+  const cardService = baseService ? sanitizeService(baseService) : null;
+
   return (
     <li className="grid gap-5 p-2 lg:grid-cols-[1fr_.75fr]">
       <div className="space-y-3 p-3">
@@ -155,7 +163,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
           <div className="relative z-10 font-medium text-background text-lg sm:mt-4">Services</div>
           <p className="relative z-10 text-muted-background text-sm leading-tight">We are best at:</p>
           <div className="absolute inset-x-0 bottom-0 z-9 h-1/4 bg-gradient-to-t from-primary-900 to-transparent" />
-          <AnimatePresence mode="wait">
+          {/* <AnimatePresence mode="wait">
             <motion.div
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               className="absolute inset-0"
@@ -171,11 +179,24 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
                 src={data.find((menu) => menu.label === hoveredIdx)?.image || "/images/dubai-city.webp"}
               />
             </motion.div>
-          </AnimatePresence>
+          </AnimatePresence> */}
+
+          {cardService ? <ServiceCard service={cardService} /> : null}
         </Link>
       </NavigationMenuLink>
     </li>
   );
+}
+
+function sanitizeService(
+  service: Service
+): Omit<Service, "Icon" | "lists"> & { lists: Array<Omit<ServiceListItem, "Icon">> } {
+  const { Icon: _icon, lists, ...rest } = service;
+
+  return {
+    ...rest,
+    lists: lists.map(({ Icon: _listIcon, ...listItem }) => listItem),
+  };
 }
 
 function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {

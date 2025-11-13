@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { IconBox } from "@/components/icon-box";
+import { Button } from "@/components/ui/button";
+
+import { IconArrowRight } from "@/assets/icons";
 
 import { Service } from "@/types/service";
 
@@ -33,6 +36,11 @@ export function ServiceCard({ service }: { service: Service }) {
             <h2 className="text-lg text-primary-800 sm:text-xl md:text-title-4">{service.serviceTitle}</h2>
           </div>
           <p className="font-display text-sm text-stone-700 sm:text-lg">{service.overview}</p>
+          <Button asChild className="group">
+            <Link href={`/services/${service.id}`}>
+              Learn more <IconArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Button>
         </div>
         <ul className="flex flex-wrap gap-1.5 py-3 sm:gap-2">
           {service.tags.map((tag) => (
