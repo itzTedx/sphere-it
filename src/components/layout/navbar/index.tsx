@@ -1,11 +1,10 @@
 import Link from "next/link";
 
-import { Logo } from "@/assets/logo";
-
 import { cn } from "@/lib/utils";
 
 import { DesktopNavLinks } from "./desktop";
 import { InquiryModal } from "./inquiry-modal";
+import { Logo } from "./logo";
 import { MobileNav } from "./mobile";
 
 export const Navbar = () => {
