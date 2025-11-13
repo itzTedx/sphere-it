@@ -152,10 +152,10 @@
 
   --shadow-3xl: 
   0 6px 12px -2px color-mix(in oklab, var(--primary-950) 48%, transparent),
-  0 22px 22px -8px color-mix(in oklab, var(--primary-900) 42%, transparent),
-  0 52px 30px -12px color-mix(in oklab, var(--primary-900) 25%, transparent),
-  0 93px 38px -15px color-mix(in oklab, var(--primary-900) 7%, transparent),
-  0 145px 40px -20px color-mix(in oklab, var(--primary-900) 1%, transparent);
+  0 22px 22px -4px color-mix(in oklab, var(--primary-900) 42%, transparent),
+  0 52px 30px -6px color-mix(in oklab, var(--primary-900) 25%, transparent),
+  0 93px 38px -7px color-mix(in oklab, var(--primary-900) 7%, transparent),
+  0 145px 40px -10px color-mix(in oklab, var(--primary-900) 1%, transparent);
 }
 
 @layer base {
