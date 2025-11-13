@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next/dist/types";
 import Link from "next/link";
 
 import { Cta } from "@/components/layout/cta";

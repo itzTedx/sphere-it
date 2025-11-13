@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Metadata } from "next";
+import { Metadata } from "next/dist/types";
 import Image from "next/image";
 import Link from "next/link";
 

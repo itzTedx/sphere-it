@@ -1,5 +1,5 @@
 import { ViewTransition } from "react";
-import type { Metadata } from "next";
+import type { Metadata } from "next/dist/types";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";

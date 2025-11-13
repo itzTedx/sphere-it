@@ -38,7 +38,7 @@ const SERVICES_TABS_LISTS = [
   },
 ];
 
-export const INTERVAL = 10 * 60 * 1000; // 10 minutes
+export const INTERVAL = 10 * 1000; // 10 seconds
 
 export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
   const isMobile = useIsMobile();
