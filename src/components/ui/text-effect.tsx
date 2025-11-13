@@ -10,7 +10,7 @@ export type PresetType = "blur" | "fade-in-blur" | "scale" | "fade" | "slide";
 
 export type PerType = "word" | "char" | "line";
 
-export type TextEffectProps = {
+type BaseTextEffectProps = {
   children: string;
   per?: PerType;
   as?: keyof React.JSX.IntrinsicElements;
@@ -31,6 +31,16 @@ export type TextEffectProps = {
   segmentTransition?: Transition;
   style?: React.CSSProperties;
 };
+
+type DataAttributes = {
+  [key in `data-${string}`]?: string | number | boolean | null | undefined;
+};
+
+type AdditionalDomProps = React.AriaAttributes &
+  Pick<React.HTMLAttributes<HTMLElement>, "id" | "role" | "tabIndex" | "title" | "lang"> &
+  DataAttributes;
+
+export type TextEffectProps = BaseTextEffectProps & AdditionalDomProps;
 
 const defaultStaggerTimes: Record<PerType, number> = {
   char: 0.03,
@@ -198,6 +208,7 @@ export function TextEffect({
   containerTransition,
   segmentTransition,
   style,
+  ...rest
 }: TextEffectProps) {
   const segments = splitText(children, per);
   const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
@@ -238,6 +249,7 @@ export function TextEffect({
     <AnimatePresence mode="popLayout">
       {trigger && (
         <MotionTag
+          {...rest}
           animate="visible"
           className={className}
           exit="exit"

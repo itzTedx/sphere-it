@@ -15,7 +15,7 @@ export type PresetType =
   | "rotate"
   | "swing";
 
-export type AnimatedGroupProps = {
+export type AnimatedGroupProps<T extends React.ElementType = "div"> = {
   children: ReactNode;
   className?: string;
   variants?: {
@@ -23,9 +23,9 @@ export type AnimatedGroupProps = {
     item?: Variants;
   };
   preset?: PresetType;
-  as?: React.ElementType;
+  as?: T;
   asChild?: React.ElementType;
-};
+} & Omit<React.ComponentPropsWithoutRef<T>, "children" | "className">;
 
 const defaultContainerVariants: Variants = {
   visible: {
@@ -100,7 +100,15 @@ const addDefaultVariants = (variants: Variants) => ({
   visible: { ...defaultItemVariants.visible, ...variants.visible },
 });
 
-function AnimatedGroup({ children, className, variants, preset, as = "div", asChild = "div" }: AnimatedGroupProps) {
+function AnimatedGroup<T extends React.ElementType = "div">({
+  children,
+  className,
+  variants,
+  preset,
+  as,
+  asChild = "div",
+  ...rest
+}: AnimatedGroupProps<T>) {
   const selectedVariants = {
     item: addDefaultVariants(preset ? presetVariants[preset] : {}),
     container: addDefaultVariants(defaultContainerVariants),
@@ -108,7 +116,8 @@ function AnimatedGroup({ children, className, variants, preset, as = "div", asCh
   const containerVariants = variants?.container || selectedVariants.container;
   const itemVariants = variants?.item || selectedVariants.item;
 
-  const MotionComponent = React.useMemo(() => motion.create(as as keyof JSX.IntrinsicElements), [as]);
+  const resolvedAs = (as ?? "div") as React.ElementType;
+  const MotionComponent = React.useMemo(() => motion.create(resolvedAs as keyof JSX.IntrinsicElements), [resolvedAs]);
   const MotionChild = React.useMemo(() => motion.create(asChild as keyof JSX.IntrinsicElements), [asChild]);
 
   return (
@@ -118,6 +127,7 @@ function AnimatedGroup({ children, className, variants, preset, as = "div", asCh
       variants={containerVariants}
       viewport={{ once: true }}
       whileInView="visible"
+      {...(rest as Record<string, unknown>)}
     >
       {React.Children.map(children, (child, index) => (
         <MotionChild key={index} variants={itemVariants}>
