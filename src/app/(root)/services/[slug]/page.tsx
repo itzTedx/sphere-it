@@ -23,6 +23,7 @@ import { Header } from "@/modules/services/components/header";
 import { Industry } from "@/modules/services/components/industry";
 import { Section } from "@/modules/services/components/section";
 
+import { CaseButton } from "../components/case-button";
 import { SERVICES } from "../data/services";
 
 interface Props {
@@ -173,7 +174,7 @@ export default async function ServicePage({ params }: Props) {
               Section,
               Header,
               Badge,
-              Button,
+              Button: (props) => <CaseButton {...props} />,
               CardGroup,
               Card,
               CardIcon,

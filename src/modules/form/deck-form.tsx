@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldGroup, FieldLabel, FieldLabelAsterisk } from "@/components/ui/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import { LoadingSwap } from "@/components/ui/loading-swap";
 
 import { IconEmail } from "@/assets/icons/email";
 import { IconPhone } from "@/assets/icons/phone";
@@ -20,9 +21,11 @@ import { DeckType, deckSchema } from "./validators/deck-schema";
 
 interface DeckFormProps {
   onSuccess?: () => void;
+  onSubmit?: (data: DeckType) => Promise<{ success: boolean; error?: string; name?: string }>;
+  buttonText?: string;
 }
 
-export const DeckForm = ({ onSuccess }: DeckFormProps = {}) => {
+export const DeckForm = ({ onSuccess, onSubmit, buttonText = "Download Deck" }: DeckFormProps = {}) => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<DeckType>({
@@ -30,23 +33,25 @@ export const DeckForm = ({ onSuccess }: DeckFormProps = {}) => {
     mode: "onBlur",
   });
 
-  function onSubmit(data: DeckType) {
+  function handleSubmit(data: DeckType) {
     startTransition(async () => {
       try {
-        const result = await submitDeckDownload(data);
+        const result = onSubmit ? await onSubmit(data) : await submitDeckDownload(data);
 
         if (result.success) {
-          // Trigger PDF download
-          const link = document.createElement("a");
-          link.href = "/pdf/intro-deck.pdf";
-          link.download = "Sphere IT Global - Intro Deck.pdf";
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+          // Only trigger PDF download if using default handler
+          if (!onSubmit) {
+            const link = document.createElement("a");
+            link.href = "/pdf/intro-deck.pdf";
+            link.download = "Sphere IT Global - Intro Deck.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-          toast.success("Thank you! Your download has started.", {
-            description: "We'll be in touch soon to discuss your needs.",
-          });
+            toast.success(`Thank you ${result.name}! Your download has started.`, {
+              description: "We'll be in touch soon to discuss your needs.",
+            });
+          }
 
           // Reset form after successful submission
           form.reset();
@@ -68,7 +73,7 @@ export const DeckForm = ({ onSuccess }: DeckFormProps = {}) => {
   }
 
   return (
-    <form aria-labelledby="enquiry-form-heading" onSubmit={form.handleSubmit(onSubmit)}>
+    <form aria-labelledby="enquiry-form-heading" onSubmit={form.handleSubmit(handleSubmit)}>
       <FieldGroup>
         <Controller
           control={form.control}
@@ -145,7 +150,7 @@ export const DeckForm = ({ onSuccess }: DeckFormProps = {}) => {
         </div>
 
         <Button className="relative" disabled={isPending} type="submit">
-          {isPending ? "Submitting..." : "Download Deck"}
+          <LoadingSwap isLoading={isPending}>{buttonText}</LoadingSwap>
         </Button>
         <div className="flex items-center gap-3">
           <div className="-space-x-1 flex flex-1 items-center justify-center">

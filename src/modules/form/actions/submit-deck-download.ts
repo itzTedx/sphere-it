@@ -25,7 +25,7 @@ export async function submitDeckDownload(data: unknown) {
     //   }),
     // });
 
-    return { success: true };
+    return { success: true, name: validatedData.name };
   } catch (error) {
     console.error("Error submitting deck download form:", error);
     return {
