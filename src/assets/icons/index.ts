@@ -1,53 +1,61 @@
 // AI Icons
-export { IconAiCloud } from "./ai";
+export * from "./ai";
 // Arrow Icons
-export { IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUpRight, IconTrendUp } from "./arrows";
+export * from "./arrows";
 // Book Icons
-export { IconBookmark } from "./books";
+export * from "./books";
 // Briefcase Icons
-export { IconBriefcase } from "./briefcase";
+export * from "./briefcase";
 // Building Icons
-export { IconBuilding } from "./building";
+export * from "./building";
 // Bullseye Icons
-export { IconBullseye } from "./bullseye";
+export * from "./bullseye";
 // Callout Icons
-export { IconCalloutQuote } from "./callout";
+export * from "./callout";
 // Checkmark Icons
-export { IconCheckmark } from "./checkmarks";
+export * from "./checkmarks";
 // Chevron Icons
-export { IconChevronDown, IconChevronDownFill, IconChevronRight } from "./chevrons";
+export * from "./chevrons";
 // Coin Icons
-export { IconCoins } from "./coins";
+export * from "./coins";
 // Copy Icons
-export { IconCopy, IconLink } from "./copy";
+export * from "./copy";
+// Data Icons
+export * from "./data";
+// Earth Icons
+export * from "./earth";
 // Email Icons
-export { IconEmail, IconEnvelope } from "./email";
+export * from "./email";
 // Feather Icons
-export { IconFeather } from "./feather";
+export * from "./feather";
 // Gear Icons
-export { IconAiGear, IconGear } from "./gear";
+export * from "./gear";
 // Industry Icons
-export { IconBank, IconCar } from "./industries";
+export * from "./industries";
 // ISO Icons
-export { IconIso } from "./iso";
+export * from "./iso";
 // Layer Icons
-export { IconLayers } from "./layers";
+export * from "./layers";
 // Layout Icons
-export { IconInfoCircle, IconMenu, IconPlus } from "./layout";
+export * from "./layout";
 // Location Icons
-export { IconLocation } from "./location";
+export * from "./location";
 // Message Icons
-export { IconMessage } from "./message";
+export * from "./message";
 // PDF Icons
-export { IconPdf } from "./pdf";
+export * from "./pdf";
 // Phone Icons
-export { IconPhone } from "./phone";
+export * from "./phone";
+// Plug Icons
+export * from "./plug";
 // Puzzle Icons
-export { IconPuzzle } from "./puzzle";
+export * from "./puzzle";
+// Rocket Icons
+export * from "./rocket";
 // Search Icons
-export { IconSearch } from "./search";
+export * from "./search";
 // Service Icons
-export { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "./services";
+export * from "./services";
 // Shield Icons
 export { IconShield } from "./shield";
 // Social Icons
