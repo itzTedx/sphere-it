@@ -1,6 +1,6 @@
 import LogoLoop from "@/components/ui/base/logo-carousel";
 
-import { IconBank, IconBriefcase } from "@/assets/icons";
+import { IconBank, IconBriefcase, IconGovernment } from "@/assets/icons";
 import { IconBuilding } from "@/assets/icons/building";
 import { IconCoins } from "@/assets/icons/coins";
 import { IconShield } from "@/assets/icons/shield";
@@ -11,7 +11,7 @@ const techLogos = [
   { node: <IconCoins className="size-5" />, title: "Wealth Management" },
   { node: <IconShield className="size-5" />, title: "Insurance" },
   { node: <IconBuilding className="size-5" />, title: "Conglomerates" },
-  { node: <IconBank className="size-5" />, title: "Government" },
+  { node: <IconGovernment className="size-5" />, title: "Government" },
 ];
 
 export const Industries = () => {

@@ -16,6 +16,7 @@ import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { slugify } from "@/lib/utils";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
+import { CaseStudiesContent } from "../../components/case-studies-content";
 import { CASE_STUDIES, CaseStudy } from "../data/mock-studies";
 
 interface Props {
@@ -213,55 +214,19 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         </header>
         <div className="container mb-24 max-w-7xl border-b">
-          <div className="grid gap-6 lg:grid-cols-[1fr_1.65fr]">
-            <aside className="hidden border-r lg:block lg:py-6 lg:pr-6">
-              <div className="sticky top-12 space-y-6 rounded-lg bg-card p-10">
-                <Image
-                  alt={`${study.client.name} logo`}
-                  className="object-contain"
-                  height={60}
-                  src={study.client.logo}
-                  width={100}
-                />
-                <div className="space-y-2">
-                  <h3 className="font-mono text-badge text-muted-background uppercase">About</h3>
-                  <p className="text-pretty text-base">{study.client.description}</p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-mono text-badge text-muted-background uppercase">Industry</h3>
-                  <p className="text-pretty text-subhead-base">{study.client.industry}</p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-mono text-badge text-muted-background uppercase">Company Size</h3>
-                  <p className="text-pretty text-subhead-base">{study.client.size}</p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-mono text-badge text-muted-background uppercase">Founded</h3>
-                  <p className="text-pretty text-subhead-base">{study.client.founded}</p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-mono text-badge text-muted-background uppercase">Location</h3>
-                  <p className="text-pretty text-subhead-base">{study.client.location}</p>
-                </div>
-              </div>
-            </aside>
-            <article
-              className="prose prose-stone prose-lg mx-auto max-w-none py-4 prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
-              itemProp="articleBody"
-            >
-              <MDXContent
-                components={{
-                  h1: (props) => <h1 id={slugify(props.children)} {...props} />,
-                  h2: (props) => <h2 id={slugify(props.children)} {...props} />,
-                  h3: (props) => <h3 id={slugify(props.children)} {...props} />,
-                  h4: (props) => <h4 id={slugify(props.children)} {...props} />,
-                  h5: (props) => <h5 id={slugify(props.children)} {...props} />,
-                  h6: (props) => <h6 id={slugify(props.children)} {...props} />,
-                }}
-                source={study.content}
-              />
-            </article>
-          </div>
+          <CaseStudiesContent study={study}>
+            <MDXContent
+              components={{
+                h1: (props) => <h1 id={slugify(props.children)} {...props} />,
+                h2: (props) => <h2 id={slugify(props.children)} {...props} />,
+                h3: (props) => <h3 id={slugify(props.children)} {...props} />,
+                h4: (props) => <h4 id={slugify(props.children)} {...props} />,
+                h5: (props) => <h5 id={slugify(props.children)} {...props} />,
+                h6: (props) => <h6 id={slugify(props.children)} {...props} />,
+              }}
+              source={study.content}
+            />
+          </CaseStudiesContent>
         </div>
         <Cta showForm />
       </main>

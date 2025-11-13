@@ -30,6 +30,8 @@ export * from "./email";
 export * from "./feather";
 // Gear Icons
 export * from "./gear";
+// Government Icons
+export * from "./government";
 // Industry Icons
 export * from "./industries";
 // ISO Icons

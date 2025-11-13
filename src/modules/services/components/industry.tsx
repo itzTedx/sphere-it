@@ -1,6 +1,6 @@
 import { IconBox } from "@/components/icon-box";
 
-import { IconBank, IconBriefcase } from "@/assets/icons";
+import { IconBank, IconBriefcase, IconGovernment } from "@/assets/icons";
 import { IconBuilding } from "@/assets/icons/building";
 import { IconCoins } from "@/assets/icons/coins";
 import { IconShield } from "@/assets/icons/shield";
@@ -12,8 +12,8 @@ const industryIconMap: Record<string, React.ComponentType<{ className?: string }
   "Wealth Management": IconCoins,
   Insurance: IconShield,
   Conglomerates: IconBuilding,
-  "Government Entities": IconBank,
-  Government: IconBank,
+  "Government Entities": IconGovernment,
+  Government: IconGovernment,
 };
 
 function extractText(node: React.ReactNode): string {
