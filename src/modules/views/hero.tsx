@@ -67,7 +67,7 @@ export const Hero = () => {
 
       <section
         aria-labelledby="hero-services-heading"
-        className="container relative z-10 max-w-md pt-16 pb-9 text-center md:pt-20"
+        className="container relative z-10 max-w-md pt-16 pb-4 text-center md:pt-20 xl:pb-9"
         id="services"
       >
         <Badge className="mx-auto" variant="ghost">

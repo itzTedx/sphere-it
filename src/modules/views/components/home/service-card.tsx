@@ -41,7 +41,7 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
         <div className="-translate-x-1 md:-translate-x-0 absolute top-20 left-1/6 z-9 size-full rounded-3xl border-2 border-primary-500/50 bg-primary-500/5 backdrop-blur-md md:top-24" />
 
         <AnimatedGroup
-          className="absolute bottom-6 left-6 z-50 flex flex-col gap-3 md:bottom-12 md:left-12"
+          className="absolute bottom-6 left-6 z-50 flex flex-col gap-3 lg:gap-2 xl:bottom-8 xl:left-8 xl:gap-3"
           variants={{
             container: {
               hidden: { opacity: 0 },
@@ -70,7 +70,7 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
         >
           {service.tags.map((tag) => (
             <div
-              className="flex max-w-fit items-center gap-2 rounded-xl border-2 border-primary-600 bg-primary-900 p-2 shadow-3xl"
+              className="flex max-w-fit items-center gap-2 rounded-lg border-2 border-primary-600 bg-primary-900 px-2 py-1.5 shadow-3xl xl:rounded-xl xl:p-2"
               key={tag}
             >
               <IconCheckmark className="size-3 text-primary-400" />{" "}
@@ -111,7 +111,7 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
               >
                 {service.partners.map((partner) => (
                   <li
-                    className="flex h-8 items-center justify-center rounded-md bg-muted px-2 py-1 md:h-10 md:rounded-xl md:px-4 md:py-1.5"
+                    className="flex h-8 items-center justify-center rounded-md bg-muted px-2 py-1 md:h-9 md:rounded-xl md:px-3 md:py-1.5"
                     key={partner}
                   >
                     <Image

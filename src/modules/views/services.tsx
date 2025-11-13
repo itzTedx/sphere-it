@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import Link from "next/link";
 
 import { MiniCta } from "@/components/layout/cta";
@@ -26,7 +27,10 @@ export const Services = memo(() => {
       <div className="relative max-sm:px-0">
         <ServicesTabs>
           <Card className="md:mask-b-from-78% md:mask-b-to-99% mt-3 rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none backdrop-blur-md md:mt-0 md:p-1.5">
-            <TabsContents className="rounded-3xl bg-card p-6 shadow-md md:px-12 md:pt-16 md:pb-28" mode="auto-height">
+            <TabsContents
+              className="rounded-3xl bg-card p-6 shadow-md md:p-8 md:pb-28 xl:px-12 xl:pt-16"
+              mode="auto-height"
+            >
               {SERVICES.map(({ Icon, ...service }) => (
                 <TabsContent
                   aria-labelledby={`${service.id}-tab`}
@@ -36,21 +40,23 @@ export const Services = memo(() => {
                   role="tabpanel"
                   value={service.id}
                 >
-                  <div className="space-y-8 md:col-span-2">
-                    <div className="space-y-4">
+                  <div className="space-y-6 md:col-span-2 xl:space-y-8">
+                    <div className="space-y-3 lg:space-y-4">
                       <Badge variant="secondary">
                         <Icon />
                         {service.id}
                       </Badge>
                       <h2 className="text-primary-900 text-title-5 md:text-title-4">{service.title}</h2>
-                      <p className="text-balance text-stone-800 md:text-lg">{service.description}</p>
-                      <ul className="space-y-4 sm:space-y-5 md:space-y-6">
+                      <p className="text-balance text-base text-stone-800 leading-relaxed md:text-lg lg:leading-tight">
+                        {service.description}
+                      </p>
+                      <ul className="space-y-3 md:space-y-4">
                         {service.lists.map(({ id, Icon, feature }) => (
                           <li className="flex items-center gap-3" key={id}>
-                            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary-400/16 sm:size-12">
-                              <Icon className="size-6 text-primary-600 sm:size-7" />
+                            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary-400/16 xl:size-12">
+                              <Icon className="size-6 text-primary-600 xl:size-7" />
                             </div>
-                            <p className="font-medium text-sm text-stone-700">{feature}</p>
+                            <p className="font-medium text-sm text-stone-600">{feature}</p>
                           </li>
                         ))}
                       </ul>
