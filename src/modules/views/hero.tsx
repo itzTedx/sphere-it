@@ -10,7 +10,7 @@ export const Hero = () => {
     <header className="relative overflow-hidden bg-foreground" role="banner">
       <section aria-labelledby="hero-heading" className="relative z-10 flex min-h-[calc(100svh-4rem)]">
         <div className="-translate-x-1/2 container absolute bottom-0 left-1/2 z-50 flex w-full max-w-7xl flex-col items-center gap-6 pt-12 pb-9 text-center md:h-full md:flex-1 md:justify-between md:pt-16 md:pb-16 lg:pt-28">
-          <div className="mx-auto max-w-4xl space-y-6 text-background md:flex-1">
+          <div className="mx-auto flex max-w-4xl flex-col items-center justify-center gap-6 text-background md:flex-1">
             <h1 className="text-card text-title-3 md:text-title-2 xl:text-title-1" id="hero-heading">
               Transforming Business Through <span className="text-accent">Smart, Scalable Technology.</span>
             </h1>

@@ -8,6 +8,7 @@ export type Service = {
   image: string;
   tags: string[];
   lists: ServiceListItem[];
+  partners?: string[];
 };
 
 export type ServiceListItem = {

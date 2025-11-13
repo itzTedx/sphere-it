@@ -26,6 +26,7 @@ export const SERVICES: Service[] = [
         feature: "Development with 60+ reuse accelerators. ",
       },
     ],
+    partners: ["/images/partners/grey-chain.svg", "/images/partners/ms-copilot.svg"],
   },
   {
     id: "automate",
@@ -50,6 +51,7 @@ export const SERVICES: Service[] = [
         feature: "Leverages RPA, low-code, and custom tools to automate and orchestrate rule-based processes.",
       },
     ],
+    partners: ["/images/partners/power-automate.png", "/images/partners/ui-path.svg", "/images/partners/camunda.svg"],
   },
   {
     id: "evaluate",
@@ -73,6 +75,7 @@ export const SERVICES: Service[] = [
         feature: "Trusted dashboards that deliver accurate real-time insights for executive decisions.",
       },
     ],
+    partners: ["/images/partners/nexthink.svg", "/images/partners/strategy.svg", "/images/partners/snowflake.svg"],
   },
   {
     id: "assure",
@@ -83,7 +86,7 @@ export const SERVICES: Service[] = [
     overview:
       "Keep your mission-critical platforms resilient, secure, and compliant. From stability and uptime to optimized infrastructure, we ensure systems perform at their best. So your business never misses a beat.",
     image: "/images/services/assure.png",
-    tags: ["Mission-Critical Stability", "Security Benchmarks", "Business Continuity"],
+    tags: ["Mission-Critical Stability", "Security Benchmarks"],
     lists: [
       {
         id: 1,
@@ -96,6 +99,13 @@ export const SERVICES: Service[] = [
         feature: "Core infrastructure kept resilient, available, and optimized.",
       },
     ],
+    partners: [
+      "/images/partners/comarch.svg",
+      "/images/partners/traydstream.webp",
+      "/images/partners/yogosha.svg",
+      "/images/partners/solarwinds.svg",
+      "/images/partners/manage-engine.svg",
+    ],
   },
   {
     id: "augment",
@@ -106,7 +116,7 @@ export const SERVICES: Service[] = [
     overview:
       "Scale your IT capabilities with flexible talent models. Whether you need niche expertise or long-term support, we provide outcome-aligned professionals who integrate seamlessly into your teams, reducing overhead and accelerating delivery.",
     image: "/images/services/augment.png",
-    tags: ["On-Demand IT Specialists", "Flexible Engagement Models", "Outcome-Driven Contracts"],
+    tags: ["On-Demand IT Specialists", "Flexible Engagement Models", "Outcome-Driven Contracts", "Scalable Talent"],
     lists: [
       {
         id: 1,
