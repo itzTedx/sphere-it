@@ -1,4 +1,5 @@
 import { ViewTransition } from "react";
+
 import type { Metadata } from "next/dist/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,12 +16,12 @@ import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { slugify } from "@/lib/utils";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
-import { CASE_STUDIES } from "../data/mock-studies";
+import { CASE_STUDIES, CaseStudy } from "../data/mock-studies";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
-const getStudyBySlug = (slug: string) => {
+const getStudyBySlug = (slug: string): CaseStudy => {
   const study = CASE_STUDIES.find((r) => r.slug === slug);
 
   if (!study) return notFound();

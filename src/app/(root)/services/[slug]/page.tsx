@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { Metadata } from "next";
+
+import type { Metadata } from "next/dist/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 

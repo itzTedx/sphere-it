@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { Metadata } from "next/dist/types";
 
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";

@@ -115,6 +115,7 @@
             "groups": [
               ":TYPES:",
               ["react", "react/**"],
+              ":BLANK_LINE:",
               ["next", "next/**"],
               ":BLANK_LINE:",
 
