@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 
 import type { Metadata } from "next/dist/types";
 import Image from "next/image";
@@ -174,7 +174,11 @@ export default async function ServicePage({ params }: Props) {
               Section,
               Header,
               Badge,
-              Button: (props) => <CaseButton {...props} />,
+              Button: (props) => (
+                <Suspense fallback={<Button {...props} />}>
+                  <CaseButton {...props} />
+                </Suspense>
+              ),
               CardGroup,
               Card,
               CardIcon,
