@@ -16,7 +16,15 @@ import { IconArrowRight, IconAssure, IconAugment, IconAutomate, IconElevate, Ico
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { getServiceBySlug } from "@/modules/services/actions";
-import { Card, CardContent, CardGroup, CardIcon } from "@/modules/services/components/card-list";
+import {
+  Card,
+  CardContent,
+  CardGroup,
+  CardIcon,
+  ListCard,
+  ListCardContent,
+  ListCardHeader,
+} from "@/modules/services/components/card-list";
 import { Certificate } from "@/modules/services/components/certifications";
 import { FeatureItem, FeatureList } from "@/modules/services/components/feature-list";
 import { Header } from "@/modules/services/components/header";
@@ -183,6 +191,9 @@ export default async function ServicePage({ params }: Props) {
               Card,
               CardIcon,
               CardContent,
+              ListCard,
+              ListCardHeader,
+              ListCardContent,
               Certificate,
               FeatureList,
               FeatureItem,

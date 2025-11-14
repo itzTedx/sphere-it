@@ -31,44 +31,51 @@ meta:
 
 <Section>
     <CardGroup cols={3}>
-        <Card>
-            <CardIcon icon={<IconShield />} />
-            <CardContent title="24×7 Monitoring / NOC / SOC" />
-            <FeatureList>
-                <FeatureItem>Incident & Problem Management</FeatureItem>
-                <FeatureItem>Change & Release management</FeatureItem>
-                <FeatureItem>Patch & Vulnerability Management</FeatureItem>
-                <FeatureItem>Config & Asset management (CMDB discipline)</FeatureItem>
-                <FeatureItem>Capacity management & cost efficiency</FeatureItem>
-                <FeatureItem>Service reporting, SLOs, XLAs</FeatureItem>
-                <FeatureItem>Periodic hardening & compliance reviews (ISO 27001 / SOC2 / regulatory)</FeatureItem>
-            </FeatureList>
-        </Card>
-        <Card>
+        <ListCard>
+            <ListCardHeader>
+                <CardIcon icon={<IconShield />} />
+                ### 24×7 Monitoring / NOC / SOC
+            </ListCardHeader>
+            <ListCardContent>
+                - Incident & Problem Management
+                - Change & Release management
+                - Patch & Vulnerability Management
+                - Config & Asset management (CMDB discipline)
+                - Capacity management & cost efficiency
+                - Service reporting, SLOs, XLAs
+                - Periodic hardening & compliance reviews (ISO 27001 / SOC2 / regulatory)
+            </ListCardContent>
+        </ListCard>
+       <ListCard>
+            <ListCardHeader>
             <CardIcon icon={<IconGear />} />
-            <CardContent title="Software Managed Services" />
-            <FeatureList>
-                <FeatureItem>Application lifecycle ops & run stability</FeatureItem>
-                <FeatureItem>L2/L3 functional & technical support</FeatureItem>
-                <FeatureItem>Release orchestration & regression automation</FeatureItem>
-                <FeatureItem>Performance tuning & APM (AppDynamics / Dynatrace / New Relic)</FeatureItem>
-                <FeatureItem>SecOps for apps: code dependency scanning + SBOM controls</FeatureItem>
-                <FeatureItem>Vendor coordination + backlog governance</FeatureItem>
-            </FeatureList>
-        </Card>
-        <Card>
-            <CardIcon icon={<IconLayers />} />
-            <CardContent title="Infrastructure Managed Services" />
-            <FeatureList>
-                <FeatureItem>Cloud tenancy management</FeatureItem>
-                <FeatureItem>IaaS / PaaS administration</FeatureItem>
-                <FeatureItem>Backup & DR runbooks</FeatureItem>
-                <FeatureItem>IAM & policy enforcement</FeatureItem>
-                <FeatureItem>Network & firewall ops</FeatureItem>
-                <FeatureItem>Endpoint mgmt.</FeatureItem>
-                <FeatureItem>Infra cost optimization</FeatureItem>
-            </FeatureList>
-        </Card>
+            ### Software Managed Services
+           </ListCardHeader>
+            <ListCardContent>
+                - Application lifecycle ops & run stability
+                - L2/L3 functional & technical support
+                - Release orchestration & regression automation
+                - Performance tuning & APM (AppDynamics / Dynatrace / New Relic)
+                - SecOps for apps: code dependency scanning + SBOM controls
+                - Vendor coordination + backlog governance
+            </ListCardContent>
+        </ListCard>
+        <ListCard>
+            <ListCardHeader>
+              <CardIcon icon={<IconLayers />} />
+               ### Infrastructure Managed Services
+            </ListCardHeader>
+   
+            <ListCardContent>
+                - Cloud tenancy management
+                - IaaS / PaaS administration
+                - Backup & DR runbooks
+                - IAM & policy enforcement
+                - Network & firewall ops
+                - Endpoint mgmt.
+                - Infra cost optimization
+            </ListCardContent>
+        </ListCard>
     </CardGroup>
 </Section>
 
