@@ -26,6 +26,7 @@ import {
   ListCardHeader,
 } from "@/modules/services/components/card-list";
 import { Certificate } from "@/modules/services/components/certifications";
+import { Counter } from "@/modules/services/components/counter";
 import { FeatureItem, FeatureList } from "@/modules/services/components/feature-list";
 import { Header } from "@/modules/services/components/header";
 import { Industry } from "@/modules/services/components/industry";
@@ -194,6 +195,7 @@ export default async function ServicePage({ params }: Props) {
               ListCard,
               ListCardHeader,
               ListCardContent,
+              Counter,
               Certificate,
               FeatureList,
               FeatureItem,

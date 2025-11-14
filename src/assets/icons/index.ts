@@ -81,4 +81,4 @@ export { IconTimeline } from "./timeline";
 // Trash Icons
 export { IconTrash } from "./trash";
 // User Icons
-export { IconUser, IconUserFill } from "./user";
+export { IconTeam, IconUser, IconUserFill } from "./user";

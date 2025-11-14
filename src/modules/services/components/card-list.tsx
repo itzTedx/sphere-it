@@ -1,22 +1,53 @@
 import { Children, cloneElement, isValidElement } from "react";
 
 import { IconBox } from "@/components/icon-box";
+import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Card as CardContainer } from "@/components/ui/card";
 
 import { IconCheckmark } from "@/assets/icons";
 
 import { cn } from "@/lib/utils";
 
-export const CardGroup = ({ className, cols = 2, ...props }: React.ComponentProps<"div"> & { cols?: 2 | 3 }) => {
+export const CardGroup = ({ className, cols = 2, ...props }: React.ComponentProps<"div"> & { cols?: 2 | 3 | 4 }) => {
   return (
-    <div
+    <AnimatedGroup
       className={cn(
         "not-prose grid",
-        cols === 2 ? "gap-6 sm:grid-cols-2" : "gap-4 sm:grid-cols-2 md:grid-cols-3",
+        cols === 2
+          ? "gap-6 sm:grid-cols-2"
+          : cols === 3
+            ? "gap-4 sm:grid-cols-2 md:grid-cols-3"
+            : "gap-4 sm:grid-cols-2 md:grid-cols-4",
         className
       )}
+      variants={{
+        container: {
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.15,
+            },
+          },
+        },
+        item: {
+          hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
+          visible: {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: {
+              duration: 1.5,
+              type: "spring",
+              bounce: 0.3,
+            },
+          },
+        },
+      }}
       {...props}
-    />
+    >
+      {props.children}
+    </AnimatedGroup>
   );
 };
 
@@ -68,7 +99,7 @@ export function ListCard({ children }: { children: React.ReactNode }) {
 
 export function ListCardHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col items-center gap-2 border-b p-3 text-center md:p-6 [&>h3]:text-title-5">
+    <div className="flex flex-col items-center gap-2 border-b p-3 px-3 text-center md:py-6 [&>h3]:text-title-5 [&>p]:text-sm">
       {children}
     </div>
   );
