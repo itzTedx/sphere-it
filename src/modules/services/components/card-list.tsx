@@ -47,7 +47,7 @@ interface CardContentProps {
 
 export function CardContent({ title, description }: CardContentProps) {
   return (
-    <div className="space-y-3">
+    <div>
       {title && <h3 className="text-primary-900 text-title-5">{title}</h3>}
       {description && <p className="text-base text-stone-800 tracking-tight sm:text-lg">{description}</p>}
     </div>

@@ -20,8 +20,12 @@ export * from "./chevrons";
 export * from "./coins";
 // Copy Icons
 export * from "./copy";
+// Dashboard Icons
+export * from "./dashboard";
 // Data Icons
 export * from "./data";
+// Database Icons
+export * from "./database";
 // Earth Icons
 export * from "./earth";
 // Email Icons
@@ -62,6 +66,8 @@ export * from "./services";
 export { IconShield } from "./shield";
 // Social Icons
 export { IconShare, IconSocialInstagram, IconSocialLinkedin, IconSocialWhatsapp, IconSocialX } from "./social";
+// Speedometer Icons
+export * from "./speedometer";
 // Star Icons
 export { IconStar } from "./star";
 // Stopwatch Icons
