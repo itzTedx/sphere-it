@@ -92,7 +92,7 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
       onValueChange={handleTabClick}
       value={currentTab}
     >
-      <div className="-space-x-0.5 relative mx-auto inline-flex max-sm:bg-foreground max-sm:px-4 md:pb-4">
+      <div className="-space-x-0.5 relative mx-auto inline-flex overflow-hidden max-sm:rounded-b-3xl max-sm:bg-foreground max-sm:px-4 md:pb-4">
         <svg
           className="hidden shrink-0 sm:block"
           fill="none"

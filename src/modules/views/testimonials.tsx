@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -53,8 +54,10 @@ export const Testimonials = memo(() => {
         </div>
         <div className="-mt-6 relative z-10 mx-auto flex w-fit items-center justify-center gap-1.5 rounded-full bg-card p-1.5 shadow-lg">
           <p className="px-3 font-sans text-muted-foreground text-xs lg:text-base">View the impact on our clients</p>
-          <Button asChild variant="secondary">
-            <Link href="/resources/testimonials">Browse customer stories</Link>
+          <Button asChild size="sm" variant="secondary">
+            <Link href="/resources/testimonials">
+              Browse <span className="hidden sm:inline">customer stories</span>
+            </Link>
           </Button>
         </div>
       </div>

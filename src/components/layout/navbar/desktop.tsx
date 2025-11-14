@@ -3,6 +3,7 @@
 import { type SVGProps, useState } from "react";
 
 import { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { AnimatePresence, motion } from "motion/react";
@@ -21,7 +22,6 @@ import {
 import { NAV_LINKS } from "@/data/constants";
 import { SERVICES } from "@/data/services";
 import { cn } from "@/lib/utils";
-import { ServiceCard } from "@/modules/views/components/service-card";
 import { ResourcesSubmenu, SubmenuLink } from "@/types/layout";
 import { Service, ServiceListItem } from "@/types/service";
 
@@ -163,7 +163,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
           <div className="relative z-10 font-medium text-background text-lg sm:mt-4">Services</div>
           <p className="relative z-10 text-muted-background text-sm leading-tight">We are best at:</p>
           <div className="absolute inset-x-0 bottom-0 z-9 h-1/4 bg-gradient-to-t from-primary-900 to-transparent" />
-          {/* <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait">
             <motion.div
               animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               className="absolute inset-0"
@@ -179,9 +179,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
                 src={data.find((menu) => menu.label === hoveredIdx)?.image || "/images/dubai-city.webp"}
               />
             </motion.div>
-          </AnimatePresence> */}
-
-          {cardService ? <ServiceCard service={cardService} /> : null}
+          </AnimatePresence>
         </Link>
       </NavigationMenuLink>
     </li>

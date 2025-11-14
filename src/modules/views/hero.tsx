@@ -48,7 +48,7 @@ export const Hero = () => {
             </p>
             <AnimatedGroup
               aria-label="Main actions"
-              className="flex items-center justify-center gap-4 max-sm:flex-col"
+              className="flex w-full items-center justify-center gap-4"
               role="group"
               variants={{
                 container: {
