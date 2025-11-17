@@ -20,10 +20,8 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { NAV_LINKS } from "@/data/constants";
-import { SERVICES } from "@/data/services";
 import { cn } from "@/lib/utils";
 import { ResourcesSubmenu, SubmenuLink } from "@/types/layout";
-import { Service, ServiceListItem } from "@/types/service";
 
 export const DesktopNavLinks = () => {
   return (
@@ -129,13 +127,8 @@ function ListItem({
 function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
   const [hoveredIdx, setHoveredIdx] = useState<string | null>(null);
 
-  const fallbackService = SERVICES[0];
-  const matchedService = hoveredIdx ? SERVICES.find((service) => service.id === hoveredIdx.toLowerCase()) : undefined;
-  const baseService = matchedService ?? fallbackService;
-  const cardService = baseService ? sanitizeService(baseService) : null;
-
   return (
-    <li className="grid gap-5 p-2 lg:grid-cols-[1fr_.75fr]">
+    <li className="grid gap-5 p-2 lg:grid-cols-[1fr_.6fr]">
       <div className="space-y-3 p-3">
         <h5 className="font-display font-medium text-sm text-stone-400 uppercase">Explore</h5>
         <ul className="grid grid-cols-2">
@@ -160,8 +153,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
           href="/services"
           title="Explore our services"
         >
-          <div className="relative z-10 font-medium text-background text-lg sm:mt-4">Services</div>
-          <p className="relative z-10 text-muted-background text-sm leading-tight">We are best at:</p>
+          {!hoveredIdx && <div className="relative z-10 font-medium text-background text-lg">Services</div>}
           <div className="absolute inset-x-0 bottom-0 z-9 h-1/4 bg-gradient-to-t from-primary-900 to-transparent" />
           <AnimatePresence mode="wait">
             <motion.div
@@ -173,7 +165,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
               transition={{ duration: 0.1, ease: "easeIn" }}
             >
               <Image
-                alt=""
+                alt="Service Image"
                 className={cn("object-cover")}
                 fill
                 src={data.find((menu) => menu.label === hoveredIdx)?.image || "/images/dubai-city.webp"}
@@ -184,17 +176,6 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
       </NavigationMenuLink>
     </li>
   );
-}
-
-function sanitizeService(
-  service: Service
-): Omit<Service, "Icon" | "lists"> & { lists: Array<Omit<ServiceListItem, "Icon">> } {
-  const { Icon: _icon, lists, ...rest } = service;
-
-  return {
-    ...rest,
-    lists: lists.map(({ Icon: _listIcon, ...listItem }) => listItem),
-  };
 }
 
 function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
