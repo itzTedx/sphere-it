@@ -43,8 +43,8 @@ export const Hero = () => {
             </h1>
 
             <p className="text-balance text-lg md:text-xl">
-              Trusted partner for digital transformation and technology services in Middle East in the BFSI and critical
-              industries.
+              Trusted partner driving digital transformation, data and technology services for BFSI and essential
+              industries across the Middle East
             </p>
             <AnimatedGroup
               aria-label="Main actions"
