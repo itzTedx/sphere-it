@@ -10,6 +10,16 @@ export const LEADERS: Team[] = [
     image: "/images/team/sheen-stanley.webp",
   },
   {
+    name: "Shiv",
+    designation: "",
+    image: "/images/team/shiv.webp",
+  },
+  {
+    name: "Darryl Pais",
+    designation: "Head of Business Operations",
+    image: "/images/team/darryl-pais.webp",
+  },
+  {
     name: "Jayakrishnan Nair",
     designation: "Head of IT Security",
     image: "/images/team/jayakrishnan-nair.webp",
@@ -19,11 +29,6 @@ export const LEADERS: Team[] = [
     designation: "Business Development Manager",
     image: "/images/team/melwyn-p.webp",
   },
-  {
-    name: "Mukul Adhikari",
-    designation: "Business Development Manager",
-    image: "/images/team/mukul-adhikari.webp",
-  },
 ];
 export const TEAMS: Team[] = [
   {
@@ -32,24 +37,14 @@ export const TEAMS: Team[] = [
     image: "/images/team/shabanash-ummer.webp",
   },
   {
-    name: "Vidya Chandran",
-    designation: "Technical IT Recruiter",
-    image: "/images/team/vidya-chandran.webp",
-  },
-  {
-    name: "Sreelekshmi Prithviraj",
-    designation: "Digital Media Specialist",
-    image: "/images/team/sreelekshmi-prithviraj.webp",
-  },
-  {
     name: "Merlyn Dsouza",
     designation: "HR Manager",
     image: "/images/team/merlyn-dsouza.webp",
   },
   {
-    name: "Akansha Saran",
-    designation: "Technical Recruiter",
-    image: "/images/team/akansha-saran.webp",
+    name: "Mukul Adhikari",
+    designation: "Business Development Manager",
+    image: "/images/team/mukul-adhikari.webp",
   },
   {
     name: "Avin Dcosta",
@@ -61,6 +56,23 @@ export const TEAMS: Team[] = [
     designation: "Technical IT Recruiter",
     image: "/images/team/bhakti-godbole.webp",
   },
+  {
+    name: "Akansha Saran",
+    designation: "Technical Recruiter",
+    image: "/images/team/akansha-saran.webp",
+  },
+
+  {
+    name: "Vidya Chandran",
+    designation: "Technical IT Recruiter",
+    image: "/images/team/vidya-chandran.webp",
+  },
+  {
+    name: "Sreelekshmi Prithviraj",
+    designation: "Digital Media Specialist",
+    image: "/images/team/sreelekshmi-prithviraj.webp",
+  },
+
   {
     name: "Karisma Krishnan",
     designation: "Technical IT Recruiter",
@@ -101,11 +113,7 @@ export const TEAMS: Team[] = [
     designation: "Junior IT Support",
     image: "/images/team/avantika-sai.webp",
   },
-  {
-    name: "Darryl Pais",
-    designation: "Head of Business Operations",
-    image: "/images/team/darryl-pais.webp",
-  },
+
   {
     name: "Ganapathy T",
     designation: "Technical Recruiter",
