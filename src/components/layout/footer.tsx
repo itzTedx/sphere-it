@@ -15,6 +15,8 @@ const SocialLink = memo(({ social }: { social: (typeof SOCIALS)[0] }) => (
       aria-label={`Follow us on ${social.Icon.name || "social media"}`}
       className="group flex size-10 items-center justify-center rounded-md border bg-stone-alpha-10 shadow-sm transition-colors hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
       href={social.href as Route}
+      rel="noreferrer noopener"
+      target="_blank"
       title={`Follow us on ${social.Icon.name || "social media"}`}
     >
       <social.Icon className="text-stone-300 transition-colors group-hover:text-primary-400" />

@@ -250,7 +250,7 @@ export const SOCIALS = [
   {
     id: 1,
     Icon: IconSocialLinkedin,
-    href: "/",
+    href: "https://www.linkedin.com/company/sphere-it-global/",
   },
   // {
   //   id: 2,
