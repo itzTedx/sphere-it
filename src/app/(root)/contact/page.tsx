@@ -4,12 +4,7 @@ import { Cta } from "@/components/layout/cta";
 
 import { BASE_URL } from "@/data/site-config";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
-import {
-  ContactFormSection,
-  ContactHeader,
-  ContactResourcesSection,
-  SocialMediaSection,
-} from "@/modules/views/components";
+import { ContactFormSection, ContactHeader, ContactResourcesSection } from "@/modules/views/components";
 
 import { structuredData } from "./structured-data";
 
@@ -61,7 +56,7 @@ export default function ContactPage() {
       <main>
         <ContactHeader />
         <ContactFormSection />
-        <SocialMediaSection />
+        {/* <SocialMediaSection /> */}
         <ContactResourcesSection />
         <Cta />
       </main>

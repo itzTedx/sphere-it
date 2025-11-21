@@ -79,8 +79,6 @@ function ListItem({
 }) {
   const isHovered = hoveredIdx === title;
 
-  console.log(isHovered);
-
   return (
     <li {...props}>
       <NavigationMenuLink

@@ -1,6 +1,6 @@
 import type { ComponentType, SVGProps } from "react";
 
-import { IconSocialInstagram, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
+import { IconSocialInstagram, IconSocialLinkedin, IconSocialWhatsapp } from "@/assets/icons/social";
 
 interface SocialMediaItem {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
@@ -11,7 +11,7 @@ interface SocialMediaItem {
 
 const socialMedia: SocialMediaItem[] = [
   {
-    icon: IconSocialX,
+    icon: IconSocialLinkedin,
     title: "X",
     subtitle: "(Formerly Twitter)",
     description: "Stay updated with real-time updates, product launches, automation, and AI-driven transformation.",

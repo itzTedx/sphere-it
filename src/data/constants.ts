@@ -7,7 +7,7 @@ import { IconCalloutQuote } from "@/assets/icons/callout";
 import { IconEnvelope } from "@/assets/icons/email";
 import { IconFeather } from "@/assets/icons/feather";
 import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
-import { IconSocialInstagram, IconSocialLinkedin, IconSocialWhatsapp, IconSocialX } from "@/assets/icons/social";
+import { IconSocialLinkedin } from "@/assets/icons/social";
 import { IconSupport } from "@/assets/icons/support";
 import { IconUserFill } from "@/assets/icons/user";
 
@@ -252,21 +252,21 @@ export const SOCIALS = [
     Icon: IconSocialLinkedin,
     href: "/",
   },
-  {
-    id: 2,
-    Icon: IconSocialInstagram,
-    href: "/",
-  },
-  {
-    id: 3,
-    Icon: IconSocialWhatsapp,
-    href: "/",
-  },
-  {
-    id: 4,
-    Icon: IconSocialX,
-    href: "/",
-  },
+  // {
+  //   id: 2,
+  //   Icon: IconSocialInstagram,
+  //   href: "/",
+  // },
+  // {
+  //   id: 3,
+  //   Icon: IconSocialWhatsapp,
+  //   href: "/",
+  // },
+  // {
+  //   id: 4,
+  //   Icon: IconSocialX,
+  //   href: "/",
+  // },
 ];
 
 export const BEST_AT = [

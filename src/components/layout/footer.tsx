@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import type { Route } from "next";
 import Link from "next/link";
 
@@ -81,7 +82,7 @@ const currentYear = new Date().getFullYear();
 
 export const Footer = memo(() => {
   return (
-    <footer aria-label="Site footer" className="bg-foreground" id="footer" role="contentinfo">
+    <footer aria-label="Site footer" className="relative bg-foreground" id="footer" role="contentinfo">
       <div className="text-stone-200">
         <div className="container max-w-7xl border-x py-8 md:py-16">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
