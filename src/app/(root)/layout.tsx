@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
+
 import Link from "next/link";
 
 import { BreakpointIndicator } from "@/components/dev/breakpoint-ind";
