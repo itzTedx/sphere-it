@@ -9,8 +9,8 @@ interface Props {
 export function Certificate({ icon, title }: Props) {
   const isIcon = icon.startsWith("/svg");
   return (
-    <div>
-      <div className="flex aspect-square items-center justify-center rounded-3xl bg-background">
+    <div className="flex">
+      <div className="flex aspect-square items-center justify-center rounded-3xl bg-background p-3">
         {isIcon ? (
           <div className="relative size-20">
             <Image alt="Certificate" className="object-contain" fill src={icon} />
@@ -28,9 +28,9 @@ export function Certificate({ icon, title }: Props) {
 
 export function CertificateTitle({ title }: { title: string }) {
   return (
-    <div className="flex gap-2 px-1 py-2">
+    <div className="flex items-center gap-2 px-1 py-2">
       <IconCheckmark className="size-3.5 shrink-0" />
-      <h4 className="text-balance text-xs">{title}</h4>
+      <h4 className="text-balance">{title}</h4>
     </div>
   );
 }

@@ -60,7 +60,7 @@ export function Card({
     return (
       <div
         className={cn(
-          "card rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.5))] bg-stone-alpha-10 p-1.5 shadow-sm transition-all hover:shadow-md",
+          "card h-full rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.5))] bg-stone-alpha-10 p-1.5 shadow-sm transition-all hover:shadow-md",
           className
         )}
       >
@@ -68,7 +68,7 @@ export function Card({
       </div>
     );
 
-  return <CardContainer className={cn("space-y-6 rounded-3xl p-6 shadow-md", className)} {...props} />;
+  return <CardContainer className={cn("h-full space-y-6 rounded-3xl p-6 shadow-md", className)} {...props} />;
 }
 
 export function CardIcon({ icon }: { icon: React.ReactNode }) {
