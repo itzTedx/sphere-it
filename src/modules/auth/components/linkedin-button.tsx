@@ -21,7 +21,7 @@ export const LinkedInAuthButton = () => {
         provider: "linkedin",
 
         fetchOptions: {
-          onSuccess() {
+          onSuccess(ctx) {
             const account = ctx.data.account;
             console.log("account", account);
           },
