@@ -14,7 +14,7 @@ const buttonVariants = cva(
           "border border-primary-900/40 border-b-2 bg-gradient-to-t from-primary-700 to-primary-600 text-primary-50 shadow-md shadow-primary-900/20 ring-1 ring-card/25 ring-inset ring-offset-background transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:brightness-90 disabled:pointer-events-none disabled:opacity-60",
         destructive: "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20",
         outline:
-          "border border-stone-400 bg-background text-stone-800 shadow-xs hover:bg-primary-500 hover:text-primary-50 focus-visible:border-primary-600",
+          "border border-stone-400 bg-background text-stone-800 shadow-xs hover:bg-primary-600 hover:text-primary-50 focus-visible:border-primary-600",
         secondary:
           "border border-stone-900/40 border-b-2 bg-gradient-to-t from-stone-800 to-stone-700 text-stone-200 shadow-md shadow-stone-900/20 ring-1 ring-card/25 ring-inset ring-offset-background transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:brightness-90 disabled:pointer-events-none disabled:opacity-60",
         ghost: "bg-stone-alpha-10 text-sm text-stone-600 backdrop-blur-md hover:bg-stone-300 hover:text-foreground",

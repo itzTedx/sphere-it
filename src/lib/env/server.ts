@@ -11,12 +11,13 @@ export const env = createEnv({
     LINKEDIN_CLIENT_SECRET: z.string().min(1),
 
     // NODEMAILER CONNECTION
-    SMTP_HOST: z.string(),
-    SMTP_PORT: z.string(),
-    SMTP_USER: z.string(),
-    SMTP_PASS: z.string(),
+    SMTP_HOST: z.string().default("localhost"),
+    SMTP_PORT: z.string().default("1025"),
+    SMTP_USER: z.string().optional(),
+    SMTP_PASS: z.string().optional(),
     SMTP_FROM: z.string(),
     RECEIVER_EMAIL: z.string(),
   },
   experimental__runtimeEnv: process.env,
+  emptyStringAsUndefined: true,
 });

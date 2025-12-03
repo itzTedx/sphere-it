@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+
 import Image from "next/image";
 
 import { AnimatePresence, motion } from "motion/react";
@@ -98,7 +99,7 @@ function LogoColumn({ logos, columnIndex, currentTime, containerClassName }: Log
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className={cn("relative aspect-10/4 w-32 overflow-hidden md:aspect-11/4 md:w-72", containerClassName)}
+      className={cn("relative aspect-16/9 w-32 overflow-hidden md:w-72", containerClassName)}
       initial={{ opacity: 0, y: 20 }}
       transition={{
         delay: columnIndex * 0.1,
@@ -126,13 +127,7 @@ function LogoColumn({ logos, columnIndex, currentTime, containerClassName }: Log
           initial={{ y: "10%", opacity: 0 }}
           key={`${currentLogo.id}-${currentIndex}`}
         >
-          <Image
-            alt={currentLogo.name}
-            className="h-auto w-auto object-contain md:max-h-[80%] md:max-w-[80%]"
-            height={60}
-            src={currentLogo.src}
-            width={120}
-          />
+          <Image alt={currentLogo.name} className="" height={60} src={currentLogo.src} width={120} />
         </motion.div>
       </AnimatePresence>
     </motion.div>

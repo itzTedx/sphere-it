@@ -19,6 +19,7 @@ import { TEAMS } from "@/data/teams";
 import { pluralize } from "@/lib/utils";
 import { JobApplicationForm } from "@/modules/form/job-application-form";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
+import { Testimonials } from "@/modules/views";
 
 import { ROLES } from "./data/mockup-roles";
 import { structuredData } from "./structured-data";
@@ -151,7 +152,7 @@ export default function CareersPage() {
                   <div className="flex items-center justify-between gap-4 rounded-2xl border bg-background p-4 sm:p-6">
                     <div
                       aria-label="Team members"
-                      className="-space-x-2 flex *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-border *:data-[slot=avatar]:grayscale"
+                      className="-space-x-2 flex *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-border"
                     >
                       {TEAMS.splice(0, 4).map((team) => (
                         <Avatar className="transition hover:z-50 hover:scale-110" key={team.name}>
@@ -275,6 +276,7 @@ export default function CareersPage() {
             </div>
           </div>
         </section>
+        <Testimonials />
         <Cta />
       </main>
     </>

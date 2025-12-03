@@ -19,6 +19,13 @@ export const LinkedInAuthButton = () => {
     startTransition(async () => {
       const res = await signIn.social({
         provider: "linkedin",
+
+        fetchOptions: {
+          onSuccess() {
+            const account = ctx.data.account;
+            console.log("account", account);
+          },
+        },
       });
 
       if (res.error) toast.error("Something went wrong", { description: res.error.message });
@@ -39,8 +46,8 @@ export const LinkedInAuthButton = () => {
     );
 
   return (
-    <Button disabled={isPending} onClick={connectLinkedin} type="button" variant="outline">
-      <IconSocialLinkedin className="size-6 text-[#0077B7]" /> Linkedin
+    <Button className="group" disabled={isPending} onClick={connectLinkedin} type="button" variant="outline">
+      <IconSocialLinkedin className="size-6 text-[#0077B7] transition-colors group-hover:text-primary-50" /> Linkedin
     </Button>
   );
 };

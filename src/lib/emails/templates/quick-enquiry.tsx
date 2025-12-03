@@ -45,7 +45,7 @@ const InquiryReact = ({ name, email, phone, message }: InquiryProps) => {
             </Section>
 
             {/* Main Content */}
-            <Section className="px-[40px] py-[32px] shadow-sm" style={{ backgroundColor: "#FFF" }}>
+            <Section className="px-[40px] pb-[32px] shadow-sm" style={{ backgroundColor: "#FFF" }}>
               <Heading className="text-center font-bold text-[28px]" style={{ color: "#341C52" }}>
                 New Inquiry Received
               </Heading>

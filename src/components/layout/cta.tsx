@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import type { Route } from "next";
 import Link from "next/link";
 
@@ -89,7 +90,7 @@ interface MiniCtaProps {
 export const MiniCta = memo(
   ({
     title = "Empower Your Business with <span>Next-Gen IT</span> Solutions",
-    description = "Explore cloud, cybersecurity, and digital transformation services built to scale with your growth.",
+    description,
     className,
     layout = "vertical",
     showButton = true,
@@ -111,16 +112,18 @@ export const MiniCta = memo(
                 className="text-balance font-semibold text-card text-lg leading-tight tracking-[0.01em] sm:text-xl md:text-2xl [&>span]:text-accent"
                 dangerouslySetInnerHTML={{ __html: title }}
               />
-              <p
-                className={cn(
-                  "text-muted-background",
-                  layout === "horizontal"
-                    ? "text-balance font-medium text-base leading-tight sm:text-lg md:text-xl"
-                    : "text-xs leading-relaxed sm:text-sm"
-                )}
-              >
-                {description}
-              </p>
+              {description && (
+                <p
+                  className={cn(
+                    "text-muted-background",
+                    layout === "horizontal"
+                      ? "text-balance font-medium text-base leading-tight sm:text-lg md:text-xl"
+                      : "text-xs leading-relaxed sm:text-sm"
+                  )}
+                >
+                  {description}
+                </p>
+              )}
             </div>
           </div>
         </div>

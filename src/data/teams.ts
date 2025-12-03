@@ -11,7 +11,7 @@ export const LEADERS: Team[] = [
   },
   {
     name: "Shiv",
-    designation: "",
+    designation: "Managing Director",
     image: "/images/team/shiv.webp",
   },
   {
@@ -28,6 +28,11 @@ export const LEADERS: Team[] = [
     name: "Melwyn P",
     designation: "Business Development Manager",
     image: "/images/team/melwyn-p.webp",
+  },
+  {
+    name: "Shipra Bhardwaj ",
+    designation: "Employee Engagement Manager",
+    image: "/images/team/shipra.webp",
   },
 ];
 export const TEAMS: Team[] = [

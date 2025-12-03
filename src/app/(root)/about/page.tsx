@@ -133,22 +133,23 @@ export default function AboutPage() {
           className="container relative my-12 max-w-7xl overflow-hidden md:my-12"
           id="main-content"
         >
-          <div className="container max-w-4xl py-12">
+          <div className="container relative z-10 max-w-4xl py-12">
             <Badge showDashes>
               <LogoIcon /> Our Story
             </Badge>
-            <h2 className="my-4 text-primary-900 text-title-2" id="about-heading">
+            <h2 className="sr-only" id="about-heading">
               Sphere IT was founded in 2016 with core mission
             </h2>
-            <div className="space-y-3">
+            <div className="mt-6 space-y-3 text-xl">
               <p>
-                To equip clients to adopt technology effectively through the right people, processes, and execution
-                expertise. Headquartered in Dubai, Sphere IT is a Middle East–focused IT services firm delivering
-                technology services and resources to leading banks and enterprises in the region. Sphere IT delivers
-                services across managed services, automated process workflows, data management and intelligence, AI
-                enablement, and specialized technology talent augmentation.
+                <strong>Sphere IT was founded in 2016 with core mission</strong> To equip clients to adopt technology
+                effectively through the right people, processes, and execution expertise. Headquartered in Dubai, Sphere
+                IT is a Middle East–focused IT services firm delivering technology services and resources to leading
+                banks and enterprises in the region. Sphere IT delivers services across managed services, automated
+                process workflows, data management and intelligence, AI enablement, and specialized technology talent
+                augmentation.
               </p>
-              <p className="text-xl">
+              <p>
                 With more than 300 professionals operating across the region and a Center of Excellence in Bangalore,
                 Sphere IT enables organizations in the Middle East to leverage technology with precision and pragmatism.
                 Sphere IT has built{" "}
@@ -161,7 +162,7 @@ export default function AboutPage() {
           </div>
           <FlickeringGrid
             aria-hidden="true"
-            className="absolute inset-0 z-1 opacity-50"
+            className="pointer-events-none absolute inset-0 z-1 opacity-50"
             color="#D6D3D1"
             flickerChance={0.1}
             gridGap={4}

@@ -39,7 +39,8 @@ export const Hero = () => {
             }}
           >
             <h1 className="text-card text-title-3 md:text-title-2 xl:text-title-1" id="hero-heading">
-              Transforming Business Through <span className="text-accent">Smart, Scalable Technology.</span>
+              Driven by People <br />
+              <span className="text-accent">Powered by Technology.</span>
             </h1>
 
             <p className="text-balance text-lg md:text-xl">

@@ -118,6 +118,13 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## 📧 Local Email Testing (MailHog)
+
+- Start the disposable SMTP server with `docker compose up -d mailhog`.
+- The default `SMTP_HOST=localhost` and `SMTP_PORT=1025` in `.env.local` already target MailHog, so no auth credentials are required.
+- Use `SMTP_FROM` and `RECEIVER_EMAIL` to control the sender label and inbox used in the contact form flow.
+- Open [http://localhost:8025](http://localhost:8025) to inspect sent messages and their rendered HTML.
+
 ## 📜 Available Scripts
 
 - `pnpm dev` - Start development server

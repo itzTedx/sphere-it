@@ -138,6 +138,11 @@ export const NAV_LINKS: NavLink[] = [
   },
   {
     id: 4,
+    label: "Careers",
+    href: "/careers",
+  },
+  {
+    id: 5,
     label: "Contact",
     href: "/contact",
   },

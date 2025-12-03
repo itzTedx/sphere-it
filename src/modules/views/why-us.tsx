@@ -1,14 +1,13 @@
 import { memo } from "react";
+
 import Image from "next/image";
-import Link from "next/link";
 
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 
-import { IconArrowRight, IconChevronRight } from "@/assets/icons";
+import { IconChevronRight } from "@/assets/icons";
 import { IconLayers } from "@/assets/icons/layers";
 
 import { TECH_STACKS } from "@/data/constants";
@@ -18,7 +17,7 @@ export const WhyUs = memo(() => {
   return (
     <section
       aria-labelledby="why-us-heading"
-      className="relative z-50 mb-20 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
+      className="relative z-50 mb-28 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
     >
       <div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
         <header className="space-y-2 md:space-y-4">
@@ -73,7 +72,7 @@ function PrecisionCard({ className }: CardProps) {
         </p>
       </div>
 
-      <footer className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between xl:p-10">
+      {/* <footer className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between xl:p-10">
         <div>
           <h4 className="text-primary-800 text-subhead-sm">Your Next Advantage</h4>
           <p className="text-[0.65rem] text-muted-foreground xl:text-xs">Technology, talent, and trust combined.</p>
@@ -86,7 +85,7 @@ function PrecisionCard({ className }: CardProps) {
             </span>
           </Link>
         </Button>
-      </footer>
+      </footer> */}
     </article>
   );
 }

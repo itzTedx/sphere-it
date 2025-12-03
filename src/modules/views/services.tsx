@@ -76,22 +76,11 @@ export const Services = memo(() => {
                       >,
                     }}
                   />
-                  {/* <Image
-                        alt={`Illustration showing ${service.title} service capabilities and features`}
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                        className="object-cover object-left"
-                        fetchPriority={service.id === "elevate" ? "high" : "auto"}
-                        fill
-                        placeholder="blur"
-                        priority={service.id === "elevate"}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        src={service.image}
-                      /> */}
                 </TabsContent>
               ))}
             </TabsContents>
           </Card>
-          <MiniCta className="md:-mt-20 mt-4 md:mx-14" />
+          <MiniCta className="md:-mt-20 mt-4 md:mx-14" title="Explore Al maturity of your business" />
         </ServicesTabs>
         <FlickeringGrid
           aria-hidden="true"

@@ -9,7 +9,7 @@ import { IconArrowRight, IconInfoCircle } from "@/assets/icons";
 
 import { WHY_MATTERS } from "@/data/constants";
 
-import { ClientLogos } from "./components/client-logos";
+import { Clients } from "./clients";
 
 export const WhyMatters = () => {
   return (
@@ -39,14 +39,6 @@ export const WhyMatters = () => {
             </Link>
           </Button>
         </header>
-
-        {/* Client Logos Section */}
-        <div className="space-y-4">
-          <h3 className="text-center font-display text-stone-600 text-subhead-base">
-            Trusted by <span className="text-primary-500">500+ Leading</span> Organizations
-          </h3>
-          <ClientLogos columns={1} containerClassName="w-40 md:w-40" />
-        </div>
 
         {/* Features Grid - Responsive Layout */}
         <div className="space-y-4">
@@ -104,6 +96,7 @@ export const WhyMatters = () => {
           </AnimatedGroup>
         </div>
       </div>
+      <Clients />
     </section>
   );
 };
