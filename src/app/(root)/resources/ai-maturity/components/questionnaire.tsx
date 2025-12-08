@@ -120,7 +120,7 @@ export function Questionnaire({ className }: QuestionnaireProps) {
             <Badge className="aspect-square size-7 text-xs" variant="secondary">
               {categoryIndex + 1}
             </Badge>
-            <CardTitle className="text-lg text-primary-900 xl:text-title-5">{category.category}</CardTitle>
+            <CardTitle className="text-lg text-primary-700 xl:text-title-5">{category.category}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-8 pt-4">
             {category.questions.map((question) => (

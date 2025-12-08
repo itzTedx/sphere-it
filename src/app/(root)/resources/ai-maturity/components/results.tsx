@@ -41,67 +41,67 @@ export function Results({ result, userName, className }: ResultsProps) {
   const colors = MATURITY_COLORS[result.level];
 
   return (
-    <div className={cn("space-y-6", className)}>
-      <Card className={cn("border-stone-200", colors.ring, "ring-4")}>
-        <CardHeader className="space-y-4 text-center">
-          <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary-50">
-            <TrendingUp className={cn("size-8", colors.text)} />
+    <Card className={cn("border-stone-200", colors.ring, "ring-4", className)}>
+      <CardHeader className="p-6 text-center">
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary-50">
+          <TrendingUp className={cn("size-8", colors.text)} />
+        </div>
+        {userName && (
+          <CardTitle className="text-base text-title-5 md:text-title-4 xl:text-title-3">
+            Thank you, <span className="text-primary-700">{userName}!</span>
+          </CardTitle>
+        )}
+        <div className="space-y-2">
+          <CardDescription className="text-2xl text-primary-900 md:text-3xl xl:text-2xl">
+            Your AI Maturity Assessment
+          </CardDescription>
+          <div className="flex items-center justify-center gap-3">
+            <Badge className={cn("text-sm", colors.badge)} variant="secondary">
+              {result.level}
+            </Badge>
+            <span className="font-semibold text-lg text-stone-600">{result.percentage}%</span>
           </div>
-          {userName && (
-            <CardDescription className="text-base text-stone-600">
-              Thank you, <span className="font-semibold text-stone-900">{userName}</span>!
-            </CardDescription>
-          )}
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="rounded-lg border bg-stone-50 p-6">
           <div className="space-y-2">
-            <CardTitle className="text-2xl text-primary-900 md:text-3xl">Your AI Maturity Assessment</CardTitle>
-            <div className="flex items-center justify-center gap-3">
-              <Badge className={cn("font-semibold text-sm", colors.badge)} variant="secondary">
-                {result.level}
-              </Badge>
-              <span className="font-semibold text-lg text-stone-600">{result.percentage}%</span>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="size-5 text-primary-600" />
+              <h3 className="font-semibold text-lg text-stone-900">Assessment Summary</h3>
             </div>
+            <p className="text-stone-700 leading-relaxed">{result.description}</p>
           </div>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="rounded-lg bg-stone-50 p-6">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="size-5 text-primary-600" />
-                <h3 className="font-semibold text-lg text-stone-900">Assessment Summary</h3>
-              </div>
-              <p className="text-stone-700 leading-relaxed">{result.description}</p>
-            </div>
-          </div>
+        </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-lg border border-stone-200 bg-card p-4">
-              <div className="text-muted-foreground text-sm">Total Score</div>
-              <div className="font-bold text-2xl text-primary-900">{result.totalScore}</div>
-              <div className="text-muted-foreground text-xs">out of 75</div>
-            </div>
-            <div className="rounded-lg border border-stone-200 bg-card p-4">
-              <div className="text-muted-foreground text-sm">Readiness Percentage</div>
-              <div className="font-bold text-2xl text-primary-900">{result.percentage}%</div>
-              <div className="text-muted-foreground text-xs">
-                {result.percentage <= 30
-                  ? "Early stage"
-                  : result.percentage <= 50
-                    ? "Some progress"
-                    : result.percentage <= 75
-                      ? "On the right path"
-                      : "Well embedded"}
-              </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-lg border border-stone-200 bg-card p-4">
+            <div className="text-muted-foreground text-sm">Total Score</div>
+            <div className="font-bold text-2xl text-primary-900">{result.totalScore}</div>
+            <div className="text-muted-foreground text-xs">out of 75</div>
+          </div>
+          <div className="rounded-lg border border-stone-200 bg-card p-4">
+            <div className="text-muted-foreground text-sm">Readiness Percentage</div>
+            <div className="font-bold text-2xl text-primary-900">{result.percentage}%</div>
+            <div className="text-muted-foreground text-xs">
+              {result.percentage <= 30
+                ? "Early stage"
+                : result.percentage <= 50
+                  ? "Some progress"
+                  : result.percentage <= 75
+                    ? "On the right path"
+                    : "Well embedded"}
             </div>
           </div>
+        </div>
 
-          <div className="rounded-lg border border-primary-200 bg-primary-50 p-4">
-            <p className="text-primary-900 text-sm leading-relaxed">
-              <strong>Note:</strong> Lower scores indicate higher maturity. Your score of {result.totalScore} (
-              {result.percentage}%) places you in the <strong>{result.level}</strong> category.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+        <div className="rounded-lg border border-primary-200 bg-primary-50 p-4">
+          <p className="text-primary-900 text-sm leading-relaxed">
+            <strong>Note:</strong> Lower scores indicate higher maturity. Your score of {result.totalScore} (
+            {result.percentage}%) places you in the <strong>{result.level}</strong> category.
+          </p>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

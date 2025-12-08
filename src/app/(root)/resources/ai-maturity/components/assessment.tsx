@@ -116,7 +116,7 @@ export function AiMaturityAssessment() {
             <Questionnaire />
             <div className="mt-8 flex justify-end">
               <Button size="lg" type="submit">
-                Continue to Results
+                Submit for Results
               </Button>
             </div>
           </form>
@@ -125,26 +125,25 @@ export function AiMaturityAssessment() {
 
       {step === "user-info" && (
         <FormProvider {...userInfoForm}>
-          <UserInfoForm isSubmitting={isSubmitting} onSubmit={userInfoForm.handleSubmit(handleUserInfoSubmit)} />
-          <div className="mt-4 flex justify-start">
+          <UserInfoForm isSubmitting={isSubmitting} onSubmit={userInfoForm.handleSubmit(handleUserInfoSubmit)}>
             <Button
               onClick={() => {
                 setStep("questionnaire");
               }}
               variant="outline"
             >
-              Back to Questions
+              Back to Assessment
             </Button>
-          </div>
+          </UserInfoForm>
         </FormProvider>
       )}
 
       {step === "results" && maturityResult && (
         <div className="space-y-6">
           <Results result={maturityResult} userName={userName} />
-          <Card className="border-stone-200">
-            <CardHeader>
-              <CardTitle className="text-primary-900 text-xl">What's Next?</CardTitle>
+          <Card>
+            <CardHeader className="p-6">
+              <CardTitle className="font-semibold text-primary-900">What's Next?</CardTitle>
               <CardDescription>
                 Ready to improve your AI maturity? Let's discuss how we can help your organization advance.
               </CardDescription>

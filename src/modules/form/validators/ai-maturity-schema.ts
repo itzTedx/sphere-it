@@ -94,19 +94,19 @@ export function calculateMaturityScore(answers: AiMaturityQuestionnaireType): Ma
   if (percentage <= 30) {
     level = "Foundation";
     description =
-      "Your organization is in the early stages of AI readiness. There's significant potential for growth, but foundational elements need to be established. Focus on building strategy, data infrastructure, and governance frameworks.";
+      "Early thinking and scattered actions. Basic awareness but no coordinated movement. High opportunity for structured interventions.";
   } else if (percentage <= 50) {
     level = "Developing";
     description =
-      "Your organization has made some progress in AI readiness, but there are still gaps to address. Continue building on existing foundations while addressing areas that need improvement to scale effectively.";
+      "Some progress and active initiatives. Gaps in consistency, governance, and adoption. Teams are experimenting but not scaling.";
   } else if (percentage <= 75) {
     level = "Progressive";
     description =
-      "Your organization is on the right path with solid AI foundations. You're ready to scale AI initiatives more aggressively. Focus on optimization, advanced capabilities, and expanding AI adoption across the organization.";
+      "Strong organizational commitment. Data and platforms improving. Clear governance beginning to form. Ready for structured scaling.";
   } else {
     level = "Advanced";
     description =
-      "Your organization has strong AI foundations and is well-positioned for advanced AI adoption. AI is well-embedded in your operations. Continue to innovate and stay ahead of emerging AI trends and technologies.";
+      "AI is embedded in processes. Leadership and data foundations are strong. Governance is mature. Organization is positioned to scale with confidence.";
   }
 
   return {
