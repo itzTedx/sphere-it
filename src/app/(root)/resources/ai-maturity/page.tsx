@@ -1,6 +1,10 @@
+import { Suspense } from "react";
+
 import type { Metadata } from "next";
 
 import { Badge } from "@/components/ui/badge";
+
+import { IconLoader } from "@/assets/icons/loader";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 
@@ -87,7 +91,15 @@ export default function AiMaturityPage() {
             technology, and governance.
           </p>
         </div>
-        <AiMaturityAssessment />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center py-12">
+              <IconLoader className="size-8 animate-spin text-primary-600" />
+            </div>
+          }
+        >
+          <AiMaturityAssessment />
+        </Suspense>
       </div>
     </main>
   );
