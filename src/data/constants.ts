@@ -2,14 +2,10 @@ import type { Route } from "next";
 
 import { IconCheckmark } from "@/assets/icons";
 import { IconBookmark } from "@/assets/icons/books";
-import { IconBriefcase } from "@/assets/icons/briefcase";
-import { IconCalloutQuote } from "@/assets/icons/callout";
-import { IconEnvelope } from "@/assets/icons/email";
 import { IconFeather } from "@/assets/icons/feather";
 import { IconAssure, IconAugment, IconAutomate, IconElevate, IconEvaluate } from "@/assets/icons/services";
 import { IconSocialLinkedin } from "@/assets/icons/social";
 import { IconSupport } from "@/assets/icons/support";
-import { IconUserFill } from "@/assets/icons/user";
 
 import { Footer, NavLink } from "@/types/layout";
 
@@ -83,29 +79,7 @@ export const NAV_LINKS: NavLink[] = [
           },
         ],
       },
-      {
-        id: "company",
-        links: [
-          {
-            Icon: IconUserFill,
-            label: "About",
-            description: "Company, Values, and team",
-            href: "/about",
-          },
-          {
-            Icon: IconBriefcase,
-            label: "Careers",
-            description: "Join the team",
-            href: "/careers",
-          },
-          {
-            Icon: IconEnvelope,
-            label: "Contact Support",
-            description: "Reach out to support",
-            href: "/contact",
-          },
-        ],
-      },
+
       {
         id: "updates",
         links: [
@@ -120,12 +94,6 @@ export const NAV_LINKS: NavLink[] = [
             label: "Research Papers",
             description: "Proof of success",
             href: "/resources/research-papers",
-          },
-          {
-            Icon: IconCalloutQuote,
-            label: "Testimonials",
-            description: "Hear from our clients",
-            href: "/resources/testimonials",
           },
         ],
       },
