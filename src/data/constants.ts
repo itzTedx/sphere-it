@@ -245,7 +245,7 @@ export const FOOTER: Footer[] = [
       {
         id: 2,
         label: "India",
-        href: "/",
+        href: "https://maps.app.goo.gl/Lb8Q5vUWy8rKJ9hd8",
       },
     ],
   },
