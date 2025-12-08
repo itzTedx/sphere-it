@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { parseAsString, useQueryState } from "nuqs";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -23,8 +24,20 @@ import { UserInfoForm } from "./user-info-form";
 
 type Step = "questionnaire" | "user-info" | "results";
 
+const STEP_OPTIONS: Step[] = ["questionnaire", "user-info", "results"];
+
+const isValidStep = (value: string | null): value is Step => {
+  return value !== null && STEP_OPTIONS.includes(value as Step);
+};
+
 export function AiMaturityAssessment() {
-  const [step, setStep] = useState<Step>("questionnaire");
+  const [stepParam, setStep] = useQueryState(
+    "step",
+    parseAsString.withDefault("questionnaire").withOptions({ history: "push" })
+  );
+
+  // Ensure step is always a valid Step type
+  const step: Step = isValidStep(stepParam) ? stepParam : "questionnaire";
   const [maturityResult, setMaturityResult] = useState<ReturnType<typeof calculateMaturityScore> | null>(null);
   const [userName, setUserName] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
