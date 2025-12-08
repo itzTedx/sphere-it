@@ -80,7 +80,12 @@ export const Services = memo(() => {
               ))}
             </TabsContents>
           </Card>
-          <MiniCta className="md:-mt-20 mt-4 md:mx-14" title="Explore Al maturity of your business" />
+          <MiniCta
+            buttonLink="/resources/ai-maturity"
+            buttonText="Start Assessment"
+            className="md:-mt-20 mt-4 md:mx-14"
+            title="Explore Al maturity of your business"
+          />
         </ServicesTabs>
         <FlickeringGrid
           aria-hidden="true"

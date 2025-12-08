@@ -1,0 +1,144 @@
+"use client";
+
+import { Controller, useFormContext } from "react-hook-form";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldError, FieldGroup, FieldLabel, FieldLabelAsterisk } from "@/components/ui/field";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+
+import { IconBuilding } from "@/assets/icons/building";
+import { IconEmail } from "@/assets/icons/email";
+import { IconPhone } from "@/assets/icons/phone";
+import { IconUser } from "@/assets/icons/user";
+
+import type { AiMaturityUserInfoType } from "@/modules/form/validators/ai-maturity-schema";
+
+interface UserInfoFormProps {
+  onSubmit: () => void;
+  isSubmitting?: boolean;
+}
+
+export function UserInfoForm({ onSubmit, isSubmitting = false }: UserInfoFormProps) {
+  const { control, handleSubmit, formState } = useFormContext<AiMaturityUserInfoType>();
+
+  return (
+    <Card className="border-stone-200">
+      <CardHeader className="space-y-2">
+        <CardTitle className="text-primary-900 text-xl md:text-2xl">Get Your Results</CardTitle>
+        <CardDescription className="text-stone-600">
+          Enter your details to receive your AI maturity assessment results and detailed report.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FieldGroup>
+            <Controller
+              control={control}
+              name="name"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel aria-invalid={fieldState.invalid} htmlFor={field.name}>
+                    Name <FieldLabelAsterisk />
+                  </FieldLabel>
+                  <InputGroup>
+                    <InputGroupInput
+                      placeholder="Your full name"
+                      {...field}
+                      aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                      aria-invalid={fieldState.invalid}
+                      id={field.name}
+                    />
+                    <InputGroupAddon>
+                      <IconUser />
+                    </InputGroupAddon>
+                  </InputGroup>
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+                </Field>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="email"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel aria-invalid={fieldState.invalid} htmlFor={field.name}>
+                    Email <FieldLabelAsterisk />
+                  </FieldLabel>
+                  <InputGroup>
+                    <InputGroupInput
+                      placeholder="your.email@company.com"
+                      type="email"
+                      {...field}
+                      aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                      aria-invalid={fieldState.invalid}
+                      id={field.name}
+                    />
+                    <InputGroupAddon>
+                      <IconEmail />
+                    </InputGroupAddon>
+                  </InputGroup>
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+                </Field>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="company"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel aria-invalid={fieldState.invalid} htmlFor={field.name}>
+                    Company Name <FieldLabelAsterisk />
+                  </FieldLabel>
+                  <InputGroup>
+                    <InputGroupInput
+                      placeholder="Your company name"
+                      {...field}
+                      aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                      aria-invalid={fieldState.invalid}
+                      id={field.name}
+                    />
+                    <InputGroupAddon>
+                      <IconBuilding />
+                    </InputGroupAddon>
+                  </InputGroup>
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+                </Field>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="phone"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>Phone Number</FieldLabel>
+                  <InputGroup>
+                    <InputGroupInput
+                      placeholder="+971 56 789 4321"
+                      type="tel"
+                      {...field}
+                      aria-describedby={fieldState.invalid ? `${field.name}-error` : undefined}
+                      aria-invalid={fieldState.invalid}
+                      id={field.name}
+                    />
+                    <InputGroupAddon>
+                      <IconPhone className="size-3.5" />
+                    </InputGroupAddon>
+                  </InputGroup>
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} id={`${field.name}-error`} />}
+                </Field>
+              )}
+            />
+
+            <Button className="w-full" disabled={isSubmitting} size="lg" type="submit">
+              {isSubmitting ? "Processing..." : "View My Results"}
+            </Button>
+          </FieldGroup>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}

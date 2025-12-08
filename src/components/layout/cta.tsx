@@ -85,6 +85,8 @@ interface MiniCtaProps {
   className?: string;
   layout?: "vertical" | "horizontal";
   showButton?: boolean;
+  buttonText?: string;
+  buttonLink?: Route;
 }
 
 export const MiniCta = memo(
@@ -94,6 +96,8 @@ export const MiniCta = memo(
     className,
     layout = "vertical",
     showButton = true,
+    buttonText = "Explore Services",
+    buttonLink = "/services",
   }: MiniCtaProps) => {
     return (
       <div
@@ -134,8 +138,8 @@ export const MiniCta = memo(
             size="lg"
             variant="ghost"
           >
-            <Link href="/services" title="Explore our services">
-              Explore Services
+            <Link href={buttonLink} title="Explore our services">
+              {buttonText}
               <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
                 <IconArrowUpRight className="text-primary-900" />
               </span>
