@@ -185,18 +185,6 @@ function PartnerCard({ className }: CardProps) {
 				className
 			)}
 		>
-			<FlickeringGrid
-				aria-hidden="true"
-				className="absolute inset-0 z-1 opacity-20 [mask-image:radial-gradient(180px_circle_at_top_right,white,transparent)]"
-				color="#C3A5FA"
-				flickerChance={0.08}
-				gridGap={4}
-				height={400}
-				maxOpacity={0.3}
-				squareSize={4}
-				width={400}
-			/>
-
 			<div className="relative z-10 flex h-full flex-col p-6 sm:p-8 lg:p-6 xl:p-10">
 				<header className="mb-4 space-y-2 xl:mb-6 xl:space-y-3">
 					<h3 className="text-primary-900 text-title-5 xl:text-title-4">
@@ -254,7 +242,7 @@ function PartnerCard({ className }: CardProps) {
 										<motion.div
 											animate={{ opacity: 1, y: 0 }}
 											className={cn(
-												"relative rounded-xl bg-gradient-to-br from-primary-100 to-card p-6 shadow-sm sm:p-9"
+												"relative rounded-xl bg-gradient-to-br from-primary-200 to-card p-6 shadow-sm sm:p-9"
 											)}
 											exit={{ opacity: 0, y: 10 }}
 											initial={{ opacity: 0, y: 10 }}
@@ -265,7 +253,7 @@ function PartnerCard({ className }: CardProps) {
 												<motion.div
 													animate={{ scale: 1, rotate: 0 }}
 													className={cn(
-														"flex size-14 shrink-0 items-center justify-center rounded-xl border-2 bg-background/80 font-bold text-primary-600 shadow-lg backdrop-blur-md sm:size-16 xl:size-20 xl:text-2xl"
+														"flex size-14 shrink-0 items-center justify-center rounded-xl bg-card font-bold text-primary-600 shadow-md sm:size-16 xl:size-20 xl:text-2xl"
 													)}
 													initial={{ scale: 0.8, rotate: -180 }}
 													transition={{
