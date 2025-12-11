@@ -4,7 +4,7 @@ import { memo, useEffect, useState } from "react";
 
 import Image from "next/image";
 
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
@@ -186,60 +186,64 @@ function PartnerCard({ className }: CardProps) {
 			)}
 		>
 			<div className="relative z-10 flex h-full flex-col p-6 sm:p-8 lg:p-6 xl:p-10">
+				<header className="mb-4 space-y-2 xl:mb-6 xl:space-y-3">
+					<h3 className="text-primary-900 text-title-5 xl:text-title-4">
+						Delivering Clarity and Predictable Outcomes
+					</h3>
+				</header>
+
 				<Tabs
-					className="gap-4"
+					className="flex flex-row items-center gap-4"
 					onValueChange={handleTabChange}
+					orientation="vertical"
 					value={currentTab}
 				>
-					<header className="flex items-center justify-between">
-						<h3 className="text-primary-900 text-title-5 xl:text-title-4">
-							Delivering Clarity and Predictable Outcomes
-						</h3>
-						<TabsList className="flex h-auto flex-row justify-start gap-1 sm:h-fit">
-							{AXIS_PHASES.map((phase, index) => (
-								<TabsTrigger
-									className={cn(
-										"relative size-9 overflow-hidden text-stone-500"
-									)}
-									key={phase.letter}
-									value={phase.letter.toLowerCase()}
+					<TabsList className="flex h-auto flex-col justify-start gap-1 sm:h-fit">
+						{AXIS_PHASES.map((phase, index) => (
+							<TabsTrigger
+								className={cn("relative size-9 overflow-hidden")}
+								key={phase.letter}
+								value={phase.letter.toLowerCase()}
+							>
+								<span
+									className={
+										"relative z-10 shrink-0 items-center justify-center font-bold transition-all duration-300"
+									}
 								>
-									<span
-										className={
-											"relative z-10 shrink-0 items-center justify-center font-bold transition-all duration-300"
-										}
-									>
-										{phase.letter}
-									</span>
+									{phase.letter}
+								</span>
 
-									{activeIndex === index && (
-										<motion.span
-											animate={{ width: "100%" }}
-											aria-hidden={true}
-											className="absolute inset-0 left-0 z-0 rounded-r-[calc(var(--radius-md)-3px)] bg-accent"
-											initial={{ width: "0%" }}
-											key={activeIndex}
-											transition={{
-												duration: CYCLE_INTERVAL / 1000,
-												ease: "linear",
-											}}
-										/>
-									)}
-								</TabsTrigger>
-							))}
-						</TabsList>
-					</header>
-					<TabsContents className="flex-1 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.25))] border bg-stone-alpha-10 p-1">
-						<div className="flex items-center justify-between rounded-xl bg-gradient-to-br from-primary-200 to-card p-6 shadow-sm">
-							{AXIS_PHASES.map((phase) => (
-								<TabsContent
-									key={phase.letter}
-									value={phase.letter.toLowerCase()}
-								>
+								{activeIndex === index && (
+									<motion.span
+										animate={{ height: "100%" }}
+										aria-hidden={true}
+										className="absolute inset-0 left-0 z-0 rounded-r-[calc(var(--radius-md)-3px)] bg-primary-500"
+										initial={{ height: "0%" }}
+										key={activeIndex}
+										transition={{
+											duration: CYCLE_INTERVAL / 1000,
+											ease: "linear",
+										}}
+									/>
+								)}
+							</TabsTrigger>
+						))}
+					</TabsList>
+
+					<TabsContents className="flex-1 p-1" mode="auto-height">
+						{AXIS_PHASES.map((phase) => (
+							<TabsContent
+								className="flex h-full flex-col justify-center rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.25))] border bg-stone-alpha-10 p-1"
+								key={phase.letter}
+								value={phase.letter.toLowerCase()}
+							>
+								<AnimatePresence mode="wait">
 									{activeIndex === AXIS_PHASES.indexOf(phase) && (
 										<motion.div
 											animate={{ opacity: 1, y: 0 }}
-											className={cn("relative")}
+											className={cn(
+												"relative rounded-xl bg-gradient-to-br from-primary-200 to-card p-6 shadow-sm sm:p-9"
+											)}
 											exit={{ opacity: 0, y: 10 }}
 											initial={{ opacity: 0, y: 10 }}
 											key={phase.letter}
@@ -272,7 +276,7 @@ function PartnerCard({ className }: CardProps) {
 													</motion.h4>
 													<motion.p
 														animate={{ opacity: 1, x: 0 }}
-														className="text-balance text-sm text-stone-800 leading-relaxed sm:text-base lg:leading-tight"
+														className="text-balance text-sm text-stone-800 leading-relaxed sm:text-base md:text-lg lg:leading-tight"
 														initial={{ opacity: 0, x: -10 }}
 														transition={{ delay: 0.3, duration: 0.4 }}
 													>
@@ -282,11 +286,9 @@ function PartnerCard({ className }: CardProps) {
 											</div>
 										</motion.div>
 									)}
-								</TabsContent>
-							))}
-
-							{/* <Button>Learn more</Button> */}
-						</div>
+								</AnimatePresence>
+							</TabsContent>
+						))}
 					</TabsContents>
 				</Tabs>
 			</div>
