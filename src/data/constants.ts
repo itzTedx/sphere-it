@@ -284,11 +284,7 @@ export const CLIENTS = [
 		src: "/images/clients/cbd.svg",
 		name: "Commercial Bank of Dubai",
 	},
-	{
-		id: 2,
-		src: "/images/clients/adcb.svg",
-		name: "Abu Dhabi Commercial Bank",
-	},
+
 	{
 		id: 3,
 		src: "/images/clients/al-ghurair.png",
@@ -313,11 +309,6 @@ export const CLIENTS = [
 		id: 7,
 		src: "/images/clients/mashreq.svg",
 		name: "Mashreq Bank",
-	},
-	{
-		id: 8,
-		src: "/images/clients/dev-dynamics.png",
-		name: "Dev Dynamics",
 	},
 ];
 
