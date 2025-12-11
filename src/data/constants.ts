@@ -83,6 +83,7 @@ export const NAV_LINKS: NavLink[] = [
 						label: "Blogs",
 						description: "Trends, strategies & expert opinions",
 						href: "/resources/blogs",
+						image: "/svg/book.jpg",
 					},
 				],
 			},
