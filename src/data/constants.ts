@@ -287,39 +287,45 @@ export const CLIENTS = [
 	{
 		id: 2,
 		src: "/images/clients/adib.svg",
-		name: "Rakbank",
+		name: "Abu Dhabi Commercial Bank",
 	},
 	{
 		id: 3,
-		src: "/images/clients/cbd.svg",
-		name: "Commercial Bank of Dubai",
+		src: "/images/clients/bank-muscat.svg",
+		name: "Bank Muscat",
 	},
-
 	{
 		id: 4,
-		src: "/images/clients/al-ghurair.png",
-		name: "Al Ghurair",
-	},
-	{
-		id: 5,
 		src: "/images/clients/capital.png",
 		name: "Capital Bank of Jordan",
 	},
 	{
-		id: 6,
-		src: "/images/clients/coforge.svg",
-		name: "Coforge",
-	},
-	{
-		id: 7,
+		id: 5,
 		src: "/images/clients/enbd.svg",
 		name: "Emirates NBD",
 	},
 	{
-		id: 8,
+		id: 9,
 		src: "/images/clients/mashreq.svg",
 		name: "Mashreq Bank",
 	},
+
+	{
+		id: 6,
+		src: "/images/clients/cbd.svg",
+		name: "Commercial Bank of Dubai",
+	},
+	// {
+	// 	id: 7,
+	// 	src: "/images/clients/al-ghurair.png",
+	// 	name: "Al Ghurair",
+	// },
+
+	// {
+	// 	id: 8,
+	// 	src: "/images/clients/coforge.svg",
+	// 	name: "Coforge",
+	// },
 ];
 
 export const WHY_MATTERS = [
