@@ -24,17 +24,10 @@ import {
 	calculateMaturityScore,
 } from "@/modules/form/validators/ai-maturity-schema";
 
+import { isValidStep, Step } from "../utils/is-valid-step";
 import { Questionnaire } from "./questionnaire";
 import { Results } from "./results";
 import { UserInfoForm } from "./user-info-form";
-
-type Step = "questionnaire" | "user-info" | "results";
-
-const STEP_OPTIONS: Step[] = ["questionnaire", "user-info", "results"];
-
-const isValidStep = (value: string | null): value is Step => {
-	return value !== null && STEP_OPTIONS.includes(value as Step);
-};
 
 export function AiMaturityAssessment() {
 	const [stepParam, setStep] = useQueryState(
