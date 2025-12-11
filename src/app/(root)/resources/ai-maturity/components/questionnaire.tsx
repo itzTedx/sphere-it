@@ -11,11 +11,11 @@ import { cn } from "@/lib/utils";
 import type { AiMaturityQuestionnaireType } from "@/modules/form/validators/ai-maturity-schema";
 
 const SCORE_OPTIONS = [
-	{ value: 1, label: "Fully established", description: "Best" },
-	{ value: 2, label: "Well established", description: "Good" },
+	{ value: 5, label: "Fully established", description: "Best" },
+	{ value: 4, label: "Well established", description: "Good" },
 	{ value: 3, label: "Partially established", description: "Moderate" },
-	{ value: 4, label: "Emerging", description: "Early stage" },
-	{ value: 5, label: "Not established", description: "Needs work" },
+	{ value: 2, label: "Emerging", description: "Early stage" },
+	{ value: 1, label: "Not established", description: "Needs work" },
 ] as const;
 
 const QUESTIONS = [
