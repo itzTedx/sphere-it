@@ -81,6 +81,12 @@ export function AiMaturityAssessment() {
 		setStep("user-info");
 	};
 
+	const handleQuestionnaireError = () => {
+		toast.error("Please fill all fields", {
+			description: "All questions must be answered before proceeding.",
+		});
+	};
+
 	const handleUserInfoSubmit = async (data: AiMaturityUserInfoType) => {
 		setIsSubmitting(true);
 		setUserName(data.name);
@@ -105,6 +111,12 @@ export function AiMaturityAssessment() {
 		} finally {
 			setIsSubmitting(false);
 		}
+	};
+
+	const handleUserInfoError = () => {
+		toast.error("Please fill all fields", {
+			description: "All required fields must be completed before submitting.",
+		});
 	};
 
 	return (
@@ -140,7 +152,10 @@ export function AiMaturityAssessment() {
 			{step === "questionnaire" && (
 				<FormProvider {...questionnaireForm}>
 					<form
-						onSubmit={questionnaireForm.handleSubmit(handleQuestionnaireSubmit)}
+						onSubmit={questionnaireForm.handleSubmit(
+							handleQuestionnaireSubmit,
+							handleQuestionnaireError
+						)}
 					>
 						<Questionnaire />
 						<div className="mt-8 flex justify-end">
@@ -156,7 +171,10 @@ export function AiMaturityAssessment() {
 				<FormProvider {...userInfoForm}>
 					<UserInfoForm
 						isSubmitting={isSubmitting}
-						onSubmit={userInfoForm.handleSubmit(handleUserInfoSubmit)}
+						onSubmit={userInfoForm.handleSubmit(
+							handleUserInfoSubmit,
+							handleUserInfoError
+						)}
 					>
 						<Button
 							onClick={() => {

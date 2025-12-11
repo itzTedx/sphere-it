@@ -22,7 +22,7 @@ interface UserInfoFormProps {
 }
 
 export function UserInfoForm({ onSubmit, isSubmitting = false, children }: UserInfoFormProps) {
-  const { control, handleSubmit } = useFormContext<AiMaturityUserInfoType>();
+  const { control } = useFormContext<AiMaturityUserInfoType>();
 
   return (
     <Card>
@@ -33,7 +33,7 @@ export function UserInfoForm({ onSubmit, isSubmitting = false, children }: UserI
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <FieldGroup>
             <Controller
               control={control}
