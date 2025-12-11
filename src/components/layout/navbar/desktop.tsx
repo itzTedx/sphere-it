@@ -219,7 +219,7 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
 						{link.links.map((link) => (
 							<NavigationMenuLink asChild className="group" key={link.label}>
 								<Link
-									className="relative flex aspect-4/3 h-full w-full flex-1 select-none flex-col justify-between overflow-hidden rounded-md border bg-stone-100 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-100 focus:shadow-md group-hover:border-primary-600 group-focus-visible:border-primary-600 group-focus-visible:bg-primary-100 md:p-6"
+									className="group relative flex aspect-4/3 h-full w-full flex-1 select-none flex-col justify-between overflow-hidden rounded-md border bg-primary-950 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-900 focus:shadow-md group-hover:border-primary-600 group-focus-visible:bg-primary-900 md:p-6"
 									href={link.href}
 									title="Explore our services"
 								>
@@ -235,7 +235,7 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
 									{link.image && (
 										<Image
 											alt={link.label}
-											className="object-cover"
+											className="object-cover transition-all duration-200 group-hover:scale-105 group-hover:brightness-110"
 											fill
 											src={link.image}
 										/>
