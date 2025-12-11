@@ -76,6 +76,7 @@ export const NAV_LINKS: NavLink[] = [
 						label: "FAQs",
 						description: "Frequently Asked Questions",
 						href: "/resources/faqs",
+						image: "/svg/question.jpg",
 					},
 					{
 						Icon: IconFeather,
