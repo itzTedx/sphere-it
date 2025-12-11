@@ -76,7 +76,7 @@ export const NAV_LINKS: NavLink[] = [
 						label: "FAQs",
 						description: "Frequently Asked Questions",
 						href: "/resources/faqs",
-						image: "/svg/checkmark.svg",
+					
 					},
 					{
 						Icon: IconFeather,
@@ -95,6 +95,7 @@ export const NAV_LINKS: NavLink[] = [
 						label: "Case Studies",
 						description: "Proof of success",
 						href: "/resources/case-studies",
+						image: "/svg/checkmark.svg",
 					},
 					{
 						Icon: IconBookmark,
