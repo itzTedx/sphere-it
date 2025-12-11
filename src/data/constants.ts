@@ -305,27 +305,27 @@ export const CLIENTS = [
 		name: "Emirates NBD",
 	},
 	{
-		id: 9,
+		id: 6,
 		src: "/images/clients/mashreq.svg",
 		name: "Mashreq Bank",
 	},
 
 	{
-		id: 6,
+		id: 7,
 		src: "/images/clients/cbd.svg",
 		name: "Commercial Bank of Dubai",
 	},
-	// {
-	// 	id: 7,
-	// 	src: "/images/clients/al-ghurair.png",
-	// 	name: "Al Ghurair",
-	// },
+	{
+		id: 8,
+		src: "/images/clients/al-ghurair.png",
+		name: "Al Ghurair",
+	},
 
-	// {
-	// 	id: 8,
-	// 	src: "/images/clients/coforge.svg",
-	// 	name: "Coforge",
-	// },
+	{
+		id: 9,
+		src: "/images/clients/coforge.svg",
+		name: "Coforge",
+	},
 ];
 
 export const WHY_MATTERS = [
