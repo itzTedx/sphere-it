@@ -194,11 +194,13 @@ export const FOOTER: Footer[] = [
 				label: "Faqs",
 				href: "/resources/faqs",
 			},
+
 			{
 				id: 2,
 				label: "Testimonials",
 				href: "/resources/testimonials",
 			},
+
 			{
 				id: 3,
 				label: "Case studies",
@@ -208,6 +210,11 @@ export const FOOTER: Footer[] = [
 				id: 4,
 				label: "Insights",
 				href: "/resources/blogs",
+			},
+			{
+				id: 5,
+				label: "AI Maturity Assessment",
+				href: "/resources/ai-maturity",
 			},
 		],
 	},

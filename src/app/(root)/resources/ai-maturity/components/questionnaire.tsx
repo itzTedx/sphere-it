@@ -15,7 +15,7 @@ const SCORE_OPTIONS = [
 	{ value: 4, label: "Well established", description: "Good" },
 	{ value: 3, label: "Partially established", description: "Moderate" },
 	{ value: 2, label: "Emerging", description: "Early stage" },
-	{ value: 1, label: "Not established", description: "Needs work" },
+	{ value: 0, label: "Not established", description: "Needs work" },
 ] as const;
 
 const QUESTIONS = [
