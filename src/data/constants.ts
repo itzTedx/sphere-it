@@ -65,7 +65,7 @@ export const NAV_LINKS: NavLink[] = [
 	},
 	{
 		id: 2,
-		label: "Resources",
+		label: "Insights",
 		href: "/resources/blogs",
 		resources: [
 			{
@@ -294,8 +294,8 @@ export const CLIENTS = [
 	},
 	{
 		id: 2,
-		src: "/images/clients/adib.svg",
-		name: "Abu Dhabi Commercial Bank",
+		src: "/images/clients/adib.png",
+		name: "Abu Dhabi Islamic Bank",
 	},
 	{
 		id: 3,
@@ -331,9 +331,20 @@ export const CLIENTS = [
 
 	{
 		id: 9,
-		src: "/images/clients/coforge.svg",
-		name: "Coforge",
+		src: "/images/clients/doha.svg",
+		name: "Doha Bank",
 	},
+
+	{
+		id: 10,
+		src: "/images/clients/emirates-islamic.svg",
+		name: "Emirates Islamic Bank",
+	},
+	// {
+	// 	id: 9,
+	// 	src: "/images/clients/coforge.svg",
+	// 	name: "Coforge",
+	// },
 ];
 
 export const WHY_MATTERS = [

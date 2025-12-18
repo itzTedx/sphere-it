@@ -65,7 +65,7 @@ export const WhyUs = memo(() => {
 						<MiniCta
 							description="We make it work for your business, reducing complexity and accelerating value."
 							layout="horizontal"
-							title="We don't just <span>design technology</span>"
+							title="What we say, What we do.</span>"
 						/>
 					</div>
 				</div>
