@@ -347,6 +347,74 @@ export const CLIENTS = [
 	// },
 ];
 
+export const PARTNERS = [
+	{
+		id: 1,
+		src: "/images/partners/grey-chain.svg",
+		name: "Grey Chain",
+	},
+	{
+		id: 2,
+		src: "/images/partners/ms-copilot.svg",
+		name: "Microsoft Copilot",
+	},
+	{
+		id: 3,
+		src: "/images/partners/power-automate.png",
+		name: "Power Automate",
+	},
+	{
+		id: 4,
+		src: "/images/partners/ui-path.svg",
+		name: "UI Path",
+	},
+	{
+		id: 5,
+		src: "/images/partners/camunda.svg",
+		name: "Camunda",
+	},
+	{
+		id: 6,
+		src: "/images/partners/nexthink.svg",
+		name: "Nextthink",
+	},
+	{
+		id: 7,
+		src: "/images/partners/strategy.svg",
+		name: "Strategy",
+	},
+	{
+		id: 8,
+		src: "/images/partners/snowflake.svg",
+		name: "Snowflake",
+	},
+	{
+		id: 9,
+		src: "/images/partners/comarch.svg",
+		name: "Comarch",
+	},
+	{
+		id: 10,
+		src: "/images/partners/traydstream.webp",
+		name: "Traydstream",
+	},
+	{
+		id: 11,
+		src: "/images/partners/yogosha.svg",
+		name: "Yogosha",
+	},
+	{
+		id: 12,
+		src: "/images/partners/solarwinds.svg",
+		name: "Solarwinds",
+	},
+	{
+		id: 13,
+		src: "/images/partners/manage-engine.svg",
+		name: "Manage Engine",
+	},
+];
+
 export const WHY_MATTERS = [
 	{
 		badge: "Data Driven",

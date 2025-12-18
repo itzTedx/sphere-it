@@ -33,7 +33,7 @@ export const WhyUs = memo(() => {
 	return (
 		<section
 			aria-labelledby="why-us-heading"
-			className="relative z-50 mb-28 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
+			className="relative z-50 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
 		>
 			<div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
 				<header className="space-y-2 md:space-y-4">

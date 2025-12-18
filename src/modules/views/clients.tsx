@@ -51,7 +51,7 @@ export const Clients = memo(() => {
 						>
 							{CLIENTS.map((client) => (
 								<li
-									className="relative m-3 aspect-6/2 md:m-6 md:aspect-11/4"
+									className="relative m-3 aspect-6/2 md:m-8 md:aspect-11/4"
 									key={client.id}
 								>
 									<Image
