@@ -22,6 +22,7 @@ import {
 } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
+import { cn } from "@/lib/utils";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { getServiceBySlug } from "@/modules/services/actions";
 import {
@@ -247,6 +248,12 @@ export default async function ServicePage({ params }: Props) {
 							IconBox,
 							...Icons,
 							Cta: (props) => <MiniCta {...props} className="not-prose" />,
+							Image: (props) => (
+								<Image
+									{...props}
+									className={cn("max-w-full rounded-lg", props.className)}
+								/>
+							),
 						}}
 						source={service.content}
 					/>

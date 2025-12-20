@@ -117,7 +117,7 @@ export function ListCard({ children }: { children: React.ReactNode }) {
 
 export function ListCardHeader({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="flex flex-col items-center gap-1 text-balance border-b bg-muted/50 p-3 px-3 text-center md:py-6 [&>h3]:text-title-5 [&>p]:text-sm">
+		<div className="flex flex-col items-center gap-1 text-balance border-b bg-muted/50 p-3 px-3 text-center md:py-6 [&>h3]:text-title-5 [&>h4]:text-title-6 [&>p]:text-sm">
 			{children}
 		</div>
 	);
