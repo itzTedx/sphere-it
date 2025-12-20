@@ -102,7 +102,7 @@ export const Footer = memo(() => {
 		>
 			<div className="text-stone-200">
 				<div className="container max-w-7xl border-x py-8 md:py-16">
-					<div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+					<div className="grid grid-cols-1 gap-8 lg:grid-cols-[.5fr_1fr] lg:gap-12">
 						<div className="flex max-w-md flex-col justify-between gap-3">
 							<div className="space-y-4 md:space-y-6">
 								<Link
@@ -133,7 +133,7 @@ export const Footer = memo(() => {
 						{/* Navigation sections */}
 						<div
 							aria-label="Footer navigation"
-							className="grid grid-cols-2 gap-8 lg:grid-cols-4"
+							className="grid grid-cols-2 gap-4 lg:grid-cols-4"
 							role="navigation"
 						>
 							{FOOTER.map((item) => (

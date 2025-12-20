@@ -179,6 +179,11 @@ export const FOOTER: Footer[] = [
 				href: "/careers",
 			},
 			{
+				id: 4,
+				label: "Methodology",
+				href: "/methodology",
+			},
+			{
 				id: 3,
 				label: "Contact",
 				href: "/contact",
@@ -208,7 +213,7 @@ export const FOOTER: Footer[] = [
 			},
 			{
 				id: 4,
-				label: "Insights",
+				label: "Blogs",
 				href: "/resources/blogs",
 			},
 			{

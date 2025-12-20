@@ -3,11 +3,13 @@
 import { memo, useEffect, useState } from "react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { motion } from "motion/react";
 
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 import {
@@ -57,8 +59,8 @@ export const WhyUs = memo(() => {
 				</header>
 
 				<div className="grid gap-4 md:grid-cols-12 xl:gap-6">
-					<PrecisionCard className="md:col-span-4" />
-					<PartnerCard className="md:col-span-8" />
+					<GuidedByCard className="md:col-span-5" />
+					<AxisCard className="md:col-span-7" />
 					<TechStackCard className="md:col-span-6" />
 					<ReliabilityCard className="md:col-span-6" />
 					<div className="col-span-full">
@@ -80,7 +82,7 @@ interface CardProps {
 	className?: string;
 }
 
-function PrecisionCard({ className }: CardProps) {
+function GuidedByCard({ className }: CardProps) {
 	return (
 		<article
 			className={cn(
@@ -92,7 +94,8 @@ function PrecisionCard({ className }: CardProps) {
 				<header>
 					<Badge variant="ghost">Guided by</Badge>
 					<h3 className="text-primary-900 text-title-5 xl:text-title-3">
-						Precision & Pragmatism
+						Precision & <br />
+						Pragmatism
 					</h3>
 				</header>
 				<p className="text-base text-muted-foreground lg:text-sm xl:text-lg">
@@ -100,21 +103,6 @@ function PrecisionCard({ className }: CardProps) {
 					ensuring innovation that actually delivers.
 				</p>
 			</div>
-
-			{/* <footer className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between xl:p-10">
-        <div>
-          <h4 className="text-primary-800 text-subhead-sm">Your Next Advantage</h4>
-          <p className="text-[0.65rem] text-muted-foreground xl:text-xs">Technology, talent, and trust combined.</p>
-        </div>
-        <Button asChild className="self-start sm:self-auto" variant="ghost">
-          <Link aria-label="Explore our services to discover your next advantage" href="/services">
-            Explore Services
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300 transition-colors">
-              <IconArrowRight className="text-stone-500" />
-            </span>
-          </Link>
-        </Button>
-      </footer> */}
 		</article>
 	);
 }
@@ -152,7 +140,7 @@ const AXIS_PHASES = [
 
 const CYCLE_INTERVAL = 4000; // 4 seconds
 
-function PartnerCard({ className }: CardProps) {
+function AxisCard({ className }: CardProps) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const currentPhase = AXIS_PHASES[activeIndex]!;
 	const currentTab = currentPhase.letter.toLowerCase();
@@ -186,20 +174,23 @@ function PartnerCard({ className }: CardProps) {
 			)}
 		>
 			<div className="relative z-10 flex h-full flex-col p-6 sm:p-8 lg:p-6 xl:p-10">
+				<header className="flex items-center justify-between">
+					<h3 className="text-primary-900 text-title-5 xl:text-title-4">
+						Sphere Methodology
+						{/* Delivering Clarity and Predictable Outcomes */}
+					</h3>
+				</header>
 				<Tabs
 					className="gap-4"
 					onValueChange={handleTabChange}
 					value={currentTab}
 				>
-					<header className="flex items-center justify-between">
-						<h3 className="text-primary-900 text-title-5 xl:text-title-4">
-							Delivering Clarity and Predictable Outcomes
-						</h3>
+					<div className="flex items-center justify-between gap-4">
 						<TabsList className="flex h-auto flex-row justify-start gap-1 sm:h-fit">
 							{AXIS_PHASES.map((phase, index) => (
 								<TabsTrigger
 									className={cn(
-										"relative size-9 overflow-hidden text-stone-500"
+										"relative size-10 overflow-hidden text-stone-500"
 									)}
 									key={phase.letter}
 									value={phase.letter.toLowerCase()}
@@ -228,7 +219,10 @@ function PartnerCard({ className }: CardProps) {
 								</TabsTrigger>
 							))}
 						</TabsList>
-					</header>
+						<Button asChild>
+							<Link href="/methodology">Learn More</Link>
+						</Button>
+					</div>
 					<TabsContents className="flex-1 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.25))] border bg-stone-alpha-10 p-1">
 						<div className="flex items-center justify-between rounded-xl bg-gradient-to-br from-primary-200 to-card p-6 shadow-sm">
 							{AXIS_PHASES.map((phase) => (
@@ -263,7 +257,7 @@ function PartnerCard({ className }: CardProps) {
 													<motion.h4
 														animate={{ opacity: 1, x: 0 }}
 														className={cn(
-															"font-semibold text-2xl text-primary-600 leading-none sm:text-3xl"
+															"font-semibold text-primary-600 text-xl leading-none sm:text-2xl"
 														)}
 														initial={{ opacity: 0, x: -10 }}
 														transition={{ delay: 0.2, duration: 0.4 }}
@@ -272,7 +266,7 @@ function PartnerCard({ className }: CardProps) {
 													</motion.h4>
 													<motion.p
 														animate={{ opacity: 1, x: 0 }}
-														className="text-balance text-sm text-stone-800 leading-relaxed sm:text-base lg:leading-tight"
+														className="text-balance text-sm text-stone-800 leading-tight sm:text-base"
 														initial={{ opacity: 0, x: -10 }}
 														transition={{ delay: 0.3, duration: 0.4 }}
 													>
@@ -302,13 +296,16 @@ function TechStackCard({ className }: CardProps) {
 				className
 			)}
 		>
-			<div className="p-6 pr-0 sm:p-8 lg:flex-1">
+			<div className="flex flex-col justify-between p-6 pr-0 sm:p-8 lg:flex-1">
 				<header>
 					<Badge variant="ghost">Results-Driven Delivery</Badge>
-					<h3 className="text-primary-900 text-title-5 xl:text-title-3">
+					<h3 className="text-primary-900 text-title-5 xl:text-title-4">
 						Driven by People, Powered by Technology.
 					</h3>
 				</header>
+				<Button asChild className="w-fit" variant="outline">
+					<Link href="/resources/case-studies">Read case studies</Link>
+				</Button>
 			</div>
 			<div className="relative">
 				<div className="relative z-10 m-6 mb-0 space-y-3 rounded-t-xl bg-stone-alpha-10 p-3 pb-0 shadow-lg backdrop-blur-md">

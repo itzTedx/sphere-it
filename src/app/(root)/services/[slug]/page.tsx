@@ -10,6 +10,7 @@ import { Cta, MiniCta } from "@/components/layout/cta";
 import MDXContent from "@/components/markdown";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/ui/marquee";
 
 import * as Icons from "@/assets/icons";
 import {
@@ -21,6 +22,7 @@ import {
 	IconEvaluate,
 } from "@/assets/icons";
 
+import { TECH_STACKS } from "@/data/constants";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
@@ -254,6 +256,7 @@ export default async function ServicePage({ params }: Props) {
 									className={cn("max-w-full rounded-lg", props.className)}
 								/>
 							),
+							TechMarquee,
 						}}
 						source={service.content}
 					/>
@@ -352,4 +355,49 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			"service.benefits": service.meta.benefits.join(", "),
 		},
 	};
+}
+
+export function TechMarquee() {
+	return (
+		<div className="relative z-10 space-y-3 rounded-xl bg-stone-alpha-10 p-3">
+			<span className="flex items-center gap-2 font-medium text-stone-500">
+				<Icons.IconLayers /> 300+ People & Quick rap up time
+			</span>
+			<div className="not-prose relative flex w-full overflow-hidden rounded-xl bg-card shadow-md">
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/6 bg-gradient-to-r from-background to-transparent"
+				/>
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-1/6 bg-gradient-to-l from-background to-transparent"
+				/>
+				<Marquee
+					className="w-full p-4 [--duration:40s] [--gap:3rem]"
+					repeat={3}
+				>
+					{TECH_STACKS.map((review) => (
+						<StackCard key={review.name} {...review} />
+					))}
+				</Marquee>
+			</div>
+		</div>
+	);
+}
+
+function StackCard({ img, name }: (typeof TECH_STACKS)[number]) {
+	return (
+		<figure className="group/stack flex items-center justify-center gap-2.5">
+			<div className="flex size-10 items-center justify-center rounded-lg bg-card shadow-sm transition-transform group-hover/stack:scale-110">
+				<Image
+					alt={`Tech-stack: ${name}`}
+					className="object-contain"
+					height={24}
+					src={img}
+					width={24}
+				/>
+			</div>
+			<figcaption className="font-medium text-foreground">{name}</figcaption>
+		</figure>
+	);
 }
