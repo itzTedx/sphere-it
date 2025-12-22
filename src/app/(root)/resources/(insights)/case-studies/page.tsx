@@ -46,7 +46,9 @@ interface CaseStudyCardProps {
 }
 
 const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
-	const { title, image, slug } = data;
+	const { title, image, slug, lists } = data;
+
+	console.log("Lists", data);
 	return (
 		<article className="card relative aspect-9/12 overflow-hidden rounded-xl p-4 text-card shadow-sm transition hover:shadow-md sm:p-6">
 			<Link
@@ -60,16 +62,18 @@ const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
 				</h3>
 
 				<div className="w-full space-y-3 sm:space-y-4">
-					{/* <ul className="grid grid-cols-2 gap-2 sm:gap-3" role="list">
-						{lists.map((list) => (
-							<li key={list.label}>
-								<span className="block font-bold text-sm sm:text-subhead-lg">
-									{list.value}
-								</span>
-								<p className="text-xs sm:text-subhead-base">{list.label}</p>
-							</li>
-						))}
-					</ul> */}
+					{lists && (
+						<ul className="grid grid-cols-2 gap-2 sm:gap-3" role="list">
+							{lists?.map((list) => (
+								<li key={list.label}>
+									<span className="block font-bold text-sm sm:text-subhead-lg">
+										{list.value}
+									</span>
+									<p className="text-xs sm:text-subhead-base">{list.label}</p>
+								</li>
+							))}
+						</ul>
+					)}
 					<Button
 						asChild
 						className="relative z-20 w-full"

@@ -19,7 +19,6 @@ import { CaseStudy } from "@/modules/case-studies/actions/types";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
 import { CaseStudiesContent } from "../../components/case-studies-content";
-import { CASE_STUDIES } from "../data/mock-studies";
 
 interface Props {
 	params: Promise<{ slug: string }>;
@@ -59,7 +58,7 @@ const structuredData = (study: CaseStudy | null) => ({
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
-	const study = CASE_STUDIES.find((r) => r.slug === slug);
+	const study = await geStudyBySlug(slug);
 
 	if (!study) {
 		return {
@@ -68,10 +67,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		};
 	}
 
-	const description = `Learn how ${COMPANY_NAME} helped achieve ${study.lists.map((l) => l.value).join(" and ")} in this case study.`;
+	const description = study.metadata.meta.description;
+	const title = study.metadata.meta.title;
 
 	return {
-		title: `${study.title} | ${COMPANY_NAME} Case Study`,
+		title: `${title} | ${COMPANY_NAME} Case Study`,
 		description,
 		keywords: [
 			"case study",
@@ -86,31 +86,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		authors: [{ name: COMPANY_NAME }],
 		publisher: COMPANY_NAME,
 		openGraph: {
-			title: study.title,
+			title: title,
 			description,
 			type: "article",
-			url: `${BASE_URL}/resources/case-studies/${study.slug}`,
+			url: `${BASE_URL}/resources/case-studies/${study.metadata.slug}`,
 			siteName: COMPANY_NAME,
 			locale: "en_US",
 			images: [
 				{
-					url: `${BASE_URL}${study.image}`,
+					url: `${BASE_URL}${study.metadata.image}`,
 					width: 1200,
 					height: 630,
-					alt: study.title,
+					alt: title,
 				},
 			],
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: study.title,
+			title: title,
 			description,
-			images: [`${BASE_URL}${study.image}`],
+			images: [`${BASE_URL}${study.metadata.image}`],
 			creator: "@sphereglobal",
 			site: "@sphereglobal",
 		},
 		alternates: {
-			canonical: `${BASE_URL}/resources/case-studies/${study.slug}`,
+			canonical: `${BASE_URL}/resources/case-studies/${study.metadata.slug}`,
 		},
 		robots: {
 			index: true,

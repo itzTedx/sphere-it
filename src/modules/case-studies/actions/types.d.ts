@@ -21,4 +21,8 @@ export interface CaseStudyMetadata {
 		founded: string;
 		location: string;
 	};
+	meta: {
+		title: string;
+		description: string;
+	};
 }
