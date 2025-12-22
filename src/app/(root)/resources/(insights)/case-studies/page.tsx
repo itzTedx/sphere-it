@@ -48,7 +48,6 @@ interface CaseStudyCardProps {
 const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
 	const { title, image, slug, lists } = data;
 
-	console.log("Lists", data);
 	return (
 		<article className="card relative aspect-9/12 overflow-hidden rounded-xl p-4 text-card shadow-sm transition hover:shadow-md sm:p-6">
 			<Link
@@ -57,7 +56,7 @@ const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
 				href={`/resources/case-studies/${slug}`}
 			/>
 			<div className="relative z-15 flex h-full flex-col items-center justify-between gap-3 sm:gap-4">
-				<h3 className="line-clamp-2 text-center font-semibold text-base sm:text-title-4">
+				<h3 className="line-clamp-3 text-center font-semibold text-base sm:text-title-4">
 					{title}
 				</h3>
 
@@ -90,7 +89,7 @@ const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
 				className="object-cover"
 				fill
 				loading="lazy"
-				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
 				src={image}
 			/>
 		</article>
