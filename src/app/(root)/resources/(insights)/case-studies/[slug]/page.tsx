@@ -14,7 +14,7 @@ import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { slugify } from "@/lib/utils";
-import { geStudyBySlug } from "@/modules/case-studies/actions";
+import { geStudyBySlug, listStudies } from "@/modules/case-studies/actions";
 import { CaseStudy } from "@/modules/case-studies/actions/types";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
@@ -124,6 +124,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			},
 		},
 	};
+}
+
+export async function generateStaticParams() {
+	const studies = listStudies();
+
+	return studies.map((study) => ({
+		slug: study.slug,
+	}));
 }
 
 export default async function CaseStudyPage({ params }: Props) {

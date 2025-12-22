@@ -49,7 +49,7 @@ const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
 	const { title, image, slug, lists } = data;
 
 	return (
-		<article className="card relative aspect-9/12 overflow-hidden rounded-xl p-4 text-card shadow-sm transition hover:shadow-md sm:p-6">
+		<article className="card relative aspect-9/10 overflow-hidden rounded-xl p-4 text-card shadow-sm transition hover:shadow-md sm:p-6">
 			<Link
 				aria-label={`Read case study: ${title}`}
 				className="absolute inset-0 z-20"
