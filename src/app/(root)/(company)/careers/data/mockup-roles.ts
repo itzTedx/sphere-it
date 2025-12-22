@@ -3,27 +3,27 @@ import { z } from "zod";
 import { workMode } from "@/modules/form/validators/job-application-schema";
 
 export type RoleType = {
-  id: number;
-  department: string;
-  title: string;
-  description: string;
-  location: string;
-  time: string;
-  workMode: z.infer<typeof workMode>;
-  content: string;
+	id: number;
+	department: string;
+	title: string;
+	description: string;
+	location: string;
+	time: string;
+	workMode: z.infer<typeof workMode>;
+	content: string;
 };
 
 export const ROLES: RoleType[] = [
-  {
-    id: 1,
-    department: "Engineering",
-    title: "AI Solutions Architect",
-    description:
-      "Lead the design and deployment of enterprise-grade AI solutions, integrating analytics and automation for BFSI clients.",
-    location: "Dubai, UAE",
-    time: "Full Time",
-    workMode: "on-site",
-    content: `
+	{
+		id: 1,
+		department: "Engineering",
+		title: "AI Solutions Architect",
+		description:
+			"Lead the design and deployment of enterprise-grade AI solutions, integrating analytics and automation for BFSI clients.",
+		location: "Dubai, UAE",
+		time: "Full Time",
+		workMode: "on-site",
+		content: `
       ## Build the Future of Technology with Precision and Purpose
 
       At **Sphere IT**, we believe in empowering people who combine **clarity of thought** with the **courage to innovate**.  
@@ -55,16 +55,17 @@ export const ROLES: RoleType[] = [
       - Global project exposure and professional certifications.  
       - A culture built on precision, integrity, and innovation.
     `,
-  },
-  {
-    id: 2,
-    department: "Engineering",
-    title: "Full Stack Engineer",
-    description: "Develop robust and high-performing web applications powering our digital platforms.",
-    location: "Remote / Hybrid",
-    time: "Full Time",
-    workMode: "hybrid",
-    content: `
+	},
+	{
+		id: 2,
+		department: "Engineering",
+		title: "Full Stack Engineer",
+		description:
+			"Develop robust and high-performing web applications powering our digital platforms.",
+		location: "Remote / Hybrid",
+		time: "Full Time",
+		workMode: "hybrid",
+		content: `
       ## Build the Future of Technology with Precision and Purpose
 
       At **Sphere IT**, we believe in empowering people who combine **clarity of thought** with the **courage to innovate**.  
@@ -95,16 +96,17 @@ export const ROLES: RoleType[] = [
       - Flexible hybrid work and global exposure.  
       - Growth-oriented culture with clear progression paths.
     `,
-  },
-  {
-    id: 3,
-    department: "Engineering",
-    title: "Data Engineer",
-    description: "Build and optimize data pipelines supporting AI and analytics systems.",
-    location: "Remote",
-    time: "Full Time",
-    workMode: "hybrid",
-    content: `
+	},
+	{
+		id: 3,
+		department: "Engineering",
+		title: "Data Engineer",
+		description:
+			"Build and optimize data pipelines supporting AI and analytics systems.",
+		location: "Remote",
+		time: "Full Time",
+		workMode: "hybrid",
+		content: `
       # Build the Future of Technology with Precision and Purpose
 
       At **Sphere IT**, we believe in empowering people who combine **clarity of thought** with the **courage to innovate**.  
@@ -135,16 +137,17 @@ Your role ensures the availability, reliability, and quality of data that drives
 - Inclusive, innovation-driven environment.  
 - Impactful work across industries and geographies.
     `,
-  },
-  {
-    id: 4,
-    department: "PMO / Operations",
-    title: "Project Delivery Manager",
-    description: "Manage end-to-end delivery for transformation projects across BFSI and enterprise clients.",
-    location: "Dubai, UAE",
-    time: "Full Time",
-    workMode: "remote",
-    content: `
+	},
+	{
+		id: 4,
+		department: "PMO / Operations",
+		title: "Project Delivery Manager",
+		description:
+			"Manage end-to-end delivery for transformation projects across BFSI and enterprise clients.",
+		location: "Dubai, UAE",
+		time: "Full Time",
+		workMode: "remote",
+		content: `
       ## Build the Future of Technology with Precision and Purpose
 
       At **Sphere IT**, we believe in empowering people who combine **clarity of thought** with the **courage to innovate**.  
@@ -175,16 +178,17 @@ This role balances delivery excellence, people management, and operational clari
 - A people-first culture that emphasizes accountability and trust.  
 - Recognition for delivery excellence.
     `,
-  },
-  {
-    id: 5,
-    department: "Human Resources",
-    title: "HR & Talent Specialist",
-    description: "Shape the culture of innovation by recruiting top-tier talent and building engagement initiatives.",
-    location: "Bangalore, India",
-    time: "Full Time",
-    workMode: "hybrid",
-    content: `
+	},
+	{
+		id: 5,
+		department: "Human Resources",
+		title: "HR & Talent Specialist",
+		description:
+			"Shape the culture of innovation by recruiting top-tier talent and building engagement initiatives.",
+		location: "Bangalore, India",
+		time: "Full Time",
+		workMode: "hybrid",
+		content: `
       # Build the Future of Technology with Precision and Purpose
 
       At **Sphere IT**, we believe in empowering people who combine **clarity of thought** with the **courage to innovate**.  
@@ -214,5 +218,5 @@ You’ll shape the people strategy that defines Sphere IT’s culture — hiring
 - Recognition for strategic and creative HR initiatives.  
 - A collaborative team that values empathy, skill, and trust.
     `,
-  },
+	},
 ];

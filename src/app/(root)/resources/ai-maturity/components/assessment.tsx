@@ -151,11 +151,6 @@ export function AiMaturityAssessment() {
 						)}
 					>
 						<Questionnaire />
-						<div className="mt-8 flex justify-end">
-							<Button size="lg" type="submit">
-								Submit for Results
-							</Button>
-						</div>
 					</form>
 				</FormProvider>
 			)}

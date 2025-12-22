@@ -65,7 +65,13 @@ export * from "./services";
 // Shield Icons
 export { IconShield } from "./shield";
 // Social Icons
-export { IconShare, IconSocialInstagram, IconSocialLinkedin, IconSocialWhatsapp, IconSocialX } from "./social";
+export {
+	IconShare,
+	IconSocialInstagram,
+	IconSocialLinkedin,
+	IconSocialWhatsapp,
+	IconSocialX,
+} from "./social";
 // Speedometer Icons
 export * from "./speedometer";
 // Star Icons

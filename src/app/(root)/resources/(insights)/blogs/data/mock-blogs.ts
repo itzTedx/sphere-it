@@ -1,13 +1,14 @@
 export const BLOGS = [
-  {
-    slug: "digital-transformation-at-mashreq-bank-uae",
-    title: "Digital Transformation at Mashreq Bank, UAE",
-    excerpt: "Stay ahead with fresh perspectives, expert insights, and stories that inspire.",
-    category: "Consultancy",
-    publishedAt: "Sep 12, 2025",
-    image: "/images/blogs/banking.jpg",
-    isFeatured: true,
-    content: `
+	{
+		slug: "digital-transformation-at-mashreq-bank-uae",
+		title: "Digital Transformation at Mashreq Bank, UAE",
+		excerpt:
+			"Stay ahead with fresh perspectives, expert insights, and stories that inspire.",
+		category: "Consultancy",
+		publishedAt: "Sep 12, 2025",
+		image: "/images/blogs/banking.jpg",
+		isFeatured: true,
+		content: `
         
         In today’s rapidly evolving financial landscape, digital transformation has become the backbone of modern banking. Mashreq Bank, one of the UAE’s leading financial institutions, stands out as a pioneer in adopting innovative technologies to reshape customer experiences, streamline operations, and redefine the future of banking in the region.
     
@@ -47,17 +48,17 @@ export const BLOGS = [
         As the UAE pushes toward becoming a **global hub for innovation and digital finance**, Mashreq Bank continues to invest in emerging technologies such as **open banking**, **artificial intelligence**, and **Web3**.  
         Its commitment to transformation ensures that it remains at the forefront of shaping the **future of banking—not just in the UAE, but across the region.**
     `,
-  },
-  {
-    slug: "modern-enterprises",
-    title: "How Sphere IT is Empowering Modern Enterprises",
-    excerpt:
-      "Discover how Sphere IT helps organizations modernize operations, enhance agility, and achieve lasting digital growth through tailored technology solutions.",
-    category: "Consultancy",
-    publishedAt: "Sep 11, 2025",
-    image: "/images/blogs/ai.jpg",
-    isFeatured: false,
-    content: `
+	},
+	{
+		slug: "modern-enterprises",
+		title: "How Sphere IT is Empowering Modern Enterprises",
+		excerpt:
+			"Discover how Sphere IT helps organizations modernize operations, enhance agility, and achieve lasting digital growth through tailored technology solutions.",
+		category: "Consultancy",
+		publishedAt: "Sep 11, 2025",
+		image: "/images/blogs/ai.jpg",
+		isFeatured: false,
+		content: `
       
 Digital transformation isn’t just about technology — it’s about rethinking how businesses operate, innovate, and serve customers in a digital-first world. At Sphere IT, we help enterprises unlock the full potential of technology to achieve meaningful change.
 
@@ -77,17 +78,17 @@ Sphere IT works with businesses to **integrate cloud, data, and automation** str
 
 From SMEs to large enterprises, our clients experience **reduced costs, faster delivery, and improved decision-making** — building a foundation for long-term success in the digital era.
     `,
-  },
-  {
-    slug: "modern-security",
-    title: "Sphere IT’s Approach to Modern Security",
-    excerpt:
-      "Explore how Sphere IT strengthens organizations with next-generation cybersecurity frameworks and proactive defense strategies.",
-    category: "Technology & Business",
-    publishedAt: "Sep 11, 2025",
-    image: "/images/blogs/cloud.jpg",
-    isFeatured: false,
-    content: `
+	},
+	{
+		slug: "modern-security",
+		title: "Sphere IT’s Approach to Modern Security",
+		excerpt:
+			"Explore how Sphere IT strengthens organizations with next-generation cybersecurity frameworks and proactive defense strategies.",
+		category: "Technology & Business",
+		publishedAt: "Sep 11, 2025",
+		image: "/images/blogs/cloud.jpg",
+		isFeatured: false,
+		content: `
 In an age of evolving digital threats, cybersecurity is no longer optional — it’s foundational. Sphere IT’s security-first approach helps businesses defend, detect, and respond to threats in real time.
 
 ## A Proactive Security Mindset
@@ -104,17 +105,17 @@ Instead of reacting to breaches, Sphere IT helps organizations build **cyber res
 
 With cyberattacks becoming more sophisticated, resilience is about **preparation and adaptation** — and Sphere IT ensures your systems evolve faster than emerging threats.
     `,
-  },
-  {
-    slug: "cloud-infrastructure",
-    title: "Optimizing Cloud Infrastructure with Sphere IT",
-    excerpt:
-      "Learn how Sphere IT helps businesses harness hybrid and multi-cloud strategies for scalability, efficiency, and control.",
-    category: "Technology & Business",
-    publishedAt: "Sep 11, 2025",
-    image: "/images/blogs/cloud.jpg",
-    isFeatured: false,
-    content: `
+	},
+	{
+		slug: "cloud-infrastructure",
+		title: "Optimizing Cloud Infrastructure with Sphere IT",
+		excerpt:
+			"Learn how Sphere IT helps businesses harness hybrid and multi-cloud strategies for scalability, efficiency, and control.",
+		category: "Technology & Business",
+		publishedAt: "Sep 11, 2025",
+		image: "/images/blogs/cloud.jpg",
+		isFeatured: false,
+		content: `
 As organizations evolve, so do their infrastructure needs. Sphere IT enables enterprises to leverage hybrid and multi-cloud environments — achieving the perfect balance of flexibility and performance.
 
 ## The Power of Hybrid Cloud
@@ -131,5 +132,5 @@ Hybrid models combine **on-premise control** with **cloud scalability**, empower
 
 Our clients experience up to **40% cost reduction**, enhanced agility, and improved disaster recovery — all while maintaining compliance and governance standards.
     `,
-  },
+	},
 ];

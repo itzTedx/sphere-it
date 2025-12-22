@@ -2,7 +2,14 @@
 
 import * as React from "react";
 
-import { type HTMLMotionProps, type MotionValue, motion, type SpringOptions, useScroll, useSpring } from "motion/react";
+import {
+	type HTMLMotionProps,
+	type MotionValue,
+	motion,
+	type SpringOptions,
+	useScroll,
+	useSpring,
+} from "motion/react";
 
 import { useMotionValueState } from "@/hooks/use-motion-value-state";
 import { getStrictContext } from "@/lib/get-strict-context";
@@ -12,114 +19,125 @@ import { Slot, WithAsChild } from "../primitives/animate/slot";
 type ScrollProgressDirection = "horizontal" | "vertical";
 
 type ScrollProgressContextType = {
-  containerRef: React.RefObject<HTMLDivElement | null>;
-  progress: MotionValue<number>;
-  scale: MotionValue<number>;
-  direction: ScrollProgressDirection;
-  global: boolean;
+	containerRef: React.RefObject<HTMLDivElement | null>;
+	progress: MotionValue<number>;
+	scale: MotionValue<number>;
+	direction: ScrollProgressDirection;
+	global: boolean;
 };
 
 const [LocalScrollProgressProvider, useScrollProgress] =
-  getStrictContext<ScrollProgressContextType>("ScrollProgressContext");
+	getStrictContext<ScrollProgressContextType>("ScrollProgressContext");
 
 type ScrollProgressProviderProps = {
-  children: React.ReactNode;
-  global?: boolean;
-  transition?: SpringOptions;
-  direction?: ScrollProgressDirection;
+	children: React.ReactNode;
+	global?: boolean;
+	transition?: SpringOptions;
+	direction?: ScrollProgressDirection;
 };
 
 function ScrollProgressProvider({
-  global = false,
-  transition = { stiffness: 250, damping: 40, bounce: 0 },
-  direction = "vertical",
-  ...props
+	global = false,
+	transition = { stiffness: 250, damping: 40, bounce: 0 },
+	direction = "vertical",
+	...props
 }: ScrollProgressProviderProps) {
-  const containerRef = React.useRef<HTMLDivElement | null>(null);
+	const containerRef = React.useRef<HTMLDivElement | null>(null);
 
-  const { scrollYProgress, scrollXProgress } = useScroll(global ? undefined : { container: containerRef });
+	const { scrollYProgress, scrollXProgress } = useScroll(
+		global ? undefined : { container: containerRef }
+	);
 
-  const progress = direction === "vertical" ? scrollYProgress : scrollXProgress;
-  const scale = useSpring(progress, transition);
+	const progress = direction === "vertical" ? scrollYProgress : scrollXProgress;
+	const scale = useSpring(progress, transition);
 
-  return (
-    <LocalScrollProgressProvider
-      value={{
-        containerRef,
-        progress,
-        scale,
-        direction,
-        global,
-      }}
-      {...props}
-    />
-  );
+	return (
+		<LocalScrollProgressProvider
+			value={{
+				containerRef,
+				progress,
+				scale,
+				direction,
+				global,
+			}}
+			{...props}
+		/>
+	);
 }
 
 type ScrollProgressMode = "width" | "height" | "scaleY" | "scaleX";
 
 type ScrollProgressProps = WithAsChild<
-  HTMLMotionProps<"div"> & {
-    mode?: ScrollProgressMode;
-  }
+	HTMLMotionProps<"div"> & {
+		mode?: ScrollProgressMode;
+	}
 >;
 
-function ScrollProgress({ style, mode = "width", asChild = false, ...props }: ScrollProgressProps) {
-  const { scale, direction, global } = useScrollProgress();
-  const scaleValue = useMotionValueState(scale);
+function ScrollProgress({
+	style,
+	mode = "width",
+	asChild = false,
+	...props
+}: ScrollProgressProps) {
+	const { scale, direction, global } = useScrollProgress();
+	const scaleValue = useMotionValueState(scale);
 
-  const Component = asChild ? Slot : motion.div;
+	const Component = asChild ? Slot : motion.div;
 
-  return (
-    <Component
-      data-direction={direction}
-      data-global={global}
-      data-mode={mode}
-      data-slot="scroll-progress"
-      style={{
-        ...(mode === "width" || mode === "height"
-          ? {
-              [mode]: `${scaleValue * 100}%`,
-            }
-          : {
-              [mode]: scale,
-            }),
-        ...style,
-      }}
-      {...props}
-    />
-  );
+	return (
+		<Component
+			data-direction={direction}
+			data-global={global}
+			data-mode={mode}
+			data-slot="scroll-progress"
+			style={{
+				...(mode === "width" || mode === "height"
+					? {
+							[mode]: `${scaleValue * 100}%`,
+						}
+					: {
+							[mode]: scale,
+						}),
+				...style,
+			}}
+			{...props}
+		/>
+	);
 }
 
 type ScrollProgressContainerProps = WithAsChild<HTMLMotionProps<"div">>;
 
-function ScrollProgressContainer({ ref, asChild = false, ...props }: ScrollProgressContainerProps) {
-  const { containerRef, direction } = useScrollProgress();
+function ScrollProgressContainer({
+	ref,
+	asChild = false,
+	...props
+}: ScrollProgressContainerProps) {
+	const { containerRef, direction } = useScrollProgress();
 
-  React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+	React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
 
-  const Component = asChild ? Slot : motion.div;
+	const Component = asChild ? Slot : motion.div;
 
-  return (
-    <Component
-      data-direction={direction}
-      data-global={global}
-      data-slot="scroll-progress-container"
-      ref={containerRef}
-      {...props}
-    />
-  );
+	return (
+		<Component
+			data-direction={direction}
+			data-global={global}
+			data-slot="scroll-progress-container"
+			ref={containerRef}
+			{...props}
+		/>
+	);
 }
 
 export {
-  ScrollProgressProvider,
-  ScrollProgress,
-  ScrollProgressContainer,
-  useScrollProgress,
-  type ScrollProgressProviderProps,
-  type ScrollProgressProps,
-  type ScrollProgressContainerProps,
-  type ScrollProgressDirection,
-  type ScrollProgressMode,
-  type ScrollProgressContextType,
+	ScrollProgressProvider,
+	ScrollProgress,
+	ScrollProgressContainer,
+	useScrollProgress,
+	type ScrollProgressProviderProps,
+	type ScrollProgressProps,
+	type ScrollProgressContainerProps,
+	type ScrollProgressDirection,
+	type ScrollProgressMode,
+	type ScrollProgressContextType,
 };

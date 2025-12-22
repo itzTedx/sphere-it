@@ -1,5 +1,5 @@
 declare global {
-  type SVGProps = React.SVGProps<SVGSVGElement>;
+	type SVGProps = React.SVGProps<SVGSVGElement>;
 }
 
 export {};
