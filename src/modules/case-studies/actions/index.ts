@@ -2,8 +2,6 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-import { slugify } from "@/lib/utils";
-
 import { CaseStudy, CaseStudyMetadata } from "./types";
 
 const root = (endpoint: string) =>
@@ -12,14 +10,12 @@ const root = (endpoint: string) =>
 export function listStudies() {
 	const files = fs.readdirSync(root("case-studies"));
 
-	const studies = files.map((file) => getServiceMetadata(file));
+	const studies = files.map((file) => getStudyMetadata(file));
 
 	return studies;
 }
 
-export async function getServiceBySlug(
-	slug: string
-): Promise<CaseStudy | null> {
+export async function geStudyBySlug(slug: string): Promise<CaseStudy | null> {
 	try {
 		const filePath = path.join(root("case-studies"), `${slug}.mdx`);
 		const fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
@@ -38,10 +34,10 @@ export async function getServiceBySlug(
 	}
 }
 
-export function getServiceMetadata(
+export function getStudyMetadata(
 	filepath: string
 ): CaseStudyMetadata & { slug: string } {
-	const slug = slugify(filepath.replace(/\.mdx$/, ""));
+	const slug = filepath.replace(/\.mdx$/, "");
 
 	const filePath = path.join(root("case-studies"), filepath);
 

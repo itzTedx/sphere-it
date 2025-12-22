@@ -8,4 +8,17 @@ export interface CaseStudyMetadata {
 	category: string;
 	image: string;
 	slug: string;
+	lists?: {
+		label: string;
+		value: string;
+	}[];
+	client?: {
+		logo: string;
+		name: string;
+		description: string;
+		industry: string;
+		size: string;
+		founded: string;
+		location: string;
+	};
 }
