@@ -18,7 +18,7 @@ export const SERVICES: Service[] = [
 		description: "Enterprise AI built for speed, scale, and precision.",
 		overview:
 			"Unlock the power of enterprise-grade AI through reusable components and compliant practices. Our AI solutions are rigorously tested, scalable, and designed to integrate seamlessly into your existing systems. So you see faster, safer, and smarter outcomes.",
-		image: "/images/services/elevate.png",
+		image: "/images/services/elevate.webp",
 		tags: [
 			"60+ Reusable Components",
 			"ISO/IEC 42001 & AIAA Certified",
@@ -51,7 +51,7 @@ export const SERVICES: Service[] = [
 			"Technology enabled process engineering for measurable business outcomes.",
 		overview:
 			"Simplify critical processes with low-code automation tailored to regulated industries. By cutting cycle times, reducing errors, and ensuring compliance, we make operations more efficient and auditable-without unnecessary complexity.",
-		image: "/images/services/automate.png",
+		image: "/images/services/automate.webp",
 		tags: [
 			"Low-Code Frameworks",
 			"Compliance-Ready for BFSI",
@@ -74,7 +74,7 @@ export const SERVICES: Service[] = [
 			},
 		],
 		partners: [
-			"/images/partners/power-automate.png",
+			"/images/partners/power-automate.webp",
 			"/images/partners/ui-path.svg",
 			"/images/partners/camunda.svg",
 		],
@@ -88,7 +88,7 @@ export const SERVICES: Service[] = [
 			"Master Data Management strategy with real-time, data-driven telemetry.",
 		overview:
 			"Turn data into action with real-time insights and proactive monitoring. Our telemetry-driven dashboards provide clarity for decision-makers, ensuring accurate reporting and early resolution of potential issues.",
-		image: "/images/services/evaluate.png",
+		image: "/images/services/evaluate.webp",
 		tags: [
 			"Real-Time Telemetry",
 			"Executive Dashboards",
@@ -124,7 +124,7 @@ export const SERVICES: Service[] = [
 			"Implementation and managed services for core applications and infrastructure.",
 		overview:
 			"Keep your mission-critical platforms resilient, secure, and compliant. From stability and uptime to optimized infrastructure, we ensure systems perform at their best. So your business never misses a beat.",
-		image: "/images/services/assure.png",
+		image: "/images/services/assure.webp",
 		tags: ["Mission-Critical Stability", "Security Benchmarks"],
 		lists: [
 			{
@@ -157,7 +157,7 @@ export const SERVICES: Service[] = [
 			"Outcome-driven technology talent that scales with your digital journey.",
 		overview:
 			"Scale your IT capabilities with flexible talent models. Whether you need niche expertise or long-term support, we provide outcome-aligned professionals who integrate seamlessly into your teams, reducing overhead and accelerating delivery.",
-		image: "/images/services/augment.png",
+		image: "/images/services/augment.webp",
 		tags: [
 			"On-Demand IT Specialists",
 			"Flexible Engagement Models",
