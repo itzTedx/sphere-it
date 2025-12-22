@@ -259,10 +259,7 @@ export const JobApplicationForm = ({ initialData }: Props) => {
 				<Controller
 					control={form.control}
 					name="resume"
-					render={({
-						field: { name, onBlur, onChange, ref, value, disabled },
-						fieldState,
-					}) => (
+					render={({ field: { name, value }, fieldState }) => (
 						<Field data-invalid={fieldState.invalid}>
 							<FieldLabel htmlFor={name}>Resume</FieldLabel>
 

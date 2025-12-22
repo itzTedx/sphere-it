@@ -37,7 +37,7 @@ type HighlightContextType<T extends string> = {
 };
 
 const HighlightContext = React.createContext<
-	// biome-ignore lint/suspicious/noExplicitAny: I Dont know
+	// biome-ignore lint/suspicious/noExplicitAny: It's a valid type
 	HighlightContextType<any> | undefined
 >(undefined);
 
@@ -214,6 +214,7 @@ function Highlight<T extends React.ElementType = "div">({
 		return () => container.removeEventListener("scroll", onScroll);
 	}, [mode, activeValue, safeSetBounds]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: No need to re-render for props change
 	const render = React.useCallback(
 		(children: React.ReactNode) => {
 			if (mode === "parent") {

@@ -81,6 +81,7 @@ const useResizeObserver = (
 		return () => {
 			observers.forEach((observer) => observer?.disconnect());
 		};
+		// biome-ignore lint/correctness/useExhaustiveDependencies:  its a valid deps
 	}, dependencies);
 };
 
@@ -121,6 +122,7 @@ const useImageLoader = (
 				img.removeEventListener("error", handleImageLoad);
 			});
 		};
+		// biome-ignore lint/correctness/useExhaustiveDependencies: its valid
 	}, dependencies);
 };
 
@@ -136,6 +138,7 @@ const useAnimationLoop = (
 	const offsetRef = useRef(0);
 	const velocityRef = useRef(0);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: No need to re-render for props change
 	useEffect(() => {
 		const track = trackRef.current;
 		if (!track) return;

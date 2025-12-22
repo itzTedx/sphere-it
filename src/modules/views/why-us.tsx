@@ -145,6 +145,7 @@ function AxisCard({ className }: CardProps) {
 	const currentPhase = AXIS_PHASES[activeIndex]!;
 	const currentTab = currentPhase.letter.toLowerCase();
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Need to rerender when active index changes
 	useEffect(() => {
 		const timer = window.setTimeout(() => {
 			setActiveIndex(

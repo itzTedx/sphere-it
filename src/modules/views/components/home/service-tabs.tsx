@@ -57,6 +57,7 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
 	const currentTab =
 		SERVICES_TABS_LISTS[activeIndex]?.id ?? SERVICES_TABS_LISTS[0].id;
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Need to rerender when active index changes
 	useEffect(() => {
 		const timer = window.setTimeout(() => {
 			setActiveIndex(

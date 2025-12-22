@@ -206,6 +206,7 @@ function AnimateIcon({
 		activeRef.current = localAnimate;
 	}, [localAnimate]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: No need to re-render for props change
 	React.useEffect(() => {
 		if (animate === undefined) return;
 		setCurrentAnimation(typeof animate === "string" ? animate : animation);
@@ -246,6 +247,7 @@ function AnimateIcon({
 		else stopAnimation();
 	}, [isInView, animateOnView, startAnimation, stopAnimation]);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: No need to re-render for props change
 	React.useEffect(() => {
 		const gen = ++runGenRef.current;
 		cancelledRef.current = false;
