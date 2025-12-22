@@ -1,5 +1,6 @@
 import { memo } from "react";
 
+import { Route } from "next";
 import Link from "next/link";
 
 import { MiniCta } from "@/components/layout/cta";
@@ -71,11 +72,13 @@ export const Services = memo(() => {
 													Learn more <IconArrowRight />
 												</Link>
 											</Button>
-											<Button asChild variant="outline">
-												<Link href={`/services/${service.id}`}>
-													Proof of Impact
-												</Link>
-											</Button>
+											{service.proof && (
+												<Button asChild variant="outline">
+													<Link href={service.proof as Route}>
+														Proof of Impact
+													</Link>
+												</Button>
+											)}
 										</div>
 									</div>
 
