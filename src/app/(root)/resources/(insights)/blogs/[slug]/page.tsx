@@ -20,6 +20,14 @@ import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { BLOGS } from "../data/mock-blogs";
 
+export async function generateStaticParams() {
+	const blogs = BLOGS;
+
+	return blogs.map((study) => ({
+		slug: study.slug,
+	}));
+}
+
 interface Props {
 	params: Promise<{ slug: string }>;
 }
