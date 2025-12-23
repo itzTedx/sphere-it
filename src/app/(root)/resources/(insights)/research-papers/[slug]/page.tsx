@@ -172,57 +172,38 @@ export default async function ResearchPaperPage({ params }: Props) {
 				>
 					<div className="container max-w-7xl">
 						<div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
-							<div className="flex flex-col justify-between gap-6 lg:col-span-7">
-								<div className="space-y-4 py-4 sm:space-y-6 sm:py-6">
-									<nav aria-label="Breadcrumb navigation">
-										<Button
-											aria-label="Go back to all research papers"
-											asChild
-											className="group max-sm:size-9"
-											size="sm"
-											variant="ghost"
-										>
-											<Link href="/resources/research-papers">
-												<IconArrowLeft
-													aria-hidden="true"
-													className="group-hover:-translate-x-1 transition-transform"
-												/>
-												<span className="hidden sm:inline">
-													All Research papers
-												</span>
-											</Link>
-										</Button>
-									</nav>
+							<div className="space-y-4 py-4 sm:space-y-6 sm:py-6 lg:col-span-6">
+								<nav aria-label="Breadcrumb navigation">
+									<Button
+										aria-label="Go back to all research papers"
+										asChild
+										className="group max-sm:size-9"
+										size="sm"
+										variant="ghost"
+									>
+										<Link href="/resources/research-papers">
+											<IconArrowLeft
+												aria-hidden="true"
+												className="group-hover:-translate-x-1 transition-transform"
+											/>
+											<span className="hidden sm:inline">
+												All Research papers
+											</span>
+										</Link>
+									</Button>
+								</nav>
 
-									<ViewTransition name={`title-${study.metadata.slug}`}>
-										<h1 className="text-primary-900 text-title-2 sm:text-title-3">
-											{study.metadata.title}
-										</h1>
-									</ViewTransition>
-								</div>
-								<ul
-									className="grid grid-cols-2 gap-3 sm:grid-cols-3"
-									role="list"
-								>
-									{study.metadata.lists?.map((list) => (
-										<li
-											className="flex aspect-square flex-col justify-between rounded-lg bg-primary-500/16 p-4 text-primary-800 first:bg-foreground first:text-primary-100 sm:p-6"
-											key={list.label}
-										>
-											<h2 className="text-title-5 sm:text-title-4">
-												{list.value}
-											</h2>
-											<p className="text-subhead-sm sm:text-subhead-base">
-												{list.label}
-											</p>
-										</li>
-									))}
-								</ul>
+								<ViewTransition name={`title-${study.metadata.slug}`}>
+									<h1 className="text-primary-900 text-title-2 sm:text-title-3">
+										{study.metadata.title}
+									</h1>
+								</ViewTransition>
 							</div>
+
 							<ViewTransition name={`image-${study?.metadata.slug}`}>
-								<div className="lg:col-span-5">
+								<div className="lg:col-span-6">
 									<div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border bg-stone-alpha-10 p-2">
-										<div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-xl shadow-lg sm:aspect-5/6">
+										<div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-xl shadow-lg">
 											{study.metadata.client && (
 												<Image
 													alt={`${study?.metadata.title} - Featured image`}
