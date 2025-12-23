@@ -156,7 +156,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 					{ name: "Home", item: BASE_URL },
 					{ name: "Resources", item: `${BASE_URL}/resources` },
 					{
-						name: "Case Studies",
+						name: "Research papers",
 						item: `${BASE_URL}/resources/research-papers`,
 					},
 					{
@@ -176,7 +176,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 								<div className="space-y-4 py-4 sm:space-y-6 sm:py-6">
 									<nav aria-label="Breadcrumb navigation">
 										<Button
-											aria-label="Go back to all case studies"
+											aria-label="Go back to all research papers"
 											asChild
 											className="group max-sm:size-9"
 											size="sm"
@@ -188,7 +188,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 													className="group-hover:-translate-x-1 transition-transform"
 												/>
 												<span className="hidden sm:inline">
-													All Case Studies
+													All Research papers
 												</span>
 											</Link>
 										</Button>
