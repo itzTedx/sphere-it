@@ -29,11 +29,11 @@ export const TABS: Tabs[] = [
 		value: "case-studies",
 		title: "Case Studies",
 	},
-	{
-		link: "/resources/research-papers",
-		value: "research-papers",
-		title: "Research Papers",
-	},
+	// {
+	// 	link: "/resources/research-papers",
+	// 	value: "research-papers",
+	// 	title: "Research Papers",
+	// },
 ];
 
 export const InsightsTabs = ({ children }: Props) => {
