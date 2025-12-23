@@ -156,7 +156,7 @@ export default function AboutPage() {
 						<div className="mt-6 space-y-3 text-xl">
 							<p>
 								<strong>Sphere IT was founded in 2016 with core mission</strong>{" "}
-								To equip clients to adopt technology effectively through the
+								to equip clients to adopt technology effectively through the
 								right people, processes, and execution expertise. Headquartered
 								in Dubai, Sphere IT is a Middle East–focused IT services firm
 								delivering technology services and resources to leading banks
