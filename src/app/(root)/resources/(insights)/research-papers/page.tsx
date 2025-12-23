@@ -77,7 +77,7 @@ const PapersCard = ({ data }: ResearchPaperCardProps) => {
 						size="sm"
 						variant="secondary"
 					>
-						<Link href={`/resources/case-studies/${slug}`}>Read Study</Link>
+						<Link href={`/resources/case-studies/${slug}`}>Read Paper</Link>
 					</Button>
 				</div>
 			</div>
