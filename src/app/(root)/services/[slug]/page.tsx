@@ -168,19 +168,15 @@ export default async function ServicePage({ params }: Props) {
 										</span>
 									</Link>
 								</Button>
-								<Button
-									asChild={service.metadata.badge === "augment"}
-									size="lg"
-									variant="ghost"
-								>
+								<Button asChild size="lg" variant="ghost">
 									{service.metadata.badge === "assure" ? (
-										"Request a Assure"
+										<Link href="/contact">Request a Assure</Link>
 									) : service.metadata.badge === "augment" ? (
 										<Link href="/careers#application">
 											Explore Talent Models
 										</Link>
 									) : (
-										"Request a Demo"
+										<Link href="/contact">Request a Demo</Link>
 									)}
 								</Button>
 							</div>
