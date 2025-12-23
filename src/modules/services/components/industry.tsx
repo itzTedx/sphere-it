@@ -49,7 +49,7 @@ export function Industry({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="not-prose flex flex-col items-center justify-center gap-4">
 			<IconBox>
-				<Icon />
+				<Icon className="text-accent" />
 			</IconBox>
 			<h4>{children}</h4>
 		</div>
