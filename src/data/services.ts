@@ -74,7 +74,7 @@ export const SERVICES: Service[] = [
 			},
 		],
 		partners: [
-			"/images/partners/power-automate.webp",
+			"/images/partners/power-automate.png",
 			"/images/partners/ui-path.svg",
 			"/images/partners/camunda.svg",
 		],

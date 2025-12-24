@@ -117,6 +117,7 @@ export const Hero = () => {
 					loop
 					muted
 					playsInline
+					poster="/videos/hero-reel-poster.webp"
 					slot="media"
 				>
 					<source src="/videos/hero-reel.webm" type="video/webm" />
