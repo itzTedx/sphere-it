@@ -87,12 +87,9 @@ export const Hero = () => {
 							<Button
 								aria-describedby="hero-description"
 								asChild
-								className="group relative overflow-hidden max-sm:w-full"
+								className="group after:-translate-x-64 relative overflow-hidden after:absolute after:z-50 after:h-[150%] after:w-9 after:rotate-12 after:bg-gradient-to-r after:from-transparent after:via-primary-300/20 after:to-transparent after:opacity-0 after:mix-blend-plus-lighter after:transition-[translate_opacity] after:duration-500 after:ease-out after:group-hover:translate-x-64 after:group-hover:opacity-100 max-sm:w-full"
 							>
-								<Link href="/services">
-									Explore Services
-									<div className="-translate-x-64 absolute z-50 h-[150%] w-9 rotate-12 bg-gradient-to-r from-transparent via-primary-300/20 to-transparent opacity-0 mix-blend-plus-lighter transition-[translate_opacity] duration-500 ease-out group-hover:translate-x-64 group-hover:opacity-100" />
-								</Link>
+								<Link href="/services">Explore Services</Link>
 							</Button>
 							<Button
 								aria-describedby="hero-description"
