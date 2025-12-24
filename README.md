@@ -11,10 +11,16 @@ A modern, responsive website for Sphere Global built with Next.js 16, React 19, 
 - **Tailwind CSS 4**: A utility-first CSS framework for rapid UI development
 
 ### Supporting Libraries
+- **Better Auth**: Comprehensive authentication solution for Next.js
+- **Drizzle ORM**: TypeScript ORM for SQL databases
 - **Radix UI**: Unstyled, accessible UI primitives for building design systems
-- **Motion (Framer Motion)**: Animation library for React components
+- **Motion**: Animation library for React components
 - **React Hook Form**: Performant, flexible forms with easy validation
 - **Zod**: TypeScript-first schema validation
+- **Nuqs**: Type-safe search params state manager
+- **Sonner**: An opinionated toast component for React
+- **Vaul**: Drawer component for React
+- **React Email**: Build and send emails using React
 - **Lucide React**: Beautiful, customizable SVG icons
 - **Biome**: Fast linter and formatter for JavaScript/TypeScript
 - **pnpm**: Fast, disk space efficient package manager
@@ -48,30 +54,15 @@ sphere-global/
 │   │   └── markdown/           # Markdown rendering
 │   ├── contents/               # MDX content files
 │   │   └── services/           # Service descriptions
-│   ├── data/                   # Static data and configuration
-│   ├── hooks/                  # Custom React hooks
-│   ├── lib/                    # Utility functions and configurations
-│   │   ├── auth/               # Authentication utilities
-│   │   ├── emails/             # Email templates and utilities
-│   │   └── env/                # Environment variable validation
-│   ├── modules/                # Feature-specific modules
-│   │   ├── auth/               # Authentication components
-│   │   ├── form/               # Form components and validators
-│   │   ├── seo/                # SEO utilities
-│   │   ├── services/           # Service-related components
-│   │   └── views/              # Page view components
-│   ├── server/                 # Server-side code
-│   │   ├── migrations/         # Database migrations
-│   │   └── schema/             # Database schemas
-│   ├── styles/                 # Global styles
-│   │   ├── globals.css         # Global CSS
-│   │   ├── typography.css      # Typography styles
-│   │   └── animations.css      # Animation styles
+│   │   ├── case-studies/       # Typography styles
+│   │   └── research-papers/    # Animation styles
 │   └── types/                  # TypeScript type definitions
 ├── public/                     # Static public assets
 │   ├── brands/                 # Client brand logos
 │   ├── images/                 # Images (team, services, blogs)
+│   └── pdf/                    # PDF assets
 │   └── svg/                    # SVG assets
+│   └── videos/                 # Video assets
 ├── docs/                       # Project documentation
 │   ├── accessibility.md        # Accessibility guidelines
 │   ├── code-conventions.md     # Coding standards
@@ -118,20 +109,48 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📧 Local Email Testing (MailHog)
+## 🐳 Local Services (Docker)
 
-- Start the disposable SMTP server with `docker compose up -d mailhog`.
-- The default `SMTP_HOST=localhost` and `SMTP_PORT=1025` in `.env.local` already target MailHog, so no auth credentials are required.
-- Use `SMTP_FROM` and `RECEIVER_EMAIL` to control the sender label and inbox used in the contact form flow.
-- Open [http://localhost:8025](http://localhost:8025) to inspect sent messages and their rendered HTML.
+The project uses Docker for local database and email testing services.
+
+### Postgres (Database)
+- Port: `5432`
+- Default credentials: `user`/`password` (configured in `.env`)
+
+### MailHog (Email Testing)
+- SMTP Port: `1025`
+- Web UI: [http://localhost:8025](http://localhost:8025)
+- The default `SMTP_HOST=localhost` and `SMTP_PORT=1025` in `.env.local` target this service.
+
+Start all services:
+```bash
+pnpm docker:up
+```
 
 ## 📜 Available Scripts
 
+### Core
 - `pnpm dev` - Start development server
 - `pnpm build` - Build for production
 - `pnpm start` - Start production server
 - `pnpm lint` - Run Biome linter and formatter
 - `pnpm format` - Format code with Biome
+
+### Database & Auth
+- `pnpm db:generate` - Generate SQL migrations
+- `pnpm db:migrate` - Apply migrations
+- `pnpm db:studio` - Open Drizzle Studio
+- `pnpm auth:generate` - Generate auth schema
+
+### Docker & Services
+- `pnpm docker:up` - Start Docker services (Postgres, MailHog)
+- `pnpm docker:down` - Stop Docker services
+- `pnpm email:dev` - Start email preview server
+
+### Testing
+- `pnpm test` - Run all tests
+- `pnpm test:e2e` - Run Playwright E2E tests
+- `pnpm test:int` - Run Vitest integration tests
 
 ## 🏗️ Architecture
 
@@ -188,11 +207,17 @@ The project is optimized for deployment on Vercel, but can be deployed to any pl
 
 ### Environment Variables
 
-Create a `.env.local` file for local development:
+Create a `.env.local` file for local development. You can copy the example file:
 
-```env
-# Add any required environment variables here
+```bash
+cp example.env .env.local
 ```
+
+Key variables include:
+- `DATABASE_URL`: Postgres connection string
+- `BETTER_AUTH_SECRET`: Secret for auth tokens
+- `LINKEDIN_CLIENT_ID` / `SECRET`: OAuth credentials
+- `SMTP_*`: Email configuration
 
 ### Production Build
 
