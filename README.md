@@ -30,52 +30,75 @@ A modern, responsive website for Sphere Global built with Next.js 16, React 19, 
 ```
 sphere-global/
 ├── src/
-│   ├── app/                    # Next.js App Router pages
-│   │   ├── (root)/             # Main application routes
-│   │   │   ├── about/          # About page
-│   │   │   ├── careers/        # Careers and job listings
-│   │   │   ├── contact/        # Contact page
-│   │   │   ├── legal/          # Legal pages (privacy, terms)
-│   │   │   ├── resources/      # Resources (blogs, case studies, FAQs)
-│   │   │   ├── services/       # Services pages
-│   │   │   └── page.tsx        # Home page
-│   │   ├── api/                # API routes
-│   │   │   ├── auth/           # Authentication endpoints
-│   │   │   ├── health/         # Health check
-│   │   │   └── test/           # Test endpoints
-│   │   ├── robots.ts           # Robots.txt generation
-│   │   └── sitemap.ts          # Sitemap generation
-│   ├── assets/                 # Static assets
-│   │   ├── fonts/              # Custom fonts (Albert Sans, Inter Display)
-│   │   └── icons/              # SVG icon components
-│   ├── components/             # Reusable UI components
-│   │   ├── layout/             # Layout components (navbar, footer, CTA)
-│   │   ├── ui/                 # Shadcn UI components
-│   │   └── markdown/           # Markdown rendering
-│   ├── contents/               # MDX content files
-│   │   └── services/           # Service descriptions
-│   │   ├── case-studies/       # Typography styles
-│   │   └── research-papers/    # Animation styles
-│   └── types/                  # TypeScript type definitions
-├── public/                     # Static public assets
-│   ├── brands/                 # Client brand logos
-│   ├── images/                 # Images (team, services, blogs)
-│   └── pdf/                    # PDF assets
-│   └── svg/                    # SVG assets
-│   └── videos/                 # Video assets
-├── docs/                       # Project documentation
-│   ├── accessibility.md        # Accessibility guidelines
-│   ├── code-conventions.md     # Coding standards
-│   ├── deployment-checklist.md # Deployment guide
-│   ├── development-workflow.md # Development setup
-│   ├── file-structure.md       # Detailed file structure
-│   ├── load-balancer.md        # Load balancer setup
-│   ├── vps-deployment.md       # VPS deployment guide
-│   └── README.md               # Documentation index
-├── tests/                      # Test files
-│   ├── e2e/                    # End-to-end tests
-│   └── int/                    # Integration tests
-└── configuration files         # Config files (biome.json, tsconfig.json, etc.)
+│   ├── app/                       # Next.js App Router pages
+│   │   ├── (root)/                # Main application routes
+│   │   │   ├── (company)/         # About page
+│   │   │   │   ├── about/         # Careers and job listings
+│   │   │   │   ├── careers/       # Contact page
+│   │   │   │   ├── contact/       # Contact page
+│   │   │   │   ├── methodology/   # Contact page
+│   │   │   ├── legal/             # Legal pages (privacy, terms)
+│   │   │   ├── resources/         # Resources (blogs, case studies, FAQs)
+│   │   │   ├── services/          # Services pages
+│   │   │   └── page.tsx           # Home page
+│   │   ├── api/                   # API routes
+│   │   │   ├── auth/              # Authentication endpoints
+│   │   │   ├── health/            # Health check
+│   │   │   └── test/              # Test endpoints
+│   │   ├── robots.ts              # Robots.txt generation
+│   │   └── sitemap.ts             # Sitemap generation
+│   ├── assets/                    # Static assets
+│   │   ├── fonts/                 # Custom fonts (Albert Sans, Inter Display)
+│   │   └── icons/                 # SVG icon components
+│   ├── components/                # Reusable UI components
+│   │   ├── layout/                # Layout components (navbar, footer, CTA)
+│   │   ├── ui/                    # Shadcn UI components
+│   │   └── markdown/              # Markdown rendering
+│   ├── contents/                  # MDX content files
+│   │   ├── case-studies/          # Case studies content
+│   │   ├── research-papers/       # Research papers content
+│   │   └── services/              # Service descriptions
+│   ├── data/                      # Static data and configuration
+│   ├── hooks/                     # Custom React hooks
+│   ├── lib/                       # Utility functions and configurations
+│   │   ├── auth/                  # Authentication utilities
+│   │   ├── emails/                # Email templates and utilities
+│   │   └── env/                   # Environment variable validation
+│   ├── modules/                   # Feature-specific modules
+│   │   ├── auth/                  # Authentication components
+│   │   ├── case-studies/          # Case studies management
+│   │   ├── form/                  # Form components and validators
+│   │   ├── research-papers/       # Research papers management
+│   │   ├── seo/                   # SEO utilities
+│   │   ├── services/              # Service-related components
+│   │   └── views/                 # Page view components
+│   ├── server/                    # Server-side code
+│   │   ├── migrations/            # Database migrations
+│   │   └── schema/                # Database schemas
+│   ├── styles/                    # Global styles
+│   │   ├── globals.css            # Global CSS
+│   │   ├── typography.css         # Typography styles
+│   │   └── animations.css         # Animation styles
+│   └── types/                     # TypeScript type definitions
+├── public/                        # Static public assets
+│   ├── brands/                    # Client brand logos
+│   ├── images/                    # Images (team, services, blogs)
+│   ├── pdf/                       # PDF assets
+│   ├── svg/                       # SVG assets
+│   └── videos/                    # Video assets
+├── docs/                          # Project documentation
+│   ├── accessibility.md           # Accessibility guidelines
+│   ├── code-conventions.md        # Coding standards
+│   ├── deployment-checklist.md    # Deployment guide
+│   ├── development-workflow.md    # Development setup
+│   ├── file-structure.md          # Detailed file structure
+│   ├── load-balancer.md           # Load balancer setup
+│   ├── vps-deployment.md          # VPS deployment guide
+│   └── README.md                  # Documentation index
+├── tests/                         # Test files
+│   ├── e2e/                       # End-to-end tests
+│   └── int/                       # Integration tests
+└── configuration files            # Config files (biome.json, tsconfig.json, etc.)
 ```
 
 ## 🛠️ Development Setup
