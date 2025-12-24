@@ -23,6 +23,7 @@ import { LEADERS, TEAMS, Team } from "@/data/teams";
 import { DownloadDeck } from "@/modules/auth/components/download-deck";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { Clients } from "@/modules/views";
+import { Partners } from "@/modules/views/partners";
 
 import { structuredData } from "./structured-data";
 
@@ -189,6 +190,7 @@ export default function AboutPage() {
 						width={1920}
 					/>
 				</section>
+				<Partners />
 
 				<section
 					aria-labelledby="values-heading"

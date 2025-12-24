@@ -5,14 +5,14 @@ export const LEADERS: Team[] = [
 		image: "/images/team/gireesh-ramachandran.webp",
 	},
 	{
+		name: "Shiv ",
+		designation: "Managing Director",
+		image: "/images/team/shiv.webp",
+	},
+	{
 		name: "Sheen Stanley",
 		designation: "Chief Operating Officer",
 		image: "/images/team/sheen-stanley.webp",
-	},
-	{
-		name: "Shiv",
-		designation: "Managing Director",
-		image: "/images/team/shiv.webp",
 	},
 	{
 		name: "Darryl Pais",
@@ -20,19 +20,14 @@ export const LEADERS: Team[] = [
 		image: "/images/team/darryl-pais.webp",
 	},
 	{
-		name: "Jayakrishnan Nair",
-		designation: "Head of IT Security",
-		image: "/images/team/jayakrishnan-nair.webp",
-	},
-	{
 		name: "Melwyn P",
 		designation: "Business Development Manager",
 		image: "/images/team/melwyn-p.webp",
 	},
 	{
-		name: "Shipra Bhardwaj ",
-		designation: "Employee Engagement Manager",
-		image: "/images/team/shipra.webp",
+		name: "Jayakrishnan Nair",
+		designation: "Head of IT Security",
+		image: "/images/team/jayakrishnan-nair.webp",
 	},
 ];
 export const TEAMS: Team[] = [
@@ -45,6 +40,11 @@ export const TEAMS: Team[] = [
 		name: "Merlyn Dsouza",
 		designation: "HR Manager",
 		image: "/images/team/merlyn-dsouza.webp",
+	},
+	{
+		name: "Shipra Bhardwaj ",
+		designation: "Employee Engagement Manager",
+		image: "/images/team/shipra.webp",
 	},
 	{
 		name: "Mukul Adhikari",
@@ -77,31 +77,15 @@ export const TEAMS: Team[] = [
 		designation: "Digital Media Specialist",
 		image: "/images/team/sreelekshmi-prithviraj.webp",
 	},
-
-	{
-		name: "Karisma Krishnan",
-		designation: "Technical IT Recruiter",
-		image: "/images/team/karisma-krishnan.webp",
-	},
 	{
 		name: "Abdul Rahman",
 		designation: "Backend Engineer",
 		image: "/images/team/abdul-rahman.webp",
 	},
 	{
-		name: "Affan Shaikh",
-		designation: "Software Engineer",
-		image: "/images/team/affan-shaikh.webp",
-	},
-	{
 		name: "Ajay Jayakumar",
 		designation: "Application Engineer",
 		image: "/images/team/ajay-jayakumar.webp",
-	},
-	{
-		name: "Analisa Iype",
-		designation: "Intern COO Office",
-		image: "/images/team/analisa-iype.webp",
 	},
 	{
 		name: "Anusha Shahid",
@@ -117,12 +101,6 @@ export const TEAMS: Team[] = [
 		name: "Avantika Sai",
 		designation: "Junior IT Support",
 		image: "/images/team/avantika-sai.webp",
-	},
-
-	{
-		name: "Ganapathy T",
-		designation: "Technical Recruiter",
-		image: "/images/team/ganapathy-t.webp",
 	},
 ];
 
