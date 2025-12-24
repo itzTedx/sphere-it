@@ -44,6 +44,7 @@ export const EnquiryForm = ({
 }: EnquiryFormProps = {}) => {
 	const form = useForm<EnquireType>({
 		resolver: zodResolver(enquirySchema),
+		mode: "onBlur",
 	});
 
 	async function onSubmit(data: EnquireType) {

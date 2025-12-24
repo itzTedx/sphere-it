@@ -34,15 +34,10 @@ function SupportCard() {
 			<ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
 				<li className="flex items-center justify-between rounded-xl bg-stone-alpha-10 p-3">
 					<div className="min-w-0 flex-1">
-						<label
-							className="font-mono text-badge text-muted-background uppercase"
-							htmlFor="email"
-						>
+						<p className="font-mono text-badge text-muted-background uppercase">
 							Email
-						</label>
-						<p className="text-base sm:text-lg" id="email">
-							{EMAIL_INFO}
 						</p>
+						<p className="text-base sm:text-lg">{EMAIL_INFO}</p>
 					</div>
 					<CopyButton
 						aria-label="Copy email address"
