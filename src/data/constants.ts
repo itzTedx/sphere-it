@@ -368,16 +368,16 @@ export const PARTNERS = [
 		src: "/images/partners/power-automate.png",
 		name: "Power Automate",
 	},
-	{
-		id: 4,
-		src: "/images/partners/ui-path.svg",
-		name: "UI Path",
-	},
-	{
-		id: 5,
-		src: "/images/partners/camunda.svg",
-		name: "Camunda",
-	},
+	// {
+	// 	id: 4,
+	// 	src: "/images/partners/ui-path.svg",
+	// 	name: "UI Path",
+	// },
+	// {
+	// 	id: 5,
+	// 	src: "/images/partners/camunda.svg",
+	// 	name: "Camunda",
+	// },
 	{
 		id: 6,
 		src: "/images/partners/nexthink.svg",
@@ -388,11 +388,11 @@ export const PARTNERS = [
 		src: "/images/partners/strategy.svg",
 		name: "Strategy",
 	},
-	{
-		id: 8,
-		src: "/images/partners/snowflake.svg",
-		name: "Snowflake",
-	},
+	// {
+	// 	id: 8,
+	// 	src: "/images/partners/snowflake.svg",
+	// 	name: "Snowflake",
+	// },
 	{
 		id: 9,
 		src: "/images/partners/comarch.svg",

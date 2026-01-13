@@ -409,7 +409,7 @@ test.describe("Questionnaire Form (AI Maturity Assessment)", () => {
 		});
 
 		test("should display AI Maturity Assessment badge", async ({ page }) => {
-			const badge = page.getByText("AI Maturity Assessment");
+			const badge = page.getByRole("main").getByText("AI Maturity Assessment");
 			await expect(badge).toBeVisible();
 		});
 

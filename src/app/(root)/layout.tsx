@@ -89,7 +89,6 @@ export default function RootLayout({
 						<div className="h-full w-px bg-border" />
 					</div>
 					<Navbar />
-					{/* <ReactLenis root>{children}</ReactLenis> */}
 					{children}
 					<Footer />
 					<Toaster position="top-center" richColors />

@@ -114,7 +114,7 @@ test.describe("Contact Form Submission", () => {
 
 		test("should validate email field - maximum length", async ({ page }) => {
 			const emailInput = page.locator("#email");
-			const longEmail = `${"a".repeat(95)}@test.com`; // 104 characters - over 100 limit
+			const longEmail = `${"a".repeat(110)}@test.com`; // 119 characters - well over 100 limit
 			await emailInput.fill(longEmail);
 			await emailInput.blur();
 
@@ -393,7 +393,7 @@ test.describe("Contact Form Submission", () => {
 
 		test("should have privacy policy link", async ({ page }) => {
 			const form = page.locator('form[aria-labelledby="enquiry-form-heading"]');
-			const privacyLink = form.getByRole("link", { name: /privacy policy/i });
+			const privacyLink = form.getByRole("link", { name: "privacy policy." });
 			await expect(privacyLink).toBeVisible();
 			await expect(privacyLink).toHaveAttribute("href", "/legal/privacy");
 			await expect(privacyLink).toHaveAttribute("target", "_blank");
