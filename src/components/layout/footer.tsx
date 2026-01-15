@@ -62,7 +62,7 @@ FooterLink.displayName = "FooterLink";
 const FooterSection = memo(({ item }: { item: (typeof FOOTER)[0] }) => (
 	<nav aria-labelledby={`footer-heading-${item.id}`}>
 		<h3
-			className="!font-mono mb-4 text-badge text-muted-background uppercase"
+			className="mb-4 font-mono! text-badge text-muted-background uppercase"
 			id={`footer-heading-${item.id}`}
 		>
 			{item.href ? (
@@ -96,11 +96,11 @@ export const Footer = memo(() => {
 	return (
 		<footer
 			aria-label="Site footer"
-			className="relative bg-foreground"
+			className="relative bg-primary-950"
 			id="footer"
 			role="contentinfo"
 		>
-			<div className="text-stone-200">
+			<div className="bg-foreground/30 text-stone-200">
 				<div className="container max-w-7xl border-x py-8 md:py-16">
 					<div className="grid grid-cols-1 gap-8 lg:grid-cols-[.5fr_1fr] lg:gap-12">
 						<div className="flex max-w-md flex-col justify-between gap-3">

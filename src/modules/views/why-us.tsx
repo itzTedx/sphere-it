@@ -48,7 +48,7 @@ export const WhyUs = memo(() => {
 							What sets{" "}
 							<span className="text-primary-600">Sphere IT apart</span>
 						</h2>
-						<p className="text-balance text-base text-muted-foreground md:col-span-2">
+						<p className="text-pretty text-base text-muted-foreground md:col-span-2">
 							We believe technology should be both precisely engineered and
 							practically applied. That’s why forward-looking technology
 							organizations across the Middle East trust us to deliver AL-driven
