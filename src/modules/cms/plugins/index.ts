@@ -6,9 +6,10 @@ import { Plugin } from "payload";
 import { Blog } from "@/payload-types";
 
 import { beforeSyncWithSearch } from "../search/beforeSync";
+import { searchFields } from "../search/fieldOverrides";
 import { getServerSideURL } from "../utils/getURL";
 
-const generateTitle: GenerateTitle<Blogs> = ({ doc }) => {
+const generateTitle: GenerateTitle<Blog> = ({ doc }) => {
 	return doc?.title
 		? `${doc.title} | Payload Website Template`
 		: "Payload Website Template";

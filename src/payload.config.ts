@@ -11,6 +11,7 @@ import { Faqs } from "./collections/faqs/Faqs";
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 import { defaultLexical } from "./modules/cms/fields/defaultLexical";
+import { plugins } from "./modules/cms/plugins";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -34,5 +35,5 @@ export default buildConfig({
 		},
 	}),
 	sharp,
-	plugins: [],
+	plugins,
 });

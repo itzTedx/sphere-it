@@ -16,15 +16,15 @@ import {
 import type { CollectionConfig } from "payload";
 import { slugField } from "payload";
 
+import { Banner } from "@/modules/cms/blocks/Banner/config";
+import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
+
 import { populateAuthors } from "./hooks/populateAuthors";
 import { revalidateDelete, revalidatePost } from "./hooks/revalidatePost";
 
 export const Blogs: CollectionConfig<"blogs"> = {
 	slug: "blogs",
 
-	// This config controls what's populated by default when a post is referenced
-	// https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-	// Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'posts'>
 	defaultPopulate: {
 		title: true,
 		slug: true,
@@ -65,7 +65,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 										HeadingFeature({
 											enabledHeadingSizes: ["h2", "h3", "h4", "h5", "h6"],
 										}),
-										BlocksFeature(),
+										BlocksFeature({ blocks: [Banner, MediaBlock] }),
 										FixedToolbarFeature(),
 										InlineToolbarFeature(),
 										HorizontalRuleFeature(),
