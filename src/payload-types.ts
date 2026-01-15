@@ -130,7 +130,7 @@ export interface UserAuthOperations {
  */
 export interface Blog {
   id: number;
-  Title: string;
+  'Blog Title': string;
   Content?: {
     root: {
       type: string;
@@ -325,7 +325,7 @@ export interface PayloadMigration {
  * via the `definition` "blogs_select".
  */
 export interface BlogsSelect<T extends boolean = true> {
-  Title?: T;
+  'Blog Title'?: T;
   Content?: T;
   category?: T;
   Featured?: T;

@@ -31,6 +31,8 @@
 		"@number-flow/react": "^0.5.10",
 		"@payloadcms/db-postgres": "^3.71.1",
 		"@payloadcms/next": "^3.71.1",
+		"@payloadcms/plugin-search": "^3.71.1",
+		"@payloadcms/plugin-seo": "^3.71.1",
 		"@payloadcms/richtext-lexical": "^3.71.1",
 		"@payloadcms/ui": "^3.71.1",
 		"@react-email/components": "^0.5.7",
