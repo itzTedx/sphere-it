@@ -284,20 +284,22 @@ async function Article({ content }: { content: string }) {
 					source={data}
 				/>
 			</article>
-			<div className="relative pt-12 pb-24">
-				<div className="-translate-y-full absolute inset-x-0 top-0 z-10 h-96 bg-linear-to-t from-20% from-background" />
+			{!isLoggedIn && (
+				<div className="relative pt-12 pb-24">
+					<div className="-translate-y-full absolute inset-x-0 top-0 z-10 h-96 bg-linear-to-t from-20% from-background" />
 
-				<div className="flex flex-col items-center gap-3">
-					<h2 className="text-center text-title-4">
-						Create an account to read the full paper.
-					</h2>
+					<div className="flex flex-col items-center gap-3">
+						<h2 className="text-center text-title-4">
+							Create an account to read the full paper.
+						</h2>
 
-					<p className="mb-3 text-center">
-						Create a new account to read this research paper.
-					</p>
-					<LinkedInAuthButton />
+						<p className="mb-3 text-center">
+							Create a new account to read this research paper.
+						</p>
+						<LinkedInAuthButton />
+					</div>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 }

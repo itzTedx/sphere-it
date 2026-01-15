@@ -188,19 +188,7 @@ export const QuickEnquiryForm = () => {
 				<Button className="relative" type="submit">
 					Send Message
 				</Button>
-				<div className="flex items-center gap-3">
-					<div className="-space-x-1 flex flex-1 items-center justify-center">
-						<div className="h-0.5 w-full bg-linear-to-r from-stone-200 to-primary-600" />
-						<div className="size-1.5 rounded-full bg-primary-600" />
-					</div>
-					<span className="font-display text-muted-foreground">
-						or continue with
-					</span>
-					<div className="-space-x-1 flex flex-1 items-center justify-center">
-						<div className="size-1.5 rounded-full bg-primary-600" />
-						<div className="h-0.5 w-full bg-linear-to-l from-stone-200 to-primary-600" />
-					</div>
-				</div>
+
 				<LinkedInAuthButton />
 			</FieldGroup>
 		</form>
