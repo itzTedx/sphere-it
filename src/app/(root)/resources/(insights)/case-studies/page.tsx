@@ -83,7 +83,7 @@ const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
 					</Button>
 				</div>
 			</div>
-			<div className="absolute inset-x-0 bottom-0 z-10 h-1/2 bg-gradient-to-t from-foreground to-transparent" />
+			<div className="absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-foreground to-transparent" />
 			<Image
 				alt={`${title} - Background image`}
 				className="object-cover"

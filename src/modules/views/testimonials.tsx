@@ -31,7 +31,7 @@ export const Testimonials = memo(() => {
 				>
 					<div
 						aria-hidden="true"
-						className="absolute inset-x-0 z-10 h-40 bg-gradient-to-b from-background to-transparent"
+						className="absolute inset-x-0 z-10 h-40 bg-linear-to-b from-background to-transparent"
 					/>
 
 					<Marquee
@@ -65,7 +65,7 @@ export const Testimonials = memo(() => {
 
 					<div
 						aria-hidden="true"
-						className="absolute inset-x-0 bottom-0 z-10 h-48 bg-gradient-to-t from-20% from-background to-transparent"
+						className="absolute inset-x-0 bottom-0 z-10 h-48 bg-linear-to-t from-20% from-background to-transparent"
 					/>
 				</div>
 				<div className="-mt-6 relative z-10 mx-auto flex w-fit items-center justify-center gap-1.5 rounded-full bg-card p-1.5 shadow-lg">

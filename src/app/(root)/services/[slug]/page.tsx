@@ -362,11 +362,11 @@ export function TechMarquee() {
 			<div className="not-prose relative flex w-full overflow-hidden rounded-xl bg-card shadow-md">
 				<div
 					aria-hidden="true"
-					className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/6 bg-gradient-to-r from-background to-transparent"
+					className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/6 bg-linear-to-r from-background to-transparent"
 				/>
 				<div
 					aria-hidden="true"
-					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-1/6 bg-gradient-to-l from-background to-transparent"
+					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-1/6 bg-linear-to-l from-background to-transparent"
 				/>
 				<Marquee
 					className="w-full p-4 [--duration:40s] [--gap:3rem]"

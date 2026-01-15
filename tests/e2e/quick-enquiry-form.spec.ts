@@ -157,7 +157,7 @@ test.describe("Quick Enquiry Form (CTA Section)", () => {
 				await emailInput.blur();
 				await page.waitForTimeout(200);
 
-				const emailError = ctaSection.locator("#email-error");
+				// const emailError = ctaSection.locator("#email-error");
 				// Email error should not be visible when blur happens after valid input
 				// Note: Form validation might only show on submit
 			}

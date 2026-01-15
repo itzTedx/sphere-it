@@ -427,7 +427,7 @@ export function FileUpload({
 			role="complementary"
 		>
 			<div className="group relative w-full rounded-xl bg-white p-0.5 ring-1 ring-gray-200">
-				<div className="-top-px absolute inset-x-0 h-px w-full bg-gradient-to-r from-transparent via-primary-500/20 to-transparent" />
+				<div className="-top-px absolute inset-x-0 h-px w-full bg-linear-to-r from-transparent via-primary-500/20 to-transparent" />
 
 				<div className="relative w-full rounded-[10px] bg-gray-50/50 p-1.5">
 					<div
@@ -442,14 +442,14 @@ export function FileUpload({
 								status === "dragging" ? "opacity-100" : "opacity-0"
 							)}
 						>
-							<div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-primary-500/10 to-transparent" />
-							<div className="absolute inset-x-0 bottom-0 h-[20%] bg-gradient-to-t from-primary-500/10 to-transparent" />
-							<div className="absolute inset-y-0 left-0 w-[20%] bg-gradient-to-r from-primary-500/10 to-transparent" />
-							<div className="absolute inset-y-0 right-0 w-[20%] bg-gradient-to-l from-primary-500/10 to-transparent" />
+							<div className="absolute inset-x-0 top-0 h-[20%] bg-linear-to-b from-primary-500/10 to-transparent" />
+							<div className="absolute inset-x-0 bottom-0 h-[20%] bg-linear-to-t from-primary-500/10 to-transparent" />
+							<div className="absolute inset-y-0 left-0 w-[20%] bg-linear-to-r from-primary-500/10 to-transparent" />
+							<div className="absolute inset-y-0 right-0 w-[20%] bg-linear-to-l from-primary-500/10 to-transparent" />
 							<div className="absolute inset-[20%] animate-pulse rounded-lg bg-primary-500/5 transition-all duration-300" />
 						</div>
 
-						<div className="-right-4 -top-4 absolute h-8 w-8 bg-gradient-to-br from-primary-500/20 to-transparent opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-100" />
+						<div className="-right-4 -top-4 absolute h-8 w-8 bg-linear-to-br from-primary-500/20 to-transparent opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-100" />
 
 						<div className="relative h-[240px]">
 							<AnimatePresence mode="wait">

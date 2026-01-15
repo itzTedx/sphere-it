@@ -22,7 +22,7 @@ export const Services = memo(() => {
 	return (
 		<section
 			aria-labelledby="services-heading"
-			className="relative overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50"
+			className="relative overflow-hidden bg-linear-to-b from-primary-100 to-primary-50"
 			id="main-content"
 		>
 			<div className="relative max-sm:px-0">

@@ -225,7 +225,7 @@ function AxisCard({ className }: CardProps) {
 						</Button>
 					</div>
 					<TabsContents className="flex-1 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.25))] border bg-stone-alpha-10 p-1">
-						<div className="flex items-center justify-between rounded-xl bg-gradient-to-br from-primary-200 to-card p-6 shadow-sm">
+						<div className="flex items-center justify-between rounded-xl bg-linear-to-br from-primary-200 to-card p-6 shadow-sm">
 							{AXIS_PHASES.map((phase) => (
 								<TabsContent
 									key={phase.letter}
@@ -316,7 +316,7 @@ function TechStackCard({ className }: CardProps) {
 					<div className="relative flex h-[240px] w-full overflow-hidden rounded-xl bg-card shadow-md">
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute inset-x-0 top-0 z-10 h-1/4 bg-gradient-to-b from-background/80 to-transparent"
+							className="pointer-events-none absolute inset-x-0 top-0 z-10 h-1/4 bg-linear-to-b from-background/80 to-transparent"
 						/>
 						<Marquee
 							className="w-full p-4 [--duration:40s] [--gap:0.75rem]"
@@ -331,7 +331,7 @@ function TechStackCard({ className }: CardProps) {
 				</div>
 				<div
 					aria-hidden="true"
-					className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-gradient-to-t from-background to-transparent"
+					className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-background to-transparent"
 				/>
 			</div>
 		</article>
@@ -387,7 +387,7 @@ function ReliabilityCard({ className }: CardProps) {
 				/>
 				<FlickeringGrid
 					aria-hidden="true"
-					className="absolute inset-0 z-1 opacity-50 [mask-image:radial-gradient(120px_circle_at_bottom,white,transparent)]"
+					className="mask-[radial-gradient(120px_circle_at_bottom,white,transparent)] absolute inset-0 z-1 opacity-50"
 					color="#C3A5FA"
 					flickerChance={0.1}
 					gridGap={4}

@@ -222,7 +222,7 @@ export default function AboutPage() {
 								key={value.id}
 								role="listitem"
 							>
-								<div className="relative flex aspect-[6/4.1] items-end bg-gradient-to-b from-primary-950 to-foreground">
+								<div className="relative flex aspect-[6/4.1] items-end bg-linear-to-b from-primary-950 to-foreground">
 									<Image
 										alt={`Illustration representing ${value.title} - ${value.badge}`}
 										className="object-cover"

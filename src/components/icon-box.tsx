@@ -19,7 +19,7 @@ export const IconBox = ({ children, className, state = "ghost" }: Props) => {
 				{children}
 				<div
 					className={cn(
-						"absolute inset-x-0 bottom-0 z-1 h-1/2 bg-gradient-to-t to-transparent transition group-hover:from-primary-500/20",
+						"absolute inset-x-0 bottom-0 z-1 h-1/2 bg-linear-to-t to-transparent transition group-hover:from-primary-500/20",
 						state === "active" ? "from-primary-500/20" : "from-background"
 					)}
 				/>

@@ -81,7 +81,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
 				<SheetContent className="top-2 bottom-auto overflow-hidden bg-background">
 					<div className="rounded-b-xl border-b bg-card pb-6">
 						<SheetHeader className="items-center">
-							<div className="flex size-11 items-center justify-center rounded-lg border border-brand-400 bg-gradient-to-b from-brand-500 to-brand-600 shadow-brand-lg">
+							<div className="flex size-11 items-center justify-center rounded-lg border border-brand-400 bg-linear-to-b from-brand-500 to-brand-600 shadow-brand-lg">
 								<LogoIcon className="size-7 text-brand-50" />
 							</div>
 							<SheetTitle>Share {title}</SheetTitle>

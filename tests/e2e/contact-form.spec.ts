@@ -274,7 +274,9 @@ test.describe("Contact Form Submission", () => {
 			await expect(toast).toBeVisible({ timeout: 3000 });
 		});
 
-		test.skip("should clear form after successful submission", async ({ page }) => {
+		test.skip("should clear form after successful submission", async ({
+			page,
+		}) => {
 			// Skip this test as form reset functionality is not implemented yet
 			// Fill in required fields
 			await page.locator("#name").fill("Test User");

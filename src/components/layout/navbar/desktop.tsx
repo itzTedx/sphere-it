@@ -180,7 +180,7 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
 							Services
 						</div>
 					)}
-					<div className="absolute inset-x-0 bottom-0 z-9 h-1/4 bg-gradient-to-t from-primary-900 to-transparent" />
+					<div className="absolute inset-x-0 bottom-0 z-9 h-1/4 bg-linear-to-t from-primary-900 to-transparent" />
 					<AnimatePresence mode="wait">
 						<motion.div
 							animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
