@@ -369,7 +369,7 @@ export default function AboutPage() {
 function TeamCard({ data }: { data: Team }) {
 	return (
 		<article className="group p-4" role="listitem">
-			<div className="relative aspect-square overflow-hidden rounded-full">
+			<div className="relative aspect-square overflow-hidden rounded-full bg-card">
 				{data.linkedin && (
 					<Link
 						aria-label="Connect with team member on LinkedIn"
@@ -379,12 +379,15 @@ function TeamCard({ data }: { data: Team }) {
 						<IconSocialLinkedin aria-hidden="true" />
 					</Link>
 				)}
-				<Image
+				{data.image && (
+
+					<Image
 					alt={`${data.name} - ${data.designation}`}
 					className="object-cover transition-transform duration-500 group-hover:scale-105"
 					fill
 					src={data.image}
-				/>
+					/>
+				)}
 			</div>
 
 			<div className="mt-4 space-y-1 px-4 text-center font-display">

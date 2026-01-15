@@ -69,7 +69,7 @@ export const TEAMS: Team[] = [
 	{
 		name: "Sanjana Karra",
 		designation: "Technical Recruiter",
-		image: "/images/team/akansha-saran.webp",
+		image: "",
 	},
 	{
 		name: "Vidya Chandran",
@@ -79,17 +79,17 @@ export const TEAMS: Team[] = [
 	{
 		name: "Monalisa Chatterjee",
 		designation: "Technical Recruiter",
-		image: "/images/team/vidya-chandran.webp",
+		image: "",
 	},
 	{
 		name: "Aishwarya Srivastava",
 		designation: "Technical Recruiter",
-		image: "/images/team/vidya-chandran.webp",
+		image: "",
 	},
 	{
 		name: "Dharmveer Kumar",
 		designation: "Technical IT Recruiter",
-		image: "/images/team/vidya-chandran.webp",
+		image: "",
 	},
 	{
 		name: "Sreelekshmi Prithviraj",
@@ -114,7 +114,7 @@ export const TEAMS: Team[] = [
 	{
 		name: "Alan Philip",
 		designation: "Accountant",
-		image: "/images/team/ashfin-arif.webp",
+		image: "",
 	},
 	{
 		name: "Ashfin Arif",
