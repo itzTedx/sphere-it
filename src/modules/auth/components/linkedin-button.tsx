@@ -59,8 +59,8 @@ export const LinkedInAuthButton = () => {
 			type="button"
 			variant="outline"
 		>
-			<IconSocialLinkedin className="size-6 text-[#0077B7] transition-colors group-hover:text-primary-50" />{" "}
-			Linkedin
+			<IconSocialLinkedin className="size-6 text-[#0077B7] transition-colors" />{" "}
+			Sign up with Linkedin
 		</Button>
 	);
 };

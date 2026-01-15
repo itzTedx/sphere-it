@@ -71,7 +71,7 @@ export const Cta = memo(
 							</div>
 							<LogoOutline
 								aria-hidden="true"
-								className="-translate-x-1/4 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 max-sm:size-[38rem] sm:top-8 sm:opacity-80 lg:top-12 lg:opacity-100 xl:top-16"
+								className="-translate-x-1/4 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 max-sm:size-152 sm:top-8 sm:opacity-80 lg:top-12 lg:opacity-100 xl:top-16"
 							/>
 						</div>
 						{showForm && (

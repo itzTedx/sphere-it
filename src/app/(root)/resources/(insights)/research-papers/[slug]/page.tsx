@@ -1,6 +1,7 @@
 import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -13,12 +14,15 @@ import { Button } from "@/components/ui/button";
 import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
+import { auth } from "@/lib/auth/server";
 import { slugify } from "@/lib/utils";
+import { LinkedInAuthButton } from "@/modules/auth/components/linkedin-button";
 import {
 	geResearchBySlug,
 	listResearchPapers,
 } from "@/modules/research-papers/actions";
 import { Research } from "@/modules/research-papers/actions/types";
+import { PapersCard } from "@/modules/research-papers/components/paper-card";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
 interface Props {
@@ -139,6 +143,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 	const { slug } = await params;
 
 	const study = await geResearchBySlug(slug);
+	const otherPapers = listResearchPapers(3);
 
 	const jsonLd = structuredData(study);
 
@@ -231,26 +236,69 @@ export default async function ResearchPaperPage({ params }: Props) {
 						</div>
 					</div>
 				</header>
-				<div className="container mb-24 max-w-7xl border-b">
-					<article
-						className="prose prose-stone prose-lg mx-auto max-w-4xl py-4 prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
-						itemProp="articleBody"
-					>
-						<MDXContent
-							components={{
-								h1: (props) => <h1 id={slugify(props.children)} {...props} />,
-								h2: (props) => <h2 id={slugify(props.children)} {...props} />,
-								h3: (props) => <h3 id={slugify(props.children)} {...props} />,
-								h4: (props) => <h4 id={slugify(props.children)} {...props} />,
-								h5: (props) => <h5 id={slugify(props.children)} {...props} />,
-								h6: (props) => <h6 id={slugify(props.children)} {...props} />,
-							}}
-							source={study?.content}
-						/>
-					</article>
-				</div>
+				<Article content={study.content} />
+				<section className="container max-w-7xl py-24">
+					<div className="mb-6 flex items-center justify-between gap-4">
+						<h2 className="text-title-3">
+							More research papers from Sphere IT
+						</h2>
+
+						<Button asChild variant="outline">
+							<Link href="/resources/research-papers">View more</Link>
+						</Button>
+					</div>
+					<div className="grid grid-cols-3 gap-6">
+						{otherPapers.map((study) => (
+							<PapersCard data={study} key={study.slug} />
+						))}
+					</div>
+				</section>
 				<Cta showForm />
 			</main>
 		</>
+	);
+}
+
+async function Article({ content }: { content: string }) {
+	const session = await auth.api.getSession({ headers: await headers() });
+
+	const isLoggedIn = session?.session;
+
+	const data = isLoggedIn ? content : content.slice(0, 1500);
+
+	return (
+		<div className="container relative max-w-7xl border-b">
+			<article
+				className="prose prose-stone prose-lg mx-auto max-w-4xl py-4 prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
+				itemProp="articleBody"
+			>
+				<MDXContent
+					components={{
+						h1: (props) => <h1 id={slugify(props.children)} {...props} />,
+						h2: (props) => <h2 id={slugify(props.children)} {...props} />,
+						h3: (props) => <h3 id={slugify(props.children)} {...props} />,
+						h4: (props) => <h4 id={slugify(props.children)} {...props} />,
+						h5: (props) => <h5 id={slugify(props.children)} {...props} />,
+						h6: (props) => <h6 id={slugify(props.children)} {...props} />,
+					}}
+					source={data}
+				/>
+			</article>
+			<div className="relative pt-12 pb-24">
+				<div className="-translate-y-full absolute inset-x-0 top-0 z-10 h-96 bg-linear-to-t from-20% from-background" />
+
+				<div className="flex flex-col items-center gap-3">
+					<h2 className="text-center text-title-4">
+						Create an account to read the full story.
+					</h2>
+
+					<p className="mb-3 text-center">
+						If you’re new to Medium, create a new account to read this story on
+						us.
+					</p>
+					<LinkedInAuthButton />
+				</div>
+			</div>
+		</div>
 	);
 }

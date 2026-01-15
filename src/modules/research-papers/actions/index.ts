@@ -7,10 +7,14 @@ import { Research, ResearchMetadata } from "./types";
 const root = (endpoint: string) =>
 	path.join(process.cwd(), "src", "contents", endpoint);
 
-export function listResearchPapers() {
+export function listResearchPapers(limit?: number) {
 	const files = fs.readdirSync(root("research-papers"));
 
 	const researchPapers = files.map((file) => getResearchMetadata(file));
+
+	if (limit) {
+		return researchPapers.slice(0, limit);
+	}
 
 	return researchPapers;
 }
