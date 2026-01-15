@@ -280,6 +280,13 @@ async function Article({ content }: { content: string }) {
 						h4: (props) => <h4 id={slugify(props.children)} {...props} />,
 						h5: (props) => <h5 id={slugify(props.children)} {...props} />,
 						h6: (props) => <h6 id={slugify(props.children)} {...props} />,
+						a: (props) => (
+							<Link
+								rel={props.href.startsWith("http") && "noreferrer noopener"}
+								target={props.href.startsWith("http") && "_blank"}
+								{...props}
+							/>
+						),
 					}}
 					source={data}
 				/>
