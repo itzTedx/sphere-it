@@ -5,7 +5,7 @@ export const LEADERS: Team[] = [
 		image: "/images/team/gireesh-ramachandran.webp",
 	},
 	{
-		name: "Shiv ",
+		name: "Shiv Gupta",
 		designation: "Managing Director",
 		image: "/images/team/shiv.webp",
 	},
