@@ -1,4 +1,4 @@
-name: sphere-it
+name: sphere-it-global
 
 services:
   postgres:
