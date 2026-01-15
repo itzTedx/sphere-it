@@ -1,7 +1,7 @@
 export const LEADERS: Team[] = [
 	{
 		name: "Gireesh Ramachandran",
-		designation: "CEO",
+		designation: "Chief Executive Officer",
 		image: "/images/team/gireesh-ramachandran.webp",
 	},
 	{
@@ -15,14 +15,14 @@ export const LEADERS: Team[] = [
 		image: "/images/team/sheen-stanley.webp",
 	},
 	{
+		name: "Melwyn Pereira",
+		designation: "Business Development Manager",
+		image: "/images/team/melwyn-p.webp",
+	},
+	{
 		name: "Darryl Pais",
 		designation: "Head of Business Operations",
 		image: "/images/team/darryl-pais.webp",
-	},
-	{
-		name: "Melwyn P",
-		designation: "Business Development Manager",
-		image: "/images/team/melwyn-p.webp",
 	},
 	{
 		name: "Jayakrishnan Nair",
