@@ -33,7 +33,7 @@ export const LEADERS: Team[] = [
 export const TEAMS: Team[] = [
 	{
 		name: "Shabanash Ummer",
-		designation: "",
+		designation: "Solution Architect",
 		image: "/images/team/shabanash-ummer.webp",
 	},
 	{
@@ -66,9 +66,28 @@ export const TEAMS: Team[] = [
 		designation: "Technical Recruiter",
 		image: "/images/team/akansha-saran.webp",
 	},
-
+	{
+		name: "Sanjana Karra",
+		designation: "Technical Recruiter",
+		image: "/images/team/akansha-saran.webp",
+	},
 	{
 		name: "Vidya Chandran",
+		designation: "Technical IT Recruiter",
+		image: "/images/team/vidya-chandran.webp",
+	},
+	{
+		name: "Monalisa Chatterjee",
+		designation: "Technical Recruiter",
+		image: "/images/team/vidya-chandran.webp",
+	},
+	{
+		name: "Aishwarya Srivastava",
+		designation: "Technical Recruiter",
+		image: "/images/team/vidya-chandran.webp",
+	},
+	{
+		name: "Dharmveer Kumar",
 		designation: "Technical IT Recruiter",
 		image: "/images/team/vidya-chandran.webp",
 	},
@@ -93,8 +112,13 @@ export const TEAMS: Team[] = [
 		image: "/images/team/anusha-shahid.webp",
 	},
 	{
+		name: "Alan Philip",
+		designation: "Accountant",
+		image: "/images/team/ashfin-arif.webp",
+	},
+	{
 		name: "Ashfin Arif",
-		designation: "Account",
+		designation: "Accountant",
 		image: "/images/team/ashfin-arif.webp",
 	},
 	{

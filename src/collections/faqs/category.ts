@@ -1,9 +1,14 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload";
 
 export const FaqCategories: CollectionConfig = {
-  slug: 'faq-categories',
- 
-  fields: [
-   {name: 'name', type: 'text'},
-  ],
-}
+	slug: "faq-categories",
+
+	fields: [
+		{
+			name: "location",
+			type: "text",
+			required: true,
+			index: true,
+		},
+	],
+};
