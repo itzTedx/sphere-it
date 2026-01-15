@@ -294,62 +294,54 @@ export const BEST_AT = [
 export const CLIENTS = [
 	{
 		id: 1,
-		src: "/images/clients/rakbank.svg",
-		name: "Rakbank",
-	},
-	{
-		id: 2,
-		src: "/images/clients/adib.png",
-		name: "Abu Dhabi Islamic Bank",
-	},
-	{
-		id: 3,
-		src: "/images/clients/bank-muscat.svg",
-		name: "Bank Muscat",
-	},
-	{
-		id: 4,
-		src: "/images/clients/capital.png",
-		name: "Capital Bank of Jordan",
-	},
-	{
-		id: 5,
-		src: "/images/clients/enbd.svg",
-		name: "Emirates NBD",
-	},
-	{
-		id: 6,
-		src: "/images/clients/mashreq.svg",
-		name: "Mashreq Bank",
-	},
-
-	{
-		id: 7,
 		src: "/images/clients/cbd.svg",
 		name: "Commercial Bank of Dubai",
 	},
 	{
-		id: 8,
-		src: "/images/clients/al-ghurair.png",
-		name: "Al Ghurair",
+		id: 2,
+		src: "/images/clients/enbd.svg",
+		name: "Emirates NBD",
 	},
-
 	{
-		id: 9,
-		src: "/images/clients/doha.svg",
-		name: "Doha Bank",
+		id: 3,
+		src: "/images/clients/mashreq.svg",
+		name: "Mashreq Bank",
 	},
-
 	{
-		id: 10,
+		id: 4,
 		src: "/images/clients/emirates-islamic.svg",
 		name: "Emirates Islamic Bank",
 	},
-	// {
-	// 	id: 9,
-	// 	src: "/images/clients/coforge.svg",
-	// 	name: "Coforge",
-	// },
+	{
+		id: 5,
+		src: "/images/clients/rakbank.svg",
+		name: "Rakbank",
+	},
+	{
+		id: 6,
+		src: "/images/clients/bank-muscat.svg",
+		name: "Bank Muscat",
+	},
+	{
+		id: 7,
+		src: "/images/clients/adib.png",
+		name: "Abu Dhabi Islamic Bank",
+	},
+	{
+		id: 8,
+		src: "/images/clients/capital.png",
+		name: "Capital Bank of Jordan",
+	},
+	{
+		id: 9,
+		src: "/images/clients/al-ghurair.png",
+		name: "Al Ghurair",
+	},
+	{
+		id: 10,
+		src: "/images/clients/doha.svg",
+		name: "Doha Bank",
+	},
 ];
 
 export const PARTNERS = [
