@@ -289,12 +289,11 @@ async function Article({ content }: { content: string }) {
 
 				<div className="flex flex-col items-center gap-3">
 					<h2 className="text-center text-title-4">
-						Create an account to read the full story.
+						Create an account to read the full paper.
 					</h2>
 
 					<p className="mb-3 text-center">
-						If you’re new to Medium, create a new account to read this story on
-						us.
+						Create a new account to read this research paper.
 					</p>
 					<LinkedInAuthButton />
 				</div>
