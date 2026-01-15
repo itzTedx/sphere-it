@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	typedRoutes: true,
+	reactCompiler: true,
 
 	// Performance optimizations
 	experimental: {
@@ -11,10 +12,12 @@ const nextConfig: NextConfig = {
 			"lucide-react",
 		],
 		viewTransition: true,
-		turbopackFileSystemCacheForDev: true,
-	},
 
-	reactCompiler: true,
+		// Enable filesystem caching for `next dev`
+		turbopackFileSystemCacheForDev: true,
+		// Enable filesystem caching for `next build`
+		turbopackFileSystemCacheForBuild: true,
+	},
 
 	// Image optimization
 	images: {
