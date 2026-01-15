@@ -1,6 +1,9 @@
 {
 	"name": "sphere-global",
 	"version": "0.1.0",
+	"description": "Website template for Payload",
+	"license": "MIT",
+	"type": "module",
 	"private": true,
 	"scripts": {
 		"dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
