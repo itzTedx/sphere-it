@@ -249,8 +249,8 @@ export function BlogCard({
 						{/* <Image alt="" className="object-cover" fill src={data.heroImage} /> */}
 						{data.heroImage && typeof data.heroImage !== "string" && (
 							<Media
-								className="object-cover"
 								fill
+								imgClassName="object-cover"
 								resource={data.heroImage}
 								size="33vw"
 							/>
