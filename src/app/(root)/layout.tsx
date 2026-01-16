@@ -84,10 +84,6 @@ export default function RootLayout({
 					{/* Skip Navigation Links */}
 					<SkipToContent />
 
-					<div className="pointer-events-none fixed inset-0 z-20 mx-auto flex h-full w-full max-w-7xl justify-between">
-						<div className="h-full w-px bg-border" />
-						<div className="h-full w-px bg-border" />
-					</div>
 					<Navbar />
 					{children}
 					<Footer />
