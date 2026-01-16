@@ -104,16 +104,17 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function BlogsPage({
-	searchParams,
-}: {
-	searchParams: { [key: string]: string | string[] | undefined };
-}) {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+export default async function BlogsPage(props: { searchParams: SearchParams }) {
+	const searchParams = await props.searchParams;
 	const search =
 		typeof searchParams.search === "string" ? searchParams.search : undefined;
 
 	const categoryParam =
-		typeof searchParams.category === "string" ? searchParams.category : undefined;
+		typeof searchParams.category === "string"
+			? searchParams.category
+			: undefined;
 	const categories = categoryParam ? categoryParam.split(",") : undefined;
 
 	const isFeatured = searchParams.featured === "true";
