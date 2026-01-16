@@ -10,7 +10,10 @@ import type { Blog } from "@/payload-types";
 import useClickableCard from "../../utils/useClickableCard";
 import { Media } from "../Media";
 
-export type CardPostData = Pick<Blog, "slug" | "categories" | "meta" | "title">;
+export type CardPostData = Pick<
+	Blog,
+	"slug" | "blog-categories" | "meta" | "title"
+>;
 
 export const Card: React.FC<{
 	alignItems?: "center";
@@ -29,7 +32,7 @@ export const Card: React.FC<{
 		title: titleFromProps,
 	} = props;
 
-	const { slug, categories, meta, title } = doc || {};
+	const { slug, "blog-categories": categories, meta, title } = doc || {};
 	const { description, image: metaImage } = meta || {};
 
 	const hasCategories =

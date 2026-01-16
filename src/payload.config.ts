@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 
 import { Blogs } from "./collections/blogs";
 import { BlogCategories } from "./collections/blogs/category";
+import { CaseStudies } from "./collections/case-studies";
 import { FaqCategories } from "./collections/faqs/category";
 import { Faqs } from "./collections/faqs/Faqs";
 import { Media } from "./collections/Media";
@@ -23,7 +24,15 @@ export default buildConfig({
 			baseDir: path.resolve(dirname),
 		},
 	},
-	collections: [Blogs, BlogCategories, Faqs, FaqCategories, Users, Media],
+	collections: [
+		Blogs,
+		BlogCategories,
+		CaseStudies,
+		Faqs,
+		FaqCategories,
+		Users,
+		Media,
+	],
 
 	editor: defaultLexical,
 	secret: process.env.PAYLOAD_SECRET || "",

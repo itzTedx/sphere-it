@@ -10,9 +10,7 @@ import { searchFields } from "../search/fieldOverrides";
 import { getServerSideURL } from "../utils/getURL";
 
 const generateTitle: GenerateTitle<Blog> = ({ doc }) => {
-	return doc?.title
-		? `${doc.title} | Payload Website Template`
-		: "Payload Website Template";
+	return doc?.title ? `${doc.title} | Sphere IT` : "Sphere IT";
 };
 
 const generateURL: GenerateURL<Blog> = ({ doc }) => {
@@ -21,10 +19,15 @@ const generateURL: GenerateURL<Blog> = ({ doc }) => {
 	return doc?.slug ? `${url}/${doc.slug}` : url;
 };
 
+const generateDescription: GenerateURL<Blog> = ({ doc }) => {
+	return doc?.description ? doc.description : "Sphere IT";
+};
+
 export const plugins: Plugin[] = [
 	seoPlugin({
 		generateTitle,
 		generateURL,
+		generateDescription,
 	}),
 
 	searchPlugin({

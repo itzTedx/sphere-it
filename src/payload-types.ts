@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     blogs: Blog;
     'blog-categories': BlogCategory;
+    'case-studies': CaseStudy;
     faqs: Faq;
     'faq-categories': FaqCategory;
     users: User;
@@ -84,6 +85,7 @@ export interface Config {
   collectionsSelect: {
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     'blog-categories': BlogCategoriesSelect<false> | BlogCategoriesSelect<true>;
+    'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -159,7 +161,7 @@ export interface Blog {
     [k: string]: unknown;
   };
   relatedPosts?: (number | Blog)[] | null;
-  categories?: (number | BlogCategory)[] | null;
+  'blog-categories'?: (number | BlogCategory)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -169,6 +171,7 @@ export interface Blog {
     description?: string | null;
   };
   publishedAt?: string | null;
+  featuredBlog?: boolean | null;
   authors?: (number | User)[] | null;
   populatedAuthors?:
     | {
@@ -183,6 +186,7 @@ export interface Blog {
   slug: string;
   updatedAt: string;
   createdAt: string;
+  deletedAt?: string | null;
   _status?: ('draft' | 'published') | null;
 }
 /**
@@ -243,6 +247,55 @@ export interface User {
       }[]
     | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies".
+ */
+export interface CaseStudy {
+  id: number;
+  title: string;
+  heroImage?: (number | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  relatedPosts?: (number | Blog)[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  authors?: (number | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -427,6 +480,10 @@ export interface PayloadLockedDocument {
         value: number | BlogCategory;
       } | null)
     | ({
+        relationTo: 'case-studies';
+        value: number | CaseStudy;
+      } | null)
+    | ({
         relationTo: 'faqs';
         value: number | Faq;
       } | null)
@@ -498,7 +555,50 @@ export interface BlogsSelect<T extends boolean = true> {
   heroImage?: T;
   content?: T;
   relatedPosts?: T;
-  categories?: T;
+  'blog-categories'?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  featuredBlog?: T;
+  authors?: T;
+  populatedAuthors?:
+    | T
+    | {
+        id?: T;
+        name?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-categories_select".
+ */
+export interface BlogCategoriesSelect<T extends boolean = true> {
+  category?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies_select".
+ */
+export interface CaseStudiesSelect<T extends boolean = true> {
+  title?: T;
+  heroImage?: T;
+  content?: T;
+  relatedPosts?: T;
   meta?:
     | T
     | {
@@ -519,17 +619,6 @@ export interface BlogsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-categories_select".
- */
-export interface BlogCategoriesSelect<T extends boolean = true> {
-  category?: T;
-  generateSlug?: T;
-  slug?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -700,10 +789,15 @@ export interface TaskSchedulePublish {
   input: {
     type?: ('publish' | 'unpublish') | null;
     locale?: string | null;
-    doc?: {
-      relationTo: 'blogs';
-      value: number | Blog;
-    } | null;
+    doc?:
+      | ({
+          relationTo: 'blogs';
+          value: number | Blog;
+        } | null)
+      | ({
+          relationTo: 'case-studies';
+          value: number | CaseStudy;
+        } | null);
     global?: string | null;
     user?: (number | null) | User;
   };

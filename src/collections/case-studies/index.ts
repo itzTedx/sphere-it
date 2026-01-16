@@ -22,20 +22,19 @@ import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
 import { populateAuthors } from "./hooks/populateAuthors";
 import { revalidateDelete, revalidatePost } from "./hooks/revalidatePost";
 
-export const Blogs: CollectionConfig<"blogs"> = {
-	slug: "blogs",
-	trash: true,
+export const CaseStudies: CollectionConfig<"blogs"> = {
+	slug: "case-studies",
+
 	defaultPopulate: {
 		title: true,
 		slug: true,
-		"blog-categories": true,
 		meta: {
 			image: true,
 			description: true,
 		},
 	},
 	admin: {
-		defaultColumns: ["title", "heroImage", "slug", "featuredBlog", "updatedAt"],
+		defaultColumns: ["title", "slug", "updatedAt"],
 
 		useAsTitle: "title",
 	},
@@ -45,11 +44,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 			type: "text",
 			required: true,
 		},
-		{
-			name: "description",
-			type: "textarea",
-			required: true,
-		},
+
 		{
 			type: "tabs",
 			tabs: [
@@ -87,7 +82,6 @@ export const Blogs: CollectionConfig<"blogs"> = {
 					fields: [
 						{
 							name: "relatedPosts",
-							label: "Related Blogs",
 							type: "relationship",
 							admin: {
 								position: "sidebar",
@@ -101,17 +95,6 @@ export const Blogs: CollectionConfig<"blogs"> = {
 							},
 							hasMany: true,
 							relationTo: "blogs",
-						},
-						{
-							name: "blog-categories",
-							label: "Category",
-							type: "relationship",
-							admin: {
-								position: "sidebar",
-								isSortable: true,
-							},
-							hasMany: true,
-							relationTo: "blog-categories",
 						},
 					],
 					label: "Meta",
@@ -132,7 +115,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 							relationTo: "media",
 						}),
 
-						MetaDescriptionField({ hasGenerateFn: true }),
+						MetaDescriptionField({}),
 						PreviewField({
 							// if the `generateUrl` function is configured
 							hasGenerateFn: true,
@@ -166,55 +149,6 @@ export const Blogs: CollectionConfig<"blogs"> = {
 			},
 		},
 		{
-			name: "featuredBlog",
-			label: "Featured?",
-			type: "checkbox",
-			admin: {
-				position: "sidebar",
-			},
-			hooks: {
-				beforeChange: [
-					async ({ value, req, originalDoc }) => {
-						if (value === true) {
-							// Find existing featured posts
-							const existingFeatured = await req.payload.find({
-								collection: "blogs",
-								where: {
-									featuredBlog: {
-										equals: true,
-									},
-									...(originalDoc?.id
-										? {
-												id: {
-													not_equals: originalDoc.id,
-												},
-											}
-										: {}),
-								},
-							});
-
-							// specific check to update other posts only if they exist
-							if (existingFeatured.docs.length > 0) {
-								await Promise.all(
-									existingFeatured.docs.map((doc) =>
-										req.payload.update({
-											collection: "blogs",
-											id: doc.id,
-											data: {
-												featuredBlog: false,
-											},
-											req,
-										})
-									)
-								);
-							}
-						}
-						return value;
-					},
-				],
-			},
-		},
-		{
 			name: "authors",
 			type: "relationship",
 			admin: {
@@ -223,7 +157,6 @@ export const Blogs: CollectionConfig<"blogs"> = {
 			hasMany: true,
 			relationTo: "users",
 		},
-
 		// This field is only used to populate the user data via the `populateAuthors` hook
 		// This is because the `user` collection has access control locked to protect user privacy
 		// GraphQL will also not return mutated user data that differs from the underlying schema
