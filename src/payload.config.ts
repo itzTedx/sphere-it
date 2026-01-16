@@ -24,6 +24,7 @@ export default buildConfig({
 		},
 	},
 	collections: [Blogs, BlogCategories, Faqs, FaqCategories, Users, Media],
+
 	editor: defaultLexical,
 	secret: process.env.PAYLOAD_SECRET || "",
 	typescript: {

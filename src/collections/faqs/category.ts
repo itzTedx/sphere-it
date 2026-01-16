@@ -1,9 +1,10 @@
-import type { CollectionConfig } from "payload";
+import { type CollectionConfig, slugField } from "payload";
 
 export const FaqCategories: CollectionConfig = {
 	slug: "faq-categories",
 	admin: {
 		useAsTitle: "category",
+		hidden: true,
 	},
 
 	fields: [
@@ -14,5 +15,9 @@ export const FaqCategories: CollectionConfig = {
 			required: true,
 			index: true,
 		},
+		slugField({
+			useAsSlug: "category",
+			position: undefined,
+		}),
 	],
 };

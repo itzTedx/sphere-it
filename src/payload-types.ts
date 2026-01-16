@@ -141,6 +141,7 @@ export interface UserAuthOperations {
 export interface Blog {
   id: number;
   title: string;
+  description: string;
   heroImage?: (number | null) | Media;
   content: {
     root: {
@@ -210,6 +211,11 @@ export interface Media {
 export interface BlogCategory {
   id: number;
   category: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -219,6 +225,7 @@ export interface BlogCategory {
  */
 export interface User {
   id: number;
+  name?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -256,6 +263,11 @@ export interface Faq {
 export interface FaqCategory {
   id: number;
   category: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -482,6 +494,7 @@ export interface PayloadMigration {
  */
 export interface BlogsSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   heroImage?: T;
   content?: T;
   relatedPosts?: T;
@@ -513,6 +526,8 @@ export interface BlogsSelect<T extends boolean = true> {
  */
 export interface BlogCategoriesSelect<T extends boolean = true> {
   category?: T;
+  generateSlug?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -533,6 +548,8 @@ export interface FaqsSelect<T extends boolean = true> {
  */
 export interface FaqCategoriesSelect<T extends boolean = true> {
   category?: T;
+  generateSlug?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -541,6 +558,7 @@ export interface FaqCategoriesSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

@@ -46,6 +46,11 @@ export const Blogs: CollectionConfig<"blogs"> = {
 			required: true,
 		},
 		{
+			name: "description",
+			type: "textarea",
+			required: true,
+		},
+		{
 			type: "tabs",
 			tabs: [
 				{
