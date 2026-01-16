@@ -109,52 +109,23 @@ export default async function BlogsPage({
 }: {
 	searchParams: { [key: string]: string | string[] | undefined };
 }) {
-	const blogs = await listBlogs();
-
 	const search =
 		typeof searchParams.search === "string" ? searchParams.search : undefined;
 
 	const categoryParam =
-		typeof searchParams.category === "string"
-			? searchParams.category
-			: undefined;
-	const categories = categoryParam ? categoryParam.split(",") : [];
+		typeof searchParams.category === "string" ? searchParams.category : undefined;
+	const categories = categoryParam ? categoryParam.split(",") : undefined;
 
 	const isFeatured = searchParams.featured === "true";
 
-	const filteredBlogs = blogs.filter((blog) => {
-		let matches = true;
-
-		// Filter by search
-		if (search) {
-			const searchLower = search.toLowerCase();
-			const titleMatch = blog.title.toLowerCase().includes(searchLower);
-			const descMatch = blog.description.toLowerCase().includes(searchLower);
-			if (!titleMatch && !descMatch) {
-				matches = false;
-			}
-		}
-
-		// Filter by categories
-		if (matches && categories.length > 0) {
-			const blogCats = blog.blogCategories?.map((c) =>
-				typeof c === "object" ? c.slug : ""
-			);
-			const hasCategory = categories.some((cat) => blogCats?.includes(cat));
-			if (!hasCategory) {
-				matches = false;
-			}
-		}
-
-		// Filter by featured
-		if (matches && isFeatured) {
-			if (!blog.isFeatured) {
-				matches = false;
-			}
-		}
-
-		return matches;
-	});
+	const [filteredBlogs, allBlogsForStats] = await Promise.all([
+		listBlogs({
+			search,
+			categories,
+			isFeatured,
+		}),
+		listBlogs(),
+	]);
 
 	return (
 		<InsightsLayout>
@@ -174,7 +145,10 @@ export default async function BlogsPage({
 			/>
 			<TabsContent value="/resources/blogs">
 				<div className="container grid max-w-7xl grid-cols-4 gap-8">
-					<BlogsSidebar data={blogs} filteredCount={filteredBlogs.length} />
+					<BlogsSidebar
+						data={allBlogsForStats}
+						filteredCount={filteredBlogs.length}
+					/>
 					<main className="col-span-3 mb-12">
 						<article className="grid grid-cols-3 gap-4 py-6">
 							{filteredBlogs.length > 0 ? (
