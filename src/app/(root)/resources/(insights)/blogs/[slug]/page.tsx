@@ -1,27 +1,26 @@
 import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
-import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
-import MDXContent from "@/components/markdown";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { slugify } from "@/lib/utils";
+import { generateMeta } from "@/lib/generateMeta";
+import { findBlogBySlug, listBlogs } from "@/modules/blogs/actions/query";
+import { Media } from "@/modules/cms/components/Media";
+import RichText from "@/modules/cms/components/RichText";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { TableOfContent } from "@/modules/views/components/table-of-content";
-
-import { BLOGS } from "../data/mock-blogs";
+import { Blog } from "@/payload-types";
 
 export async function generateStaticParams() {
-	const blogs = BLOGS;
+	const blogs = await listBlogs();
 
 	return blogs.map((study) => ({
 		slug: study.slug,
@@ -32,53 +31,67 @@ interface Props {
 	params: Promise<{ slug: string }>;
 }
 
-const getBlogBySlug = (slug: string) => {
-	const blog = BLOGS.find((r) => r.slug === slug);
+const structuredData = (blog: Blog) => {
+	const image =
+		blog.heroImage && typeof blog.heroImage !== "number"
+			? blog.heroImage.url
+			: "";
+	const category =
+		blog.blogCategories && blog.blogCategories.length > 0
+			? (() => {
+					const cat = blog.blogCategories[0];
+					if (typeof cat === "string") return cat;
+					if (
+						typeof cat === "object" &&
+						cat !== null &&
+						"category" in cat
+					)
+						return cat.category;
+					return "Technology";
+			  })()
+			: "Technology";
 
-	if (!blog) return notFound();
-
-	return blog;
+	return {
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		headline: blog.title,
+		description: blog.description,
+		image: image ? `${BASE_URL}${image}` : undefined,
+		datePublished: blog.publishedAt,
+		dateModified: blog.publishedAt,
+		author: {
+			"@type": "Organization",
+			name: COMPANY_NAME,
+			url: BASE_URL,
+		},
+		publisher: {
+			"@type": "Organization",
+			name: COMPANY_NAME,
+			url: BASE_URL,
+			logo: {
+				"@type": "ImageObject",
+				url: `${BASE_URL}/logo.png`,
+			},
+		},
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": `${BASE_URL}/resources/blogs/${blog.slug}`,
+		},
+		articleSection: category,
+		keywords: [
+			category,
+			"digital transformation",
+			"technology",
+			"IT consulting",
+			COMPANY_NAME,
+		],
+	};
 };
 
-const structuredData = (blog: (typeof BLOGS)[number]) => ({
-	"@context": "https://schema.org",
-	"@type": "BlogPosting",
-	headline: blog.title,
-	description: blog.excerpt,
-	image: `${BASE_URL}${blog.image}`,
-	datePublished: blog.publishedAt,
-	dateModified: blog.publishedAt,
-	author: {
-		"@type": "Organization",
-		name: COMPANY_NAME,
-		url: BASE_URL,
-	},
-	publisher: {
-		"@type": "Organization",
-		name: COMPANY_NAME,
-		url: BASE_URL,
-		logo: {
-			"@type": "ImageObject",
-			url: `${BASE_URL}/logo.png`,
-		},
-	},
-	mainEntityOfPage: {
-		"@type": "WebPage",
-		"@id": `${BASE_URL}/resources/blogs/${blog.slug}`,
-	},
-	articleSection: blog.category,
-	keywords: [
-		blog.category,
-		"digital transformation",
-		"technology",
-		"IT consulting",
-		COMPANY_NAME,
-	],
-});
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	// const { isEnabled: draft } = await draftMode()
 	const { slug } = await params;
-	const blog = BLOGS.find((r) => r.slug === slug);
+	const blog = await findBlogBySlug(slug);
 
 	if (!blog) {
 		return {
@@ -87,68 +100,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		};
 	}
 
-	return {
-		title: `${blog.title} | ${COMPANY_NAME} Blog`,
-		description: blog.excerpt,
-		keywords: [
-			blog.category,
-			"digital transformation",
-			"technology blog",
-			"IT consulting",
-			"enterprise solutions",
-			COMPANY_NAME,
-			"UAE technology",
-			"GCC technology",
-		],
-		authors: [{ name: COMPANY_NAME }],
-		publisher: COMPANY_NAME,
-		openGraph: {
-			title: blog.title,
-			description: blog.excerpt,
-			type: "article",
-			publishedTime: blog.publishedAt,
-			url: `${BASE_URL}/resources/blogs/${blog.slug}`,
-			siteName: COMPANY_NAME,
-			locale: "en_US",
-			images: [
-				{
-					url: `${BASE_URL}${blog.image}`,
-					width: 1200,
-					height: 630,
-					alt: blog.title,
-				},
-			],
-		},
-		twitter: {
-			card: "summary_large_image",
-			title: blog.title,
-			description: blog.excerpt,
-			images: [`${BASE_URL}${blog.image}`],
-			creator: "@sphereglobal",
-			site: "@sphereglobal",
-		},
-		alternates: {
-			canonical: `${BASE_URL}/resources/blogs/${blog.slug}`,
-		},
-		category: blog.category,
-		robots: {
-			index: true,
-			follow: true,
-			googleBot: {
-				index: true,
-				follow: true,
-				"max-video-preview": -1,
-				"max-image-preview": "large",
-				"max-snippet": -1,
-			},
-		},
-	};
+	return generateMeta({ doc: blog });
 }
 
 export default async function BlogPage({ params }: Props) {
 	const { slug } = await params;
 
-	const blog = getBlogBySlug(slug);
+	const blog = await findBlogBySlug(slug);
 
 	const jsonLd = structuredData(blog);
 
@@ -204,53 +162,80 @@ export default async function BlogPage({ params }: Props) {
 									</ViewTransition>
 									<ViewTransition name={`excerpt-${blog.slug}`}>
 										<p className="text-balance text-base text-muted-foreground sm:text-lg">
-											{blog.excerpt}
+											{blog.description}
 										</p>
 									</ViewTransition>
 								</div>
 								<div className="flex flex-wrap items-center gap-3">
-									<ViewTransition name={`category-${blog.slug}`}>
-										<Badge variant="secondary">{blog.category}</Badge>
-									</ViewTransition>
-									<ViewTransition name={`date-${blog.slug}`}>
-										<Badge
-											aria-label={`Published on ${blog.publishedAt}`}
-											className="bg-muted text-muted-foreground shadow-none"
-										>
-											<time dateTime={blog.publishedAt}>
-												{blog.publishedAt}
-											</time>
-										</Badge>
-									</ViewTransition>
+									{blog.blogCategories &&
+										blog.blogCategories.map((category) => {
+											if (typeof category === "object")
+												return (
+													<ViewTransition
+														key={category.id}
+														name={`category-${blog.slug}`}
+													>
+														<Badge variant="secondary">
+															{category.category}
+														</Badge>
+													</ViewTransition>
+												);
+										})}
+
+									{blog.publishedAt && (
+										<ViewTransition name={`date-${blog.slug}`}>
+											<Badge
+												aria-label={`Published on ${blog.publishedAt}`}
+												className="bg-muted text-muted-foreground shadow-none"
+											>
+												<time dateTime={blog.publishedAt}>
+													{blog.publishedAt}
+												</time>
+											</Badge>
+										</ViewTransition>
+									)}
 								</div>
 							</div>
 							<ViewTransition name={`image-${blog.slug}`}>
 								<div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border bg-stone-alpha-10 p-2">
 									<div className="relative aspect-4/3 overflow-hidden rounded-xl shadow-lg">
-										<Image
+										{blog.heroImage && typeof blog.heroImage !== "string" && (
+											<Media
+												fill
+												imgClassName="object-cover"
+												resource={blog.heroImage}
+												size="33vw"
+											/>
+										)}
+										{/* <Image
 											alt={`${blog.title} - Featured image`}
 											className="object-cover"
 											fill
 											priority
-											sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
 											src={blog.image}
-										/>
+										/> */}
 									</div>
 								</div>
 							</ViewTransition>
 						</div>
 					</div>
 				</header>
-				<div className="container mb-24 max-w-7xl border-b">
+				<div className="container mb-24 max-w-7xl">
 					<div className="grid gap-6 lg:grid-cols-4">
-						<aside className="hidden border-r lg:block lg:py-6 lg:pr-6">
+						<aside className="hidden lg:block lg:py-6 lg:pr-6">
 							<TableOfContent className="mt-0" />
 						</aside>
+
 						<article
-							className="prose prose-stone prose-lg col-span-3 mx-auto max-w-none py-4 prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
+							className="col-span-3 mx-auto max-w-none py-4"
 							itemProp="articleBody"
 						>
-							<MDXContent
+							<RichText
+								className="prose prose-stone prose-lg prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
+								data={blog.content}
+								enableGutter={false}
+							/>
+							{/* <MDXContent
 								components={{
 									h1: (props) => <h1 id={slugify(props.children)} {...props} />,
 									h2: (props) => <h2 id={slugify(props.children)} {...props} />,
@@ -260,7 +245,7 @@ export default async function BlogPage({ params }: Props) {
 									h6: (props) => <h6 id={slugify(props.children)} {...props} />,
 								}}
 								source={blog.content}
-							/>
+							/> */}
 						</article>
 					</div>
 				</div>

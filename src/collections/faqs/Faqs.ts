@@ -7,12 +7,12 @@ export const Faqs: CollectionConfig = {
 	},
 	fields: [
 		{
-			name: "Question",
+			name: "question",
 			type: "text",
 			required: true,
 		},
 		{
-			name: "Content",
+			name: "content",
 			type: "textarea",
 			required: true,
 		},

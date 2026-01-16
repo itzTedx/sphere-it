@@ -303,8 +303,8 @@ export interface CaseStudy {
  */
 export interface Faq {
   id: number;
-  Question: string;
-  Content: string;
+  question: string;
+  content: string;
   category?: (number | null) | FaqCategory;
   updatedAt: string;
   createdAt: string;
@@ -625,8 +625,8 @@ export interface CaseStudiesSelect<T extends boolean = true> {
  * via the `definition` "faqs_select".
  */
 export interface FaqsSelect<T extends boolean = true> {
-  Question?: T;
-  Content?: T;
+  question?: T;
+  content?: T;
   category?: T;
   updatedAt?: T;
   createdAt?: T;

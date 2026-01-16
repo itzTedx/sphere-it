@@ -7,7 +7,7 @@ const sectionVariants = cva(
 	{
 		variants: {
 			outlined: {
-				true: "border-y *:container *:max-w-7xl *:rounded-3xl *:border *:bg-card *:p-6 *:sm:p-9",
+				true: "*:container *:max-w-7xl *:rounded-3xl *:border *:bg-card *:p-6 *:sm:p-9",
 				false: "container max-w-7xl",
 			},
 		},

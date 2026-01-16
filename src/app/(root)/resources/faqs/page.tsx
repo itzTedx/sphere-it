@@ -11,8 +11,8 @@ import {
 
 import { IconSupport } from "@/assets/icons";
 
-import { FAQS } from "@/data/faqs";
 import { BASE_URL } from "@/data/site-config";
+import { listFaqs } from "@/modules/faqs/actions/query";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
 import { structuredData } from "./structured-data";
@@ -61,7 +61,9 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function FaqsPage() {
+export default async function FaqsPage() {
+	const faqs = await listFaqs();
+
 	return (
 		<>
 			{structuredData.map((data, index) => (
@@ -103,18 +105,18 @@ export default function FaqsPage() {
 				</section>
 				<div
 					aria-label="FAQ categories"
-					className="mt-8 mb-16 space-y-8 sm:mt-12 sm:mb-20 sm:space-y-10 md:mt-16 md:mb-24 md:space-y-12 lg:mb-32"
+					className="mb-16 space-y-8 sm:mb-20 sm:space-y-10 md:mb-24 md:space-y-12 lg:mb-32"
 					role="region"
 				>
-					{FAQS.map((faq, categoryIndex) => {
+					{faqs.map((faq, categoryIndex) => {
 						const categoryId = `faq-category-${categoryIndex}`;
 						const categorySlug = faq.category
-							.toLowerCase()
+							?.toLowerCase()
 							.replace(/\s+/g, "-");
 						return (
 							<section
 								aria-labelledby={categoryId}
-								className="gap-4 border-y sm:gap-6"
+								className="gap-4 sm:gap-6"
 								id={categorySlug}
 								key={faq.category}
 							>

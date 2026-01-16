@@ -98,3 +98,19 @@ export const listCategories = async () => {
 
 	return data.docs;
 };
+
+export const findBlogBySlug = async (slug: string) => {
+	const data = await payload.find({
+		collection: "blogs",
+		draft: false,
+		depth: 2,
+		where: {
+			slug: {
+				equals: slug,
+			},
+		},
+		limit: 1,
+	});
+
+	return data.docs?.[0] || null;
+};

@@ -12,6 +12,9 @@ import {
 	HorizontalRuleFeature,
 	InlineToolbarFeature,
 	lexicalEditor,
+	OrderedListFeature,
+	UnorderedListFeature,
+	UploadFeature,
 } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 import { slugField } from "payload";
@@ -63,10 +66,20 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 									return [
 										...rootFeatures,
 										HeadingFeature({
-											enabledHeadingSizes: ["h2", "h3", "h4", "h5", "h6"],
+											enabledHeadingSizes: ["h2", "h3", "h4", "h5"],
 										}),
+
 										BlocksFeature({ blocks: [Banner, MediaBlock] }),
-										FixedToolbarFeature(),
+										UnorderedListFeature(),
+										OrderedListFeature(),
+										UploadFeature(),
+										FixedToolbarFeature({
+											customGroups: {
+												text: {
+													type: "buttons",
+												},
+											},
+										}),
 										InlineToolbarFeature(),
 										HorizontalRuleFeature(),
 									];

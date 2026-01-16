@@ -1,11 +1,14 @@
 import {
 	BoldFeature,
+	IndentFeature,
 	ItalicFeature,
 	LinkFeature,
 	type LinkFields,
 	lexicalEditor,
+	OrderedListFeature,
 	ParagraphFeature,
 	UnderlineFeature,
+	UnorderedListFeature,
 } from "@payloadcms/richtext-lexical";
 import type { TextFieldSingleValidation } from "payload";
 
@@ -15,6 +18,9 @@ export const defaultLexical = lexicalEditor({
 		UnderlineFeature(),
 		BoldFeature(),
 		ItalicFeature(),
+		UnorderedListFeature(),
+		OrderedListFeature(),
+		IndentFeature(),
 		LinkFeature({
 			enabledCollections: ["blogs"],
 			fields: ({ defaultFields }) => {

@@ -169,7 +169,7 @@ export default async function BlogsPage(props: { searchParams: SearchParams }) {
 								</div>
 							)}
 						</article>
-						{filteredBlogs.length > 0 && (
+						{filteredBlogs.length > 12 && (
 							<div className="flex items-center justify-center">
 								<Button variant="ghost">
 									Load More{" "}
