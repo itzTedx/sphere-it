@@ -28,6 +28,21 @@ import { BlogsSidebar } from "../components/blogs-sidebar";
 import { InsightsLayout } from "../components/insights-layout";
 import { structuredData } from "./structured-data";
 
+export interface BlogCardProps {
+	data: Pick<
+		Blog,
+		| "blogCategories"
+		| "description"
+		| "publishedAt"
+		| "title"
+		| "slug"
+		| "id"
+		| "isFeatured"
+		| "blogCategories"
+		| "heroImage"
+	>;
+}
+
 const meta = {
 	title: "Blogs - Technology Insights & Digital Transformation | Sphere IT",
 	description:
@@ -89,10 +104,57 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function BlogsPage() {
+export default async function BlogsPage({
+	searchParams,
+}: {
+	searchParams: { [key: string]: string | string[] | undefined };
+}) {
 	const blogs = await listBlogs();
 
-	console.log("blogs: ", blogs);
+	const search =
+		typeof searchParams.search === "string" ? searchParams.search : undefined;
+
+	const categoryParam =
+		typeof searchParams.category === "string"
+			? searchParams.category
+			: undefined;
+	const categories = categoryParam ? categoryParam.split(",") : [];
+
+	const isFeatured = searchParams.featured === "true";
+
+	const filteredBlogs = blogs.filter((blog) => {
+		let matches = true;
+
+		// Filter by search
+		if (search) {
+			const searchLower = search.toLowerCase();
+			const titleMatch = blog.title.toLowerCase().includes(searchLower);
+			const descMatch = blog.description.toLowerCase().includes(searchLower);
+			if (!titleMatch && !descMatch) {
+				matches = false;
+			}
+		}
+
+		// Filter by categories
+		if (matches && categories.length > 0) {
+			const blogCats = blog.blogCategories?.map((c) =>
+				typeof c === "object" ? c.slug : ""
+			);
+			const hasCategory = categories.some((cat) => blogCats?.includes(cat));
+			if (!hasCategory) {
+				matches = false;
+			}
+		}
+
+		// Filter by featured
+		if (matches && isFeatured) {
+			if (!blog.isFeatured) {
+				matches = false;
+			}
+		}
+
+		return matches;
+	});
 
 	return (
 		<InsightsLayout>
@@ -112,25 +174,36 @@ export default async function BlogsPage() {
 			/>
 			<TabsContent value="/resources/blogs">
 				<div className="container grid max-w-7xl grid-cols-4 gap-8">
-					<BlogsSidebar />
+					<BlogsSidebar data={blogs} filteredCount={filteredBlogs.length} />
 					<main className="col-span-3 mb-12">
 						<article className="grid grid-cols-3 gap-4 py-6">
-							{blogs.map((blog) => (
-								<BlogCard
-									className={cn(blog.isFeatured && "col-span-full")}
-									data={blog}
-									key={blog.id}
-								/>
-							))}
+							{filteredBlogs.length > 0 ? (
+								filteredBlogs.map((blog) => (
+									<BlogCard
+										className={cn(blog.isFeatured && "col-span-full")}
+										data={blog}
+										key={blog.id}
+									/>
+								))
+							) : (
+								<div className="col-span-3 flex h-64 flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-8 text-muted-foreground">
+									<p className="font-medium text-lg">No blogs found</p>
+									<p className="text-sm">
+										Try adjusting your filters or search terms.
+									</p>
+								</div>
+							)}
 						</article>
-						<div className="flex items-center justify-center">
-							<Button variant="ghost">
-								Load More{" "}
-								<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300 transition-colors">
-									<IconChevronDown className="text-stone-500" />
-								</span>
-							</Button>
-						</div>
+						{filteredBlogs.length > 0 && (
+							<div className="flex items-center justify-center">
+								<Button variant="ghost">
+									Load More{" "}
+									<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300 transition-colors">
+										<IconChevronDown className="text-stone-500" />
+									</span>
+								</Button>
+							</div>
+						)}
 					</main>
 				</div>
 				<Cta />
@@ -139,20 +212,6 @@ export default async function BlogsPage() {
 	);
 }
 
-interface BlogCardProps {
-	data: Pick<
-		Blog,
-		| "blogCategories"
-		| "description"
-		| "publishedAt"
-		| "title"
-		| "slug"
-		| "id"
-		| "isFeatured"
-		| "blogCategories"
-		| "heroImage"
-	>;
-}
 export function BlogCard({
 	data,
 	className,
@@ -214,7 +273,12 @@ export function BlogCard({
 					<div className="relative @sm:order-2 order-1 flex aspect-4/3 items-end justify-end overflow-hidden rounded-xl p-4 @sm:shadow-md">
 						{/* <Image alt="" className="object-cover" fill src={data.heroImage} /> */}
 						{data.heroImage && typeof data.heroImage !== "string" && (
-							<Media resource={data.heroImage} size="33vw" />
+							<Media
+								className="object-cover"
+								fill
+								resource={data.heroImage}
+								size="33vw"
+							/>
 						)}
 						<Badge className="z-10 @sm:hidden bg-stone-700/80 px-2 text-muted shadow-none backdrop-blur-lg">
 							{data.publishedAt}

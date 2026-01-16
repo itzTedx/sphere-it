@@ -17,6 +17,23 @@ export const listBlogs = async () => {
 			publishedAt: true,
 			slug: true,
 		},
+
+		sort: ["-isFeatured", "-createdAt"],
 	});
 	return doc.docs;
+};
+
+export const listCategories = async () => {
+	const data = await payload.find({
+		collection: "blogCategories",
+		draft: false,
+		depth: 1,
+		limit: 100,
+		select: {
+			category: true,
+			slug: true,
+		},
+	});
+
+	return data.docs;
 };

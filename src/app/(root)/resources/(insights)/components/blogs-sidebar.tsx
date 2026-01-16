@@ -1,56 +1,57 @@
-import { Checkbox } from "@/components/ui/checkbox";
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Field, FieldLabel, FieldTitle } from "@/components/ui/field";
-import {
-	InputGroup,
-	InputGroupAddon,
-	InputGroupInput,
-} from "@/components/ui/input-group";
-import { Label } from "@/components/ui/label";
-import { Switch, SwitchThumb } from "@/components/ui/switch";
 
 import { IconChevronDown } from "@/assets/icons";
-import { IconSearch } from "@/assets/icons/search";
 
-import { ClearFilterButton } from "../components/delete-filter-button";
+import { BlogCardProps } from "../blogs/page";
+import {
+	CategoryFilter,
+	FeaturedFilter,
+	SearchInput,
+	Stats,
+} from "./blog-filters";
+import { ClearFilterButton } from "./delete-filter-button";
 
-const options = [
-	{
-		label: "Announcement",
-		value: "social-media",
-		length: 102,
-	},
+export const BlogsSidebar = ({
+	data,
+	filteredCount,
+}: {
+	data: BlogCardProps["data"][];
+	filteredCount: number;
+}) => {
+	// Calculate category counts
+	const categoryCounts = data.reduce(
+		(acc, blog) => {
+			blog.blogCategories?.forEach((cat) => {
+				if (typeof cat === "object" && cat.slug && cat.category) {
+					if (!acc[cat.slug]) {
+						acc[cat.slug] = {
+							label: cat.category,
+							count: 0,
+							slug: cat.slug,
+						};
+					}
+					acc[cat.slug].count++;
+				}
+			});
+			return acc;
+		},
+		{} as Record<string, { label: string; count: number; slug: string }>
+	);
 
-	{
-		label: "HR & People",
-		value: "search-engine",
-		length: 32,
-	},
-	{
-		label: "Product Updates",
-		value: "referral",
-		length: 8,
-	},
-	{
-		label: "Technology & Business",
-		value: "other",
-		length: 28,
-	},
-];
+	const categories = Object.values(categoryCounts).sort((a, b) =>
+		a.label.localeCompare(b.label)
+	);
 
-export const BlogsSidebar = () => {
+	// Calculate featured count
+	const featuredCount = data.filter((blog) => blog.isFeatured).length;
+
 	return (
 		<aside className="sticky top-16 max-h-fit space-y-4 py-6">
-			<InputGroup>
-				<InputGroupInput placeholder="Search" />
-				<InputGroupAddon align="inline-end">
-					<IconSearch />
-				</InputGroupAddon>
-			</InputGroup>
+			<SearchInput placeholder="Search" />
 			<div className="dashed-stroke" />
 			<Collapsible
 				className="overflow-hidden rounded-lg border bg-card/30"
@@ -62,48 +63,22 @@ export const BlogsSidebar = () => {
 				</CollapsibleTrigger>
 				<CollapsibleContent defaultOpen keepRendered>
 					<div className="space-y-2 p-3 text-muted-foreground text-sm">
-						{options.map((option) => (
-							<div
-								className="flex items-center justify-between"
-								key={option.value}
-							>
-								<FieldLabel
-									className="!rounded-full !w-fit cursor-pointer overflow-hidden transition-colors hover:bg-muted"
-									htmlFor={option.value}
-								>
-									<Field
-										className="!px-3 !py-1.5 group-has-data-[state=checked]/field-label:!px-2 gap-1.5 overflow-hidden transition-all duration-100 ease-linear group-has-data-[state=checked]/field-label:bg-card"
-										orientation="horizontal"
-									>
-										<Checkbox
-											className="-ml-6 -translate-x-1 rounded-full transition-all duration-100 ease-linear data-[state=checked]:ml-0 data-[state=checked]:translate-x-0"
-											id={option.value}
-											value={option.value}
-										/>
-										<FieldTitle>{option.label}</FieldTitle>
-									</Field>
-								</FieldLabel>
-								<span className="font-mono text-badge text-muted-background">
-									{option.length}
-								</span>
-							</div>
+						{categories.map((option) => (
+							<CategoryFilter
+								category={option.label}
+								count={option.count}
+								key={option.slug}
+								slug={option.slug}
+							/>
 						))}
 					</div>
 				</CollapsibleContent>
 			</Collapsible>
 
-			<Label className="flex cursor-pointer items-center justify-between rounded-lg border bg-card p-3">
-				<div className="flex items-center gap-x-2 font-display text-label text-stone-500">
-					<Switch>
-						<SwitchThumb />
-					</Switch>
-					Featured
-				</div>
-				<span className="font-mono text-badge text-muted-background">23</span>
-			</Label>
+			<FeaturedFilter count={featuredCount} />
 			<div className="dashed-stroke" />
 			<div className="flex items-center justify-between">
-				<p className="text-stone-500 text-subhead-xs">192 out of 198 Results</p>
+				<Stats filtered={filteredCount} total={data.length} />
 				<ClearFilterButton />
 			</div>
 		</aside>
