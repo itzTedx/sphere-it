@@ -380,12 +380,11 @@ function TeamCard({ data }: { data: Team }) {
 					</Link>
 				)}
 				{data.image && (
-
 					<Image
-					alt={`${data.name} - ${data.designation}`}
-					className="object-cover transition-transform duration-500 group-hover:scale-105"
-					fill
-					src={data.image}
+						alt={`${data.name} - ${data.designation}`}
+						className="object-cover transition-transform duration-500 group-hover:scale-105"
+						fill
+						src={data.image}
 					/>
 				)}
 			</div>

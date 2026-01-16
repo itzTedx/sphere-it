@@ -130,7 +130,7 @@ export const TEAMS: Team[] = [
 
 export type Team = {
 	name: string;
-	image: `/images/team/${string}`;
+	image: `/images/team/${string}` | "";
 	designation: string;
 	linkedin?: string;
 };
