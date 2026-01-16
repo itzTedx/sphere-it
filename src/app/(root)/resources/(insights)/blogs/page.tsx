@@ -91,7 +91,9 @@ export const metadata: Metadata = {
 
 export default async function BlogsPage() {
 	const blogs = await listBlogs();
+
 	console.log("blogs: ", blogs);
+
 	return (
 		<InsightsLayout>
 			{structuredData.map((data, index) => (
@@ -138,7 +140,18 @@ export default async function BlogsPage() {
 }
 
 interface BlogCardProps {
-	data: Blog;
+	data: Pick<
+		Blog,
+		| "blogCategories"
+		| "description"
+		| "publishedAt"
+		| "title"
+		| "slug"
+		| "id"
+		| "isFeatured"
+		| "blogCategories"
+		| "heroImage"
+	>;
 }
 export function BlogCard({
 	data,

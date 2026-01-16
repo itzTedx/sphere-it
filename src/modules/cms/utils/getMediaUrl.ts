@@ -13,6 +13,7 @@ export const getMediaUrl = (
 	if (!url) return "";
 
 	if (cacheTag && cacheTag !== "") {
+		// biome-ignore lint/style/noParameterAssign: It maybe anyProps
 		cacheTag = encodeURIComponent(cacheTag);
 	}
 

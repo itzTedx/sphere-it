@@ -19,13 +19,11 @@ type Props = MediaBlockProps & {
 
 export const MediaBlock: React.FC<Props> = (props) => {
 	const {
-		captionClassName,
 		className,
 		enableGutter = true,
 		imgClassName,
 		media,
 		staticImage,
-		disableInnerContainer,
 	} = props;
 
 	// let caption;

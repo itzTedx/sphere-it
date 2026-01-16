@@ -15,6 +15,7 @@ export const listBlogs = async () => {
 			description: true,
 			isFeatured: true,
 			publishedAt: true,
+			slug: true,
 		},
 	});
 	return doc.docs;
