@@ -1,7 +1,7 @@
 import { type CollectionConfig, slugField } from "payload";
 
 export const BlogCategories: CollectionConfig = {
-	slug: "blog-categories",
+	slug: "blogCategories",
 	admin: {
 		useAsTitle: "category",
 		hidden: true,

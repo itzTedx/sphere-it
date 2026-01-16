@@ -28,14 +28,14 @@ export const Blogs: CollectionConfig<"blogs"> = {
 	defaultPopulate: {
 		title: true,
 		slug: true,
-		"blog-categories": true,
+		blogCategories: true,
 		meta: {
 			image: true,
 			description: true,
 		},
 	},
 	admin: {
-		defaultColumns: ["title", "heroImage", "slug", "featuredBlog", "updatedAt"],
+		defaultColumns: ["title", "heroImage", "slug", "isFeatured", "updatedAt"],
 
 		useAsTitle: "title",
 	},
@@ -103,7 +103,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 							relationTo: "blogs",
 						},
 						{
-							name: "blog-categories",
+							name: "blogCategories",
 							label: "Category",
 							type: "relationship",
 							admin: {
@@ -111,7 +111,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 								isSortable: true,
 							},
 							hasMany: true,
-							relationTo: "blog-categories",
+							relationTo: "blogCategories",
 						},
 					],
 					label: "Meta",
@@ -166,7 +166,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 			},
 		},
 		{
-			name: "featuredBlog",
+			name: "isFeatured",
 			label: "Featured?",
 			type: "checkbox",
 			admin: {
@@ -201,7 +201,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 											collection: "blogs",
 											id: doc.id,
 											data: {
-												featuredBlog: false,
+												isFeatured: false,
 											},
 											req,
 										})

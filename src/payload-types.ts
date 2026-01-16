@@ -68,7 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     blogs: Blog;
-    'blog-categories': BlogCategory;
+    blogCategories: BlogCategory;
     'case-studies': CaseStudy;
     faqs: Faq;
     'faq-categories': FaqCategory;
@@ -84,7 +84,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     blogs: BlogsSelect<false> | BlogsSelect<true>;
-    'blog-categories': BlogCategoriesSelect<false> | BlogCategoriesSelect<true>;
+    blogCategories: BlogCategoriesSelect<false> | BlogCategoriesSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
@@ -161,7 +161,7 @@ export interface Blog {
     [k: string]: unknown;
   };
   relatedPosts?: (number | Blog)[] | null;
-  'blog-categories'?: (number | BlogCategory)[] | null;
+  blogCategories?: (number | BlogCategory)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -171,7 +171,7 @@ export interface Blog {
     description?: string | null;
   };
   publishedAt?: string | null;
-  featuredBlog?: boolean | null;
+  isFeatured?: boolean | null;
   authors?: (number | User)[] | null;
   populatedAuthors?:
     | {
@@ -210,7 +210,7 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-categories".
+ * via the `definition` "blogCategories".
  */
 export interface BlogCategory {
   id: number;
@@ -476,7 +476,7 @@ export interface PayloadLockedDocument {
         value: number | Blog;
       } | null)
     | ({
-        relationTo: 'blog-categories';
+        relationTo: 'blogCategories';
         value: number | BlogCategory;
       } | null)
     | ({
@@ -555,7 +555,7 @@ export interface BlogsSelect<T extends boolean = true> {
   heroImage?: T;
   content?: T;
   relatedPosts?: T;
-  'blog-categories'?: T;
+  blogCategories?: T;
   meta?:
     | T
     | {
@@ -564,7 +564,7 @@ export interface BlogsSelect<T extends boolean = true> {
         description?: T;
       };
   publishedAt?: T;
-  featuredBlog?: T;
+  isFeatured?: T;
   authors?: T;
   populatedAuthors?:
     | T
@@ -581,7 +581,7 @@ export interface BlogsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-categories_select".
+ * via the `definition` "blogCategories_select".
  */
 export interface BlogCategoriesSelect<T extends boolean = true> {
   category?: T;
