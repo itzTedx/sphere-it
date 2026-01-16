@@ -20,11 +20,12 @@ import { IconChevronDown, IconChevronRight } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { cn } from "@/lib/utils";
+import { listBlogs } from "@/modules/blogs/actions/query";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
+import { Blog } from "@/payload-types";
 
 import { BlogsSidebar } from "../components/blogs-sidebar";
 import { InsightsLayout } from "../components/insights-layout";
-import { BLOGS } from "./data/mock-blogs";
 import { structuredData } from "./structured-data";
 
 const meta = {
@@ -88,7 +89,9 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function BlogsPage() {
+export default async function BlogsPage() {
+	const blogs = await listBlogs();
+	console.log("blogs: ", blogs);
 	return (
 		<InsightsLayout>
 			{structuredData.map((data, index) => (
@@ -110,7 +113,7 @@ export default function BlogsPage() {
 					<BlogsSidebar />
 					<main className="col-span-3 mb-12">
 						<article className="grid grid-cols-3 gap-4 py-6">
-							{BLOGS.map((blog) => (
+							{blogs.map((blog) => (
 								<BlogCard
 									className={cn(blog.isFeatured && "col-span-full")}
 									data={blog}
@@ -135,7 +138,7 @@ export default function BlogsPage() {
 }
 
 interface BlogCardProps {
-	data: (typeof BLOGS)[number];
+	data: Blog;
 }
 export function BlogCard({
 	data,
@@ -158,7 +161,7 @@ export function BlogCard({
 						</ViewTransition>
 						<ViewTransition name={`excerpt-${data.slug}`}>
 							<CardDescription className="@max-sm:hidden @sm:xl:text-lg">
-								{data.excerpt}
+								{data.description}
 							</CardDescription>
 						</ViewTransition>
 						<Button
@@ -175,7 +178,15 @@ export function BlogCard({
 					</div>
 					<div className="@sm:order-2 order-1 flex items-center justify-between">
 						<ViewTransition name={`category-${data.slug}`}>
-							<Badge variant="secondary">{data.category}</Badge>
+							{data.blogCategories &&
+								data.blogCategories.map((category) => {
+									if (typeof category === "object")
+										return (
+											<Badge key={category.id} variant="secondary">
+												category.category
+											</Badge>
+										);
+								})}
 						</ViewTransition>
 						<ViewTransition name={`date-${data.slug}`}>
 							<Badge className="@max-sm:hidden bg-muted text-muted-foreground shadow-none">
