@@ -13,7 +13,8 @@ export const listBlogs = async () => {
 			title: true,
 			heroImage: true,
 			description: true,
-			featuredBlog: true,
+			isFeatured: true,
+			publishedAt: true,
 		},
 	});
 	return doc.docs;

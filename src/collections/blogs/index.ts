@@ -83,39 +83,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 					],
 					label: "Content",
 				},
-				{
-					fields: [
-						{
-							name: "relatedPosts",
-							label: "Related Blogs",
-							type: "relationship",
-							admin: {
-								position: "sidebar",
-							},
-							filterOptions: ({ id }) => {
-								return {
-									id: {
-										not_in: [id],
-									},
-								};
-							},
-							hasMany: true,
-							relationTo: "blogs",
-						},
-						{
-							name: "blogCategories",
-							label: "Category",
-							type: "relationship",
-							admin: {
-								position: "sidebar",
-								isSortable: true,
-							},
-							hasMany: true,
-							relationTo: "blogCategories",
-						},
-					],
-					label: "Meta",
-				},
+
 				{
 					name: "meta",
 					label: "SEO",
@@ -165,10 +133,12 @@ export const Blogs: CollectionConfig<"blogs"> = {
 				],
 			},
 		},
+
 		{
 			name: "isFeatured",
 			label: "Featured?",
 			type: "checkbox",
+			defaultValue: "false",
 			admin: {
 				position: "sidebar",
 			},
@@ -180,7 +150,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 							const existingFeatured = await req.payload.find({
 								collection: "blogs",
 								where: {
-									featuredBlog: {
+									isFeatured: {
 										equals: true,
 									},
 									...(originalDoc?.id
@@ -213,6 +183,34 @@ export const Blogs: CollectionConfig<"blogs"> = {
 					},
 				],
 			},
+		},
+		{
+			name: "relatedPosts",
+			label: "Related Blogs",
+			type: "relationship",
+			admin: {
+				position: "sidebar",
+			},
+			filterOptions: ({ id }) => {
+				return {
+					id: {
+						not_in: [id],
+					},
+				};
+			},
+			hasMany: true,
+			relationTo: "blogs",
+		},
+		{
+			name: "blogCategories",
+			label: "Category",
+			type: "relationship",
+			admin: {
+				position: "sidebar",
+				isSortable: true,
+			},
+			hasMany: true,
+			relationTo: "blogCategories",
 		},
 		{
 			name: "authors",

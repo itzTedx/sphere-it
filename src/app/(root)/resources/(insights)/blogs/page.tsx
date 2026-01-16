@@ -1,7 +1,6 @@
 import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
-import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -21,6 +20,7 @@ import { IconChevronDown, IconChevronRight } from "@/assets/icons";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 import { listBlogs } from "@/modules/blogs/actions/query";
+import { Media } from "@/modules/cms/components/Media";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { Blog } from "@/payload-types";
 
@@ -117,7 +117,7 @@ export default async function BlogsPage() {
 								<BlogCard
 									className={cn(blog.isFeatured && "col-span-full")}
 									data={blog}
-									key={blog.slug}
+									key={blog.id}
 								/>
 							))}
 						</article>
@@ -177,17 +177,19 @@ export function BlogCard({
 						</Button>
 					</div>
 					<div className="@sm:order-2 order-1 flex items-center justify-between">
-						<ViewTransition name={`category-${data.slug}`}>
-							{data.blogCategories &&
-								data.blogCategories.map((category) => {
-									if (typeof category === "object")
-										return (
-											<Badge key={category.id} variant="secondary">
-												category.category
-											</Badge>
-										);
-								})}
-						</ViewTransition>
+						{data.blogCategories &&
+							data.blogCategories.map((category) => {
+								if (typeof category === "object")
+									return (
+										<ViewTransition
+											key={category.id}
+											name={`category-${data.slug}`}
+										>
+											<Badge variant="secondary">{category.category}</Badge>
+										</ViewTransition>
+									);
+							})}
+
 						<ViewTransition name={`date-${data.slug}`}>
 							<Badge className="@max-sm:hidden bg-muted text-muted-foreground shadow-none">
 								{data.publishedAt}
@@ -197,7 +199,10 @@ export function BlogCard({
 				</CardContent>
 				<ViewTransition name={`image-${data.slug}`}>
 					<div className="relative @sm:order-2 order-1 flex aspect-4/3 items-end justify-end overflow-hidden rounded-xl p-4 @sm:shadow-md">
-						<Image alt="" className="object-cover" fill src={data.image} />
+						{/* <Image alt="" className="object-cover" fill src={data.heroImage} /> */}
+						{data.heroImage && typeof data.heroImage !== "string" && (
+							<Media resource={data.heroImage} size="33vw" />
+						)}
 						<Badge className="z-10 @sm:hidden bg-stone-700/80 px-2 text-muted shadow-none backdrop-blur-lg">
 							{data.publishedAt}
 						</Badge>

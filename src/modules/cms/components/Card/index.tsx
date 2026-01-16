@@ -12,7 +12,7 @@ import { Media } from "../Media";
 
 export type CardPostData = Pick<
 	Blog,
-	"slug" | "blog-categories" | "meta" | "title"
+	"slug" | "blogCategories" | "meta" | "title"
 >;
 
 export const Card: React.FC<{
@@ -32,7 +32,7 @@ export const Card: React.FC<{
 		title: titleFromProps,
 	} = props;
 
-	const { slug, "blog-categories": categories, meta, title } = doc || {};
+	const { slug, blogCategories: categories, meta, title } = doc || {};
 	const { description, image: metaImage } = meta || {};
 
 	const hasCategories =

@@ -11,5 +11,11 @@ export const Media: CollectionConfig = {
 			type: "text",
 		},
 	],
-	upload: true,
+	upload: {
+		formatOptions: {
+			format: "webp",
+		},
+		adminThumbnail: "thumbnail",
+		mimeTypes: ["image/*"],
+	},
 };
