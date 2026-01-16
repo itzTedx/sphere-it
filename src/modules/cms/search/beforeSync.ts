@@ -24,7 +24,7 @@ export const beforeSyncWithSearch: BeforeSync = async ({
 	};
 
 	if (categories && Array.isArray(categories) && categories.length > 0) {
-		const populatedCategories: { id: string | number; title: string }[] = [];
+		const populatedCategories: { id: string | number; category: string }[] = [];
 		for (const category of categories) {
 			if (!category) {
 				continue;
@@ -36,11 +36,11 @@ export const beforeSyncWithSearch: BeforeSync = async ({
 			}
 
 			const doc = await req.payload.findByID({
-				collection: "categories",
+				collection: "blogCategories",
 				id: category,
 				disableErrors: true,
 				depth: 0,
-				select: { title: true },
+				select: { category: true },
 				req,
 			});
 
@@ -56,7 +56,7 @@ export const beforeSyncWithSearch: BeforeSync = async ({
 		modifiedDoc.categories = populatedCategories.map((each) => ({
 			relationTo: "categories",
 			categoryID: String(each.id),
-			title: each.title,
+			title: each.category,
 		}));
 	}
 
