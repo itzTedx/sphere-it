@@ -33,10 +33,7 @@ import { cn } from "@/lib/utils";
 
 export const WhyUs = memo(() => {
 	return (
-		<section
-			aria-labelledby="why-us-heading"
-			className="relative z-50 border bg-card p-4 sm:p-6 md:mx-3 md:rounded-3xl md:p-12 xl:p-20"
-		>
+		<section aria-labelledby="why-us-heading" className="relative z-50">
 			<div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
 				<header className="space-y-2 md:space-y-4">
 					{/* <Badge variant="secondary">Why sphere it</Badge> */}
@@ -86,7 +83,7 @@ function GuidedByCard({ className }: CardProps) {
 	return (
 		<article
 			className={cn(
-				"flex flex-col justify-between rounded-2xl border bg-background",
+				"flex flex-col justify-between rounded-2xl border bg-card",
 				className
 			)}
 		>
@@ -170,7 +167,7 @@ function AxisCard({ className }: CardProps) {
 	return (
 		<article
 			className={cn(
-				"relative flex flex-col overflow-hidden rounded-2xl border bg-background",
+				"relative flex flex-col overflow-hidden rounded-2xl border bg-card",
 				className
 			)}
 		>
@@ -293,7 +290,7 @@ function TechStackCard({ className }: CardProps) {
 	return (
 		<article
 			className={cn(
-				"relative grid overflow-hidden rounded-2xl border bg-background md:grid-cols-2",
+				"relative grid overflow-hidden rounded-2xl border bg-card md:grid-cols-2",
 				className
 			)}
 		>
@@ -316,7 +313,7 @@ function TechStackCard({ className }: CardProps) {
 					<div className="relative flex h-[240px] w-full overflow-hidden rounded-xl bg-card shadow-md">
 						<div
 							aria-hidden="true"
-							className="pointer-events-none absolute inset-x-0 top-0 z-10 h-1/4 bg-linear-to-b from-background/80 to-transparent"
+							className="pointer-events-none absolute inset-x-0 top-0 z-10 h-1/4 bg-linear-to-b from-card/80 to-transparent"
 						/>
 						<Marquee
 							className="w-full p-4 [--duration:40s] [--gap:0.75rem]"
@@ -331,7 +328,7 @@ function TechStackCard({ className }: CardProps) {
 				</div>
 				<div
 					aria-hidden="true"
-					className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-background to-transparent"
+					className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-card to-transparent"
 				/>
 			</div>
 		</article>
@@ -366,7 +363,7 @@ function ReliabilityCard({ className }: CardProps) {
 	return (
 		<article
 			className={cn(
-				"grid grid-cols-5 overflow-hidden rounded-2xl border bg-background",
+				"grid grid-cols-5 overflow-hidden rounded-2xl border bg-card",
 				className
 			)}
 		>

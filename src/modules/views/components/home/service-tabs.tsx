@@ -102,7 +102,7 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<Tabs
 			aria-label="Services navigation"
-			className="container relative z-10 max-w-7xl pb-12 max-sm:px-0 md:border-x"
+			className="container relative z-10 max-w-7xl pb-12 max-sm:px-0"
 			onValueChange={handleTabClick}
 			value={currentTab}
 		>

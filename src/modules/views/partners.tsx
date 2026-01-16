@@ -8,7 +8,7 @@ import { PARTNERS } from "@/data/constants";
 
 export const Partners = memo(() => {
 	return (
-		<section className="my-16 border-y md:mb-28">
+		<section className="my-16 md:mb-28">
 			<div className="mx-auto max-w-7xl max-xl:container">
 				<div className="space-y-4 rounded-3xl border bg-card px-6 py-9 md:px-16 md:py-10">
 					<h3 className="text-center text-title-5">

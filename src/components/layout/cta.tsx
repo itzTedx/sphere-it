@@ -41,48 +41,46 @@ export const Cta = memo(
 					className
 				)}
 			>
-				<div className="xl:border-y">
-					<div className="relative mx-auto max-w-7xl">
-						<div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 shadow-2xl sm:p-8 lg:rounded-none lg:p-12 xl:rounded-3xl xl:p-16">
-							<div className="relative z-10 max-w-2xl space-y-3 sm:space-y-4">
-								<Badge
-									aria-label="Call to action category"
-									className="bg-primary-400/10 text-primary-500 text-xs sm:text-sm"
-									role="text"
-								>
-									{badge}
-								</Badge>
-								<h4
-									className="text-balance text-primary-100 text-xl leading-tight sm:text-2xl lg:text-title-2 xl:text-title-3"
-									id="cta-heading"
-								>
-									{title}
-								</h4>
-								<p className="text-balance text-primary-300 text-sm sm:text-base lg:text-lg">
-									{description}
-								</p>
-								<Button
-									aria-describedby="cta-description"
-									className="w-full sm:w-auto"
-									size="lg"
-								>
-									<Link href={buttonLink}>{buttonText}</Link>
-								</Button>
-							</div>
-							<LogoOutline
-								aria-hidden="true"
-								className="-translate-x-1/4 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 max-sm:size-152 sm:top-8 sm:opacity-80 lg:top-12 lg:opacity-100 xl:top-16"
-							/>
+				<div className="relative mx-auto max-w-7xl">
+					<div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 shadow-2xl sm:p-8 lg:rounded-none lg:p-12 xl:rounded-3xl xl:p-16">
+						<div className="relative z-10 max-w-2xl space-y-3 sm:space-y-4">
+							<Badge
+								aria-label="Call to action category"
+								className="bg-primary-400/10 text-primary-500 text-xs sm:text-sm"
+								role="text"
+							>
+								{badge}
+							</Badge>
+							<h4
+								className="text-balance text-primary-100 text-xl leading-tight sm:text-2xl lg:text-title-2 xl:text-title-3"
+								id="cta-heading"
+							>
+								{title}
+							</h4>
+							<p className="text-balance text-primary-300 text-sm sm:text-base lg:text-lg">
+								{description}
+							</p>
+							<Button
+								aria-describedby="cta-description"
+								className="w-full sm:w-auto"
+								size="lg"
+							>
+								<Link href={buttonLink}>{buttonText}</Link>
+							</Button>
 						</div>
-						{showForm && (
-							<div className="lg:-translate-y-1/2 z-50 mt-5 rounded-2xl bg-card p-9 shadow-md lg:absolute lg:top-1/2 lg:right-9 lg:mt-0 lg:w-lg">
-								<h5 className="mb-4 text-stone-800 text-title-4">
-									Shall we talk
-								</h5>
-								<QuickEnquiryForm />
-							</div>
-						)}
+						<LogoOutline
+							aria-hidden="true"
+							className="-translate-x-1/4 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 max-sm:size-152 sm:top-8 sm:opacity-80 lg:top-12 lg:opacity-100 xl:top-16"
+						/>
 					</div>
+					{showForm && (
+						<div className="lg:-translate-y-1/2 z-50 mt-5 rounded-2xl bg-card p-9 shadow-md lg:absolute lg:top-1/2 lg:right-9 lg:mt-0 lg:w-lg">
+							<h5 className="mb-4 text-stone-800 text-title-4">
+								Shall we talk
+							</h5>
+							<QuickEnquiryForm />
+						</div>
+					)}
 				</div>
 			</section>
 		);

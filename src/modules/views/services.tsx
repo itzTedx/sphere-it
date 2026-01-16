@@ -103,7 +103,7 @@ export const Services = memo(() => {
 				</ServicesTabs>
 				<FlickeringGrid
 					aria-hidden="true"
-					className="absolute inset-0 z-1 opacity-50 [mask-image:radial-gradient(820px_circle_at_top,white,transparent)]"
+					className="mask-[radial-gradient(820px_circle_at_top,white,transparent)] absolute inset-0 z-1 opacity-50"
 					color="#C3A5FA"
 					flickerChance={0.1}
 					gridGap={4}
