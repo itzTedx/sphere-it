@@ -24,5 +24,15 @@ export const getMediaUrl = (
 
 	// Otherwise prepend client-side URL
 	const baseUrl = getClientSideURL();
+
+	// If we are on localhost or same origin, return relative path for UI components
+	// This fixes the Next.js "upstream image resolved to private ip" error
+	if (
+		baseUrl.includes("localhost") ||
+		(typeof window !== "undefined" && baseUrl === window.location.origin)
+	) {
+		return cacheTag ? `${url}?${cacheTag}` : url;
+	}
+
 	return cacheTag ? `${baseUrl}${url}?${cacheTag}` : `${baseUrl}${url}`;
 };
