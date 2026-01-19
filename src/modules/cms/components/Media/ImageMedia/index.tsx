@@ -63,6 +63,8 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 	let alt = altFromProps;
 	let src: StaticImageData | string = srcFromProps || "";
 
+	console.log("Resoruce", resource);
+
 	if (!src && resource && typeof resource === "object") {
 		const {
 			alt: altFromResource,
@@ -87,7 +89,6 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 				.map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
 				.join(", ");
 
-	console.log("Image Source: ", src);
 	return (
 		<picture className={cn(pictureClassName)}>
 			<NextImage

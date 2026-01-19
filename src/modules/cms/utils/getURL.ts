@@ -3,7 +3,10 @@ import canUseDOM from "./canUseDOM";
 export const getServerSideURL = () => {
 	const url = process.env.NEXT_PUBLIC_SERVER_URL;
 
-	if (!url) return "http://localhost:3000";
+	if (!url)
+		return process.env.NODE_ENV === "development"
+			? "http://localhost:3000"
+			: "https://sphere-it.vercel.app";
 
 	if (url.startsWith("http://") || url.startsWith("https://")) {
 		return url;
