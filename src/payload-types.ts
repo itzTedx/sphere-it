@@ -271,7 +271,14 @@ export interface CaseStudy {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (number | Blog)[] | null;
+  highlights?:
+    | {
+        value?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  relatedStudies?: (number | CaseStudy)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -598,7 +605,14 @@ export interface CaseStudiesSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
   content?: T;
-  relatedPosts?: T;
+  highlights?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  relatedStudies?: T;
   meta?:
     | T
     | {

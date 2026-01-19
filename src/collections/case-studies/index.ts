@@ -7,6 +7,7 @@ import {
 } from "@payloadcms/plugin-seo/fields";
 import {
 	BlocksFeature,
+	EXPERIMENTAL_TableFeature,
 	FixedToolbarFeature,
 	HeadingFeature,
 	HorizontalRuleFeature,
@@ -82,6 +83,7 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 										}),
 										InlineToolbarFeature(),
 										HorizontalRuleFeature(),
+										EXPERIMENTAL_TableFeature(),
 									];
 								},
 							}),
@@ -94,7 +96,22 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 				{
 					fields: [
 						{
-							name: "relatedPosts",
+							type: "array",
+							name: "highlights",
+							maxRows: 2,
+							fields: [
+								{
+									name: "value",
+									type: "text",
+								},
+								{
+									name: "label",
+									type: "text",
+								},
+							],
+						},
+						{
+							name: "relatedStudies",
 							type: "relationship",
 							admin: {
 								position: "sidebar",
@@ -107,7 +124,7 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 								};
 							},
 							hasMany: true,
-							relationTo: "blogs",
+							relationTo: "case-studies",
 						},
 					],
 					label: "Meta",
