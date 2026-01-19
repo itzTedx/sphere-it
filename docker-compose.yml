@@ -24,6 +24,7 @@ services:
 
   app:
     image: ${IMAGE_NAME:-zironmedia/sphere-it}:latest
+    container_name: sphereit-site
     env_file:
       - .env
     environment:
