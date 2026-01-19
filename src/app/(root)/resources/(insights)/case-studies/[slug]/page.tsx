@@ -1,64 +1,71 @@
 import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
-import MDXContent from "@/components/markdown";
 import { Button } from "@/components/ui/button";
 
 import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { slugify } from "@/lib/utils";
-import { geStudyBySlug, listStudies } from "@/modules/case-studies/actions";
-import { CaseStudy } from "@/modules/case-studies/actions/types";
+import {
+	findCaseStduyBySlug,
+	listCaseStudies,
+} from "@/modules/case-studies/actions/query";
+import { Media } from "@/modules/cms/components/Media";
+import RichText from "@/modules/cms/components/RichText";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
-
-import { CaseStudiesContent } from "../../components/case-studies-content";
+import { CaseStudy } from "@/payload-types";
 
 interface Props {
 	params: Promise<{ slug: string }>;
 }
 
-const structuredData = (study: CaseStudy | null) => ({
-	"@context": "https://schema.org",
-	"@type": "CaseStudy",
-	headline: study?.metadata.title,
-	image: `${BASE_URL}${study?.metadata.image}`,
-	author: {
-		"@type": "Organization",
-		name: COMPANY_NAME,
-		url: BASE_URL,
-	},
-	publisher: {
-		"@type": "Organization",
-		name: COMPANY_NAME,
-		url: BASE_URL,
-		logo: {
-			"@type": "ImageObject",
-			url: `${BASE_URL}/logo.png`,
+const structuredData = (study: CaseStudy) => {
+	const image =
+		study.heroImage && typeof study.heroImage !== "number"
+			? study.heroImage.url
+			: "";
+
+	return {
+		"@context": "https://schema.org",
+		"@type": "CaseStudy",
+		headline: study?.title,
+		image: image ? `${BASE_URL}${image}` : undefined,
+		author: {
+			"@type": "Organization",
+			name: COMPANY_NAME,
+			url: BASE_URL,
 		},
-	},
-	mainEntityOfPage: {
-		"@type": "WebPage",
-		"@id": `${BASE_URL}/resources/case-studies/${study?.metadata.slug}`,
-	},
-	keywords: [
-		"case study",
-		"digital transformation",
-		"technology",
-		"IT consulting",
-		COMPANY_NAME,
-	],
-});
+		publisher: {
+			"@type": "Organization",
+			name: COMPANY_NAME,
+			url: BASE_URL,
+			logo: {
+				"@type": "ImageObject",
+				url: `${BASE_URL}/logo.png`,
+			},
+		},
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": `${BASE_URL}/resources/case-studies/${study?.slug}`,
+		},
+		keywords: [
+			"case study",
+			"digital transformation",
+			"technology",
+			"IT consulting",
+			COMPANY_NAME,
+		],
+	};
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
-	const study = await geStudyBySlug(slug);
+	const study = await findCaseStduyBySlug(slug);
 
 	if (!study) {
 		return {
@@ -67,8 +74,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		};
 	}
 
-	const description = study.metadata.meta.description;
-	const title = study.metadata.meta.title;
+	const description = study.meta?.description ?? study.title;
+	const title = study.meta?.title ?? study.title;
+	const image =
+		study.heroImage && typeof study.heroImage !== "number"
+			? study.heroImage.url
+			: "";
 
 	return {
 		title: `${title} | ${COMPANY_NAME} Case Study`,
@@ -89,12 +100,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: title,
 			description,
 			type: "article",
-			url: `${BASE_URL}/resources/case-studies/${study.metadata.slug}`,
+			url: `${BASE_URL}/resources/case-studies/${study.slug}`,
 			siteName: COMPANY_NAME,
 			locale: "en_US",
 			images: [
 				{
-					url: `${BASE_URL}${study.metadata.image}`,
+					url: `${BASE_URL}${image}`,
 					width: 1200,
 					height: 630,
 					alt: title,
@@ -105,12 +116,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			card: "summary_large_image",
 			title: title,
 			description,
-			images: [`${BASE_URL}${study.metadata.image}`],
+			images: [`${BASE_URL}${image}`],
 			creator: "@sphereglobal",
 			site: "@sphereglobal",
 		},
 		alternates: {
-			canonical: `${BASE_URL}/resources/case-studies/${study.metadata.slug}`,
+			canonical: `${BASE_URL}/resources/case-studies/${study.slug}`,
 		},
 		robots: {
 			index: true,
@@ -127,7 +138,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-	const studies = listStudies();
+	const studies = await listCaseStudies();
 
 	return studies.map((study) => ({
 		slug: study.slug,
@@ -137,7 +148,7 @@ export async function generateStaticParams() {
 export default async function CaseStudyPage({ params }: Props) {
 	const { slug } = await params;
 
-	const study = await geStudyBySlug(slug);
+	const study = await findCaseStduyBySlug(slug);
 
 	const jsonLd = structuredData(study);
 
@@ -156,8 +167,8 @@ export default async function CaseStudyPage({ params }: Props) {
 					{ name: "Resources", item: `${BASE_URL}/resources` },
 					{ name: "Case Studies", item: `${BASE_URL}/resources/case-studies` },
 					{
-						name: study.metadata.title,
-						item: `${BASE_URL}/resources/case-studies/${study.metadata.slug}`,
+						name: study.title,
+						item: `${BASE_URL}/resources/case-studies/${study.slug}`,
 					},
 				]}
 			/>
@@ -190,9 +201,9 @@ export default async function CaseStudyPage({ params }: Props) {
 										</Button>
 									</nav>
 
-									<ViewTransition name={`title-${study.metadata.slug}`}>
+									<ViewTransition name={`title-${study.slug}`}>
 										<h1 className="text-primary-900 text-title-2 sm:text-title-3">
-											{study.metadata.title}
+											{study.title}
 										</h1>
 									</ViewTransition>
 								</div>
@@ -200,7 +211,7 @@ export default async function CaseStudyPage({ params }: Props) {
 									className="grid grid-cols-2 gap-3 sm:grid-cols-3"
 									role="list"
 								>
-									{study.metadata.lists?.map((list) => (
+									{study.highlights?.map((list) => (
 										<li
 											className="flex aspect-square flex-col justify-between rounded-lg bg-primary-500/16 p-4 text-primary-800 first:bg-foreground first:text-primary-100 sm:p-6"
 											key={list.label}
@@ -215,30 +226,38 @@ export default async function CaseStudyPage({ params }: Props) {
 									))}
 								</ul>
 							</div>
-							<ViewTransition name={`image-${study?.metadata.slug}`}>
+							<ViewTransition name={`image-${study?.slug}`}>
 								<div className="lg:col-span-5">
 									<div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border bg-stone-alpha-10 p-2">
 										<div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-xl shadow-lg sm:aspect-5/6">
-											{study.metadata.client && (
+											{/* {study.client && (
 												<Image
-													alt={`${study?.metadata.title} - Featured image`}
+													alt={`${study?.title} - Featured image`}
 													className="z-10 object-cover"
 													height={60}
 													priority
 													sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-													src={study?.metadata.client.logo}
+													src={study?.client.logo}
 													width={120}
 												/>
-											)}
-
-											<Image
-												alt={`${study?.metadata.title} - Featured image`}
+											)} */}
+											{study.heroImage &&
+												typeof study.heroImage !== "string" && (
+													<Media
+														fill
+														imgClassName="object-cover"
+														resource={study.heroImage}
+														size="33vw"
+													/>
+												)}
+											{/* <Image
+												alt={`${study?.title} - Featured image`}
 												className="object-cover"
 												fill
 												priority
 												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
 												src={study?.metadata.image}
-											/>
+											/> */}
 										</div>
 									</div>
 								</div>
@@ -247,8 +266,18 @@ export default async function CaseStudyPage({ params }: Props) {
 					</div>
 				</header>
 				<div className="container mb-24 max-w-7xl border-b">
-					<CaseStudiesContent study={study.metadata}>
-						<MDXContent
+					{/* <CaseStudiesContent study={study}> */}
+					<article
+						className="prose prose-stone prose-lg mx-auto max-w-none py-4 prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
+						itemProp="articleBody"
+					>
+						<RichText
+							className="prose prose-stone prose-lg prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
+							data={study.content}
+							enableGutter={false}
+						/>
+					</article>
+					{/* <MDXContent
 							components={{
 								h1: (props) => <h1 id={slugify(props.children)} {...props} />,
 								h2: (props) => <h2 id={slugify(props.children)} {...props} />,
@@ -258,8 +287,8 @@ export default async function CaseStudyPage({ params }: Props) {
 								h6: (props) => <h6 id={slugify(props.children)} {...props} />,
 							}}
 							source={study?.content}
-						/>
-					</CaseStudiesContent>
+						/> */}
+					{/* </CaseStudiesContent> */}
 				</div>
 				<Cta showForm />
 			</main>

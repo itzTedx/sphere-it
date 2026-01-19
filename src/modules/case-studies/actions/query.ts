@@ -18,3 +18,19 @@ export const listCaseStudies = async () => {
 	});
 	return data.docs;
 };
+
+export const findCaseStduyBySlug = async (slug: string) => {
+	const data = await payload.find({
+		collection: "case-studies",
+		draft: false,
+		depth: 2,
+		where: {
+			slug: {
+				equals: slug,
+			},
+		},
+		limit: 1,
+	});
+
+	return data.docs?.[0] || null;
+};
