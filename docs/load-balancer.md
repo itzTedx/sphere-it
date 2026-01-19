@@ -1,25 +1,26 @@
 # Load Balancer Setup
 
-This project includes a Caddy load balancer configuration to distribute traffic across multiple application instances.
+This project includes an Nginx load balancer configuration to distribute traffic across multiple application instances.
 
 ## Architecture
 
 ```
-Internet → Caddy (Port 80) → App Instances (Port 3000) → PostgreSQL
+Internet → Nginx (Port 80/443) → App Instances (Port 3000) → PostgreSQL
 ```
 
-- **Caddy**: Acts as reverse proxy and load balancer with automatic HTTPS
-- **App**: Multiple Next.js application instances
-- **PostgreSQL**: Shared database for all app instances
+- **Nginx**: Acts as reverse proxy and load balancer.
+- **Certbot**: Handles SSL/TLS certificate provisioning and renewal.
+- **App**: Multiple Next.js application instances.
+- **Postgres**: Shared database for all app instances.
 
 ## Features
 
-- **Load Balancing**: Distributes requests across multiple app instances using least connections algorithm
-- **Health Checks**: Monitors app instance health and removes unhealthy instances
-- **Automatic HTTPS**: Automatic SSL/TLS certificate provisioning and renewal
-- **Security Headers**: Adds security headers to all responses
-- **Gzip Compression**: Compresses responses for better performance
-- **WebSocket Support**: Supports WebSocket connections for real-time features
+- **Load Balancing**: Distributes requests across multiple app instances using the least connections algorithm.
+- **Health Checks**: Monitors app instance health via the Nginx upstream module.
+- **SSL/TLS**: Automated certificate management via Certbot and Let's Encrypt.
+- **Security Headers**: Adds best-practice security headers to all responses.
+- **Gzip Compression**: Compresses responses for better performance.
+- **WebSocket Support**: Supports WebSocket connections for real-time features.
 
 ## Usage
 
@@ -42,7 +43,7 @@ Scale the application to multiple instances:
 docker compose up -d --scale app=3
 ```
 
-**Note**: Docker Compose's internal DNS will round-robin resolve the service name `app` to different instances. Caddy will distribute connections using the least connections algorithm.
+**Note**: Docker Compose's internal DNS will round-robin resolve the service name `app` to different instances. Nginx will distribute connections using the `least_conn` strategy defined in `nginx.conf`.
 
 ### Viewing Logs
 
@@ -50,8 +51,8 @@ docker compose up -d --scale app=3
 # View all logs
 docker compose logs -f
 
-# View Caddy logs
-docker compose logs -f caddy
+# View Nginx logs
+docker compose logs -f nginx
 
 # View app logs
 docker compose logs -f app
@@ -65,21 +66,20 @@ Check the health of your services:
 # Check app health
 curl http://localhost/api/health
 
-# Check Caddy health
-docker compose ps
+# Check Nginx health
+docker compose ps nginx
 ```
 
 ## Configuration
 
-### Caddy Configuration
+### Nginx Configuration
 
-The Caddy configuration is located at `Caddyfile`. Key settings:
+The Nginx configuration is located at `nginx.conf`. Key settings:
 
-- **Load Balancing Algorithm**: `least_conn` (least connections)
-- **Health Checks**: Active health checks every 10 seconds on `/api/health`
-- **Timeouts**: 60 seconds for read/write operations
-- **Failover**: Automatic failover after 3 consecutive failures
-- **Automatic HTTPS**: Caddy can automatically provision SSL certificates (when domain is configured)
+- **Upstream Block**: Defines `app_servers` with `least_conn`.
+- **Health Checks**: Check `/api/health` with failure timeouts.
+- **SSL Configuration**: Points to Certbot-managed certificates in `/etc/letsencrypt`.
+- **HTTP to HTTPS**: Port 80 automatically redirects to 443.
 
 ### Environment Variables
 
@@ -109,20 +109,15 @@ This will expose Caddy on port 8080 instead of 80.
 
 ### 1. SSL/TLS
 
-Caddy automatically provisions and renews SSL/TLS certificates via Let's Encrypt. To enable:
+SSL is handled by Nginx using certificates from Let's Encrypt. To enable:
 
-1. Update your `Caddyfile` to use your domain:
-   ```caddyfile
-   yourdomain.com {
-       reverse_proxy app:3000 {
-           # ... same configuration
-       }
-   }
+1. Update `nginx.conf` with your domain name.
+2. Ensure ports 80 and 443 are open.
+3. Run the initial certificate request:
+   ```bash
+   ./scripts/deploy.sh ssl-init
    ```
-
-2. Ensure port 443 is accessible and DNS points to your server
-
-3. Caddy will automatically obtain and renew certificates
+4. Certbot will automatically handle renewals every 12 hours via the `certbot` service.
 
 ### 2. Session Affinity
 
@@ -157,8 +152,8 @@ docker compose ps
 # Check resource usage
 docker stats
 
-# View Caddy access logs
-docker compose logs caddy | grep "GET\|POST"
+# View Nginx access logs
+docker compose logs nginx | grep "GET\|POST"
 ```
 
 ## Troubleshooting
@@ -175,14 +170,14 @@ docker compose logs caddy | grep "GET\|POST"
    docker compose logs app
    ```
 
-3. Verify Caddy can reach app instances:
+3. Verify Nginx can reach app instances:
    ```bash
-   docker compose exec caddy wget -O- http://app:3000/api/health
+   docker compose exec nginx wget -O- http://app:3000/api/health
    ```
 
-4. Check Caddy configuration:
+4. Check Nginx configuration:
    ```bash
-   docker compose exec caddy caddy validate --config /etc/caddy/Caddyfile
+   docker compose exec nginx nginx -t
    ```
 
 ### High Latency
@@ -206,17 +201,15 @@ docker compose logs caddy | grep "GET\|POST"
 
 If you need to update the Caddy configuration:
 
-1. Edit `Caddyfile`
-2. Reload Caddy configuration:
+1. Edit `nginx.conf`
+2. Test configuration:
    ```bash
-   docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile
+   docker compose exec nginx nginx -t
    ```
-
-Or restart the Caddy service:
-
-```bash
-docker compose restart caddy
-```
+3. Reload Nginx:
+   ```bash
+   docker compose exec nginx nginx -s reload
+   ```
 
 ## Scaling Strategy
 

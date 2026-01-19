@@ -224,30 +224,37 @@ If you're new to React or modern web development:
 3. Write meaningful commit messages
 4. Test your changes thoroughly
 
-## 🚀 Deployment
+### Deployment Helper
 
-The project is optimized for deployment on Vercel, but can be deployed to any platform that supports Next.js.
+A helper script is provided to simplify deployment tasks:
+
+```bash
+# Initialize SSL (First-time)
+./scripts/deploy.sh ssl-init
+
+# Start services
+./scripts/deploy.sh start
+
+# View logs
+./scripts/deploy.sh logs
+```
+
+For detailed instructions, see the [VPS Deployment Guide](./docs/vps-deployment.md).
 
 ### Environment Variables
 
-Create a `.env.local` file for local development. You can copy the example file:
+Create a `.env` file for your environment. You can copy the example:
 
 ```bash
-cp example.env .env.local
+cp example.env .env
 ```
 
 Key variables include:
 - `DATABASE_URL`: Postgres connection string
 - `BETTER_AUTH_SECRET`: Secret for auth tokens
-- `LINKEDIN_CLIENT_ID` / `SECRET`: OAuth credentials
+- `PORT`: External port (default: 80)
 - `SMTP_*`: Email configuration
-
-### Production Build
-
-```bash
-pnpm build
-pnpm start
-```
+- `DB_*`: Database credentials (used by Docker)
 
 
 ## 📄 License

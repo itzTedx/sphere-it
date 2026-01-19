@@ -175,7 +175,7 @@ RECEIVER_EMAIL=contact@yourdomain.com
 # 🐳 DOCKER CONFIGURATION
 # ===============================
 
-# Port for Caddy (80 for HTTP, 443 for HTTPS)
+# Port for Nginx (80 for HTTP, 443 for HTTPS)
 PORT=80
 ```
 
@@ -195,32 +195,23 @@ openssl rand -base64 32
 # Copy the output and add it to BETTER_AUTH_SECRET in your .env file
 ```
 
-## Step 4: Configure Domain (Optional but Recommended)
+## Step 4: Configure Domain and SSL
 
-### 4.1 Update Caddyfile for Your Domain
+### 4.1 Update Nginx Configuration
 
-```bash
-nano Caddyfile
-```
+The `nginx.conf` file is already configured to handle both HTTP (port 80) and HTTPS (port 443). Ensure the `server_name` in `nginx.conf` matches your domain:
 
-Replace `:80` with your domain:
-
-```caddyfile
-yourdomain.com {
-	# Reverse proxy with load balancing
-	reverse_proxy app:3000 {
-		# ... rest of configuration stays the same
-	}
-	
-	# ... rest of configuration
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com www.yourdomain.com;
+    ...
 }
-```
 
-**Note**: If you want to support both www and non-www:
-
-```caddyfile
-yourdomain.com, www.yourdomain.com {
-	# ... configuration
+server {
+    listen 443 ssl;
+    server_name yourdomain.com www.yourdomain.com;
+    ...
 }
 ```
 
@@ -229,53 +220,41 @@ yourdomain.com, www.yourdomain.com {
 Point your domain to your VPS IP:
 
 - **A Record**: `yourdomain.com` → `your-vps-ip`
-- **A Record**: `www.yourdomain.com` → `your-vps-ip` (if using www)
+- **A Record**: `www.yourdomain.com` → `your-vps-ip`
 
 ### 4.3 Verify DNS Propagation
 
 ```bash
-# Check if DNS is pointing correctly
 dig yourdomain.com +short
-# Should return your VPS IP
 ```
 
-## Step 5: Build and Start Services
+## Step 5: Build and Initialize SSL
 
-### 5.1 Make Deployment Script Executable (Optional)
+### 5.1 Fix Potential Mounting Errors
 
-```bash
-cd /opt/sphere-global
-chmod +x scripts/deploy.sh
-```
+If you encounter an error like `not a directory` when starting Nginx, it's usually because Docker created a directory where it expected the `nginx.conf` file.
 
-The deployment script provides convenient commands for managing your deployment. See [Deployment Script](#deployment-script) section below.
+1. Stop containers: `docker compose down`
+2. Remove the incorrect directory: `rm -rf nginx.conf` (if it exists as a folder)
+3. Ensure the `nginx.conf` file exists in the root.
 
 ### 5.2 Build Docker Images
-
-```bash
-cd /opt/sphere-global
-docker compose build
-```
-
-This may take 5-10 minutes on the first build.
-
-**Or using the deployment script:**
 
 ```bash
 ./scripts/deploy.sh build
 ```
 
-### 5.3 Start Services
+### 5.3 Initialize SSL Certificates (First-time only)
+
+Since Nginx requires SSL certificates to start on port 443, you must generate them first:
 
 ```bash
-# Start all services in detached mode
-docker compose up -d
-
-# Check status
-docker compose ps
+./scripts/deploy.sh ssl-init
 ```
 
-**Or using the deployment script:**
+This will use Certbot to request certificates from Let's Encrypt.
+
+### 5.4 Start Services
 
 ```bash
 ./scripts/deploy.sh start
@@ -292,7 +271,8 @@ docker compose logs -f
 
 # Check specific service logs
 docker compose logs app
-docker compose logs caddy
+docker compose logs nginx
+docker compose logs certbot
 docker compose logs postgres
 ```
 
@@ -332,7 +312,7 @@ docker compose up -d --scale app=3
 docker compose ps
 ```
 
-Caddy will automatically load balance across all instances.
+Nginx will automatically load balance across all instances.
 
 ## Step 8: Monitoring and Maintenance
 
@@ -344,7 +324,8 @@ docker compose logs -f
 
 # Specific service
 docker compose logs -f app
-docker compose logs -f caddy
+docker compose logs -f nginx
+docker compose logs -f certbot
 docker compose logs -f postgres
 
 # Last 100 lines
@@ -509,8 +490,11 @@ docker compose exec postgres psql -U $DB_USER -d $DB_NAME
 ### Issue: SSL certificate not working
 
 ```bash
-# Check Caddy logs
-docker compose logs caddy
+# Check Nginx logs
+docker compose logs nginx
+
+# Check Certbot logs
+docker compose logs certbot
 
 # Verify DNS is pointing correctly
 dig yourdomain.com

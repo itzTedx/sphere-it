@@ -159,11 +159,11 @@ case $COMMAND in
             print_error "App health check failed"
         fi
         
-        # Check Caddy health
-        if docker compose exec -T caddy wget --no-verbose --tries=1 --spider http://localhost/api/health > /dev/null 2>&1; then
-            print_success "Caddy health check passed"
+        # Check Nginx health
+        if docker compose exec -T nginx wget --no-verbose --tries=1 --spider http://localhost/api/health > /dev/null 2>&1; then
+            print_success "Nginx health check passed"
         else
-            print_error "Caddy health check failed"
+            print_error "Nginx health check failed"
         fi
         
         # Check database health
@@ -174,6 +174,17 @@ case $COMMAND in
         fi
         ;;
     
+    ssl-init)
+        DOMAIN="sphereitglobal.com"
+        print_info "Starting initial SSL certificate request for $DOMAIN..."
+        docker compose run --rm --entrypoint "\
+          certbot certonly --webroot -w /var/www/certbot \
+          --email admin@$DOMAIN \
+          --agree-tos --no-eff-email \
+          -d $DOMAIN -d www.$DOMAIN" certbot
+        print_success "SSL initialization attempt finished. Check logs above for success."
+        ;;
+
     help|*)
         echo "Sphere Global Deployment Script"
         echo ""
@@ -184,12 +195,13 @@ case $COMMAND in
         echo "  start      - Start all services"
         echo "  stop       - Stop all services"
         echo "  restart    - Restart all services"
-        echo "  logs       - View logs (optionally specify service: app, caddy, postgres)"
+        echo "  logs       - View logs (optionally specify service: app, nginx, postgres, certbot)"
         echo "  status     - Show container status and health"
         echo "  update     - Pull latest code and rebuild"
         echo "  scale N    - Scale app to N instances (e.g., scale 3)"
         echo "  backup     - Create database backup"
         echo "  health     - Run health checks on all services"
+        echo "  ssl-init   - Initialize SSL certificate (Let's Encrypt)"
         echo "  help       - Show this help message"
         echo ""
         echo "Examples:"
@@ -197,6 +209,7 @@ case $COMMAND in
         echo "  ./deploy.sh start"
         echo "  ./deploy.sh logs app"
         echo "  ./deploy.sh scale 3"
+        echo "  ./deploy.sh ssl-init"
         ;;
 esac
 

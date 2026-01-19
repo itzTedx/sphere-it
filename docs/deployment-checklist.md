@@ -28,7 +28,7 @@ Use this checklist to ensure a smooth deployment to your VPS.
 - [ ] All required files present:
   - [ ] `docker-compose.yml`
   - [ ] `Dockerfile`
-  - [ ] `Caddyfile`
+  - [ ] `nginx.conf`
   - [ ] `.dockerignore`
   - [ ] `package.json`
   - [ ] `pnpm-lock.yaml`
@@ -40,7 +40,7 @@ Use this checklist to ensure a smooth deployment to your VPS.
 
 - [ ] `.env` file created with all required variables
 - [ ] `.env` file permissions set to 600
-- [ ] `Caddyfile` updated with domain name (if using custom domain)
+- [ ] `nginx.conf` updated with domain name
 - [ ] Database credentials configured
 - [ ] Better Auth secret generated and added
 - [ ] SMTP credentials configured
@@ -50,7 +50,8 @@ Use this checklist to ensure a smooth deployment to your VPS.
 ## Build and Deploy
 
 - [ ] Docker images built successfully (`docker compose build`)
-- [ ] Services started (`docker compose up -d`)
+- [ ] SSL certificates initialized (`./scripts/deploy.sh ssl-init`)
+- [ ] Services started (`./scripts/deploy.sh start`)
 - [ ] All containers are running (`docker compose ps`)
 - [ ] All containers are healthy (check status)
 - [ ] Health endpoint accessible (`/api/health`)
