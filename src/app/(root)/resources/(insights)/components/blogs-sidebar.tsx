@@ -6,7 +6,8 @@ import {
 
 import { IconChevronDown } from "@/assets/icons";
 
-import { BlogCardProps } from "../blogs/page";
+import { BlogCardProps } from "@/modules/blogs/components/blog-card";
+
 import {
 	CategoryFilter,
 	FeaturedFilter,
