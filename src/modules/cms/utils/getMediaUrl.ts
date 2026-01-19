@@ -22,17 +22,15 @@ export const getMediaUrl = (
 		return cacheTag ? `${url}?${cacheTag}` : url;
 	}
 
-	// Otherwise prepend client-side URL
-	const baseUrl = getClientSideURL();
-
-	// If we are on localhost or same origin, return relative path for UI components
-	// This fixes the Next.js "upstream image resolved to private ip" error
-	if (
-		baseUrl.includes("localhost") ||
-		(typeof window !== "undefined" && baseUrl === window.location.origin)
-	) {
+	// If it's a relative path (starts with /), return it as is for UI components
+	// This allows Next.js Image component to handle it as an internal asset
+	// and fixes the "upstream image resolved to private ip" error in Docker/Production
+	if (url.startsWith("/")) {
 		return cacheTag ? `${url}?${cacheTag}` : url;
 	}
+
+	// Otherwise prepend client-side URL
+	const baseUrl = getClientSideURL();
 
 	return cacheTag ? `${baseUrl}${url}?${cacheTag}` : `${baseUrl}${url}`;
 };

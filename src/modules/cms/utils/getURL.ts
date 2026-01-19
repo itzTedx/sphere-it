@@ -1,9 +1,15 @@
 import canUseDOM from "./canUseDOM";
 
 export const getServerSideURL = () => {
-	return process.env.NEXT_PUBLIC_SERVER_URL
-		? `https://${process.env.NEXT_PUBLIC_SERVER_URL}`
-		: "http://localhost:3000";
+	const url = process.env.NEXT_PUBLIC_SERVER_URL;
+
+	if (!url) return "http://localhost:3000";
+
+	if (url.startsWith("http://") || url.startsWith("https://")) {
+		return url;
+	}
+
+	return url.includes("localhost") ? `http://${url}` : `https://${url}`;
 };
 
 export const getClientSideURL = () => {
@@ -15,9 +21,13 @@ export const getClientSideURL = () => {
 		return `${protocol}//${domain}${port ? `:${port}` : ""}`;
 	}
 
-	if (process.env.NEXT_PUBLIC_SERVER_URL) {
-		return `https://${process.env.NEXT_PUBLIC_SERVER_URL}`;
+	const url = process.env.NEXT_PUBLIC_SERVER_URL;
+
+	if (!url) return "";
+
+	if (url.startsWith("http://") || url.startsWith("https://")) {
+		return url;
 	}
 
-	return process.env.NEXT_PUBLIC_SERVER_URL || "";
+	return url.includes("localhost") ? `http://${url}` : `https://${url}`;
 };
