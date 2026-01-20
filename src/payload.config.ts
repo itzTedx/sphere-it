@@ -9,6 +9,7 @@ import { BlogCategories } from "./collections/blogs/category";
 import { CaseStudies } from "./collections/case-studies";
 import { FaqCategories } from "./collections/faqs/category";
 import { Faqs } from "./collections/faqs/Faqs";
+import { Footer } from "./collections/globals/footer";
 import { Media } from "./collections/Media";
 import { ResearchPapers } from "./collections/research-papers";
 import { Users } from "./collections/Users";
@@ -35,6 +36,7 @@ export default buildConfig({
 		Users,
 		Media,
 	],
+	globals: [Footer],
 
 	editor: defaultLexical,
 	secret: process.env.PAYLOAD_SECRET || "",

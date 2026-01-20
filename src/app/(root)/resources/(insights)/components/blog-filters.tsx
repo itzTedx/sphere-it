@@ -22,7 +22,9 @@ import { IconSearch } from "@/assets/icons/search";
 export function SearchInput({ placeholder }: { placeholder?: string }) {
 	const [search, setSearch] = useQueryState(
 		"search",
-		parseAsString.withDefault("").withOptions({ shallow: false, throttleMs: 300 })
+		parseAsString
+			.withDefault("")
+			.withOptions({ shallow: false, throttleMs: 300 })
 	);
 
 	return (
