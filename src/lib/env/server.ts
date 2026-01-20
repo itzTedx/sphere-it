@@ -10,6 +10,11 @@ export const env = createEnv({
 		LINKEDIN_CLIENT_ID: z.string().min(1),
 		LINKEDIN_CLIENT_SECRET: z.string().min(1),
 
+		AWS_BUCKET_NAME: z.string(),
+		AWS_BUCKET_REGION: z.string(),
+		AWS_ACCESS_KEY_SPHERE: z.string(),
+		AWS_SECRET_ACCESS_KEY: z.string(),
+
 		// NODEMAILER CONNECTION
 		SMTP_HOST: z.string().default("localhost"),
 		SMTP_PORT: z.string().default("1025"),

@@ -1,8 +1,10 @@
 import { searchPlugin } from "@payloadcms/plugin-search";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
+import { s3Storage } from "@payloadcms/storage-s3";
 import { Plugin } from "payload";
 
+import { env } from "@/lib/env/server";
 import { Blog } from "@/payload-types";
 
 import { beforeSyncWithSearch } from "../search/beforeSync";
@@ -28,6 +30,19 @@ export const plugins: Plugin[] = [
 		generateTitle,
 		generateURL,
 		generateDescription,
+	}),
+	s3Storage({
+		collections: {
+			media: true,
+		},
+		bucket: env.AWS_BUCKET_NAME,
+		config: {
+			credentials: {
+				accessKeyId: env.AWS_ACCESS_KEY_SPHERE,
+				secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+			},
+			region: env.AWS_BUCKET_REGION,
+		},
 	}),
 
 	searchPlugin({

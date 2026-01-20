@@ -12,7 +12,7 @@ export const Media: CollectionConfig = {
 		},
 	],
 	upload: {
-		staticDir: "public/uploads",
+		// staticDir: "public/uploads",
 		formatOptions: {
 			format: "webp",
 		},
