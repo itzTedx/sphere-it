@@ -70,6 +70,7 @@ export interface Config {
     blogs: Blog;
     blogCategories: BlogCategory;
     'case-studies': CaseStudy;
+    researchPapers: ResearchPaper;
     faqs: Faq;
     'faq-categories': FaqCategory;
     users: User;
@@ -86,6 +87,7 @@ export interface Config {
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     blogCategories: BlogCategoriesSelect<false> | BlogCategoriesSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    researchPapers: ResearchPapersSelect<false> | ResearchPapersSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -306,6 +308,55 @@ export interface CaseStudy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "researchPapers".
+ */
+export interface ResearchPaper {
+  id: number;
+  title: string;
+  heroImage?: (number | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  relatedResearchPapers?: (number | ResearchPaper)[] | null;
+  authors?: (number | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faqs".
  */
 export interface Faq {
@@ -491,6 +542,10 @@ export interface PayloadLockedDocument {
         value: number | CaseStudy;
       } | null)
     | ({
+        relationTo: 'researchPapers';
+        value: number | ResearchPaper;
+      } | null)
+    | ({
         relationTo: 'faqs';
         value: number | Faq;
       } | null)
@@ -621,6 +676,36 @@ export interface CaseStudiesSelect<T extends boolean = true> {
         description?: T;
       };
   publishedAt?: T;
+  authors?: T;
+  populatedAuthors?:
+    | T
+    | {
+        id?: T;
+        name?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "researchPapers_select".
+ */
+export interface ResearchPapersSelect<T extends boolean = true> {
+  title?: T;
+  heroImage?: T;
+  content?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  relatedResearchPapers?: T;
   authors?: T;
   populatedAuthors?:
     | T
@@ -811,6 +896,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'case-studies';
           value: number | CaseStudy;
+        } | null)
+      | ({
+          relationTo: 'researchPapers';
+          value: number | ResearchPaper;
         } | null);
     global?: string | null;
     user?: (number | null) | User;

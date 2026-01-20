@@ -21,7 +21,7 @@ import type { Media, Media as MediaType } from "@/payload-types";
 // 	src?: StaticImageData; // for static media
 // 	videoClassName?: string;
 // }
-export type Props = Media & {
+export type Props = Partial<Media> & {
 	alt?: string;
 	className?: string;
 	fill?: boolean; // for NextImage only

@@ -6,6 +6,7 @@ import {
 	PreviewField,
 } from "@payloadcms/plugin-seo/fields";
 import {
+	BlockquoteFeature,
 	BlocksFeature,
 	EXPERIMENTAL_TableFeature,
 	FixedToolbarFeature,
@@ -24,10 +25,10 @@ import { Banner } from "@/modules/cms/blocks/Banner/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
 
 import { populateAuthors } from "./hooks/populateAuthors";
-import { revalidateDelete, revalidatePost } from "./hooks/revalidatePost";
+import { revalidateDelete, revalidatePaper } from "./hooks/revalidate-papers";
 
-export const CaseStudies: CollectionConfig<"blogs"> = {
-	slug: "case-studies",
+export const ResearchPapers: CollectionConfig<"researchPapers"> = {
+	slug: "researchPapers",
 
 	defaultPopulate: {
 		title: true,
@@ -38,8 +39,8 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 		},
 	},
 	admin: {
-		defaultColumns: ["title", "slug", "updatedAt"],
 		group: "Resources",
+		defaultColumns: ["title", "slug", "updatedAt"],
 		useAsTitle: "title",
 	},
 	fields: [
@@ -83,6 +84,7 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 										}),
 										InlineToolbarFeature(),
 										HorizontalRuleFeature(),
+										BlockquoteFeature(),
 										EXPERIMENTAL_TableFeature(),
 									];
 								},
@@ -93,42 +95,7 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 					],
 					label: "Content",
 				},
-				{
-					fields: [
-						{
-							type: "array",
-							name: "highlights",
-							maxRows: 2,
-							fields: [
-								{
-									name: "value",
-									type: "text",
-								},
-								{
-									name: "label",
-									type: "text",
-								},
-							],
-						},
-						{
-							name: "relatedStudies",
-							type: "relationship",
-							admin: {
-								position: "sidebar",
-							},
-							filterOptions: ({ id }) => {
-								return {
-									id: {
-										not_in: [id],
-									},
-								};
-							},
-							hasMany: true,
-							relationTo: "case-studies",
-						},
-					],
-					label: "Meta",
-				},
+
 				{
 					name: "meta",
 					label: "SEO",
@@ -179,6 +146,22 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 			},
 		},
 		{
+			name: "relatedResearchPapers",
+			type: "relationship",
+			admin: {
+				position: "sidebar",
+			},
+			filterOptions: ({ id }) => {
+				return {
+					id: {
+						not_in: [id],
+					},
+				};
+			},
+			hasMany: true,
+			relationTo: "researchPapers",
+		},
+		{
 			name: "authors",
 			type: "relationship",
 			admin: {
@@ -214,7 +197,7 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 		slugField(),
 	],
 	hooks: {
-		afterChange: [revalidatePost],
+		afterChange: [revalidatePaper],
 		afterRead: [populateAuthors],
 		afterDelete: [revalidateDelete],
 	},

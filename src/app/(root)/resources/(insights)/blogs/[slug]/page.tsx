@@ -41,14 +41,10 @@ const structuredData = (blog: Blog) => {
 			? (() => {
 					const cat = blog.blogCategories[0];
 					if (typeof cat === "string") return cat;
-					if (
-						typeof cat === "object" &&
-						cat !== null &&
-						"category" in cat
-					)
+					if (typeof cat === "object" && cat !== null && "category" in cat)
 						return cat.category;
 					return "Technology";
-			  })()
+				})()
 			: "Technology";
 
 	return {
@@ -201,8 +197,8 @@ export default async function BlogPage({ params }: Props) {
 									<div className="relative aspect-4/3 overflow-hidden rounded-xl shadow-lg">
 										{blog.heroImage && typeof blog.heroImage !== "string" && (
 											<Media
+												className="object-cover"
 												fill
-												imgClassName="object-cover"
 												resource={blog.heroImage}
 												size="33vw"
 											/>

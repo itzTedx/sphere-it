@@ -39,6 +39,10 @@ const nextConfig: NextConfig = {
 				protocol: "https",
 				hostname: "sphere-it.vercel.app",
 			},
+			{
+				protocol: "https",
+				hostname: "zm-deals-local.s3.us-east-1.amazonaws.com",
+			},
 		],
 	},
 

@@ -7,14 +7,14 @@ import type {
 
 import { Blog } from "@/payload-types";
 
-export const revalidatePost: CollectionAfterChangeHook<Blog> = ({
+export const revalidatePaper: CollectionAfterChangeHook<Blog> = ({
 	doc,
 	previousDoc,
 	req: { payload, context },
 }) => {
 	if (!context.disableRevalidate) {
 		if (doc._status === "published") {
-			const path = `/resourses/posts/${doc.slug}`;
+			const path = `/posts/${doc.slug}`;
 
 			payload.logger.info(`Revalidating post at path: ${path}`);
 

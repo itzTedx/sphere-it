@@ -39,7 +39,7 @@ export const Blogs: CollectionConfig<"blogs"> = {
 	},
 	admin: {
 		defaultColumns: ["title", "heroImage", "slug", "isFeatured", "updatedAt"],
-
+		group: "Resources",
 		useAsTitle: "title",
 	},
 	fields: [

@@ -1,7 +1,6 @@
 import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
-import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -14,7 +13,6 @@ import { Button } from "@/components/ui/button";
 import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { auth } from "@/lib/auth/server";
 import { slugify } from "@/lib/utils";
 import { LinkedInAuthButton } from "@/modules/auth/components/linkedin-button";
 import {
@@ -260,9 +258,9 @@ export default async function ResearchPaperPage({ params }: Props) {
 }
 
 async function Article({ content }: { content: string }) {
-	const session = await auth.api.getSession({ headers: await headers() });
+	// const session = await auth.api.getSession({ headers: await headers() });
 
-	const isLoggedIn = session?.session;
+	const isLoggedIn = true;
 
 	const data = isLoggedIn ? content : content.slice(0, 1500);
 
