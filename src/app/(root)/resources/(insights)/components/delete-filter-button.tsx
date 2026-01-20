@@ -1,5 +1,6 @@
 "use client";
 
+import { Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { AnimateIcon } from "@/components/ui/base/icon";
@@ -25,7 +26,7 @@ export const ClearFilterButton = ({
 		<AnimateIcon animateOnHover>
 			<Button
 				className="hover:text-accent"
-				onClick={() => router.replace(pathname as any)}
+				onClick={() => router.replace(pathname as Route)}
 				size="sm"
 				variant="ghost"
 				{...props}
