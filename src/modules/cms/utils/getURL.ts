@@ -1,7 +1,7 @@
 import canUseDOM from "./canUseDOM";
 
 export const getServerSideURL = () => {
-	const url = process.env.NEXT_PUBLIC_SERVER_URL;
+	const url = process.env.NEXT_PUBLIC_BASE_URL;
 
 	if (!url)
 		return process.env.NODE_ENV === "development"
@@ -24,7 +24,7 @@ export const getClientSideURL = () => {
 		return `${protocol}//${domain}${port ? `:${port}` : ""}`;
 	}
 
-	const url = process.env.NEXT_PUBLIC_SERVER_URL;
+	const url = process.env.NEXT_PUBLIC_BASE_URL;
 
 	if (!url) return "";
 
