@@ -24,7 +24,6 @@ services:
 
   app:
     build: .
-    image: ${IMAGE_NAME:-zironmedia/sphere-it}:latest
     container_name: sphereit-site
     ports:
       - "3000:3000"
