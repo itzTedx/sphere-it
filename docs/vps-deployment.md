@@ -145,6 +145,7 @@ DB_USER=sphere_user
 DB_PASSWORD=your_secure_password_here
 DB_NAME=sphere_global
 DB_PORT=5432
+DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
 
 # ===============================
 # 🔐 BETTER AUTH CONFIGURATION
@@ -361,8 +362,7 @@ cd /opt/sphere-global
 git pull
 
 # Rebuild and restart
-docker compose build app
-docker compose up -d
+docker compose up -d --build app
 
 # Or rebuild all
 docker compose build

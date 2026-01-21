@@ -34,6 +34,16 @@ docker compose up -d
 
 The application will be available at `http://localhost` (port 80).
 
+### Local Development (Direct Access)
+
+For local development and testing, you can bypass Nginx and access the application directly on port `3000`:
+
+```bash
+docker compose up -d postgres app
+```
+
+Access at: [http://localhost:3000](http://localhost:3000)
+
 ### Scaling Application Instances
 
 Scale the application to multiple instances:
@@ -87,12 +97,11 @@ Update your `.env` file with the correct values:
 
 ```env
 # Base URLs (should point to your domain in production)
-BASE_URL=http://localhost
-NEXT_PUBLIC_BASE_URL=http://localhost
-BETTER_AUTH_URL=http://localhost
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+BETTER_AUTH_URL=http://localhost:3000
 
 # Database (shared across all app instances)
-DATABASE_URL=postgres://user:password@postgres:5432/db_name
+DATABASE_URL=postgresql://user:password@postgres:5432/db_name
 ```
 
 ### Port Configuration
@@ -103,7 +112,7 @@ Change the external port by setting the `PORT` environment variable:
 PORT=8080
 ```
 
-This will expose Caddy on port 8080 instead of 80.
+This will expose Nginx on port 8080 instead of 80.
 
 ## Production Considerations
 
@@ -121,12 +130,12 @@ SSL is handled by Nginx using certificates from Let's Encrypt. To enable:
 
 ### 2. Session Affinity
 
-If your application uses server-side sessions, you may need sticky sessions. Update `Caddyfile`:
+If your application uses server-side sessions, you may need sticky sessions. Update `nginx.conf`:
 
-```caddyfile
-reverse_proxy app:3000 {
-    lb_policy ip_hash  # Use IP hash instead of least_conn
-    # ... other settings
+```nginx
+upstream app_servers {
+    ip_hash;  # Use IP hash instead of least_conn
+    server app:3000;
 }
 ```
 
@@ -199,13 +208,13 @@ docker compose logs nginx | grep "GET\|POST"
 
 ### Configuration Issues
 
-If you need to update the Caddy configuration:
+If you need to update the Nginx configuration:
 
 1. Edit `nginx.conf`
 2. Test configuration:
-   ```bash
-   docker compose exec nginx nginx -t
-   ```
+    ```bash
+    docker compose exec nginx nginx -t
+    ```
 3. Reload Nginx:
    ```bash
    docker compose exec nginx nginx -s reload
@@ -221,8 +230,8 @@ If you need to update the Caddy configuration:
 
 ## Additional Resources
 
-- [Caddy Reverse Proxy Documentation](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy)
-- [Caddy Load Balancing](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy#load-balancing)
+- [Nginx Reverse Proxy Documentation](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+- [Nginx Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
 - [Docker Compose Scaling](https://docs.docker.com/compose/reference/scale/)
 - [Next.js Deployment Documentation](https://nextjs.org/docs/deployment)
 

@@ -140,15 +140,20 @@ The project uses Docker for local database and email testing services.
 - Port: `5432`
 - Default credentials: `user`/`password` (configured in `.env`)
 
+### Application (Local Build)
+- Port: `3000`
+- Builds from local `Dockerfile` (automatically handles Next.js build)
+
 ### MailHog (Email Testing)
 - SMTP Port: `1025`
 - Web UI: [http://localhost:8025](http://localhost:8025)
-- The default `SMTP_HOST=localhost` and `SMTP_PORT=1025` in `.env.local` target this service.
 
 Start all services:
 ```bash
-pnpm docker:up
+docker compose up -d --build
 ```
+> [!TIP]
+> Use `--build` to ensure your latest local changes are included in the Docker container.
 
 ## 📜 Available Scripts
 
@@ -250,9 +255,10 @@ cp example.env .env
 ```
 
 Key variables include:
-- `DATABASE_URL`: Postgres connection string
+- `DATABASE_URL`: Postgres connection string (e.g., `postgresql://postgres:password@localhost:5432/sphere-it`)
+- `NEXT_PUBLIC_BASE_URL`: The primary URL for the application (e.g., `http://localhost:3000`)
 - `BETTER_AUTH_SECRET`: Secret for auth tokens
-- `PORT`: External port (default: 80)
+- `PORT`: External port for Nginx (default: 80)
 - `SMTP_*`: Email configuration
 - `DB_*`: Database credentials (used by Docker)
 

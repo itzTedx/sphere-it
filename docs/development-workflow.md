@@ -49,6 +49,23 @@ npm run dev
 5. **Open in browser:**
 Navigate to [http://localhost:3000](http://localhost:3000)
 
+## 🐳 Local Services (Docker)
+
+The project uses Docker for local database and email testing services.
+
+### Postgres (Database)
+- Port: `5432`
+- Default credentials: `postgres`/`XeFmn9URvk3Met61cI3KT9TPSOSBbWsS` (configured in `.env`)
+
+### Application (Local Build)
+- Port: `3000`
+- Access: [http://localhost:3000](http://localhost:3000)
+
+Start all services:
+```bash
+docker compose up -d --build
+```
+
 ## 🛠️ Development Environment
 
 ### VS Code Configuration
