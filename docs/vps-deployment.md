@@ -2,7 +2,69 @@
 
 This guide will walk you through deploying the Sphere Global application to your VPS using Docker Compose.
 
+## 🚀 Quick Start (Docker Compose)
+
+If you just want to get up and running quickly with the recommended setup:
+
+1.  **Clone & Set Env**: `git clone <repo> . && cp example.env .env`
+2.  **Edit `.env`**: Fill in your domain, DB credentials, and secrets.
+3.  **Build**: `./scripts/deploy.sh build`
+4.  **SSL Init**: `./scripts/deploy.sh ssl-init` (if using HTTPS)
+5.  **Start**: `./scripts/deploy.sh start`
+6.  **Migrate**: `docker compose exec app pnpm db:migrate`
+
+---
+
 ## Prerequisites
+...
+[Rest of the file content]
+...
+## Alternative: Using Host-Installed Nginx
+
+If you prefer to run Nginx directly on your VPS host instead of inside a Docker container, follow these steps:
+
+### 1. Install Nginx on VPS
+```bash
+sudo apt update
+sudo apt install nginx -y
+```
+
+### 2. Configure Nginx
+Create a new configuration file:
+```bash
+sudo nano /etc/nginx/sites-available/sphere-global
+```
+
+Add the following (adjusting for your domain):
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com www.yourdomain.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+### 3. Enable Configuration & Restart
+```bash
+sudo ln -s /etc/nginx/sites-available/sphere-global /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+### 4. Update Docker Compose
+In your `docker-compose.yml`, you can comment out or remove the `nginx` and `certbot` services if you are handling SSL on the host (e.g., with `certbot` installed via `apt`).
+
+---
+...
+[Rest of the file content]
 
 - A VPS with Ubuntu 20.04+ or similar Linux distribution
 - Root or sudo access

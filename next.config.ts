@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
 		turbopackFileSystemCacheForBuild: true,
 	},
 
+	allowedDevOrigins: ["http://localhost:3000", "http://localhost:3001"],
 	// Image optimization
 	images: {
 		formats: ["image/webp", "image/avif"],
