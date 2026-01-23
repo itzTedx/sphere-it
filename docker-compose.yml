@@ -25,6 +25,8 @@ services:
   app:
     build:
       context: .
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
       args:
         - DATABASE_URL=${DATABASE_URL}
     container_name: sphereit-site
