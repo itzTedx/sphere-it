@@ -23,12 +23,7 @@ services:
       retries: 5
 
   app:
-    build:
-      context: .
-      extra_hosts:
-        - "host.docker.internal:host-gateway"
-      args:
-        - DATABASE_URL=${DATABASE_URL}
+    image: zironmedia/sphere-it:latest
     container_name: sphereit-site
     ports:
       - "3000:3000"
@@ -36,7 +31,6 @@ services:
       - .env
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
     depends_on:
       postgres:
         condition: service_healthy
@@ -47,6 +41,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
-
+  
 volumes:
   pg-data:
