@@ -74,7 +74,8 @@ const JobApplicationEmail = ({
 								className="mb-[32px] text-center text-[12px]"
 								style={{ color: "#736D7B" }}
 							>
-								A new candidate has submitted a job application through the Sphere IT Global careers portal.
+								A new candidate has submitted a job application through the
+								Sphere IT Global careers portal.
 							</Text>
 
 							{/* Application Details Card */}
@@ -189,7 +190,8 @@ const JobApplicationEmail = ({
 								className="mt-[24px] mb-[8px] text-center text-[14px]"
 								style={{ color: "#18131F" }}
 							>
-								The resume is attached to this email. Please review the candidate's profile and follow up accordingly.
+								The resume is attached to this email. Please review the
+								candidate's profile and follow up accordingly.
 							</Text>
 						</Section>
 
@@ -217,8 +219,8 @@ const JobApplicationEmail = ({
 							<Hr className="my-[16px] border-[#A67BED]" />
 							<Text className="m-0 mb-[8px] text-center text-[10px] text-white leading-relaxed opacity-75">
 								This message and any attachments are confidential and intended
-								only for the recruitment team. If you received it in error, please
-								delete it immediately.
+								only for the recruitment team. If you received it in error,
+								please delete it immediately.
 							</Text>
 							<Text className="m-0 text-center text-[12px] text-white opacity-90">
 								© 2025 Sphere IT Global. All rights reserved.
@@ -238,7 +240,8 @@ JobApplicationEmail.PreviewProps = {
 	location: "Dubai, UAE",
 	department: "Engineering",
 	preferredWorkMode: "Hybrid",
-	message: "I am a Senior Software Engineer with 8 years of experience in full-stack development. I am passionate about building scalable cloud-native applications and leading engineering teams. I have been following Sphere IT's growth and would love to contribute to your digital transformation projects.",
+	message:
+		"I am a Senior Software Engineer with 8 years of experience in full-stack development. I am passionate about building scalable cloud-native applications and leading engineering teams. I have been following Sphere IT's growth and would love to contribute to your digital transformation projects.",
 };
 
 export default JobApplicationEmail;

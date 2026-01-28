@@ -6,12 +6,12 @@ import { LEGAL_HANDLING_EMAIL } from "@/data/legal";
 import { BASE_URL } from "@/data/site-config";
 import { TableOfContent } from "@/modules/views/components/table-of-content";
 
+import { Header } from "./components/header";
+import { SectionTitle } from "./components/section-title";
 import {
 	privacyFAQStructuredData,
 	privacyStructuredData,
 } from "./structured-data";
-import { Header } from "./components/header";
-import { SectionTitle } from "./components/section-title";
 
 export const email = LEGAL_HANDLING_EMAIL;
 const POLICY_LAST_UPDATED = "October 6, 2025";
