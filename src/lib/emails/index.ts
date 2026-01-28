@@ -24,7 +24,7 @@ export const transporter = nodemailer.createTransport({
 	...(transporterAuth ?? {}),
 });
 
-type SendEmailOptions =
+type SendEmailOptions = (
 	| {
 			email?: string;
 			subject: string;
@@ -35,10 +35,17 @@ type SendEmailOptions =
 			email?: string;
 			subject: string;
 			text: string;
-	  };
+	  }
+) & {
+	attachments?: Array<{
+		filename: string;
+		content: Buffer | string;
+		contentType?: string;
+	}>;
+};
 
 export const sendEmail = async (options: SendEmailOptions) => {
-	const { email, subject, text } = options;
+	const { email, subject, text, attachments } = options;
 	const react = "react" in options ? options.react : undefined;
 
 	return await transporter.sendMail({
@@ -48,5 +55,6 @@ export const sendEmail = async (options: SendEmailOptions) => {
 		subject,
 		text,
 		html: react ? await render(react) : undefined,
+		attachments,
 	});
 };

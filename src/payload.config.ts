@@ -3,6 +3,7 @@ import path from "path";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 
 import { Blogs } from "./collections/blogs";
 import { BlogCategories } from "./collections/blogs/category";
@@ -18,6 +19,7 @@ import { ResearchPapers } from "./collections/research-papers";
 import { Users } from "./collections/Users";
 import { defaultLexical } from "./modules/cms/fields/defaultLexical";
 import { plugins } from "./modules/cms/plugins";
+import { env } from "./lib/env/server";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -43,6 +45,19 @@ export default buildConfig({
 		EmployeeTestimonials,
 	],
 	globals: [Footer],
+	email: nodemailerAdapter({
+		defaultFromAddress: env.SMTP_FROM,
+		defaultFromName: 'Sphere It',
+		 
+		transportOptions: {
+		  host: env.SMTP_HOST,
+		  port: Number(env.SMTP_PORT),
+		  auth: {
+			user: env.SMTP_USER,
+			pass: env.SMTP_PASS,
+		  },
+		},
+	  }),
 
 	editor: defaultLexical,
 	secret: process.env.PAYLOAD_SECRET || "",

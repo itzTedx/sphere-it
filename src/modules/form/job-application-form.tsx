@@ -1,5 +1,7 @@
 "use client";
 
+import { useTransition } from "react";
+
 import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -44,6 +46,7 @@ import { IconUser } from "@/assets/icons/user";
 
 import { cn } from "@/lib/utils";
 
+import { submitJobApplication } from "./actions/submit-job-application";
 import { FileUpload } from "./components/upload-input";
 import {
 	JobApplicationType,
@@ -80,6 +83,7 @@ interface Props {
 
 export const JobApplicationForm = ({ initialData }: Props) => {
 	const aot = department.find((a) => a.title === initialData?.department);
+	const [isPending, startTransition] = useTransition();
 
 	const form = useForm<JobApplicationType>({
 		resolver: zodResolver(jobApplicationSchema),
@@ -91,16 +95,33 @@ export const JobApplicationForm = ({ initialData }: Props) => {
 	});
 
 	function onSubmit(data: JobApplicationType) {
-		toast("You submitted the following values:", {
-			description: (
-				<pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
-					<code>{JSON.stringify(data, null, 2)}</code>
-				</pre>
-			),
-			position: "bottom-center",
-			classNames: {
-				content: "flex flex-col gap-2",
-			},
+		startTransition(async () => {
+			const formData = new FormData();
+
+			// Append all fields to FormData
+			Object.entries(data).forEach(([key, value]) => {
+				if (value !== undefined && value !== null) {
+					if (key === "resume" && value instanceof File) {
+						formData.append(key, value);
+					} else {
+						formData.append(key, String(value));
+					}
+				}
+			});
+
+			const result = await submitJobApplication(formData);
+
+			if (result.success) {
+				toast.success("Application submitted successfully!", {
+					description:
+						"We've received your application and will get back to you soon.",
+				});
+				form.reset();
+			} else {
+				toast.error("Failed to submit application", {
+					description: result.error || "Please try again later.",
+				});
+			}
 		});
 	}
 
@@ -259,26 +280,14 @@ export const JobApplicationForm = ({ initialData }: Props) => {
 				<Controller
 					control={form.control}
 					name="resume"
-					render={({ field: { name, value }, fieldState }) => (
+					render={({ field: { name, value, onChange }, fieldState }) => (
 						<Field data-invalid={fieldState.invalid}>
 							<FieldLabel htmlFor={name}>Resume</FieldLabel>
 
-							{/* <Input
-                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                  aria-describedby={fieldState.invalid ? `${name}-error` : undefined}
-                  aria-invalid={fieldState.invalid}
-                  disabled={disabled}
-                  id={name}
-                  name={name}
-                  onBlur={onBlur}
-                  onChange={(event) => {
-                    const file = event.target.files?.[0];
-                    onChange(file ?? undefined);
-                  }}
-                  ref={ref}
-                  type="file"
-                /> */}
-							<FileUpload className="w-full max-w-full" />
+							<FileUpload
+								className="w-full max-w-full"
+								onChange={(file) => onChange(file)}
+							/>
 
 							{value instanceof File && (
 								<FieldDescription>Selected file: {value.name}</FieldDescription>
@@ -437,8 +446,8 @@ export const JobApplicationForm = ({ initialData }: Props) => {
 					</Link>
 				</FieldDescription>
 
-				<Button className="relative w-fit" type="submit">
-					Submit Application <IconMessage />
+				<Button className="relative w-fit" disabled={isPending} type="submit">
+					{isPending ? "Submitting..." : "Submit Application"} <IconMessage />
 				</Button>
 			</FieldGroup>
 		</form>

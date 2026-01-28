@@ -29,7 +29,7 @@ interface FileUploadProps {
 	onFileRemove?: () => void;
 	/** Duration in milliseconds for the upload simulation. Defaults to 2000ms (2s), 0 for no simulation */
 	uploadDelay?: number;
-	validateFile?: (file: File) => FileError | null;
+	onChange?: (file: File | null) => void;
 	className?: string;
 }
 
@@ -234,7 +234,7 @@ export function FileUpload({
 	currentFile: initialFile = null,
 	onFileRemove = () => {},
 	uploadDelay = 2000,
-	validateFile = () => null,
+	onChange,
 	className,
 }: FileUploadProps) {
 	const [file, setFile] = useState<File | null>(initialFile);
@@ -316,6 +316,7 @@ export function FileUpload({
 						setStatus("idle");
 						setFile(null);
 						onUploadSuccess?.(uploadingFile);
+						onChange?.(uploadingFile);
 					} else {
 						setStatus((prevStatus) => {
 							if (prevStatus === "uploading") {
@@ -355,24 +356,13 @@ export function FileUpload({
 				return;
 			}
 
-			const customError = validateFile?.(selectedFile);
-			if (customError) {
-				handleError(customError);
-				return;
-			}
-
 			setFile(selectedFile);
+			onChange?.(selectedFile);
 			setStatus("uploading");
 			setProgress(0);
 			simulateUpload(selectedFile);
 		},
-		[
-			simulateUpload,
-			validateFileSize,
-			validateFileType,
-			validateFile,
-			handleError,
-		]
+		[simulateUpload, validateFileSize, validateFileType, handleError]
 	);
 
 	const handleDragOver = useCallback((e: DragEvent<HTMLDivElement>) => {
@@ -418,7 +408,8 @@ export function FileUpload({
 		setStatus("idle");
 		setProgress(0);
 		if (onFileRemove) onFileRemove();
-	}, [onFileRemove]);
+		onChange?.(null);
+	}, [onFileRemove, onChange]);
 
 	return (
 		<div
