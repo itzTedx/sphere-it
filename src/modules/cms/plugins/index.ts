@@ -1,4 +1,3 @@
-import { searchPlugin } from "@payloadcms/plugin-search";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import {
 	GenerateImage,
@@ -9,8 +8,6 @@ import { Plugin } from "payload";
 
 import { Blog, CaseStudy, Media } from "@/payload-types";
 
-import { beforeSyncWithSearch } from "../search/beforeSync";
-import { searchFields } from "../search/fieldOverrides";
 import { getServerSideURL } from "../utils/getURL";
 
 const generateTitle: GenerateTitle<Blog> = ({ doc }) => {
@@ -52,13 +49,13 @@ export const plugins: Plugin[] = [
 	// 	},
 	// }),
 
-	searchPlugin({
-		collections: ["blogs"],
-		beforeSync: beforeSyncWithSearch,
-		searchOverrides: {
-			fields: ({ defaultFields }) => {
-				return [...defaultFields, ...searchFields];
-			},
-		},
-	}),
+	// searchPlugin({
+	// 	collections: ["blogs"],
+	// 	beforeSync: beforeSyncWithSearch,
+	// 	searchOverrides: {
+	// 		fields: ({ defaultFields }) => {
+	// 			return [...defaultFields, ...searchFields];
+	// 		},
+	// 	},
+	// }),
 ];

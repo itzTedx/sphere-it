@@ -6,6 +6,9 @@ import { fileURLToPath } from "url";
 
 import { Blogs } from "./collections/blogs";
 import { BlogCategories } from "./collections/blogs/category";
+import { Careers } from "./collections/careers";
+import { Departments } from "./collections/careers/department";
+import { EmployeeTestimonials } from "./collections/careers/employee-testimonials";
 import { CaseStudies } from "./collections/case-studies";
 import { FaqCategories } from "./collections/faqs/category";
 import { Faqs } from "./collections/faqs/Faqs";
@@ -35,6 +38,9 @@ export default buildConfig({
 		FaqCategories,
 		Users,
 		Media,
+		Careers,
+		Departments,
+		EmployeeTestimonials,
 	],
 	globals: [Footer],
 

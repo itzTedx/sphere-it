@@ -5,6 +5,10 @@ export const Faqs: CollectionConfig = {
 	access: {
 		read: () => true,
 	},
+	admin: {
+		group: "Resources",
+		useAsTitle: "question",
+	},
 	fields: [
 		{
 			name: "question",

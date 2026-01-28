@@ -75,7 +75,9 @@ export interface Config {
     'faq-categories': FaqCategory;
     users: User;
     media: Media;
-    search: Search;
+    careers: Career;
+    departments: Department;
+    employeeTestimonials: EmployeeTestimonial;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -92,7 +94,9 @@ export interface Config {
     'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    search: SearchSelect<false> | SearchSelect<true>;
+    careers: CareersSelect<false> | CareersSelect<true>;
+    departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
+    employeeTestimonials: EmployeeTestimonialsSelect<false> | EmployeeTestimonialsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -387,35 +391,86 @@ export interface FaqCategory {
   createdAt: string;
 }
 /**
- * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
- *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "search".
+ * via the `definition` "careers".
  */
-export interface Search {
+export interface Career {
   id: number;
-  title?: string | null;
-  priority?: number | null;
-  doc: {
-    relationTo: 'blogs';
-    value: number | Blog;
+  title: string;
+  description?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
   };
-  slug?: string | null;
   meta?: {
     title?: string | null;
-    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (number | null) | Media;
+    description?: string | null;
   };
-  categories?:
-    | {
-        relationTo?: string | null;
-        categoryID?: string | null;
-        title?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  department?: (number | null) | Department;
+  location?: string | null;
+  time?: string | null;
+  workMode?: ('on-site' | 'hybrid' | 'remote')[] | null;
+  validUntil?: string | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments".
+ */
+export interface Department {
+  id: number;
+  department: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "employeeTestimonials".
+ */
+export interface EmployeeTestimonial {
+  id: number;
+  name: string;
+  jobRole?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -566,8 +621,16 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'search';
-        value: number | Search;
+        relationTo: 'careers';
+        value: number | Career;
+      } | null)
+    | ({
+        relationTo: 'departments';
+        value: number | Department;
+      } | null)
+    | ({
+        relationTo: 'employeeTestimonials';
+        value: number | EmployeeTestimonial;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -788,30 +851,50 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "search_select".
+ * via the `definition` "careers_select".
  */
-export interface SearchSelect<T extends boolean = true> {
+export interface CareersSelect<T extends boolean = true> {
   title?: T;
-  priority?: T;
-  doc?: T;
-  slug?: T;
+  description?: T;
+  content?: T;
   meta?:
     | T
     | {
         title?: T;
-        description?: T;
         image?: T;
+        description?: T;
       };
-  categories?:
-    | T
-    | {
-        relationTo?: T;
-        categoryID?: T;
-        title?: T;
-        id?: T;
-      };
+  department?: T;
+  location?: T;
+  time?: T;
+  workMode?: T;
+  validUntil?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments_select".
+ */
+export interface DepartmentsSelect<T extends boolean = true> {
+  department?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "employeeTestimonials_select".
+ */
+export interface EmployeeTestimonialsSelect<T extends boolean = true> {
+  name?: T;
+  jobRole?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -954,6 +1037,14 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'researchPapers';
           value: number | ResearchPaper;
+        } | null)
+      | ({
+          relationTo: 'careers';
+          value: number | Career;
+        } | null)
+      | ({
+          relationTo: 'employeeTestimonials';
+          value: number | EmployeeTestimonial;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
