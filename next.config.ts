@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
 	typedRoutes: true,
 	reactCompiler: true,
 
-	// Docker standalone output
-	output: "standalone",
-
 	// Performance optimizations
 	experimental: {
 		optimizePackageImports: [
