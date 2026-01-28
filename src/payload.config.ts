@@ -58,6 +58,11 @@ export default buildConfig({
 			},
 		},
 	}),
+	upload: {
+		limits: {
+			fileSize: 5000000,
+		},
+	},
 
 	editor: defaultLexical,
 	secret: process.env.PAYLOAD_SECRET || "",
