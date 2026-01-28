@@ -30,7 +30,7 @@ export function SectionTitle({
 					/>
 				</div>
 				<h2
-					className="!m-0 scroll-mt-20 font-display font-medium text-neutral-800 text-xl"
+					className="m-0! scroll-mt-20 font-display font-medium text-neutral-800 text-xl"
 					id={href.replace("#", "")}
 				>
 					{children}

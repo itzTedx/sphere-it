@@ -15,6 +15,16 @@ export const Header = ({ title }: Props) => {
 					<HeaderLink href="/legal/privacy">Privacy Policy</HeaderLink>
 				</li>
 				<li>
+					<HeaderLink href="/legal/data-protection">
+						Data protection policy
+					</HeaderLink>
+				</li>
+				<li>
+					<HeaderLink href="/legal/acceptable-use-policy">
+						Acceptable use policy
+					</HeaderLink>
+				</li>
+				<li>
 					<HeaderLink href="/legal/terms-of-services">
 						Terms of Service
 					</HeaderLink>

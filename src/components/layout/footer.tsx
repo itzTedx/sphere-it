@@ -177,10 +177,7 @@ export const Footer = async () => {
 							Copyright © {currentYear} Sphere IT Global. All rights reserved.
 						</p>
 						<nav aria-label="Legal and policy links">
-							<ul
-								className="flex flex-wrap items-center gap-4 sm:gap-6"
-								role="list"
-							>
+							<ul className="flex flex-wrap items-center gap-4" role="list">
 								<li>
 									<Link
 										aria-label="Read our Privacy Policy"
@@ -188,7 +185,27 @@ export const Footer = async () => {
 										href="/legal/privacy"
 										title="Read our Privacy Policy"
 									>
-										Privacy Policy
+										Privacy policy
+									</Link>
+								</li>
+								<li>
+									<Link
+										aria-label="Read our Data Protection Policy"
+										className="rounded-sm p-2 text-muted-foreground text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
+										href="/legal/data-protection"
+										title="Read our Data Protection Policy"
+									>
+										Data protection policy
+									</Link>
+								</li>
+								<li>
+									<Link
+										aria-label="Read our Acceptable use policy"
+										className="rounded-sm p-2 text-muted-foreground text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
+										href="/legal/acceptable-use-policy"
+										title="Read our Acceptable use policy"
+									>
+										Acceptable use policy
 									</Link>
 								</li>
 								<li>
@@ -198,7 +215,7 @@ export const Footer = async () => {
 										href="/legal/terms-of-services"
 										title="Read our Terms of Service"
 									>
-										Terms of Service
+										Terms of service
 									</Link>
 								</li>
 							</ul>
