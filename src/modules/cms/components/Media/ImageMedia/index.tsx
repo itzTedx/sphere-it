@@ -3,7 +3,6 @@
 import type { StaticImageData } from "next/image";
 import NextImage from "next/image";
 
-import { env } from "@/lib/env/client";
 import { cn } from "@/lib/utils";
 import { getMediaUrl } from "@/modules/cms/utils/getMediaUrl";
 
@@ -20,7 +19,7 @@ export const ImageMedia = (props: Props) => {
 	const {
 		alt: altFromProps,
 		fill,
-		filename,
+
 		pictureClassName,
 		className,
 		priority,
@@ -34,8 +33,6 @@ export const ImageMedia = (props: Props) => {
 	let height: number | undefined;
 	let alt = altFromProps;
 	let src: StaticImageData | string = srcFromProps || "";
-
-	console.log("Resoruce", resource);
 
 	if (!src && resource && typeof resource === "object") {
 		const {
@@ -51,7 +48,16 @@ export const ImageMedia = (props: Props) => {
 
 		src = getMediaUrl(url);
 	}
-	const image = `${env.NEXT_PUBLIC_AWS_BUCKET}/${filename}`;
+	const image =
+		resource &&
+		typeof resource === "object" &&
+		"filename" in resource &&
+		typeof resource.filename === "string"
+			? `/uploads/${resource.filename}`
+			: typeof src === "string" && src
+				? src
+				: "";
+
 	const loading = loadingFromProps || (!priority ? "lazy" : undefined);
 
 	// NOTE: this is used by the browser to determine which image to download at different screen sizes

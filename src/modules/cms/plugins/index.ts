@@ -1,11 +1,13 @@
 import { searchPlugin } from "@payloadcms/plugin-search";
 import { seoPlugin } from "@payloadcms/plugin-seo";
-import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
-import { s3Storage } from "@payloadcms/storage-s3";
+import {
+	GenerateImage,
+	GenerateTitle,
+	GenerateURL,
+} from "@payloadcms/plugin-seo/types";
 import { Plugin } from "payload";
 
-import { env } from "@/lib/env/server";
-import { Blog } from "@/payload-types";
+import { Blog, CaseStudy, Media } from "@/payload-types";
 
 import { beforeSyncWithSearch } from "../search/beforeSync";
 import { searchFields } from "../search/fieldOverrides";
@@ -25,25 +27,30 @@ const generateDescription: GenerateURL<Blog> = ({ doc }) => {
 	return doc?.description ? doc.description : "Sphere IT";
 };
 
+const generateImage: GenerateImage<Blog | CaseStudy> = ({ doc }) => {
+	return doc?.heroImage as Media;
+};
+
 export const plugins: Plugin[] = [
 	seoPlugin({
 		generateTitle,
 		generateURL,
 		generateDescription,
+		generateImage,
 	}),
-	s3Storage({
-		collections: {
-			media: true,
-		},
-		bucket: env.AWS_BUCKET_NAME,
-		config: {
-			credentials: {
-				accessKeyId: env.AWS_ACCESS_KEY_SPHERE,
-				secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
-			},
-			region: env.AWS_BUCKET_REGION,
-		},
-	}),
+	// s3Storage({
+	// 	collections: {
+	// 		media: true,
+	// 	},
+	// 	bucket: env.AWS_BUCKET_NAME,
+	// 	config: {
+	// 		credentials: {
+	// 			accessKeyId: env.AWS_ACCESS_KEY_SPHERE,
+	// 			secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+	// 		},
+	// 		region: env.AWS_BUCKET_REGION,
+	// 	},
+	// }),
 
 	searchPlugin({
 		collections: ["blogs"],

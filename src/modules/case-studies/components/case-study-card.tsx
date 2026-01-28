@@ -49,12 +49,7 @@ export const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
 			</div>
 			<div className="absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-foreground to-transparent" />
 			{heroImage && typeof heroImage !== "string" && (
-				<Media
-					fill
-					imgClassName="object-cover"
-					resource={heroImage}
-					size="33vw"
-				/>
+				<Media className="object-cover" fill resource={heroImage} size="33vw" />
 			)}
 		</article>
 	);

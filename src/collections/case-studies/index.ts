@@ -22,6 +22,7 @@ import { slugField } from "payload";
 
 import { Banner } from "@/modules/cms/blocks/Banner/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
+import { generatePreviewPath } from "@/modules/cms/utils/generatePreviewPath";
 
 import { populateAuthors } from "./hooks/populateAuthors";
 import { revalidateDelete, revalidatePost } from "./hooks/revalidatePost";
@@ -38,7 +39,14 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 		},
 	},
 	admin: {
-		defaultColumns: ["title", "slug", "updatedAt"],
+		defaultColumns: ["title", "heroImage", "slug", "updatedAt"],
+
+		preview: (data, { req }) =>
+			generatePreviewPath({
+				slug: data?.slug as string,
+				collection: "case-studies",
+				req,
+			}),
 		group: "Resources",
 		useAsTitle: "title",
 	},
@@ -143,6 +151,7 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 						}),
 						MetaImageField({
 							relationTo: "media",
+							hasGenerateFn: true,
 						}),
 
 						MetaDescriptionField({}),
