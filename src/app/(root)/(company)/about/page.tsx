@@ -132,11 +132,12 @@ export default function AboutPage() {
 							</Suspense>
 						</div>
 					</div>
-
-					<PathsBackground
-						className="h-[calc(100lvh-4rem)] w-full"
-						position={-1}
-					/>
+					<Suspense>
+						<PathsBackground
+							className="h-[calc(100lvh-4rem)] w-full"
+							position={-1}
+						/>
+					</Suspense>
 				</header>
 
 				<div className="mt-24 border-y">

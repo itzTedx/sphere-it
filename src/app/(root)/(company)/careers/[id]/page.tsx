@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import type { Metadata } from "next/dist/types";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -25,15 +27,18 @@ interface Props {
 	params: Promise<{ id: string }>;
 }
 
+interface CareerPageContentProps {
+	id: string;
+}
+
 const getJobById = (id: string) => {
 	return ROLES.find((r) => r.id === Number(id));
 };
 
-export default async function CareerPage({ params }: Props) {
-	const { id } = await params;
+async function CareerPageContent({ id }: CareerPageContentProps) {
 	const application = getJobById(id);
 
-	if (!application) return redirect("/careers");
+	if (!application) redirect("/careers");
 
 	const structuredData = generateStructuredData(application, id);
 
@@ -91,7 +96,7 @@ export default async function CareerPage({ params }: Props) {
 								/>
 								<div>
 									<dt className="sr-only">Location</dt>
-									<dd className="break-words">{application.location}</dd>
+									<dd className="wrap-break-word">{application.location}</dd>
 								</div>
 							</div>
 							<span
@@ -110,51 +115,65 @@ export default async function CareerPage({ params }: Props) {
 							</div>
 						</dl>
 
-						<ApplyNowButton
-							aria-label={`Apply for ${application.title} position`}
-						/>
-					</header>
-					<CareersTab>
-						<TabsContent
-							aria-labelledby="overview-tab"
-							id="overview-panel"
-							value="overview"
-						>
-							<article
-								aria-labelledby="job-overview-heading"
-								className="prose prose-stone mt-4 prose-h3:mb-2 max-w-none prose-h1:font-medium prose-headings:text-primary-900 prose-p:text-sm prose-p:leading-relaxed sm:mt-6 sm:prose-p:text-base"
-							>
-								<h2 className="sr-only" id="job-overview-heading">
-									Job Overview
-								</h2>
-								<MDXContent source={application.content} />
-							</article>
+						<Suspense fallback={null}>
 							<ApplyNowButton
 								aria-label={`Apply for ${application.title} position`}
-								className="mt-4 sm:mt-6"
 							/>
-						</TabsContent>
-						<TabsContent
-							aria-labelledby="application-tab"
-							id="application-panel"
-							value="application"
-						>
-							<section aria-labelledby="application-form-heading">
-								<h2 className="sr-only" id="application-form-heading">
-									Job Application Form
-								</h2>
-								<JobApplicationForm
-									initialData={{
-										department: application.department,
-										workMode: application.workMode,
-									}}
+						</Suspense>
+					</header>
+					<Suspense fallback={null}>
+						<CareersTab>
+							<TabsContent
+								aria-labelledby="overview-tab"
+								id="overview-panel"
+								value="overview"
+							>
+								<article
+									aria-labelledby="job-overview-heading"
+									className="prose prose-stone mt-4 prose-h3:mb-2 max-w-none prose-h1:font-medium prose-headings:text-primary-900 prose-p:text-sm prose-p:leading-relaxed sm:mt-6 sm:prose-p:text-base"
+								>
+									<h2 className="sr-only" id="job-overview-heading">
+										Job Overview
+									</h2>
+									<MDXContent source={application.content} />
+								</article>
+								<ApplyNowButton
+									aria-label={`Apply for ${application.title} position`}
+									className="mt-4 sm:mt-6"
 								/>
-							</section>
-						</TabsContent>
-					</CareersTab>
+							</TabsContent>
+							<TabsContent
+								aria-labelledby="application-tab"
+								id="application-panel"
+								value="application"
+							>
+								<section aria-labelledby="application-form-heading">
+									<h2 className="sr-only" id="application-form-heading">
+										Job Application Form
+									</h2>
+									<JobApplicationForm
+										initialData={{
+											department: application.department,
+											workMode: application.workMode,
+										}}
+									/>
+								</section>
+							</TabsContent>
+						</CareersTab>
+					</Suspense>
 				</section>
 			</main>
 		</>
+	);
+}
+
+export default async function CareerPage({ params }: Props) {
+	const { id } = await params;
+
+	return (
+		<Suspense fallback={null}>
+			<CareerPageContent id={id} />
+		</Suspense>
 	);
 }
 

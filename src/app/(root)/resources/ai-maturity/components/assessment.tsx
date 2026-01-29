@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { parseAsString, useQueryState } from "nuqs";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -30,6 +31,14 @@ import { Results } from "./results";
 import { UserInfoForm } from "./user-info-form";
 
 export function AiMaturityAssessment() {
+	return (
+		<NuqsAdapter>
+			<AiMaturityAssessmentContent />
+		</NuqsAdapter>
+	);
+}
+
+function AiMaturityAssessmentContent() {
 	const [stepParam, setStep] = useQueryState(
 		"step",
 		parseAsString.withDefault("questionnaire").withOptions({ history: "push" })

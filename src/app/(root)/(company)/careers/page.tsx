@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import type { Metadata } from "next/dist/types";
 import Link from "next/link";
 
@@ -257,10 +259,12 @@ export default function CareersPage() {
 						</section>
 					</div>
 
-					<PathsBackground
-						className="h-[calc(100lvh-4rem)] w-full"
-						position={-1}
-					/>
+					<Suspense>
+						<PathsBackground
+							className="h-[calc(100lvh-4rem)] w-full"
+							position={-1}
+						/>
+					</Suspense>
 				</header>
 				<section
 					aria-labelledby="open-roles-heading"
