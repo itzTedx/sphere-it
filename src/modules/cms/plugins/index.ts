@@ -1,5 +1,6 @@
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import {
+	GenerateDescription,
 	GenerateImage,
 	GenerateTitle,
 	GenerateURL,
@@ -14,7 +15,7 @@ const generateTitle: GenerateTitle<Blog | Career> = ({
 	doc,
 	collectionSlug,
 }) => {
-	console.log('collectionSlug', collectionSlug)
+	console.log("collectionSlug", collectionSlug);
 	if (collectionSlug && collectionSlug === "careers") {
 		return doc?.title ? `${doc.title} - Careers at Sphere IT` : "Sphere IT";
 	}
@@ -27,7 +28,7 @@ const generateURL: GenerateURL<Blog> = ({ doc }) => {
 	return doc?.slug ? `${url}/${doc.slug}` : url;
 };
 
-const generateDescription: GenerateURL<Blog> = ({ doc }) => {
+const generateDescription: GenerateDescription<Blog> = ({ doc }) => {
 	return doc?.description ? doc.description : "Sphere IT";
 };
 

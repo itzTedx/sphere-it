@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { ImageMedia } from "./ImageMedia";
+import { Image } from "./ImageMedia";
 import type { Props } from "./types";
 import { VideoMedia } from "./VideoMedia";
 
@@ -19,7 +19,7 @@ export const Media: React.FC<Props> = (props) => {
 					}
 				: {})}
 		>
-			{isVideo ? <VideoMedia {...props} /> : <ImageMedia {...props} />}
+			{isVideo ? <VideoMedia {...props} /> : <Image {...props} />}
 		</Tag>
 	);
 };

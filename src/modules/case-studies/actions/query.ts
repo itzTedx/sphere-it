@@ -18,6 +18,11 @@ export const listCaseStudiesPaged = async (options?: {
 		depth: 2,
 		limit,
 		page,
+		where: {
+			_status: {
+				equals: "published",
+			},
+		},
 		select: {
 			title: true,
 			heroImage: true,
