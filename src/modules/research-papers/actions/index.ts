@@ -19,6 +19,11 @@ export async function listResearchPapersPaged(options?: {
 		depth: 2,
 		limit,
 		page,
+		where: {
+			_status: {
+				equals: "published",
+			},
+		},
 		select: {
 			title: true,
 			heroImage: true,
@@ -39,6 +44,11 @@ export async function listResearchPapers(limit?: number) {
 		draft: false,
 		depth: 2,
 		limit: limit ?? 100,
+		where: {
+			_status: {
+				equals: "published",
+			},
+		},
 		select: {
 			title: true,
 			heroImage: true,
@@ -63,9 +73,18 @@ export async function geResearchBySlug(
 		draft: false,
 		depth: 2,
 		where: {
-			slug: {
-				equals: slug,
-			},
+			and: [
+				{
+					_status: {
+						equals: "published",
+					},
+				},
+				{
+					slug: {
+						equals: slug,
+					},
+				},
+			],
 		},
 		limit: 1,
 	});

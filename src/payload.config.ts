@@ -1,4 +1,5 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import path from "path";
 import { buildConfig } from "payload";
 import sharp from "sharp";
@@ -16,6 +17,7 @@ import { Footer } from "./collections/globals/footer";
 import { Media } from "./collections/Media";
 import { ResearchPapers } from "./collections/research-papers";
 import { Users } from "./collections/users";
+import { env } from "./lib/env/server";
 import { defaultLexical } from "./modules/cms/fields/defaultLexical";
 import { plugins } from "./modules/cms/plugins";
 
@@ -43,19 +45,19 @@ export default buildConfig({
 		EmployeeTestimonials,
 	],
 	globals: [Footer],
-	// email: nodemailerAdapter({
-	// 	defaultFromAddress: env.SMTP_FROM,
-	// 	defaultFromName: "Sphere It",
+	email: nodemailerAdapter({
+		defaultFromAddress: env.SMTP_FROM,
+		defaultFromName: "Sphere It",
 
-	// 	transportOptions: {
-	// 		host: env.SMTP_HOST,
-	// 		port: Number(env.SMTP_PORT),
-	// 		auth: {
-	// 			user: env.SMTP_USER,
-	// 			pass: env.SMTP_PASS,
-	// 		},
-	// 	},
-	// }),
+		transportOptions: {
+			host: env.SMTP_HOST,
+			port: Number(env.SMTP_PORT),
+			auth: {
+				user: env.SMTP_USER,
+				pass: env.SMTP_PASS,
+			},
+		},
+	}),
 	upload: {
 		limits: {
 			fileSize: 5000000,

@@ -19,6 +19,12 @@ export const listBlogs = async (options?: {
 		and: [],
 	};
 
+	where.and?.push({
+		_status: {
+			equals: "published",
+		},
+	});
+
 	if (search) {
 		where.and?.push({
 			or: [
@@ -110,6 +116,12 @@ export const listBlogsPaged = async (options?: {
 	const where: Where = {
 		and: [],
 	};
+
+	where.and?.push({
+		_status: {
+			equals: "published",
+		},
+	});
 
 	if (search) {
 		where.and?.push({
