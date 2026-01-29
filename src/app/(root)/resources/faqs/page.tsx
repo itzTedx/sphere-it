@@ -18,7 +18,7 @@ import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { getStructuredData } from "./structured-data";
 
 const meta = {
-	title: "Frequently Asked Questions (FAQs) | Sphere IT",
+	title: "FAQs | Sphere IT - Services, Solutions & Support",
 	description:
 		"Find answers to common questions about Sphere IT's services, including AI enablement, process automation, data management, managed services, and talent augmentation. Get insights into our solutions and expertise.",
 };

@@ -46,11 +46,10 @@ function groupRolesByDepartment(roles: readonly Role[]) {
 }
 
 const meta = {
-	title:
-		"Careers at Sphere IT Global - Digital Transformation & IT Innovation Partner",
+	title: "Careers at Sphere IT Global - Join Our Digital Transformation Team",
 
 	description:
-		"Learn how Sphere IT drives enterprise transformation through AI, automation, and cloud engineering. Discover our mission, leadership, and global team powering innovation across industries.",
+		"Explore exciting career opportunities at Sphere IT. Work on AI, automation, and IT solutions with leading enterprise clients while growing in a culture of innovation and excellence.",
 };
 
 export const metadata: Metadata = {

@@ -1,11 +1,13 @@
 import { Suspense } from "react";
 
+import { Metadata } from "next";
 import Link from "next/link";
 
 import { Cta } from "@/components/layout/cta";
 import { Button } from "@/components/ui/button";
 import { TabsContent } from "@/components/ui/tabs";
 
+import { BASE_URL } from "@/data/site-config";
 import { listResearchPapersPaged } from "@/modules/research-papers/actions";
 import { PapersCard } from "@/modules/research-papers/components/paper-card";
 
@@ -85,3 +87,47 @@ async function ResearchPapersContent(props: { searchParams: SearchParams }) {
 		</TabsContent>
 	);
 }
+
+const meta = {
+	title: "Sphere IT Research Papers - AI, Automation & Digital Transformation",
+	description:
+		"Access in-depth research papers from Sphere IT on AI platforms, IT solutions, process automation, and enterprise digital transformation. Learn from real-world insights and innovation.",
+};
+
+export const metadata: Metadata = {
+	title: meta.title,
+	description: meta.description,
+	keywords: [
+		"FAQs",
+		"frequently asked questions",
+		"Sphere IT services",
+		"AI platform questions",
+		"automation FAQs",
+		"data management questions",
+		"managed services FAQs",
+		"talent augmentation questions",
+		"IT consulting FAQs",
+		"digital transformation questions",
+	],
+	openGraph: {
+		title: meta.title,
+		description: meta.description,
+		type: "website",
+		url: `${BASE_URL}/resources/faqs`,
+	},
+
+	alternates: {
+		canonical: `${BASE_URL}/resources/faqs`,
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-video-preview": -1,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+		},
+	},
+};

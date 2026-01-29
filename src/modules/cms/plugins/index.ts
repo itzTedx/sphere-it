@@ -6,11 +6,11 @@ import {
 } from "@payloadcms/plugin-seo/types";
 import { Plugin } from "payload";
 
-import { Blog, CaseStudy, Media } from "@/payload-types";
+import { Blog, Career, CaseStudy, Media } from "@/payload-types";
 
 import { getServerSideURL } from "../utils/getURL";
 
-const generateTitle: GenerateTitle<Blog> = ({ doc }) => {
+const generateTitle: GenerateTitle<Blog | Career> = ({ doc }) => {
 	return doc?.title ? `${doc.title} | Sphere IT` : "Sphere IT";
 };
 
