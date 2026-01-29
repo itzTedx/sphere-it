@@ -25,7 +25,10 @@ import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
 import { generatePreviewPath } from "@/modules/cms/utils/generatePreviewPath";
 
 import { populateAuthors } from "./hooks/populateAuthors";
-import { revalidateDelete, revalidatePost } from "./hooks/revalidatePost";
+import {
+	revalidateDeleteStudies,
+	revalidateStudies,
+} from "./hooks/revalidate-studies";
 
 export const CaseStudies: CollectionConfig<"blogs"> = {
 	slug: "case-studies",
@@ -223,9 +226,9 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 		slugField(),
 	],
 	hooks: {
-		afterChange: [revalidatePost],
+		afterChange: [revalidateStudies],
 		afterRead: [populateAuthors],
-		afterDelete: [revalidateDelete],
+		afterDelete: [revalidateDeleteStudies],
 	},
 	versions: {
 		drafts: {

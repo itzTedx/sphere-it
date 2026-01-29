@@ -5,45 +5,45 @@ import type {
 	CollectionAfterDeleteHook,
 } from "payload";
 
-import { Blog } from "@/payload-types";
+import { CaseStudy } from "@/payload-types";
 
-export const revalidatePost: CollectionAfterChangeHook<Blog> = ({
+export const revalidateStudies: CollectionAfterChangeHook<CaseStudy> = ({
 	doc,
 	previousDoc,
 	req: { payload, context },
 }) => {
 	if (!context.disableRevalidate) {
 		if (doc._status === "published") {
-			const path = `/resourses/posts/${doc.slug}`;
+			const path = `/resources/case-studies/${doc.id}`;
 
 			payload.logger.info(`Revalidating post at path: ${path}`);
 
 			revalidatePath(path);
-			revalidateTag("posts-sitemap", "max");
+			revalidateTag("case-studies-sitemap", "max");
 		}
 
 		// If the post was previously published, we need to revalidate the old path
 		if (previousDoc._status === "published" && doc._status !== "published") {
-			const oldPath = `/posts/${previousDoc.slug}`;
+			const oldPath = `/resources/case-studies/${previousDoc.id}`;
 
 			payload.logger.info(`Revalidating old post at path: ${oldPath}`);
 
 			revalidatePath(oldPath);
-			revalidateTag("posts-sitemap", "max");
+			revalidateTag("case-studies-sitemap", "max");
 		}
 	}
 	return doc;
 };
 
-export const revalidateDelete: CollectionAfterDeleteHook<Blog> = ({
+export const revalidateDeleteStudies: CollectionAfterDeleteHook<CaseStudy> = ({
 	doc,
 	req: { context },
 }) => {
 	if (!context.disableRevalidate) {
-		const path = `/posts/${doc?.slug}`;
+		const path = `/resources/case-studies/${doc?.slug}`;
 
 		revalidatePath(path);
-		revalidateTag("posts-sitemap", "max");
+		revalidateTag("case-studies-sitemap", "max");
 	}
 
 	return doc;

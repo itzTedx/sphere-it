@@ -5,45 +5,45 @@ import type {
 	CollectionAfterDeleteHook,
 } from "payload";
 
-import { Blog } from "@/payload-types";
+import { Career } from "@/payload-types";
 
-export const revalidateRoles: CollectionAfterChangeHook<Blog> = ({
+export const revalidateRoles: CollectionAfterChangeHook<Career> = ({
 	doc,
 	previousDoc,
 	req: { payload, context },
 }) => {
 	if (!context.disableRevalidate) {
 		if (doc._status === "published") {
-			const path = `/resourses/Roless/${doc.slug}`;
+			const path = `/careers/${doc.id}`;
 
-			payload.logger.info(`Revalidating Roles at path: ${path}`);
+			payload.logger.info(`Revalidating career at path: ${path}`);
 
 			revalidatePath(path);
-			revalidateTag("Roless-sitemap", "max");
+			revalidateTag("careers-sitemap", "max");
 		}
 
-		// If the Roles was previously published, we need to revalidate the old path
+		// If the career was previously published, we need to revalidate the old path
 		if (previousDoc._status === "published" && doc._status !== "published") {
-			const oldPath = `/Roless/${previousDoc.slug}`;
+			const oldPath = `/careers/${previousDoc.id}`;
 
-			payload.logger.info(`Revalidating old Roles at path: ${oldPath}`);
+			payload.logger.info(`Revalidating old career at path: ${oldPath}`);
 
 			revalidatePath(oldPath);
-			revalidateTag("Roless-sitemap", "max");
+			revalidateTag("careers-sitemap", "max");
 		}
 	}
 	return doc;
 };
 
-export const revalidateDelete: CollectionAfterDeleteHook<Blog> = ({
+export const revalidateDelete: CollectionAfterDeleteHook<Career> = ({
 	doc,
 	req: { context },
 }) => {
 	if (!context.disableRevalidate) {
-		const path = `/Roless/${doc?.slug}`;
+		const path = `/careers/${doc?.id}`;
 
 		revalidatePath(path);
-		revalidateTag("Roless-sitemap", "max");
+		revalidateTag("careers-sitemap", "max");
 	}
 
 	return doc;

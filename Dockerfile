@@ -72,6 +72,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./tsconfig.json
 # Copy source files needed for server components and API routes
 COPY --from=builder --chown=nextjs:nodejs /app/src ./src
 
+# Ensure uploads directory exists and is writable by the runtime user.
+RUN mkdir -p /app/public/uploads \
+    && chown -R nextjs:nodejs /app/public/uploads
+
 # Set ownership
 RUN chown -R nextjs:nodejs /app
 

@@ -1,12 +1,14 @@
 name: sphere-it
 
+networks:
+  app-network:
+    driver: bridge
+
 services:
   postgres:
     image: postgres:17.0
     container_name: sphere-it-postgres
     hostname: postgres
-    ports:
-      - "${DB_PORT:-5432}:5432"
     env_file:
       - .env
     environment:
@@ -15,6 +17,8 @@ services:
       - POSTGRES_DB=${DB_NAME}
     volumes:
       - pg-data:/var/lib/postgresql/data
+    networks:
+      - app-network
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
@@ -36,6 +40,10 @@ services:
       - .env
     environment:
       - NODE_ENV=production
+    volumes:
+      - uploads-data:/app/public/uploads
+    networks:
+      - app-network
     depends_on:
       postgres:
         condition: service_healthy
@@ -49,3 +57,4 @@ services:
   
 volumes:
   pg-data:
+  uploads-data:
