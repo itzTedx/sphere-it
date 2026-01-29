@@ -73,8 +73,8 @@ export interface Config {
     researchPapers: ResearchPaper;
     faqs: Faq;
     'faq-categories': FaqCategory;
-    users: User;
     media: Media;
+    users: User;
     careers: Career;
     departments: Department;
     employeeTestimonials: EmployeeTestimonial;
@@ -92,8 +92,8 @@ export interface Config {
     researchPapers: ResearchPapersSelect<false> | ResearchPapersSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     careers: CareersSelect<false> | CareersSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     employeeTestimonials: EmployeeTestimonialsSelect<false> | EmployeeTestimonialsSelect<true>;
@@ -240,6 +240,7 @@ export interface BlogCategory {
 export interface User {
   id: number;
   name?: string | null;
+  roles?: ('admin' | 'editor')[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -613,12 +614,12 @@ export interface PayloadLockedDocument {
         value: number | FaqCategory;
       } | null)
     | ({
-        relationTo: 'users';
-        value: number | User;
-      } | null)
-    | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
       } | null)
     | ({
         relationTo: 'careers';
@@ -810,10 +811,29 @@ export interface FaqCategoriesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  roles?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -830,24 +850,6 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

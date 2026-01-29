@@ -19,6 +19,8 @@ import {
 import type { CollectionConfig } from "payload";
 import { slugField } from "payload";
 
+import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
+import { checkRole } from "@/modules/cms/access/utilities";
 import { Banner } from "@/modules/cms/blocks/Banner/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
 
@@ -28,6 +30,13 @@ import { revalidateDelete, revalidatePost } from "./hooks/revalidatePost";
 export const Blogs: CollectionConfig<"blogs"> = {
 	slug: "blogs",
 	trash: true,
+	access: {
+		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),
+		create: adminOrEditor,
+		read: () => true,
+		update: adminOrEditor,
+		delete: adminOrEditor,
+	},
 	defaultPopulate: {
 		title: true,
 		slug: true,

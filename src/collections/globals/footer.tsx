@@ -2,10 +2,17 @@ import { revalidatePath, revalidateTag } from "next/cache";
 
 import type { GlobalConfig } from "payload";
 
+import { isAdmin } from "@/modules/cms/access/isAdmin";
+import { checkRole } from "@/modules/cms/access/utilities";
+
 export const Footer: GlobalConfig = {
 	slug: "footer",
 	access: {
 		read: () => true,
+		update: isAdmin,
+	},
+	admin: {
+		hidden: ({ user }) => !checkRole(["admin"], user),
 	},
 	hooks: {
 		afterChange: [

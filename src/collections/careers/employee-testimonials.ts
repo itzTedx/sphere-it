@@ -8,12 +8,21 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 
+import { adminOnly } from "@/modules/cms/access/admin-only";
+import { checkRole } from "@/modules/cms/access/utilities";
 import { generatePreviewPath } from "@/modules/cms/utils/generatePreviewPath";
 
 import { revalidateDelete, revalidateRoles } from "./hooks/revalidateRole";
 
 export const EmployeeTestimonials: CollectionConfig<"blogs"> = {
 	slug: "employeeTestimonials",
+	access: {
+		admin: ({ req: { user } }) => checkRole(["admin"], user),
+		create: adminOnly,
+		read: () => true,
+		update: adminOnly,
+		delete: adminOnly,
+	},
 
 	defaultPopulate: {
 		title: true,

@@ -19,6 +19,8 @@ import {
 } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 
+import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
+import { checkRole } from "@/modules/cms/access/utilities";
 import { Banner } from "@/modules/cms/blocks/Banner/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
 import { generatePreviewPath } from "@/modules/cms/utils/generatePreviewPath";
@@ -27,6 +29,13 @@ import { revalidateDelete, revalidateRoles } from "./hooks/revalidateRole";
 
 export const Careers: CollectionConfig<"blogs"> = {
 	slug: "careers",
+	access: {
+		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),
+		create: adminOrEditor,
+		read: () => true,
+		update: adminOrEditor,
+		delete: adminOrEditor,
+	},
 
 	defaultPopulate: {
 		title: true,
