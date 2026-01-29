@@ -179,12 +179,17 @@ export const FOOTER: Footer[] = [
 				href: "/careers",
 			},
 			{
-				id: 4,
+				id: 3,
 				label: "Methodology",
 				href: "/methodology",
 			},
 			{
-				id: 3,
+				id: 4,
+				label: "Testimonials",
+				href: "/testimonials",
+			},
+			{
+				id: 5,
 				label: "Contact",
 				href: "/contact",
 			},
@@ -201,20 +206,19 @@ export const FOOTER: Footer[] = [
 			},
 
 			{
-				id: 2,
-				label: "Testimonials",
-				href: "/resources/testimonials",
+				id: 4,
+				label: "Blogs",
+				href: "/resources/blogs",
 			},
-
 			{
 				id: 3,
 				label: "Case studies",
 				href: "/resources/case-studies",
 			},
 			{
-				id: 4,
-				label: "Blogs",
-				href: "/resources/blogs",
+				id: 2,
+				label: "Research papers",
+				href: "/resources/research-papers",
 			},
 			{
 				id: 5,

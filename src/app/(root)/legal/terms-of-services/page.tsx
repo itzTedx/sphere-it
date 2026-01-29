@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 
 import { LEGAL_HANDLING_EMAIL, SERVICE_DEFINITIONS } from "@/data/legal";
-import { BASE_URL } from "@/data/site-config";
+import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { Header } from "../components/header";
@@ -21,10 +21,15 @@ import { termsFAQStructuredData, termsStructuredData } from "./structured-data";
 
 const TERMS_SERVICES_LAST_UPDATED = "October 6, 2025";
 
-export const metadata: Metadata = {
+const meta = {
 	title: "Terms of Service | Sphere IT Global - Website Usage & Legal Terms",
 	description:
 		"Read the Terms of Service for Sphere IT Global. Learn about our website usage policies, intellectual property rights, user responsibilities, and legal terms.",
+};
+
+export const metadata: Metadata = {
+	title: meta.title,
+	description: meta.description,
 	keywords: [
 		"terms of service",
 		"website terms",
@@ -32,14 +37,14 @@ export const metadata: Metadata = {
 		"user agreement",
 		"intellectual property",
 		"website usage",
-		"Sphere IT Global",
+		COMPANY_NAME,
 		"terms and conditions",
 		"legal policies",
 		"user responsibilities",
 	],
-	authors: [{ name: "Sphere IT Global" }],
-	creator: "Sphere IT Global",
-	publisher: "Sphere IT Global",
+	authors: [{ name: COMPANY_NAME }],
+	creator: COMPANY_NAME,
+	publisher: COMPANY_NAME,
 	robots: {
 		index: true,
 		follow: true,
@@ -55,10 +60,9 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "en_US",
 		url: `${BASE_URL}/legal/terms-of-services`,
-		title: "Terms of Service | Sphere IT Global",
-		description:
-			"Read the Terms of Service for Sphere IT Global. Learn about our website usage policies, intellectual property rights, and user responsibilities.",
-		siteName: "Sphere IT Global",
+		title: meta.title,
+		description: meta.description,
+		siteName: COMPANY_NAME,
 		images: [
 			{
 				url: `${BASE_URL}/images/terms-of-service-og.jpg`,
@@ -70,9 +74,8 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Terms of Service | Sphere IT Global",
-		description:
-			"Read the Terms of Service for Sphere IT Global. Learn about our website usage policies and legal terms.",
+		title: meta.title,
+		description: meta.description,
 		images: [`${BASE_URL}/images/terms-of-service-og.jpg`],
 	},
 	alternates: {

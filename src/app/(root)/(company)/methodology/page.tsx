@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,6 +13,8 @@ import {
 	IconSearch,
 	IconShield,
 } from "@/assets/icons";
+
+import { BASE_URL } from "@/data/site-config";
 
 export default function AxisServicePage() {
 	return (
@@ -134,3 +137,38 @@ export default function AxisServicePage() {
 		</main>
 	);
 }
+
+const meta = {
+	title: "AXIS Methodology - IT Strategy & Predictable Delivery Framework",
+	description:
+		"Explore Sphere IT’s AXIS methodology, a structured, data-driven IT consulting framework that delivers clarity, cost predictability, and scalable outcomes.",
+};
+
+export const metadata: Metadata = {
+	title: meta.title,
+	description: meta.description,
+	keywords: [
+		"contact sphere global",
+		"AI consulting contact",
+		"technology solutions contact",
+		"digital transformation consulting",
+		"automation frameworks contact",
+		"enterprise technology support",
+		"AI platform consultation",
+		"business automation contact",
+	],
+	openGraph: {
+		title: meta.title,
+		description: meta.description,
+		url: `${BASE_URL}/contact`,
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: meta.title,
+		description: meta.description,
+	},
+	alternates: {
+		canonical: `${BASE_URL}/contact`,
+	},
+};

@@ -13,9 +13,9 @@ import {
 import { structuredData } from "./structured-data";
 
 const meta = {
-	title: "Contact Sphere IT | Connect with Our IT Experts",
+	title: "Reach Out to Sphere IT - Sales, Support & Career Inquiries",
 	description:
-		"Get in touch with Sphere IT for IT consulting, digital transformation, or project collaboration. Reach us via email, phone, or WhatsApp - we’re here to help you scale.",
+		"Get in touch with Sphere IT for IT consulting, digital transformation, AI solutions, sales inquiries, partnerships, or support. Reach us via email, phone, or WhatsApp - we’re here to help you scale.",
 };
 
 export const metadata: Metadata = {

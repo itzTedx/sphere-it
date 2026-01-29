@@ -10,7 +10,14 @@ import { Blog, Career, CaseStudy, Media } from "@/payload-types";
 
 import { getServerSideURL } from "../utils/getURL";
 
-const generateTitle: GenerateTitle<Blog | Career> = ({ doc }) => {
+const generateTitle: GenerateTitle<Blog | Career> = ({
+	doc,
+	collectionSlug,
+}) => {
+	console.log('collectionSlug', collectionSlug)
+	if (collectionSlug && collectionSlug === "careers") {
+		return doc?.title ? `${doc.title} - Careers at Sphere IT` : "Sphere IT";
+	}
 	return doc?.title ? `${doc.title} | Sphere IT` : "Sphere IT";
 };
 

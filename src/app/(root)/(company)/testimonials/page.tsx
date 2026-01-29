@@ -13,9 +13,9 @@ import { TestimonialCard } from "@/modules/views/components/testimonial-card";
 import { structuredData } from "./structured-data";
 
 const meta = {
-	title: "Client Testimonials | Sphere IT",
+	title: "Employee Testimonials - Life at Sphere IT Global",
 	description:
-		"Read testimonials from our clients about Sphere IT's services, including AI enablement, process automation, data management, managed services, and talent augmentation. Discover how we've helped businesses transform.",
+		"Read real employee testimonials and experiences at Sphere IT Global. Discover our culture, onboarding process, career growth, and life working with enterprise clients.",
 };
 
 export const metadata: Metadata = {
@@ -36,10 +36,10 @@ export const metadata: Metadata = {
 		title: meta.title,
 		description: meta.description,
 		type: "website",
-		url: `${BASE_URL}/resources/testimonials`,
+		url: `${BASE_URL}/testimonials`,
 	},
 	alternates: {
-		canonical: `${BASE_URL}/resources/testimonials`,
+		canonical: `${BASE_URL}/testimonials`,
 	},
 	robots: {
 		index: true,
@@ -67,8 +67,8 @@ export default function TestimonialsPage() {
 			<BreadcrumbJsonLd
 				items={[
 					{ name: "Home", item: `${BASE_URL}` },
-					{ name: "Resources", item: `${BASE_URL}/resources` },
-					{ name: "Testimonials", item: `${BASE_URL}/resources/testimonials` },
+					{ name: "Resources", item: `${BASE_URL}` },
+					{ name: "Testimonials", item: `${BASE_URL}/testimonials` },
 				]}
 			/>
 			<main aria-label="Client Testimonials" id="main-content" role="main">
@@ -84,7 +84,7 @@ export default function TestimonialsPage() {
 							className="text-primary-900 text-title-4 sm:text-title-3 md:text-title-2 lg:text-title-2"
 							id="testimonials-heading"
 						>
-							<span className="text-primary-600">What Our Clients</span>
+							<span className="text-primary-600">What Our Employees</span>
 							<br />
 							Say About Us
 						</h1>

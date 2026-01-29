@@ -3,7 +3,7 @@ import type { Metadata } from "next/dist/types";
 import { Cta } from "@/components/layout/cta";
 
 import { LEGAL_HANDLING_EMAIL } from "@/data/legal";
-import { BASE_URL } from "@/data/site-config";
+import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { Header } from "../components/header";
@@ -16,12 +16,17 @@ import {
 export const email = LEGAL_HANDLING_EMAIL;
 const POLICY_LAST_UPDATED = "October 6, 2025";
 
-export const metadata: Metadata = {
-	title: "Privacy Policy | Sphere IT Global - Data Protection & Privacy",
+const meta = {
+	title: "Acceptable Use Policy - Sphere IT Global",
 	description:
-		"Learn how Sphere IT Global protects your privacy and handles your personal data. Comprehensive privacy policy covering data collection, usage, security, and your rights.",
+		"Learn how Sphere IT Global protects your privacy and handles your personal data. Comprehensive Acceptable Use Policy covering data collection, usage, security, and your rights.",
+};
+
+export const metadata: Metadata = {
+	title: meta.title,
+	description: meta.description,
 	keywords: [
-		"privacy policy",
+		"Acceptable Use Policy",
 		"data protection",
 		"personal data",
 		"GDPR compliance",
@@ -32,9 +37,9 @@ export const metadata: Metadata = {
 		"IT services privacy",
 		"data retention",
 	],
-	authors: [{ name: "Sphere IT Global" }],
-	creator: "Sphere IT Global",
-	publisher: "Sphere IT Global",
+	authors: [{ name: COMPANY_NAME }],
+	creator: COMPANY_NAME,
+	publisher: COMPANY_NAME,
 	robots: {
 		index: true,
 		follow: true,
@@ -49,29 +54,27 @@ export const metadata: Metadata = {
 	openGraph: {
 		type: "website",
 		locale: "en_US",
-		url: `${BASE_URL}/legal/privacy`,
-		title: "Privacy Policy | Sphere IT Global",
-		description:
-			"Learn how Sphere IT Global protects your privacy and handles your personal data. Comprehensive privacy policy covering data collection, usage, and your rights.",
-		siteName: "Sphere IT Global",
+		url: `${BASE_URL}/legal/acceptable-use-policy`,
+		title: meta.title,
+		description: meta.description,
+		siteName: COMPANY_NAME,
 		images: [
 			{
 				url: `${BASE_URL}/images/privacy-policy-og.jpg`,
 				width: 1200,
 				height: 630,
-				alt: "Sphere IT Global Privacy Policy",
+				alt: meta.title,
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Privacy Policy | Sphere IT Global",
-		description:
-			"Learn how Sphere IT Global protects your privacy and handles your personal data.",
+		title: meta.title,
+		description: meta.description,
 		images: [`${BASE_URL}/images/privacy-policy-og.jpg`],
 	},
 	alternates: {
-		canonical: `${BASE_URL}/legal/privacy`,
+		canonical: `${BASE_URL}/legal/acceptable-use-policy`,
 	},
 	other: {
 		"last-modified": POLICY_LAST_UPDATED,
@@ -95,8 +98,8 @@ export default function AcceptableUsePage() {
 				type="application/ld+json"
 			/>
 
-			<main aria-label="Privacy Policy" role="main">
-				<Header title="Privacy Policy" />
+			<main aria-label="Acceptable Use Policy" role="main">
+				<Header title="Acceptable Use Policy" />
 				<section className="mx-auto grid max-w-7xl grid-cols-1 justify-center lg:grid-cols-4">
 					{/* Table of Contents - Hidden on mobile, visible on desktop */}
 					<div className="hidden px-4 py-4 lg:block lg:px-9">
@@ -104,7 +107,7 @@ export default function AcceptableUsePage() {
 					</div>
 
 					<article
-						aria-label="Privacy Policy Content"
+						aria-label="Acceptable Use Policy Content"
 						className="prose prose-stone container col-span-1 max-w-none border-l-0 py-6 prose-a:text-primary-600 prose-a:transition-colors prose-a:hover:text-accent lg:col-span-3 lg:border-l lg:py-12"
 					>
 						<div className="-mb-4 relative pt-4">

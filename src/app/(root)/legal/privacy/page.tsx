@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Cta } from "@/components/layout/cta";
 
 import { LEGAL_HANDLING_EMAIL } from "@/data/legal";
-import { BASE_URL } from "@/data/site-config";
+import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { Header } from "../components/header";
@@ -17,10 +17,15 @@ import {
 export const email = LEGAL_HANDLING_EMAIL;
 const POLICY_LAST_UPDATED = "October 6, 2025";
 
-export const metadata: Metadata = {
-	title: "Privacy Policy | Sphere IT Global - Data Protection & Privacy",
+const meta = {
+	title: "Privacy Policy - Sphere IT Global",
 	description:
 		"Learn how Sphere IT Global protects your privacy and handles your personal data. Comprehensive privacy policy covering data collection, usage, security, and your rights.",
+};
+
+export const metadata: Metadata = {
+	title: meta.title,
+	description: meta.description,
 	keywords: [
 		"privacy policy",
 		"data protection",
@@ -33,9 +38,9 @@ export const metadata: Metadata = {
 		"IT services privacy",
 		"data retention",
 	],
-	authors: [{ name: "Sphere IT Global" }],
-	creator: "Sphere IT Global",
-	publisher: "Sphere IT Global",
+	authors: [{ name: COMPANY_NAME }],
+	creator: COMPANY_NAME,
+	publisher: COMPANY_NAME,
 	robots: {
 		index: true,
 		follow: true,
@@ -51,24 +56,22 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "en_US",
 		url: `${BASE_URL}/legal/privacy`,
-		title: "Privacy Policy | Sphere IT Global",
-		description:
-			"Learn how Sphere IT Global protects your privacy and handles your personal data. Comprehensive privacy policy covering data collection, usage, and your rights.",
-		siteName: "Sphere IT Global",
+		title: meta.title,
+		description: meta.description,
+		siteName: COMPANY_NAME,
 		images: [
 			{
 				url: `${BASE_URL}/images/privacy-policy-og.jpg`,
 				width: 1200,
 				height: 630,
-				alt: "Sphere IT Global Privacy Policy",
+				alt: meta.title,
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Privacy Policy | Sphere IT Global",
-		description:
-			"Learn how Sphere IT Global protects your privacy and handles your personal data.",
+		title: meta.title,
+		description: meta.description,
 		images: [`${BASE_URL}/images/privacy-policy-og.jpg`],
 	},
 	alternates: {
@@ -78,7 +81,6 @@ export const metadata: Metadata = {
 		"last-modified": POLICY_LAST_UPDATED,
 	},
 };
-
 export default function PrivacyPage() {
 	return (
 		<>

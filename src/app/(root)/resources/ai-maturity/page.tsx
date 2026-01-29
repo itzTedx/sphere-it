@@ -11,9 +11,9 @@ import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { AiMaturityAssessment } from "./components/assessment";
 
 const meta = {
-	title: `AI Maturity Assessment | ${COMPANY_NAME}`,
+	title: `AI Maturity Assessment - Evaluate Your Organization’s AI Readiness | ${COMPANY_NAME}`,
 	description:
-		"Assess your organization's AI readiness across strategy, data, technology, and governance. Get a comprehensive maturity score and actionable insights.",
+		"Take the AI Maturity Assessment by Sphere IT to measure your organization’s readiness across strategy, data, technology, and governance, and get actionable insights",
 };
 
 export const metadata: Metadata = {
