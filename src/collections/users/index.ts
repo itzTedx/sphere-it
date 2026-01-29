@@ -20,7 +20,9 @@ export const Users: CollectionConfig = {
 	admin: {
 		defaultColumns: ["name", "email", "role"],
 		useAsTitle: "name",
+		hidden: ({ user }) => !checkRole(["admin"], user),
 	},
+
 	auth: true,
 	fields: [
 		{
@@ -35,7 +37,7 @@ export const Users: CollectionConfig = {
 				read: adminOnlyFieldAccess,
 				update: adminOnlyFieldAccess,
 			},
-			defaultValue: ["editor"],
+			defaultValue: ["user"],
 			hasMany: true,
 			hooks: {
 				beforeChange: [ensureFirstUserIsAdmin],
@@ -48,6 +50,10 @@ export const Users: CollectionConfig = {
 				{
 					label: "editor",
 					value: "editor",
+				},
+				{
+					label: "user",
+					value: "user",
 				},
 			],
 		},
