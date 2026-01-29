@@ -1,21 +1,21 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-import { ResearchMetadata } from "../actions/types";
+import { Media } from "@/modules/cms/components/Media";
+import { ResearchPaper } from "@/payload-types";
 
 interface ResearchPaperCardProps {
-	data: ResearchMetadata;
+	data: Pick<ResearchPaper, "title" | "heroImage" | "slug">;
 }
 
 export const PapersCard = ({ data }: ResearchPaperCardProps) => {
-	const { title, image, slug, lists } = data;
+	const { title, heroImage, slug } = data;
 
 	return (
 		<article className="card relative aspect-9/10 overflow-hidden rounded-xl p-4 text-card shadow-sm transition hover:shadow-md sm:p-6">
 			<Link
-				aria-label={`Read case study: ${title}`}
+				aria-label={`Read research paper: ${title}`}
 				className="absolute inset-0 z-20"
 				href={`/resources/research-papers/${slug}`}
 			/>
@@ -25,37 +25,25 @@ export const PapersCard = ({ data }: ResearchPaperCardProps) => {
 				</h3>
 
 				<div className="w-full space-y-3 sm:space-y-4">
-					{lists && (
-						<ul className="grid grid-cols-2 gap-2 sm:gap-3" role="list">
-							{lists?.map((list) => (
-								<li key={list.label}>
-									<span className="block font-bold text-sm sm:text-subhead-lg">
-										{list.value}
-									</span>
-									<p className="text-xs sm:text-subhead-base">{list.label}</p>
-								</li>
-							))}
-						</ul>
-					)}
 					<Button
 						asChild
 						className="relative z-20 w-full"
 						size="sm"
 						variant="secondary"
 					>
-						<Link href={`/resources/case-studies/${slug}`}>Read Paper</Link>
+						<Link href={`/resources/research-papers/${slug}`}>Read Paper</Link>
 					</Button>
 				</div>
 			</div>
 			<div className="absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-foreground to-transparent" />
-			<Image
-				alt={`${title} - Background image`}
-				className="object-cover"
-				fill
-				loading="lazy"
-				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
-				src={image}
-			/>
+			{heroImage && typeof heroImage !== "number" && (
+				<Media
+					fill
+					imgClassName="object-cover"
+					resource={heroImage}
+					size="33vw"
+				/>
+			)}
 		</article>
 	);
 };

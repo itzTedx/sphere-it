@@ -1,11 +1,23 @@
+import { cacheLife, cacheTag } from "next/cache";
+
 import { payload } from "@/lib/payload";
 
-export const listCaseStudies = async () => {
-	const data = await payload.find({
+export const listCaseStudiesPaged = async (options?: {
+	limit?: number;
+	page?: number;
+}) => {
+	"use cache";
+	cacheTag("case-studies");
+	cacheLife("max");
+
+	const { limit = 12, page = 1 } = options || {};
+
+	return payload.find({
 		collection: "case-studies",
 		draft: false,
 		depth: 2,
-		limit: 100,
+		limit,
+		page,
 		select: {
 			title: true,
 			heroImage: true,
@@ -16,10 +28,18 @@ export const listCaseStudies = async () => {
 
 		sort: ["-createdAt"],
 	});
+};
+
+export const listCaseStudies = async () => {
+	const data = await listCaseStudiesPaged({ limit: 100, page: 1 });
 	return data.docs;
 };
 
 export const findCaseStduyBySlug = async (slug: string) => {
+	"use cache";
+	cacheTag("case-studies", `case-study:${slug}`);
+	cacheLife("max");
+
 	const data = await payload.find({
 		collection: "case-studies",
 		draft: false,

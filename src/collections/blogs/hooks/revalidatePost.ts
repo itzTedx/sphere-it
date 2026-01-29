@@ -19,7 +19,10 @@ export const revalidatePost: CollectionAfterChangeHook<Blog> = ({
 			payload.logger.info(`Revalidating post at path: ${path}`);
 
 			revalidatePath(path);
-			revalidateTag("blogs-sitemap", "max");
+			revalidatePath("/resources/blogs");
+			revalidateTag("blogs", "max");
+			revalidateTag("blogCategories", "max");
+			revalidateTag(`blog:${doc.slug}`, "max");
 		}
 
 		// If the post was previously published, we need to revalidate the old path
@@ -29,7 +32,10 @@ export const revalidatePost: CollectionAfterChangeHook<Blog> = ({
 			payload.logger.info(`Revalidating old post at path: ${oldPath}`);
 
 			revalidatePath(oldPath);
-			revalidateTag("blogs-sitemap", "max");
+			revalidatePath("/resources/blogs");
+			revalidateTag("blogs", "max");
+			revalidateTag("blogCategories", "max");
+			revalidateTag(`blog:${previousDoc.slug}`, "max");
 		}
 	}
 	return doc;
@@ -43,7 +49,12 @@ export const revalidateDelete: CollectionAfterDeleteHook<Blog> = ({
 		const path = `/resources/blogs/${doc?.slug}`;
 
 		revalidatePath(path);
-		revalidateTag("blogs-sitemap", "max");
+		revalidatePath("/resources/blogs");
+		revalidateTag("blogs", "max");
+		revalidateTag("blogCategories", "max");
+		if (doc?.slug) {
+			revalidateTag(`blog:${doc.slug}`, "max");
+		}
 	}
 
 	return doc;

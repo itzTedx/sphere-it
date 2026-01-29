@@ -15,7 +15,7 @@ import { BASE_URL } from "@/data/site-config";
 import { listFaqs } from "@/modules/faqs/actions/query";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
-import { structuredData } from "./structured-data";
+import { getStructuredData } from "./structured-data";
 
 const meta = {
 	title: "Frequently Asked Questions (FAQs) | Sphere IT",
@@ -63,6 +63,7 @@ export const metadata: Metadata = {
 
 export default async function FaqsPage() {
 	const faqs = await listFaqs();
+	const structuredData = await getStructuredData();
 
 	return (
 		<>

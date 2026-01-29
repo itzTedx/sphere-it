@@ -1,63 +1,69 @@
 import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
-import MDXContent from "@/components/markdown";
 import { Button } from "@/components/ui/button";
 
 import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { slugify } from "@/lib/utils";
 import { LinkedInAuthButton } from "@/modules/auth/components/linkedin-button";
+import { Media } from "@/modules/cms/components/Media";
+import RichText from "@/modules/cms/components/RichText";
 import {
 	geResearchBySlug,
 	listResearchPapers,
 } from "@/modules/research-papers/actions";
-import { Research } from "@/modules/research-papers/actions/types";
 import { PapersCard } from "@/modules/research-papers/components/paper-card";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
+import { ResearchPaper } from "@/payload-types";
 
 interface Props {
 	params: Promise<{ slug: string }>;
 }
 
-const structuredData = (study: Research | null) => ({
-	"@context": "https://schema.org",
-	"@type": "ResearchPaper",
-	headline: study?.metadata.title,
-	image: `${BASE_URL}${study?.metadata.image}`,
-	author: {
-		"@type": "Organization",
-		name: COMPANY_NAME,
-		url: BASE_URL,
-	},
-	publisher: {
-		"@type": "Organization",
-		name: COMPANY_NAME,
-		url: BASE_URL,
-		logo: {
-			"@type": "ImageObject",
-			url: `${BASE_URL}/logo.png`,
+const structuredData = (study: ResearchPaper | null) => {
+	const image =
+		study?.heroImage && typeof study.heroImage !== "number"
+			? study.heroImage.url
+			: "";
+
+	return {
+		"@context": "https://schema.org",
+		"@type": "ResearchPaper",
+		headline: study?.title,
+		image: image ? `${BASE_URL}${image}` : undefined,
+		author: {
+			"@type": "Organization",
+			name: COMPANY_NAME,
+			url: BASE_URL,
 		},
-	},
-	mainEntityOfPage: {
-		"@type": "WebPage",
-		"@id": `${BASE_URL}/resources/research-papers/${study?.metadata.slug}`,
-	},
-	keywords: [
-		"research paper",
-		"digital transformation",
-		"technology",
-		"IT consulting",
-		COMPANY_NAME,
-	],
-});
+		publisher: {
+			"@type": "Organization",
+			name: COMPANY_NAME,
+			url: BASE_URL,
+			logo: {
+				"@type": "ImageObject",
+				url: `${BASE_URL}/logo.png`,
+			},
+		},
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": `${BASE_URL}/resources/research-papers/${study?.slug}`,
+		},
+		keywords: [
+			"research paper",
+			"digital transformation",
+			"technology",
+			"IT consulting",
+			COMPANY_NAME,
+		],
+	};
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
@@ -70,8 +76,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		};
 	}
 
-	const description = study.metadata.meta.description;
-	const title = study.metadata.meta.title;
+	const description = study.meta?.description ?? study.title;
+	const title = study.meta?.title ?? study.title;
+	const image =
+		study.heroImage && typeof study.heroImage !== "number"
+			? study.heroImage.url
+			: "";
 
 	return {
 		title: `${title} | ${COMPANY_NAME} Research paper`,
@@ -92,12 +102,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title: title,
 			description,
 			type: "article",
-			url: `${BASE_URL}/resources/research-papers/${study.metadata.slug}`,
+			url: `${BASE_URL}/resources/research-papers/${study.slug}`,
 			siteName: COMPANY_NAME,
 			locale: "en_US",
 			images: [
 				{
-					url: `${BASE_URL}${study.metadata.image}`,
+					url: image ? `${BASE_URL}${image}` : `${BASE_URL}/logo.png`,
 					width: 1200,
 					height: 630,
 					alt: title,
@@ -108,12 +118,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			card: "summary_large_image",
 			title: title,
 			description,
-			images: [`${BASE_URL}${study.metadata.image}`],
+			images: [image ? `${BASE_URL}${image}` : `${BASE_URL}/logo.png`],
 			creator: "@sphereglobal",
 			site: "@sphereglobal",
 		},
 		alternates: {
-			canonical: `${BASE_URL}/resources/research-papers/${study.metadata.slug}`,
+			canonical: `${BASE_URL}/resources/research-papers/${study.slug}`,
 		},
 		robots: {
 			index: true,
@@ -130,7 +140,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-	const studies = listResearchPapers();
+	const studies = await listResearchPapers();
 
 	return studies.map((study) => ({
 		slug: study.slug,
@@ -141,7 +151,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 	const { slug } = await params;
 
 	const study = await geResearchBySlug(slug);
-	const otherPapers = listResearchPapers(3);
+	const otherPapers = await listResearchPapers(3);
 
 	const jsonLd = structuredData(study);
 
@@ -163,8 +173,8 @@ export default async function ResearchPaperPage({ params }: Props) {
 						item: `${BASE_URL}/resources/research-papers`,
 					},
 					{
-						name: study.metadata.title,
-						item: `${BASE_URL}/resources/research-papers/${study.metadata.slug}`,
+						name: study.title,
+						item: `${BASE_URL}/resources/research-papers/${study.slug}`,
 					},
 				]}
 			/>
@@ -196,37 +206,26 @@ export default async function ResearchPaperPage({ params }: Props) {
 									</Button>
 								</nav>
 
-								<ViewTransition name={`title-${study.metadata.slug}`}>
+								<ViewTransition name={`title-${study.slug}`}>
 									<h1 className="text-primary-900 text-title-2 sm:text-title-3">
-										{study.metadata.title}
+										{study.title}
 									</h1>
 								</ViewTransition>
 							</div>
 
-							<ViewTransition name={`image-${study?.metadata.slug}`}>
+							<ViewTransition name={`image-${study?.slug}`}>
 								<div className="lg:col-span-6">
 									<div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border bg-stone-alpha-10 p-2">
 										<div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-xl shadow-lg">
-											{study.metadata.client && (
-												<Image
-													alt={`${study?.metadata.title} - Featured image`}
-													className="z-10 object-cover"
-													height={60}
-													priority
-													sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-													src={study?.metadata.client.logo}
-													width={120}
-												/>
-											)}
-
-											<Image
-												alt={`${study?.metadata.title} - Featured image`}
-												className="object-cover"
-												fill
-												priority
-												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-												src={study?.metadata.image}
-											/>
+											{study.heroImage &&
+												typeof study.heroImage !== "number" && (
+													<Media
+														fill
+														imgClassName="object-cover"
+														resource={study.heroImage}
+														size="50vw"
+													/>
+												)}
 										</div>
 									</div>
 								</div>
@@ -257,12 +256,10 @@ export default async function ResearchPaperPage({ params }: Props) {
 	);
 }
 
-async function Article({ content }: { content: string }) {
+async function Article({ content }: { content: ResearchPaper["content"] }) {
 	// const session = await auth.api.getSession({ headers: await headers() });
 
 	const isLoggedIn = true;
-
-	const data = isLoggedIn ? content : content.slice(0, 1500);
 
 	return (
 		<div className="container relative max-w-7xl border-b">
@@ -270,23 +267,10 @@ async function Article({ content }: { content: string }) {
 				className="prose prose-stone prose-lg mx-auto max-w-4xl py-4 prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
 				itemProp="articleBody"
 			>
-				<MDXContent
-					components={{
-						h1: (props) => <h1 id={slugify(props.children)} {...props} />,
-						h2: (props) => <h2 id={slugify(props.children)} {...props} />,
-						h3: (props) => <h3 id={slugify(props.children)} {...props} />,
-						h4: (props) => <h4 id={slugify(props.children)} {...props} />,
-						h5: (props) => <h5 id={slugify(props.children)} {...props} />,
-						h6: (props) => <h6 id={slugify(props.children)} {...props} />,
-						a: (props) => (
-							<Link
-								rel={props.href.startsWith("http") && "noreferrer noopener"}
-								target={props.href.startsWith("http") && "_blank"}
-								{...props}
-							/>
-						),
-					}}
-					source={data}
+				<RichText
+					className="prose prose-stone prose-lg prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
+					data={content}
+					enableGutter={false}
 				/>
 			</article>
 			{!isLoggedIn && (

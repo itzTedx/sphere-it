@@ -14,22 +14,26 @@ export const revalidateStudies: CollectionAfterChangeHook<CaseStudy> = ({
 }) => {
 	if (!context.disableRevalidate) {
 		if (doc._status === "published") {
-			const path = `/resources/case-studies/${doc.id}`;
+			const path = `/resources/case-studies/${doc.slug}`;
 
 			payload.logger.info(`Revalidating post at path: ${path}`);
 
 			revalidatePath(path);
-			revalidateTag("case-studies-sitemap", "max");
+			revalidatePath("/resources/case-studies");
+			revalidateTag("case-studies", "max");
+			revalidateTag(`case-study:${doc.slug}`, "max");
 		}
 
 		// If the post was previously published, we need to revalidate the old path
 		if (previousDoc._status === "published" && doc._status !== "published") {
-			const oldPath = `/resources/case-studies/${previousDoc.id}`;
+			const oldPath = `/resources/case-studies/${previousDoc.slug}`;
 
 			payload.logger.info(`Revalidating old post at path: ${oldPath}`);
 
 			revalidatePath(oldPath);
-			revalidateTag("case-studies-sitemap", "max");
+			revalidatePath("/resources/case-studies");
+			revalidateTag("case-studies", "max");
+			revalidateTag(`case-study:${previousDoc.slug}`, "max");
 		}
 	}
 	return doc;
@@ -43,7 +47,11 @@ export const revalidateDeleteStudies: CollectionAfterDeleteHook<CaseStudy> = ({
 		const path = `/resources/case-studies/${doc?.slug}`;
 
 		revalidatePath(path);
-		revalidateTag("case-studies-sitemap", "max");
+		revalidatePath("/resources/case-studies");
+		revalidateTag("case-studies", "max");
+		if (doc?.slug) {
+			revalidateTag(`case-study:${doc.slug}`, "max");
+		}
 	}
 
 	return doc;

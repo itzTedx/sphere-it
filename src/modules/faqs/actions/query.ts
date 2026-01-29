@@ -1,8 +1,14 @@
+import { cacheLife, cacheTag } from "next/cache";
+
 import { payload } from "@/lib/payload";
 import { Faq } from "@/payload-types";
 import { FaqList } from "@/types/faq";
 
 export const listFaqs = async (): Promise<FaqList[]> => {
+	"use cache";
+	cacheTag("faqs");
+	cacheLife("max");
+
 	const data = await payload.find({
 		collection: "faqs",
 		draft: false,

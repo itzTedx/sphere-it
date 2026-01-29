@@ -1,9 +1,22 @@
+import { revalidatePath, revalidateTag } from "next/cache";
+
 import type { GlobalConfig } from "payload";
 
 export const Footer: GlobalConfig = {
 	slug: "footer",
 	access: {
 		read: () => true,
+	},
+	hooks: {
+		afterChange: [
+			({ doc, req: { context } }) => {
+				if (!context.disableRevalidate) {
+					revalidateTag("global:footer", "max");
+					revalidatePath("/");
+				}
+				return doc;
+			},
+		],
 	},
 	fields: [
 		{

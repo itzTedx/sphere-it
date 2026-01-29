@@ -1,6 +1,7 @@
 import { type ComponentType } from "react";
 
 import type { Route } from "next";
+import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
 
 import { Facebook, Youtube } from "lucide-react";
@@ -116,11 +117,19 @@ const FooterSection = ({ item }: { item: (typeof FOOTER)[0] }) => {
 // Static copyright year to avoid re-computation
 const currentYear = new Date().getFullYear();
 
-export const Footer = async () => {
-	const data = await payload.findGlobal({
+const getFooterGlobal = async () => {
+	"use cache";
+	cacheTag("global:footer");
+	cacheLife("max");
+
+	return payload.findGlobal({
 		slug: "footer",
 		depth: 1,
 	});
+};
+
+export const Footer = async () => {
+	const data = await getFooterGlobal();
 	return (
 		<footer
 			aria-label="Site footer"

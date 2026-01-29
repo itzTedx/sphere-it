@@ -1,54 +1,74 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
+import { cacheLife, cacheTag } from "next/cache";
 
-import { Research, ResearchMetadata } from "./types";
+import { payload } from "@/lib/payload";
+import { ResearchPaper } from "@/payload-types";
 
-const root = (endpoint: string) =>
-	path.join(process.cwd(), "src", "contents", endpoint);
+export async function listResearchPapersPaged(options?: {
+	limit?: number;
+	page?: number;
+}) {
+	"use cache";
+	cacheTag("researchPapers");
+	cacheLife("max");
 
-export function listResearchPapers(limit?: number) {
-	const files = fs.readdirSync(root("research-papers"));
+	const { limit = 12, page = 1 } = options || {};
 
-	const researchPapers = files.map((file) => getResearchMetadata(file));
-
-	if (limit) {
-		return researchPapers.slice(0, limit);
-	}
-
-	return researchPapers;
+	return payload.find({
+		collection: "researchPapers",
+		draft: false,
+		depth: 2,
+		limit,
+		page,
+		select: {
+			title: true,
+			heroImage: true,
+			slug: true,
+			publishedAt: true,
+		},
+		sort: ["-createdAt"],
+	});
 }
 
-export async function geResearchBySlug(slug: string): Promise<Research | null> {
-	try {
-		const filePath = path.join(root("research-papers"), `${slug}.mdx`);
-		const fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
-		const { data, content } = matter(fileContent);
+export async function listResearchPapers(limit?: number) {
+	"use cache";
+	cacheTag("researchPapers");
+	cacheLife("max");
 
-		const metadata = data as ResearchMetadata;
-		return {
-			metadata: {
-				...metadata,
-				slug,
+	const data = await payload.find({
+		collection: "researchPapers",
+		draft: false,
+		depth: 2,
+		limit: limit ?? 100,
+		select: {
+			title: true,
+			heroImage: true,
+			slug: true,
+			publishedAt: true,
+		},
+		sort: ["-createdAt"],
+	});
+
+	return data.docs;
+}
+
+export async function geResearchBySlug(
+	slug: string
+): Promise<ResearchPaper | null> {
+	"use cache";
+	cacheTag("researchPapers", `research-paper:${slug}`);
+	cacheLife("max");
+
+	const data = await payload.find({
+		collection: "researchPapers",
+		draft: false,
+		depth: 2,
+		where: {
+			slug: {
+				equals: slug,
 			},
-			content,
-		};
-	} catch {
-		return null;
-	}
-}
+		},
+		limit: 1,
+	});
 
-export function getResearchMetadata(
-	filepath: string
-): ResearchMetadata & { slug: string } {
-	const slug = filepath.replace(/\.mdx$/, "");
-
-	const filePath = path.join(root("research-papers"), filepath);
-
-	const fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
-	const { data } = matter(fileContent);
-
-	const metadata = data as ResearchMetadata;
-
-	return { ...metadata, slug };
+	return data.docs?.[0] ?? null;
 }

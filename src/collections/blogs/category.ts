@@ -1,3 +1,5 @@
+import { revalidateTag } from "next/cache";
+
 import { type CollectionConfig, slugField } from "payload";
 
 export const BlogCategories: CollectionConfig = {
@@ -5,6 +7,26 @@ export const BlogCategories: CollectionConfig = {
 	admin: {
 		useAsTitle: "category",
 		hidden: true,
+	},
+	hooks: {
+		afterChange: [
+			({ doc, req: { context } }) => {
+				if (!context.disableRevalidate) {
+					revalidateTag("blogCategories", "max");
+					revalidateTag("blogs", "max");
+				}
+				return doc;
+			},
+		],
+		afterDelete: [
+			({ doc, req: { context } }) => {
+				if (!context.disableRevalidate) {
+					revalidateTag("blogCategories", "max");
+					revalidateTag("blogs", "max");
+				}
+				return doc;
+			},
+		],
 	},
 
 	fields: [
