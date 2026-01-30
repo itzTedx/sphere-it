@@ -58,8 +58,6 @@ export const metadata: Metadata = {
 		yandex: "your-yandex-verification-code",
 		yahoo: "your-yahoo-verification-code",
 	},
-
-	category: "technology",
 };
 
 export default function RootLayout({
