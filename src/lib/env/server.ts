@@ -4,7 +4,7 @@ import { z } from "zod";
 export const env = createEnv({
 	server: {
 		DATABASE_URL: z.url(),
-
+		BASE_URL: z.url().optional(),
 		// LINKEDIN CREDENTIALS
 		LINKEDIN_CLIENT_ID: z.string().min(1),
 		LINKEDIN_CLIENT_SECRET: z.string().min(1),
