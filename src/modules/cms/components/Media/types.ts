@@ -20,5 +20,5 @@ export interface Props {
 	src?: StaticImageData; // for static media
 	videoClassName?: string;
 	width?: number;
-	quality?: number
+	quality?: number;
 }

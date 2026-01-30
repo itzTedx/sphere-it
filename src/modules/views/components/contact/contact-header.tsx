@@ -41,7 +41,7 @@ function SupportCard() {
 					</div>
 					<CopyButton
 						aria-label="Copy email address"
-						className="flex-shrink-0"
+						className="shrink-0"
 						size="icon"
 						text={EMAIL_INFO}
 						variant="ghost"

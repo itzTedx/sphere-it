@@ -58,8 +58,6 @@ export const Image: React.FC<MediaProps> = (props) => {
 				.map(([, value]) => `(max-width: ${value}px) ${value}px`)
 				.join(", ");
 
- 
-
 	return (
 		<NextImage
 			alt={alt || ""}

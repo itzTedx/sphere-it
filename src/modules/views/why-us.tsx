@@ -34,7 +34,7 @@ import { cn } from "@/lib/utils";
 export const WhyUs = memo(() => {
 	return (
 		<section aria-labelledby="why-us-heading" className="relative z-50">
-			<div className="mx-auto max-w-7xl space-y-4 lg:space-y-6">
+			<div className="container mx-auto max-w-7xl space-y-4 lg:space-y-6">
 				<header className="space-y-2 md:space-y-4">
 					{/* <Badge variant="secondary">Why sphere it</Badge> */}
 					<div className="grid gap-2 md:grid-cols-3 md:gap-4">

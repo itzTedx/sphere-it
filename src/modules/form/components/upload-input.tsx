@@ -297,6 +297,7 @@ export function FileUpload({
 		[onUploadError]
 	);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: No need to re-render on onChange
 	const simulateUpload = useCallback(
 		(uploadingFile: File) => {
 			let currentProgress = 0;
@@ -336,6 +337,7 @@ export function FileUpload({
 		[onUploadSuccess, uploadDelay]
 	);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: No need to re-render on onChange
 	const handleFileSelect = useCallback(
 		(selectedFile: File | null) => {
 			if (!selectedFile) return;

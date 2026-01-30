@@ -36,23 +36,23 @@ const nextConfig: NextConfig = {
 			{
 				protocol: "http",
 				hostname: "localhost",
-		},
-		{
+			},
+			{
 				protocol: "http",
 				hostname: "20.174.166.85",
-		},
-		{
+			},
+			{
 				protocol: "https",
 				hostname: "sphere-it.vercel.app",
-		},
-		{
+			},
+			{
 				protocol: "https",
 				hostname: "sphereit360.com",
-		},
-		{
+			},
+			{
 				protocol: "https",
 				hostname: "sphereitglobal.com",
-		},
+			},
 		],
 	},
 
