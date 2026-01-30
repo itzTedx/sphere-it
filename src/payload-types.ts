@@ -990,7 +990,6 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
-  copyright: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1014,7 +1013,6 @@ export interface FooterSelect<T extends boolean = true> {
         link?: T;
         id?: T;
       };
-  copyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

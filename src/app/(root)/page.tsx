@@ -1,8 +1,10 @@
 import type { Metadata } from "next/dist/types";
+import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
+import { generateFAQStructuredData } from "@/modules/seo/faq-jsonld";
 import { Clients, Hero, Services, WhyUs } from "@/modules/views";
 import { Industries } from "@/modules/views/industries";
 import { Partners } from "@/modules/views/partners";
@@ -80,19 +82,31 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function Home() {
-	return (
-		<main>
-			<Hero />
-			<Services />
-			<Clients />
-			<Industries />
-			{/* <About /> */}
-			<WhyUs />
-			<Partners />
-			{/* <Resources /> */}
+export default async function Home() {
+	const faqStructuredData = await generateFAQStructuredData("general");
 
-			<Cta showForm />
-		</main>
+	return (
+		<>
+			{faqStructuredData && (
+				<Script
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(faqStructuredData),
+					}}
+					type="application/ld+json"
+				/>
+			)}
+			<main>
+				<Hero />
+				<Services />
+				<Clients />
+				<Industries />
+				{/* <About /> */}
+				<WhyUs />
+				<Partners />
+				{/* <Resources /> */}
+
+				<Cta showForm />
+			</main>
+		</>
 	);
 }

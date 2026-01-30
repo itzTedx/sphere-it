@@ -132,7 +132,7 @@ export const About = memo(() => {
 							<Button asChild className="mt-4" variant="ghost">
 								<Link
 									aria-label="Read customer testimonials"
-									href="/resources/testimonials"
+									href="/testimonials"
 								>
 									See what our customer says
 									<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300 transition-colors">

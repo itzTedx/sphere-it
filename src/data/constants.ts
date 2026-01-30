@@ -128,36 +128,36 @@ export const NAV_LINKS: NavLink[] = [
 
 export const FOOTER: Footer[] = [
 	{
-		id: 1,
+		id: "1",
 		heading: "Services",
 		href: "/services",
 		links: [
 			{
-				id: 1,
+				id: "1",
 				Icon: IconElevate,
 				label: "Elevate",
 				href: "/services/elevate" as Route,
 			},
 			{
-				id: 2,
+				id: "2",
 				Icon: IconAutomate,
 				label: "Automate",
 				href: "/services/automate" as Route,
 			},
 			{
-				id: 3,
+				id: "3",
 				Icon: IconEvaluate,
 				label: "Evaluate",
 				href: "/services/evaluate" as Route,
 			},
 			{
-				id: 4,
+				id: "4",
 				Icon: IconAssure,
 				label: "Assure",
 				href: "/services/assure" as Route,
 			},
 			{
-				id: 5,
+				id: "5",
 				Icon: IconAugment,
 				label: "Augment",
 				href: "/services/augment" as Route,
@@ -165,84 +165,84 @@ export const FOOTER: Footer[] = [
 		],
 	},
 	{
-		id: 2,
+		id: "2",
 		heading: "Company",
 		links: [
 			{
-				id: 1,
+				id: "1",
 				label: "About",
 				href: "/about",
 			},
 			{
-				id: 2,
+				id: "2",
 				label: "Careers",
 				href: "/careers",
 			},
 			{
-				id: 3,
+				id: "3",
 				label: "Methodology",
 				href: "/methodology",
 			},
 			{
-				id: 4,
+				id: "4",
 				label: "Testimonials",
 				href: "/testimonials",
 			},
 			{
-				id: 5,
+				id: "5",
 				label: "Contact",
 				href: "/contact",
 			},
 		],
 	},
 	{
-		id: 3,
+		id: "3",
 		heading: "Resources",
 		links: [
 			{
-				id: 1,
+				id: "1",
 				label: "Faqs",
 				href: "/resources/faqs",
 			},
 
 			{
-				id: 4,
+				id: "4",
 				label: "Blogs",
 				href: "/resources/blogs",
 			},
 			{
-				id: 3,
+				id: "3",
 				label: "Case studies",
 				href: "/resources/case-studies",
 			},
 			{
-				id: 2,
+				id: "2",
 				label: "Research papers",
 				href: "/resources/research-papers",
 			},
 			{
-				id: 5,
+				id: "5",
 				label: "AI Maturity Assessment",
 				href: "/resources/ai-maturity",
 			},
 		],
 	},
-	{
-		id: 4,
-		heading: "Locations",
-		links: [
-			{
-				id: 1,
-				label: "Dubai",
-				href: "https://share.google/HprP2DAPxWShJEHHy",
-			},
-			{
-				id: 2,
-				label: "India",
-				href: "https://maps.app.goo.gl/Lb8Q5vUWy8rKJ9hd8",
-			},
-		],
-	},
+	// {
+	// 	id: "4",
+	// 	heading: "Locations",
+	// 	links: [
+	// 		{
+	// 			id: "1",
+	// 			label: "Dubai",
+	// 			href: "https://share.google/HprP2DAPxWShJEHHy",
+	// 		},
+	// 		{
+	// 			id: "2",
+	// 			label: "India",
+	// 			href: "https://maps.app.goo.gl/Lb8Q5vUWy8rKJ9hd8",
+	// 		},
+	// 	],
+	// },
 ];
 
 export const SOCIALS = [

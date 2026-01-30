@@ -75,7 +75,7 @@ export function BlogCard({
 									return (
 										<ViewTransition
 											key={category.id}
-											name={`category-${data.slug}`}
+											name={`category-${data.slug}-${category.id}`}
 										>
 											<Badge variant="secondary">{category.category}</Badge>
 										</ViewTransition>

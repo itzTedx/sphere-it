@@ -26,6 +26,10 @@ import { TECH_STACKS } from "@/data/constants";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
+import {
+	generateFAQStructuredData,
+	getFAQCategoryFromSlug,
+} from "@/modules/seo/faq-jsonld";
 import { getServiceBySlug } from "@/modules/services/actions";
 import {
 	Card,
@@ -76,6 +80,9 @@ export default async function ServicePage({ params }: Props) {
 
 	const Icon = ICONS[service.metadata.badge as keyof typeof ICONS];
 
+	const faqCategory = await getFAQCategoryFromSlug(service.metadata.badge);
+	const faqStructuredData = await generateFAQStructuredData(faqCategory);
+
 	const structuredData = {
 		"@context": "https://schema.org",
 		"@type": "Service",
@@ -102,6 +109,14 @@ export default async function ServicePage({ params }: Props) {
 
 	return (
 		<>
+			{faqStructuredData && (
+				<script
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(faqStructuredData),
+					}}
+					type="application/ld+json"
+				/>
+			)}
 			<script
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
 				type="application/ld+json"

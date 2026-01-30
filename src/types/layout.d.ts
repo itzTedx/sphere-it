@@ -32,14 +32,14 @@ export type SubmenuLink = {
 };
 
 export type Footer = {
-	id: number;
+	id: string;
 	heading: string;
 	href?: Route;
 	links: FooterNavLink[];
 };
 
 export type FooterNavLink = {
-	id: number;
+	id: string;
 	Icon?: (props: SVGProps) => JSX.Element;
 	label: string;
 	href: Route;

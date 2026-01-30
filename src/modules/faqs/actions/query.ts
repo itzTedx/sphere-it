@@ -21,7 +21,7 @@ export const listFaqs = async (): Promise<FaqList[]> => {
 			updatedAt: true,
 			createdAt: true,
 		},
-		sort: ["category"],
+		sort: ["category", "createdAt"],
 	});
 
 	const groupedFaqs: Record<string, Faq[]> = {};

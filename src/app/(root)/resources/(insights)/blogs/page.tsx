@@ -6,6 +6,7 @@ import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { TabsContent } from "@/components/ui/tabs";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
-export default async function BlogsPage(props: { searchParams: SearchParams }) {
+export default function BlogsPage(props: { searchParams: SearchParams }) {
 	return (
 		<InsightsLayout>
 			{structuredData.map((data, index) => (
@@ -98,7 +99,7 @@ export default async function BlogsPage(props: { searchParams: SearchParams }) {
 					{ name: "Blogs", item: `${BASE_URL}/resources/blogs` },
 				]}
 			/>
-			<Suspense fallback={null}>
+			<Suspense fallback={<BlogsPageSkeleton />}>
 				<BlogsContent searchParams={props.searchParams} />
 			</Suspense>
 		</InsightsLayout>
@@ -121,16 +122,105 @@ async function BlogsContent(props: { searchParams: SearchParams }) {
 
 	const isFeatured = searchParams.featured === "true";
 
-	const [pagedBlogs, allBlogsForStats] = await Promise.all([
-		listBlogsPaged({
-			search,
-			categories,
-			isFeatured,
-			page,
-			limit: 12,
-		}),
-		listBlogs(),
-	]);
+	return (
+		<TabsContent value="/resources/blogs">
+			<div className="container grid max-w-7xl grid-cols-4 gap-8">
+				<Suspense fallback={<BlogsSidebarSkeleton />}>
+					<BlogsSidebarContent />
+				</Suspense>
+				<Suspense fallback={<BlogsMainContentSkeleton />}>
+					<BlogsMainContent
+						categories={categories}
+						categoryParam={categoryParam}
+						isFeatured={isFeatured}
+						page={page}
+						search={search}
+					/>
+				</Suspense>
+			</div>
+			<Cta />
+		</TabsContent>
+	);
+}
+
+// Skeleton components
+function BlogsPageSkeleton() {
+	return (
+		<TabsContent value="/resources/blogs">
+			<div className="container grid max-w-7xl grid-cols-4 gap-8">
+				<BlogsSidebarSkeleton />
+				<BlogsMainContentSkeleton />
+			</div>
+			<Cta />
+		</TabsContent>
+	);
+}
+
+function BlogsSidebarSkeleton() {
+	return (
+		<aside className="sticky top-16 max-h-fit space-y-4 py-6">
+			<Skeleton className="h-10 w-full" />
+			<div className="h-px w-full bg-muted" />
+			<Skeleton className="h-32 w-full rounded-lg" />
+			<Skeleton className="h-20 w-full rounded-lg" />
+			<div className="h-px w-full bg-muted" />
+			<div className="flex items-center justify-between">
+				<Skeleton className="h-4 w-20" />
+				<Skeleton className="h-8 w-20" />
+			</div>
+		</aside>
+	);
+}
+
+function BlogsMainContentSkeleton() {
+	return (
+		<main className="col-span-3 mb-12">
+			<article className="grid grid-cols-3 gap-4 py-6">
+				{Array.from({ length: 6 }).map((_, index) => (
+					<div className="space-y-3" key={index}>
+						<Skeleton className="aspect-4/3 w-full rounded-xl" />
+						<Skeleton className="h-4 w-3/4" />
+						<Skeleton className="h-3 w-full" />
+						<Skeleton className="h-3 w-2/3" />
+					</div>
+				))}
+			</article>
+		</main>
+	);
+}
+
+// Separated content components
+async function BlogsSidebarContent() {
+	const allBlogsForStats = await listBlogs();
+
+	return (
+		<BlogsSidebar
+			data={allBlogsForStats}
+			filteredCount={0} // This will be updated by the main content
+		/>
+	);
+}
+
+async function BlogsMainContent({
+	search,
+	categories,
+	isFeatured,
+	page,
+	categoryParam,
+}: {
+	search?: string;
+	categories?: string[];
+	isFeatured: boolean;
+	page: number;
+	categoryParam?: string;
+}) {
+	const pagedBlogs = await listBlogsPaged({
+		search,
+		categories,
+		isFeatured,
+		page,
+		limit: 12,
+	});
 
 	const buildHref = (nextPage: number) => {
 		const query: Record<string, string> = {};
@@ -145,62 +235,53 @@ async function BlogsContent(props: { searchParams: SearchParams }) {
 	};
 
 	return (
-		<TabsContent value="/resources/blogs">
-			<div className="container grid max-w-7xl grid-cols-4 gap-8">
-				<BlogsSidebar
-					data={allBlogsForStats}
-					filteredCount={pagedBlogs.docs.length}
-				/>
-				<main className="col-span-3 mb-12">
-					<article className="grid grid-cols-3 gap-4 py-6">
-						{pagedBlogs.docs.length > 0 ? (
-							pagedBlogs.docs.map((blog) => (
-								<BlogCard
-									className={cn(blog.isFeatured && "col-span-full")}
-									data={blog}
-									key={blog.id}
-								/>
-							))
-						) : (
-							<div className="col-span-3 flex h-64 flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-8 text-muted-foreground">
-								<p className="font-medium text-lg">No blogs found</p>
-								<p className="text-sm">
-									Try adjusting your filters or search terms.
-								</p>
-							</div>
-						)}
-					</article>
-					{pagedBlogs.totalPages > 1 && (
-						<nav
-							aria-label="Pagination"
-							className="mt-6 flex items-center justify-between"
-						>
-							{pagedBlogs.hasPrevPage ? (
-								<Button asChild variant="outline">
-									<Link href={buildHref(page - 1)}>Previous</Link>
-								</Button>
-							) : (
-								<Button disabled variant="outline">
-									Previous
-								</Button>
-							)}
-							<span className="text-muted-foreground text-sm">
-								Page {pagedBlogs.page} of {pagedBlogs.totalPages}
-							</span>
-							{pagedBlogs.hasNextPage ? (
-								<Button asChild variant="outline">
-									<Link href={buildHref(page + 1)}>Next</Link>
-								</Button>
-							) : (
-								<Button disabled variant="outline">
-									Next
-								</Button>
-							)}
-						</nav>
+		<main className="col-span-3 mb-12">
+			<article className="grid grid-cols-3 gap-4 py-6">
+				{pagedBlogs.docs.length > 0 ? (
+					pagedBlogs.docs.map((blog) => (
+						<BlogCard
+							className={cn(blog.isFeatured && "col-span-full")}
+							data={blog}
+							key={blog.id}
+						/>
+					))
+				) : (
+					<div className="col-span-3 flex h-64 flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-8 text-muted-foreground">
+						<p className="font-medium text-lg">No blogs found</p>
+						<p className="text-sm">
+							Try adjusting your filters or search terms.
+						</p>
+					</div>
+				)}
+			</article>
+			{pagedBlogs.totalPages > 1 && (
+				<nav
+					aria-label="Pagination"
+					className="mt-6 flex items-center justify-between"
+				>
+					{pagedBlogs.hasPrevPage ? (
+						<Button asChild variant="outline">
+							<Link href={buildHref(page - 1)}>Previous</Link>
+						</Button>
+					) : (
+						<Button disabled variant="outline">
+							Previous
+						</Button>
 					)}
-				</main>
-			</div>
-			<Cta />
-		</TabsContent>
+					<span className="text-muted-foreground text-sm">
+						Page {pagedBlogs.page} of {pagedBlogs.totalPages}
+					</span>
+					{pagedBlogs.hasNextPage ? (
+						<Button asChild variant="outline">
+							<Link href={buildHref(page + 1)}>Next</Link>
+						</Button>
+					) : (
+						<Button disabled variant="outline">
+							Next
+						</Button>
+					)}
+				</nav>
+			)}
+		</main>
 	);
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { Cta } from "@/components/layout/cta";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { TabsContent } from "@/components/ui/tabs";
 
 import { listCaseStudiesPaged } from "@/modules/case-studies/actions/query";
@@ -18,7 +19,7 @@ export default async function CaseStudiesPage(props: {
 }) {
 	return (
 		<InsightsLayout>
-			<Suspense fallback={null}>
+			<Suspense fallback={<CaseStudiesPageSkeleton />}>
 				<CaseStudiesContent searchParams={props.searchParams} />
 			</Suspense>
 		</InsightsLayout>
@@ -83,5 +84,39 @@ async function CaseStudiesContent(props: { searchParams: SearchParams }) {
 			</div>
 			<Cta />
 		</TabsContent>
+	);
+}
+
+// Skeleton components
+function CaseStudiesPageSkeleton() {
+	return (
+		<TabsContent value="/resources/case-studies">
+			<div className="container max-w-7xl">
+				<CaseStudiesMainContentSkeleton />
+				<Cta />
+			</div>
+		</TabsContent>
+	);
+}
+
+function CaseStudiesMainContentSkeleton() {
+	return (
+		<main className="mb-12">
+			<article className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
+				{Array.from({ length: 6 }).map((_, index) => (
+					<div className="space-y-3" key={index}>
+						<Skeleton className="aspect-4/3 w-full rounded-xl" />
+						<Skeleton className="h-4 w-3/4" />
+						<Skeleton className="h-3 w-full" />
+						<Skeleton className="h-3 w-2/3" />
+					</div>
+				))}
+			</article>
+			<nav className="mt-6 flex items-center justify-between">
+				<Skeleton className="h-10 w-20" />
+				<Skeleton className="h-4 w-24" />
+				<Skeleton className="h-10 w-20" />
+			</nav>
+		</main>
 	);
 }

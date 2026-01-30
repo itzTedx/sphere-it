@@ -65,7 +65,6 @@ export const Footer: GlobalConfig = {
 					type: "text",
 					name: "link",
 					required: true,
-					defaultValue: "https://",
 				},
 			],
 			maxRows: 6,
@@ -83,15 +82,9 @@ export const Footer: GlobalConfig = {
 					type: "text",
 					name: "link",
 					required: true,
-					defaultValue: "https://",
 				},
 			],
 			maxRows: 5,
-		},
-		{
-			name: "copyright",
-			type: "textarea",
-			required: true,
 		},
 	],
 };

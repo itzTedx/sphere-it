@@ -73,7 +73,7 @@ export const Testimonials = memo(() => {
 						View the impact on our clients
 					</p>
 					<Button asChild size="sm" variant="secondary">
-						<Link href="/resources/testimonials">
+						<Link href="/testimonials">
 							Browse <span className="hidden sm:inline">customer stories</span>
 						</Link>
 					</Button>

@@ -21,6 +21,7 @@ import { TEAMS } from "@/data/teams";
 import { pluralize } from "@/lib/utils";
 import { JobApplicationForm } from "@/modules/form/job-application-form";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
+import { generateFAQStructuredData } from "@/modules/seo/faq-jsonld";
 import { Testimonials } from "@/modules/views";
 
 import { ROLES } from "./data/mockup-roles";
@@ -94,9 +95,21 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function CareersPage() {
+export default async function CareersPage() {
+	const faqStructuredData = await generateFAQStructuredData(
+		"careers-at-sphere-it"
+	);
+
 	return (
 		<>
+			{faqStructuredData && (
+				<script
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(faqStructuredData),
+					}}
+					type="application/ld+json"
+				/>
+			)}
 			{structuredData.map((data, index) => (
 				<script
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
