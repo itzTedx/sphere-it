@@ -6,9 +6,10 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 
-import { Testimonial } from "@/data/testimonials";
+import RichText from "@/modules/cms/components/RichText";
+import { EmployeeTestimonial } from "@/payload-types";
 
-export function TestimonialCard({ data }: { data: Testimonial }) {
+export function TestimonialCard({ data }: { data: EmployeeTestimonial }) {
 	return (
 		<Card
 			aria-labelledby={`testimonial-${data.id}-name`}
@@ -19,11 +20,15 @@ export function TestimonialCard({ data }: { data: Testimonial }) {
 				<CardTitle className="leading-none" id={`testimonial-${data.id}-name`}>
 					{data.name}
 				</CardTitle>
-				<CardDescription>{data.designation}</CardDescription>
+				<CardDescription>{data.jobRole}</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<blockquote className="text-sm text-stone-700 xl:text-base">
-					"{data.content}"
+					<RichText
+						className="prose prose-stone prose-lg prose-h1:font-medium prose-headings:text-primary-900"
+						data={data.content}
+						enableGutter={false}
+					/>
 				</blockquote>
 				{/* <span aria-label={`Industry: ${data.industry}`} className="text-stone-400 text-xs xl:text-sm">
           {data.industry}

@@ -2,6 +2,7 @@ import { revalidateTag } from "next/cache";
 
 import { type CollectionConfig, slugField } from "payload";
 
+import { slugify } from "@/lib/utils";
 import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
 import { checkRole } from "@/modules/cms/access/utilities";
 
@@ -50,6 +51,7 @@ export const BlogCategories: CollectionConfig = {
 		slugField({
 			useAsSlug: "category",
 			position: undefined,
+			slugify: ({ valueToSlugify }) => slugify(valueToSlugify),
 		}),
 	],
 };

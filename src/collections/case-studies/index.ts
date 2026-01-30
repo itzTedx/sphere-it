@@ -20,6 +20,7 @@ import {
 import type { CollectionConfig } from "payload";
 import { slugField } from "payload";
 
+import { slugify } from "@/lib/utils";
 import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
 import { checkRole } from "@/modules/cms/access/utilities";
 import { Banner } from "@/modules/cms/blocks/Banner/config";
@@ -232,7 +233,9 @@ export const CaseStudies: CollectionConfig<"blogs"> = {
 				},
 			],
 		},
-		slugField(),
+		slugField({
+			slugify: ({ valueToSlugify }) => slugify(valueToSlugify),
+		}),
 	],
 	hooks: {
 		afterChange: [revalidateStudies],

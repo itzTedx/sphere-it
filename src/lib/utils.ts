@@ -164,11 +164,15 @@ export function slugify(str: string, options: SlugifyOptions = {}): string {
 
 	let result = str;
 
-	// Convert to lowercase if specified
+	// Convert to lowercase
 	result = result.toLowerCase();
 
 	// Convert '&' to 'and'
 	result = result.replace(/&/g, "and");
+
+	// Replace spaces, underscores, and special characters with separator
+	result = result.replace(/[^\w\s-]/g, "");
+	result = result.replace(/[\s_]+/g, separator);
 
 	// Remove leading/trailing separators
 	result = result.replace(new RegExp(`^${separator}+|${separator}+$`, "g"), "");

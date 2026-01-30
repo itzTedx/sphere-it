@@ -3,16 +3,17 @@ import { NextResponse } from "next/server";
 import { env } from "@/lib/env/server";
 import { getServiceBySlug } from "@/modules/services/actions";
 
+interface Props {
+	params: Promise<{ slug: string }>;
+}
+
 /**
  * GET /services/[slug]/llms.txt - Generates llms.txt for individual service pages
  * @returns Text response with service-specific content and links
  */
-export async function GET(
-	_request: Request,
-	{ params }: { params: { slug: string } }
-) {
+export async function GET(_request: Request, { params }: Props) {
 	try {
-		const { slug } = params;
+		const { slug } = await params;
 		const service = await getServiceBySlug(slug);
 
 		if (!service) {
@@ -45,7 +46,7 @@ This service is part of Sphere Global's comprehensive technology solutions portf
 
 ## Key Features
 
-${service.content ? `${service.content.slice(0, 500)}...` : "Comprehensive service implementation and management with expert support and proven methodologies."}
+${service.content ? `${service.content}` : "Comprehensive service implementation and management with expert support and proven methodologies."}
 
 ## Related Services
 

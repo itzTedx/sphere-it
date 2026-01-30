@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { IconCalloutQuote } from "@/assets/icons";
 
 import { BASE_URL } from "@/data/site-config";
-import { TESTIMONIALS } from "@/data/testimonials";
+import { getEmployeeTestimonials } from "@/modules/employee-testimonials";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { TestimonialCard } from "@/modules/views/components/testimonial-card";
 
@@ -54,7 +54,10 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function TestimonialsPage() {
+export default async function TestimonialsPage() {
+	// Fetch testimonials from PayloadCMS
+	const testimonials = await getEmployeeTestimonials({ published: true });
+
 	return (
 		<>
 			{structuredData.map((data, index) => (
@@ -95,11 +98,22 @@ export default function TestimonialsPage() {
 					className="container mt-8 mb-16 max-w-7xl space-y-8 sm:mt-12 sm:mb-20 sm:space-y-10 md:mt-16 md:mb-24 md:space-y-12 lg:mb-32"
 					role="region"
 				>
-					<div className="columns-1 gap-6 space-y-6 sm:columns-2 md:columns-3">
-						{TESTIMONIALS.map((testimonial) => (
-							<TestimonialCard data={testimonial} key={testimonial.id} />
-						))}
-					</div>
+					{testimonials.length > 0 ? (
+						<div className="columns-1 gap-6 space-y-6 sm:columns-2 md:columns-3">
+							{testimonials.map((testimonial) => (
+								<TestimonialCard data={testimonial} key={testimonial.id} />
+							))}
+						</div>
+					) : (
+						<div className="py-12 text-center">
+							<p className="mb-4 text-lg text-stone-600">
+								No testimonials available at the moment.
+							</p>
+							<p className="text-sm text-stone-500">
+								Check back soon for employee experiences and stories.
+							</p>
+						</div>
+					)}
 				</div>
 
 				<Cta

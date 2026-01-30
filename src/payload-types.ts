@@ -427,6 +427,11 @@ export interface Career {
   time?: string | null;
   workMode?: ('on-site' | 'hybrid' | 'remote')[] | null;
   validUntil?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -871,6 +876,8 @@ export interface CareersSelect<T extends boolean = true> {
   time?: T;
   workMode?: T;
   validUntil?: T;
+  generateSlug?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
