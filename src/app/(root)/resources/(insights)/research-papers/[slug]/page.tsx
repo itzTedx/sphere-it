@@ -1,6 +1,7 @@
 import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
@@ -11,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
+import { auth } from "@/lib/auth/server";
 import { LinkedInAuthButton } from "@/modules/auth/components/linkedin-button";
 import { Media } from "@/modules/cms/components/Media";
 import RichText from "@/modules/cms/components/RichText";
@@ -257,9 +259,9 @@ export default async function ResearchPaperPage({ params }: Props) {
 }
 
 async function Article({ content }: { content: ResearchPaper["content"] }) {
-	// const session = await auth.api.getSession({ headers: await headers() });
+	const session = await auth.api.getSession({ headers: await headers() });
 
-	const isLoggedIn = true;
+	const isLoggedIn = !!session?.user;
 
 	return (
 		<div className="container relative max-w-7xl border-b">

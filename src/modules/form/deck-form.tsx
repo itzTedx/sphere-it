@@ -60,8 +60,8 @@ export const DeckForm = ({
 					// Only trigger PDF download if using default handler
 					if (!onSubmit) {
 						const link = document.createElement("a");
-						link.href = "/pdf/intro-deck.pdf";
-						link.download = "Sphere IT Global - Intro Deck.pdf";
+						link.href = "/pdf/sphere-it-introduction.pdf";
+						link.download = "Sphere IT - Introduction.pdf";
 						document.body.appendChild(link);
 						link.click();
 						document.body.removeChild(link);
@@ -200,19 +200,7 @@ export const DeckForm = ({
 				<Button className="relative" disabled={isPending} type="submit">
 					<LoadingSwap isLoading={isPending}>{buttonText}</LoadingSwap>
 				</Button>
-				<div className="flex items-center gap-3">
-					<div className="-space-x-1 flex flex-1 items-center justify-center">
-						<div className="h-0.5 w-full bg-linear-to-r from-stone-200 to-primary-600" />
-						<div className="size-1.5 rounded-full bg-primary-600" />
-					</div>
-					<span className="font-display text-muted-foreground">
-						or continue with
-					</span>
-					<div className="-space-x-1 flex flex-1 items-center justify-center">
-						<div className="size-1.5 rounded-full bg-primary-600" />
-						<div className="h-0.5 w-full bg-linear-to-l from-stone-200 to-primary-600" />
-					</div>
-				</div>
+
 				<LinkedInAuthButton />
 			</FieldGroup>
 		</form>
