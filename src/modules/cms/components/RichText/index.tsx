@@ -1,3 +1,6 @@
+import { Route } from "next";
+import Link from "next/link";
+
 import {
 	DefaultNodeTypes,
 	type DefaultTypedEditorState,
@@ -10,7 +13,7 @@ import {
 	LinkJSXConverter,
 } from "@payloadcms/richtext-lexical/react";
 
-import { cn } from "@/lib/utils";
+import { cn, slugify } from "@/lib/utils";
 import type {
 	BannerBlock as BannerBlockProps,
 	MediaBlock as MediaBlockProps,
@@ -29,7 +32,9 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
 		throw new Error("Expected value to be an object");
 	}
 	const slug = value.slug;
-	return relationTo === "posts" ? `/posts/${slug}` : `/${slug}`;
+	return relationTo === "research-papers"
+		? `/resources/research-papers/${slug}`
+		: `/${slug}`;
 };
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
@@ -37,6 +42,50 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 }) => ({
 	...defaultConverters,
 	...LinkJSXConverter({ internalDocToHref }),
+	link: ({ node, nodesToJSX }) => {
+		const children = nodesToJSX({
+			nodes: node.children,
+		});
+
+		let href = node.fields.url ?? "";
+		let newTab = node.fields.newTab;
+
+		// Auto-detect external HTTP/HTTPS links and open in new tab
+		if (node.fields.linkType !== "internal" && !newTab) {
+			newTab = href.startsWith("http://") || href.startsWith("https://");
+		}
+
+		if (node.fields.linkType === "internal") {
+			href = internalDocToHref({
+				linkNode: node as SerializedLinkNode,
+			});
+		}
+
+		const rel = newTab ? "noopener noreferrer" : undefined;
+		const target = newTab ? "_blank" : undefined;
+
+		return (
+			<Link href={href as Route} rel={rel} target={target}>
+				{children}
+			</Link>
+		);
+	},
+	heading: ({ node, nodesToJSX }) => {
+		// if (node.tag === "h2") {
+		// 	const text = nodesToJSX({ nodes: node.children });
+
+		// 	const id = text
+		// 		.join("")
+		// 		.toLowerCase()
+		// 		.replace(/\s+/g, "-")
+		// 		.replace(/[^a-z0-9-]/g, "");
+		// 	return <h2 id={id}>{text}</h2>;
+		// }
+		const text = nodesToJSX({ nodes: node.children }).join("");
+		const id = slugify(text);
+		const Tag = node.tag;
+		return <Tag id={id}>{text}</Tag>;
+	},
 	blocks: {
 		banner: ({ node }) => (
 			<BannerBlock className="col-start-2 mb-4" {...node.fields} />

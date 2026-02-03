@@ -21,13 +21,13 @@ export const LinkedInAuthButton = ({ compact }: { compact?: boolean }) => {
 				provider: "linkedin",
 				callbackURL: window.location.href, // Return to current page after auth
 				fetchOptions: {
-					onSuccess(ctx) {
-						const account = ctx.data.account;
-						const user = ctx.data.user;
-						console.log("[DEBUG] LinkedIn auth successful:", {
-							user: { id: user.id, email: user.email, name: user.name },
-							account: { id: account.id, provider: account.provider },
-						});
+					onSuccess(_ctx) {
+						// const account = ctx.data.account;
+						// const user = ctx.data.user;
+						// console.log("[DEBUG] LinkedIn auth successful:", {
+						// 	user: { email: user.email, name: user.name },
+						// 	account: { provider: account.provider },
+						// });
 
 						// Show success message
 						toast.success("Successfully connected with LinkedIn!", {

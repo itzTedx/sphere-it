@@ -14,6 +14,7 @@ import { betterAuth } from "better-auth";
 import { Plugin } from "payload";
 
 import { betterAuthOptions } from "@/lib/auth/config";
+import { env } from "@/lib/env/server";
 import { Blog, Career, CaseStudy, Media } from "@/payload-types";
 
 import { getServerSideURL } from "../utils/getURL";
@@ -22,7 +23,6 @@ const generateTitle: GenerateTitle<Blog | Career> = ({
 	doc,
 	collectionSlug,
 }) => {
-	console.log("collectionSlug", collectionSlug);
 	if (collectionSlug && collectionSlug === "careers") {
 		return doc?.title ? `${doc.title} - Careers at Sphere IT` : "Sphere IT";
 	}
@@ -62,9 +62,16 @@ export const plugins: Plugin[] = [
 				database: payloadAdapter({
 					payloadClient: payload,
 					adapterConfig: {
-						enableDebugLogs: process.env.NODE_ENV === "development",
+						enableDebugLogs: false,
+						// enableDebugLogs: process.env.NODE_ENV === "development",
 					},
 				}),
+				socialProviders: {
+					linkedin: {
+						clientId: env.LINKEDIN_CLIENT_ID,
+						clientSecret: env.LINKEDIN_CLIENT_SECRET,
+					},
+				},
 				// For Payload's default SERIAL IDs:
 				advanced: {
 					database: {

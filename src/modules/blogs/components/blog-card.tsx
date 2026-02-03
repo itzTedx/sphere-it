@@ -68,6 +68,7 @@ export function BlogCard({
 							</Link>
 						</Button>
 					</div>
+
 					<div className="@sm:order-2 order-1 flex items-center justify-between">
 						{data.blogCategories &&
 							data.blogCategories.map((category) => {
@@ -75,7 +76,7 @@ export function BlogCard({
 									return (
 										<ViewTransition
 											key={category.id}
-											name={`category-${data.slug}-${category.id}`}
+											name={`category-${category.id}-${data.slug}`}
 										>
 											<Badge variant="secondary">{category.category}</Badge>
 										</ViewTransition>
@@ -100,9 +101,17 @@ export function BlogCard({
 								size="33vw"
 							/>
 						)}
-						<Badge className="z-10 @sm:hidden bg-stone-700/80 px-2 text-muted shadow-none backdrop-blur-lg">
-							{data.publishedAt}
-						</Badge>
+						{data.publishedAt && (
+							<Badge className="z-10 @sm:hidden bg-stone-700/80 px-2 text-muted shadow-none backdrop-blur-lg">
+								<time dateTime={data.publishedAt}>
+									{new Intl.DateTimeFormat("en-US", {
+										year: "numeric",
+										month: "short",
+										day: "numeric",
+									}).format(new Date(data.publishedAt))}
+								</time>
+							</Badge>
+						)}
 					</div>
 				</ViewTransition>
 			</Card>

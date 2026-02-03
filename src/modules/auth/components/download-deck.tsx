@@ -29,7 +29,7 @@ export const DownloadDeck = () => {
 				onClick={() => setForm(true)}
 				variant="ghost"
 			>
-				View Our Intro Deck
+				View Our Introduction
 				<span
 					aria-hidden="true"
 					className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300/50"
@@ -40,11 +40,11 @@ export const DownloadDeck = () => {
 			<Dialog onOpenChange={setForm} open={form}>
 				<DialogContent>
 					<DialogHeader>
-						<Badge variant="ghost">Intro Deck</Badge>
+						<Badge variant="ghost">Introduction</Badge>
 
-						<DialogTitle>Download Our Intro Deck</DialogTitle>
+						<DialogTitle>View Our Introduction</DialogTitle>
 						<DialogDescription>
-							Enter your details to download our intro deck and discover how
+							Enter your details to view our introduction and discover how
 							Sphere IT Global can help your business.
 						</DialogDescription>
 					</DialogHeader>
