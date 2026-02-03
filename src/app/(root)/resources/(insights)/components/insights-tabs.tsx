@@ -49,16 +49,16 @@ export const InsightsTabs = ({ children }: Props) => {
 			}}
 			value={pathname}
 		>
-			<div className="relative z-50 w-full border-b bg-card">
+			<div className="relative z-50 w-full overflow-x-auto border-b bg-card">
 				<TabsList
 					aria-label="Job information tabs"
-					className="h-auto w-full gap-2 rounded-none border-b bg-transparent px-0 py-1"
+					className="h-auto w-full min-w-max gap-2 rounded-none border-b bg-transparent px-4 py-1 sm:min-w-0 sm:px-0"
 				>
 					{TABS.map((tab) => {
 						return (
 							<TabsTrigger
 								aria-controls={`${tab.link}-panel`}
-								className="relative max-w-fit cursor-pointer bg-transparent font-display text-muted-background text-sm hover:bg-muted hover:text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none sm:text-base"
+								className="relative max-w-fit cursor-pointer whitespace-nowrap bg-transparent px-3 py-2 font-display text-muted-background text-xs hover:bg-muted hover:text-muted-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none sm:px-4 sm:py-2 sm:text-sm"
 								id={`${tab.link}-tab`}
 								key={tab.link}
 								value={tab.link}

@@ -45,9 +45,9 @@ async function CaseStudiesContent(props: { searchParams: SearchParams }) {
 
 	return (
 		<TabsContent value="/resources/case-studies">
-			<div className="container max-w-7xl">
-				<main className="mb-12">
-					<article className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
+			<div className="container max-w-7xl px-4 sm:px-6 lg:px-8">
+				<main className="mb-8 sm:mb-12">
+					<article className="grid grid-cols-1 gap-4 py-4 sm:grid-cols-2 sm:py-6 lg:grid-cols-3 xl:gap-6">
 						{paged.docs.map((study) => (
 							<CaseStudyCard data={study} key={study.slug} />
 						))}
@@ -55,29 +55,51 @@ async function CaseStudiesContent(props: { searchParams: SearchParams }) {
 					{paged.totalPages > 1 && (
 						<nav
 							aria-label="Pagination"
-							className="mt-6 flex items-center justify-between"
+							className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0"
 						>
-							{paged.hasPrevPage ? (
-								<Button asChild variant="outline">
-									<Link href={buildHref(page - 1)}>Previous</Link>
-								</Button>
-							) : (
-								<Button disabled variant="outline">
-									Previous
-								</Button>
-							)}
-							<span className="text-muted-foreground text-sm">
+							<div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-start">
+								{paged.hasPrevPage ? (
+									<Button
+										asChild
+										className="flex-1 sm:flex-none"
+										size="sm"
+										variant="outline"
+									>
+										<Link href={buildHref(page - 1)}>Previous</Link>
+									</Button>
+								) : (
+									<Button
+										className="flex-1 sm:flex-none"
+										disabled
+										size="sm"
+										variant="outline"
+									>
+										Previous
+									</Button>
+								)}
+								{paged.hasNextPage ? (
+									<Button
+										asChild
+										className="flex-1 sm:flex-none"
+										size="sm"
+										variant="outline"
+									>
+										<Link href={buildHref(page + 1)}>Next</Link>
+									</Button>
+								) : (
+									<Button
+										className="flex-1 sm:flex-none"
+										disabled
+										size="sm"
+										variant="outline"
+									>
+										Next
+									</Button>
+								)}
+							</div>
+							<span className="text-center text-muted-foreground text-sm sm:text-left">
 								Page {paged.page} of {paged.totalPages}
 							</span>
-							{paged.hasNextPage ? (
-								<Button asChild variant="outline">
-									<Link href={buildHref(page + 1)}>Next</Link>
-								</Button>
-							) : (
-								<Button disabled variant="outline">
-									Next
-								</Button>
-							)}
 						</nav>
 					)}
 				</main>
@@ -91,7 +113,7 @@ async function CaseStudiesContent(props: { searchParams: SearchParams }) {
 function CaseStudiesPageSkeleton() {
 	return (
 		<TabsContent value="/resources/case-studies">
-			<div className="container max-w-7xl">
+			<div className="container max-w-7xl px-4 sm:px-6 lg:px-8">
 				<CaseStudiesMainContentSkeleton />
 				<Cta />
 			</div>
@@ -101,8 +123,8 @@ function CaseStudiesPageSkeleton() {
 
 function CaseStudiesMainContentSkeleton() {
 	return (
-		<main className="mb-12">
-			<article className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
+		<main className="mb-8 sm:mb-12">
+			<article className="grid grid-cols-1 gap-4 py-4 sm:grid-cols-2 sm:py-6 lg:grid-cols-3 xl:gap-6">
 				{Array.from({ length: 6 }).map((_, index) => (
 					<div className="space-y-3" key={index}>
 						<Skeleton className="aspect-4/3 w-full rounded-xl" />
@@ -112,10 +134,12 @@ function CaseStudiesMainContentSkeleton() {
 					</div>
 				))}
 			</article>
-			<nav className="mt-6 flex items-center justify-between">
-				<Skeleton className="h-10 w-20" />
+			<nav className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
+				<div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-start">
+					<Skeleton className="h-10 w-20 sm:w-20" />
+					<Skeleton className="h-10 w-20 sm:w-20" />
+				</div>
 				<Skeleton className="h-4 w-24" />
-				<Skeleton className="h-10 w-20" />
 			</nav>
 		</main>
 	);

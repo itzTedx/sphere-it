@@ -13,33 +13,38 @@ export const CaseStudyCard = ({ data }: CaseStudyCardProps) => {
 	const { title, heroImage, slug, highlights } = data;
 
 	return (
-		<article className="card relative aspect-9/10 overflow-hidden rounded-xl p-4 text-card shadow-sm transition hover:shadow-md sm:p-6">
+		<article className="card relative aspect-9/10 overflow-hidden rounded-xl p-3 text-card shadow-sm transition hover:shadow-md sm:p-4 md:p-6">
 			<Link
 				aria-label={`Read case study: ${title}`}
 				className="absolute inset-0 z-20"
 				href={`/resources/case-studies/${slug}`}
 			/>
-			<div className="relative z-15 flex h-full flex-col items-center justify-between gap-3 sm:gap-4">
-				<h3 className="line-clamp-3 text-center font-semibold text-base sm:text-title-4">
+			<div className="relative z-15 flex h-full flex-col items-center justify-between gap-2 sm:gap-3 md:gap-4">
+				<h3 className="line-clamp-3 text-center font-semibold text-sm sm:text-base md:text-title-4">
 					{title}
 				</h3>
 
-				<div className="w-full space-y-3 sm:space-y-4">
+				<div className="w-full space-y-2 sm:space-y-3 md:space-y-4">
 					{highlights && (
-						<ul className="grid grid-cols-2 gap-2 sm:gap-3" role="list">
+						<ul
+							className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-3"
+							role="list"
+						>
 							{highlights?.map((list) => (
 								<li key={list.label}>
-									<span className="block font-bold text-sm sm:text-subhead-lg">
+									<span className="block font-bold text-xs sm:text-sm md:text-subhead-lg">
 										{list.value}
 									</span>
-									<p className="text-xs sm:text-subhead-base">{list.label}</p>
+									<p className="text-xs sm:text-xs md:text-subhead-base">
+										{list.label}
+									</p>
 								</li>
 							))}
 						</ul>
 					)}
 					<Button
 						asChild
-						className="relative z-20 w-full"
+						className="relative z-20 w-full text-xs sm:text-sm"
 						size="sm"
 						variant="secondary"
 					>

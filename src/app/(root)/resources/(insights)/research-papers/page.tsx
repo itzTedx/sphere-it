@@ -49,7 +49,7 @@ async function ResearchPapersContent(props: { searchParams: SearchParams }) {
 		<TabsContent value="/resources/research-papers">
 			<div className="container max-w-7xl">
 				<main className="mb-12">
-					<article className="grid grid-cols-3 gap-4 py-6">
+					<article className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
 						{paged.docs.map((study) => (
 							<PapersCard data={study} key={study.slug} />
 						))}
@@ -57,7 +57,7 @@ async function ResearchPapersContent(props: { searchParams: SearchParams }) {
 					{paged.totalPages > 1 && (
 						<nav
 							aria-label="Pagination"
-							className="mt-6 flex items-center justify-between"
+							className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row"
 						>
 							{paged.hasPrevPage ? (
 								<Button asChild variant="outline">
@@ -104,7 +104,7 @@ function ResearchPapersPageSkeleton() {
 function ResearchPapersMainContentSkeleton() {
 	return (
 		<main className="mb-12">
-			<article className="grid grid-cols-3 gap-4 py-6">
+			<article className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
 				{Array.from({ length: 6 }).map((_, index) => (
 					<div className="space-y-3" key={index}>
 						<Skeleton className="aspect-4/3 w-full rounded-xl" />
@@ -114,7 +114,7 @@ function ResearchPapersMainContentSkeleton() {
 					</div>
 				))}
 			</article>
-			<nav className="mt-6 flex items-center justify-between">
+			<nav className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
 				<Skeleton className="h-10 w-20" />
 				<Skeleton className="h-4 w-24" />
 				<Skeleton className="h-10 w-20" />
