@@ -51,7 +51,7 @@ export const BlogsSidebar = ({
 	const featuredCount = data.filter((blog) => blog.isFeatured).length;
 
 	return (
-		<aside className="sticky top-16 max-h-fit space-y-4 py-6">
+		<aside className="sticky top-16 hidden max-h-fit space-y-4 py-6 lg:block">
 			<SearchInput placeholder="Search" />
 			<div className="dashed-stroke" />
 			<Collapsible

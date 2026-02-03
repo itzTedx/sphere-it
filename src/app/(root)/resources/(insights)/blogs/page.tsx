@@ -127,9 +127,7 @@ async function BlogsContent(props: { searchParams: SearchParams }) {
 		<TabsContent value="/resources/blogs">
 			<div className="container grid max-w-7xl gap-8 lg:grid-cols-4">
 				<Suspense fallback={<BlogsSidebarSkeleton />}>
-					<div className="hidden lg:block">
-						<BlogsSidebarContent />
-					</div>
+					<BlogsSidebarContent />
 				</Suspense>
 				<Suspense fallback={<BlogsMainContentSkeleton />}>
 					<MobileFiltersContent />
@@ -252,7 +250,7 @@ async function BlogsMainContent({
 	};
 
 	return (
-		<main className="mb-12">
+		<main className="col-span-3 mb-12">
 			<article className="grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
 				{pagedBlogs.docs.length > 0 ? (
 					pagedBlogs.docs.map((blog) => (

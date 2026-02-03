@@ -169,7 +169,7 @@ export default async function BlogPage({ params }: Props) {
 												return (
 													<ViewTransition
 														key={category.id}
-														name={`category-${blog.slug}`}
+														name={`category-${category.id}-${blog.slug}`}
 													>
 														<Badge variant="secondary">
 															{category.category}
@@ -185,7 +185,11 @@ export default async function BlogPage({ params }: Props) {
 												className="bg-muted text-muted-foreground shadow-none"
 											>
 												<time dateTime={blog.publishedAt}>
-													{blog.publishedAt}
+													{new Intl.DateTimeFormat("en-US", {
+														year: "numeric",
+														month: "short",
+														day: "numeric",
+													}).format(new Date(blog.publishedAt))}
 												</time>
 											</Badge>
 										</ViewTransition>
