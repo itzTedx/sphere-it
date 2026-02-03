@@ -1,3 +1,5 @@
 import type { Access } from "payload";
 
-export const publicAccess: Access = () => true;
+import { checkRole } from "./utilities";
+
+export const publicAccess: Access = ({ req }) => checkRole(["admin"], req.user);

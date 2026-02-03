@@ -2,8 +2,7 @@ import type { Access } from "payload";
 
 import { checkRole } from "./utilities";
 
-export const adminOnly: Access = ({ req: { user } }) => {
-	if (user) return checkRole(["admin"], user);
+export const adminOnlyBoolean: Access = ({ req }) =>
+	checkRole(["admin"], req.user);
 
-	return false;
-};
+export const adminOnly: Access = adminOnlyBoolean;

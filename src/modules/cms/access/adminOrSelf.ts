@@ -7,18 +7,8 @@ import { checkRole } from "./utilities";
  *
  * Useful to allow users to manage their own account, but not others.
  */
-export const adminOrSelf: Access = ({ req: { user } }) => {
-	if (user) {
-		if (checkRole(["admin"], user)) {
-			return true;
-		}
-
-		return {
-			id: {
-				equals: user.id,
-			},
-		};
-	}
-
-	return false;
+export const adminOrSelf: Access = ({ req }) => {
+	if (!req.user) return false;
+	if (checkRole(["admin"], req.user)) return true;
+	return { id: { equals: req.user.id } };
 };

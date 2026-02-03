@@ -51,7 +51,7 @@ export function ContactResourcesSection() {
 				</div>
 				<FlickeringGrid
 					aria-hidden="true"
-					className="absolute inset-0 z-1 opacity-60 [mask-image:radial-gradient(220px_circle_at_top,white,transparent)]"
+					className="mask-[radial-gradient(220px_circle_at_top,white,transparent)] absolute inset-0 z-1 opacity-60"
 					color="#C3A5FA"
 					flickerChance={0.1}
 					gridGap={3}

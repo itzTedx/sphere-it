@@ -94,7 +94,7 @@ export default function AboutPage() {
 					className="relative z-50 h-[calc(100svh-9rem)] overflow-hidden border-b bg-card sm:h-[calc(100lvh-4rem)]"
 					role="banner"
 				>
-					<div className="container flex h-full max-w-7xl flex-col justify-between py-9 sm:py-16 md:py-20">
+					<div className="container flex h-full max-w-7xl flex-col justify-between py-9 sm:py-16 md:py-20 xl:py-32">
 						<div className="max-w-2xl">
 							<Badge variant="ghost">About</Badge>
 							<h1 className="text-primary-900 text-title-3 md:text-title-1">
@@ -115,7 +115,7 @@ export default function AboutPage() {
 							<Suspense
 								fallback={
 									<Button
-										className="bg-stone-200/30 text-stone-700"
+										className="bg-stone-200/50 text-stone-700"
 										variant="ghost"
 									>
 										View Our Intro Deck

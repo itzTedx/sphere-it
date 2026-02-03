@@ -1,3 +1,8 @@
+import {
+	betterAuthCollections,
+	createBetterAuthPlugin,
+	payloadAdapter,
+} from "@delmaredigital/payload-better-auth";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import {
 	GenerateDescription,
@@ -5,8 +10,10 @@ import {
 	GenerateTitle,
 	GenerateURL,
 } from "@payloadcms/plugin-seo/types";
+import { betterAuth } from "better-auth";
 import { Plugin } from "payload";
 
+import { betterAuthOptions } from "@/lib/auth/config";
 import { Blog, Career, CaseStudy, Media } from "@/payload-types";
 
 import { getServerSideURL } from "../utils/getURL";
@@ -43,19 +50,47 @@ export const plugins: Plugin[] = [
 		generateDescription,
 		generateImage,
 	}),
-	// s3Storage({
-	// 	collections: {
-	// 		media: true,
-	// 	},
-	// 	bucket: env.AWS_BUCKET_NAME,
-	// 	config: {
-	// 		credentials: {
-	// 			accessKeyId: env.AWS_ACCESS_KEY_SPHERE,
-	// 			secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
-	// 		},
-	// 		region: env.AWS_BUCKET_REGION,
-	// 	},
-	// }),
+	betterAuthCollections({
+		betterAuthOptions,
+		skipCollections: ["user"], // We define Users ourselves
+	}),
+	// Initialize Better Auth with auto-injected endpoints and admin components
+	createBetterAuthPlugin({
+		createAuth: (payload) =>
+			betterAuth({
+				...betterAuthOptions,
+				database: payloadAdapter({
+					payloadClient: payload,
+					adapterConfig: {
+						enableDebugLogs: process.env.NODE_ENV === "development",
+					},
+				}),
+				// For Payload's default SERIAL IDs:
+				advanced: {
+					database: {
+						generateId: "serial",
+					},
+				},
+				secret: process.env.BETTER_AUTH_SECRET,
+				trustedOrigins: [
+					"http://localhost:3000",
+					"https://localhost:3000",
+					process.env.NEXT_PUBLIC_APP_URL,
+				].filter(Boolean) as string[],
+				// Ensure emailAndPassword config is preserved
+				emailAndPassword: betterAuthOptions.emailAndPassword,
+			}),
+		admin: {
+			betterAuthOptions, // Required for management UI auto-detection
+			login: {
+				title: "Sign in to Sphere IT",
+				enablePasskey: true, // Enable passkey sign-in option
+				afterLoginPath: "/admin", // Redirect to admin dashboard after login
+				requiredRole: ["admin", "editor"],
+				enableSignUp: false,
+			},
+		},
+	}),
 
 	// searchPlugin({
 	// 	collections: ["blogs"],

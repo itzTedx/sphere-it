@@ -24,8 +24,10 @@ export const LinkedInAuthButton = ({ compact }: { compact?: boolean }) => {
 					onSuccess(ctx) {
 						const account = ctx.data.account;
 						const user = ctx.data.user;
-						console.log("LinkedIn account connected:", account);
-						console.log("User authenticated:", user);
+						console.log("[DEBUG] LinkedIn auth successful:", {
+							user: { id: user.id, email: user.email, name: user.name },
+							account: { id: account.id, provider: account.provider },
+						});
 
 						// Show success message
 						toast.success("Successfully connected with LinkedIn!", {
@@ -36,7 +38,10 @@ export const LinkedInAuthButton = ({ compact }: { compact?: boolean }) => {
 						window.location.reload();
 					},
 					onError(ctx) {
-						console.error("LinkedIn auth error:", ctx.error);
+						console.error("[DEBUG] LinkedIn auth failed:", {
+							error: ctx.error,
+							status: ctx.response?.status,
+						});
 						toast.error("LinkedIn authentication failed", {
 							description: "Please try again or contact support.",
 						});
@@ -45,6 +50,7 @@ export const LinkedInAuthButton = ({ compact }: { compact?: boolean }) => {
 			});
 
 			if (res.error) {
+				console.error("[DEBUG] LinkedIn auth error:", res.error);
 				toast.error("Something went wrong", {
 					description: res.error.message || "Please try again later.",
 				});

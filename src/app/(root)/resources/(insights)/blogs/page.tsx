@@ -17,6 +17,7 @@ import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
 import { BlogsSidebar } from "../components/blogs-sidebar";
 import { InsightsLayout } from "../components/insights-layout";
+import { MobileFilters } from "./components/mobile-filters";
 import { structuredData } from "./structured-data";
 
 const meta = {
@@ -124,11 +125,14 @@ async function BlogsContent(props: { searchParams: SearchParams }) {
 
 	return (
 		<TabsContent value="/resources/blogs">
-			<div className="container grid max-w-7xl grid-cols-4 gap-8">
+			<div className="container grid max-w-7xl gap-8 lg:grid-cols-4">
 				<Suspense fallback={<BlogsSidebarSkeleton />}>
-					<BlogsSidebarContent />
+					<div className="hidden lg:block">
+						<BlogsSidebarContent />
+					</div>
 				</Suspense>
 				<Suspense fallback={<BlogsMainContentSkeleton />}>
+					<MobileFiltersContent />
 					<BlogsMainContent
 						categories={categories}
 						categoryParam={categoryParam}
@@ -147,8 +151,10 @@ async function BlogsContent(props: { searchParams: SearchParams }) {
 function BlogsPageSkeleton() {
 	return (
 		<TabsContent value="/resources/blogs">
-			<div className="container grid max-w-7xl grid-cols-4 gap-8">
-				<BlogsSidebarSkeleton />
+			<div className="container grid max-w-7xl gap-8 lg:grid-cols-4">
+				<div className="hidden lg:block">
+					<BlogsSidebarSkeleton />
+				</div>
 				<BlogsMainContentSkeleton />
 			</div>
 			<Cta />
@@ -174,8 +180,8 @@ function BlogsSidebarSkeleton() {
 
 function BlogsMainContentSkeleton() {
 	return (
-		<main className="col-span-3 mb-12">
-			<article className="grid grid-cols-3 gap-4 py-6">
+		<main className="mb-12">
+			<article className="grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
 				{Array.from({ length: 6 }).map((_, index) => (
 					<div className="space-y-3" key={index}>
 						<Skeleton className="aspect-4/3 w-full rounded-xl" />
@@ -195,6 +201,17 @@ async function BlogsSidebarContent() {
 
 	return (
 		<BlogsSidebar
+			data={allBlogsForStats}
+			filteredCount={0} // This will be updated by the main content
+		/>
+	);
+}
+
+async function MobileFiltersContent() {
+	const allBlogsForStats = await listBlogs();
+
+	return (
+		<MobileFilters
 			data={allBlogsForStats}
 			filteredCount={0} // This will be updated by the main content
 		/>
@@ -235,8 +252,8 @@ async function BlogsMainContent({
 	};
 
 	return (
-		<main className="col-span-3 mb-12">
-			<article className="grid grid-cols-3 gap-4 py-6">
+		<main className="mb-12">
+			<article className="grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
 				{pagedBlogs.docs.length > 0 ? (
 					pagedBlogs.docs.map((blog) => (
 						<BlogCard
@@ -246,7 +263,7 @@ async function BlogsMainContent({
 						/>
 					))
 				) : (
-					<div className="col-span-3 flex h-64 flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-8 text-muted-foreground">
+					<div className="col-span-full flex h-64 flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-8 text-muted-foreground sm:col-span-2 lg:col-span-3">
 						<p className="font-medium text-lg">No blogs found</p>
 						<p className="text-sm">
 							Try adjusting your filters or search terms.
@@ -257,7 +274,7 @@ async function BlogsMainContent({
 			{pagedBlogs.totalPages > 1 && (
 				<nav
 					aria-label="Pagination"
-					className="mt-6 flex items-center justify-between"
+					className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
 				>
 					{pagedBlogs.hasPrevPage ? (
 						<Button asChild variant="outline">

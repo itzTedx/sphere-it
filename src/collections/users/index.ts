@@ -1,8 +1,12 @@
+import {
+	betterAuthStrategy,
+	canUpdateOwnFields,
+	isAdmin,
+	isAdminField,
+	isAdminOrSelf,
+} from "@delmaredigital/payload-better-auth";
 import type { CollectionConfig } from "payload";
 
-import { adminOnly } from "@/modules/cms/access/admin-only";
-import { adminOnlyFieldAccess } from "@/modules/cms/access/admin-only-field-access";
-import { adminOrSelf } from "@/modules/cms/access/adminOrSelf";
 import { publicAccess } from "@/modules/cms/access/publicAccess";
 import { checkRole } from "@/modules/cms/access/utilities";
 
@@ -11,50 +15,51 @@ import { ensureFirstUserIsAdmin } from "./hooks/ensureFirstUserIsAdmin";
 export const Users: CollectionConfig = {
 	slug: "users",
 	access: {
-		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),
+		admin: ({ req }) => checkRole(["admin", "editor"], req.user),
 		create: publicAccess,
-		delete: adminOnly,
-		read: adminOrSelf,
-		update: adminOrSelf,
+		delete: isAdmin(),
+		read: isAdminOrSelf(),
+		update: canUpdateOwnFields({
+			allowedFields: ["name", "image", "password"],
+			userSlug: "users",
+
+			// requireCurrentPassword: true, // Require currentPassword for password changes
+		}),
 	},
 	admin: {
 		defaultColumns: ["name", "email", "role"],
 		useAsTitle: "name",
-		hidden: ({ user }) => !checkRole(["admin"], user),
 	},
 
-	auth: true,
+	auth: {
+		disableLocalStrategy: true,
+		strategies: [betterAuthStrategy()],
+	},
 	fields: [
+		{ name: "email", type: "email", required: true, unique: true },
+		{ name: "emailVerified", type: "checkbox", defaultValue: false },
+
 		{
 			name: "name",
 			type: "text",
 		},
+		{ name: "image", type: "text", admin: { hidden: true } },
 		{
-			name: "roles",
+			name: "role",
 			type: "select",
+			defaultValue: "user",
 			access: {
-				create: adminOnlyFieldAccess,
-				read: adminOnlyFieldAccess,
-				update: adminOnlyFieldAccess,
+				create: isAdminField(),
+				read: isAdminField(),
+				update: isAdminField(),
 			},
-			defaultValue: ["user"],
-			hasMany: true,
 			hooks: {
 				beforeChange: [ensureFirstUserIsAdmin],
 			},
 			options: [
-				{
-					label: "admin",
-					value: "admin",
-				},
-				{
-					label: "editor",
-					value: "editor",
-				},
-				{
-					label: "user",
-					value: "user",
-				},
+				{ label: "User", value: "user" },
+				{ label: "Editor", value: "editor" },
+				{ label: "Admin", value: "admin" },
 			],
 		},
 	],

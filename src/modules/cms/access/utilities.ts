@@ -6,10 +6,15 @@ export const checkRole = (
 	allRoles: User["roles"] = [],
 	user?: User | ClientUser | null
 ): boolean => {
-	if (user && allRoles) {
-		const userRoles = (user as { roles?: User["roles"] | null })?.roles ?? [];
-		return allRoles.some((role) => userRoles.includes(role));
+	if (!user || !allRoles) return false;
+
+	// Check single role field first (new method)
+	const userRole = (user as { role?: string | null })?.role;
+	if (userRole && allRoles.includes(userRole as "admin" | "editor" | "user")) {
+		return true;
 	}
 
-	return false;
+	// Fallback to roles array (old method)
+	const userRoles = (user as { roles?: User["roles"] | null })?.roles ?? [];
+	return allRoles.some((role) => userRoles.includes(role));
 };

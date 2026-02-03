@@ -1,10 +1,13 @@
-import { createAuthClient } from "better-auth/react";
+"use client";
+
+import { createPayloadAuthClient } from "@delmaredigital/payload-better-auth/client";
 
 import { env } from "../env/client";
 
-export const authClient = createAuthClient({
+export const authClient = createPayloadAuthClient({
 	/** The base URL of the server */
 	baseURL: env.NEXT_PUBLIC_BASE_URL,
 });
 
-export const { signIn, signUp, useSession, signOut } = authClient;
+export const { signIn, signUp, useSession, signOut, changePassword } =
+	authClient;

@@ -78,6 +78,10 @@ export interface Config {
     careers: Career;
     departments: Department;
     employeeTestimonials: EmployeeTestimonial;
+    sessions: Session;
+    accounts: Account;
+    verifications: Verification;
+    apikeys: Apikey;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -97,6 +101,10 @@ export interface Config {
     careers: CareersSelect<false> | CareersSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     employeeTestimonials: EmployeeTestimonialsSelect<false> | EmployeeTestimonialsSelect<true>;
+    sessions: SessionsSelect<false> | SessionsSelect<true>;
+    accounts: AccountsSelect<false> | AccountsSelect<true>;
+    verifications: VerificationsSelect<false> | VerificationsSelect<true>;
+    apikeys: ApikeysSelect<false> | ApikeysSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -239,25 +247,20 @@ export interface BlogCategory {
  */
 export interface User {
   id: number;
+  email: string;
+  emailVerified?: boolean | null;
   name?: string | null;
   roles?: ('admin' | 'editor' | 'user')[] | null;
+  /**
+   * Auto-added by Better Auth (image)
+   */
+  image?: string | null;
+  /**
+   * Auto-added by Better Auth (role)
+   */
+  role?: string | null;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -479,6 +482,86 @@ export interface EmployeeTestimonial {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Auto-generated from Better Auth schema (session)
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sessions".
+ */
+export interface Session {
+  id: number;
+  expiresAt: string;
+  token: string;
+  ipAddress?: string | null;
+  userAgent?: string | null;
+  user: number | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Auto-generated from Better Auth schema (account)
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "accounts".
+ */
+export interface Account {
+  id: number;
+  accountId: string;
+  providerId: string;
+  user: number | User;
+  accessToken?: string | null;
+  refreshToken?: string | null;
+  idToken?: string | null;
+  accessTokenExpiresAt?: string | null;
+  refreshTokenExpiresAt?: string | null;
+  scope?: string | null;
+  password?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Auto-generated from Better Auth schema (verification)
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "verifications".
+ */
+export interface Verification {
+  id: number;
+  identifier: string;
+  value: string;
+  expiresAt: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Auto-generated from Better Auth schema (apikey)
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "apikeys".
+ */
+export interface Apikey {
+  id: number;
+  name?: string | null;
+  start?: string | null;
+  prefix?: string | null;
+  key: string;
+  user: number | User;
+  refillInterval?: number | null;
+  refillAmount?: number | null;
+  lastRefillAt?: string | null;
+  enabled?: boolean | null;
+  rateLimitEnabled?: boolean | null;
+  rateLimitTimeWindow?: number | null;
+  rateLimitMax?: number | null;
+  requestCount?: number | null;
+  remaining?: number | null;
+  lastRequest?: string | null;
+  expiresAt?: string | null;
+  permissions?: string | null;
+  metadata?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -637,6 +720,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'employeeTestimonials';
         value: number | EmployeeTestimonial;
+      } | null)
+    | ({
+        relationTo: 'sessions';
+        value: number | Session;
+      } | null)
+    | ({
+        relationTo: 'accounts';
+        value: number | Account;
+      } | null)
+    | ({
+        relationTo: 'verifications';
+        value: number | Verification;
+      } | null)
+    | ({
+        relationTo: 'apikeys';
+        value: number | Apikey;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -837,24 +936,14 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  email?: T;
+  emailVerified?: T;
   name?: T;
   roles?: T;
+  image?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -904,6 +993,74 @@ export interface EmployeeTestimonialsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sessions_select".
+ */
+export interface SessionsSelect<T extends boolean = true> {
+  expiresAt?: T;
+  token?: T;
+  ipAddress?: T;
+  userAgent?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "accounts_select".
+ */
+export interface AccountsSelect<T extends boolean = true> {
+  accountId?: T;
+  providerId?: T;
+  user?: T;
+  accessToken?: T;
+  refreshToken?: T;
+  idToken?: T;
+  accessTokenExpiresAt?: T;
+  refreshTokenExpiresAt?: T;
+  scope?: T;
+  password?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "verifications_select".
+ */
+export interface VerificationsSelect<T extends boolean = true> {
+  identifier?: T;
+  value?: T;
+  expiresAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "apikeys_select".
+ */
+export interface ApikeysSelect<T extends boolean = true> {
+  name?: T;
+  start?: T;
+  prefix?: T;
+  key?: T;
+  user?: T;
+  refillInterval?: T;
+  refillAmount?: T;
+  lastRefillAt?: T;
+  enabled?: T;
+  rateLimitEnabled?: T;
+  rateLimitTimeWindow?: T;
+  rateLimitMax?: T;
+  requestCount?: T;
+  remaining?: T;
+  lastRequest?: T;
+  expiresAt?: T;
+  permissions?: T;
+  metadata?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

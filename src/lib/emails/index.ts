@@ -22,6 +22,8 @@ export const transporter = nodemailer.createTransport({
 	port: Number(env.SMTP_PORT),
 	secure: env.SMTP_PORT === "465",
 	...(transporterAuth ?? {}),
+	debug: process.env.NODE_ENV === "development",
+	logger: process.env.NODE_ENV === "development",
 });
 
 type SendEmailOptions = (
@@ -48,13 +50,20 @@ export const sendEmail = async (options: SendEmailOptions) => {
 	const { email, subject, text, attachments } = options;
 	const react = "react" in options ? options.react : undefined;
 
-	return await transporter.sendMail({
-		from: env.SMTP_FROM,
-		to: env.RECEIVER_EMAIL,
-		replyTo: email,
-		subject,
-		text,
-		html: react ? await render(react) : undefined,
-		attachments,
-	});
+	try {
+		const result = await transporter.sendMail({
+			from: env.SMTP_FROM,
+			to: email || env.RECEIVER_EMAIL,
+			replyTo: email,
+			subject,
+			text,
+			html: react ? await render(react) : undefined,
+			attachments,
+		});
+
+		return result;
+	} catch (error) {
+		console.error("[DEBUG] Email send failed:", error);
+		throw error;
+	}
 };

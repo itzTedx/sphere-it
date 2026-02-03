@@ -56,6 +56,7 @@ export default buildConfig({
 				user: env.SMTP_USER,
 				pass: env.SMTP_PASS,
 			},
+			debug: process.env.NODE_ENV === "development",
 		},
 	}),
 	upload: {

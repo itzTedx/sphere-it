@@ -6,13 +6,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
+import { getServerSession } from "@delmaredigital/payload-better-auth";
+
 import { Cta } from "@/components/layout/cta";
 import { Button } from "@/components/ui/button";
 
 import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { auth } from "@/lib/auth/server";
+import { payload } from "@/lib/payload";
 import { LinkedInAuthButton } from "@/modules/auth/components/linkedin-button";
 import { Media } from "@/modules/cms/components/Media";
 import RichText from "@/modules/cms/components/RichText";
@@ -259,7 +261,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 }
 
 async function Article({ content }: { content: ResearchPaper["content"] }) {
-	const session = await auth.api.getSession({ headers: await headers() });
+	const session = await getServerSession(payload, await headers());
 
 	const isLoggedIn = !!session?.user;
 
