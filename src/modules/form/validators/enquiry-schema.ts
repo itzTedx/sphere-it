@@ -103,7 +103,8 @@ export const quickEnquirySchema = z.object({
 		.transform((val) => val.trim()) // Trim whitespace
 		.refine((val) => val.length >= 10, {
 			error: "Message must be at least 10 characters after trimming",
-		}),
+		})
+		.optional(),
 });
 
 export type QuickEnquireType = z.infer<typeof quickEnquirySchema>;

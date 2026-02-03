@@ -12,7 +12,7 @@ import { Toaster as Sonner, type ToasterProps } from "sonner";
 import { IconCheckmark } from "@/assets/icons";
 
 const Toaster = ({ ...props }: ToasterProps) => {
-	const { theme = "light" } = useTheme();
+	const { theme = "system" } = useTheme();
 
 	return (
 		<Sonner

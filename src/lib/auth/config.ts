@@ -2,7 +2,7 @@ import { passkey } from "@better-auth/passkey";
 import type { BetterAuthOptions } from "better-auth";
 
 import { sendEmail } from "../emails";
-import { env } from "../env/client";
+import { env } from "../env/server";
 
 export const betterAuthOptions: Partial<BetterAuthOptions> = {
 	// Model names are SINGULAR - they get pluralized automatically
@@ -15,6 +15,7 @@ export const betterAuthOptions: Partial<BetterAuthOptions> = {
 	session: {
 		expiresIn: 60 * 60 * 24 * 30, // 30 days
 	},
+
 	emailAndPassword: {
 		enabled: true,
 		requireEmailVerification: false,
@@ -23,7 +24,7 @@ export const betterAuthOptions: Partial<BetterAuthOptions> = {
 				await sendEmail({
 					email: user.email,
 					subject: "Reset your password",
-					text: `Click this link to reset your password: ${env.NEXT_PUBLIC_BASE_URL}/reset-password?token=${token}`,
+					text: `Click this link to reset your password: ${env.BASE_URL}/reset-password?token=${token}`,
 				});
 			} catch (error) {
 				console.error("[DEBUG] Failed to send password reset email:", error);

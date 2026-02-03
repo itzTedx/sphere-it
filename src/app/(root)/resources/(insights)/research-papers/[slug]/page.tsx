@@ -15,9 +15,7 @@ import { IconArrowLeft } from "@/assets/icons";
 
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { payload } from "@/lib/payload";
-import { LinkedInAuthButton } from "@/modules/auth/components/linkedin-button";
 import { Media } from "@/modules/cms/components/Media";
-import RichText from "@/modules/cms/components/RichText";
 import {
 	geResearchBySlug,
 	listResearchPapers,
@@ -25,6 +23,8 @@ import {
 import { PapersCard } from "@/modules/research-papers/components/paper-card";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { ResearchPaper } from "@/payload-types";
+
+import { Article } from "./article-component";
 
 interface Props {
 	params: Promise<{ slug: string }>;
@@ -153,6 +153,9 @@ export async function generateStaticParams() {
 
 export default async function ResearchPaperPage({ params }: Props) {
 	const { slug } = await params;
+	const session = await getServerSession(payload, await headers());
+
+	const isLoggedIn = !!session?.user;
 
 	const study = await geResearchBySlug(slug);
 	const otherPapers = await listResearchPapers(3);
@@ -237,7 +240,11 @@ export default async function ResearchPaperPage({ params }: Props) {
 						</div>
 					</div>
 				</header>
-				<Article content={study.content} />
+				<Article
+					content={study.content}
+					isLoggedIn={isLoggedIn}
+					title={study.title}
+				/>
 				<section className="container max-w-7xl py-24">
 					<div className="mb-6 flex items-center justify-between gap-4">
 						<h2 className="text-title-3">
@@ -254,45 +261,8 @@ export default async function ResearchPaperPage({ params }: Props) {
 						))}
 					</div>
 				</section>
-				<Cta showForm />
+				<Cta showForm={isLoggedIn} />
 			</main>
 		</>
-	);
-}
-
-async function Article({ content }: { content: ResearchPaper["content"] }) {
-	const session = await getServerSession(payload, await headers());
-
-	const isLoggedIn = !!session?.user;
-
-	return (
-		<div className="container relative max-w-7xl border-b">
-			<article
-				className="prose prose-stone prose-lg mx-auto max-w-4xl py-4 prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
-				itemProp="articleBody"
-			>
-				<RichText
-					className="prose prose-stone prose-lg prose-h1:font-medium prose-headings:text-primary-900 sm:py-6"
-					data={content}
-					enableGutter={false}
-				/>
-			</article>
-			{!isLoggedIn && (
-				<div className="relative pt-12 pb-24">
-					<div className="-translate-y-full absolute inset-x-0 top-0 z-10 h-96 bg-linear-to-t from-20% from-background" />
-
-					<div className="flex flex-col items-center gap-3">
-						<h2 className="text-center text-title-4">
-							Create an account to read the full paper.
-						</h2>
-
-						<p className="mb-3 text-center">
-							Create a new account to read this research paper.
-						</p>
-						<LinkedInAuthButton />
-					</div>
-				</div>
-			)}
-		</div>
 	);
 }

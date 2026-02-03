@@ -17,7 +17,7 @@ interface InquiryProps {
 	name: string;
 	email?: string;
 	phone?: string;
-	message: string;
+	message?: string;
 }
 
 const InquiryReact = ({ name, email, phone, message }: InquiryProps) => {

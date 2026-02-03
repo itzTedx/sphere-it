@@ -73,7 +73,7 @@ export const Cta = ({
 				{showForm && (
 					<div className="lg:-translate-y-1/2 z-50 mt-5 rounded-2xl bg-card p-9 shadow-md lg:absolute lg:top-1/2 lg:right-9 lg:mt-0 lg:w-lg">
 						<h5 className="mb-4 text-stone-800 text-title-4">Shall we talk</h5>
-						<QuickEnquiryForm />
+						<QuickEnquiryForm route="CTA" />
 					</div>
 				)}
 			</div>

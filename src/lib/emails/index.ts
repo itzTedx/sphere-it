@@ -52,8 +52,8 @@ export const sendEmail = async (options: SendEmailOptions) => {
 
 	try {
 		const result = await transporter.sendMail({
-			from: env.SMTP_FROM,
-			to: email || env.RECEIVER_EMAIL,
+			from: `${email} <${env.SMTP_FROM}>`,
+			to: env.RECEIVER_EMAIL,
 			replyTo: email,
 			subject,
 			text,

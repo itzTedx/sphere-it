@@ -1,5 +1,7 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -23,33 +25,70 @@ import { IconEmail } from "@/assets/icons/email";
 import { IconPhone } from "@/assets/icons/phone";
 import { IconUser } from "@/assets/icons/user";
 
+import { env } from "@/lib/env/client";
+
 import { LinkedInAuthButton } from "../auth/components/linkedin-button";
+import { sendEnquiryEmail } from "./actions/send-enquiry";
 import {
 	QuickEnquireType,
 	quickEnquirySchema,
 } from "./validators/enquiry-schema";
 
-export const QuickEnquiryForm = () => {
+export const QuickEnquiryForm = ({
+	showEnquiryField = true,
+	submitText = "Submit",
+	onSuccess,
+	route,
+}: {
+	showEnquiryField?: boolean;
+	submitText?: string;
+	onSuccess?: () => void;
+	route: string;
+}) => {
 	const form = useForm<QuickEnquireType>({
 		resolver: zodResolver(quickEnquirySchema),
 		mode: "onBlur",
 	});
+	const pathname = usePathname();
 
-	function onSubmit(data: QuickEnquireType) {
-		toast("You submitted the following values:", {
-			description: (
-				<pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
-					<code>{JSON.stringify(data, null, 2)}</code>
-				</pre>
-			),
-			position: "bottom-right",
-			classNames: {
-				content: "flex flex-col gap-2",
-			},
-			style: {
-				"--border-radius": "calc(var(--radius)  + 4px)",
-			} as React.CSSProperties,
-		});
+	async function onSubmit(data: QuickEnquireType) {
+		try {
+			// Send email using server action
+			const result = await sendEnquiryEmail(
+				data,
+				route === "CTA" ? `${env.NEXT_PUBLIC_BASE_URL}${pathname}` : route
+			);
+
+			if (!result.success) {
+				throw new Error(result.error || "Failed to send enquiry");
+			}
+
+			// Store access granted flag in localStorage
+			localStorage.setItem("research-paper-access", "true");
+			localStorage.setItem(
+				"research-paper-access-timestamp",
+				Date.now().toString()
+			);
+
+			toast.success(
+				"Access granted! You can now view the full research paper.",
+				{
+					description:
+						"Thank you for your interest. The complete paper is now available.",
+				}
+			);
+
+			// Call the success callback if provided
+			if (onSuccess) {
+				onSuccess();
+			}
+		} catch (error) {
+			console.error("Error submitting enquiry:", error);
+			toast.error("Failed to submit enquiry. Please try again.", {
+				description:
+					"There was an error sending your details. Please try again later.",
+			});
+		}
 	}
 
 	return (
@@ -155,38 +194,40 @@ export const QuickEnquiryForm = () => {
 						)}
 					/>
 				</div>
-				<Controller
-					control={form.control}
-					name="message"
-					render={({ field, fieldState }) => (
-						<Field data-invalid={fieldState.invalid}>
-							<FieldLabel htmlFor={field.name}>
-								Enquiry <FieldLabelAsterisk />
-							</FieldLabel>
+				{showEnquiryField && (
+					<Controller
+						control={form.control}
+						name="message"
+						render={({ field, fieldState }) => (
+							<Field data-invalid={fieldState.invalid}>
+								<FieldLabel htmlFor={field.name}>
+									Enquiry <FieldLabelAsterisk />
+								</FieldLabel>
 
-							<Textarea
-								{...field}
-								aria-describedby={
-									fieldState.invalid ? `${field.name}-error` : undefined
-								}
-								aria-invalid={fieldState.invalid}
-								className="field-sizing-fixed min-h-[96px]"
-								id={field.name}
-								placeholder="Share your questions with our expert…"
-							/>
-
-							{fieldState.invalid && (
-								<FieldError
-									errors={[fieldState.error]}
-									id={`${field.name}-error`}
+								<Textarea
+									{...field}
+									aria-describedby={
+										fieldState.invalid ? `${field.name}-error` : undefined
+									}
+									aria-invalid={fieldState.invalid}
+									className="field-sizing-fixed min-h-[96px]"
+									id={field.name}
+									placeholder="Share your questions with our expert…"
 								/>
-							)}
-						</Field>
-					)}
-				/>
+
+								{fieldState.invalid && (
+									<FieldError
+										errors={[fieldState.error]}
+										id={`${field.name}-error`}
+									/>
+								)}
+							</Field>
+						)}
+					/>
+				)}
 
 				<Button className="relative" type="submit">
-					Send Message
+					{submitText}
 				</Button>
 
 				<LinkedInAuthButton />
