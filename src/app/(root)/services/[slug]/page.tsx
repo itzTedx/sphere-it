@@ -176,7 +176,7 @@ export default async function ServicePage({ params }: Props) {
 							)}
 							<div className="space-x-4">
 								<Button asChild size="lg">
-									<Link href="/services">
+									<Link href="/contact">
 										Get Started
 										<span className="w-7">
 											<IconArrowRight />
