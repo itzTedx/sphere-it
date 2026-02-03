@@ -30,7 +30,7 @@ export const FocusForm = () => {
 				</p>
 			</div>
 			<div className="inline-flex size-9 items-center justify-center rounded-full bg-stone-alpha-10 transition-colors group-hover:bg-stone-300 group-hover:text-foreground">
-				<IconArrowRight className="flex-shrink-0 text-stone-400" />
+				<IconArrowRight className="shrink-0 text-stone-400" />
 			</div>
 		</button>
 	);

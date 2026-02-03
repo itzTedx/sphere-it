@@ -35,7 +35,7 @@ ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL:-postgres://user:password@localhost:5432/db_name}
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
-ENV BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET:-dummy-secret-for-build}
+ENV BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET:-dummy-secret-for-builddummy-secret-for-builddummy-secret-for-build}
 ENV BETTER_AUTH_URL=${BETTER_AUTH_URL:-http://localhost:3000}
 
 # Build the application
