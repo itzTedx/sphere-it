@@ -118,7 +118,7 @@ export default function AboutPage() {
 										className="bg-stone-200/50 text-stone-700"
 										variant="ghost"
 									>
-										View Our Intro Deck
+										View Our Introduction
 										<span
 											aria-hidden="true"
 											className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300/50"
@@ -140,12 +140,11 @@ export default function AboutPage() {
 					</Suspense>
 				</header>
 
-				<div className="mt-24 border-y">
-					<Clients />
-				</div>
+				<Clients />
+
 				<section
 					aria-labelledby="about-heading"
-					className="container relative my-12 max-w-7xl overflow-hidden md:my-12"
+					className="relative my-12 overflow-hidden md:my-12"
 					id="main-content"
 				>
 					<div className="container relative z-10 max-w-4xl py-12">
@@ -155,7 +154,7 @@ export default function AboutPage() {
 						<h2 className="sr-only" id="about-heading">
 							Sphere IT was founded in 2016 with core mission
 						</h2>
-						<div className="mt-6 space-y-3 text-xl">
+						<div className="mt-6 space-y-3 text-xl lg:text-2xl">
 							<p>
 								<strong>Sphere IT was founded in 2016 with core mission</strong>{" "}
 								to equip clients to adopt technology effectively through the
@@ -241,7 +240,7 @@ export default function AboutPage() {
 						))}
 					</div>
 				</section>
-				<section aria-labelledby="team-heading" className="border-y" id="team">
+				<section aria-labelledby="team-heading" id="team">
 					<div className="container max-w-7xl space-y-6 rounded-4xl border bg-card py-12">
 						<div>
 							<Badge>Our People, Our Precision</Badge>

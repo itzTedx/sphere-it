@@ -85,7 +85,7 @@ export default function RootLayout({
 					<Navbar />
 					{children}
 					<Footer />
-					<Toaster position="top-center" richColors />
+					<Toaster position="bottom-right" richColors />
 				</Providers>
 				<BreakpointIndicator />
 
