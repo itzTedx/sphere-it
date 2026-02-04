@@ -59,6 +59,7 @@ export const plugins: Plugin[] = [
 		createAuth: (payload) =>
 			betterAuth({
 				...betterAuthOptions,
+				baseURL: env.BASE_URL,
 				database: payloadAdapter({
 					payloadClient: payload,
 					adapterConfig: {
@@ -82,7 +83,8 @@ export const plugins: Plugin[] = [
 				trustedOrigins: [
 					"http://localhost:3000",
 					"https://localhost:3000",
-					process.env.NEXT_PUBLIC_APP_URL,
+					"https://sphereitglobal.com",
+					env.BASE_URL,
 				].filter(Boolean) as string[],
 				// Ensure emailAndPassword config is preserved
 				emailAndPassword: betterAuthOptions.emailAndPassword,

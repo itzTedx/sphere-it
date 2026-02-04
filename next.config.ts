@@ -9,11 +9,7 @@ const nextConfig: NextConfig = {
 
 	// Performance optimizations
 	experimental: {
-		optimizePackageImports: [
-			"@radix-ui/react-tabs",
-			"@radix-ui/react-navigation-menu",
-			"lucide-react",
-		],
+		optimizePackageImports: ["lucide-react", "react-lottie"],
 		viewTransition: true,
 
 		// Enable filesystem caching for `next dev`
@@ -22,7 +18,11 @@ const nextConfig: NextConfig = {
 		turbopackFileSystemCacheForBuild: true,
 	},
 
-	allowedDevOrigins: ["http://localhost:3000", "http://localhost:3001"],
+	allowedDevOrigins: [
+		"http://localhost:3000",
+		"http://localhost:3001",
+		"https://sphereitglobal.com",
+	],
 	// Image optimization
 	images: {
 		qualities: [100, 75],

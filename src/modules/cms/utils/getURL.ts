@@ -6,7 +6,7 @@ export const getServerSideURL = () => {
 	if (!url)
 		return process.env.NODE_ENV === "development"
 			? "http://localhost:3000"
-			: "https://sphere-it.vercel.app";
+			: "https://sphereitglobal.com";
 
 	if (url.startsWith("http://") || url.startsWith("https://")) {
 		return url;
