@@ -82,12 +82,19 @@ export function BlogCard({
 										</ViewTransition>
 									);
 							})}
-
-						<ViewTransition name={`date-${data.slug}`}>
-							<Badge className="@max-sm:hidden bg-muted text-muted-foreground shadow-none">
-								{data.publishedAt}
-							</Badge>
-						</ViewTransition>
+						{data.publishedAt && (
+							<ViewTransition name={`date-${data.slug}`}>
+								<Badge className="@max-sm:hidden bg-muted text-muted-foreground shadow-none">
+									<time dateTime={data.publishedAt}>
+										{new Intl.DateTimeFormat("en-US", {
+											year: "numeric",
+											month: "short",
+											day: "numeric",
+										}).format(new Date(data.publishedAt))}
+									</time>
+								</Badge>
+							</ViewTransition>
+						)}
 					</div>
 				</CardContent>
 				<ViewTransition name={`image-${data.slug}`}>
