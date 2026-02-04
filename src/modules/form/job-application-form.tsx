@@ -30,6 +30,7 @@ import {
 	InputGroupButton,
 	InputGroupInput,
 } from "@/components/ui/input-group";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -41,7 +42,6 @@ import {
 import { IconEmail } from "@/assets/icons/email";
 import { IconLocation } from "@/assets/icons/location";
 import { IconMessage } from "@/assets/icons/message";
-import { IconPhone } from "@/assets/icons/phone";
 import { IconUser } from "@/assets/icons/user";
 
 import { cn } from "@/lib/utils";
@@ -224,18 +224,11 @@ export const JobApplicationForm = ({ initialData }: Props) => {
 							<Field data-invalid={fieldState.invalid}>
 								<FieldLabel htmlFor={field.name}>Phone</FieldLabel>
 								<InputGroup>
-									<InputGroupInput
-										placeholder="+971 56 789 4321"
-										{...field}
-										aria-describedby={
-											fieldState.invalid ? `${field.name}-error` : undefined
-										}
-										aria-invalid={fieldState.invalid}
+									<PhoneInput
 										id={field.name}
+										onChange={field.onChange}
+										value={field.value}
 									/>
-									<InputGroupAddon>
-										<IconPhone className="size-3.5" />
-									</InputGroupAddon>
 								</InputGroup>
 								{fieldState.invalid && (
 									<FieldError

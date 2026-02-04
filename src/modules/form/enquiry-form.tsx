@@ -21,10 +21,10 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "@/components/ui/input-group";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 
 import { IconEmail } from "@/assets/icons/email";
-import { IconPhone } from "@/assets/icons/phone";
 import { IconUser } from "@/assets/icons/user";
 
 import { EnquireType, enquirySchema } from "./validators/enquiry-schema";
@@ -153,18 +153,11 @@ export const EnquiryForm = ({
 							<Field data-invalid={fieldState.invalid}>
 								<FieldLabel htmlFor={field.name}>Phone</FieldLabel>
 								<InputGroup>
-									<InputGroupInput
-										placeholder="+971 56 789 4321"
-										{...field}
-										aria-describedby={
-											fieldState.invalid ? `${field.name}-error` : undefined
-										}
-										aria-invalid={fieldState.invalid}
+									<PhoneInput
 										id={field.name}
+										onChange={field.onChange}
+										value={field.value}
 									/>
-									<InputGroupAddon>
-										<IconPhone className="size-3.5" />
-									</InputGroupAddon>
 								</InputGroup>
 								{fieldState.invalid && (
 									<FieldError

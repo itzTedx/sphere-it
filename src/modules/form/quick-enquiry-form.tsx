@@ -19,10 +19,10 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "@/components/ui/input-group";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 
 import { IconEmail } from "@/assets/icons/email";
-import { IconPhone } from "@/assets/icons/phone";
 import { IconUser } from "@/assets/icons/user";
 
 import { env } from "@/lib/env/client";
@@ -171,7 +171,12 @@ export const QuickEnquiryForm = ({
 							<Field data-invalid={fieldState.invalid}>
 								<FieldLabel htmlFor={field.name}>Phone</FieldLabel>
 								<InputGroup>
-									<InputGroupInput
+									<PhoneInput
+										id={field.name}
+										onChange={field.onChange}
+										value={field.value}
+									/>
+									{/* <InputGroupInput
 										placeholder="+971 56 789 4321"
 										{...field}
 										aria-describedby={
@@ -182,7 +187,7 @@ export const QuickEnquiryForm = ({
 									/>
 									<InputGroupAddon>
 										<IconPhone className="size-3.5" />
-									</InputGroupAddon>
+									</InputGroupAddon> */}
 								</InputGroup>
 								{fieldState.invalid && (
 									<FieldError
