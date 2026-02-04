@@ -7,7 +7,6 @@ import {
 } from "@payloadcms/plugin-seo/fields";
 import {
 	BlocksFeature,
-	EXPERIMENTAL_TableFeature,
 	FixedToolbarFeature,
 	HeadingFeature,
 	HorizontalRuleFeature,
@@ -25,16 +24,15 @@ import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
 import { checkRole } from "@/modules/cms/access/utilities";
 import { Banner } from "@/modules/cms/blocks/Banner/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
-import { generatePreviewPath } from "@/modules/cms/utils/generatePreviewPath";
 
-import { populateAuthors } from "./hooks/populateAuthors";
 import {
-	revalidateDeleteStudies,
-	revalidateStudies,
-} from "./hooks/revalidate-studies";
+	revalidateService,
+	revalidateServiceDelete,
+} from "./hooks/revalidate-service";
 
-export const CaseStudies: CollectionConfig<"case-studies"> = {
-	slug: "case-studies",
+export const Services: CollectionConfig = {
+	slug: "services",
+	trash: true,
 	access: {
 		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),
 		create: adminOrEditor,
@@ -42,31 +40,23 @@ export const CaseStudies: CollectionConfig<"case-studies"> = {
 		update: adminOrEditor,
 		delete: adminOrEditor,
 	},
-
 	defaultPopulate: {
 		title: true,
 		slug: true,
-
+		blogCategories: true,
 		meta: {
 			image: true,
 			description: true,
 		},
 	},
 	admin: {
-		defaultColumns: ["title", "heroImage", "slug", "updatedAt"],
-
-		preview: (data, { req }) =>
-			generatePreviewPath({
-				slug: data?.slug as string,
-				collection: "case-studies",
-				req,
-			}),
+		defaultColumns: ["title", "heroImage", "slug", "isFeatured", "updatedAt"],
 		group: "Resources",
-		useAsTitle: "title",
+		useAsTitle: "service",
 	},
 	fields: [
 		{
-			name: "title",
+			name: "service",
 			type: "text",
 			required: true,
 		},
@@ -75,12 +65,42 @@ export const CaseStudies: CollectionConfig<"case-studies"> = {
 			type: "tabs",
 			tabs: [
 				{
+					label: "Header",
 					fields: [
 						{
 							name: "heroImage",
 							type: "upload",
 							relationTo: "media",
 						},
+						{
+							name: "title",
+							type: "text",
+							required: true,
+						},
+						{
+							name: "description",
+							type: "richText",
+							editor: lexicalEditor({
+								features: () => {
+									return [
+										UnorderedListFeature(),
+										OrderedListFeature(),
+										FixedToolbarFeature({
+											customGroups: {
+												text: {
+													type: "buttons",
+												},
+											},
+										}),
+									];
+								},
+							}),
+							required: true,
+						},
+					],
+				},
+				{
+					fields: [
 						{
 							name: "content",
 							type: "richText",
@@ -105,7 +125,6 @@ export const CaseStudies: CollectionConfig<"case-studies"> = {
 										}),
 										InlineToolbarFeature(),
 										HorizontalRuleFeature(),
-										EXPERIMENTAL_TableFeature(),
 									];
 								},
 							}),
@@ -115,42 +134,7 @@ export const CaseStudies: CollectionConfig<"case-studies"> = {
 					],
 					label: "Content",
 				},
-				{
-					fields: [
-						{
-							type: "array",
-							name: "highlights",
-							maxRows: 2,
-							fields: [
-								{
-									name: "value",
-									type: "text",
-								},
-								{
-									name: "label",
-									type: "text",
-								},
-							],
-						},
-						{
-							name: "relatedStudies",
-							type: "relationship",
-							admin: {
-								position: "sidebar",
-							},
-							filterOptions: ({ id }) => {
-								return {
-									id: {
-										not_in: [id],
-									},
-								};
-							},
-							hasMany: true,
-							relationTo: "case-studies",
-						},
-					],
-					label: "Meta",
-				},
+
 				{
 					name: "meta",
 					label: "SEO",
@@ -165,10 +149,9 @@ export const CaseStudies: CollectionConfig<"case-studies"> = {
 						}),
 						MetaImageField({
 							relationTo: "media",
-							hasGenerateFn: true,
 						}),
 
-						MetaDescriptionField({}),
+						MetaDescriptionField({ hasGenerateFn: true }),
 						PreviewField({
 							// if the `generateUrl` function is configured
 							hasGenerateFn: true,
@@ -201,6 +184,85 @@ export const CaseStudies: CollectionConfig<"case-studies"> = {
 				],
 			},
 		},
+
+		{
+			name: "isFeatured",
+			label: "Featured?",
+			type: "checkbox",
+			defaultValue: "false",
+			admin: {
+				position: "sidebar",
+			},
+			hooks: {
+				beforeChange: [
+					async ({ value, req, originalDoc }) => {
+						if (value === true) {
+							// Find existing featured posts
+							const existingFeatured = await req.payload.find({
+								collection: "blogs",
+								where: {
+									isFeatured: {
+										equals: true,
+									},
+									...(originalDoc?.id
+										? {
+												id: {
+													not_equals: originalDoc.id,
+												},
+											}
+										: {}),
+								},
+							});
+
+							// specific check to update other posts only if they exist
+							if (existingFeatured.docs.length > 0) {
+								await Promise.all(
+									existingFeatured.docs.map((doc) =>
+										req.payload.update({
+											collection: "blogs",
+											id: doc.id,
+											data: {
+												isFeatured: false,
+											},
+											req,
+										})
+									)
+								);
+							}
+						}
+						return value;
+					},
+				],
+			},
+		},
+		{
+			name: "relatedPosts",
+			label: "Related Blogs",
+			type: "relationship",
+			admin: {
+				position: "sidebar",
+			},
+			filterOptions: ({ id }) => {
+				return {
+					id: {
+						not_in: [id],
+					},
+				};
+			},
+			hasMany: true,
+			relationTo: "blogs",
+		},
+		{
+			name: "blogCategories",
+			label: "Category",
+			type: "relationship",
+			admin: {
+				position: "sidebar",
+				isSortable: true,
+			},
+			hasMany: true,
+			relationTo: "blogCategories",
+		},
 		{
 			name: "authors",
 			type: "relationship",
@@ -210,6 +272,7 @@ export const CaseStudies: CollectionConfig<"case-studies"> = {
 			hasMany: true,
 			relationTo: "users",
 		},
+
 		// This field is only used to populate the user data via the `populateAuthors` hook
 		// This is because the `user` collection has access control locked to protect user privacy
 		// GraphQL will also not return mutated user data that differs from the underlying schema
@@ -235,13 +298,13 @@ export const CaseStudies: CollectionConfig<"case-studies"> = {
 			],
 		},
 		slugField({
+			useAsSlug: "service",
 			slugify: ({ valueToSlugify }) => slugify(valueToSlugify),
 		}),
 	],
 	hooks: {
-		afterChange: [revalidateStudies],
-		afterRead: [populateAuthors],
-		afterDelete: [revalidateDeleteStudies],
+		afterChange: [revalidateService],
+		afterDelete: [revalidateServiceDelete],
 	},
 	versions: {
 		drafts: {

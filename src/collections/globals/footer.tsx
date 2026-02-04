@@ -5,7 +5,7 @@ import type { GlobalConfig } from "payload";
 import { isAdmin } from "@/modules/cms/access/isAdmin";
 import { checkRole } from "@/modules/cms/access/utilities";
 
-export const Footer: GlobalConfig = {
+export const Footer: GlobalConfig<"footer"> = {
 	slug: "footer",
 	access: {
 		read: () => true,

@@ -3,7 +3,7 @@ import { type CollectionConfig, slugField } from "payload";
 import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
 import { checkRole } from "@/modules/cms/access/utilities";
 
-export const Departments: CollectionConfig = {
+export const Departments: CollectionConfig<"departments"> = {
 	slug: "departments",
 	access: {
 		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),

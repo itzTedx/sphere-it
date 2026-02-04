@@ -29,7 +29,7 @@ import { generatePreviewPath } from "@/modules/cms/utils/generatePreviewPath";
 
 import { revalidateDelete, revalidateRoles } from "./hooks/revalidateRole";
 
-export const Careers: CollectionConfig<"blogs"> = {
+export const Careers: CollectionConfig<"careers"> = {
 	slug: "careers",
 	access: {
 		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),

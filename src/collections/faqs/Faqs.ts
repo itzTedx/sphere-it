@@ -5,7 +5,7 @@ import type { CollectionConfig } from "payload";
 import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
 import { checkRole } from "@/modules/cms/access/utilities";
 
-export const Faqs: CollectionConfig = {
+export const Faqs: CollectionConfig<"faqs"> = {
 	slug: "faqs",
 	access: {
 		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),

@@ -19,6 +19,7 @@ import { Partners } from "./collections/globals/partners";
 import { Teams } from "./collections/globals/teams";
 import { Media } from "./collections/Media";
 import { ResearchPapers } from "./collections/research-papers";
+import { Services } from "./collections/services";
 import { Users } from "./collections/users";
 import { env } from "./lib/env/server";
 import { defaultLexical } from "./modules/cms/fields/defaultLexical";
@@ -35,6 +36,7 @@ export default buildConfig({
 		},
 	},
 	collections: [
+		Services,
 		Blogs,
 		BlogCategories,
 		CaseStudies,
@@ -59,7 +61,7 @@ export default buildConfig({
 				user: env.SMTP_USER,
 				pass: env.SMTP_PASS,
 			},
-			debug: process.env.NODE_ENV === "development",
+			// debug: process.env.NODE_ENV === "development",
 		},
 	}),
 	upload: {

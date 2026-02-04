@@ -14,7 +14,7 @@ import { generatePreviewPath } from "@/modules/cms/utils/generatePreviewPath";
 
 import { revalidateDelete, revalidateRoles } from "./hooks/revalidateRole";
 
-export const EmployeeTestimonials: CollectionConfig<"blogs"> = {
+export const EmployeeTestimonials: CollectionConfig<"employeeTestimonials"> = {
 	slug: "employeeTestimonials",
 	access: {
 		admin: ({ req: { user } }) => checkRole(["admin"], user),
@@ -25,12 +25,8 @@ export const EmployeeTestimonials: CollectionConfig<"blogs"> = {
 	},
 
 	defaultPopulate: {
-		title: true,
-		slug: true,
-		meta: {
-			image: true,
-			description: true,
-		},
+		name: true,
+		jobRole: true,
 	},
 	admin: {
 		defaultColumns: ["name", "jobRole"],

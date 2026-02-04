@@ -22,8 +22,8 @@ export const transporter = nodemailer.createTransport({
 	port: Number(env.SMTP_PORT),
 	secure: env.SMTP_PORT === "465",
 	...(transporterAuth ?? {}),
-	debug: process.env.NODE_ENV === "development",
-	logger: process.env.NODE_ENV === "development",
+	// debug: process.env.NODE_ENV === "development",
+	// logger: process.env.NODE_ENV === "development",
 });
 
 type SendEmailOptions = (

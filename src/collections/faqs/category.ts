@@ -4,7 +4,7 @@ import { slugify } from "@/lib/utils";
 import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
 import { checkRole } from "@/modules/cms/access/utilities";
 
-export const FaqCategories: CollectionConfig = {
+export const FaqCategories: CollectionConfig<"faq-categories"> = {
 	slug: "faq-categories",
 	access: {
 		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),

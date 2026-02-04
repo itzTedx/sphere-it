@@ -12,7 +12,7 @@ import { checkRole } from "@/modules/cms/access/utilities";
 
 import { ensureFirstUserIsAdmin } from "./hooks/ensureFirstUserIsAdmin";
 
-export const Users: CollectionConfig = {
+export const Users: CollectionConfig<"users"> = {
 	slug: "users",
 	access: {
 		admin: ({ req }) => checkRole(["admin", "editor"], req.user),
