@@ -58,7 +58,7 @@ export const SERVICES: Service[] = [
 			"Reducing Errors",
 		],
 		proof:
-			"/resources/case-studies/bancassurance-with-a-unified-digital-platform",
+			"/resources/case-studies/revolutionizing-bancassurance-with-a-unified-digital-platform",
 		lists: [
 			{
 				id: 1,

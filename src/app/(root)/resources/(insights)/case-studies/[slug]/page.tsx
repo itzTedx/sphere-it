@@ -26,7 +26,7 @@ interface Props {
 
 const structuredData = (study: CaseStudy) => {
 	const image =
-		study.heroImage && typeof study.heroImage !== "number"
+		study?.heroImage && typeof study.heroImage !== "number"
 			? study.heroImage.url
 			: "";
 
