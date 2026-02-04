@@ -40,7 +40,7 @@ export const Cta = ({
 		>
 			<div className="relative mx-auto max-w-7xl">
 				<div className="relative overflow-hidden rounded-2xl bg-primary-950 p-6 shadow-2xl sm:p-8 lg:rounded-none lg:p-12 xl:rounded-3xl xl:p-16">
-					<div className="relative z-10 max-w-2xl space-y-3 sm:space-y-4">
+					<div className="relative z-10 flex max-w-2xl flex-col items-center gap-3 text-center sm:items-start sm:gap-4 sm:text-start">
 						<Badge
 							aria-label="Call to action category"
 							className="bg-primary-400/10 text-primary-500 text-xs sm:text-sm"
@@ -49,7 +49,7 @@ export const Cta = ({
 							{badge}
 						</Badge>
 						<h4
-							className="text-balance text-primary-100 text-xl leading-tight sm:text-2xl lg:text-title-2 xl:text-title-3"
+							className="text-balance text-2xl text-primary-100 leading-tight lg:text-title-2 xl:text-title-3"
 							id="cta-heading"
 						>
 							{title}
@@ -107,7 +107,7 @@ export const MiniCta = ({
 				className
 			)}
 		>
-			<div className="flex items-start gap-2 sm:gap-3 lg:items-center lg:gap-4">
+			<div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
 				<div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-950 sm:size-12">
 					<IconAiCloud className="text-purple-400" />
 				</div>
@@ -119,7 +119,7 @@ export const MiniCta = ({
 						)}
 					>
 						<h3
-							className="text-balance font-semibold text-card text-lg leading-tight tracking-[0.01em] sm:text-xl lg:text-2xl [&>span]:text-accent"
+							className="text-balance font-semibold text-card text-xl leading-tight tracking-[0.01em] lg:text-2xl [&>span]:text-accent"
 							dangerouslySetInnerHTML={{ __html: title }}
 						/>
 						{description && (

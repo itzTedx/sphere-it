@@ -158,7 +158,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 	const isLoggedIn = !!session?.user;
 
 	const study = await geResearchBySlug(slug);
-	const otherPapers = await listResearchPapers(3);
+	// const otherPapers = await listResearchPapers(3);
 
 	const jsonLd = structuredData(study);
 
@@ -191,13 +191,13 @@ export default async function ResearchPaperPage({ params }: Props) {
 					role="banner"
 				>
 					<div className="container max-w-7xl">
-						<div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
-							<div className="space-y-4 py-4 sm:space-y-6 sm:py-6 lg:col-span-6">
+						<div className="grid gap-3 md:gap-6 lg:grid-cols-12 lg:gap-12">
+							<div className="space-y-3 pt-3 sm:space-y-4 sm:py-4 md:space-y-6 md:py-6 lg:col-span-6">
 								<nav aria-label="Breadcrumb navigation">
 									<Button
 										aria-label="Go back to all research papers"
 										asChild
-										className="group max-sm:size-9"
+										className="group"
 										size="sm"
 										variant="ghost"
 									>
@@ -206,15 +206,13 @@ export default async function ResearchPaperPage({ params }: Props) {
 												aria-hidden="true"
 												className="group-hover:-translate-x-1 transition-transform"
 											/>
-											<span className="hidden sm:inline">
-												All Research papers
-											</span>
+											<span>All Research papers</span>
 										</Link>
 									</Button>
 								</nav>
 
 								<ViewTransition name={`title-${study.slug}`}>
-									<h1 className="text-primary-900 text-title-2 sm:text-title-3">
+									<h1 className="text-primary-900 text-title-4 md:text-title-3">
 										{study.title}
 									</h1>
 								</ViewTransition>
@@ -245,22 +243,31 @@ export default async function ResearchPaperPage({ params }: Props) {
 					isLoggedIn={isLoggedIn}
 					title={study.title}
 				/>
-				<section className="container max-w-7xl py-24">
-					<div className="mb-6 flex items-center justify-between gap-4">
-						<h2 className="text-title-3">
-							More research papers from Sphere IT
-						</h2>
+				{study.relatedResearchPapers &&
+					study.relatedResearchPapers?.filter(
+						(item): item is ResearchPaper => typeof item !== "number"
+					).length > 0 && (
+						<section className="container max-w-7xl py-24">
+							<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+								<h2 className="text-title-5 sm:text-title-4 md:text-title-3">
+									More research papers from Sphere IT
+								</h2>
 
-						<Button asChild variant="outline">
-							<Link href="/resources/research-papers">View more</Link>
-						</Button>
-					</div>
-					<div className="grid grid-cols-3 gap-6">
-						{otherPapers.map((study) => (
-							<PapersCard data={study} key={study.slug} />
-						))}
-					</div>
-				</section>
+								<Button asChild variant="outline">
+									<Link href="/resources/research-papers">View more</Link>
+								</Button>
+							</div>
+							<div className="grid gap-3 md:grid-cols-3 md:gap-6">
+								{study.relatedResearchPapers
+									.filter(
+										(item): item is ResearchPaper => typeof item !== "number"
+									)
+									.map((paper) => (
+										<PapersCard data={paper} key={paper.slug} />
+									))}
+							</div>
+						</section>
+					)}
 				<Cta showForm={isLoggedIn} />
 			</main>
 		</>

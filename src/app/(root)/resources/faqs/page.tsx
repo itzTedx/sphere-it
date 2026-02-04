@@ -95,7 +95,7 @@ export default async function FaqsPage() {
 							<IconSupport aria-hidden="true" /> FAQs
 						</Badge>
 						<h1
-							className="text-primary-900 text-title-4 sm:text-title-3 md:text-title-2 lg:text-title-2"
+							className="text-primary-900 text-title-5 sm:text-title-4 md:text-title-3 lg:text-title-2 xl:text-title-2"
 							id="faqs-heading"
 						>
 							<span className="text-primary-600">Have Questions?</span>

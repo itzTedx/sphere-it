@@ -71,20 +71,26 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 		);
 	},
 	heading: ({ node, nodesToJSX }) => {
-		// if (node.tag === "h2") {
-		// 	const text = nodesToJSX({ nodes: node.children });
+		// Extract plain text from node children for ID generation
+		const extractText = (nodes: DefaultNodeTypes[]): string => {
+			return nodes
+				.map((child) => {
+					if (child.type === "text") {
+						return child.text || "";
+					}
+					if ("children" in child && child.children) {
+						return extractText(child.children as DefaultNodeTypes[]);
+					}
+					return "";
+				})
+				.join("");
+		};
 
-		// 	const id = text
-		// 		.join("")
-		// 		.toLowerCase()
-		// 		.replace(/\s+/g, "-")
-		// 		.replace(/[^a-z0-9-]/g, "");
-		// 	return <h2 id={id}>{text}</h2>;
-		// }
-		const text = nodesToJSX({ nodes: node.children }).join("");
+		const text = extractText(node.children as DefaultNodeTypes[]);
 		const id = slugify(text);
+
 		const Tag = node.tag;
-		return <Tag id={id}>{text}</Tag>;
+		return <Tag id={id}>{nodesToJSX({ nodes: node.children })}</Tag>;
 	},
 	blocks: {
 		banner: ({ node }) => (

@@ -11,7 +11,7 @@ export function InsightsLayout({ children }: Props) {
 		<>
 			<header className="relative z-50 bg-card">
 				<div className="mx-auto max-w-xl py-8 text-center sm:py-10 lg:py-12">
-					<h1 className="text-primary-900 text-title-2">
+					<h1 className="text-primary-900 text-title-4 sm:text-title-3 md:text-title-2">
 						Explore the Latest From{" "}
 						<span className="text-primary-600">Sphere IT Global</span>
 					</h1>

@@ -49,10 +49,6 @@ export async function sendEnquiryEmail(data: QuickEnquireType, route: string) {
 		return { success: true };
 	} catch (error) {
 		console.error("Error sending enquiry email:", error);
-		return {
-			success: false,
-			error: "Failed to send email",
-			rateLimited: false,
-		};
+		return { success: false, error: "Failed to send email" };
 	}
 }

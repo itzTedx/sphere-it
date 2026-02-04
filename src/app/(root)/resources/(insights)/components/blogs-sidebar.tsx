@@ -6,6 +6,7 @@ import {
 
 import { IconChevronDown } from "@/assets/icons";
 
+import { cn } from "@/lib/utils";
 import { BlogCardProps } from "@/modules/blogs/components/blog-card";
 
 import {
@@ -17,9 +18,11 @@ import {
 import { ClearFilterButton } from "./delete-filter-button";
 
 export const BlogsSidebar = ({
+	className,
 	data,
 	filteredCount,
 }: {
+	className?: string;
 	data: BlogCardProps["data"][];
 	filteredCount: number;
 }) => {
@@ -51,7 +54,12 @@ export const BlogsSidebar = ({
 	const featuredCount = data.filter((blog) => blog.isFeatured).length;
 
 	return (
-		<aside className="sticky top-16 hidden max-h-fit space-y-4 py-6 lg:block">
+		<aside
+			className={cn(
+				"sticky top-16 hidden max-h-fit space-y-4 py-6 lg:block",
+				className
+			)}
+		>
 			<SearchInput placeholder="Search" />
 			<div className="dashed-stroke" />
 			<Collapsible

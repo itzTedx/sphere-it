@@ -130,13 +130,13 @@ export default async function BlogPage({ params }: Props) {
 					role="banner"
 				>
 					<div className="container max-w-7xl">
-						<div className="grid gap-6 md:grid-cols-2 md:gap-12 lg:gap-16">
-							<div className="space-y-4 py-4 sm:space-y-6 sm:py-6">
+						<div className="grid gap-3 sm:gap-6 md:grid-cols-2 md:gap-12 lg:gap-16">
+							<div className="space-y-3 pt-4 sm:space-y-4 sm:py-4 md:space-y-6 md:py-6">
 								<nav aria-label="Breadcrumb navigation">
 									<Button
 										aria-label="Go back to all blogs"
 										asChild
-										className="group max-sm:size-9"
+										className="group"
 										size="sm"
 										variant="ghost"
 									>
@@ -145,14 +145,14 @@ export default async function BlogPage({ params }: Props) {
 												aria-hidden="true"
 												className="group-hover:-translate-x-1 transition-transform"
 											/>
-											<span className="hidden sm:inline">All Blogs</span>
+											<span>All Blogs</span>
 										</Link>
 									</Button>
 								</nav>
 
 								<div className="space-y-3">
 									<ViewTransition name={`title-${blog.slug}`}>
-										<h1 className="text-primary-900 text-title-2">
+										<h1 className="text-primary-900 text-title-4 sm:text-title-3 md:text-title-2">
 											{blog.title}
 										</h1>
 									</ViewTransition>

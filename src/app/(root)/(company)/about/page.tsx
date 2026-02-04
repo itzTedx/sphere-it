@@ -301,7 +301,7 @@ export default function AboutPage() {
 
 						<div
 							aria-label="Expert team members"
-							className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+							className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-4 lg:grid-cols-4"
 							role="list"
 						>
 							{TEAMS.map((team, i) => (
@@ -315,7 +315,7 @@ export default function AboutPage() {
 					className="container max-w-7xl py-20"
 				>
 					<Badge>We're Hiring</Badge>
-					<div className="mt-6 flex items-end justify-between">
+					<div className="mt-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
 						<div>
 							<h2 className="text-primary-900 text-title-2" id="hiring-heading">
 								Join team Sphere IT
@@ -325,7 +325,11 @@ export default function AboutPage() {
 								who thrive on precision and purposeful innovation.
 							</p>
 						</div>
-						<Button asChild variant="ghost">
+						<Button
+							asChild
+							className="justify-between md:justify-center"
+							variant="ghost"
+						>
 							<Link
 								aria-label="View current job openings and career opportunities"
 								href="/careers"

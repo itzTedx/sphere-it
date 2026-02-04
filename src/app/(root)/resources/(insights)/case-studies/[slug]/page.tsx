@@ -178,14 +178,14 @@ export default async function CaseStudyPage({ params }: Props) {
 					role="banner"
 				>
 					<div className="container max-w-7xl">
-						<div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
-							<div className="flex flex-col justify-between gap-6 lg:col-span-7">
-								<div className="space-y-4 py-4 sm:space-y-6 sm:py-6">
+						<div className="grid gap-3 md:gap-6 lg:grid-cols-12 lg:gap-12">
+							<div className="flex flex-col justify-between gap-3 md:gap-6 lg:col-span-7">
+								<div className="space-y-3 pt-3 sm:space-y-4 sm:py-4 md:space-y-6 md:py-6">
 									<nav aria-label="Breadcrumb navigation">
 										<Button
 											aria-label="Go back to all case studies"
 											asChild
-											className="group max-sm:size-9"
+											className="group"
 											size="sm"
 											variant="ghost"
 										>
@@ -194,15 +194,13 @@ export default async function CaseStudyPage({ params }: Props) {
 													aria-hidden="true"
 													className="group-hover:-translate-x-1 transition-transform"
 												/>
-												<span className="hidden sm:inline">
-													All Case Studies
-												</span>
+												<span>All Case Studies</span>
 											</Link>
 										</Button>
 									</nav>
 
 									<ViewTransition name={`title-${study.slug}`}>
-										<h1 className="text-primary-900 text-title-2 sm:text-title-3">
+										<h1 className="text-primary-900 text-title-4 md:text-title-3">
 											{study.title}
 										</h1>
 									</ViewTransition>

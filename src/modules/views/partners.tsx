@@ -50,7 +50,7 @@ export const Partners = memo(() => {
 						>
 							{PARTNERS.map((partner) => (
 								<li
-									className="relative aspect-6/2 h-11 md:aspect-11/4"
+									className="relative aspect-6/2 h-9 md:aspect-11/4 md:h-11"
 									key={partner.id}
 								>
 									<Image
