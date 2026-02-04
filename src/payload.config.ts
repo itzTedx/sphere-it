@@ -13,7 +13,10 @@ import { EmployeeTestimonials } from "./collections/careers/employee-testimonial
 import { CaseStudies } from "./collections/case-studies";
 import { FaqCategories } from "./collections/faqs/category";
 import { Faqs } from "./collections/faqs/Faqs";
+import { Clients } from "./collections/globals/clients";
 import { Footer } from "./collections/globals/footer";
+import { Partners } from "./collections/globals/partners";
+import { Teams } from "./collections/globals/teams";
 import { Media } from "./collections/Media";
 import { ResearchPapers } from "./collections/research-papers";
 import { Users } from "./collections/users";
@@ -44,7 +47,7 @@ export default buildConfig({
 		Departments,
 		EmployeeTestimonials,
 	],
-	globals: [Footer],
+	globals: [Teams, Clients, Partners, Footer],
 	email: nodemailerAdapter({
 		defaultFromAddress: env.SMTP_FROM,
 		defaultFromName: "Sphere It",

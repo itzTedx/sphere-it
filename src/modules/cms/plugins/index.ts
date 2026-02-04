@@ -94,7 +94,7 @@ export const plugins: Plugin[] = [
 				enablePasskey: true, // Enable passkey sign-in option
 				afterLoginPath: "/admin", // Redirect to admin dashboard after login
 				requiredRole: ["admin", "editor"],
-				enableSignUp: false,
+				// enableSignUp: false,
 			},
 		},
 	}),

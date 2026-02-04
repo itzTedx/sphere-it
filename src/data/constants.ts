@@ -364,16 +364,7 @@ export const PARTNERS = [
 		src: "/images/partners/power-automate.png",
 		name: "Power Automate",
 	},
-	// {
-	// 	id: 4,
-	// 	src: "/images/partners/ui-path.svg",
-	// 	name: "UI Path",
-	// },
-	// {
-	// 	id: 5,
-	// 	src: "/images/partners/camunda.svg",
-	// 	name: "Camunda",
-	// },
+
 	{
 		id: 6,
 		src: "/images/partners/nexthink.svg",
