@@ -57,6 +57,11 @@ export const TEAMS: Team[] = [
 		image: "/images/team/avin-dcosta.webp",
 	},
 	{
+		name: "Amritha Visanth",
+		designation: "Senior IT Support Engineer",
+		image: "/images/team/amritha.webp",
+	},
+	{
 		name: "Bhakti Godbole",
 		designation: "Technical IT Recruiter",
 		image: "/images/team/bhakti-godbole.webp",
@@ -113,7 +118,7 @@ export const TEAMS: Team[] = [
 	},
 	{
 		name: "Alan Philip",
-		designation: "Accountant",
+		designation: "Accountant AR",
 		image: "/images/team/alan.webp",
 	},
 	{
@@ -122,7 +127,7 @@ export const TEAMS: Team[] = [
 		image: "/images/team/ashfin-arif.webp",
 	},
 	{
-		name: "Avantika Sai",
+		name: "Avanthika Sai",
 		designation: "Junior IT Support",
 		image: "/images/team/avantika-sai.webp",
 	},
