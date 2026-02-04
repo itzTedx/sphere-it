@@ -60,7 +60,11 @@ export const QuickEnquiryForm = ({
 			);
 
 			if (!result.success) {
-				throw new Error(result.error || "Failed to send enquiry");
+				const errorMessage =
+					"rateLimited" in result && result.rateLimited
+						? "Too many enquiries. Please wait before trying again."
+						: result.error || "Failed to send enquiry";
+				throw new Error(errorMessage);
 			}
 
 			// Store access granted flag in localStorage

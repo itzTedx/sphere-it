@@ -1,15 +1,24 @@
 "use server";
 
+import z from "zod";
+
 import { sendEmail } from "@/lib/emails";
 import {
 	default as JobApplicationEmail,
 	JobApplicationPlainText,
 } from "@/lib/emails/templates/job-application";
 
+import { checkRateLimit } from "../utils/rate-limiter";
 import { jobApplicationSchema } from "../validators/job-application-schema";
 
 export async function submitJobApplication(formData: FormData) {
 	try {
+		// Check rate limit
+		const rateLimitResult = await checkRateLimit("jobApplication");
+		if (!rateLimitResult.success) {
+			return rateLimitResult;
+		}
+
 		// Extract basic fields
 		const rawData = {
 			name: formData.get("name"),
@@ -28,7 +37,8 @@ export async function submitJobApplication(formData: FormData) {
 			return {
 				success: false,
 				error: "Invalid form data.",
-				details: validatedFields.error.flatten().fieldErrors,
+				details: z.prettifyError(validatedFields.error),
+				rateLimited: false,
 			};
 		}
 

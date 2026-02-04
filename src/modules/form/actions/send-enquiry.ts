@@ -5,10 +5,16 @@ import InquiryReact, {
 	InquiryPlainText,
 } from "@/lib/emails/templates/quick-enquiry";
 
+import { checkRateLimit } from "../utils/rate-limiter";
 import { QuickEnquireType } from "../validators/enquiry-schema";
 
 export async function sendEnquiryEmail(data: QuickEnquireType, route: string) {
 	try {
+		// Check rate limit
+		const rateLimitResult = await checkRateLimit("enquiry");
+		if (!rateLimitResult.success) {
+			return rateLimitResult;
+		}
 		const _emailContent = `
 			New Research Paper Enquiry
 
@@ -43,6 +49,10 @@ export async function sendEnquiryEmail(data: QuickEnquireType, route: string) {
 		return { success: true };
 	} catch (error) {
 		console.error("Error sending enquiry email:", error);
-		return { success: false, error: "Failed to send email" };
+		return {
+			success: false,
+			error: "Failed to send email",
+			rateLimited: false,
+		};
 	}
 }

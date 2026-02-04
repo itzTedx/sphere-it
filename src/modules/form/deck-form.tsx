@@ -67,7 +67,7 @@ export const DeckForm = ({
 						document.body.removeChild(link);
 
 						toast.success(
-							`Thank you ${result.name}! Your download has started.`,
+							`Thank you ${"name" in result ? result.name : ""}! Your download has started.`,
 							{
 								description: "We'll be in touch soon to discuss your needs.",
 							}
@@ -80,8 +80,15 @@ export const DeckForm = ({
 					// Close dialog if callback provided
 					onSuccess?.();
 				} else {
+					const description =
+						"rateLimited" in result && result.rateLimited
+							? "Please wait before requesting another download."
+							: "error" in result
+								? result.error || "Please try again later."
+								: "Please try again later.";
+
 					toast.error("Failed to submit form", {
-						description: result.error || "Please try again later.",
+						description,
 					});
 				}
 			} catch (error) {

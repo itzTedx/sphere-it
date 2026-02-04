@@ -58,6 +58,7 @@
 		"payload": "^3.73.0",
 		"pg": "^8.16.3",
 		"radix-ui": "latest",
+		"rate-limiter-flexible": "^9.1.0",
 		"react": "19.2.3",
 		"react-dom": "19.2.3",
 		"react-hook-form": "^7.65.0",

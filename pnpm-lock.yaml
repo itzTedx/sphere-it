@@ -107,6 +107,9 @@ importers:
       radix-ui:
         specifier: latest
         version: 1.4.3(@types/react-dom@19.2.3(@types/react@19.2.8))(@types/react@19.2.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      rate-limiter-flexible:
+        specifier: ^9.1.0
+        version: 9.1.0
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -5670,6 +5673,9 @@ packages:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
 
+  rate-limiter-flexible@9.1.0:
+    resolution: {integrity: sha512-0jjTtKWlF4UnMLr64chsKfyQsRlT3lc6KXK2B+N8wPkw2+QMbYN6ft4jNnZuHfllKpk3R5Vr4g7EM+Ms8H1aBw==}
+
   rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
@@ -10640,7 +10646,7 @@ snapshots:
     dependencies:
       '@types/node': 20.19.29
       tapable: 2.3.0
-      webpack: 5.104.1(esbuild@0.25.12)
+      webpack: 5.104.1(esbuild@0.25.10)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
@@ -13209,6 +13215,8 @@ snapshots:
 
   range-parser@1.2.1: {}
 
+  rate-limiter-flexible@9.1.0: {}
+
   rc@1.2.8:
     dependencies:
       deep-extend: 0.6.0
@@ -13939,14 +13947,14 @@ snapshots:
       readable-stream: 3.6.2
     optional: true
 
-  terser-webpack-plugin@5.3.16(esbuild@0.25.10)(webpack@5.104.1(esbuild@0.25.10)):
+  terser-webpack-plugin@5.3.16(esbuild@0.25.10)(webpack@5.104.1(esbuild@0.25.12)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       serialize-javascript: 6.0.2
       terser: 5.44.1
-      webpack: 5.104.1(esbuild@0.25.12)
+      webpack: 5.104.1(esbuild@0.25.10)
     optionalDependencies:
       esbuild: 0.25.10
 
@@ -14309,7 +14317,7 @@ snapshots:
 
   webpack-sources@3.3.3: {}
 
-  webpack@5.104.1(esbuild@0.25.12):
+  webpack@5.104.1(esbuild@0.25.10):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.8
@@ -14333,7 +14341,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.16(esbuild@0.25.10)(webpack@5.104.1(esbuild@0.25.10))
+      terser-webpack-plugin: 5.3.16(esbuild@0.25.10)(webpack@5.104.1(esbuild@0.25.12))
       watchpack: 2.5.0
       webpack-sources: 3.3.3
     transitivePeerDependencies:

@@ -118,8 +118,12 @@ export const JobApplicationForm = ({ initialData }: Props) => {
 				});
 				form.reset();
 			} else {
+				const description = result.rateLimited
+					? "Please wait before submitting another application."
+					: result.error || "Please try again later.";
+
 				toast.error("Failed to submit application", {
-					description: result.error || "Please try again later.",
+					description,
 				});
 			}
 		});
