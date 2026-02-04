@@ -15,6 +15,12 @@ import { inter, mono, sans } from "@/assets/fonts";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 
+const meta = {
+	title: "Sphere IT - Digital Transformation Partner in UAE & GCC",
+	description:
+		"Empowering forward-looking organizations with talent and technology that deliver measurable outcomes. ISO/IEC 42001 certified AI platforms, automation frameworks, and scalable solutions",
+};
+
 export const metadata: Metadata = {
 	title: "Sphere It Global",
 	metadataBase: new URL(BASE_URL),
@@ -32,6 +38,30 @@ export const metadata: Metadata = {
 		"data analytics",
 		"business automation",
 	],
+	openGraph: {
+		type: "website",
+		locale: "en_US",
+		url: BASE_URL,
+		siteName: COMPANY_NAME,
+		title: meta.title,
+		description: meta.description,
+		images: [
+			{
+				url: "/og-image.jpg",
+				width: 1200,
+				height: 630,
+				alt: meta.title,
+				type: "image/jpeg",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: meta.title,
+		description: meta.description,
+		images: ["/og-image.jpg"],
+		creator: "@sphereglobal",
+	},
 
 	authors: [{ name: COMPANY_NAME }],
 	creator: COMPANY_NAME,
@@ -54,9 +84,10 @@ export const metadata: Metadata = {
 		},
 	},
 	verification: {
-		google: "your-google-verification-code",
-		yandex: "your-yandex-verification-code",
-		yahoo: "your-yahoo-verification-code",
+		google: "m-5K5HjoaMa2O6Q9ayv7cvhXGB_nigawhKbLXyoKEhw",
+		other: {
+			"msvalidate.01": "A8C503B4FF428B289DA437C18B34BBE3",
+		},
 	},
 };
 
