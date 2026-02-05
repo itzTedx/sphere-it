@@ -157,13 +157,13 @@ export const EnquiryForm = ({
 						render={({ field, fieldState }) => (
 							<Field data-invalid={fieldState.invalid}>
 								<FieldLabel htmlFor={field.name}>Phone</FieldLabel>
-								<InputGroup>
-									<PhoneInput
-										id={field.name}
-										onChange={field.onChange}
-										value={field.value}
-									/>
-								</InputGroup>
+
+								<PhoneInput
+									id={field.name}
+									onChange={field.onChange}
+									value={field.value}
+								/>
+
 								{fieldState.invalid && (
 									<FieldError
 										errors={[fieldState.error]}

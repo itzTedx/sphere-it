@@ -1,363 +1,163 @@
-"use client";
+import * as React from "react";
 
-import React, { useId } from "react";
-
-import { ChevronDownIcon, PhoneIcon } from "lucide-react";
+import { CheckIcon, ChevronsUpDown } from "lucide-react";
 import * as RPNInput from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
-import { List } from "react-window";
 
-import { COUNTRY_DATA } from "@/lib/countries";
-import { cn } from "@/lib/utils";
-
+import { Button } from "@/components/ui/button";
 import {
 	Command,
 	CommandEmpty,
+	CommandGroup,
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "./command";
-import { Input } from "./input";
-import { InputGroupInput } from "./input-group";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+} from "@/components/ui/command";
+import { Input } from "@/components/ui/input";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-export type PhoneInputProps = {
-	value?: string;
-	onChange: (value: string) => void;
+import { IconPhone } from "@/assets/icons";
 
-	className?: string;
-	id?: string;
-	placeholder?: string;
-	countrySelectProps?: Partial<CountrySelectProps>;
-	disabled?: boolean;
-};
+import { cn } from "@/lib/utils";
 
-export function PhoneInput({
-	value,
-	onChange,
-	className = "",
-	id,
-	placeholder = "Enter phone number",
-	countrySelectProps = {},
-	disabled = false,
-}: PhoneInputProps) {
-	const autoId = useId();
-	const inputId = id || autoId;
+type PhoneInputProps = Omit<
+	React.ComponentProps<"input">,
+	"onChange" | "value" | "ref"
+> &
+	Omit<RPNInput.Props<typeof RPNInput.default>, "onChange"> & {
+		onChange?: (value: RPNInput.Value) => void;
+	};
 
-	// Handle mobile-specific input behavior
-	React.useEffect(() => {
-		// Only apply mobile-specific behavior on mobile devices
-		if (
-			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-				navigator.userAgent
-			)
-		) {
-			// Prevent zoom on input focus (common mobile issue)
-			const viewport = document.querySelector('meta[name="viewport"]');
-			if (viewport) {
-				const originalContent = viewport.getAttribute("content") || "";
-				viewport.setAttribute(
-					"content",
-					`${originalContent}, maximum-scale=1.0, user-scalable=no`
-				);
-
-				return () => {
-					viewport.setAttribute("content", originalContent);
-				};
-			}
+const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
+	React.forwardRef<React.ElementRef<typeof RPNInput.default>, PhoneInputProps>(
+		({ className, onChange, value, ...props }, ref) => {
+			return (
+				<RPNInput.default
+					className={cn("flex", className)}
+					countrySelectComponent={CountrySelect}
+					flagComponent={FlagComponent}
+					inputComponent={InputComponent}
+					onChange={(value) => onChange?.(value || ("" as RPNInput.Value))}
+					ref={ref}
+					smartCaret={false}
+					/**
+					 * Handles the onChange event.
+					 *
+					 * react-phone-number-input might trigger the onChange event as undefined
+					 * when a valid phone number is not entered. To prevent this,
+					 * the value is coerced to an empty string.
+					 *
+					 * @param {E164Number | undefined} value - The entered value
+					 */
+					value={value || undefined}
+					{...props}
+				/>
+			);
 		}
-	}, []);
-
-	return (
-		<RPNInput.default
-			className={cn("flex border-0 bg-transparent", className)}
-			countrySelectComponent={(props) => (
-				<CountrySelect {...props} {...countrySelectProps} />
-			)}
-			disabled={disabled}
-			flagComponent={FlagComponent}
-			id={inputId}
-			inputComponent={
-				PlainInput as unknown as React.ComponentProps<
-					typeof RPNInput.default
-				>["inputComponent"]
-			}
-			inputProps={{
-				autoComplete: "tel",
-				inputMode: "tel",
-				pattern: "[+]?[0-9]*",
-				...(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-					navigator.userAgent
-				) && {
-					// Prevent auto-correction and suggestions on mobile
-					autoCorrect: "off",
-					autoCapitalize: "off",
-					spellCheck: false,
-				}),
-			}}
-			international
-			onChange={(v) => {
-				onChange(v ?? "");
-			}}
-			placeholder={placeholder}
-			// Mobile-specific props
-			value={value}
-		/>
 	);
-}
 PhoneInput.displayName = "PhoneInput";
 
-const PlainInput = React.forwardRef<
+const InputComponent = React.forwardRef<
 	HTMLInputElement,
-	React.ComponentProps<typeof Input>
->(({ className, type, ...props }, ref) => {
-	const inputRef = React.useRef<HTMLInputElement>(null);
-	const lastValueRef = React.useRef<string>("");
+	React.ComponentProps<"input">
+>(({ className, ...props }, ref) => (
+	<Input
+		className={cn("rounded-s-none rounded-e-lg", className)}
+		{...props}
+		ref={ref}
+	/>
+));
+InputComponent.displayName = "InputComponent";
 
-	React.useImperativeHandle(ref, () => inputRef.current!);
-
-	// Handle cursor position on mobile to prevent shifting
-	React.useEffect(() => {
-		const input = inputRef.current;
-		if (!input) return;
-
-		const handleInput = (e: Event) => {
-			const target = e.target as HTMLInputElement;
-			const currentValue = target.value;
-			const lastValue = lastValueRef.current;
-
-			// Only handle cursor position on mobile devices
-			if (
-				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-					navigator.userAgent
-				)
-			) {
-				// Store current cursor position
-				const cursorPos = target.selectionStart || 0;
-
-				// Handle different scenarios
-				if (currentValue.length > lastValue.length) {
-					// Characters were added
-					if (cursorPos === currentValue.length) {
-						// Cursor is at the end, keep it there
-						requestAnimationFrame(() => {
-							target.setSelectionRange(
-								currentValue.length,
-								currentValue.length
-							);
-						});
-					} else if (
-						currentValue.startsWith("+") &&
-						lastValue &&
-						!lastValue.startsWith("+")
-					) {
-						// Country code was added, move cursor to end
-						requestAnimationFrame(() => {
-							target.setSelectionRange(
-								currentValue.length,
-								currentValue.length
-							);
-						});
-					}
-				} else if (currentValue.length < lastValue.length) {
-					// Characters were removed
-					if (cursorPos > currentValue.length) {
-						// Adjust cursor if it's beyond the new string length
-						requestAnimationFrame(() => {
-							target.setSelectionRange(
-								currentValue.length,
-								currentValue.length
-							);
-						});
-					}
-				}
-			}
-
-			lastValueRef.current = currentValue;
-		};
-
-		// Also handle keyup for better mobile support
-		const handleKeyUp = (e: KeyboardEvent) => {
-			const target = e.target as HTMLInputElement;
-			if (
-				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-					navigator.userAgent
-				)
-			) {
-				// Ensure cursor is at the end after key release on mobile
-				if (target.selectionStart !== target.value.length) {
-					// Only force cursor to end if it makes sense (user is typing continuously)
-					const currentValue = target.value;
-					const lastValue = lastValueRef.current;
-					if (currentValue.length >= lastValue.length) {
-						requestAnimationFrame(() => {
-							target.setSelectionRange(
-								currentValue.length,
-								currentValue.length
-							);
-						});
-					}
-				}
-			}
-		};
-
-		// Handle focus events on mobile
-		const handleFocus = () => {
-			if (
-				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-					navigator.userAgent
-				)
-			) {
-				// Small delay to ensure focus is complete
-				setTimeout(() => {
-					if (input && input.value) {
-						const endPos = input.value.length;
-						input.setSelectionRange(endPos, endPos);
-					}
-				}, 100);
-			}
-		};
-
-		input.addEventListener("input", handleInput);
-		input.addEventListener("keyup", handleKeyUp);
-		input.addEventListener("focus", handleFocus);
-
-		return () => {
-			input.removeEventListener("input", handleInput);
-			input.removeEventListener("keyup", handleKeyUp);
-			input.removeEventListener("focus", handleFocus);
-		};
-	}, []);
-
-	return (
-		<InputGroupInput
-			className={cn("-ms-px w-full", className)}
-			data-slot="phone-input"
-			ref={inputRef}
-			{...props}
-		/>
-	);
-});
-PlainInput.displayName = "PlainInput";
-
-/** Virtualized list (renders only visible rows) */
-const CountryList = ({
-	items,
-	onSelect,
-	search,
-}: {
-	items: typeof COUNTRY_DATA;
-	onSelect: (code: string) => void;
-	search: string;
-}) => {
-	// Filter items based on search
-	const filteredItems = React.useMemo(() => {
-		if (!search) return items;
-		const searchLower = search.toLowerCase();
-		return items.filter(
-			(item) =>
-				item.name.toLowerCase().includes(searchLower) ||
-				item.callingCode.includes(search) ||
-				item.code.toLowerCase().includes(searchLower)
-		);
-	}, [items, search]);
-
-	return (
-		<List
-			rowComponent={({ index, style, ariaAttributes }) => {
-				const item = filteredItems[index];
-				if (!item) {
-					return <div {...ariaAttributes} style={style} />;
-				}
-				return (
-					<CommandItem
-						className="flex items-center gap-2 px-3 py-2"
-						key={`country-list-${item.code}-${item.name}-${index}-${item.callingCode}`}
-						onSelect={() => {
-							onSelect(item.code);
-						}}
-						style={style}
-						value={item.name}
-						{...ariaAttributes}
-					>
-						<FlagComponent
-							aria-hidden="true"
-							country={item.code}
-							countryName={item.name}
-						/>
-						<span className="text-sm">{item.name}</span>
-						<span className="ml-auto text-muted-foreground text-xs">
-							+{item.callingCode}
-						</span>
-					</CommandItem>
-				);
-			}}
-			rowCount={filteredItems.length}
-			rowHeight={44}
-			rowProps={{}}
-			style={{ height: 300, width: "100%" }}
-		/>
-	);
-};
+type CountryEntry = { label: string; value: RPNInput.Country | undefined };
 
 type CountrySelectProps = {
 	disabled?: boolean;
 	value: RPNInput.Country;
-	onChange: (value: RPNInput.Country) => void;
+	options: CountryEntry[];
+	onChange: (country: RPNInput.Country) => void;
 };
 
-const CountrySelect = ({ disabled, value, onChange }: CountrySelectProps) => {
-	const [open, setOpen] = React.useState(false);
-	const [search, setSearch] = React.useState("");
-	const deferredSearch = React.useDeferredValue(search);
-	const selected = value;
-
-	// Reset search when popover closes
-	React.useEffect(() => {
-		if (!open) {
-			setSearch("");
-		}
-	}, [open]);
+const CountrySelect = ({
+	disabled,
+	value: selectedCountry,
+	options: countryList,
+	onChange,
+}: CountrySelectProps) => {
+	const scrollAreaRef = React.useRef<HTMLDivElement>(null);
+	const [searchValue, setSearchValue] = React.useState("");
+	const [isOpen, setIsOpen] = React.useState(false);
 
 	return (
-		<Popover onOpenChange={setOpen} open={open}>
+		<Popover
+			modal
+			onOpenChange={(open) => {
+				setIsOpen(open);
+				open && setSearchValue("");
+			}}
+			open={isOpen}
+		>
 			<PopoverTrigger asChild>
-				<button
-					className={cn(
-						"relative inline-flex items-center self-stretch rounded-s-md border border-input-border bg-input/30 py-2 ps-3 pe-2 text-muted-foreground outline-none transition-[color,box-shadow] focus-within:z-10 focus-within:ring-[3px] hover:bg-muted hover:text-foreground hover:brightness-120 has-disabled:pointer-events-none has-disabled:opacity-50",
-						disabled && "pointer-events-none opacity-50"
-					)}
+				<Button
+					className="flex gap-1 rounded-s-lg rounded-e-none border-0 pr-3! pl-2! focus:z-10"
 					disabled={disabled}
 					type="button"
+					variant="ghost"
 				>
-					<span className="inline-flex items-center gap-1">
-						<FlagComponent
-							aria-hidden="true"
-							country={selected}
-							countryName={selected}
-						/>
-
-						<ChevronDownIcon aria-hidden="true" className="size-3" />
-					</span>
-				</button>
-			</PopoverTrigger>
-			<PopoverContent align="start" className="w-64 p-0">
-				<Command shouldFilter={false}>
-					<CommandInput
-						onValueChange={setSearch}
-						placeholder="Search country..."
-						value={search}
+					<FlagComponent
+						country={selectedCountry}
+						countryName={selectedCountry}
 					/>
-					<CommandEmpty>No country found.</CommandEmpty>
-					<CommandList className="max-h-60 overflow-hidden p-0">
-						<CountryList
-							items={COUNTRY_DATA}
-							onSelect={(code) => {
-								onChange(code as RPNInput.Country);
-								setOpen(false);
-							}}
-							search={deferredSearch}
-						/>
+					<ChevronsUpDown
+						className={cn(
+							"-mr-2 size-2.5 opacity-50 sm:size-4",
+							disabled ? "hidden" : "opacity-100"
+						)}
+					/>
+				</Button>
+			</PopoverTrigger>
+			<PopoverContent className="w-[300px] p-0">
+				<Command>
+					<CommandInput
+						onValueChange={(value) => {
+							setSearchValue(value);
+							setTimeout(() => {
+								if (scrollAreaRef.current) {
+									const viewportElement = scrollAreaRef.current.querySelector(
+										"[data-radix-scroll-area-viewport]"
+									);
+									if (viewportElement) {
+										viewportElement.scrollTop = 0;
+									}
+								}
+							}, 0);
+						}}
+						placeholder="Search country..."
+						value={searchValue}
+					/>
+					<CommandList>
+						<ScrollArea className="h-72" ref={scrollAreaRef}>
+							<CommandEmpty>No country found.</CommandEmpty>
+							<CommandGroup>
+								{countryList.map(({ value, label }) =>
+									value ? (
+										<CountrySelectOption
+											country={value}
+											countryName={label}
+											key={value}
+											onChange={onChange}
+											onSelectComplete={() => setIsOpen(false)}
+											selectedCountry={selectedCountry}
+										/>
+									) : null
+								)}
+							</CommandGroup>
+						</ScrollArea>
 					</CommandList>
 				</Command>
 			</PopoverContent>
@@ -365,16 +165,44 @@ const CountrySelect = ({ disabled, value, onChange }: CountrySelectProps) => {
 	);
 };
 
+interface CountrySelectOptionProps extends RPNInput.FlagProps {
+	selectedCountry: RPNInput.Country;
+	onChange: (country: RPNInput.Country) => void;
+	onSelectComplete: () => void;
+}
+
+const CountrySelectOption = ({
+	country,
+	countryName,
+	selectedCountry,
+	onChange,
+	onSelectComplete,
+}: CountrySelectOptionProps) => {
+	const handleSelect = () => {
+		onChange(country);
+		onSelectComplete();
+	};
+
+	return (
+		<CommandItem className="gap-2" onSelect={handleSelect}>
+			<FlagComponent country={country} countryName={countryName} />
+			<span className="flex-1 text-sm">{countryName}</span>
+			<span className="text-foreground/50 text-sm">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
+			<CheckIcon
+				className={`ml-auto size-4 ${country === selectedCountry ? "opacity-100" : "opacity-0"}`}
+			/>
+		</CommandItem>
+	);
+};
+
 const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
 	const Flag = flags[country];
 
 	return (
-		<span className="w-5 overflow-hidden rounded">
-			{Flag ? (
-				<Flag title={countryName} />
-			) : (
-				<PhoneIcon aria-hidden="true" size={16} />
-			)}
+		<span className="flex h-4 w-6 items-center justify-center overflow-hidden rounded-sm [&_svg:not([class*='size-'])]:size-full">
+			{Flag ? <Flag title={countryName} /> : <IconPhone className="size-3" />}
 		</span>
 	);
 };
+
+export { PhoneInput };
