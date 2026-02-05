@@ -6,7 +6,7 @@ import { Slot as SlotPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full font-display font-medium text-base outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-98 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+	"inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full font-display font-medium text-sm outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-98 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 sm:text-base [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 	{
 		variants: {
 			variant: {
@@ -24,9 +24,9 @@ const buttonVariants = cva(
 			},
 			size: {
 				default:
-					"h-10 px-6 py-2 has-[>span]:pr-1 has-[>svg]:pr-5 has-[>span]:pl-4",
+					"h-10 px-4 py-2 has-[>span]:pr-1 has-[>svg]:pr-5 has-[>span]:pl-4 sm:px-6",
 				sm: "h-8 gap-1.5 px-4 has-[>svg]:px-2.5",
-				lg: "h-12 px-8 has-[>svg]:px-4 has-[>span]:pr-2",
+				lg: "h-12 px-6 has-[>svg]:px-4 has-[>span]:pr-2 sm:px-8",
 				icon: "size-9",
 			},
 		},

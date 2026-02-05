@@ -45,7 +45,7 @@ export function MobileFilters({ data, filteredCount }: MobileFiltersProps) {
 					/>
 				</Button>
 			</CollapsibleTrigger>
-			<CollapsibleContent className="mt-4">
+			<CollapsibleContent className="mt-3 sm:mt-4">
 				<div className="rounded-lg border bg-card/30 p-4">
 					<BlogsSidebar
 						className="block md:hidden"

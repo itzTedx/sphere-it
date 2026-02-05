@@ -118,7 +118,7 @@ type DialogTitleProps = DialogTitlePrimitiveProps;
 function DialogTitle({ className, ...props }: DialogTitleProps) {
 	return (
 		<DialogTitlePrimitive
-			className={cn("text-title-3 leading-none", className)}
+			className={cn("text-title-4 leading-none sm:text-title-3", className)}
 			{...props}
 		/>
 	);
@@ -129,7 +129,7 @@ type DialogDescriptionProps = DialogDescriptionPrimitiveProps;
 function DialogDescription({ className, ...props }: DialogDescriptionProps) {
 	return (
 		<DialogDescriptionPrimitive
-			className={cn("text-sm text-stone-500", className)}
+			className={cn("text-stone-500 text-xs sm:text-sm", className)}
 			{...props}
 		/>
 	);

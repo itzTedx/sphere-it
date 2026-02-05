@@ -11,9 +11,11 @@ import { FocusForm } from "@/modules/form/components/focus-form";
 
 export function ContactHeader() {
 	return (
-		<header className="container max-w-7xl py-16 sm:py-20">
+		<header className="container max-w-7xl py-9 sm:py-16 md:py-20">
 			<Badge showDashes>Contact us</Badge>
-			<h1 className="text-primary-900 text-title-1">Here to help</h1>
+			<h1 className="mt-2 font-semibold text-primary-900 text-title-3 md:text-title-2 lg:text-title-1">
+				Here to help
+			</h1>
 			<section className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
 				<SupportCard />
 				<SalesCard />
@@ -25,8 +27,10 @@ export function ContactHeader() {
 
 function SupportCard() {
 	return (
-		<article className="rounded-lg bg-card px-6 py-8 shadow-md">
-			<h2 className="text-stone-800 text-title-4">Support</h2>
+		<article className="rounded-lg bg-card p-4 shadow-md sm:px-6 sm:py-8">
+			<h2 className="font-semibold text-stone-800 text-title-5 sm:text-title-4">
+				Support
+			</h2>
 			<p className="mt-3 text-base text-muted-foreground sm:text-lg">
 				Whether you have questions about Sphere IT's offerings, partnerships, or
 				just want to say hello!
@@ -57,9 +61,11 @@ function SupportCard() {
 
 function SalesCard() {
 	return (
-		<article className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 px-6 py-8">
+		<article className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 p-4 sm:px-6 sm:py-8">
 			<div>
-				<h2 className="text-stone-800 text-title-4">Sales</h2>
+				<h2 className="font-semibold text-stone-800 text-title-5 sm:text-title-4">
+					Sales
+				</h2>
 				<p className="mt-3 text-base text-muted-foreground sm:text-lg">
 					Connect with our sales team to talk about pricing or to request a
 					demo.
@@ -72,9 +78,11 @@ function SalesCard() {
 
 function CareersCard() {
 	return (
-		<article className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 px-6 py-8">
+		<article className="flex flex-col justify-between rounded-lg bg-stone-alpha-10 p-4 sm:px-6 sm:py-8">
 			<div>
-				<h2 className="text-stone-800 text-title-4">Careers</h2>
+				<h2 className="font-semibold text-stone-800 text-title-5 sm:text-title-4">
+					Careers
+				</h2>
 				<p className="mt-3 text-base text-muted-foreground sm:text-lg">
 					View opportunities to join our amazing team.
 				</p>

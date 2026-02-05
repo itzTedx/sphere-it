@@ -29,7 +29,7 @@ export const Services = memo(() => {
 				<ServicesTabs>
 					<Card className="md:mask-b-from-78% md:mask-b-to-99% mt-3 rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none backdrop-blur-md md:mt-0 md:p-1.5">
 						<TabsContents
-							className="rounded-3xl bg-card p-6 shadow-md md:p-8 md:pb-28 xl:px-12 xl:pt-16"
+							className="rounded-3xl bg-card p-4 shadow-md sm:p-6 md:p-8 md:pb-28 xl:px-12 xl:pt-16"
 							mode="auto-height"
 						>
 							{SERVICES.map(({ Icon, ...service }) => (
@@ -69,7 +69,8 @@ export const Services = memo(() => {
 										<div className="flex items-center gap-3">
 											<Button asChild className="w-full flex-1">
 												<Link href={`/services/${service.id}`}>
-													Learn more <IconArrowRight />
+													Learn more{" "}
+													<IconArrowRight className="hidden md:block" />
 												</Link>
 											</Button>
 											{service.proof && (

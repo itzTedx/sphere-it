@@ -173,7 +173,7 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
 					/>
 				</svg>
 			</div>
-			<div className="container max-w-6xl">{children}</div>
+			<div className="container max-w-6xl max-sm:px-3">{children}</div>
 		</Tabs>
 	);
 };

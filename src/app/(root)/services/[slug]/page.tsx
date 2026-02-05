@@ -131,7 +131,7 @@ export default async function ServicePage({ params }: Props) {
 					},
 				]}
 			/>
-			<main id="main-content">
+			<main>
 				<header className="relative z-50 space-y-4 border-b bg-card py-9 sm:space-y-6 sm:py-12 md:py-16">
 					<div className="container grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
 						<div className="space-y-6">
@@ -139,7 +139,7 @@ export default async function ServicePage({ params }: Props) {
 								<Icon />
 								{service.metadata.badge}
 							</Badge>
-							<h1 className="text-primary-900 text-title-4 md:text-title-3">
+							<h1 className="font-semibold text-primary-900 text-title-5 sm:text-title-4 md:text-title-3">
 								{service.metadata.title}
 							</h1>
 							{Array.isArray(service.metadata.description) ? (
@@ -174,7 +174,7 @@ export default async function ServicePage({ params }: Props) {
 									</ul>
 								</div>
 							)}
-							<div className="space-x-4">
+							<div className="flex flex-wrap items-center gap-3">
 								<Button asChild size="lg">
 									<Link href="/contact">
 										Get Started
@@ -226,7 +226,10 @@ export default async function ServicePage({ params }: Props) {
 						</div>
 					)}
 				</header>
-				<article className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-6 prose-h3:mb-4 prose-headings:mb-4 max-w-none pb-12 prose-h2:font-semibold prose-h2:text-title-4 prose-h3:text-title-5 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-h2:text-title-3 sm:prose-h3:text-title-4 sm:prose-li:prose-p:text-lg sm:prose-li:text-lg sm:prose-p:text-lg lg:prose-h2:text-title-2 lg:prose-h3:text-title-3 lg:prose-p:text-xl">
+				<article
+					className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-6 prose-h3:mb-4 prose-headings:mb-4 max-w-none pb-12 prose-h2:font-semibold prose-h2:text-title-4 prose-h3:text-title-5 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-h2:text-title-3 sm:prose-h3:text-title-4 sm:prose-li:prose-p:text-lg sm:prose-li:text-lg sm:prose-p:text-lg lg:prose-h2:text-title-2 lg:prose-h3:text-title-3 lg:prose-p:text-xl"
+					id="main-content"
+				>
 					{service.metadata.badge === "elevate" && (
 						<div className="not-prose container mt-6 md:max-w-7xl">
 							<MiniCta

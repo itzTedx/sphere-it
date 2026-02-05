@@ -1,12 +1,10 @@
-import { memo } from "react";
-
 import Image from "next/image";
 
 import { AnimatedGroup } from "@/components/ui/animated-group";
 
 import { CLIENTS } from "@/data/constants";
 
-export const Clients = memo(() => {
+export const Clients = () => {
 	return (
 		<section className="mx-auto max-w-7xl pt-12 max-xl:container">
 			<div className="space-y-4 rounded-3xl border bg-card px-6 py-9 md:px-16 md:py-10">
@@ -67,6 +65,4 @@ export const Clients = memo(() => {
 			</div>
 		</section>
 	);
-});
-
-Clients.displayName = "Clients";
+};

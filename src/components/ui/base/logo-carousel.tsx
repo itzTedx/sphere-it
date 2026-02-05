@@ -308,7 +308,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 								"inline-flex items-center gap-2.5",
 								"motion-reduce:transition-none",
 								scaleOnHover &&
-									"transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-105"
+									"transition-transform duration-300 ease-in-out group-hover/item:scale-105"
 							)}
 						>
 							<div className="flex size-8 items-center justify-center rounded-md bg-stone-alpha-10 text-primary-600">
@@ -318,18 +318,18 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 								{item.title}
 							</span>
 						</div>
-						<div className="ml-[var(--logoloop-gap)] h-3 w-px bg-muted-background" />
+						<div className="ml-(--logoloop-gap) h-3 w-px bg-muted-background" />
 					</>
 				) : (
 					<Image
 						alt={item.alt ?? ""}
 						className={cn(
-							"block h-[var(--logoloop-logoHeight)] w-auto object-contain",
+							"block h-(--logoloop-logoHeight) w-auto object-contain",
 							"pointer-events-none [-webkit-user-drag:none]",
 							"[image-rendering:-webkit-optimize-contrast]",
 							"motion-reduce:transition-none",
 							scaleOnHover &&
-								"transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120"
+								"transition-transform duration-300 ease-in-out group-hover/item:scale-120"
 						)}
 						decoding="async"
 						draggable={false}
@@ -368,7 +368,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 				return (
 					<li
 						className={cn(
-							"mr-[var(--logoloop-gap)] flex items-center text-[length:var(--logoloop-logoHeight)] leading-[1]",
+							"text-(length:--logoloop-logoHeight) mr-(--logoloop-gap) flex items-center leading-none",
 							scaleOnHover && "group/item overflow-visible"
 						)}
 						key={key}
@@ -423,7 +423,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 						<div
 							aria-hidden
 							className={cn(
-								"pointer-events-none absolute inset-y-0 left-0 z-[1]",
+								"pointer-events-none absolute inset-y-0 left-0 z-1",
 								"w-[clamp(24px,8%,120px)]",
 								"bg-[linear-gradient(to_right,var(--logoloop-fadeColor,var(--logoloop-fadeColorAuto))_0%,rgba(0,0,0,0)_100%)]"
 							)}
@@ -431,7 +431,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 						<div
 							aria-hidden
 							className={cn(
-								"pointer-events-none absolute inset-y-0 right-0 z-[1]",
+								"pointer-events-none absolute inset-y-0 right-0 z-1",
 								"w-[clamp(24px,8%,120px)]",
 								"bg-[linear-gradient(to_left,var(--logoloop-fadeColor,var(--logoloop-fadeColorAuto))_0%,rgba(0,0,0,0)_100%)]"
 							)}

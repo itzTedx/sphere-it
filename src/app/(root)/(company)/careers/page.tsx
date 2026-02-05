@@ -134,7 +134,7 @@ export default async function CareersPage() {
 								Careers at sphere it global
 							</Badge>
 							<h1
-								className="text-primary-900 text-title-4 sm:text-title-3"
+								className="font-semibold text-primary-900 text-title-5 sm:text-title-4 md:text-title-3"
 								id="careers-heading"
 							>
 								Build the Future of Technology with{" "}
@@ -288,7 +288,7 @@ export default async function CareersPage() {
 							Join us
 						</Badge>
 						<h2
-							className="text-title-3 sm:text-title-2"
+							className="text-title-4 sm:text-title-3 md:text-title-2"
 							id="open-roles-heading"
 						>
 							Current Openings{" "}

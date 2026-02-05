@@ -10,7 +10,7 @@ export const Partners = memo(() => {
 	return (
 		<section className="my-16 md:mb-28">
 			<div className="mx-auto max-w-7xl max-xl:container">
-				<div className="space-y-4 rounded-3xl border bg-card px-6 py-9 md:px-16 md:py-10">
+				<div className="space-y-4 rounded-3xl border bg-card px-4 py-6 sm:px-6 sm:py-9 md:px-16 md:py-10">
 					<h3 className="text-center text-title-5">
 						Our <span className="text-primary">Partners</span>
 					</h3>
@@ -18,7 +18,7 @@ export const Partners = memo(() => {
 					<div className="group relative space-y-3">
 						<AnimatedGroup
 							as="ul"
-							className="flex flex-wrap items-center justify-center gap-12 transition-all duration-500"
+							className="flex flex-wrap items-center justify-center gap-10 transition-all duration-500 md:gap-12"
 							variants={{
 								container: {
 									visible: {
@@ -50,7 +50,7 @@ export const Partners = memo(() => {
 						>
 							{PARTNERS.map((partner) => (
 								<li
-									className="relative aspect-6/2 h-9 md:aspect-11/4 md:h-11"
+									className="relative aspect-6/2 h-8 md:aspect-11/4 md:h-11"
 									key={partner.id}
 								>
 									<Image

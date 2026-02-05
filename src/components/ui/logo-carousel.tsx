@@ -111,7 +111,7 @@ function LogoColumn({
 		<motion.div
 			animate={{ opacity: 1, y: 0 }}
 			className={cn(
-				"relative aspect-16/9 w-32 overflow-hidden md:w-72",
+				"relative aspect-video w-32 overflow-hidden md:w-72",
 				containerClassName
 			)}
 			initial={{ opacity: 0, y: 20 }}

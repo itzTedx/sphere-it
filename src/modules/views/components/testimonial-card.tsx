@@ -23,16 +23,13 @@ export function TestimonialCard({ data }: { data: EmployeeTestimonial }) {
 				<CardDescription>{data.jobRole}</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<blockquote className="text-sm text-stone-700 xl:text-base">
+				<blockquote className="text-stone-700">
 					<RichText
-						className="prose prose-stone prose-lg prose-h1:font-medium prose-headings:text-primary-900"
+						className="prose prose-stone prose-base prose-h1:font-medium prose-headings:text-primary-900"
 						data={data.content}
 						enableGutter={false}
 					/>
 				</blockquote>
-				{/* <span aria-label={`Industry: ${data.industry}`} className="text-stone-400 text-xs xl:text-sm">
-          {data.industry}
-        </span> */}
 			</CardContent>
 		</Card>
 	);

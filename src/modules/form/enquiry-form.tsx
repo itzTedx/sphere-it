@@ -224,7 +224,7 @@ export const EnquiryForm = ({
 						</Field>
 					)}
 				/>
-				<FieldDescription>
+				<FieldDescription className="hidden sm:block">
 					By filling out this form you agree to the terms in our{" "}
 					<Link className="underline" href="/legal/privacy" target="_blank">
 						privacy policy.

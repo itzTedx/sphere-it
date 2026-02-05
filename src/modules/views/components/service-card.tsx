@@ -55,7 +55,7 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
 					</div>
 					<ServiceCardSkeleton />
 				</div>
-				<div className="-translate-x-1 md:-translate-x-0 absolute top-20 left-1/6 z-9 size-full rounded-3xl border-2 border-primary-500/50 bg-primary-900/50 md:top-24" />
+				<div className="-translate-x-1 absolute top-20 left-1/6 z-9 size-full rounded-3xl border-2 border-primary-500/50 bg-primary-900/50 md:top-24 md:translate-x-0" />
 
 				<AnimatedGroup
 					className="absolute bottom-6 left-6 z-50 flex flex-col gap-1.5 lg:gap-2 xl:bottom-8 xl:left-8 xl:gap-3"
@@ -151,7 +151,7 @@ export const ServiceCard = ({ service }: ServiceCardProps) => {
 
 				<FlickeringGrid
 					aria-hidden="true"
-					className="absolute inset-0 z-1 opacity-50 [mask-image:radial-gradient(820px_circle_at_top,white,transparent)]"
+					className="mask-[radial-gradient(820px_circle_at_top,white,transparent)] absolute inset-0 z-1 opacity-50"
 					color="#C3A5FA"
 					flickerChance={0.1}
 					gridGap={4}

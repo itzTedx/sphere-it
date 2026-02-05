@@ -38,18 +38,18 @@ export function ServiceCard({ service }: { service: Service }) {
 						<IconBox>
 							<service.Icon className="text-stone-400 group-hover:text-primary-600" />
 						</IconBox>
-						<h2 className="text-lg text-primary-800 sm:text-xl md:text-title-4">
+						<h2 className="font-semibold text-lg text-primary-800 leading-tight sm:text-xl md:text-title-4">
 							{service.serviceTitle}
 						</h2>
 					</div>
 					<p className="font-display text-sm text-stone-700 sm:text-lg">
 						{service.overview}
 					</p>
-					<div className="flex items-center gap-4">
+					<div className="flex items-center gap-2 md:gap-4">
 						<Button asChild className="group">
 							<Link href={`/services/${service.id}`}>
 								Learn more{" "}
-								<IconArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+								<IconArrowRight className="hidden transition-transform duration-300 group-hover:translate-x-1 sm:block" />
 							</Link>
 						</Button>
 						{service.proof && (

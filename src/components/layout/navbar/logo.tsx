@@ -14,5 +14,9 @@ export const Logo = () => {
 		},
 	};
 
-	return <Lottie height={42} options={defaultOptions} width={138} />;
+	return (
+		<div className="-translate-x-4 scale-75 sm:scale-100">
+			<Lottie height={42} options={defaultOptions} width={138} />
+		</div>
+	);
 };

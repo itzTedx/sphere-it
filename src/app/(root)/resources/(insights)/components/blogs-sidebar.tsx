@@ -56,7 +56,7 @@ export const BlogsSidebar = ({
 	return (
 		<aside
 			className={cn(
-				"sticky top-16 hidden max-h-fit space-y-4 py-6 lg:block",
+				"sticky top-16 hidden max-h-fit space-y-4 sm:py-6 lg:block",
 				className
 			)}
 		>

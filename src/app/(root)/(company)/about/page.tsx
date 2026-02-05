@@ -154,7 +154,7 @@ export default function AboutPage() {
 						<h2 className="sr-only" id="about-heading">
 							Sphere IT was founded in 2016 with core mission
 						</h2>
-						<div className="mt-6 space-y-3 text-xl lg:text-2xl">
+						<div className="mt-6 space-y-3 text-lg sm:text-xl lg:text-2xl">
 							<p>
 								<strong>Sphere IT was founded in 2016 with core mission</strong>{" "}
 								to equip clients to adopt technology effectively through the
@@ -247,7 +247,7 @@ export default function AboutPage() {
 
 							<div className="max-w-4xl">
 								<h2
-									className="mt-6 text-primary-900 text-title-2"
+									className="mt-6 text-primary-900 text-title-4 sm:text-title-3 md:text-title-2"
 									id="team-heading"
 								>
 									Meet the Minds Behind Sphere IT
@@ -269,7 +269,7 @@ export default function AboutPage() {
 								/>
 							</ItemMedia>
 							<ItemContent>
-								<ItemTitle className="font-display text-subhead-lg">
+								<ItemTitle className="font-display text-subhead-base sm:text-subhead-lg">
 									<h3 className="text-stone-600">Leadership at Sphere IT</h3>
 								</ItemTitle>
 							</ItemContent>
@@ -293,7 +293,7 @@ export default function AboutPage() {
 								/>
 							</ItemMedia>
 							<ItemContent>
-								<ItemTitle className="font-display text-subhead-lg">
+								<ItemTitle className="font-display text-subhead-base sm:text-subhead-lg">
 									<h3 className="text-stone-600">People Who Power Sphere IT</h3>
 								</ItemTitle>
 							</ItemContent>
@@ -312,15 +312,18 @@ export default function AboutPage() {
 				</section>
 				<section
 					aria-labelledby="hiring-heading"
-					className="container max-w-7xl py-20"
+					className="container max-w-7xl py-12 md:py-20"
 				>
 					<Badge>We're Hiring</Badge>
 					<div className="mt-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
 						<div>
-							<h2 className="text-primary-900 text-title-2" id="hiring-heading">
+							<h2
+								className="text-primary-900 text-title-4 sm:text-title-3 md:text-title-2"
+								id="hiring-heading"
+							>
 								Join team Sphere IT
 							</h2>
-							<p className="mt-3 max-w-xl text-balance text-lg">
+							<p className="mt-1 max-w-xl text-balance sm:mt-3 sm:text-lg">
 								We're always looking for thinkers, builders, and problem-solvers
 								who thrive on precision and purposeful innovation.
 							</p>
@@ -372,7 +375,7 @@ export default function AboutPage() {
 
 function TeamCard({ data }: { data: Team }) {
 	return (
-		<article className="group p-4" role="listitem">
+		<article className="group sm:p-4" role="listitem">
 			<div className="relative aspect-square overflow-hidden rounded-full bg-card">
 				{data.linkedin && (
 					<Link
@@ -394,7 +397,9 @@ function TeamCard({ data }: { data: Team }) {
 			</div>
 
 			<div className="mt-4 space-y-1 px-4 text-center font-display">
-				<h4 className="text-stone-900 text-subhead-lg">{data.name}</h4>
+				<h4 className="text-stone-900 text-subhead-base sm:text-subhead-lg">
+					{data.name}
+				</h4>
 				<p className="text-stone-500 text-subhead-sm">{data.designation}</p>
 			</div>
 		</article>

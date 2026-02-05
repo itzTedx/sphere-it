@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +31,7 @@ import { IconLayers } from "@/assets/icons/layers";
 import { TECH_STACKS } from "@/data/constants";
 import { cn } from "@/lib/utils";
 
-export const WhyUs = memo(() => {
+export const WhyUs = () => {
 	return (
 		<section aria-labelledby="why-us-heading" className="relative z-50">
 			<div className="container mx-auto max-w-7xl space-y-4 lg:space-y-6">
@@ -71,9 +71,7 @@ export const WhyUs = memo(() => {
 			</div>
 		</section>
 	);
-});
-
-WhyUs.displayName = "WhyUs";
+};
 
 interface CardProps {
 	className?: string;
@@ -142,7 +140,7 @@ function AxisCard({ className }: CardProps) {
 	const currentPhase = AXIS_PHASES[activeIndex]!;
 	const currentTab = currentPhase.letter.toLowerCase();
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: Need to rerender when active index changes
+	// biome-ignore lint/correctness/useExhaustiveDependencies: No Need to rerender when active index changes
 	useEffect(() => {
 		const timer = window.setTimeout(() => {
 			setActiveIndex(
@@ -183,7 +181,7 @@ function AxisCard({ className }: CardProps) {
 					onValueChange={handleTabChange}
 					value={currentTab}
 				>
-					<div className="flex items-center justify-between gap-4">
+					<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 						<TabsList className="flex h-auto flex-row justify-start gap-1 sm:h-fit">
 							{AXIS_PHASES.map((phase, index) => (
 								<TabsTrigger
@@ -222,7 +220,7 @@ function AxisCard({ className }: CardProps) {
 						</Button>
 					</div>
 					<TabsContents className="flex-1 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.25))] border bg-stone-alpha-10 p-1">
-						<div className="flex items-center justify-between rounded-xl bg-linear-to-br from-primary-200 to-card p-6 shadow-sm">
+						<div className="flex items-center justify-between rounded-xl bg-linear-to-br from-primary-200 to-card p-4 shadow-sm sm:p-6">
 							{AXIS_PHASES.map((phase) => (
 								<TabsContent
 									key={phase.letter}
@@ -237,11 +235,11 @@ function AxisCard({ className }: CardProps) {
 											key={phase.letter}
 											transition={{ duration: 0.4, ease: "easeOut" }}
 										>
-											<div className="flex items-start gap-4 xl:gap-5">
+											<div className="flex items-start gap-3 sm:gap-4 xl:gap-5">
 												<motion.div
 													animate={{ scale: 1, rotate: 0 }}
 													className={cn(
-														"flex size-14 shrink-0 items-center justify-center rounded-xl bg-card font-bold text-primary-600 shadow-md sm:size-16 xl:size-20 xl:text-2xl"
+														"flex size-12 shrink-0 items-center justify-center rounded-xl bg-card font-bold text-primary-600 shadow-md sm:size-14 md:size-16 xl:size-20 xl:text-2xl"
 													)}
 													initial={{ scale: 0.8, rotate: -180 }}
 													transition={{

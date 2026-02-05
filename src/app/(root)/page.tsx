@@ -66,7 +66,6 @@ export default async function Home() {
 				<Services />
 				<Clients />
 				<Industries />
-				{/* <About /> */}
 				<WhyUs />
 				<Partners />
 				{/* <Resources /> */}

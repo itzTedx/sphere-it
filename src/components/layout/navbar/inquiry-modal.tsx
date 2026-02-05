@@ -26,8 +26,11 @@ export const InquiryModal = () => {
 					</span>
 					<DialogTitle>Shall we talk</DialogTitle>
 					<DialogDescription>
-						Fill in your details our team will contact you to understand your
-						needs and present Sphere solutions
+						Fill in your details our team will contact you{" "}
+						<span className="hidden sm:inline">
+							to understand your needs and present Sphere solutions
+						</span>
+						.
 					</DialogDescription>
 				</DialogHeader>
 

@@ -78,18 +78,18 @@ export default function ServicesPage() {
 					<div className="container max-w-7xl">
 						<Badge>Services</Badge>
 						<div className="mt-4 max-w-4xl space-y-4 sm:space-y-6">
-							<h1 className="text-primary-900 text-title-3 sm:text-title-2 md:text-title-1">
+							<h1 className="text-primary-900 text-title-5 sm:text-title-3 md:text-title-2 lg:text-title-1">
 								Powering Business from{" "}
 								<span className="text-primary-600">
 									Automation to Augmentation
 								</span>
 							</h1>
 							<div className="space-y-3">
-								<h2 className="font-display text-subhead-lg">
+								<h2 className="font-display text-subhead-base sm:text-subhead-lg">
 									We deliver solutions that are precise, pragmatic, and
 									outcome-driven.
 								</h2>
-								<p className="text-balance text-lg text-stone-700 sm:text-xl md:text-lead">
+								<p className="text-balance text-base text-stone-700 sm:text-lg md:text-xl lg:text-lead">
 									Technology should deliver clarity, reliability, and measurable
 									value. At Sphere IT, our services are designed to simplify
 									complexity and accelerate outcomes. Guided by precision and

@@ -30,7 +30,7 @@ export function ContactResourcesSection() {
 		<section className="container grid max-w-7xl gap-4 pb-16 sm:gap-6 sm:pb-24 md:grid-cols-3">
 			<article
 				className={
-					"card relative flex flex-col items-center justify-center gap-3 rounded-2xl bg-primary px-4 py-8 shadow-md transition-all hover:shadow-lg sm:px-6 sm:py-8"
+					"card relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl bg-primary px-4 py-8 shadow-md transition-all hover:shadow-lg sm:px-6 sm:py-8"
 				}
 			>
 				<Link
