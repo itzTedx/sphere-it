@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,6 +29,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { IconEmail } from "@/assets/icons/email";
 import { IconUser } from "@/assets/icons/user";
 
+import { sendFullEnquiry } from "./actions/send-enquiry";
 import { EnquireType, enquirySchema } from "./validators/enquiry-schema";
 
 interface EnquiryFormProps {
@@ -42,10 +45,13 @@ export const EnquiryForm = ({
 	submitButtonText = "Send Message",
 	isSubmitting = false,
 }: EnquiryFormProps = {}) => {
+	const [isPending, startTransition] = React.useTransition();
 	const form = useForm<EnquireType>({
 		resolver: zodResolver(enquirySchema),
 		mode: "onBlur",
 	});
+
+	const isFormSubmitting = isSubmitting || isPending;
 
 	async function onSubmit(data: EnquireType) {
 		if (customOnSubmit) {
@@ -55,21 +61,20 @@ export const EnquiryForm = ({
 				form.reset();
 			}
 		} else {
-			toast("You submitted the following values:", {
-				description: (
-					<pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
-						<code>{JSON.stringify(data, null, 2)}</code>
-					</pre>
-				),
-				position: "bottom-center",
-				classNames: {
-					content: "flex flex-col gap-2",
-				},
-				style: {
-					"--border-radius": "calc(var(--radius)  + 4px)",
-				} as React.CSSProperties,
+			startTransition(async () => {
+				const result = await sendFullEnquiry(data);
+
+				if (result.success) {
+					toast.success("Enquiry submitted successfully!", {
+						position: "bottom-center",
+					});
+					form.reset();
+				} else {
+					toast.error(result.message || "Failed to submit enquiry", {
+						position: "bottom-center",
+					});
+				}
 			});
-			form.reset();
 		}
 	}
 
@@ -231,7 +236,7 @@ export const EnquiryForm = ({
 					</Link>
 				</FieldDescription>
 
-				<Button className="relative" disabled={isSubmitting} type="submit">
+				<Button className="relative" disabled={isFormSubmitting} type="submit">
 					{submitButtonText}
 				</Button>
 			</FieldGroup>

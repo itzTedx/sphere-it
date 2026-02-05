@@ -36,7 +36,12 @@ export async function getClientIp(): Promise<string> {
 
 export async function checkRateLimit(
 	limiterType: keyof typeof formRateLimiters
-): Promise<{ success: boolean; error?: string; rateLimited?: boolean }> {
+): Promise<{
+	success: boolean;
+	error?: string;
+	rateLimited?: boolean;
+	message?: string;
+}> {
 	try {
 		const ip = await getClientIp();
 		const limiter = formRateLimiters[limiterType];
@@ -48,6 +53,7 @@ export async function checkRateLimit(
 			success: false,
 			error: "Too many form submissions. Please try again later.",
 			rateLimited: true,
+			message: "Too many form submissions. Please try again later.",
 		};
 	}
 }

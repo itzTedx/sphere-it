@@ -20,7 +20,9 @@ export function ContactFormSection() {
 			<div className="rounded-2xl bg-card p-6 sm:p-10">
 				<div className="mb-6">
 					<Badge variant="ghost">General Inquiries</Badge>
-					<h3 className="text-primary-800 text-title-3">Shall we talk</h3>
+					<h3 className="text-primary-800 text-title-4 md:text-title-3">
+						Shall we talk
+					</h3>
 					<p className="text-base text-stone-500 sm:text-lg">
 						Fill in your details our team will contact you to understand your
 						needs and present Sphere solutions

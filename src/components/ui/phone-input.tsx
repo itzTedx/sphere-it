@@ -43,6 +43,31 @@ export function PhoneInput({
 }: PhoneInputProps) {
 	const autoId = useId();
 	const inputId = id || autoId;
+
+	// Handle mobile-specific input behavior
+	React.useEffect(() => {
+		// Only apply mobile-specific behavior on mobile devices
+		if (
+			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				navigator.userAgent
+			)
+		) {
+			// Prevent zoom on input focus (common mobile issue)
+			const viewport = document.querySelector('meta[name="viewport"]');
+			if (viewport) {
+				const originalContent = viewport.getAttribute("content") || "";
+				viewport.setAttribute(
+					"content",
+					`${originalContent}, maximum-scale=1.0, user-scalable=no`
+				);
+
+				return () => {
+					viewport.setAttribute("content", originalContent);
+				};
+			}
+		}
+	}, []);
+
 	return (
 		<RPNInput.default
 			className={cn("flex border-0 bg-transparent", className)}
@@ -57,11 +82,25 @@ export function PhoneInput({
 					typeof RPNInput.default
 				>["inputComponent"]
 			}
+			inputProps={{
+				autoComplete: "tel",
+				inputMode: "tel",
+				pattern: "[+]?[0-9]*",
+				...(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent
+				) && {
+					// Prevent auto-correction and suggestions on mobile
+					autoCorrect: "off",
+					autoCapitalize: "off",
+					spellCheck: false,
+				}),
+			}}
 			international
 			onChange={(v) => {
 				onChange(v ?? "");
 			}}
 			placeholder={placeholder}
+			// Mobile-specific props
 			value={value}
 		/>
 	);
@@ -72,11 +111,129 @@ const PlainInput = React.forwardRef<
 	HTMLInputElement,
 	React.ComponentProps<typeof Input>
 >(({ className, type, ...props }, ref) => {
+	const inputRef = React.useRef<HTMLInputElement>(null);
+	const lastValueRef = React.useRef<string>("");
+
+	React.useImperativeHandle(ref, () => inputRef.current!);
+
+	// Handle cursor position on mobile to prevent shifting
+	React.useEffect(() => {
+		const input = inputRef.current;
+		if (!input) return;
+
+		const handleInput = (e: Event) => {
+			const target = e.target as HTMLInputElement;
+			const currentValue = target.value;
+			const lastValue = lastValueRef.current;
+
+			// Only handle cursor position on mobile devices
+			if (
+				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent
+				)
+			) {
+				// Store current cursor position
+				const cursorPos = target.selectionStart || 0;
+
+				// Handle different scenarios
+				if (currentValue.length > lastValue.length) {
+					// Characters were added
+					if (cursorPos === currentValue.length) {
+						// Cursor is at the end, keep it there
+						requestAnimationFrame(() => {
+							target.setSelectionRange(
+								currentValue.length,
+								currentValue.length
+							);
+						});
+					} else if (
+						currentValue.startsWith("+") &&
+						lastValue &&
+						!lastValue.startsWith("+")
+					) {
+						// Country code was added, move cursor to end
+						requestAnimationFrame(() => {
+							target.setSelectionRange(
+								currentValue.length,
+								currentValue.length
+							);
+						});
+					}
+				} else if (currentValue.length < lastValue.length) {
+					// Characters were removed
+					if (cursorPos > currentValue.length) {
+						// Adjust cursor if it's beyond the new string length
+						requestAnimationFrame(() => {
+							target.setSelectionRange(
+								currentValue.length,
+								currentValue.length
+							);
+						});
+					}
+				}
+			}
+
+			lastValueRef.current = currentValue;
+		};
+
+		// Also handle keyup for better mobile support
+		const handleKeyUp = (e: KeyboardEvent) => {
+			const target = e.target as HTMLInputElement;
+			if (
+				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent
+				)
+			) {
+				// Ensure cursor is at the end after key release on mobile
+				if (target.selectionStart !== target.value.length) {
+					// Only force cursor to end if it makes sense (user is typing continuously)
+					const currentValue = target.value;
+					const lastValue = lastValueRef.current;
+					if (currentValue.length >= lastValue.length) {
+						requestAnimationFrame(() => {
+							target.setSelectionRange(
+								currentValue.length,
+								currentValue.length
+							);
+						});
+					}
+				}
+			}
+		};
+
+		// Handle focus events on mobile
+		const handleFocus = () => {
+			if (
+				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent
+				)
+			) {
+				// Small delay to ensure focus is complete
+				setTimeout(() => {
+					if (input && input.value) {
+						const endPos = input.value.length;
+						input.setSelectionRange(endPos, endPos);
+					}
+				}, 100);
+			}
+		};
+
+		input.addEventListener("input", handleInput);
+		input.addEventListener("keyup", handleKeyUp);
+		input.addEventListener("focus", handleFocus);
+
+		return () => {
+			input.removeEventListener("input", handleInput);
+			input.removeEventListener("keyup", handleKeyUp);
+			input.removeEventListener("focus", handleFocus);
+		};
+	}, []);
+
 	return (
 		<InputGroupInput
 			className={cn("-ms-px w-full", className)}
 			data-slot="phone-input"
-			ref={ref}
+			ref={inputRef}
 			{...props}
 		/>
 	);
