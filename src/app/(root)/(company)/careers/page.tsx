@@ -8,9 +8,18 @@ import { Cta } from "@/components/layout/cta";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+	Empty,
+	EmptyContent,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/components/ui/empty";
 import { PathsBackground } from "@/components/ui/motion/lines-path-background";
 
 import { IconPuzzle, IconTrendUp } from "@/assets/icons";
+import { IconBriefcase } from "@/assets/icons/briefcase";
 import { IconBullseye } from "@/assets/icons/bullseye";
 import { IconLocation } from "@/assets/icons/location";
 import { IconStar } from "@/assets/icons/star";
@@ -124,7 +133,7 @@ export default async function CareersPage() {
 				]}
 			/>
 			<main>
-				<header className="relative z-50 min-h-[calc(100lvh-4rem)] overflow-hidden border-b bg-card">
+				<header className="relative z-50 overflow-hidden border-b bg-card">
 					<div className="container relative z-50 h-full max-w-7xl space-y-6 py-6 sm:space-y-8 sm:py-9 md:space-y-10 md:py-12 lg:py-16">
 						<section
 							aria-labelledby="careers-heading"
@@ -174,13 +183,17 @@ export default async function CareersPage() {
 									>
 										<div
 											aria-hidden="true"
-											className="relative size-2 rounded-full bg-green-600"
+											className={`relative size-2 rounded-full ${ROLES.length > 0 ? "bg-green-600" : "bg-stone-400"}`}
 										>
-											<div className="-inset-1 absolute animate-pulse rounded-full bg-green-600/25" />
+											{ROLES.length > 0 && (
+												<div className="-inset-1 absolute animate-pulse rounded-full bg-green-600/25" />
+											)}
 										</div>
 										<p className="font-display text-stone-700 text-subhead-sm">
-											<span className="sr-only">Status: </span>7 Current Opening
-											Roles
+											<span className="sr-only">Status: </span>
+											{ROLES.length > 0
+												? `${ROLES.length} Current Opening${ROLES.length === 1 ? "" : "s"}`
+												: "No Current Openings"}
 										</p>
 									</div>
 								</div>
@@ -299,33 +312,57 @@ export default async function CareersPage() {
 					</header>
 
 					<div className="mt-6 space-y-8 sm:mt-9 sm:space-y-10">
-						{groupRolesByDepartment(ROLES).map(([department, roles]) => (
-							<section
-								aria-labelledby={`department-${department.toLowerCase().replace(/\s+/g, "-")}`}
-								className="space-y-4 sm:space-y-6"
-								key={department}
-							>
-								<div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center sm:gap-4">
-									<h3
-										className="text-stone-900 text-title-5 sm:text-title-4"
-										id={`department-${department.toLowerCase().replace(/\s+/g, "-")}`}
-									>
-										{department}
-									</h3>
-									<Badge
-										aria-label={`${roles.length} ${pluralize("role", roles.length)} in ${department}`}
-										variant="outline"
-									>
-										{roles.length} {pluralize("role", roles.length)}
-									</Badge>
-								</div>
-								<div className="grid gap-4 sm:grid-cols-2">
-									{roles.map((role) => (
-										<RoleCard data={role} key={role.id} />
-									))}
-								</div>
-							</section>
-						))}
+						{ROLES.length === 0 ? (
+							<Empty className="min-h-[400px]">
+								<EmptyHeader>
+									<EmptyMedia variant="icon">
+										<IconBriefcase className="size-6" />
+									</EmptyMedia>
+									<EmptyTitle>No Open Positions</EmptyTitle>
+									<EmptyDescription>
+										We don't have any open positions at the moment, but we're
+										always looking for talented people to join our team.
+									</EmptyDescription>
+								</EmptyHeader>
+								<EmptyContent>
+									<p className="text-muted-foreground text-sm">
+										Join our talent network and we'll notify you when new
+										opportunities become available.
+									</p>
+									<Button asChild className="mt-4">
+										<Link href="#application">Join Talent Network</Link>
+									</Button>
+								</EmptyContent>
+							</Empty>
+						) : (
+							groupRolesByDepartment(ROLES).map(([department, roles]) => (
+								<section
+									aria-labelledby={`department-${department.toLowerCase().replace(/\s+/g, "-")}`}
+									className="space-y-4 sm:space-y-6"
+									key={department}
+								>
+									<div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center sm:gap-4">
+										<h3
+											className="text-stone-900 text-title-5 sm:text-title-4"
+											id={`department-${department.toLowerCase().replace(/\s+/g, "-")}`}
+										>
+											{department}
+										</h3>
+										<Badge
+											aria-label={`${roles.length} ${pluralize("role", roles.length)} in ${department}`}
+											variant="outline"
+										>
+											{roles.length} {pluralize("role", roles.length)}
+										</Badge>
+									</div>
+									<div className="grid gap-4 sm:grid-cols-2">
+										{roles.map((role) => (
+											<RoleCard data={role} key={role.id} />
+										))}
+									</div>
+								</section>
+							))
+						)}
 					</div>
 				</section>
 				<section
