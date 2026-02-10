@@ -57,11 +57,15 @@ export const Services: CollectionConfig = {
 	},
 	fields: [
 		{
-			name: "service",
-			type: "text",
-			required: true,
+			type: "row",
+			fields: [
+				{
+					name: "service",
+					type: "text",
+					required: true,
+				},
+			],
 		},
-
 		{
 			type: "tabs",
 			tabs: [
@@ -72,6 +76,7 @@ export const Services: CollectionConfig = {
 							name: "heroImage",
 							type: "upload",
 							relationTo: "media",
+							required: true,
 						},
 						{
 							name: "title",
@@ -97,6 +102,32 @@ export const Services: CollectionConfig = {
 								},
 							}),
 							required: true,
+						},
+						{
+							type: "array",
+							name: "partners",
+							admin: {
+								components: {
+									RowLabel:
+										"@/collections/services/components/variant-row-label#VariantRowLabel",
+								},
+							},
+							fields: [
+								{
+									type: "upload",
+									name: "logo",
+									label: "Partner Logo",
+									relationTo: "media",
+									required: true,
+								},
+								{
+									type: "row",
+									fields: [
+										{ type: "text", name: "name" },
+										{ type: "text", name: "link" },
+									],
+								},
+							],
 						},
 					],
 				},

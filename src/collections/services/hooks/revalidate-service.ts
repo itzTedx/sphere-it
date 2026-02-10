@@ -14,28 +14,30 @@ export const revalidateService: CollectionAfterChangeHook<Blog> = ({
 }) => {
 	if (!context.disableRevalidate) {
 		if (doc._status === "published") {
-			const path = `/resources/blogs/${doc.slug}`;
+			const path = `/services/${doc.slug}`;
 
 			payload.logger.info(`Revalidating post at path: ${path}`);
 
 			revalidatePath(path);
-			revalidatePath("/resources/blogs");
-			revalidateTag("blogs", "max");
-			revalidateTag("blogCategories", "max");
-			revalidateTag(`blog:${doc.slug}`, "max");
+			revalidatePath("/services");
+			revalidateTag("services", "max");
+			if (doc?.slug) {
+				revalidateTag(`service:${doc.slug}`, "max");
+			}
 		}
 
 		// If the post was previously published, we need to revalidate the old path
 		if (previousDoc._status === "published" && doc._status !== "published") {
-			const oldPath = `/resources/blogs/${previousDoc.slug}`;
+			const oldPath = `/services/${previousDoc.slug}`;
 
 			payload.logger.info(`Revalidating old post at path: ${oldPath}`);
 
 			revalidatePath(oldPath);
-			revalidatePath("/resources/blogs");
-			revalidateTag("blogs", "max");
-			revalidateTag("blogCategories", "max");
-			revalidateTag(`blog:${previousDoc.slug}`, "max");
+			revalidatePath("/services");
+			revalidateTag("services", "max");
+			if (previousDoc?.slug) {
+				revalidateTag(`service:${previousDoc.slug}`, "max");
+			}
 		}
 	}
 	return doc;
@@ -46,14 +48,14 @@ export const revalidateServiceDelete: CollectionAfterDeleteHook<Blog> = ({
 	req: { context },
 }) => {
 	if (!context.disableRevalidate) {
-		const path = `/resources/blogs/${doc?.slug}`;
+		const path = `/services/${doc?.slug}`;
 
 		revalidatePath(path);
-		revalidatePath("/resources/blogs");
+		revalidatePath("/services");
 		revalidateTag("blogs", "max");
-		revalidateTag("blogCategories", "max");
+		revalidateTag("services", "max");
 		if (doc?.slug) {
-			revalidateTag(`blog:${doc.slug}`, "max");
+			revalidateTag(`service:${doc.slug}`, "max");
 		}
 	}
 

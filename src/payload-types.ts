@@ -167,7 +167,7 @@ export interface UserAuthOperations {
 export interface Service {
   id: number;
   service: string;
-  heroImage?: (number | null) | Media;
+  heroImage: number | Media;
   title: string;
   description: {
     root: {
@@ -184,6 +184,14 @@ export interface Service {
     };
     [k: string]: unknown;
   };
+  partners?:
+    | {
+        logo: number | Media;
+        name?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   content: {
     root: {
       type: string;
@@ -841,6 +849,14 @@ export interface ServicesSelect<T extends boolean = true> {
   heroImage?: T;
   title?: T;
   description?: T;
+  partners?:
+    | T
+    | {
+        logo?: T;
+        name?: T;
+        link?: T;
+        id?: T;
+      };
   content?: T;
   meta?:
     | T

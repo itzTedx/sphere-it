@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Route } from "next";
 import Link from "next/link";
 
@@ -26,7 +28,7 @@ import { MediaBlock } from "../../blocks/MediaBlock/Component";
 
 type NodeTypes =
 	| DefaultNodeTypes
-	| SerializedBlockNode<MediaBlockProps | BannerBlockProps>;
+	| SerializedBlockNode<MediaBlockProps | BannerBlockProps | CardBlockProps>;
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
 	const { value, relationTo } = linkNode.fields.doc!;
@@ -39,7 +41,7 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
 		: `/${slug}`;
 };
 
-const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
+export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 	defaultConverters,
 }) => ({
 	...defaultConverters,
@@ -105,13 +107,9 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 	},
 
 	blocks: {
-		banner: ({ node }: { node: SerializedBlockNode<BannerBlockProps> }) => (
-			<BannerBlock className="mb-4" {...node.fields} />
-		),
-		card: ({ node }: { node: SerializedBlockNode<CardBlockProps> }) => (
-			<CardBlock className="mb-4" {...node.fields} />
-		),
-		mediaBlock: ({ node }: { node: SerializedBlockNode<MediaBlockProps> }) => (
+		banner: ({ node }) => <BannerBlock className="mb-4" {...node.fields} />,
+		card: ({ node }) => <CardBlock className="mb-4" {...node.fields} />,
+		mediaBlock: ({ node }) => (
 			<MediaBlock
 				className="col-span-3 col-start-1"
 				imgClassName="m-0"
@@ -128,7 +126,7 @@ type Props = {
 	data: DefaultTypedEditorState;
 	enableGutter?: boolean;
 	enableProse?: boolean;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & React.ComponentProps<typeof ConvertRichText>;
 
 export default function RichText(props: Props) {
 	const { className, enableProse = true, enableGutter = true, ...rest } = props;
