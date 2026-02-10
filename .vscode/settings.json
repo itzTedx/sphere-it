@@ -17,5 +17,15 @@
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
 	},
-	"cSpell.words": ["logoloop", "useCallback"]
+	"cSpell.words": [
+		"bprogress",
+		"cmdk",
+		"delmaredigital",
+		"importmap",
+		"logoloop",
+		"nuqs",
+		"payloadcms",
+		"useCallback",
+		"vaul"
+	]
 }

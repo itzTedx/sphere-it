@@ -67,6 +67,7 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    services: Service;
     blogs: Blog;
     blogCategories: BlogCategory;
     'case-studies': CaseStudy;
@@ -81,7 +82,7 @@ export interface Config {
     sessions: Session;
     accounts: Account;
     verifications: Verification;
-    apikeys: Apikey;
+    passkeys: Passkey;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -90,6 +91,7 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    services: ServicesSelect<false> | ServicesSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     blogCategories: BlogCategoriesSelect<false> | BlogCategoriesSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
@@ -104,7 +106,7 @@ export interface Config {
     sessions: SessionsSelect<false> | SessionsSelect<true>;
     accounts: AccountsSelect<false> | AccountsSelect<true>;
     verifications: VerificationsSelect<false> | VerificationsSelect<true>;
-    apikeys: ApikeysSelect<false> | ApikeysSelect<true>;
+    passkeys: PasskeysSelect<false> | PasskeysSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -116,15 +118,19 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
+    teams: Team;
+    clients: Client;
+    partners: Partner;
     footer: Footer;
   };
   globalsSelect: {
+    teams: TeamsSelect<false> | TeamsSelect<true>;
+    clients: ClientsSelect<false> | ClientsSelect<true>;
+    partners: PartnersSelect<false> | PartnersSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
-  user: User & {
-    collection: 'users';
-  };
+  user: User;
   jobs: {
     tasks: {
       schedulePublish: TaskSchedulePublish;
@@ -153,6 +159,83 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  service: string;
+  heroImage?: (number | null) | Media;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -209,25 +292,6 @@ export interface Blog {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blogCategories".
  */
 export interface BlogCategory {
@@ -250,17 +314,11 @@ export interface User {
   email: string;
   emailVerified?: boolean | null;
   name?: string | null;
-  roles?: ('admin' | 'editor' | 'user')[] | null;
-  /**
-   * Auto-added by Better Auth (image)
-   */
   image?: string | null;
-  /**
-   * Auto-added by Better Auth (role)
-   */
-  role?: string | null;
+  role?: ('user' | 'editor' | 'admin') | null;
   updatedAt: string;
   createdAt: string;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -533,31 +591,22 @@ export interface Verification {
   createdAt: string;
 }
 /**
- * Auto-generated from Better Auth schema (apikey)
+ * Auto-generated from Better Auth schema (passkey)
  *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "apikeys".
+ * via the `definition` "passkeys".
  */
-export interface Apikey {
+export interface Passkey {
   id: number;
   name?: string | null;
-  start?: string | null;
-  prefix?: string | null;
-  key: string;
+  publicKey: string;
   user: number | User;
-  refillInterval?: number | null;
-  refillAmount?: number | null;
-  lastRefillAt?: string | null;
-  enabled?: boolean | null;
-  rateLimitEnabled?: boolean | null;
-  rateLimitTimeWindow?: number | null;
-  rateLimitMax?: number | null;
-  requestCount?: number | null;
-  remaining?: number | null;
-  lastRequest?: string | null;
-  expiresAt?: string | null;
-  permissions?: string | null;
-  metadata?: string | null;
+  credentialID: string;
+  counter: number;
+  deviceType: string;
+  backedUp: boolean;
+  transports?: string | null;
+  aaguid?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -678,6 +727,10 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
+        relationTo: 'services';
+        value: number | Service;
+      } | null)
+    | ({
         relationTo: 'blogs';
         value: number | Blog;
       } | null)
@@ -734,8 +787,8 @@ export interface PayloadLockedDocument {
         value: number | Verification;
       } | null)
     | ({
-        relationTo: 'apikeys';
-        value: number | Apikey;
+        relationTo: 'passkeys';
+        value: number | Passkey;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -778,6 +831,31 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  service?: T;
+  heroImage?: T;
+  title?: T;
+  description?: T;
+  content?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -939,7 +1017,6 @@ export interface UsersSelect<T extends boolean = true> {
   email?: T;
   emailVerified?: T;
   name?: T;
-  roles?: T;
   image?: T;
   role?: T;
   updatedAt?: T;
@@ -1038,27 +1115,18 @@ export interface VerificationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "apikeys_select".
+ * via the `definition` "passkeys_select".
  */
-export interface ApikeysSelect<T extends boolean = true> {
+export interface PasskeysSelect<T extends boolean = true> {
   name?: T;
-  start?: T;
-  prefix?: T;
-  key?: T;
+  publicKey?: T;
   user?: T;
-  refillInterval?: T;
-  refillAmount?: T;
-  lastRefillAt?: T;
-  enabled?: T;
-  rateLimitEnabled?: T;
-  rateLimitTimeWindow?: T;
-  rateLimitMax?: T;
-  requestCount?: T;
-  remaining?: T;
-  lastRequest?: T;
-  expiresAt?: T;
-  permissions?: T;
-  metadata?: T;
+  credentialID?: T;
+  counter?: T;
+  deviceType?: T;
+  backedUp?: T;
+  transports?: T;
+  aaguid?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1135,6 +1203,65 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teams".
+ */
+export interface Team {
+  id: number;
+  leaderships?:
+    | {
+        logo: number | Media;
+        name: string;
+        position: string;
+        linkedinUrl?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  members?:
+    | {
+        logo: number | Media;
+        name: string;
+        position: string;
+        linkedinUrl?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients".
+ */
+export interface Client {
+  id: number;
+  clients?:
+    | {
+        name: string;
+        logo: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners".
+ */
+export interface Partner {
+  id: number;
+  partners?:
+    | {
+        name: string;
+        logo: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
 export interface Footer {
@@ -1156,6 +1283,65 @@ export interface Footer {
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teams_select".
+ */
+export interface TeamsSelect<T extends boolean = true> {
+  leaderships?:
+    | T
+    | {
+        logo?: T;
+        name?: T;
+        position?: T;
+        linkedinUrl?: T;
+        id?: T;
+      };
+  members?:
+    | T
+    | {
+        logo?: T;
+        name?: T;
+        position?: T;
+        linkedinUrl?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients_select".
+ */
+export interface ClientsSelect<T extends boolean = true> {
+  clients?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners_select".
+ */
+export interface PartnersSelect<T extends boolean = true> {
+  partners?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1191,6 +1377,10 @@ export interface TaskSchedulePublish {
     locale?: string | null;
     doc?:
       | ({
+          relationTo: 'services';
+          value: number | Service;
+        } | null)
+      | ({
           relationTo: 'blogs';
           value: number | Blog;
         } | null)
@@ -1220,7 +1410,19 @@ export interface TaskSchedulePublish {
  * via the `definition` "BannerBlock".
  */
 export interface BannerBlock {
-  style: 'info' | 'warning' | 'error' | 'success';
+  content: string;
+  link: string;
+  linkText: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'banner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: number | Media;
   content: {
     root: {
       type: string;
@@ -1238,17 +1440,41 @@ export interface BannerBlock {
   };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'banner';
+  blockType: 'mediaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
+ * via the `definition` "CardBlock".
  */
-export interface MediaBlock {
-  media: number | Media;
+export interface CardBlock {
+  style: 'basic' | 'outlined';
+  cards?:
+    | {
+        /**
+         * Choose an icon to display with this card.
+         */
+        icon?: string | null;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'mediaBlock';
+  blockType: 'card';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

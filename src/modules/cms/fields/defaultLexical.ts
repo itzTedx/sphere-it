@@ -7,6 +7,7 @@ import {
 	lexicalEditor,
 	OrderedListFeature,
 	ParagraphFeature,
+	TextStateFeature,
 	UnderlineFeature,
 	UnorderedListFeature,
 } from "@payloadcms/richtext-lexical";
@@ -21,6 +22,24 @@ export const defaultLexical = lexicalEditor({
 		UnorderedListFeature(),
 		OrderedListFeature(),
 		IndentFeature(),
+		TextStateFeature({
+			state: {
+				color: {
+					primary: {
+						label: "Primary",
+						css: {
+							color: "oklch(0.5123 0.2295 297.24)",
+						},
+					},
+					sunset: {
+						label: "Sunset",
+						css: {
+							background: "linear-gradient(to top, #ff5f6d, #6a3093)",
+						},
+					},
+				},
+			},
+		}),
 		LinkFeature({
 			enabledCollections: ["blogs"],
 			fields: ({ defaultFields }) => {

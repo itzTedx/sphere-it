@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+:root {
+    --google-sans-flex: "Google Sans Flex", sans-serif !important;
+    --font-serif: var(--google-sans-flex) !important;
+}
+
+body, h2, h5 {
+  font-family: var(--google-sans-flex) !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "wdth" 100,
+    "GRAD" 0,
+    "ROND" 0;
+ 
+}
+
+.btn {
+  &--style-primary {
+    background-color: oklch(0.5123 0.2295 297.24);
+    color: var(--theme-elevation-900);
+  }
+
+  &--style-primary.btn--disabled {
+    background-color: oklch(0.6082 0.2247 299.9);
+  }
+
+  &--disabled {
+    background-color: oklch(0.6082 0.2247 299.9);
+  }
+}
+
+.login .logo path {
+  fill: oklch(0.5123 0.2295 297.24);
+}
+
+.template-default {
+  .nav {
+    &__brand .icon path {
+      fill: oklch(0.5123 0.2295 297.24);
+    }
+  }
+  
+  .before-dashboard {
+    .banner {
+      // BEM modifier selector (.banner--type-success)
+      &--type-success {
+        background: oklch(0.5123 0.2295 297.24);
+        color: white;
+      }
+
+      // BEM element selector (.banner__content)
+      &__content svg {
+        background-color: #2A2544;
+      }
+    }
+  }
+}

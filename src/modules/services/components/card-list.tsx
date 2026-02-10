@@ -16,7 +16,7 @@ export const CardGroup = ({
 	return (
 		<AnimatedGroup
 			className={cn(
-				"not-prose grid",
+				"grid",
 				cols === 2
 					? "gap-6 sm:grid-cols-2"
 					: cols === 3

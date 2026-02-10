@@ -16,10 +16,12 @@ import {
 import { cn, slugify } from "@/lib/utils";
 import type {
 	BannerBlock as BannerBlockProps,
+	CardBlock as CardBlockProps,
 	MediaBlock as MediaBlockProps,
 } from "@/payload-types";
 
 import { BannerBlock } from "../../blocks/Banner/Component";
+import { CardBlock } from "../../blocks/card/Component";
 import { MediaBlock } from "../../blocks/MediaBlock/Component";
 
 type NodeTypes =
@@ -93,10 +95,13 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 		return <Tag id={id}>{nodesToJSX({ nodes: node.children })}</Tag>;
 	},
 	blocks: {
-		banner: ({ node }) => (
-			<BannerBlock className="col-start-2 mb-4" {...node.fields} />
+		banner: ({ node }: { node: SerializedBlockNode<BannerBlockProps> }) => (
+			<BannerBlock className="mb-4" {...node.fields} />
 		),
-		mediaBlock: ({ node }) => (
+		card: ({ node }: { node: SerializedBlockNode<CardBlockProps> }) => (
+			<CardBlock className="mb-4" {...node.fields} />
+		),
+		mediaBlock: ({ node }: { node: SerializedBlockNode<MediaBlockProps> }) => (
 			<MediaBlock
 				className="col-span-3 col-start-1"
 				imgClassName="m-0"

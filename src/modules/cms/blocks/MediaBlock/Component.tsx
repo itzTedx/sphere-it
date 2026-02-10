@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import type { MediaBlock as MediaBlockProps } from "@/payload-types";
 
 import { Media } from "../../components/Media";
+import RichText from "../../components/RichText";
 
 type Props = MediaBlockProps & {
 	breakout?: boolean;
@@ -20,6 +21,7 @@ type Props = MediaBlockProps & {
 export const MediaBlock: React.FC<Props> = (props) => {
 	const {
 		className,
+		content,
 		enableGutter = true,
 		imgClassName,
 		media,
@@ -32,7 +34,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
 	return (
 		<div
 			className={cn(
-				"",
+				"grid items-center gap-4 md:grid-cols-2 md:gap-12",
 				{
 					container: enableGutter,
 				},
@@ -49,19 +51,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
 					src={staticImage}
 				/>
 			)}
-			{/* {caption && (
-				<div
-					className={cn(
-						"mt-6",
-						{
-							container: !disableInnerContainer,
-						},
-						captionClassName
-					)}
-				>
-					<RichText data={caption} enableGutter={false} />
-				</div>
-			)} */}
+			{content && <RichText data={content} enableGutter={false} />}
 		</div>
 	);
 };
