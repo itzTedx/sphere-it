@@ -51,7 +51,13 @@ export const MediaBlock: React.FC<Props> = (props) => {
 					src={staticImage}
 				/>
 			)}
-			{content && <RichText data={content} enableGutter={false} />}
+			{content && (
+				<RichText
+					className="prose-2xl prose-headings:text-primary"
+					data={content}
+					enableGutter={false}
+				/>
+			)}
 		</div>
 	);
 };

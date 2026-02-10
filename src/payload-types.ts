@@ -1448,6 +1448,7 @@ export interface MediaBlock {
  */
 export interface CardBlock {
   style: 'basic' | 'outlined';
+  columns?: ('2' | '3' | '4') | null;
   cards?:
     | {
         /**

@@ -72,6 +72,15 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 			</Link>
 		);
 	},
+	text: ({ node }) => {
+		const primaryColor = node.$?.color === "primary";
+
+		if (primaryColor) {
+			return <span className="text-primary">{node.text}</span>;
+		}
+
+		return node.text;
+	},
 	heading: ({ node, nodesToJSX }) => {
 		// Extract plain text from node children for ID generation
 		const extractText = (nodes: DefaultNodeTypes[]): string => {
@@ -94,6 +103,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 		const Tag = node.tag;
 		return <Tag id={id}>{nodesToJSX({ nodes: node.children })}</Tag>;
 	},
+
 	blocks: {
 		banner: ({ node }: { node: SerializedBlockNode<BannerBlockProps> }) => (
 			<BannerBlock className="mb-4" {...node.fields} />

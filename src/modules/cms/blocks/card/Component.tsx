@@ -30,11 +30,26 @@ const FallbackIcon =
 	getIconByName("IconCloud") ||
 	iconEntries[0]?.[1];
 
-export const CardBlock: React.FC<Props> = ({ className, cards, style }) => {
+export const CardBlock: React.FC<Props> = ({
+	className,
+	cards,
+	columns,
+	style,
+}) => {
 	const cardVariant = style === "outlined" ? "outlined" : "card";
+	const numericColumns =
+		typeof columns === "string"
+			? Number.parseInt(columns, 10)
+			: typeof columns === "number"
+				? columns
+				: 2;
+	const cardColumns =
+		numericColumns === 3 || numericColumns === 4
+			? (numericColumns as 3 | 4)
+			: 2;
 
 	return (
-		<CardGroup className={cn(" ", className)}>
+		<CardGroup className={cn(" ", className)} cols={cardColumns}>
 			{cards?.map((card) => {
 				const IconComponent =
 					(card.icon && getIconByName(card.icon)) || FallbackIcon;

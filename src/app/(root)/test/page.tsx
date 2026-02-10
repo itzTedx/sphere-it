@@ -18,7 +18,7 @@ export default async function TestPage() {
 
 			{docs.map((doc) => (
 				<div key={doc.id}>
-					<pre className="text-wrap">{JSON.stringify(doc, null, 2)}</pre>
+					{/* <pre className="text-wrap">{JSON.stringify(doc, null, 2)}</pre> */}
 					<RichText
 						className="prose-headings:text-primary-900"
 						data={doc.content}

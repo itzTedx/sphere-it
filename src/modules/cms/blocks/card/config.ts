@@ -12,15 +12,37 @@ export const CardBlock: Block = {
 	slug: "card",
 	fields: [
 		{
-			name: "style",
-			type: "select",
-			defaultValue: "info",
-			options: [
-				{ label: "Basic", value: "basic" },
-				{ label: "Outlined", value: "outlined" },
+			type: "row",
+			fields: [
+				{
+					name: "style",
+					type: "select",
+					defaultValue: "basic",
+					options: [
+						{ label: "Basic", value: "basic" },
+						{ label: "Outlined", value: "outlined" },
+					],
+					required: true,
+					admin: {
+						width: "75%",
+					},
+				},
+				{
+					type: "select",
+					name: "columns",
+					defaultValue: "2",
+					options: [
+						{ label: "2 Columns", value: "2" },
+						{ label: "3 Columns", value: "3" },
+						{ label: "4 Columns", value: "4" },
+					],
+					admin: {
+						width: "25%",
+					},
+				},
 			],
-			required: true,
 		},
+
 		{
 			type: "array",
 			name: "cards",

@@ -13,17 +13,16 @@ export const CardGroup = ({
 	cols = 2,
 	...props
 }: React.ComponentProps<"div"> & { cols?: 2 | 3 | 4 }) => {
+	const gridCols =
+		cols === 2
+			? "sm:grid-cols-2"
+			: cols === 3
+				? "md:grid-cols-3"
+				: "md:grid-cols-4 last";
+
 	return (
 		<AnimatedGroup
-			className={cn(
-				"grid",
-				cols === 2
-					? "gap-6 sm:grid-cols-2"
-					: cols === 3
-						? "gap-4 sm:grid-cols-2 md:grid-cols-3"
-						: "gap-4 sm:grid-cols-2 md:grid-cols-4",
-				className
-			)}
+			className={cn("grid gap-4", gridCols, className)}
 			variants={{
 				container: {
 					hidden: { opacity: 0 },
