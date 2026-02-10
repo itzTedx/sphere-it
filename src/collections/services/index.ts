@@ -24,6 +24,7 @@ import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
 import { checkRole } from "@/modules/cms/access/utilities";
 import { Banner } from "@/modules/cms/blocks/Banner/config";
 import { CardBlock } from "@/modules/cms/blocks/card/config";
+import { CertificationsBlock } from "@/modules/cms/blocks/certifications/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
 
 import {
@@ -144,7 +145,14 @@ export const Services: CollectionConfig = {
 											enabledHeadingSizes: ["h2", "h3", "h4", "h5"],
 										}),
 
-										BlocksFeature({ blocks: [Banner, MediaBlock, CardBlock] }),
+										BlocksFeature({
+											blocks: [
+												Banner,
+												MediaBlock,
+												CardBlock,
+												CertificationsBlock,
+											],
+										}),
 										UnorderedListFeature(),
 										OrderedListFeature(),
 										UploadFeature(),

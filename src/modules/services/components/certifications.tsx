@@ -1,19 +1,18 @@
-import Image from "next/image";
-
 import { IconCheckmark } from "@/assets/icons";
 
+import { Media } from "@/modules/cms/components/Media";
+
 interface Props {
-	icon: string;
+	icon?: string;
 	title: string;
 }
 export function Certificate({ icon, title }: Props) {
-	const isIcon = icon.startsWith("/svg");
 	return (
 		<div className="flex">
 			<div className="flex aspect-square items-center justify-center rounded-3xl bg-background p-3">
-				{isIcon ? (
+				{icon ? (
 					<div className="relative size-20">
-						<Image
+						<Media
 							alt="Certificate"
 							className="object-contain"
 							fill

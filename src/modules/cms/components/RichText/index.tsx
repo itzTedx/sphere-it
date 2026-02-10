@@ -19,16 +19,23 @@ import { cn, slugify } from "@/lib/utils";
 import type {
 	BannerBlock as BannerBlockProps,
 	CardBlock as CardBlockProps,
+	CertificationsBlock as CertificationsBlockProps,
 	MediaBlock as MediaBlockProps,
 } from "@/payload-types";
 
 import { BannerBlock } from "../../blocks/Banner/Component";
 import { CardBlock } from "../../blocks/card/Component";
+import { CertificationsBlock } from "../../blocks/certifications/Component";
 import { MediaBlock } from "../../blocks/MediaBlock/Component";
 
 type NodeTypes =
 	| DefaultNodeTypes
-	| SerializedBlockNode<MediaBlockProps | BannerBlockProps | CardBlockProps>;
+	| SerializedBlockNode<
+			| MediaBlockProps
+			| BannerBlockProps
+			| CardBlockProps
+			| CertificationsBlockProps
+	  >;
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
 	const { value, relationTo } = linkNode.fields.doc!;
@@ -118,6 +125,9 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 				disableInnerContainer={true}
 				enableGutter={false}
 			/>
+		),
+		certifications: ({ node }) => (
+			<CertificationsBlock className="mb-4" {...node.fields} />
 		),
 	},
 });

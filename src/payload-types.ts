@@ -1495,6 +1495,38 @@ export interface CardBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CertificationsBlock".
+ */
+export interface CertificationsBlock {
+  title: string;
+  industries?:
+    | (
+        | 'retail-banking'
+        | 'corporate-banking'
+        | 'wealth-management'
+        | 'insurance'
+        | 'conglomerates'
+        | 'government-entities'
+        | 'telecommunications'
+        | 'energy-utilities'
+      )[]
+    | null;
+  certifications?:
+    | {
+        title: string;
+        /**
+         * (Optional) Upload an icon for the certification. Recommended size: 200x200px
+         */
+        icon?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'certifications';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
