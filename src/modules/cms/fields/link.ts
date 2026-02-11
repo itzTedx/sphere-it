@@ -46,8 +46,12 @@ export const link: LinkType = ({
 							layout: "horizontal",
 							width: "50%",
 						},
-						defaultValue: "reference",
+						defaultValue: "page",
 						options: [
+							{
+								label: "Page",
+								value: "page",
+							},
 							{
 								label: "Internal link",
 								value: "reference",
@@ -76,15 +80,71 @@ export const link: LinkType = ({
 
 	const linkTypes: Field[] = [
 		{
+			name: "page",
+			type: "select",
+			admin: {
+				condition: (_, siblingData) => siblingData?.type === "page",
+			},
+			label: "Page to link to",
+			options: [
+				{
+					label: "Homepage",
+					value: "/",
+				},
+				{
+					label: "Services",
+					value: "/services",
+				},
+				{
+					label: "About",
+					value: "/about",
+				},
+				{
+					label: "Blogs",
+					value: "/resources/blogs",
+				},
+				{
+					label: "Case Studies",
+					value: "/resources/case-studies",
+				},
+				{
+					label: "Research Papers",
+					value: "/resources/research-papers",
+				},
+				{
+					label: "Faq",
+					value: "/resources/faqs",
+				},
+				{
+					label: "Careers",
+					value: "/careers",
+				},
+				{
+					label: "Contact",
+					value: "/contact",
+				},
+				{
+					label: "Methodology",
+					value: "/methodology",
+				},
+				{
+					label: "AI Maturity Assessment",
+					value: "/resources/ai-maturity",
+				},
+			],
+			required: true,
+		},
+		{
 			name: "reference",
 			type: "relationship",
 			admin: {
 				condition: (_, siblingData) => siblingData?.type === "reference",
 			},
 			label: "Document to link to",
-			relationTo: ["blogs", "case-studies"],
+			relationTo: ["services", "blogs", "case-studies", "researchPapers"],
 			required: true,
 		},
+
 		{
 			name: "url",
 			type: "text",

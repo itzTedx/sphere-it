@@ -184,6 +184,53 @@ export interface Service {
     };
     [k: string]: unknown;
   };
+  ctaButtons?:
+    | {
+        link: {
+          type?: ('page' | 'reference' | 'custom') | null;
+          newTab?: boolean | null;
+          page?:
+            | (
+                | '/'
+                | '/services'
+                | '/about'
+                | '/resources/blogs'
+                | '/resources/case-studies'
+                | '/resources/research-papers'
+                | '/resources/faqs'
+                | '/careers'
+                | '/contact'
+                | '/methodology'
+                | '/resources/ai-maturity'
+              )
+            | null;
+          reference?:
+            | ({
+                relationTo: 'services';
+                value: number | Service;
+              } | null)
+            | ({
+                relationTo: 'blogs';
+                value: number | Blog;
+              } | null)
+            | ({
+                relationTo: 'case-studies';
+                value: number | CaseStudy;
+              } | null)
+            | ({
+                relationTo: 'researchPapers';
+                value: number | ResearchPaper;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
   partners?:
     | {
         logo: number | Media;
@@ -849,6 +896,22 @@ export interface ServicesSelect<T extends boolean = true> {
   heroImage?: T;
   title?: T;
   description?: T;
+  ctaButtons?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              page?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
   partners?:
     | T
     | {

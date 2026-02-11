@@ -16,7 +16,7 @@ export function Certificate({ icon, title }: Props) {
 							alt="Certificate"
 							className="object-contain"
 							fill
-							src={icon}
+							resource={icon}
 						/>
 					</div>
 				) : (

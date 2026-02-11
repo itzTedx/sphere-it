@@ -26,6 +26,7 @@ import { Banner } from "@/modules/cms/blocks/Banner/config";
 import { CardBlock } from "@/modules/cms/blocks/card/config";
 import { CertificationsBlock } from "@/modules/cms/blocks/certifications/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
+import { linkGroup } from "@/modules/cms/fields/link-group";
 
 import {
 	revalidateService,
@@ -104,6 +105,16 @@ export const Services: CollectionConfig = {
 							}),
 							required: true,
 						},
+						linkGroup({
+							overrides: {
+								name: "ctaButtons",
+								labels: {
+									singular: "CTA Button",
+									plural: "CTA Buttons",
+								},
+								maxRows: 2,
+							},
+						}),
 						{
 							type: "array",
 							name: "partners",

@@ -35,7 +35,9 @@ export default async function TestPage() {
 
 	return (
 		<div>
-			{/* <pre className="text-sm">{JSON.stringify(docs, null, 2)}</pre> */}
+			<pre className="container max-w-7xl text-wrap text-sm">
+				{JSON.stringify(docs, null, 2)}
+			</pre>
 
 			{docs.map((doc) => {
 				const Icon = ICONS[doc.slug as keyof typeof ICONS];
@@ -81,8 +83,8 @@ export default async function TestPage() {
 							)}
 						</header>
 						{/* <pre className="container max-w-7xl text-wrap">
-						{JSON.stringify(doc.description, null, 2)}
-					</pre> */}
+							{JSON.stringify(doc.description, null, 2)}
+						</pre> */}
 						<div className="container mt-6 max-w-7xl">
 							<RichText
 								className="prose-h2:text-title-2 prose-headings:text-primary-900"

@@ -24,9 +24,12 @@ export const CertificationsBlock: React.FC<Props> = ({
 	const hasCertifications = certifications && certifications.length > 0;
 	return (
 		<Section className={cn("not-prose", className)} outlined>
-			<div className="mx-auto max-w-4xl text-balance text-center text-title-3">
-				<RichText data={title} enableGutter={false} />
-			</div>
+			<RichText
+				className="mx-auto max-w-4xl text-balance text-center text-title-3"
+				data={title}
+				enableGutter={false}
+			/>
+
 			<div
 				className={cn(
 					"mt-9 grid gap-12",
@@ -44,16 +47,11 @@ export const CertificationsBlock: React.FC<Props> = ({
 					{industries?.map((industry) => (
 						<Industry key={industry}>{industrySlugToLabel(industry)}</Industry>
 					))}
-					{/* <Industry>Corp Banking</Industry>
-					<Industry>Wealth Management</Industry>
-					<Industry>Insurance</Industry>
-					<Industry>Conglomerates</Industry>
-					<Industry>Government Entities</Industry> */}
 				</div>
 				{hasCertifications && (
 					<div className="grid gap-4">
 						{certifications.map((certification) => (
-							<div className="flex" key={certification.title}>
+							<div className="flex gap-2" key={certification.title}>
 								<div className="flex aspect-square items-center justify-center rounded-3xl bg-background p-3">
 									{certification.icon ? (
 										<div className="relative size-20">
