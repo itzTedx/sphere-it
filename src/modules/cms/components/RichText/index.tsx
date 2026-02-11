@@ -18,12 +18,14 @@ import {
 import { cn, slugify } from "@/lib/utils";
 import type {
 	BannerBlock as BannerBlockProps,
+	ButtonBlock as ButtonBlockProps,
 	CardBlock as CardBlockProps,
 	CertificationsBlock as CertificationsBlockProps,
 	MediaBlock as MediaBlockProps,
 } from "@/payload-types";
 
 import { BannerBlock } from "../../blocks/Banner/Component";
+import { ButtonBlock } from "../../blocks/button/Component";
 import { CardBlock } from "../../blocks/card/Component";
 import { CertificationsBlock } from "../../blocks/certifications/Component";
 import { MediaBlock } from "../../blocks/MediaBlock/Component";
@@ -35,7 +37,20 @@ type NodeTypes =
 			| BannerBlockProps
 			| CardBlockProps
 			| CertificationsBlockProps
+			| ButtonBlockProps
 	  >;
+
+type TextConverterArgs = {
+	node: {
+		text: string;
+		$?: {
+			color?: string;
+			[key: string]: unknown;
+		};
+		[key: string]: unknown;
+	};
+	[key: string]: unknown;
+};
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
 	const { value, relationTo } = linkNode.fields.doc!;
@@ -81,17 +96,24 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 			</Link>
 		);
 	},
-	text: ({ node }) => {
+	text: (args: TextConverterArgs) => {
+		const { node } = args;
 		const primaryColor = node.$?.color === "primary";
 		const mutedColor = node.$?.color === "muted";
 
+		// Let the default converter handle marks like <strong>, <em>, etc.
+		const defaultText =
+			typeof defaultConverters.text === "function"
+				? defaultConverters.text!(args as never)
+				: node.text;
+
 		if (primaryColor) {
-			return <span className="text-primary">{node.text}</span>;
+			return <span className="text-primary">{defaultText}</span>;
 		}
 		if (mutedColor) {
-			return <span className="text-muted-foreground">{node.text}</span>;
+			return <span className="text-muted-foreground">{defaultText}</span>;
 		}
-		return node.text;
+		return defaultText;
 	},
 	heading: ({ node, nodesToJSX }) => {
 		// Extract plain text from node children for ID generation
@@ -117,6 +139,7 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 	},
 
 	blocks: {
+		button: ({ node }) => <ButtonBlock className="mb-4" {...node.fields} />,
 		banner: ({ node }) => <BannerBlock className="mb-4" {...node.fields} />,
 		card: ({ node }) => <CardBlock className="mb-4" {...node.fields} />,
 		mediaBlock: ({ node }) => (

@@ -23,6 +23,7 @@ import { slugify } from "@/lib/utils";
 import { adminOrEditor } from "@/modules/cms/access/adminOrEditor";
 import { checkRole } from "@/modules/cms/access/utilities";
 import { Banner } from "@/modules/cms/blocks/Banner/config";
+import { ButtonBlock } from "@/modules/cms/blocks/button/config";
 import { CardBlock } from "@/modules/cms/blocks/card/config";
 import { CertificationsBlock } from "@/modules/cms/blocks/certifications/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
@@ -53,7 +54,7 @@ export const Services: CollectionConfig = {
 		},
 	},
 	admin: {
-		defaultColumns: ["title", "heroImage", "slug", "isFeatured", "updatedAt"],
+		defaultColumns: ["service", "heroImage", "title", "updatedAt"],
 		group: "Resources",
 		useAsTitle: "service",
 	},
@@ -158,6 +159,7 @@ export const Services: CollectionConfig = {
 
 										BlocksFeature({
 											blocks: [
+												ButtonBlock,
 												Banner,
 												MediaBlock,
 												CardBlock,

@@ -1486,6 +1486,55 @@ export interface TaskSchedulePublish {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ButtonBlock".
+ */
+export interface ButtonBlock {
+  style: 'default' | 'secondary' | 'outline' | 'ghost' | 'link';
+  size?: ('default' | 'sm' | 'lg') | null;
+  link: {
+    type?: ('page' | 'reference' | 'custom') | null;
+    newTab?: boolean | null;
+    page?:
+      | (
+          | '/'
+          | '/services'
+          | '/about'
+          | '/resources/blogs'
+          | '/resources/case-studies'
+          | '/resources/research-papers'
+          | '/resources/faqs'
+          | '/careers'
+          | '/contact'
+          | '/methodology'
+          | '/resources/ai-maturity'
+        )
+      | null;
+    reference?:
+      | ({
+          relationTo: 'services';
+          value: number | Service;
+        } | null)
+      | ({
+          relationTo: 'blogs';
+          value: number | Blog;
+        } | null)
+      | ({
+          relationTo: 'case-studies';
+          value: number | CaseStudy;
+        } | null)
+      | ({
+          relationTo: 'researchPapers';
+          value: number | ResearchPaper;
+        } | null);
+    url?: string | null;
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'button';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "BannerBlock".
  */
 export interface BannerBlock {
