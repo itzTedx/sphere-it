@@ -18,6 +18,7 @@ import { Footer } from "./collections/globals/footer";
 import { Partners } from "./collections/globals/partners";
 import { Teams } from "./collections/globals/teams";
 import { Media } from "./collections/Media";
+import { Homepage } from "./collections/pages/homepage";
 import { ResearchPapers } from "./collections/research-papers";
 import { Services } from "./collections/services";
 import { Users } from "./collections/users";
@@ -46,7 +47,10 @@ export default buildConfig({
 		},
 	},
 	collections: [
+		// Services
 		Services,
+
+		// Resources
 		Blogs,
 		BlogCategories,
 		CaseStudies,
@@ -54,12 +58,23 @@ export default buildConfig({
 		Faqs,
 		FaqCategories,
 		Media,
-		Users,
+
+		// Employment
 		Careers,
 		Departments,
 		EmployeeTestimonials,
+
+		// Auth
+		Users,
 	],
-	globals: [Teams, Clients, Partners, Footer],
+	globals: [
+		// Pages
+		Homepage,
+		Teams,
+		Clients,
+		Partners,
+		Footer,
+	],
 	email: nodemailerAdapter({
 		defaultFromAddress: env.SMTP_FROM,
 		defaultFromName: "Sphere It",

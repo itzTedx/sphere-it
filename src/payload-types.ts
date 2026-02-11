@@ -75,10 +75,10 @@ export interface Config {
     faqs: Faq;
     'faq-categories': FaqCategory;
     media: Media;
-    users: User;
     careers: Career;
     departments: Department;
     employeeTestimonials: EmployeeTestimonial;
+    users: User;
     sessions: Session;
     accounts: Account;
     verifications: Verification;
@@ -99,10 +99,10 @@ export interface Config {
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
     careers: CareersSelect<false> | CareersSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     employeeTestimonials: EmployeeTestimonialsSelect<false> | EmployeeTestimonialsSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     sessions: SessionsSelect<false> | SessionsSelect<true>;
     accounts: AccountsSelect<false> | AccountsSelect<true>;
     verifications: VerificationsSelect<false> | VerificationsSelect<true>;
@@ -118,12 +118,14 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
+    homepage: Homepage;
     teams: Team;
     clients: Client;
     partners: Partner;
     footer: Footer;
   };
   globalsSelect: {
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
     teams: TeamsSelect<false> | TeamsSelect<true>;
     clients: ClientsSelect<false> | ClientsSelect<true>;
     partners: PartnersSelect<false> | PartnersSelect<true>;
@@ -872,10 +874,6 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'users';
-        value: number | User;
-      } | null)
-    | ({
         relationTo: 'careers';
         value: number | Career;
       } | null)
@@ -886,6 +884,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'employeeTestimonials';
         value: number | EmployeeTestimonial;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
       } | null)
     | ({
         relationTo: 'sessions';
@@ -1177,19 +1179,6 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
- */
-export interface UsersSelect<T extends boolean = true> {
-  email?: T;
-  emailVerified?: T;
-  name?: T;
-  image?: T;
-  role?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "careers_select".
  */
 export interface CareersSelect<T extends boolean = true> {
@@ -1236,6 +1225,19 @@ export interface EmployeeTestimonialsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  email?: T;
+  emailVerified?: T;
+  name?: T;
+  image?: T;
+  role?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1369,6 +1371,96 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: number;
+  hero: {
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description: string;
+  };
+  services: {
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    cta: {
+      enable: boolean;
+      title?: string | null;
+      link?: {
+        type?: ('page' | 'reference' | 'custom') | null;
+        newTab?: boolean | null;
+        page?:
+          | (
+              | '/'
+              | '/services'
+              | '/about'
+              | '/resources/blogs'
+              | '/resources/case-studies'
+              | '/resources/research-papers'
+              | '/resources/faqs'
+              | '/careers'
+              | '/contact'
+              | '/methodology'
+              | '/resources/ai-maturity'
+            )
+          | null;
+        reference?:
+          | ({
+              relationTo: 'services';
+              value: number | Service;
+            } | null)
+          | ({
+              relationTo: 'blogs';
+              value: number | Blog;
+            } | null)
+          | ({
+              relationTo: 'case-studies';
+              value: number | CaseStudy;
+            } | null)
+          | ({
+              relationTo: 'researchPapers';
+              value: number | ResearchPaper;
+            } | null);
+        url?: string | null;
+        label: string;
+        /**
+         * Choose how the link should be rendered.
+         */
+        appearance?: ('default' | 'outline') | null;
+      };
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "teams".
  */
 export interface Team {
@@ -1449,6 +1541,43 @@ export interface Footer {
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  services?:
+    | T
+    | {
+        title?: T;
+        cta?:
+          | T
+          | {
+              enable?: T;
+              title?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    page?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

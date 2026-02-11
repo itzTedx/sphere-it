@@ -56,7 +56,7 @@ export const Services: CollectionConfig = {
 	},
 	admin: {
 		defaultColumns: ["service", "heroImage", "title", "updatedAt"],
-		group: "Resources",
+		group: "Services",
 		useAsTitle: "service",
 	},
 	fields: [

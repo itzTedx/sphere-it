@@ -12,6 +12,9 @@ export const Media: CollectionConfig<"media"> = {
 		update: adminOnly,
 		delete: adminOnly,
 	},
+	admin: {
+		group: "Resources",
+	},
 	fields: [
 		{
 			name: "alt",
