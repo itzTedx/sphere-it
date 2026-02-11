@@ -3,9 +3,9 @@ import React from "react";
 import { Route } from "next";
 import Link from "next/link";
 
-import {
+import type {
 	DefaultNodeTypes,
-	type DefaultTypedEditorState,
+	DefaultTypedEditorState,
 	SerializedBlockNode,
 	SerializedLinkNode,
 } from "@payloadcms/richtext-lexical";

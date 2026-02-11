@@ -9,7 +9,7 @@ import { Section } from "@/modules/services/components/section";
 
 import { Media } from "../../components/Media";
 import RichText from "../../components/RichText";
-import { industrySlugToLabel } from "./config";
+import { industrySlugToLabel } from "./industry-utils";
 
 type Props = {
 	className?: string;
