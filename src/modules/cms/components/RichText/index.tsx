@@ -83,11 +83,14 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 	},
 	text: ({ node }) => {
 		const primaryColor = node.$?.color === "primary";
+		const mutedColor = node.$?.color === "muted";
 
 		if (primaryColor) {
 			return <span className="text-primary">{node.text}</span>;
 		}
-
+		if (mutedColor) {
+			return <span className="text-muted-foreground">{node.text}</span>;
+		}
 		return node.text;
 	},
 	heading: ({ node, nodesToJSX }) => {

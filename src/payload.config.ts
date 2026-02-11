@@ -34,6 +34,16 @@ export default buildConfig({
 		importMap: {
 			baseDir: path.resolve(dirname),
 		},
+		meta: {
+			icons: [
+				{
+					rel: "icon",
+					type: "image/png",
+					url: "/icon1.png",
+				},
+			],
+			robots: "noindex, nofollow",
+		},
 	},
 	collections: [
 		Services,

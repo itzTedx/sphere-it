@@ -36,10 +36,10 @@ export const MediaBlock: Block = {
 											color: "oklch(0.5123 0.2295 297.24)",
 										},
 									},
-									sunset: {
-										label: "Sunset",
+									muted: {
+										label: "Muted",
 										css: {
-											background: "linear-gradient(to top, #ff5f6d, #6a3093)",
+											color: "oklch(0.545 0.0226 304.98)",
 										},
 									},
 								},

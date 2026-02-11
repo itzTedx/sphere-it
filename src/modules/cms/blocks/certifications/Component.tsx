@@ -3,12 +3,13 @@ import React from "react";
 import type { CertificationsBlock as CertificationsBlockProps } from "src/payload-types";
 
 import { cn } from "@/lib/utils";
-import { CardGroup } from "@/modules/services/components/card-list";
 import { CertificateTitle } from "@/modules/services/components/certifications";
 import { Industry } from "@/modules/services/components/industry";
 import { Section } from "@/modules/services/components/section";
 
 import { Media } from "../../components/Media";
+import RichText from "../../components/RichText";
+import { industrySlugToLabel } from "./config";
 
 type Props = {
 	className?: string;
@@ -17,26 +18,39 @@ type Props = {
 export const CertificationsBlock: React.FC<Props> = ({
 	className,
 	certifications,
+	industries,
+	title,
 }) => {
+	const hasCertifications = certifications && certifications.length > 0;
 	return (
 		<Section className={cn("not-prose", className)} outlined>
-			<h3 className="text-center">
-				Certified excellence and industry partnerships{" "}
-				<br className="hidden sm:block" />{" "}
-				<span className="font-medium text-stone-600">
-					built to power business transformation.
-				</span>
-			</h3>
-			<CardGroup className="mt-9 gap-12">
-				<div className="grid grid-cols-3 gap-6 text-center">
-					<Industry>Retail Banking</Industry>
-					<Industry>Corp Banking</Industry>
+			<div className="mx-auto max-w-4xl text-balance text-center text-title-3">
+				<RichText data={title} enableGutter={false} />
+			</div>
+			<div
+				className={cn(
+					"mt-9 grid gap-12",
+					!hasCertifications ? "grid-cols-1" : "grid-cols-2"
+				)}
+			>
+				<div
+					className={cn(
+						"grid grid-cols-3 gap-6 text-center",
+						!hasCertifications
+							? "grid-cols-2 sm:grid-cols-3 md:grid-cols-6"
+							: "grid-cols-2 md:grid-cols-3"
+					)}
+				>
+					{industries?.map((industry) => (
+						<Industry key={industry}>{industrySlugToLabel(industry)}</Industry>
+					))}
+					{/* <Industry>Corp Banking</Industry>
 					<Industry>Wealth Management</Industry>
 					<Industry>Insurance</Industry>
 					<Industry>Conglomerates</Industry>
-					<Industry>Government Entities</Industry>
+					<Industry>Government Entities</Industry> */}
 				</div>
-				{certifications && (
+				{hasCertifications && (
 					<div className="grid gap-4">
 						{certifications.map((certification) => (
 							<div className="flex" key={certification.title}>
@@ -44,7 +58,7 @@ export const CertificationsBlock: React.FC<Props> = ({
 									{certification.icon ? (
 										<div className="relative size-20">
 											<Media
-												alt="Certificate"
+												alt={`Certificate - ${certification.title}`}
 												className="object-contain"
 												fill
 												resource={certification.icon}
@@ -61,7 +75,7 @@ export const CertificationsBlock: React.FC<Props> = ({
 						))}
 					</div>
 				)}
-			</CardGroup>
+			</div>
 		</Section>
 	);
 };

@@ -361,7 +361,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			"DC.publisher": COMPANY_NAME,
 			"DC.language": "en",
 			"DC.coverage": "Global",
-			"DC.rights": "© 2024 Sphere IT. All rights reserved.",
 			"service.category": service.meta.category,
 			"service.industries": service.meta.industry.join(", "),
 			"service.certifications": service.meta.certifications.join(", "),
