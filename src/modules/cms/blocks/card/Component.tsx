@@ -58,7 +58,7 @@ export const CardBlock: React.FC<Props> = ({
 					<Card key={card.id} variant={cardVariant}>
 						{IconComponent && <CardIcon icon={<IconComponent />} />}
 						<RichText
-							className="prose-lg mb-0 prose-headings:mb-0 prose-p:mb-0 prose-headings:font-medium prose-headings:text-primary-900 prose-headings:text-title-5"
+							className="prose-lg mb-0 prose-headings:mb-1! prose-p:mb-0 prose-headings:font-medium prose-headings:text-primary-900 prose-headings:text-title-5!"
 							data={card.content}
 							enableGutter={false}
 						/>

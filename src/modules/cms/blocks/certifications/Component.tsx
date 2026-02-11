@@ -25,7 +25,7 @@ export const CertificationsBlock: React.FC<Props> = ({
 	return (
 		<Section className={cn("not-prose", className)} outlined>
 			<RichText
-				className="mx-auto max-w-4xl text-balance text-center text-title-3"
+				className="mx-auto max-w-4xl text-balance text-center font-semibold text-title-5 sm:text-title-4 md:text-title-3"
 				data={title}
 				enableGutter={false}
 			/>
@@ -33,7 +33,7 @@ export const CertificationsBlock: React.FC<Props> = ({
 			<div
 				className={cn(
 					"mt-9 grid gap-12",
-					!hasCertifications ? "grid-cols-1" : "grid-cols-2"
+					!hasCertifications ? "grid-cols-1" : "sm:grid-cols-2"
 				)}
 			>
 				<div

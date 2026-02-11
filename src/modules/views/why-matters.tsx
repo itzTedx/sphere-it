@@ -21,7 +21,7 @@ export const WhyMatters = () => {
 	return (
 		<section
 			aria-labelledby="why-matters-heading"
-			className="my-12 border-y sm:my-16 lg:my-20"
+			className="my-12 sm:my-16 lg:my-20"
 		>
 			<div className="container max-w-7xl space-y-8 rounded-4xl border bg-card p-6 sm:space-y-10 sm:p-8 lg:p-12">
 				{/* Header Section - Responsive Layout */}

@@ -27,6 +27,7 @@ import { ButtonBlock } from "@/modules/cms/blocks/button/config";
 import { CardBlock } from "@/modules/cms/blocks/card/config";
 import { CertificationsBlock } from "@/modules/cms/blocks/certifications/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
+import { link } from "@/modules/cms/fields/link";
 import { linkGroup } from "@/modules/cms/fields/link-group";
 
 import {
@@ -187,7 +188,68 @@ export const Services: CollectionConfig = {
 					],
 					label: "Content",
 				},
-
+				{
+					name: "homepage",
+					label: "Homepage & Navigation",
+					fields: [
+						{
+							name: "title",
+							type: "text",
+							required: true,
+						},
+						{
+							name: "description",
+							type: "textarea",
+							required: true,
+						},
+						{
+							name: "features",
+							type: "array",
+							maxRows: 2,
+							admin: {
+								components: {
+									RowLabel:
+										"@/collections/services/components/feature-row-label#FeatureRowLabel",
+								},
+							},
+							fields: [
+								{
+									name: "feature",
+									type: "text",
+									required: true,
+								},
+							],
+						},
+						{
+							name: "tags",
+							type: "array",
+							maxRows: 4,
+							admin: {
+								components: {
+									RowLabel:
+										"@/collections/services/components/tag-row-label#TagRowLabel",
+								},
+							},
+							fields: [
+								{
+									name: "tag",
+									type: "text",
+									required: true,
+								},
+							],
+						},
+						link({
+							required: false,
+							overrides: {
+								name: "proofLink",
+								label: "Proof of Impact Link",
+								admin: {
+									position: "sidebar",
+								},
+							},
+						}),
+					],
+				},
 				{
 					name: "meta",
 					label: "SEO",

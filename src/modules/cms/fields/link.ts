@@ -22,12 +22,14 @@ type LinkType = (options?: {
 	appearances?: LinkAppearances[] | false;
 	disableLabel?: boolean;
 	overrides?: Partial<GroupField>;
+	required?: boolean;
 }) => Field;
 
 export const link: LinkType = ({
 	appearances,
 	disableLabel = false,
 	overrides = {},
+	required = true,
 } = {}) => {
 	const linkResult: GroupField = {
 		name: "link",
@@ -132,7 +134,7 @@ export const link: LinkType = ({
 					value: "/resources/ai-maturity",
 				},
 			],
-			required: true,
+			required,
 		},
 		{
 			name: "reference",
@@ -142,7 +144,7 @@ export const link: LinkType = ({
 			},
 			label: "Document to link to",
 			relationTo: ["services", "blogs", "case-studies", "researchPapers"],
-			required: true,
+			required,
 		},
 
 		{
@@ -152,7 +154,7 @@ export const link: LinkType = ({
 				condition: (_, siblingData) => siblingData?.type === "custom",
 			},
 			label: "Custom URL",
-			required: true,
+			required,
 		},
 	];
 
@@ -176,7 +178,7 @@ export const link: LinkType = ({
 						width: "50%",
 					},
 					label: "Label",
-					required: true,
+					required,
 				},
 			],
 		});

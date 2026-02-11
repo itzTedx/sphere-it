@@ -254,6 +254,64 @@ export interface Service {
     };
     [k: string]: unknown;
   };
+  homepage: {
+    title: string;
+    description: string;
+    features?:
+      | {
+          feature: string;
+          id?: string | null;
+        }[]
+      | null;
+    tags?:
+      | {
+          tag: string;
+          id?: string | null;
+        }[]
+      | null;
+    proofLink?: {
+      type?: ('page' | 'reference' | 'custom') | null;
+      newTab?: boolean | null;
+      page?:
+        | (
+            | '/'
+            | '/services'
+            | '/about'
+            | '/resources/blogs'
+            | '/resources/case-studies'
+            | '/resources/research-papers'
+            | '/resources/faqs'
+            | '/careers'
+            | '/contact'
+            | '/methodology'
+            | '/resources/ai-maturity'
+          )
+        | null;
+      reference?:
+        | ({
+            relationTo: 'services';
+            value: number | Service;
+          } | null)
+        | ({
+            relationTo: 'blogs';
+            value: number | Blog;
+          } | null)
+        | ({
+            relationTo: 'case-studies';
+            value: number | CaseStudy;
+          } | null)
+        | ({
+            relationTo: 'researchPapers';
+            value: number | ResearchPaper;
+          } | null);
+      url?: string | null;
+      label?: string | null;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: ('default' | 'outline') | null;
+    };
+  };
   meta?: {
     title?: string | null;
     /**
@@ -921,6 +979,35 @@ export interface ServicesSelect<T extends boolean = true> {
         id?: T;
       };
   content?: T;
+  homepage?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        features?:
+          | T
+          | {
+              feature?: T;
+              id?: T;
+            };
+        tags?:
+          | T
+          | {
+              tag?: T;
+              id?: T;
+            };
+        proofLink?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              page?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+      };
   meta?:
     | T
     | {
