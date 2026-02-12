@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 import { Route } from "next";
 import Link from "next/link";
 
@@ -15,10 +13,18 @@ import { IconArrowRight } from "@/assets/icons";
 import { SERVICES } from "@/data/services";
 import { ServiceListItem } from "@/types/service";
 
+import { getHomepageGlobal } from "../global/homepage";
 import { ServicesTabs } from "./components/home/service-tabs";
 import { ServiceCard } from "./components/service-card";
 
-export const Services = memo(() => {
+export const Services = async () => {
+	const data = await getHomepageGlobal();
+	const {
+		services: { cta },
+	} = data;
+
+	console.log("cta: ", cta);
+
 	return (
 		<section
 			aria-labelledby="services-heading"
@@ -95,12 +101,18 @@ export const Services = memo(() => {
 							))}
 						</TabsContents>
 					</Card>
-					<MiniCta
-						buttonLink="/resources/ai-maturity"
-						buttonText="Start Assessment"
-						className="md:-mt-20 mt-4 md:mx-14"
-						title="Explore Al maturity of your business"
-					/>
+					{cta.enable && cta.link && cta.link.page && cta.title && (
+						<MiniCta
+							buttonLink={cta.link.page ?? (cta.link.url as Route)}
+							buttonText={cta.link.label}
+							className="md:-mt-20 mt-4 md:mx-14"
+							linkProps={{
+								title: cta.link.label,
+								...(cta.link.newTab && { target: "_blank" }),
+							}}
+							title={cta.title}
+						/>
+					)}
 				</ServicesTabs>
 				<FlickeringGrid
 					aria-hidden="true"
@@ -116,6 +128,4 @@ export const Services = memo(() => {
 			</div>
 		</section>
 	);
-});
-
-Services.displayName = "Services";
+};

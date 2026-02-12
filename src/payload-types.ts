@@ -78,6 +78,7 @@ export interface Config {
     careers: Career;
     departments: Department;
     employeeTestimonials: EmployeeTestimonial;
+    industries: Industry;
     users: User;
     sessions: Session;
     accounts: Account;
@@ -102,6 +103,7 @@ export interface Config {
     careers: CareersSelect<false> | CareersSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     employeeTestimonials: EmployeeTestimonialsSelect<false> | EmployeeTestimonialsSelect<true>;
+    industries: IndustriesSelect<false> | IndustriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     sessions: SessionsSelect<false> | SessionsSelect<true>;
     accounts: AccountsSelect<false> | AccountsSelect<true>;
@@ -655,6 +657,17 @@ export interface EmployeeTestimonial {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industries".
+ */
+export interface Industry {
+  id: number;
+  icon?: string | null;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Auto-generated from Better Auth schema (session)
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -884,6 +897,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'employeeTestimonials';
         value: number | EmployeeTestimonial;
+      } | null)
+    | ({
+        relationTo: 'industries';
+        value: number | Industry;
       } | null)
     | ({
         relationTo: 'users';
@@ -1228,6 +1245,16 @@ export interface EmployeeTestimonialsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industries_select".
+ */
+export interface IndustriesSelect<T extends boolean = true> {
+  icon?: T;
+  title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -1449,12 +1476,27 @@ export interface Homepage {
             } | null);
         url?: string | null;
         label: string;
-        /**
-         * Choose how the link should be rendered.
-         */
-        appearance?: ('default' | 'outline') | null;
       };
     };
+  };
+  industries: {
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description?: string | null;
+    items?: (number | Industry)[] | null;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1571,9 +1613,15 @@ export interface HomepageSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
-                    appearance?: T;
                   };
             };
+      };
+  industries?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        items?: T;
       };
   updatedAt?: T;
   createdAt?: T;

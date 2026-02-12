@@ -1,5 +1,4 @@
 import type { Route } from "next";
-import { cacheLife, cacheTag } from "next/cache";
 import Link from "next/link";
 
 import { Facebook, Youtube } from "lucide-react";
@@ -13,23 +12,12 @@ import {
 import { Logo } from "@/assets/logo";
 
 import { FOOTER } from "@/data/constants";
-import { payload } from "@/lib/payload";
+import { getFooterGlobal } from "@/modules/global/footer";
 import { Footer as FooterType } from "@/payload-types";
 import { FooterNavLink } from "@/types/layout";
 
 // Static copyright year to avoid re-computation
 const currentYear = new Date().getFullYear();
-
-const getFooterGlobal = async () => {
-	"use cache";
-	cacheTag("global:footer");
-	cacheLife("max");
-
-	return payload.findGlobal({
-		slug: "footer",
-		depth: 1,
-	});
-};
 
 export const Footer = async () => {
 	const data = await getFooterGlobal();
@@ -84,11 +72,13 @@ export const Footer = async () => {
 									id: "locations",
 									heading: "Locations",
 									links:
-										data.locations?.map((loc) => ({
-											id: loc.id ?? loc.location,
-											href: loc.link as Route,
-											label: loc.location,
-										})) ?? [],
+										data.locations
+											?.filter((loc) => loc.link)
+											.map((loc) => ({
+												id: loc.id ?? loc.location,
+												href: loc.link as Route,
+												label: loc.location,
+											})) ?? [],
 								}}
 							/>
 						</div>
@@ -168,7 +158,7 @@ const SocialLink = ({
 }) => {
 	const Icon = social.platform ? SOCIAL_ICONS[social.platform] : null;
 
-	if (!Icon) return null;
+	if (!Icon || !social.link) return null;
 
 	return (
 		<li>

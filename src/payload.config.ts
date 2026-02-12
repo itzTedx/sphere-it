@@ -17,6 +17,7 @@ import { Clients } from "./collections/globals/clients";
 import { Footer } from "./collections/globals/footer";
 import { Partners } from "./collections/globals/partners";
 import { Teams } from "./collections/globals/teams";
+import { Industries } from "./collections/industries";
 import { Media } from "./collections/Media";
 import { Homepage } from "./collections/pages/homepage";
 import { ResearchPapers } from "./collections/research-papers";
@@ -64,12 +65,17 @@ export default buildConfig({
 		Departments,
 		EmployeeTestimonials,
 
+		// Industries
+		Industries,
+
 		// Auth
 		Users,
 	],
 	globals: [
 		// Pages
 		Homepage,
+
+		// Globals
 		Teams,
 		Clients,
 		Partners,

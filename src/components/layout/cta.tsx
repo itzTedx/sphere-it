@@ -89,6 +89,7 @@ interface MiniCtaProps {
 	showButton?: boolean;
 	buttonText?: string;
 	buttonLink?: Route;
+	linkProps?: Omit<React.ComponentProps<typeof Link>, "href">;
 }
 
 export const MiniCta = ({
@@ -99,6 +100,7 @@ export const MiniCta = ({
 	showButton = true,
 	buttonText = "Explore Services",
 	buttonLink = "/services",
+	linkProps,
 }: MiniCtaProps) => {
 	return (
 		<div
@@ -140,11 +142,11 @@ export const MiniCta = ({
 			{showButton && (
 				<Button
 					asChild
-					className="w-full justify-between bg-primary-900 pl-4 text-primary-300 hover:bg-primary-900 hover:text-primary-200 hover:brightness-150 sm:w-auto"
+					className="w-full justify-between bg-primary-900 text-primary-300 hover:bg-primary-900 hover:text-primary-200 hover:brightness-150 sm:w-auto sm:pl-4"
 					size="lg"
 					variant="ghost"
 				>
-					<Link href={buttonLink} title="Explore our services">
+					<Link href={buttonLink} title="Explore our services" {...linkProps}>
 						{buttonText}
 						<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-400 sm:size-9">
 							<IconArrowUpRight className="text-primary-900" />

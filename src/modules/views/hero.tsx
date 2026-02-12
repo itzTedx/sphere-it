@@ -6,7 +6,13 @@ import { Button } from "@/components/ui/button";
 
 import { IconArrowDown } from "@/assets/icons";
 
-export const Hero = () => {
+import RichText from "../cms/components/RichText";
+import { getHomepageGlobal } from "../global/homepage";
+
+export const Hero = async () => {
+	const data = await getHomepageGlobal();
+	const { hero, services } = data;
+
 	return (
 		<header className="relative overflow-hidden bg-foreground" role="banner">
 			<section
@@ -41,18 +47,24 @@ export const Hero = () => {
 							},
 						}}
 					>
-						<h1
+						<RichText
+							className="text-balance prose-h1:text-card! prose-h1:text-title-3 md:prose-h1:text-title-2 xl:prose-h1:text-title-1"
+							data={hero.title}
+							enableGutter={false}
+						/>
+						{/* <h1
 							className="text-card text-title-3 md:text-title-2 xl:text-title-1"
 							id="hero-heading"
 						>
 							Driven by People <br />
 							<span className="text-accent">Powered by Technology.</span>
-						</h1>
+						</h1> */}
 
 						<p className="text-balance text-lg md:text-xl">
-							Trusted partner driving digital transformation, data and
+							{/* Trusted partner driving digital transformation, data and
 							technology services for BFSI and essential industries across the
-							Middle East.
+							Middle East. */}
+							{hero.description}
 						</p>
 						<AnimatedGroup
 							aria-label="Main actions"
@@ -133,13 +145,18 @@ export const Hero = () => {
 				<Badge className="mx-auto" variant="ghost">
 					Services
 				</Badge>
-				<h2
+				<RichText
+					className="prose-headings:text-primary-100! prose-headings:text-title-5 md:prose-headings:text-title-4"
+					data={services.title}
+					enableGutter={false}
+				/>
+				{/* <h2
 					className="text-primary-100 text-title-5 md:text-title-4"
 					id="hero-services-heading"
 				>
 					Delivering Technology That{" "}
 					<span className="text-primary-600">Works for You</span>
-				</h2>
+				</h2> */}
 			</section>
 		</header>
 	);

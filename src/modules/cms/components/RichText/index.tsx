@@ -99,6 +99,7 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 	text: (args: TextConverterArgs) => {
 		const { node } = args;
 		const primaryColor = node.$?.color === "primary";
+		const accentColor = node.$?.color === "accent";
 		const mutedColor = node.$?.color === "muted";
 
 		// Let the default converter handle marks like <strong>, <em>, etc.
@@ -109,6 +110,9 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 
 		if (primaryColor) {
 			return <span className="text-primary">{defaultText}</span>;
+		}
+		if (accentColor) {
+			return <span className="text-accent">{defaultText}</span>;
 		}
 		if (mutedColor) {
 			return <span className="text-muted-foreground">{defaultText}</span>;
@@ -135,6 +139,7 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 		const id = slugify(text);
 
 		const Tag = node.tag;
+
 		return <Tag id={id}>{nodesToJSX({ nodes: node.children })}</Tag>;
 	},
 
