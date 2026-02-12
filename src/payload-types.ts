@@ -121,6 +121,7 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     homepage: Homepage;
+    'about-page': AboutPage;
     teams: Team;
     clients: Client;
     partners: Partner;
@@ -128,6 +129,7 @@ export interface Config {
   };
   globalsSelect: {
     homepage: HomepageSelect<false> | HomepageSelect<true>;
+    'about-page': AboutPageSelect<false> | AboutPageSelect<true>;
     teams: TeamsSelect<false> | TeamsSelect<true>;
     clients: ClientsSelect<false> | ClientsSelect<true>;
     partners: PartnersSelect<false> | PartnersSelect<true>;
@@ -1671,6 +1673,188 @@ export interface Homepage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page".
+ */
+export interface AboutPage {
+  id: number;
+  hero: {
+    badge: string;
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+  };
+  story: {
+    badge: string;
+    content: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+  };
+  values: {
+    badge: string;
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description: string;
+    items?:
+      | {
+          image: number | Media;
+          title: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  team: {
+    badge: string;
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description: string;
+    leadershipLabel: string;
+    teamLabel: string;
+  };
+  hiring: {
+    badge: string;
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description: string;
+    ctaLink: {
+      type?: ('page' | 'reference' | 'custom') | null;
+      newTab?: boolean | null;
+      page?:
+        | (
+            | '/'
+            | '/services'
+            | '/about'
+            | '/resources/blogs'
+            | '/resources/case-studies'
+            | '/resources/research-papers'
+            | '/resources/faqs'
+            | '/careers'
+            | '/contact'
+            | '/methodology'
+            | '/resources/ai-maturity'
+          )
+        | null;
+      reference?:
+        | ({
+            relationTo: 'services';
+            value: number | Service;
+          } | null)
+        | ({
+            relationTo: 'blogs';
+            value: number | Blog;
+          } | null)
+        | ({
+            relationTo: 'case-studies';
+            value: number | CaseStudy;
+          } | null)
+        | ({
+            relationTo: 'researchPapers';
+            value: number | ResearchPaper;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+    benefits?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  cta?: {
+    /**
+     * Check to show the enquiry form in the CTA
+     */
+    showForm?: boolean | null;
+  };
+  seo: {
+    metaTitle: string;
+    metaDescription: string;
+    ogImage?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "teams".
  */
 export interface Team {
@@ -1871,6 +2055,87 @@ export interface HomepageSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        badge?: T;
+        title?: T;
+        description?: T;
+      };
+  story?:
+    | T
+    | {
+        badge?: T;
+        content?: T;
+      };
+  values?:
+    | T
+    | {
+        badge?: T;
+        title?: T;
+        description?: T;
+        items?:
+          | T
+          | {
+              image?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  team?:
+    | T
+    | {
+        badge?: T;
+        title?: T;
+        description?: T;
+        leadershipLabel?: T;
+        teamLabel?: T;
+      };
+  hiring?:
+    | T
+    | {
+        badge?: T;
+        title?: T;
+        description?: T;
+        ctaLink?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              page?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        benefits?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  cta?:
+    | T
+    | {
+        showForm?: T;
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;

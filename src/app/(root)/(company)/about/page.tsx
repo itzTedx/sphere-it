@@ -17,66 +17,78 @@ import { IconSocialLinkedin } from "@/assets/icons/social";
 import { IconChip } from "@/assets/icons/technology";
 import { LogoIcon } from "@/assets/logo";
 
-import { HIRING_CTA, OUR_VALUES } from "@/data/about";
 import { BASE_URL } from "@/data/site-config";
-import { LEADERS, TEAMS, Team } from "@/data/teams";
 import { DownloadDeck } from "@/modules/auth/components/download-deck";
+import RichText from "@/modules/cms/components/RichText";
+import { getAboutPageGlobal } from "@/modules/global/about";
+import { getTeamsGlobal } from "@/modules/global/teams";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { Clients } from "@/modules/views";
 import { Partners } from "@/modules/views/partners";
+import { Media } from "@/payload-types";
 
 import { structuredData } from "./structured-data";
 
-const meta = {
-	title:
-		"About Sphere IT Global - Digital Transformation & IT Innovation Partner",
-	description:
-		"Learn how Sphere IT drives enterprise transformation through AI, automation, and cloud engineering. Discover our mission, leadership, and global team powering innovation across industries.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const data = await getAboutPageGlobal();
+	const { seo } = data;
 
-export const metadata: Metadata = {
-	title: meta.title,
-	description: meta.description,
-	keywords: [
-		"Sphere IT Global",
-		"IT solutions",
-		"technology services",
-		"digital transformation",
-		"BFSI technology",
-		"software development",
-		"cloud solutions",
-		"GCC technology",
-		"precision engineering",
-		"pragmatic solutions",
-	],
-	openGraph: {
-		title: meta.title,
-		description: meta.description,
-		type: "website",
-		url: `${BASE_URL}/about`,
-		siteName: "Sphere IT Global",
-		images: [
-			{
-				url: "/images/banking.webp",
-				width: 1200,
-				height: 630,
-				alt: "Sphere IT Global - IT Solutions and Technology Services",
-			},
+	const ogImage =
+		typeof seo?.ogImage === "object" && seo.ogImage?.url
+			? seo.ogImage.url
+			: "/images/banking.webp";
+
+	return {
+		title: seo?.metaTitle,
+		description: seo?.metaDescription,
+		keywords: [
+			"Sphere IT Global",
+			"IT solutions",
+			"technology services",
+			"digital transformation",
+			"BFSI technology",
+			"software development",
+			"cloud solutions",
+			"GCC technology",
+			"precision engineering",
+			"pragmatic solutions",
 		],
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: meta.title,
-		description: meta.description,
-		images: ["/images/banking.webp"],
-	},
+		openGraph: {
+			title: seo?.metaTitle,
+			description: seo?.metaDescription,
+			type: "website",
+			url: `${BASE_URL}/about`,
+			siteName: "Sphere IT Global",
+			images: [
+				{
+					url: ogImage,
+					width: 1200,
+					height: 630,
+					alt: "Sphere IT Global - IT Solutions and Technology Services",
+				},
+			],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: seo?.metaTitle,
+			description: seo?.metaDescription,
+			images: [ogImage],
+		},
+		alternates: {
+			canonical: `${BASE_URL}/about`,
+		},
+	};
+}
 
-	alternates: {
-		canonical: `${BASE_URL}/about`,
-	},
-};
+export default async function AboutPage() {
+	const [pageData, teamsData] = await Promise.all([
+		getAboutPageGlobal(),
+		getTeamsGlobal(),
+	]);
 
-export default function AboutPage() {
+	const { hero, story, values, team, hiring, cta } = pageData;
+	const { leaderships, members } = teamsData;
+
 	return (
 		<>
 			<script
@@ -96,22 +108,23 @@ export default function AboutPage() {
 				>
 					<div className="container flex h-full max-w-7xl flex-col justify-between py-9 sm:py-16 md:py-20 xl:py-32">
 						<div className="max-w-2xl">
-							<Badge variant="ghost">About</Badge>
-							<h1 className="text-primary-900 text-title-3 md:text-title-1">
-								Technology and talent that work where it matters most.
-							</h1>
+							<Badge variant="ghost">{hero?.badge}</Badge>
+							{hero?.title && (
+								<RichText
+									className="prose-h1:text-primary-900 prose-h1:text-title-3 md:prose-h1:text-title-1"
+									data={hero.title}
+									enableGutter={false}
+									enableProse={false}
+								/>
+							)}
 						</div>
 						<div className="max-w-xl space-y-6">
-							<p className="text-balance text-stone-700 md:text-lg">
-								Technology is only as powerful as the outcomes it creates. At
-								Sphere IT, we exist to remove complexity and make technology
-								work for business. Our mission is clear: to deliver solutions
-								that are{" "}
-								<span className="text-primary-700">
-									precisely engineered, practically applied, and built for
-									real-world impact.
-								</span>
-							</p>
+							<RichText
+								className="prose-strong:font-semibold prose-p:text-lg prose-strong:text-primary-600 sm:prose-p:text-xl lg:prose-p:text-2xl"
+								data={hero.description}
+								enableGutter={false}
+							/>
+
 							<Suspense
 								fallback={
 									<Button
@@ -149,34 +162,18 @@ export default function AboutPage() {
 				>
 					<div className="container relative z-10 max-w-4xl py-12">
 						<Badge showDashes>
-							<LogoIcon /> Our Story
+							<LogoIcon /> {story?.badge}
 						</Badge>
 						<h2 className="sr-only" id="about-heading">
-							Sphere IT was founded in 2016 with core mission
+							{story?.badge}
 						</h2>
-						<div className="mt-6 space-y-3 text-lg sm:text-xl lg:text-2xl">
-							<p>
-								<strong>Sphere IT was founded in 2016 with core mission</strong>{" "}
-								to equip clients to adopt technology effectively through the
-								right people, processes, and execution expertise. Headquartered
-								in Dubai, Sphere IT is a Middle East–focused IT services firm
-								delivering technology services and resources to leading banks
-								and enterprises in the region. Sphere IT delivers services
-								across managed services, automated process workflows, data
-								management and intelligence, AI enablement, and specialized
-								technology talent augmentation.
-							</p>
-							<p>
-								With more than 300 professionals operating across the region and
-								a Center of Excellence in Bangalore, Sphere IT enables
-								organizations in the Middle East to leverage technology with
-								precision and pragmatism. Sphere IT has built{" "}
-								<strong className="font-semibold text-primary-600">
-									deep domain expertise, proven delivery track records, and the
-									trust of leading financial institutions across the region.
-								</strong>
-							</p>
-						</div>
+						{story?.content && (
+							<RichText
+								className="mt-6 prose-strong:font-semibold prose-p:text-lg prose-strong:text-primary-600 sm:prose-p:text-xl lg:prose-p:text-2xl"
+								data={story.content}
+								enableGutter={false}
+							/>
+						)}
 					</div>
 					<FlickeringGrid
 						aria-hidden="true"
@@ -197,18 +194,18 @@ export default function AboutPage() {
 					className="container max-w-7xl py-20"
 				>
 					<Badge showDashes>
-						<IconChip className="text-accent" /> Our Values
+						<IconChip className="text-accent" /> {values?.badge}
 					</Badge>
-					<h2
-						className="mt-6 text-primary-900 text-title-2"
-						id="values-heading"
-					>
-						Precision and Pragmatism
-					</h2>
+					{values?.title && (
+						<RichText
+							className="mt-6 prose-h2:text-primary-900 prose-h2:text-title-2"
+							data={values.title}
+							enableGutter={false}
+							enableProse={false}
+						/>
+					)}
 					<p className="mt-4 max-w-4xl text-balance text-lg text-muted-foreground">
-						At Sphere IT, two values shape everything we do - Precision and
-						Pragmatism. Together, they define how we deliver technology and how
-						we build trust with every client we serve.
+						{values?.description}
 					</p>
 
 					<div
@@ -216,47 +213,54 @@ export default function AboutPage() {
 						className="my-9 grid grid-cols-1 gap-6 sm:grid-cols-2"
 						role="list"
 					>
-						{OUR_VALUES.map((value) => (
-							<article
-								className="overflow-hidden rounded-2xl bg-card shadow-md"
-								key={value.id}
-								role="listitem"
-							>
-								<div className="relative flex aspect-[6/4.1] items-end bg-linear-to-b from-primary-950 to-foreground">
-									<Image
-										alt={`Illustration representing ${value.title} - ${value.badge}`}
-										className="object-cover"
-										fill
-										src={value.image}
-									/>
-									<div className="relative z-10 max-w-sm space-y-2 px-8 py-6">
-										<h3 className="text-card text-title-3">{value.title}</h3>
-										<p className="font-display text-primary-300">
-											{value.description}
-										</p>
+						{values?.items?.map((value, index) => {
+							const image = value.image as Media;
+							return (
+								<article
+									className="overflow-hidden rounded-2xl bg-card shadow-md"
+									key={index}
+									role="listitem"
+								>
+									<div className="relative flex aspect-[6/4.1] items-end bg-linear-to-b from-primary-950 to-foreground">
+										{image?.url && (
+											<Image
+												alt={
+													image.alt ||
+													`Illustration representing ${value.title}`
+												}
+												className="object-cover"
+												fill
+												src={image.url}
+											/>
+										)}
+										<div className="relative z-10 max-w-sm space-y-2 px-8 py-6">
+											<h3 className="text-card text-title-3">{value.title}</h3>
+											<p className="font-display text-primary-300">
+												{value.description}
+											</p>
+										</div>
 									</div>
-								</div>
-							</article>
-						))}
+								</article>
+							);
+						})}
 					</div>
 				</section>
 				<section aria-labelledby="team-heading" id="team">
 					<div className="container max-w-7xl space-y-6 rounded-4xl border bg-card py-12">
 						<div>
-							<Badge>Our People, Our Precision</Badge>
+							<Badge>{team?.badge}</Badge>
 
 							<div className="max-w-4xl">
-								<h2
-									className="mt-6 text-primary-900 text-title-4 sm:text-title-3 md:text-title-2"
-									id="team-heading"
-								>
-									Meet the Minds Behind Sphere IT
-								</h2>
+								{team?.title && (
+									<RichText
+										className="mt-6 prose-h2:text-primary-900 prose-h2:text-title-4 sm:prose-h2:text-title-3 md:prose-h2:text-title-2"
+										data={team.title}
+										enableGutter={false}
+										enableProse={false}
+									/>
+								)}
 								<p className="mt-3 text-balance text-lg text-stone-600">
-									Sphere IT is led by industry experts in financial technology,
-									IT services, and enterprise transformation. Our leadership
-									team shares one belief: technology should serve people, not
-									the other way around.
+									{team?.description}
 								</p>
 							</div>
 						</div>
@@ -270,7 +274,7 @@ export default function AboutPage() {
 							</ItemMedia>
 							<ItemContent>
 								<ItemTitle className="font-display text-subhead-base sm:text-subhead-lg">
-									<h3 className="text-stone-600">Leadership at Sphere IT</h3>
+									<h3 className="text-stone-600">{team?.leadershipLabel}</h3>
 								</ItemTitle>
 							</ItemContent>
 						</Item>
@@ -280,9 +284,20 @@ export default function AboutPage() {
 							className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
 							role="list"
 						>
-							{LEADERS.map((team, i) => (
-								<TeamCard data={team} key={i} />
-							))}
+							{leaderships?.map((member, i) => {
+								const logo = member.logo as Media;
+								return (
+									<TeamCard
+										data={{
+											name: member.name,
+											designation: member.position,
+											image: logo?.url || "",
+											linkedin: member.linkedinUrl || undefined,
+										}}
+										key={i}
+									/>
+								);
+							})}
 						</div>
 
 						<Item className="border-border" size="sm" variant="muted">
@@ -294,7 +309,7 @@ export default function AboutPage() {
 							</ItemMedia>
 							<ItemContent>
 								<ItemTitle className="font-display text-subhead-base sm:text-subhead-lg">
-									<h3 className="text-stone-600">People Who Power Sphere IT</h3>
+									<h3 className="text-stone-600">{team?.teamLabel}</h3>
 								</ItemTitle>
 							</ItemContent>
 						</Item>
@@ -304,9 +319,20 @@ export default function AboutPage() {
 							className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-4 lg:grid-cols-4"
 							role="list"
 						>
-							{TEAMS.map((team, i) => (
-								<TeamCard data={team} key={i} />
-							))}
+							{members?.map((member, i) => {
+								const logo = member.logo as Media;
+								return (
+									<TeamCard
+										data={{
+											name: member.name,
+											designation: member.position,
+											image: logo?.url || "",
+											linkedin: member.linkedinUrl || undefined,
+										}}
+										key={i}
+									/>
+								);
+							})}
 						</div>
 					</div>
 				</section>
@@ -314,77 +340,89 @@ export default function AboutPage() {
 					aria-labelledby="hiring-heading"
 					className="container max-w-7xl py-12 md:py-20"
 				>
-					<Badge>We're Hiring</Badge>
+					<Badge>{hiring?.badge}</Badge>
 					<div className="mt-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
 						<div>
-							<h2
-								className="text-primary-900 text-title-4 sm:text-title-3 md:text-title-2"
-								id="hiring-heading"
-							>
-								Join team Sphere IT
-							</h2>
+							{hiring?.title && (
+								<RichText
+									className="prose-h2:text-primary-900 prose-h2:text-title-4 sm:prose-h2:text-title-3 md:prose-h2:text-title-2"
+									data={hiring.title}
+									enableGutter={false}
+									enableProse={false}
+								/>
+							)}
 							<p className="mt-1 max-w-xl text-balance sm:mt-3 sm:text-lg">
-								We're always looking for thinkers, builders, and problem-solvers
-								who thrive on precision and purposeful innovation.
+								{hiring?.description}
 							</p>
 						</div>
-						<Button
-							asChild
-							className="justify-between md:justify-center"
-							variant="ghost"
-						>
-							<Link
-								aria-label="View current job openings and career opportunities"
-								href="/careers"
-								title="Explore open Opportunities"
+						{hiring?.ctaLink?.url && (
+							<Button
+								asChild
+								className="justify-between md:justify-center"
+								variant="ghost"
 							>
-								Explore open Opportunities
-								<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
-									<IconArrowRight
-										aria-hidden="true"
-										className="text-stone-500"
-									/>
-								</span>
-							</Link>
-						</Button>
+								<Link
+									aria-label="View current job openings and career opportunities"
+									href={hiring.ctaLink.url as "/careers"}
+									title={hiring.ctaLink.label || "Explore open Opportunities"}
+								>
+									{hiring.ctaLink.label || "Explore open Opportunities"}
+									<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
+										<IconArrowRight
+											aria-hidden="true"
+											className="text-stone-500"
+										/>
+									</span>
+								</Link>
+							</Button>
+						)}
 					</div>
 					<ul
 						aria-label="Career benefits"
 						className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
 						role="list"
 					>
-						{HIRING_CTA.map((cta, i) => (
+						{hiring?.benefits?.map((benefit, i) => (
 							<li
 								className="flex items-center gap-2 rounded-2xl bg-card p-3 shadow-md"
-								key={`${i}-${cta}`}
+								key={`${i}-${benefit.text}`}
 								role="listitem"
 							>
 								<CheckmarkIconBox aria-hidden="true" className="size-11" />
 								<p className="font-display font-medium text-primary-900 text-subhead-base">
-									{cta}
+									{benefit.text}
 								</p>
 							</li>
 						))}
 					</ul>
 				</section>
-				<Cta showForm />
+				<Cta showForm={cta?.showForm ?? true} />
 			</main>
 		</>
 	);
 }
 
-function TeamCard({ data }: { data: Team }) {
+type TeamMember = {
+	name: string;
+	image: string;
+	designation: string;
+	linkedin?: string;
+};
+
+function TeamCard({ data }: { data: TeamMember }) {
 	return (
 		<article className="group sm:p-4" role="listitem">
 			<div className="relative aspect-square overflow-hidden rounded-full bg-card">
 				{data.linkedin && (
-					<Link
+					<a
 						aria-label="Connect with team member on LinkedIn"
 						className="text-stone-700 transition-colors hover:text-primary-600"
-						href="https://linkedin.com/company/sphere-it-global"
+						href={data.linkedin}
+						rel="noopener noreferrer"
+						target="_blank"
 					>
 						<IconSocialLinkedin aria-hidden="true" />
-					</Link>
+					</a>
 				)}
 				{data.image && (
 					<Image

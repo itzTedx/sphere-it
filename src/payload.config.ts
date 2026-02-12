@@ -19,6 +19,7 @@ import { Partners } from "./collections/globals/partners";
 import { Teams } from "./collections/globals/teams";
 import { Industries } from "./collections/industries";
 import { Media } from "./collections/Media";
+import { AboutPage } from "./collections/pages/about";
 import { Homepage } from "./collections/pages/homepage";
 import { ResearchPapers } from "./collections/research-papers";
 import { Services } from "./collections/services";
@@ -74,6 +75,7 @@ export default buildConfig({
 	globals: [
 		// Pages
 		Homepage,
+		AboutPage,
 
 		// Globals
 		Teams,

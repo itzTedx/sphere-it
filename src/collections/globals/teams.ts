@@ -18,8 +18,9 @@ export const Teams: GlobalConfig = {
 		afterChange: [
 			({ doc, req: { context } }) => {
 				if (!context.disableRevalidate) {
-					revalidateTag("global:clients", "max");
+					revalidateTag("global:teams", "max");
 					revalidatePath("/");
+					revalidatePath("/about");
 				}
 				return doc;
 			},
