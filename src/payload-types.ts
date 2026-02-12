@@ -1498,6 +1498,174 @@ export interface Homepage {
     description?: string | null;
     items?: (number | Industry)[] | null;
   };
+  whyUs: {
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description: string;
+    guidedByCard: {
+      badge?: string | null;
+      title: string;
+      description: string;
+    };
+    axisCard: {
+      title: string;
+      learnMoreLink: {
+        type?: ('page' | 'reference' | 'custom') | null;
+        newTab?: boolean | null;
+        page?:
+          | (
+              | '/'
+              | '/services'
+              | '/about'
+              | '/resources/blogs'
+              | '/resources/case-studies'
+              | '/resources/research-papers'
+              | '/resources/faqs'
+              | '/careers'
+              | '/contact'
+              | '/methodology'
+              | '/resources/ai-maturity'
+            )
+          | null;
+        reference?:
+          | ({
+              relationTo: 'services';
+              value: number | Service;
+            } | null)
+          | ({
+              relationTo: 'blogs';
+              value: number | Blog;
+            } | null)
+          | ({
+              relationTo: 'case-studies';
+              value: number | CaseStudy;
+            } | null)
+          | ({
+              relationTo: 'researchPapers';
+              value: number | ResearchPaper;
+            } | null);
+        url?: string | null;
+        label: string;
+      };
+      phases?:
+        | {
+            letter: string;
+            title: string;
+            description: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    techStackCard: {
+      badge?: string | null;
+      title: string;
+      ctaLink: {
+        type?: ('page' | 'reference' | 'custom') | null;
+        newTab?: boolean | null;
+        page?:
+          | (
+              | '/'
+              | '/services'
+              | '/about'
+              | '/resources/blogs'
+              | '/resources/case-studies'
+              | '/resources/research-papers'
+              | '/resources/faqs'
+              | '/careers'
+              | '/contact'
+              | '/methodology'
+              | '/resources/ai-maturity'
+            )
+          | null;
+        reference?:
+          | ({
+              relationTo: 'services';
+              value: number | Service;
+            } | null)
+          | ({
+              relationTo: 'blogs';
+              value: number | Blog;
+            } | null)
+          | ({
+              relationTo: 'case-studies';
+              value: number | CaseStudy;
+            } | null)
+          | ({
+              relationTo: 'researchPapers';
+              value: number | ResearchPaper;
+            } | null);
+        url?: string | null;
+        label: string;
+      };
+    };
+    reliabilityCard: {
+      title: string;
+    };
+    miniCta: {
+      title: string;
+      description: string;
+    };
+  };
+  cta: {
+    badge?: string | null;
+    /**
+     * Check to show the enquiry form in the CTA
+     */
+    showForm?: boolean | null;
+    title: string;
+    description?: string | null;
+    link: {
+      type?: ('page' | 'reference' | 'custom') | null;
+      newTab?: boolean | null;
+      page?:
+        | (
+            | '/'
+            | '/services'
+            | '/about'
+            | '/resources/blogs'
+            | '/resources/case-studies'
+            | '/resources/research-papers'
+            | '/resources/faqs'
+            | '/careers'
+            | '/contact'
+            | '/methodology'
+            | '/resources/ai-maturity'
+          )
+        | null;
+      reference?:
+        | ({
+            relationTo: 'services';
+            value: number | Service;
+          } | null)
+        | ({
+            relationTo: 'blogs';
+            value: number | Blog;
+          } | null)
+        | ({
+            relationTo: 'case-studies';
+            value: number | CaseStudy;
+          } | null)
+        | ({
+            relationTo: 'researchPapers';
+            value: number | ResearchPaper;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1622,6 +1790,87 @@ export interface HomepageSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         items?: T;
+      };
+  whyUs?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        guidedByCard?:
+          | T
+          | {
+              badge?: T;
+              title?: T;
+              description?: T;
+            };
+        axisCard?:
+          | T
+          | {
+              title?: T;
+              learnMoreLink?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    page?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              phases?:
+                | T
+                | {
+                    letter?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+            };
+        techStackCard?:
+          | T
+          | {
+              badge?: T;
+              title?: T;
+              ctaLink?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    page?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+            };
+        reliabilityCard?:
+          | T
+          | {
+              title?: T;
+            };
+        miniCta?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+            };
+      };
+  cta?:
+    | T
+    | {
+        badge?: T;
+        showForm?: T;
+        title?: T;
+        description?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              page?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

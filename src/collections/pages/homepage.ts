@@ -1,16 +1,10 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 
-import {
-	FixedToolbarFeature,
-	HeadingFeature,
-	InlineToolbarFeature,
-	lexicalEditor,
-	TextStateFeature,
-} from "@payloadcms/richtext-lexical";
 import { GlobalConfig } from "payload";
 
 import { adminOnly } from "@/modules/cms/access/admin-only";
 import { link } from "@/modules/cms/fields/link";
+import { richTextField } from "@/modules/cms/fields/richTextField";
 
 export const Homepage: GlobalConfig<"homepage"> = {
 	slug: "homepage",
@@ -38,53 +32,7 @@ export const Homepage: GlobalConfig<"homepage"> = {
 			label: "Hero Section",
 			name: "hero",
 			fields: [
-				{
-					name: "title",
-					type: "richText",
-					editor: lexicalEditor({
-						features: ({ rootFeatures }) => {
-							return [
-								...rootFeatures,
-								HeadingFeature({
-									enabledHeadingSizes: ["h1"],
-								}),
-								InlineToolbarFeature(),
-								FixedToolbarFeature({
-									customGroups: {
-										text: {
-											type: "buttons",
-										},
-									},
-								}),
-								TextStateFeature({
-									state: {
-										color: {
-											primary: {
-												label: "Primary",
-												css: {
-													color: "oklch(0.5123 0.2295 297.24)",
-												},
-											},
-											accent: {
-												label: "Accent",
-												css: {
-													color: "oklch(0.5921 0.2269 26.84)",
-												},
-											},
-											muted: {
-												label: "Muted",
-												css: {
-													color: "oklch(0.545 0.0226 304.98)",
-												},
-											},
-										},
-									},
-								}),
-							];
-						},
-					}),
-					required: true,
-				},
+				richTextField({ headingSize: "h1" }),
 				{
 					name: "description",
 					type: "textarea",
@@ -97,53 +45,7 @@ export const Homepage: GlobalConfig<"homepage"> = {
 			label: "Services Section",
 			name: "services",
 			fields: [
-				{
-					name: "title",
-					type: "richText",
-					editor: lexicalEditor({
-						features: ({ rootFeatures }) => {
-							return [
-								...rootFeatures,
-								HeadingFeature({
-									enabledHeadingSizes: ["h2"],
-								}),
-								InlineToolbarFeature(),
-								FixedToolbarFeature({
-									customGroups: {
-										text: {
-											type: "buttons",
-										},
-									},
-								}),
-								TextStateFeature({
-									state: {
-										color: {
-											primary: {
-												label: "Primary",
-												css: {
-													color: "oklch(0.5123 0.2295 297.24)",
-												},
-											},
-											accent: {
-												label: "Accent",
-												css: {
-													color: "oklch(0.5921 0.2269 26.84)",
-												},
-											},
-											muted: {
-												label: "Muted",
-												css: {
-													color: "oklch(0.545 0.0226 304.98)",
-												},
-											},
-										},
-									},
-								}),
-							];
-						},
-					}),
-					required: true,
-				},
+				richTextField(),
 				{
 					type: "group",
 					name: "cta",
@@ -175,53 +77,7 @@ export const Homepage: GlobalConfig<"homepage"> = {
 			label: "Industries Section",
 			name: "industries",
 			fields: [
-				{
-					name: "title",
-					type: "richText",
-					editor: lexicalEditor({
-						features: ({ rootFeatures }) => {
-							return [
-								...rootFeatures,
-								HeadingFeature({
-									enabledHeadingSizes: ["h2"],
-								}),
-								InlineToolbarFeature(),
-								FixedToolbarFeature({
-									customGroups: {
-										text: {
-											type: "buttons",
-										},
-									},
-								}),
-								TextStateFeature({
-									state: {
-										color: {
-											primary: {
-												label: "Primary",
-												css: {
-													color: "oklch(0.5123 0.2295 297.24)",
-												},
-											},
-											accent: {
-												label: "Accent",
-												css: {
-													color: "oklch(0.5921 0.2269 26.84)",
-												},
-											},
-											muted: {
-												label: "Muted",
-												css: {
-													color: "oklch(0.545 0.0226 304.98)",
-												},
-											},
-										},
-									},
-								}),
-							];
-						},
-					}),
-					required: true,
-				},
+				richTextField(),
 				{ name: "description", type: "textarea" },
 				{
 					type: "relationship",
@@ -229,6 +85,111 @@ export const Homepage: GlobalConfig<"homepage"> = {
 					relationTo: "industries",
 					hasMany: true,
 				},
+			],
+		},
+		{
+			type: "group",
+			label: "Why Us Section",
+			name: "whyUs",
+			fields: [
+				richTextField(),
+				{ name: "description", type: "textarea", required: true },
+				{
+					type: "group",
+					name: "guidedByCard",
+					label: "Guided By Card",
+					fields: [
+						{ name: "badge", type: "text", defaultValue: "Guided by" },
+						{ name: "title", type: "text", required: true },
+						{ name: "description", type: "textarea", required: true },
+					],
+				},
+				{
+					type: "group",
+					name: "axisCard",
+					label: "AXIS Methodology Card",
+					fields: [
+						{ name: "title", type: "text", required: true },
+						link({
+							appearances: false,
+							overrides: { name: "learnMoreLink", label: "Learn More Link" },
+						}),
+						{
+							type: "array",
+							name: "phases",
+							label: "AXIS Phases",
+							minRows: 4,
+							maxRows: 4,
+							fields: [
+								{ name: "letter", type: "text", required: true },
+								{ name: "title", type: "text", required: true },
+								{ name: "description", type: "textarea", required: true },
+							],
+						},
+					],
+				},
+				{
+					type: "group",
+					name: "techStackCard",
+					label: "Tech Stack Card",
+					fields: [
+						{ name: "badge", type: "text", defaultValue: "Results-Driven Delivery" },
+						{ name: "title", type: "text", required: true },
+						link({
+							appearances: false,
+							overrides: { name: "ctaLink", label: "CTA Link" },
+						}),
+					],
+				},
+				{
+					type: "group",
+					name: "reliabilityCard",
+					label: "Reliability Card",
+					fields: [{ name: "title", type: "text", required: true }],
+				},
+				{
+					type: "group",
+					name: "miniCta",
+					label: "Mini CTA",
+					fields: [
+						{ name: "title", type: "text", required: true },
+						{ name: "description", type: "textarea", required: true },
+					],
+				},
+			],
+		},
+		{
+			type: "group",
+			label: "CTA Section",
+			name: "cta",
+			fields: [
+				{
+					type: "row",
+					fields: [
+						{
+							name: "badge",
+							type: "text",
+							admin: {
+								width: "75%",
+							},
+						},
+						{
+							name: "showForm",
+							type: "checkbox",
+							label: "Show Form",
+							admin: {
+								width: "25%",
+								description: "Check to show the enquiry form in the CTA",
+							},
+						},
+					],
+				},
+				{ name: "title", type: "text", required: true },
+				{ name: "description", type: "textarea" },
+
+				link({
+					appearances: false,
+				}),
 			],
 		},
 	],
