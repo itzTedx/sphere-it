@@ -5,12 +5,14 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
 
+import { AiMaturitySubmissions } from "./collections/ai-maturity-submissions";
 import { Blogs } from "./collections/blogs";
 import { BlogCategories } from "./collections/blogs/category";
 import { Careers } from "./collections/careers";
 import { Departments } from "./collections/careers/department";
 import { EmployeeTestimonials } from "./collections/careers/employee-testimonials";
 import { CaseStudies } from "./collections/case-studies";
+import { Enquiries } from "./collections/enquiries";
 import { FaqCategories } from "./collections/faqs/category";
 import { Faqs } from "./collections/faqs/Faqs";
 import { Clients } from "./collections/globals/clients";
@@ -20,7 +22,11 @@ import { Teams } from "./collections/globals/teams";
 import { Industries } from "./collections/industries";
 import { Media } from "./collections/Media";
 import { AboutPage } from "./collections/pages/about";
+import { FaqsPage } from "./collections/pages/faqs";
 import { Homepage } from "./collections/pages/homepage";
+import { InsightsPage } from "./collections/pages/insights";
+import { MethodologyPage } from "./collections/pages/methodology";
+import { ServicesPage } from "./collections/pages/services";
 import { ResearchPapers } from "./collections/research-papers";
 import { Services } from "./collections/services";
 import { Users } from "./collections/users";
@@ -59,6 +65,8 @@ export default buildConfig({
 		ResearchPapers,
 		Faqs,
 		FaqCategories,
+		AiMaturitySubmissions,
+		Enquiries,
 		Media,
 
 		// Employment
@@ -75,7 +83,11 @@ export default buildConfig({
 	globals: [
 		// Pages
 		Homepage,
+		ServicesPage,
 		AboutPage,
+		FaqsPage,
+		InsightsPage,
+		MethodologyPage,
 
 		// Globals
 		Teams,

@@ -1,5 +1,8 @@
 "use server";
 
+import config from "@payload-config";
+import { getPayload } from "payload";
+
 import { sendEmail } from "@/lib/emails";
 import EnquiryFormEmail from "@/lib/emails/templates/enquiry-form";
 import InquiryReact, {
@@ -16,17 +19,21 @@ export async function sendEnquiryEmail(data: QuickEnquireType, route: string) {
 		if (!rateLimitResult.success) {
 			return rateLimitResult;
 		}
-		const _emailContent = `
-			New Research Paper Enquiry
+		const messageText =
+			data.message || `This enquiry was submitted from the ${route} page.`;
 
-			Name: ${data.name}
-			Email: ${data.email}
-			Phone: ${data.phone || "Not provided"}
-
-			${data.message ? `Message: ${data.message}` : ""}
-			---
-			This enquiry was submitted from the ${route} page.
-		`;
+		// Store in Payload
+		const payload = await getPayload({ config });
+		await payload.create({
+			collection: "enquiries",
+			data: {
+				name: data.name,
+				email: data.email,
+				phone: data.phone ?? undefined,
+				message: messageText,
+				source: route,
+			},
+		});
 
 		await sendEmail({
 			email: data.email,
@@ -35,15 +42,13 @@ export async function sendEnquiryEmail(data: QuickEnquireType, route: string) {
 				name: data.name,
 				email: data.email,
 				phone: data.phone || "Not provided",
-				message:
-					data.message || `This enquiry was submitted from the ${route} page.`,
+				message: messageText,
 			}),
 			react: InquiryReact({
 				name: data.name,
 				email: data.email,
 				phone: data.phone || "Not provided",
-				message:
-					data.message || `This enquiry was submitted from the ${route} page.`,
+				message: messageText,
 			}),
 		});
 
@@ -61,6 +66,19 @@ export async function sendFullEnquiry(data: EnquireType) {
 		if (!rateLimitResult.success) {
 			return rateLimitResult;
 		}
+
+		// Store in Payload
+		const payload = await getPayload({ config });
+		await payload.create({
+			collection: "enquiries",
+			data: {
+				name: data.name,
+				email: data.email,
+				phone: data.phone ?? undefined,
+				subject: data.subject ?? undefined,
+				message: data.message,
+			},
+		});
 
 		// Send email notification
 		await sendEmail({

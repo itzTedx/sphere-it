@@ -4,7 +4,6 @@ import type { Metadata } from "next/dist/types";
 import Link from "next/link";
 import Script from "next/script";
 
-import { Cta } from "@/components/layout/cta";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TabsContent } from "@/components/ui/tabs";
@@ -140,7 +139,6 @@ async function BlogsContent(props: { searchParams: SearchParams }) {
 					/>
 				</Suspense>
 			</div>
-			<Cta />
 		</TabsContent>
 	);
 }
@@ -155,7 +153,6 @@ function BlogsPageSkeleton() {
 				</div>
 				<BlogsMainContentSkeleton />
 			</div>
-			<Cta />
 		</TabsContent>
 	);
 }

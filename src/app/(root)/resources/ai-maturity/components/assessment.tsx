@@ -25,6 +25,7 @@ import {
 	calculateMaturityScore,
 } from "@/modules/form/validators/ai-maturity-schema";
 
+import { submitAiMaturityAssessment } from "../actions";
 import { isValidStep, Step } from "../utils/is-valid-step";
 import { Questionnaire } from "./questionnaire";
 import { Results } from "./results";
@@ -94,18 +95,23 @@ function AiMaturityAssessmentContent() {
 		setUserName(data.name);
 
 		try {
-			// Calculate the maturity score
 			const questionnaireData = questionnaireForm.getValues();
-			const result = calculateMaturityScore(questionnaireData);
-			setMaturityResult(result);
+			const response = await submitAiMaturityAssessment(
+				data,
+				questionnaireData
+			);
 
-			// Simulate API call
-			await new Promise((resolve) => setTimeout(resolve, 1000));
-
-			setStep("results");
-			toast.success("Assessment completed successfully!", {
-				description: "Your AI maturity results are ready.",
-			});
+			if (response.success) {
+				setMaturityResult(response.result);
+				setStep("results");
+				toast.success("Assessment completed successfully!", {
+					description: "Your AI maturity results are ready.",
+				});
+			} else {
+				toast.error("Something went wrong", {
+					description: response.error,
+				});
+			}
 		} catch {
 			toast.error("Something went wrong", {
 				description: "Please try again later.",

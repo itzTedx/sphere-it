@@ -133,7 +133,11 @@ export const Homepage: GlobalConfig<"homepage"> = {
 					name: "techStackCard",
 					label: "Tech Stack Card",
 					fields: [
-						{ name: "badge", type: "text", defaultValue: "Results-Driven Delivery" },
+						{
+							name: "badge",
+							type: "text",
+							defaultValue: "Results-Driven Delivery",
+						},
 						{ name: "title", type: "text", required: true },
 						link({
 							appearances: false,

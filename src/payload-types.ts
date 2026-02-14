@@ -74,6 +74,8 @@ export interface Config {
     researchPapers: ResearchPaper;
     faqs: Faq;
     'faq-categories': FaqCategory;
+    'ai-maturity-submissions': AiMaturitySubmission;
+    enquiries: Enquiry;
     media: Media;
     careers: Career;
     departments: Department;
@@ -99,6 +101,8 @@ export interface Config {
     researchPapers: ResearchPapersSelect<false> | ResearchPapersSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
+    'ai-maturity-submissions': AiMaturitySubmissionsSelect<false> | AiMaturitySubmissionsSelect<true>;
+    enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     careers: CareersSelect<false> | CareersSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
@@ -121,7 +125,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     homepage: Homepage;
+    'services-page': ServicesPage;
     'about-page': AboutPage;
+    'faqs-page': FaqsPage;
+    'insights-page': InsightsPage;
+    'methodology-page': MethodologyPage;
     teams: Team;
     clients: Client;
     partners: Partner;
@@ -129,7 +137,11 @@ export interface Config {
   };
   globalsSelect: {
     homepage: HomepageSelect<false> | HomepageSelect<true>;
+    'services-page': ServicesPageSelect<false> | ServicesPageSelect<true>;
     'about-page': AboutPageSelect<false> | AboutPageSelect<true>;
+    'faqs-page': FaqsPageSelect<false> | FaqsPageSelect<true>;
+    'insights-page': InsightsPageSelect<false> | InsightsPageSelect<true>;
+    'methodology-page': MethodologyPageSelect<false> | MethodologyPageSelect<true>;
     teams: TeamsSelect<false> | TeamsSelect<true>;
     clients: ClientsSelect<false> | ClientsSelect<true>;
     partners: PartnersSelect<false> | PartnersSelect<true>;
@@ -573,6 +585,116 @@ export interface FaqCategory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ai-maturity-submissions".
+ */
+export interface AiMaturitySubmission {
+  id: number;
+  name: string;
+  email: string;
+  company: string;
+  phone?: string | null;
+  /**
+   * 1. Do you have a clear AI strategy aligned to measurable business outcomes?
+   */
+  q1: number;
+  /**
+   * 2. Has C level leadership formally approved and endorsed the AI strategy?
+   */
+  q2: number;
+  /**
+   * 3. Are success metrics for AI initiatives defined and tracked
+   */
+  q3: number;
+  /**
+   * 4. Are there a dedicated AI budget for the coming financial year?
+   */
+  q4: number;
+  /**
+   * 5. Are business leaders accountable for driving AI adoption in their areas?
+   */
+  q5: number;
+  /**
+   * 6.	Is your enterprise data catalogued, classified, and easily searchable?
+   */
+  q6: number;
+  /**
+   * 7. How confident are you in data accuracy, completeness, and lineage?
+   */
+  q7: number;
+  /**
+   * 8.	Do you have a unified data platform that supports analytics and AI?
+   */
+  q8: number;
+  /**
+   * 9.	Are data access controls and residency rules aligned with regulatory expectations?
+   */
+  q9: number;
+  /**
+   * 10.	Can teams reliably access clean governed datasets for AI and ML work?
+   */
+  q10: number;
+  /**
+   * 11.	Do you have a clear and approved policy for LLM and generative AI usage?
+   */
+  q11: number;
+  /**
+   * 12.	Is your current infrastructure capable of handling AI workloads at scale?
+   */
+  q12: number;
+  /**
+   * 13.	Are you using MLOps or AIOps for model lifecycle and deployment management?
+   */
+  q13: number;
+  /**
+   * 14.	Do you have an AI governance framework with controls for privacy and bias?
+   */
+  q14: number;
+  /**
+   * 15.	Are employees trained on responsible AI practices and escalation routes?
+   */
+  q15: number;
+  /**
+   * Total questionnaire score
+   */
+  totalScore: number;
+  /**
+   * Maturity percentage
+   */
+  percentage: number;
+  /**
+   * Maturity level
+   */
+  level: 'Foundation' | 'Developing' | 'Progressive' | 'Advanced';
+  /**
+   * Level description
+   */
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "enquiries".
+ */
+export interface Enquiry {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string | null;
+  /**
+   * Subject (full contact form only)
+   */
+  subject?: string | null;
+  message: string;
+  /**
+   * Page or context (e.g. route) for quick enquiries
+   */
+  source?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "careers".
  */
 export interface Career {
@@ -885,6 +1007,14 @@ export interface PayloadLockedDocument {
         value: number | FaqCategory;
       } | null)
     | ({
+        relationTo: 'ai-maturity-submissions';
+        value: number | AiMaturitySubmission;
+      } | null)
+    | ({
+        relationTo: 'enquiries';
+        value: number | Enquiry;
+      } | null)
+    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
@@ -1175,6 +1305,51 @@ export interface FaqCategoriesSelect<T extends boolean = true> {
   category?: T;
   generateSlug?: T;
   slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ai-maturity-submissions_select".
+ */
+export interface AiMaturitySubmissionsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  company?: T;
+  phone?: T;
+  q1?: T;
+  q2?: T;
+  q3?: T;
+  q4?: T;
+  q5?: T;
+  q6?: T;
+  q7?: T;
+  q8?: T;
+  q9?: T;
+  q10?: T;
+  q11?: T;
+  q12?: T;
+  q13?: T;
+  q14?: T;
+  q15?: T;
+  totalScore?: T;
+  percentage?: T;
+  level?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "enquiries_select".
+ */
+export interface EnquiriesSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  subject?: T;
+  message?: T;
+  source?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1673,6 +1848,43 @@ export interface Homepage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services-page".
+ */
+export interface ServicesPage {
+  id: number;
+  hero: {
+    badge: string;
+    /**
+     * Main heading. Use bold or accent color for the highlighted phrase (e.g. “Automation to Augmentation”).
+     */
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    subtitle: string;
+    description: string;
+  };
+  seo: {
+    metaTitle: string;
+    metaDescription: string;
+    ogImage?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-page".
  */
 export interface AboutPage {
@@ -1844,6 +2056,217 @@ export interface AboutPage {
      * Check to show the enquiry form in the CTA
      */
     showForm?: boolean | null;
+  };
+  seo: {
+    metaTitle: string;
+    metaDescription: string;
+    ogImage?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs-page".
+ */
+export interface FaqsPage {
+  id: number;
+  header: {
+    /**
+     * Badge text shown above the heading.
+     */
+    badge: string;
+    /**
+     * Main heading shown in accent color.
+     */
+    titleHighlight: string;
+    /**
+     * Secondary line below the heading.
+     */
+    titleSuffix: string;
+  };
+  cta: {
+    badge?: string | null;
+    title: string;
+    description?: string | null;
+    showForm?: boolean | null;
+    buttonText?: string | null;
+    /**
+     * Button link destination.
+     */
+    link: {
+      type?: ('page' | 'reference' | 'custom') | null;
+      newTab?: boolean | null;
+      page?:
+        | (
+            | '/'
+            | '/services'
+            | '/about'
+            | '/resources/blogs'
+            | '/resources/case-studies'
+            | '/resources/research-papers'
+            | '/resources/faqs'
+            | '/careers'
+            | '/contact'
+            | '/methodology'
+            | '/resources/ai-maturity'
+          )
+        | null;
+      reference?:
+        | ({
+            relationTo: 'services';
+            value: number | Service;
+          } | null)
+        | ({
+            relationTo: 'blogs';
+            value: number | Blog;
+          } | null)
+        | ({
+            relationTo: 'case-studies';
+            value: number | CaseStudy;
+          } | null)
+        | ({
+            relationTo: 'researchPapers';
+            value: number | ResearchPaper;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "insights-page".
+ */
+export interface InsightsPage {
+  id: number;
+  header: {
+    /**
+     * Text before the highlighted company name.
+     */
+    titlePrefix: string;
+    /**
+     * Company name shown in accent color.
+     */
+    titleHighlight: string;
+    subtitle: string;
+  };
+  cta: {
+    badge?: string | null;
+    title: string;
+    description?: string | null;
+    showForm?: boolean | null;
+    buttonText?: string | null;
+    /**
+     * Button link destination.
+     */
+    link: {
+      type?: ('page' | 'reference' | 'custom') | null;
+      newTab?: boolean | null;
+      page?:
+        | (
+            | '/'
+            | '/services'
+            | '/about'
+            | '/resources/blogs'
+            | '/resources/case-studies'
+            | '/resources/research-papers'
+            | '/resources/faqs'
+            | '/careers'
+            | '/contact'
+            | '/methodology'
+            | '/resources/ai-maturity'
+          )
+        | null;
+      reference?:
+        | ({
+            relationTo: 'services';
+            value: number | Service;
+          } | null)
+        | ({
+            relationTo: 'blogs';
+            value: number | Blog;
+          } | null)
+        | ({
+            relationTo: 'case-studies';
+            value: number | CaseStudy;
+          } | null)
+        | ({
+            relationTo: 'researchPapers';
+            value: number | ResearchPaper;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "methodology-page".
+ */
+export interface MethodologyPage {
+  id: number;
+  hero: {
+    title: string;
+    subtitle: string;
+    ctaLink?: {
+      type?: ('page' | 'reference' | 'custom') | null;
+      newTab?: boolean | null;
+      page?:
+        | (
+            | '/'
+            | '/services'
+            | '/about'
+            | '/resources/blogs'
+            | '/resources/case-studies'
+            | '/resources/research-papers'
+            | '/resources/faqs'
+            | '/careers'
+            | '/contact'
+            | '/methodology'
+            | '/resources/ai-maturity'
+          )
+        | null;
+      reference?:
+        | ({
+            relationTo: 'services';
+            value: number | Service;
+          } | null)
+        | ({
+            relationTo: 'blogs';
+            value: number | Blog;
+          } | null)
+        | ({
+            relationTo: 'case-studies';
+            value: number | CaseStudy;
+          } | null)
+        | ({
+            relationTo: 'researchPapers';
+            value: number | ResearchPaper;
+          } | null);
+      url?: string | null;
+      label?: string | null;
+    };
+    image?: (number | null) | Media;
+  };
+  valueProposition: {
+    badge: string;
+    heading: string;
+    description: string;
+  };
+  phases?: {
+    items?:
+      | {
+          icon: 'bullseye' | 'search' | 'rocket' | 'shield';
+          title: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
   };
   seo: {
     metaTitle: string;
@@ -2062,6 +2485,30 @@ export interface HomepageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services-page_select".
+ */
+export interface ServicesPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        badge?: T;
+        title?: T;
+        subtitle?: T;
+        description?: T;
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-page_select".
  */
 export interface AboutPageSelect<T extends boolean = true> {
@@ -2129,6 +2576,128 @@ export interface AboutPageSelect<T extends boolean = true> {
     | T
     | {
         showForm?: T;
+      };
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs-page_select".
+ */
+export interface FaqsPageSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        badge?: T;
+        titleHighlight?: T;
+        titleSuffix?: T;
+      };
+  cta?:
+    | T
+    | {
+        badge?: T;
+        title?: T;
+        description?: T;
+        showForm?: T;
+        buttonText?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              page?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "insights-page_select".
+ */
+export interface InsightsPageSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        titlePrefix?: T;
+        titleHighlight?: T;
+        subtitle?: T;
+      };
+  cta?:
+    | T
+    | {
+        badge?: T;
+        title?: T;
+        description?: T;
+        showForm?: T;
+        buttonText?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              page?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "methodology-page_select".
+ */
+export interface MethodologyPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        ctaLink?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              page?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        image?: T;
+      };
+  valueProposition?:
+    | T
+    | {
+        badge?: T;
+        heading?: T;
+        description?: T;
+      };
+  phases?:
+    | T
+    | {
+        items?:
+          | T
+          | {
+              icon?: T;
+              title?: T;
+              description?: T;
+              id?: T;
+            };
       };
   seo?:
     | T

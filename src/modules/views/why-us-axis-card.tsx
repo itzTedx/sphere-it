@@ -16,11 +16,7 @@ import {
 	TabsTrigger,
 } from "@/components/ui/radix/tabs";
 
-import {
-	IconCheckmark,
-	IconPuzzle,
-	IconSearch,
-} from "@/assets/icons";
+import { IconCheckmark, IconPuzzle, IconSearch } from "@/assets/icons";
 import { IconLayers } from "@/assets/icons/layers";
 
 import { cn } from "@/lib/utils";
@@ -88,6 +84,7 @@ export function AxisCardClient({
 	const currentPhase = axisPhases[activeIndex]!;
 	const currentTab = currentPhase.letter.toLowerCase();
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Need to rerender when active index changes
 	useEffect(() => {
 		const timer = window.setTimeout(() => {
 			setActiveIndex(

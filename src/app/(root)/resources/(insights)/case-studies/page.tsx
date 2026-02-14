@@ -2,7 +2,6 @@ import { Suspense } from "react";
 
 import Link from "next/link";
 
-import { Cta } from "@/components/layout/cta";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TabsContent } from "@/components/ui/tabs";
@@ -104,7 +103,6 @@ async function CaseStudiesContent(props: { searchParams: SearchParams }) {
 					)}
 				</main>
 			</div>
-			<Cta />
 		</TabsContent>
 	);
 }
@@ -115,7 +113,6 @@ function CaseStudiesPageSkeleton() {
 		<TabsContent value="/resources/case-studies">
 			<div className="container max-w-7xl px-4 sm:px-6 lg:px-8">
 				<CaseStudiesMainContentSkeleton />
-				<Cta />
 			</div>
 		</TabsContent>
 	);

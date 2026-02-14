@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import type { Metadata } from "next/dist/types";
 
 import { Cta } from "@/components/layout/cta";
@@ -13,9 +14,20 @@ import { IconSupport } from "@/assets/icons";
 
 import { BASE_URL } from "@/data/site-config";
 import { listFaqs } from "@/modules/faqs/actions/query";
+import { getFaqsPageGlobal } from "@/modules/global/faqs";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 
 import { getStructuredData } from "./structured-data";
+
+function resolveCtaHref(link: {
+	type?: string | null;
+	page?: string | null;
+	url?: string | null;
+}): Route {
+	if (link?.type === "page" && link.page) return link.page as Route;
+	if (link?.type === "custom" && link.url) return link.url as Route;
+	return "/contact";
+}
 
 const meta = {
 	title: "FAQs | Sphere IT - Services, Solutions & Support",
@@ -62,8 +74,13 @@ export const metadata: Metadata = {
 };
 
 export default async function FaqsPage() {
-	const faqs = await listFaqs();
-	const structuredData = await getStructuredData();
+	const [faqs, structuredData, pageData] = await Promise.all([
+		listFaqs(),
+		getStructuredData(),
+		getFaqsPageGlobal(),
+	]);
+	const header = pageData?.header;
+	const cta = pageData?.cta;
 
 	return (
 		<>
@@ -92,15 +109,17 @@ export default async function FaqsPage() {
 				>
 					<header className="container max-w-7xl space-y-2 sm:space-y-3 md:space-y-4">
 						<Badge className="capitalize" showDashes>
-							<IconSupport aria-hidden="true" /> FAQs
+							<IconSupport aria-hidden="true" /> {header?.badge ?? "FAQs"}
 						</Badge>
 						<h1
 							className="text-primary-900 text-title-5 sm:text-title-4 md:text-title-3 lg:text-title-2 xl:text-title-2"
 							id="faqs-heading"
 						>
-							<span className="text-primary-600">Have Questions?</span>
+							<span className="text-primary-600">
+								{header?.titleHighlight ?? "Have Questions?"}
+							</span>
 							<br />
-							Here's what we hear often
+							{header?.titleSuffix ?? "Here's what we hear often"}
 						</h1>
 					</header>
 				</section>
@@ -167,11 +186,12 @@ export default async function FaqsPage() {
 				</div>
 
 				<Cta
-					badge="Contact Us"
-					buttonText="Ask Question"
-					description="Our team is here to help. Get in touch with us and we'll respond as soon as possible."
-					showForm
-					title="Couldn't find the answer you're looking for?"
+					badge={cta?.badge ?? undefined}
+					buttonLink={cta?.link ? resolveCtaHref(cta.link) : undefined}
+					buttonText={cta?.buttonText ?? cta?.link?.label ?? undefined}
+					description={cta?.description ?? undefined}
+					showForm={cta?.showForm ?? true}
+					title={cta?.title ?? undefined}
 				/>
 			</main>
 		</>

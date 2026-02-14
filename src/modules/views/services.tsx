@@ -23,8 +23,6 @@ export const Services = async () => {
 		services: { cta },
 	} = data;
 
-	console.log("cta: ", cta);
-
 	return (
 		<section
 			aria-labelledby="services-heading"

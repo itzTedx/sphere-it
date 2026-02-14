@@ -21,7 +21,13 @@ interface EnquiryFormProps {
 	message?: string;
 }
 
-const EnquiryFormReact = ({ name, email, phone, subject, message }: EnquiryFormProps) => {
+const EnquiryFormReact = ({
+	name,
+	email,
+	phone,
+	subject,
+	message,
+}: EnquiryFormProps) => {
 	return (
 		<Html dir="ltr" lang="en">
 			<Tailwind>

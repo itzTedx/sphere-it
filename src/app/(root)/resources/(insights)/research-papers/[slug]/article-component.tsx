@@ -15,6 +15,7 @@ interface ArticleProps {
 export function Article({ content, isLoggedIn, title }: ArticleProps) {
 	const [hasAccess, setHasAccess] = useState(isLoggedIn);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Need to rerender when isLoggedIn changes
 	useEffect(() => {
 		// Check if user has been granted access via form submission
 		const accessGranted =

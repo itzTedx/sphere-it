@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 
-import { Cta } from "@/components/layout/cta";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TabsContent } from "@/components/ui/tabs";
@@ -84,7 +83,6 @@ async function ResearchPapersContent(props: { searchParams: SearchParams }) {
 					)}
 				</main>
 			</div>
-			<Cta />
 		</TabsContent>
 	);
 }
@@ -95,7 +93,6 @@ function ResearchPapersPageSkeleton() {
 		<TabsContent value="/resources/research-papers">
 			<div className="container max-w-7xl">
 				<ResearchPapersMainContentSkeleton />
-				<Cta />
 			</div>
 		</TabsContent>
 	);
