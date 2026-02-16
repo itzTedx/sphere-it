@@ -1,62 +1,45 @@
 import {
+	BlocksFeature,
 	FixedToolbarFeature,
+	HeadingFeature,
+	HorizontalRuleFeature,
 	InlineToolbarFeature,
 	lexicalEditor,
+	OrderedListFeature,
+	UnorderedListFeature,
+	UploadFeature,
 } from "@payloadcms/richtext-lexical";
 import type { Block } from "payload";
 
-export const ListBlock: Block = {
-	slug: "list",
+import { ButtonBlock } from "../button/config";
+import { CardBlock } from "../card/config";
+import { ListBlock } from "../list/config";
+import { MediaBlock } from "../MediaBlock/config";
+
+export const ColumnBlock: Block = {
+	slug: "column",
 	fields: [
 		{
 			type: "row",
 			fields: [
 				{
-					name: "style",
-					type: "select",
-					defaultValue: "default",
-					options: [{ label: "Default", value: "default" }],
-					required: true,
-					admin: {
-						width: "75%",
-					},
-				},
-				{
 					type: "select",
 					name: "columns",
-					defaultValue: "4",
+					defaultValue: "2",
 					options: [
 						{ label: "2 Columns", value: "2" },
 						{ label: "3 Columns", value: "3" },
 						{ label: "4 Columns", value: "4" },
 					],
-					admin: {
-						width: "25%",
-					},
 				},
 			],
 		},
 
 		{
 			type: "array",
-			name: "items",
-			admin: {
-				components: {
-					RowLabel: "@/modules/cms/blocks/list/row-label#ListRowLabel",
-				},
-			},
+			name: "contents",
+
 			fields: [
-				{
-					name: "title",
-					type: "text",
-					label: "Title",
-					required: true,
-				},
-				{
-					name: "description",
-					type: "textarea",
-					label: "Description",
-				},
 				{
 					name: "content",
 					type: "richText",
@@ -64,7 +47,16 @@ export const ListBlock: Block = {
 						features: ({ rootFeatures }) => {
 							return [
 								...rootFeatures,
-
+								HeadingFeature({
+									enabledHeadingSizes: ["h2", "h3", "h4", "h5"],
+								}),
+								BlocksFeature({
+									blocks: [ButtonBlock, MediaBlock, CardBlock, ListBlock],
+								}),
+								UnorderedListFeature(),
+								OrderedListFeature(),
+								UploadFeature(),
+								HorizontalRuleFeature(),
 								InlineToolbarFeature(),
 								FixedToolbarFeature({
 									customGroups: {
@@ -82,5 +74,5 @@ export const ListBlock: Block = {
 			],
 		},
 	],
-	interfaceName: "ListBlock",
+	interfaceName: "ColumnBlock",
 };

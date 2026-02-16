@@ -2930,7 +2930,7 @@ export interface ListBlock {
   items?:
     | {
         title: string;
-        description: string;
+        description?: string | null;
         content: {
           root: {
             type: string;
@@ -2952,6 +2952,36 @@ export interface ListBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'list';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ColumnBlock".
+ */
+export interface ColumnBlock {
+  columns?: ('2' | '3' | '4') | null;
+  contents?:
+    | {
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'column';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3010,6 +3040,16 @@ export interface BannerBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'banner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TechStackBlock".
+ */
+export interface TechStackBlock {
+  label: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'techStack';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

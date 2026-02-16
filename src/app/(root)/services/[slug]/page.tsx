@@ -1,4 +1,4 @@
-import { Fragment, Suspense } from "react";
+import { Fragment, Suspense, type ReactNode } from "react";
 
 import type { Metadata } from "next/dist/types";
 import Image from "next/image";
@@ -370,11 +370,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	};
 }
 
-export function TechMarquee() {
+type TechMarqueeProps = {
+	children?: ReactNode;
+};
+
+export function TechMarquee({ children }: TechMarqueeProps) {
+	const label = children ?? "300+ People & Quick rap up time";
+
 	return (
 		<div className="relative z-10 space-y-3 rounded-xl bg-stone-alpha-10 p-3">
 			<span className="flex items-center gap-2 font-medium text-stone-500">
-				<Icons.IconLayers /> 300+ People & Quick rap up time
+				<Icons.IconLayers />
+				{label}
 			</span>
 			<div className="not-prose relative flex w-full overflow-hidden rounded-xl bg-card shadow-md">
 				<div

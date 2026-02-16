@@ -26,8 +26,10 @@ import { Banner } from "@/modules/cms/blocks/Banner/config";
 import { ButtonBlock } from "@/modules/cms/blocks/button/config";
 import { CardBlock } from "@/modules/cms/blocks/card/config";
 import { CertificationsBlock } from "@/modules/cms/blocks/certifications/config";
+import { ColumnBlock } from "@/modules/cms/blocks/column/config";
 import { ListBlock } from "@/modules/cms/blocks/list/config";
 import { MediaBlock } from "@/modules/cms/blocks/MediaBlock/config";
+import { TechStackBlock } from "@/modules/cms/blocks/tech-stack/config";
 import { link } from "@/modules/cms/fields/link";
 import { linkGroup } from "@/modules/cms/fields/link-group";
 
@@ -147,10 +149,12 @@ export const Services: CollectionConfig = {
 											blocks: [
 												ButtonBlock,
 												MediaBlock,
+												ColumnBlock,
 												CardBlock,
 												ListBlock,
 												CertificationsBlock,
 												Banner,
+												TechStackBlock,
 											],
 										}),
 										UnorderedListFeature(),

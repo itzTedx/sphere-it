@@ -21,6 +21,7 @@ import type {
 	ButtonBlock as ButtonBlockProps,
 	CardBlock as CardBlockProps,
 	CertificationsBlock as CertificationsBlockProps,
+	ColumnBlock as ColumnBlockProps,
 	ListBlock as ListBlockProps,
 	MediaBlock as MediaBlockProps,
 } from "@/payload-types";
@@ -29,8 +30,10 @@ import { BannerBlock } from "../../blocks/Banner/Component";
 import { ButtonBlock } from "../../blocks/button/Component";
 import { CardBlock } from "../../blocks/card/Component";
 import { CertificationsBlock } from "../../blocks/certifications/Component";
+import { ColumnBlock } from "../../blocks/column/Component";
 import { ListBlock } from "../../blocks/list/Component";
 import { MediaBlock } from "../../blocks/MediaBlock/Component";
+import { TechStackBlock } from "../../blocks/tech-stack/Component";
 
 type NodeTypes =
 	| DefaultNodeTypes
@@ -41,6 +44,7 @@ type NodeTypes =
 			| CertificationsBlockProps
 			| ButtonBlockProps
 			| ListBlockProps
+			| ColumnBlockProps
 	  >;
 
 type TextConverterArgs = {
@@ -151,6 +155,7 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 		banner: ({ node }) => <BannerBlock className="mb-4" {...node.fields} />,
 		list: ({ node }) => <ListBlock className="mb-4" {...node.fields} />,
 		card: ({ node }) => <CardBlock className="mb-4" {...node.fields} />,
+		column: ({ node }) => <ColumnBlock className="mb-4" {...node.fields} />,
 		mediaBlock: ({ node }) => (
 			<MediaBlock
 				className="col-span-3 col-start-1"
@@ -161,9 +166,14 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 				enableGutter={false}
 			/>
 		),
-		certifications: ({ node }) => (
+		certifications: ({ node }: { node: SerializedBlockNode<CertificationsBlockProps> }) => (
 			<CertificationsBlock className="mb-4" {...node.fields} />
 		),
+		techStack: ({
+			node,
+		}: {
+			node: SerializedBlockNode<{ label: string }>;
+		}) => <TechStackBlock className="mb-4" {...node.fields} />,
 	},
 });
 
