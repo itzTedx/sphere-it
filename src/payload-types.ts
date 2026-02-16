@@ -184,6 +184,7 @@ export interface UserAuthOperations {
  */
 export interface Service {
   id: number;
+  _order?: string | null;
   service: string;
   heroImage: number | Media;
   title: string;
@@ -791,6 +792,7 @@ export interface EmployeeTestimonial {
  */
 export interface Industry {
   id: number;
+  _order?: string | null;
   icon?: string | null;
   title: string;
   updatedAt: string;
@@ -1126,6 +1128,7 @@ export interface PayloadMigration {
  * via the `definition` "services_select".
  */
 export interface ServicesSelect<T extends boolean = true> {
+  _order?: T;
   service?: T;
   heroImage?: T;
   title?: T;
@@ -1443,6 +1446,7 @@ export interface EmployeeTestimonialsSelect<T extends boolean = true> {
  * via the `definition` "industries_select".
  */
 export interface IndustriesSelect<T extends boolean = true> {
+  _order?: T;
   icon?: T;
   title?: T;
   updatedAt?: T;
@@ -2324,7 +2328,7 @@ export interface Team {
   id: number;
   leaderships?:
     | {
-        logo: number | Media;
+        picture: number | Media;
         name: string;
         position: string;
         linkedinUrl?: string | null;
@@ -2333,7 +2337,7 @@ export interface Team {
     | null;
   members?:
     | {
-        logo: number | Media;
+        picture: number | Media;
         name: string;
         position: string;
         linkedinUrl?: string | null;
@@ -2726,7 +2730,7 @@ export interface TeamsSelect<T extends boolean = true> {
   leaderships?:
     | T
     | {
-        logo?: T;
+        picture?: T;
         name?: T;
         position?: T;
         linkedinUrl?: T;
@@ -2735,7 +2739,7 @@ export interface TeamsSelect<T extends boolean = true> {
   members?:
     | T
     | {
-        logo?: T;
+        picture?: T;
         name?: T;
         position?: T;
         linkedinUrl?: T;

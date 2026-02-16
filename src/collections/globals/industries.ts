@@ -8,6 +8,7 @@ import { iconPickerField } from "@/modules/cms/fields/iconPickerField";
 
 export const Industries: CollectionConfig = {
 	slug: "industries",
+	orderable: true,
 	admin: {
 		useAsTitle: "title",
 		defaultColumns: ["title", "icon", "updatedAt"],

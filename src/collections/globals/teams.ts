@@ -32,11 +32,15 @@ export const Teams: GlobalConfig = {
 			type: "array",
 			admin: {
 				isSortable: true,
+				components: {
+					RowLabel:
+						"@/collections/globals/components/team-row-label#TeamRowLabel",
+				},
 			},
 
 			fields: [
 				{
-					name: "logo",
+					name: "picture",
 					type: "upload",
 					relationTo: "media",
 					required: true,
@@ -67,11 +71,15 @@ export const Teams: GlobalConfig = {
 			type: "array",
 			admin: {
 				isSortable: true,
+				components: {
+					RowLabel:
+						"@/collections/globals/components/team-row-label#TeamRowLabel",
+				},
 			},
 
 			fields: [
 				{
-					name: "logo",
+					name: "picture",
 					type: "upload",
 					relationTo: "media",
 					required: true,

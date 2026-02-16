@@ -12,6 +12,7 @@ export const getPartners = async () => {
 		depth: 2,
 		limit: 100,
 		pagination: false,
+		sort: "_order",
 	});
 
 	return res.docs;

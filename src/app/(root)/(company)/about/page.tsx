@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 
+import { Route } from "next";
 import { Metadata } from "next/dist/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -285,13 +286,13 @@ export default async function AboutPage() {
 							role="list"
 						>
 							{leaderships?.map((member, i) => {
-								const logo = member.logo as Media;
+								const picture = member.picture as Media;
 								return (
 									<TeamCard
 										data={{
 											name: member.name,
 											designation: member.position,
-											image: logo?.url || "",
+											image: picture?.url || "",
 											linkedin: member.linkedinUrl || undefined,
 										}}
 										key={i}
@@ -320,13 +321,13 @@ export default async function AboutPage() {
 							role="list"
 						>
 							{members?.map((member, i) => {
-								const logo = member.logo as Media;
+								const picture = member.picture as Media;
 								return (
 									<TeamCard
 										data={{
 											name: member.name,
 											designation: member.position,
-											image: logo?.url || "",
+											image: picture?.url || "",
 											linkedin: member.linkedinUrl || undefined,
 										}}
 										key={i}
@@ -412,17 +413,20 @@ type TeamMember = {
 function TeamCard({ data }: { data: TeamMember }) {
 	return (
 		<article className="group sm:p-4" role="listitem">
-			<div className="relative aspect-square overflow-hidden rounded-full bg-card">
+			<div className="group relative flex aspect-square items-end justify-center overflow-hidden rounded-full bg-card p-4">
 				{data.linkedin && (
-					<a
-						aria-label="Connect with team member on LinkedIn"
-						className="text-stone-700 transition-colors hover:text-primary-600"
-						href={data.linkedin}
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						<IconSocialLinkedin aria-hidden="true" />
-					</a>
+					<>
+						<Link
+							aria-label="Connect with team member on LinkedIn"
+							className="relative z-20 text-stone-700 transition-colors hover:text-primary-900 group-hover:text-stone-900"
+							href={data.linkedin as Route}
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							<IconSocialLinkedin aria-hidden="true" />
+						</Link>
+						<div className="absolute inset-0 z-10 bg-linear-to-t from-card/25 group-hover:from-card/50" />
+					</>
 				)}
 				{data.image && (
 					<Image

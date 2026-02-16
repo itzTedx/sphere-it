@@ -37,6 +37,7 @@ import {
 
 export const Services: CollectionConfig = {
 	slug: "services",
+	orderable: true,
 	trash: true,
 	access: {
 		admin: ({ req: { user } }) => checkRole(["admin", "editor"], user),
