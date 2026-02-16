@@ -118,30 +118,13 @@ export const Services: CollectionConfig = {
 							},
 						}),
 						{
-							type: "array",
+							type: "relationship",
 							name: "partners",
+							relationTo: "partners",
+							hasMany: true,
 							admin: {
-								components: {
-									RowLabel:
-										"@/collections/services/components/variant-row-label#VariantRowLabel",
-								},
+								isSortable: true,
 							},
-							fields: [
-								{
-									type: "upload",
-									name: "logo",
-									label: "Partner Logo",
-									relationTo: "media",
-									required: true,
-								},
-								{
-									type: "row",
-									fields: [
-										{ type: "text", name: "name" },
-										{ type: "text", name: "link" },
-									],
-								},
-							],
 						},
 					],
 				},

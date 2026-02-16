@@ -81,6 +81,8 @@ export interface Config {
     departments: Department;
     employeeTestimonials: EmployeeTestimonial;
     industries: Industry;
+    partners: Partner;
+    clients: Client;
     users: User;
     sessions: Session;
     accounts: Account;
@@ -108,6 +110,8 @@ export interface Config {
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     employeeTestimonials: EmployeeTestimonialsSelect<false> | EmployeeTestimonialsSelect<true>;
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
+    partners: PartnersSelect<false> | PartnersSelect<true>;
+    clients: ClientsSelect<false> | ClientsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     sessions: SessionsSelect<false> | SessionsSelect<true>;
     accounts: AccountsSelect<false> | AccountsSelect<true>;
@@ -131,8 +135,6 @@ export interface Config {
     'insights-page': InsightsPage;
     'methodology-page': MethodologyPage;
     teams: Team;
-    clients: Client;
-    partners: Partner;
     footer: Footer;
   };
   globalsSelect: {
@@ -143,8 +145,6 @@ export interface Config {
     'insights-page': InsightsPageSelect<false> | InsightsPageSelect<true>;
     'methodology-page': MethodologyPageSelect<false> | MethodologyPageSelect<true>;
     teams: TeamsSelect<false> | TeamsSelect<true>;
-    clients: ClientsSelect<false> | ClientsSelect<true>;
-    partners: PartnersSelect<false> | PartnersSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
@@ -249,14 +249,7 @@ export interface Service {
         id?: string | null;
       }[]
     | null;
-  partners?:
-    | {
-        logo: number | Media;
-        name?: string | null;
-        link?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  partners?: (number | Partner)[] | null;
   content: {
     root: {
       type: string;
@@ -558,6 +551,17 @@ export interface ResearchPaper {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners".
+ */
+export interface Partner {
+  id: number;
+  name: string;
+  logo: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faqs".
  */
 export interface Faq {
@@ -788,6 +792,22 @@ export interface Industry {
   id: number;
   icon?: string | null;
   title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients".
+ */
+export interface Client {
+  id: number;
+  clients?:
+    | {
+        name: string;
+        logo: number | Media;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1035,6 +1055,14 @@ export interface PayloadLockedDocument {
         value: number | Industry;
       } | null)
     | ({
+        relationTo: 'partners';
+        value: number | Partner;
+      } | null)
+    | ({
+        relationTo: 'clients';
+        value: number | Client;
+      } | null)
+    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
@@ -1121,14 +1149,7 @@ export interface ServicesSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  partners?:
-    | T
-    | {
-        logo?: T;
-        name?: T;
-        link?: T;
-        id?: T;
-      };
+  partners?: T;
   content?: T;
   homepage?:
     | T
@@ -1427,6 +1448,31 @@ export interface EmployeeTestimonialsSelect<T extends boolean = true> {
 export interface IndustriesSelect<T extends boolean = true> {
   icon?: T;
   title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners_select".
+ */
+export interface PartnersSelect<T extends boolean = true> {
+  name?: T;
+  logo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients_select".
+ */
+export interface ClientsSelect<T extends boolean = true> {
+  clients?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2305,38 +2351,6 @@ export interface Team {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "clients".
- */
-export interface Client {
-  id: number;
-  clients?:
-    | {
-        name: string;
-        logo: number | Media;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners".
- */
-export interface Partner {
-  id: number;
-  partners?:
-    | {
-        name: string;
-        logo: number | Media;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
 export interface Footer {
@@ -2731,38 +2745,6 @@ export interface TeamsSelect<T extends boolean = true> {
         name?: T;
         position?: T;
         linkedinUrl?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "clients_select".
- */
-export interface ClientsSelect<T extends boolean = true> {
-  clients?:
-    | T
-    | {
-        name?: T;
-        logo?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners_select".
- */
-export interface PartnersSelect<T extends boolean = true> {
-  partners?:
-    | T
-    | {
-        name?: T;
-        logo?: T;
         id?: T;
       };
   updatedAt?: T;

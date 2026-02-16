@@ -74,8 +74,10 @@ export default buildConfig({
 		Departments,
 		EmployeeTestimonials,
 
-		// Industries
+		// Globals
 		Industries,
+		Partners,
+		Clients,
 
 		// Auth
 		Users,
@@ -91,8 +93,6 @@ export default buildConfig({
 
 		// Globals
 		Teams,
-		Clients,
-		Partners,
 		Footer,
 	],
 	email: nodemailerAdapter({

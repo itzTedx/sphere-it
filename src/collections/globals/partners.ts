@@ -1,11 +1,11 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 
-import type { GlobalConfig } from "payload";
+import type { CollectionConfig } from "payload";
 
 import { isAdmin } from "@/modules/cms/access/isAdmin";
 import { checkRole } from "@/modules/cms/access/utilities";
 
-export const Partners: GlobalConfig = {
+export const Partners: CollectionConfig = {
 	slug: "partners",
 	access: {
 		read: () => true,
@@ -13,6 +13,8 @@ export const Partners: GlobalConfig = {
 	},
 	admin: {
 		hidden: ({ user }) => !checkRole(["admin"], user),
+		useAsTitle: "name",
+		group: "Globals",
 	},
 	hooks: {
 		afterChange: [
@@ -27,23 +29,15 @@ export const Partners: GlobalConfig = {
 	},
 	fields: [
 		{
-			name: "partners",
-			type: "array",
-			fields: [
-				{
-					name: "name",
-					type: "text",
-					required: true,
-				},
-				{
-					name: "logo",
-					type: "upload",
-					relationTo: "media",
-					required: true,
-				},
-			],
-			minRows: 1,
-			maxRows: 20,
+			name: "name",
+			type: "text",
+			required: true,
+		},
+		{
+			name: "logo",
+			type: "upload",
+			relationTo: "media",
+			required: true,
 		},
 	],
 };

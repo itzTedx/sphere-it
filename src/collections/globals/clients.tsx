@@ -1,11 +1,11 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 
-import type { GlobalConfig } from "payload";
+import type { CollectionConfig } from "payload";
 
 import { isAdmin } from "@/modules/cms/access/isAdmin";
 import { checkRole } from "@/modules/cms/access/utilities";
 
-export const Clients: GlobalConfig = {
+export const Clients: CollectionConfig = {
 	slug: "clients",
 	access: {
 		read: () => true,
@@ -13,6 +13,7 @@ export const Clients: GlobalConfig = {
 	},
 	admin: {
 		hidden: ({ user }) => !checkRole(["admin"], user),
+		group: "Globals",
 	},
 	hooks: {
 		afterChange: [

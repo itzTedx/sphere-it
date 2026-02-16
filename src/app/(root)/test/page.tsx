@@ -13,6 +13,7 @@ import {
 import { payload } from "@/lib/payload";
 import { Media } from "@/modules/cms/components/Media";
 import RichText from "@/modules/cms/components/RichText";
+import type { Partner } from "@/payload-types";
 
 const ICONS = {
 	elevate: IconElevate,
@@ -70,15 +71,17 @@ export default async function TestPage() {
 										Partners:
 									</h2>
 									<ul className="flex items-center gap-4 pr-6">
-										{doc.partners?.map((partner) => (
-											<Fragment key={partner.id}>
-												<li>
-													<Media resource={partner.logo} />
-												</li>
+										{doc.partners
+											?.filter((p): p is Partner => typeof p === "object")
+											.map((partner) => (
+												<Fragment key={partner.id}>
+													<li>
+														<Media resource={partner.logo} />
+													</li>
 
-												<li className="h-3 w-px bg-muted-background last:hidden" />
-											</Fragment>
-										))}
+													<li className="h-3 w-px bg-muted-background last:hidden" />
+												</Fragment>
+											))}
 									</ul>
 								</div>
 							)}

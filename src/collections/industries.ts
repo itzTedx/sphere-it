@@ -12,6 +12,7 @@ export const Industries: CollectionConfig = {
 		useAsTitle: "title",
 		defaultColumns: ["title", "icon", "updatedAt"],
 		hidden: ({ user }) => !checkRole(["admin"], user),
+		group: "Globals",
 	},
 	access: {
 		read: () => true,
