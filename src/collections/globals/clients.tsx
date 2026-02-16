@@ -13,6 +13,7 @@ export const Clients: CollectionConfig = {
 	},
 	admin: {
 		hidden: ({ user }) => !checkRole(["admin"], user),
+		useAsTitle: "name",
 		group: "Globals",
 	},
 	hooks: {
@@ -28,27 +29,15 @@ export const Clients: CollectionConfig = {
 	},
 	fields: [
 		{
-			name: "clients",
-			type: "array",
-			admin: {
-				isSortable: true,
-			},
-
-			fields: [
-				{
-					name: "name",
-					type: "text",
-					required: true,
-				},
-				{
-					name: "logo",
-					type: "upload",
-					relationTo: "media",
-					required: true,
-				},
-			],
-			minRows: 1,
-			maxRows: 20,
+			name: "name",
+			type: "text",
+			required: true,
+		},
+		{
+			name: "logo",
+			type: "upload",
+			relationTo: "media",
+			required: true,
 		},
 	],
 };

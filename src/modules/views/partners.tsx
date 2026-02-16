@@ -1,12 +1,11 @@
-import { memo } from "react";
-
-import Image from "next/image";
-
 import { AnimatedGroup } from "@/components/ui/animated-group";
 
-import { PARTNERS } from "@/data/constants";
+import { Media } from "@/modules/cms/components/Media";
+import { getPartners } from "@/modules/global/partners";
 
-export const Partners = memo(() => {
+export const Partners = async () => {
+	const partners = await getPartners();
+
 	return (
 		<section className="my-16 md:mb-28">
 			<div className="mx-auto max-w-7xl max-xl:container">
@@ -48,18 +47,17 @@ export const Partners = memo(() => {
 								},
 							}}
 						>
-							{PARTNERS.map((partner) => (
+							{partners.map((partner) => (
 								<li
 									className="relative aspect-6/2 h-8 md:aspect-11/4 md:h-11"
 									key={partner.id}
 								>
-									<Image
+									<Media
 										alt={`${partner.name} logo`}
-										className="object-contain object-center"
 										fill
-										loading="lazy"
-										sizes="(max-width: 768px) 50vw, (max-width: 1200px) 42vw, 33vw"
-										src={partner.src}
+										imgClassName="object-contain object-center"
+										resource={partner.logo}
+										size="(max-width: 768px) 50vw, (max-width: 1200px) 42vw, 33vw"
 									/>
 								</li>
 							))}
@@ -69,6 +67,4 @@ export const Partners = memo(() => {
 			</div>
 		</section>
 	);
-});
-
-Partners.displayName = "Partners";
+};

@@ -801,13 +801,8 @@ export interface Industry {
  */
 export interface Client {
   id: number;
-  clients?:
-    | {
-        name: string;
-        logo: number | Media;
-        id?: string | null;
-      }[]
-    | null;
+  name: string;
+  logo: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -1466,13 +1461,8 @@ export interface PartnersSelect<T extends boolean = true> {
  * via the `definition` "clients_select".
  */
 export interface ClientsSelect<T extends boolean = true> {
-  clients?:
-    | T
-    | {
-        name?: T;
-        logo?: T;
-        id?: T;
-      };
+  name?: T;
+  logo?: T;
   updatedAt?: T;
   createdAt?: T;
 }

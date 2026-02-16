@@ -1,10 +1,11 @@
-import Image from "next/image";
-
 import { AnimatedGroup } from "@/components/ui/animated-group";
 
-import { CLIENTS } from "@/data/constants";
+import { Media } from "@/modules/cms/components/Media";
+import { getClients } from "@/modules/global/clients";
 
-export const Clients = () => {
+export const Clients = async () => {
+	const clients = await getClients();
+
 	return (
 		<section className="mx-auto max-w-7xl pt-12 max-xl:container">
 			<div className="space-y-4 rounded-3xl border bg-card px-6 py-9 md:px-16 md:py-10">
@@ -45,18 +46,17 @@ export const Clients = () => {
 							},
 						}}
 					>
-						{CLIENTS.map((client) => (
+						{clients.map((client) => (
 							<li
 								className="relative m-3 aspect-6/2 md:m-8 md:aspect-11/4"
 								key={client.id}
 							>
-								<Image
+								<Media
 									alt={`${client.name} logo`}
-									className="object-contain object-center"
 									fill
-									loading="lazy"
-									sizes="(max-width: 768px) 50vw, (max-width: 1200px) 42vw, 33vw"
-									src={client.src}
+									imgClassName="object-contain object-center"
+									resource={client.logo}
+									size="(max-width: 768px) 50vw, (max-width: 1200px) 42vw, 33vw"
 								/>
 							</li>
 						))}
