@@ -5,12 +5,14 @@ A modern, responsive website for Sphere Global built with Next.js 16, React 19, 
 ## 🚀 Tech Stack
 
 ### Core Technologies
+
 - **Next.js 16**: A React framework that provides server-side rendering, routing, and optimization out of the box
 - **React 19**: A JavaScript library for building user interfaces using reusable components
 - **TypeScript**: A typed superset of JavaScript that adds static type checking
 - **Tailwind CSS 4**: A utility-first CSS framework for rapid UI development
 
 ### Supporting Libraries
+
 - **Better Auth**: Comprehensive authentication solution for Next.js
 - **Drizzle ORM**: TypeScript ORM for SQL databases
 - **Radix UI**: Unstyled, accessible UI primitives for building design systems
@@ -27,7 +29,7 @@ A modern, responsive website for Sphere Global built with Next.js 16, React 19, 
 
 ## 📁 Project Structure
 
-```
+```bash
 sphere-global/
 ├── src/
 │   ├── app/                       # Next.js App Router pages
@@ -105,12 +107,13 @@ sphere-global/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm (recommended) or npm
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd sphere-global

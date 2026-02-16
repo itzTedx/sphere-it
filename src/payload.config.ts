@@ -111,7 +111,8 @@ export default buildConfig({
 	}),
 	upload: {
 		limits: {
-			fileSize: 5000000,
+			// Set maximum upload file size to 15 MB
+			fileSize: 15 * 1024 * 1024,
 		},
 	},
 
