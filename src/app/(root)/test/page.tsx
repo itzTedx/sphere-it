@@ -27,6 +27,7 @@ export default async function TestPage() {
 	const res = await payload.find({
 		collection: "services",
 		draft: false,
+
 		depth: 2,
 		limit: 6,
 		pagination: false,
@@ -41,7 +42,7 @@ export default async function TestPage() {
 			</pre> */}
 
 			{docs.map((doc) => {
-				const Icon = ICONS[doc.slug as keyof typeof ICONS];
+				// const Icon = ICONS[doc.slug as keyof typeof ICONS];
 				const hasPartners = doc.partners && doc.partners?.length > 0;
 				return (
 					<div key={doc.id}>
@@ -49,7 +50,7 @@ export default async function TestPage() {
 							<div className="container grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
 								<div className="space-y-6">
 									<Badge>
-										<Icon /> {doc.service}
+										{/* <Icon /> */} {doc.service}
 									</Badge>
 									<h1 className="font-semibold text-primary-900 text-title-5 sm:text-title-4 md:text-title-3">
 										{doc.title}

@@ -21,6 +21,7 @@ import type {
 	ButtonBlock as ButtonBlockProps,
 	CardBlock as CardBlockProps,
 	CertificationsBlock as CertificationsBlockProps,
+	ListBlock as ListBlockProps,
 	MediaBlock as MediaBlockProps,
 } from "@/payload-types";
 
@@ -28,6 +29,7 @@ import { BannerBlock } from "../../blocks/Banner/Component";
 import { ButtonBlock } from "../../blocks/button/Component";
 import { CardBlock } from "../../blocks/card/Component";
 import { CertificationsBlock } from "../../blocks/certifications/Component";
+import { ListBlock } from "../../blocks/list/Component";
 import { MediaBlock } from "../../blocks/MediaBlock/Component";
 
 type NodeTypes =
@@ -38,6 +40,7 @@ type NodeTypes =
 			| CardBlockProps
 			| CertificationsBlockProps
 			| ButtonBlockProps
+			| ListBlockProps
 	  >;
 
 type TextConverterArgs = {
@@ -146,6 +149,7 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 	blocks: {
 		button: ({ node }) => <ButtonBlock className="mb-4" {...node.fields} />,
 		banner: ({ node }) => <BannerBlock className="mb-4" {...node.fields} />,
+		list: ({ node }) => <ListBlock className="mb-4" {...node.fields} />,
 		card: ({ node }) => <CardBlock className="mb-4" {...node.fields} />,
 		mediaBlock: ({ node }) => (
 			<MediaBlock

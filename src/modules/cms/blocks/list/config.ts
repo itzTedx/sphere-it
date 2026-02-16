@@ -1,15 +1,12 @@
 import {
 	FixedToolbarFeature,
-	HeadingFeature,
 	InlineToolbarFeature,
 	lexicalEditor,
 } from "@payloadcms/richtext-lexical";
 import type { Block } from "payload";
 
-import { iconPickerField } from "../../fields/iconPickerField";
-
-export const CardBlock: Block = {
-	slug: "card",
+export const ListBlock: Block = {
+	slug: "list",
 	fields: [
 		{
 			type: "row",
@@ -17,11 +14,8 @@ export const CardBlock: Block = {
 				{
 					name: "style",
 					type: "select",
-					defaultValue: "basic",
-					options: [
-						{ label: "Basic", value: "basic" },
-						{ label: "Outlined", value: "outlined" },
-					],
+					defaultValue: "default",
+					options: [{ label: "Default", value: "default" }],
 					required: true,
 					admin: {
 						width: "75%",
@@ -30,7 +24,7 @@ export const CardBlock: Block = {
 				{
 					type: "select",
 					name: "columns",
-					defaultValue: "2",
+					defaultValue: "4",
 					options: [
 						{ label: "2 Columns", value: "2" },
 						{ label: "3 Columns", value: "3" },
@@ -45,18 +39,25 @@ export const CardBlock: Block = {
 
 		{
 			type: "array",
-			name: "cards",
-
+			name: "items",
+			admin: {
+				components: {
+					RowLabel: "@/modules/cms/blocks/list/row-label#ListRowLabel",
+				},
+			},
 			fields: [
-				iconPickerField({
-					name: "icon",
-					label: "Icon",
-					admin: {
-						description: "Choose an icon to display with this card.",
-						// Hide icon picker when using the list style, since list cards use descriptions only
-					},
-				}),
-
+				{
+					name: "title",
+					type: "text",
+					label: "Title",
+					required: true,
+				},
+				{
+					name: "description",
+					type: "textarea",
+					label: "Description",
+					required: true,
+				},
 				{
 					name: "content",
 					type: "richText",
@@ -64,9 +65,6 @@ export const CardBlock: Block = {
 						features: ({ rootFeatures }) => {
 							return [
 								...rootFeatures,
-								HeadingFeature({
-									enabledHeadingSizes: ["h3", "h4", "h5"],
-								}),
 
 								InlineToolbarFeature(),
 								FixedToolbarFeature({
@@ -85,5 +83,5 @@ export const CardBlock: Block = {
 			],
 		},
 	],
-	interfaceName: "CardBlock",
+	interfaceName: "ListBlock",
 };

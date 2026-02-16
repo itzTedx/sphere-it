@@ -106,17 +106,39 @@ export function CardContent({ title, description }: CardContentProps) {
 	);
 }
 
-export function ListCard({ children }: { children: React.ReactNode }) {
+export function ListCard({
+	children,
+	className,
+}: {
+	children: React.ReactNode;
+	className?: string;
+}) {
 	return (
-		<div className="card h-full overflow-hidden rounded-xl border-t-2 border-t-accent bg-card shadow-sm transition-[scale_shadow] hover:shadow-md">
+		<div
+			className={cn(
+				"card h-full overflow-hidden rounded-xl border-t-2 border-t-accent bg-card shadow-sm transition-[scale_shadow] hover:shadow-md",
+				className
+			)}
+		>
 			{children}
 		</div>
 	);
 }
 
-export function ListCardHeader({ children }: { children: React.ReactNode }) {
+export function ListCardHeader({
+	children,
+	className,
+}: {
+	children: React.ReactNode;
+	className?: string;
+}) {
 	return (
-		<div className="flex flex-col items-center gap-1 text-balance border-b bg-muted/50 p-3 px-3 text-center md:py-6 [&>h3]:text-title-5 [&>h4]:text-title-6 [&>p]:text-sm">
+		<div
+			className={cn(
+				"flex flex-col items-center gap-1 text-balance border-b bg-muted/50 p-3 px-3 text-center md:py-6 [&>h3]:text-title-5 [&>h4]:text-title-6 [&>p]:text-sm",
+				className
+			)}
+		>
 			{children}
 		</div>
 	);

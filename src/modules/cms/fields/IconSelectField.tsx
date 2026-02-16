@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 
-import { useField } from "@payloadcms/ui";
+import { useField, useFormFields } from "@payloadcms/ui";
 
 import * as Icons from "@/assets/icons";
 
@@ -26,6 +26,19 @@ export function IconPickerFieldComponent(props: {
 		potentiallyStalePath: pathFromProps,
 	});
 
+	// Derive the path to the parent block's `style` field from the current field path.
+	// Example: `layout.0.blocks.2.cards.0.icon` -> `layout.0.blocks.2.style`
+	const stylePath =
+		pathFromProps && pathFromProps.includes(".cards.")
+			? `${pathFromProps.slice(0, pathFromProps.indexOf(".cards."))}.style`
+			: undefined;
+
+	const styleField = useFormFields(([fields]) =>
+		stylePath ? fields[stylePath] : undefined
+	);
+
+	const styleValue = (styleField?.value as string | undefined) ?? undefined;
+
 	const [search, setSearch] = useState("");
 	const filteredIcons = useMemo(() => {
 		if (!search.trim()) return iconEntries;
@@ -38,12 +51,18 @@ export function IconPickerFieldComponent(props: {
 	const label = fieldConfig?.label ?? "Icon";
 	const description = fieldConfig?.admin?.description;
 
+	// If the parent Card block is using the "list" style, hide the icon picker entirely.
+	if (styleValue === "list") {
+		return null;
+	}
+
 	return (
 		<div
 			style={{
 				display: "flex",
 				flexDirection: "column",
 				gap: 8,
+				marginBottom: 16,
 			}}
 		>
 			<label

@@ -17,6 +17,7 @@ import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { IndentFeatureClient as IndentFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { LinkFeatureClient as LinkFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { IconPickerFieldComponent as IconPickerFieldComponent_ff77dd8298e99a1b176bbe5164983f6d } from '../../../modules/cms/fields/IconSelectField'
+import { ListRowLabel as ListRowLabel_16fedec7d2d634c53cb163764d98d1d4 } from '@/modules/cms/blocks/list/row-label'
 import { FeatureRowLabel as FeatureRowLabel_00e836692765ec247f3c2ffc6769ea48 } from '@/collections/services/components/feature-row-label'
 import { TagRowLabel as TagRowLabel_d3e45c80fab476d47c096e6e633768c5 } from '@/collections/services/components/tag-row-label'
 import { OverviewComponent as OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
@@ -55,6 +56,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#IndentFeatureClient": IndentFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#LinkFeatureClient": LinkFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "/modules/cms/fields/IconSelectField#IconPickerFieldComponent": IconPickerFieldComponent_ff77dd8298e99a1b176bbe5164983f6d,
+  "@/modules/cms/blocks/list/row-label#ListRowLabel": ListRowLabel_16fedec7d2d634c53cb163764d98d1d4,
   "@/collections/services/components/feature-row-label#FeatureRowLabel": FeatureRowLabel_00e836692765ec247f3c2ffc6769ea48,
   "@/collections/services/components/tag-row-label#TagRowLabel": TagRowLabel_d3e45c80fab476d47c096e6e633768c5,
   "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
