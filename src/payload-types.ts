@@ -555,6 +555,7 @@ export interface ResearchPaper {
  */
 export interface Partner {
   id: number;
+  _order?: string | null;
   name: string;
   logo: number | Media;
   updatedAt: string;
@@ -801,6 +802,7 @@ export interface Industry {
  */
 export interface Client {
   id: number;
+  _order?: string | null;
   name: string;
   logo: number | Media;
   updatedAt: string;
@@ -1451,6 +1453,7 @@ export interface IndustriesSelect<T extends boolean = true> {
  * via the `definition` "partners_select".
  */
 export interface PartnersSelect<T extends boolean = true> {
+  _order?: T;
   name?: T;
   logo?: T;
   updatedAt?: T;
@@ -1461,6 +1464,7 @@ export interface PartnersSelect<T extends boolean = true> {
  * via the `definition` "clients_select".
  */
 export interface ClientsSelect<T extends boolean = true> {
+  _order?: T;
   name?: T;
   logo?: T;
   updatedAt?: T;

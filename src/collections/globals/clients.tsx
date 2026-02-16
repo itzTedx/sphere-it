@@ -7,6 +7,7 @@ import { checkRole } from "@/modules/cms/access/utilities";
 
 export const Clients: CollectionConfig = {
 	slug: "clients",
+	orderable: true,
 	access: {
 		read: () => true,
 		update: isAdmin,
