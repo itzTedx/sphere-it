@@ -134,7 +134,7 @@ export default async function ServicesPage() {
 						))}
 					</ul>
 				</section>
-				<WhyMatters />
+				<WhyMatters data={pageData?.whyMatters} />
 				<Cta />
 			</main>
 		</>

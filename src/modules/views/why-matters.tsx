@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 
 import { AnimatedGroup } from "@/components/ui/animated-group";
@@ -14,10 +15,32 @@ import {
 import { IconArrowRight, IconInfoCircle } from "@/assets/icons";
 
 import { WHY_MATTERS } from "@/data/constants";
+import type { ServicesPage } from "@/payload-types";
 
 import { Clients } from "./clients";
 
-export const WhyMatters = () => {
+type WhyMattersData = ServicesPage["whyMatters"];
+
+function resolveCtaHref(
+	link: WhyMattersData["ctaLink"] | null | undefined
+): Route {
+	if (!link) return "/about";
+	if (link.type === "page" && link.page) return link.page as Route;
+	if (link.type === "custom" && link.url) return link.url as Route;
+	return "/about";
+}
+
+export const WhyMatters = ({ data }: { data?: WhyMattersData | null }) => {
+	const badge = data?.badge ?? "Why It Matters";
+	const title = data?.title ?? "Why Our Approach Works";
+	const description =
+		data?.description ??
+		"Because we blend precision with pragmatism, our services deliver results that are accurate, reliable, and practical - helping organizations achieve value faster and grow with confidence.";
+	const ctaLink = data?.ctaLink;
+	const ctaHref = resolveCtaHref(ctaLink);
+	const ctaLabel = ctaLink?.label ?? "Explore our Capabilities";
+	const items = data?.items && data.items.length > 0 ? data.items : WHY_MATTERS;
+
 	return (
 		<section
 			aria-labelledby="why-matters-heading"
@@ -32,18 +55,16 @@ export const WhyMatters = () => {
 							variant="secondary"
 						>
 							<IconInfoCircle aria-hidden="true" />
-							Why It Matters
+							{badge}
 						</Badge>
 						<h2
 							className="text-primary-900 text-title-3"
 							id="why-matters-heading"
 						>
-							Why Our Approach Works
+							{title}
 						</h2>
 						<p className="text-balance text-base text-stone-600 sm:text-lg">
-							Because we blend precision with pragmatism, our services deliver
-							results that are accurate, reliable, and practical - helping
-							organizations achieve value faster and grow with confidence.
+							{description}
 						</p>
 					</div>
 					<Button
@@ -53,9 +74,9 @@ export const WhyMatters = () => {
 					>
 						<Link
 							aria-label="Explore our service capabilities and opportunities"
-							href="/about"
+							href={ctaHref}
 						>
-							Explore our Capabilities
+							{ctaLabel}
 							<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300/50">
 								<IconArrowRight aria-hidden="true" />
 							</span>
@@ -95,7 +116,7 @@ export const WhyMatters = () => {
 							},
 						}}
 					>
-						{WHY_MATTERS.map((why, index) => (
+						{items.map((why, index) => (
 							<li key={why.badge}>
 								<Card
 									aria-labelledby={`feature-${index}-title`}
