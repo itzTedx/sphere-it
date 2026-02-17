@@ -8,20 +8,54 @@ import { Card } from "@/components/ui/card";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 import { TabsContent, TabsContents } from "@/components/ui/radix/tabs";
 
-import { IconArrowRight } from "@/assets/icons";
+import { IconAiGear, IconArrowRight } from "@/assets/icons";
+import {
+	IconAssure,
+	IconAugment,
+	IconAutomate,
+	IconElevate,
+	IconEvaluate,
+} from "@/assets/icons/services";
 
-import { SERVICES } from "@/data/services";
 import { ServiceListItem } from "@/types/service";
 
 import { getHomepageGlobal } from "../global/homepage";
+import { getServicesForListing } from "../global/services";
 import { ServicesTabs } from "./components/home/service-tabs";
 import { ServiceCard } from "./components/service-card";
 
+const SERVICE_ICON_MAP = {
+	elevate: IconElevate,
+	automate: IconAutomate,
+	evaluate: IconEvaluate,
+	assure: IconAssure,
+	augment: IconAugment,
+} as const;
+
 export const Services = async () => {
-	const data = await getHomepageGlobal();
+	const [homepage, servicesFromPayload] = await Promise.all([
+		getHomepageGlobal(),
+		getServicesForListing(),
+	]);
+
 	const {
 		services: { cta },
-	} = data;
+	} = homepage;
+
+	const services = servicesFromPayload.map((service) => {
+		const Icon =
+			SERVICE_ICON_MAP[service.id as keyof typeof SERVICE_ICON_MAP] ??
+			IconElevate;
+
+		return {
+			...service,
+			Icon,
+			lists: service.lists.map((listItem) => ({
+				...listItem,
+				Icon: IconAiGear,
+			})),
+		};
+	});
 
 	return (
 		<section
@@ -30,13 +64,13 @@ export const Services = async () => {
 			id="main-content"
 		>
 			<div className="relative max-sm:px-0">
-				<ServicesTabs>
+				<ServicesTabs serviceOrder={services.map((service) => service.id)}>
 					<Card className="md:mask-b-from-78% md:mask-b-to-99% mt-3 rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none backdrop-blur-md md:mt-0 md:p-1.5">
 						<TabsContents
 							className="rounded-3xl bg-card p-4 shadow-md sm:p-6 md:p-8 md:pb-28 xl:px-12 xl:pt-16"
 							mode="auto-height"
 						>
-							{SERVICES.map(({ Icon, ...service }) => (
+						{services.map(({ Icon, ...service }) => (
 								<TabsContent
 									aria-labelledby={`${service.id}-tab`}
 									className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-5 md:gap-8"

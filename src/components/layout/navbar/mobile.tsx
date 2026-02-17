@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { type SVGProps, useState } from "react";
 
+import type { Route } from "next";
 import Link from "next/link";
 
 import { Menu } from "lucide-react";
@@ -19,13 +20,61 @@ import {
 } from "@/components/ui/drawer";
 
 import { IconChevronDownFill } from "@/assets/icons";
+import {
+	IconAssure,
+	IconAugment,
+	IconAutomate,
+	IconElevate,
+	IconEvaluate,
+} from "@/assets/icons/services";
 import { Logo } from "@/assets/logo";
 
 import { NAV_LINKS } from "@/data/constants";
 import { ResourcesSubmenu, SubmenuLink } from "@/types/layout";
 
-export const MobileNav = () => {
+import type { NavService } from "./nav-types";
+
+const SERVICE_ICON_MAP: Record<
+	string,
+	(props: SVGProps<SVGSVGElement>) => React.JSX.Element
+> = {
+	elevate: IconElevate,
+	automate: IconAutomate,
+	evaluate: IconEvaluate,
+	assure: IconAssure,
+	augment: IconAugment,
+};
+
+const mapServicesToSubmenuLinks = (services: NavService[]): SubmenuLink[] =>
+	services.map((service, index) => {
+		const Icon =
+			SERVICE_ICON_MAP[service.id as keyof typeof SERVICE_ICON_MAP] ??
+			IconElevate;
+
+		const name =
+			service.id.charAt(0).toUpperCase() + service.id.slice(1).toLowerCase();
+
+		return {
+			id: index + 1,
+			image: service.image,
+			label: name,
+			description: service.description,
+			href: `/services/${service.id}` as Route,
+			Icon,
+		};
+	});
+
+type MobileNavProps = {
+	services: NavService[];
+};
+
+export const MobileNav = ({ services }: MobileNavProps) => {
 	const [open, setOpen] = useState(false);
+
+	const servicesSubmenu =
+		Array.isArray(services) && services.length > 0
+			? mapServicesToSubmenuLinks(services)
+			: null;
 
 	return (
 		<Drawer onOpenChange={setOpen} open={open}>
@@ -58,32 +107,41 @@ export const MobileNav = () => {
 						className="space-y-4"
 						role="navigation"
 					>
-						{NAV_LINKS.map(({ id, label, href, submenu, resources }) => (
-							<div className="space-y-2" key={id}>
-								{submenu ? (
-									<MobileSubmenu
-										items={submenu}
-										label={label}
-										onLinkClick={() => setOpen(false)}
-									/>
-								) : resources ? (
-									<MobileResourcesSubmenu
-										items={resources}
-										label={label}
-										onLinkClick={() => setOpen(false)}
-									/>
-								) : (
-									<Link
-										aria-label={`Navigate to ${label}`}
-										className="block rounded-lg px-3 py-2 font-medium text-base transition-colors hover:bg-stone-100 focus:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
-										href={href || "#"}
-										onClick={() => setOpen(false)}
-									>
-										{label}
-									</Link>
-								)}
-							</div>
-						))}
+						{NAV_LINKS.map(({ id, label, href, submenu, resources }) => {
+							const isServices = id === 1;
+
+							const resolvedSubmenu =
+								isServices && servicesSubmenu && servicesSubmenu.length > 0
+									? servicesSubmenu
+									: submenu;
+
+							return (
+								<div className="space-y-2" key={id}>
+									{resolvedSubmenu ? (
+										<MobileSubmenu
+											items={resolvedSubmenu}
+											label={label}
+											onLinkClick={() => setOpen(false)}
+										/>
+									) : resources ? (
+										<MobileResourcesSubmenu
+											items={resources}
+											label={label}
+											onLinkClick={() => setOpen(false)}
+										/>
+									) : (
+										<Link
+											aria-label={`Navigate to ${label}`}
+											className="block rounded-lg px-3 py-2 font-medium text-base transition-colors hover:bg-stone-100 focus:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+											href={href || "#"}
+											onClick={() => setOpen(false)}
+										>
+											{label}
+										</Link>
+									)}
+								</div>
+							);
+						})}
 					</nav>
 				</div>
 

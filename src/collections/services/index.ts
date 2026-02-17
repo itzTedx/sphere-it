@@ -65,15 +65,11 @@ export const Services: CollectionConfig = {
 	},
 	fields: [
 		{
-			type: "row",
-			fields: [
-				{
-					name: "service",
-					type: "text",
-					required: true,
-				},
-			],
+			name: "service",
+			type: "text",
+			required: true,
 		},
+		{ name: "subtitle", type: "text" },
 		{
 			type: "tabs",
 			tabs: [
@@ -180,13 +176,14 @@ export const Services: CollectionConfig = {
 				},
 				{
 					name: "homepage",
-					label: "Homepage & Navigation",
+					label: "Homepage",
 					fields: [
 						{
 							name: "title",
 							type: "text",
 							required: true,
 						},
+
 						{
 							name: "description",
 							type: "textarea",

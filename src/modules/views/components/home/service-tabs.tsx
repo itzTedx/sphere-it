@@ -46,16 +46,32 @@ const SERVICES_TABS_LISTS = [
 
 export const INTERVAL = 10 * 1000; // 10 seconds
 
-export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
+type ServicesTabsProps = {
+	children: React.ReactNode;
+	serviceOrder?: string[];
+};
+
+export const ServicesTabs = ({ children, serviceOrder }: ServicesTabsProps) => {
 	const isMobile = useIsMobile();
 	const [activeIndex, setActiveIndex] = useState(0);
 
-	const tabIndexById = useMemo(() => {
-		return new Map(SERVICES_TABS_LISTS.map((tab, index) => [tab.id, index]));
-	}, []);
+	const tabs = useMemo(() => {
+		if (!serviceOrder || serviceOrder.length === 0) return SERVICES_TABS_LISTS;
 
-	const currentTab =
-		SERVICES_TABS_LISTS[activeIndex]?.id ?? SERVICES_TABS_LISTS[0].id;
+		const tabMap = new Map(SERVICES_TABS_LISTS.map((tab) => [tab.id, tab]));
+
+		const orderedTabs = serviceOrder
+			.map((id) => tabMap.get(id))
+			.filter((tab): tab is (typeof SERVICES_TABS_LISTS)[number] => Boolean(tab));
+
+		return orderedTabs.length > 0 ? orderedTabs : SERVICES_TABS_LISTS;
+	}, [serviceOrder]);
+
+	const tabIndexById = useMemo(() => {
+		return new Map(tabs.map((tab, index) => [tab.id, index]));
+	}, [tabs]);
+
+	const currentTab = tabs[activeIndex]?.id ?? tabs[0]?.id ?? SERVICES_TABS_LISTS[0].id;
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: Need to rerender when active index changes
 	useEffect(() => {
@@ -126,7 +142,7 @@ export const ServicesTabs = ({ children }: { children: React.ReactNode }) => {
 						className="flex h-auto flex-wrap items-center justify-center rounded-none bg-foreground"
 						role="tablist"
 					>
-						{SERVICES_TABS_LISTS.map(({ id, Icon, name }) => (
+						{tabs.map(({ id, Icon, name }) => (
 							<TabsTrigger
 								aria-controls={`${id}-panel`}
 								className="relative overflow-hidden pl-1"

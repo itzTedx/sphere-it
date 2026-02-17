@@ -5,10 +5,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { BASE_URL } from "@/data/site-config";
 import RichText from "@/modules/cms/components/RichText";
-import {
-	getServicesForListing,
-	getServicesPageGlobal,
-} from "@/modules/global/services";
+import { getServicesForListing, getServicesPageGlobal } from "@/modules/global/services";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { WhyMatters } from "@/modules/views/why-matters";
 
@@ -135,15 +132,7 @@ export default async function ServicesPage() {
 				>
 					<ul className="space-y-8 sm:space-y-12 md:space-y-16">
 						{services.map((service) => (
-							<ServiceCard
-								id={service.id}
-								image={service.image}
-								key={service.id}
-								overview={service.overview}
-								proof={service.proof}
-								serviceTitle={service.serviceTitle}
-								tags={service.tags}
-							/>
+							<ServiceCard key={service.id} service={service} />
 						))}
 					</ul>
 				</section>

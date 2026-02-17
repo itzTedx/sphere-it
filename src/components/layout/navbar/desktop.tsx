@@ -19,61 +19,123 @@ import {
 	navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
+import {
+	IconAssure,
+	IconAugment,
+	IconAutomate,
+	IconElevate,
+	IconEvaluate,
+} from "@/assets/icons/services";
+
 import { NAV_LINKS } from "@/data/constants";
 import { cn } from "@/lib/utils";
 import { ResourcesSubmenu, SubmenuLink } from "@/types/layout";
 
-export const DesktopNavLinks = () => {
+import type { NavService } from "./nav-types";
+
+const SERVICE_ICON_MAP: Record<
+	string,
+	(props: SVGProps<SVGSVGElement>) => React.JSX.Element
+> = {
+	elevate: IconElevate,
+	automate: IconAutomate,
+	evaluate: IconEvaluate,
+	assure: IconAssure,
+	augment: IconAugment,
+};
+
+const mapServicesToSubmenuLinks = (services: NavService[]): SubmenuLink[] =>
+	services.map((service, index) => {
+		const Icon =
+			SERVICE_ICON_MAP[service.id as keyof typeof SERVICE_ICON_MAP] ??
+			IconElevate;
+
+		const name =
+			service.id.charAt(0).toUpperCase() + service.id.slice(1).toLowerCase();
+
+		return {
+			id: index + 1,
+			image: service.image,
+			label: name,
+			description: service.description,
+			href: `/services/${service.id}` as Route,
+			Icon,
+		};
+	});
+
+type DesktopNavLinksProps = {
+	services: NavService[];
+};
+
+export const DesktopNavLinks = ({ services }: DesktopNavLinksProps) => {
+	const servicesSubmenu =
+		Array.isArray(services) && services.length > 0
+			? mapServicesToSubmenuLinks(services)
+			: null;
+
 	return (
 		<NavigationMenu aria-label="Main navigation" viewport={true}>
 			<NavigationMenuList role="menubar">
-				{NAV_LINKS.map(({ id, label, href, submenu, resources }) => (
-					<NavigationMenuItem key={id}>
-						{submenu || resources ? (
-							<>
-								<NavigationMenuTrigger>
-									{href ? (
-										<Link
-											aria-label={label}
-											href={href}
-											tabIndex={-1}
-											title={label}
+				{NAV_LINKS.map(({ id, label, href, submenu, resources }) => {
+					const isServices = id === 1;
+
+					const resolvedSubmenu =
+						isServices && servicesSubmenu && servicesSubmenu.length > 0
+							? servicesSubmenu
+							: submenu;
+
+					const hasDropdown = resolvedSubmenu || resources;
+
+					return (
+						<NavigationMenuItem key={id}>
+							{hasDropdown ? (
+								<>
+									<NavigationMenuTrigger>
+										{href ? (
+											<Link
+												aria-label={label}
+												href={href}
+												tabIndex={-1}
+												title={label}
+											>
+												{label}
+											</Link>
+										) : (
+											label
+										)}
+									</NavigationMenuTrigger>
+									<NavigationMenuContent
+										aria-label={`${label} submenu`}
+										role="menu"
+									>
+										<ul
+											className="grid gap-2 md:w-[400px] lg:w-[1180px]"
+											role="none"
 										>
+											{id === 1 && resolvedSubmenu && (
+												<ServicesMegaMenu data={resolvedSubmenu} />
+											)}
+											{id === 2 && resources && (
+												<ResourcesMegaMenu data={resources} />
+											)}
+										</ul>
+									</NavigationMenuContent>
+								</>
+							) : (
+								<NavigationMenuLink
+									asChild
+									className={navigationMenuTriggerStyle()}
+								>
+									{href && (
+										<Link aria-label={label} href={href} title={label}>
 											{label}
 										</Link>
-									) : (
-										label
 									)}
-								</NavigationMenuTrigger>
-								<NavigationMenuContent
-									aria-label={`${label} submenu`}
-									role="menu"
-								>
-									<ul
-										className="grid gap-2 md:w-[400px] lg:w-[1180px]"
-										role="none"
-									>
-										{id === 1 && submenu && <ServicesMegaMenu data={submenu} />}
-										{id === 2 && resources && (
-											<ResourcesMegaMenu data={resources} />
-										)}
-									</ul>
-								</NavigationMenuContent>
-							</>
-						) : (
-							<NavigationMenuLink
-								asChild
-								className={navigationMenuTriggerStyle()}
-							>
-								{href && (
-									<Link aria-label={label} href={href} title={label}>
-										{label}
-									</Link>
-								)}
-							</NavigationMenuLink>
-						)}
-					</NavigationMenuItem>
-				))}
+								</NavigationMenuLink>
+							)}
+						</NavigationMenuItem>
+					);
+				})}
 			</NavigationMenuList>
 		</NavigationMenu>
 	);

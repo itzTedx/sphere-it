@@ -186,6 +186,7 @@ export interface Service {
   id: number;
   _order?: string | null;
   service: string;
+  subtitle?: string | null;
   heroImage: number | Media;
   title: string;
   description: {
@@ -1130,6 +1131,7 @@ export interface PayloadMigration {
 export interface ServicesSelect<T extends boolean = true> {
   _order?: T;
   service?: T;
+  subtitle?: T;
   heroImage?: T;
   title?: T;
   description?: T;

@@ -2,12 +2,16 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
+import { getNavServices } from "./actions";
 import { DesktopNavLinks } from "./desktop";
 import { InquiryModal } from "./inquiry-modal";
 import { Logo } from "./logo";
 import { MobileNav } from "./mobile";
+import type { NavService } from "./nav-types";
 
-export const Navbar = () => {
+export const Navbar = async () => {
+	const services: NavService[] = await getNavServices();
+
 	return (
 		<header
 			className={cn(
@@ -19,12 +23,12 @@ export const Navbar = () => {
 					<Logo />
 				</Link>
 				<div className="hidden md:block">
-					<DesktopNavLinks />
+					<DesktopNavLinks services={services} />
 				</div>
 				<div className="flex items-center gap-4">
 					<InquiryModal />
 
-					<MobileNav />
+					<MobileNav services={services} />
 				</div>
 			</div>
 		</header>
