@@ -3,10 +3,12 @@ import type { Metadata } from "next/dist/types";
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 
-import { SERVICES } from "@/data/services";
 import { BASE_URL } from "@/data/site-config";
 import RichText from "@/modules/cms/components/RichText";
-import { getServicesPageGlobal } from "@/modules/global/services";
+import {
+	getServicesForListing,
+	getServicesPageGlobal,
+} from "@/modules/global/services";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { WhyMatters } from "@/modules/views/why-matters";
 
@@ -72,7 +74,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ServicesPage() {
-	const pageData = await getServicesPageGlobal();
+	const [pageData, services] = await Promise.all([
+		getServicesPageGlobal(),
+		getServicesForListing(),
+	]);
 	const hero = pageData?.hero;
 
 	return (
@@ -94,7 +99,7 @@ export default async function ServicesPage() {
 				<header className="border-b bg-card py-9 sm:py-12 md:py-16">
 					<div className="container max-w-7xl">
 						<Badge>{hero?.badge ?? "Services"}</Badge>
-						<div className="mt-4 max-w-4xl space-y-4 sm:space-y-6">
+						<div className="mt-4 max-w-5xl space-y-4 sm:space-y-6">
 							{hero?.title ? (
 								<RichText
 									className="prose-h1:text-primary-900 prose-h1:text-title-5 prose-strong:text-primary-600 sm:prose-h1:text-title-3 md:prose-h1:text-title-2 lg:prose-h1:text-title-1"
@@ -129,8 +134,16 @@ export default async function ServicesPage() {
 					id="main-content"
 				>
 					<ul className="space-y-8 sm:space-y-12 md:space-y-16">
-						{SERVICES.map((service) => (
-							<ServiceCard key={service.id} service={service} />
+						{services.map((service) => (
+							<ServiceCard
+								id={service.id}
+								image={service.image}
+								key={service.id}
+								overview={service.overview}
+								proof={service.proof}
+								serviceTitle={service.serviceTitle}
+								tags={service.tags}
+							/>
 						))}
 					</ul>
 				</section>

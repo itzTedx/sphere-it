@@ -1,13 +1,12 @@
-import { Fragment, Suspense, type ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 
+import type { Route } from "next";
 import type { Metadata } from "next/dist/types";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { IconBox } from "@/components/icon-box";
-import { Cta, MiniCta } from "@/components/layout/cta";
-import MDXContent from "@/components/markdown";
+import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
@@ -24,49 +23,45 @@ import {
 
 import { TECH_STACKS } from "@/data/constants";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { cn } from "@/lib/utils";
+import { Media } from "@/modules/cms/components/Media";
+import RichText from "@/modules/cms/components/RichText";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import {
 	generateFAQStructuredData,
 	getFAQCategoryFromSlug,
 } from "@/modules/seo/faq-jsonld";
-import { getServiceBySlug } from "@/modules/services/actions";
 import {
-	Card,
-	CardContent,
-	CardGroup,
-	CardIcon,
-	ListCard,
-	ListCardContent,
-	ListCardHeader,
-} from "@/modules/services/components/card-list";
-import { Certificate } from "@/modules/services/components/certifications";
-import { Counter } from "@/modules/services/components/counter";
-import {
-	FeatureItem,
-	FeatureList,
-} from "@/modules/services/components/feature-list";
-import { Header } from "@/modules/services/components/header";
-import { Industry } from "@/modules/services/components/industry";
-import { Section } from "@/modules/services/components/section";
-
-import { CaseButton } from "../components/case-button";
-import { SERVICES } from "../data/services";
+	findServiceBySlug,
+	listServices,
+} from "@/modules/services/actions/query";
+import type { Partner, Service as ServiceDoc } from "@/payload-types";
 
 interface Props {
 	params: Promise<{ slug: string }>;
 }
 
+function resolveCtaHref(link: {
+	type?: string | null;
+	page?: string | null;
+	url?: string | null;
+}): Route {
+	if (link?.type === "page" && link.page) return link.page as Route;
+	if (link?.type === "custom" && link.url) return link.url as Route;
+	return "/contact";
+}
+
 export async function generateStaticParams() {
-	return SERVICES.map((service) => ({
-		slug: service.id,
+	const services = await listServices();
+
+	return services.map((service) => ({
+		slug: service.slug,
 	}));
 }
 
 export default async function ServicePage({ params }: Props) {
 	const { slug } = await params;
 
-	const service = await getServiceBySlug(slug);
+	const service = await findServiceBySlug(slug);
 
 	if (!service) return notFound();
 
@@ -78,32 +73,35 @@ export default async function ServicePage({ params }: Props) {
 		augment: IconAugment,
 	} as const;
 
-	const Icon = ICONS[service.metadata.badge as keyof typeof ICONS];
+	const Icon = ICONS[service.slug as keyof typeof ICONS] ?? IconElevate;
 
-	const faqCategory = await getFAQCategoryFromSlug(service.metadata.badge);
+	const faqCategory = await getFAQCategoryFromSlug(service.slug);
 	const faqStructuredData = await generateFAQStructuredData(faqCategory);
+
+	const metaTitle = service.meta?.title ?? service.title;
+	const metaDescription = service.meta?.description ?? service.homepage.title;
 
 	const structuredData = {
 		"@context": "https://schema.org",
 		"@type": "Service",
-		name: service.metadata.title,
-		description: service.metadata.meta.description,
+		name: metaTitle,
+		description: metaDescription,
 		provider: {
 			"@type": "Organization",
 			name: COMPANY_NAME,
-			url: "${BASE_URL}",
+			url: BASE_URL,
 		},
-		serviceType: service.metadata.category,
-		category: service.metadata.category,
-		keywords: service.metadata.meta.keywords,
+		serviceType: service.service,
+		category: service.service,
+		keywords: [service.service, service.title, metaDescription, COMPANY_NAME],
 		areaServed: {
 			"@type": "Country",
 			name: "United Arab Emirates",
 		},
 		offers: {
 			"@type": "Offer",
-			description: service.metadata.meta.description,
-			category: service.metadata.category,
+			description: metaDescription,
+			category: service.service,
 		},
 	};
 
@@ -126,8 +124,8 @@ export default async function ServicePage({ params }: Props) {
 					{ name: "Home", item: `${BASE_URL}` },
 					{ name: "Services", item: `${BASE_URL}/services` },
 					{
-						name: service.metadata.title,
-						item: `${BASE_URL}/services/${service.metadata.badge}`,
+						name: service.title,
+						item: `${BASE_URL}/services/${service.slug}`,
 					},
 				]}
 			/>
@@ -137,45 +135,74 @@ export default async function ServicePage({ params }: Props) {
 						<div className="space-y-6">
 							<Badge>
 								<Icon />
-								{service.metadata.badge}
+								{service.service}
 							</Badge>
 							<h1 className="font-semibold text-primary-900 text-title-5 sm:text-title-4 md:text-title-3">
-								{service.metadata.title}
+								{service.title}
 							</h1>
-							{Array.isArray(service.metadata.description) ? (
-								<ul className="space-y-2 text-lg sm:text-xl">
-									{service.metadata.description.map((item, index) => (
-										<li className="flex gap-2" key={index}>
-											<Icons.IconCheckmark className="mt-2.5 size-3.5 shrink-0 text-primary-600" />
-											{item}
-										</li>
-									))}
-								</ul>
-							) : (
-								<p className="text-lg sm:text-xl">
-									{service.metadata.description}
-								</p>
-							)}
-							{service.metadata.partners && (
+							<RichText
+								className="prose-xl prose-li:before:-left-6 prose-li:relative prose-ul:list-none prose-li:before:absolute prose-li:before:top-[0.7rem] prose-li:before:h-4 prose-li:before:w-4 prose-li:before:bg-[url('/svg/checkbox.svg')] prose-li:before:bg-contain prose-li:before:bg-no-repeat prose-li:before:content-['']"
+								data={service.description}
+								enableGutter={false}
+							/>
+							{service.partners && service.partners.length > 0 && (
 								<div className="flex items-start gap-4 md:hidden">
 									<h2 className="font-display text-muted-foreground text-subhead-base">
 										Partners:
 									</h2>
 									<ul className="flex flex-wrap items-center gap-4">
-										{service.metadata.partners.map((partner) => (
-											<Fragment key={partner}>
-												<li>
-													<Image alt="" height={30} src={partner} width={90} />
-												</li>
+										{service.partners
+											?.filter(
+												(partner): partner is Partner =>
+													typeof partner === "object" && partner !== null
+											)
+											.map((partner) => (
+												<Fragment key={partner.id}>
+													<li>
+														<Media resource={partner.logo} />
+													</li>
 
-												<li className="h-3 w-px bg-muted-background last:hidden" />
-											</Fragment>
-										))}
+													<li className="h-3 w-px bg-muted-background last:hidden" />
+												</Fragment>
+											))}
 									</ul>
 								</div>
 							)}
 							<div className="flex flex-wrap items-center gap-3">
-								<Button asChild size="lg">
+								{service.ctaButtons &&
+									service.ctaButtons.map((cta) => {
+										const link = cta.link;
+
+										if (!link?.label) return null;
+
+										const href = resolveCtaHref(link);
+										const isOutline = link.appearance === "outline";
+
+										return (
+											<Button
+												asChild
+												key={cta.id ?? link.label}
+												size="lg"
+												variant={isOutline ? "outline" : "default"}
+											>
+												<Link
+													href={href}
+													{...(link.newTab && {
+														rel: "noopener noreferrer",
+														target: "_blank",
+													})}
+												>
+													{link.label}
+													{!isOutline && (
+														<span className="w-7">
+															<IconArrowRight />
+														</span>
+													)}
+												</Link>
+											</Button>
+										);
+									})}
+								{/* <Button asChild size="lg">
 									<Link href="/contact">
 										Get Started
 										<span className="w-7">
@@ -184,110 +211,72 @@ export default async function ServicePage({ params }: Props) {
 									</Link>
 								</Button>
 								<Button asChild size="lg" variant="ghost">
-									{service.metadata.badge === "assure" ? (
+									{service.slug === "assure" ? (
 										<Link href="/contact">Request a Assure</Link>
-									) : service.metadata.badge === "augment" ? (
+									) : service.slug === "augment" ? (
 										<Link href="/careers#application">
 											Explore Talent Models
 										</Link>
 									) : (
 										<Link href="/contact">Request a Demo</Link>
 									)}
-								</Button>
+								</Button> */}
 							</div>
 						</div>
 						<div className="relative order-first aspect-10/7 lg:order-last">
-							<Image
-								alt={service.metadata.title}
-								className="object-contain"
-								fill
-								priority
-								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-								src={service.metadata.image}
-							/>
+							{service.heroImage && typeof service.heroImage !== "number" && (
+								<Media
+									className="object-contain"
+									fill
+									resource={service.heroImage}
+									size="33vw"
+								/>
+							)}
 						</div>
 					</div>
-					{service.metadata.partners && (
+					{service.partners && service.partners.length > 0 && (
 						<div className="container hidden max-w-7xl items-center justify-end gap-4 md:flex">
 							<h2 className="font-display text-muted-foreground text-subhead-base">
 								Partners:
 							</h2>
 							<ul className="flex items-center gap-4 pr-6">
-								{service.metadata.partners.map((partner) => (
-									<Fragment key={partner}>
-										<li>
-											<Image alt="" height={30} src={partner} width={90} />
-										</li>
+								{service.partners
+									?.filter(
+										(partner): partner is Partner =>
+											typeof partner === "object" && partner !== null
+									)
+									.map((partner) => (
+										<Fragment key={partner.id}>
+											<li>
+												<Media resource={partner.logo} />
+											</li>
 
-										<li className="h-3 w-px bg-muted-background last:hidden" />
-									</Fragment>
-								))}
+											<li className="h-3 w-px bg-muted-background last:hidden" />
+										</Fragment>
+									))}
 							</ul>
 						</div>
 					)}
 				</header>
-				<article
-					className="prose prose-stone prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-6 prose-h3:mb-4 prose-headings:mb-4 max-w-none pb-12 prose-h2:font-semibold prose-h2:text-title-4 prose-h3:text-title-5 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-h2:text-title-3 sm:prose-h3:text-title-4 sm:prose-li:prose-p:text-lg sm:prose-li:text-lg sm:prose-p:text-lg lg:prose-h2:text-title-2 lg:prose-h3:text-title-3 lg:prose-p:text-xl"
-					id="main-content"
-				>
-					{service.metadata.badge === "elevate" && (
-						<div className="not-prose container mt-6 md:max-w-7xl">
-							<MiniCta
-								buttonLink="/resources/ai-maturity"
-								buttonText="Start Assessment"
-								title="Explore Al maturity of your business"
-							/>
-						</div>
-					)}
-					<MDXContent
-						components={{
-							Section,
-							Header,
-							Badge,
-							Button: (props) => (
-								<Suspense fallback={<Button {...props} />}>
-									<CaseButton {...props} />
-								</Suspense>
-							),
-							CardGroup,
-							Card,
-							CardIcon,
-							CardContent,
-							ListCard,
-							ListCardHeader,
-							ListCardContent,
-							Counter,
-							Certificate,
-							FeatureList,
-							FeatureItem,
-							Industry,
-							IconBox,
-							...Icons,
-							Cta: (props) => <MiniCta {...props} className="not-prose" />,
-							Image: (props) => (
-								<Image
-									{...props}
-									className={cn("max-w-full rounded-lg", props.className)}
-								/>
-							),
-							TechMarquee,
-						}}
-						source={service.content}
+				<article className="mt-12" id="main-content">
+					<RichText
+						className="prose prose-stone container prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-6 prose-h3:mb-4 prose-headings:mb-4 max-w-7xl prose-h2:font-semibold prose-h2:text-title-4 prose-h3:text-title-5 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-h2:text-title-3 sm:prose-h3:text-title-4 sm:prose-li:prose-p:text-lg sm:prose-li:text-lg sm:prose-p:text-lg lg:prose-h2:text-title-2 lg:prose-h3:text-title-3 lg:prose-p:text-xl"
+						data={service.content}
+						enableGutter={false}
 					/>
 				</article>
 
 				<Cta
 					buttonText={
-						service.metadata.badge === "elevate" ||
-						service.metadata.badge === "evaluate"
+						service.slug === "elevate" || service.slug === "evaluate"
 							? "Speak With an Expert"
 							: undefined
 					}
 					showForm
 					title={
-						service.metadata.badge === "elevate"
+						service.slug === "elevate"
 							? "Ready to Elevate Your Enterprise with AI That Works?"
-							: service.metadata.badge === "evaluate"
+							: service.slug === "evaluate"
 								? "Empower Decisions with Data That Delivers."
 								: undefined
 					}
@@ -299,7 +288,7 @@ export default async function ServicePage({ params }: Props) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const { slug } = await params;
-	const service = SERVICES.find((s) => s.id === slug);
+	const service = (await findServiceBySlug(slug)) as ServiceDoc | null;
 
 	if (!service) {
 		return {
@@ -308,64 +297,54 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		};
 	}
 
+	const description = service.meta?.description ?? service.homepage.description;
+	const title = service.meta?.title ?? service.title;
+	const image =
+		service.meta?.image && typeof service.meta.image !== "number"
+			? service.meta.image.url
+			: "";
+
 	return {
-		title: `${service.title} - ${service.id.charAt(0).toUpperCase() + service.id.slice(1)} | ${COMPANY_NAME}`,
-		description: service.description,
+		title: `${title} | ${COMPANY_NAME} Services`,
+		description,
 		keywords: [
-			...service.meta.keywords,
+			"IT services",
+			"digital transformation",
+			"technology solutions",
+			"enterprise solutions",
+			service.service,
+			service.title,
 			COMPANY_NAME,
-			"Dubai technology",
 			"UAE technology",
 			"GCC technology",
-			"enterprise solutions",
-			"digital transformation",
 		],
 
 		openGraph: {
-			title: service.title,
-			description: service.description,
-			type: "website",
-			url: `${BASE_URL}/services/${service.id}`,
+			title,
+			description,
+			type: "article",
+			url: `${BASE_URL}/services/${service.slug}`,
 			siteName: COMPANY_NAME,
 			locale: "en_US",
 			images: [
 				{
-					url: service.image,
+					url: image ? `${BASE_URL}${image}` : `${BASE_URL}/logo.png`,
 					width: 1200,
 					height: 630,
-					alt: service.title,
+					alt: title,
 				},
 			],
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: service.title,
-			description: service.description,
-			images: [service.image],
+			title,
+			description,
+			images: [image ? `${BASE_URL}${image}` : `${BASE_URL}/logo.png`],
 			creator: "@sphereitglobal",
 			site: "@sphereitglobal",
 		},
 		alternates: {
-			canonical: `${BASE_URL}/services/${service.id}`,
-		},
-		category: service.meta.category,
-		classification: `${service.title}, ${service.meta.category}, Digital Transformation`,
-		other: {
-			"geo.region": "AE",
-			"geo.country": "United Arab Emirates",
-			"geo.placename": "Dubai",
-			"DC.title": service.title,
-			"DC.description": service.description,
-			"DC.subject": `${service.title}, ${service.meta.category}, Digital Transformation`,
-			"DC.creator": COMPANY_NAME,
-			"DC.publisher": COMPANY_NAME,
-			"DC.language": "en",
-			"DC.coverage": "Global",
-			"service.category": service.meta.category,
-			"service.industries": service.meta.industry.join(", "),
-			"service.certifications": service.meta.certifications.join(", "),
-			"service.technologies": service.meta.technologies.join(", "),
-			"service.benefits": service.meta.benefits.join(", "),
+			canonical: `${BASE_URL}/services/${service.slug}`,
 		},
 	};
 }
