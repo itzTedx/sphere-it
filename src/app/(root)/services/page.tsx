@@ -5,7 +5,10 @@ import { Badge } from "@/components/ui/badge";
 
 import { BASE_URL } from "@/data/site-config";
 import RichText from "@/modules/cms/components/RichText";
-import { getServicesForListing, getServicesPageGlobal } from "@/modules/global/services";
+import {
+	getServicesForPage,
+	getServicesPageGlobal,
+} from "@/modules/global/services";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { WhyMatters } from "@/modules/views/why-matters";
 
@@ -73,7 +76,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ServicesPage() {
 	const [pageData, services] = await Promise.all([
 		getServicesPageGlobal(),
-		getServicesForListing(),
+		getServicesForPage(),
 	]);
 	const hero = pageData?.hero;
 

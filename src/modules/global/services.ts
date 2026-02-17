@@ -1,7 +1,7 @@
 import { cacheLife, cacheTag } from "next/cache";
 
 import { payload } from "@/lib/payload";
-import type { Partner } from "@/payload-types";
+import type { Partner, Service } from "@/payload-types";
 import type { Service as CardService, ServiceListItem } from "@/types/service";
 
 export type ListingService = Omit<CardService, "Icon" | "lists"> & {
@@ -117,4 +117,43 @@ export const getServicesForListing = async (): Promise<ListingService[]> => {
 			proof,
 		};
 	});
+};
+
+export type ServicePageType = Pick<
+	Service,
+	| "id"
+	| "service"
+	| "heroImage"
+	| "slug"
+	| "subtitle"
+	| "description"
+	| "homepage"
+>;
+
+export const getServicesForPage = async (): Promise<ServicePageType[]> => {
+	"use cache";
+	cacheTag("services");
+	cacheLife("max");
+
+	const { docs } = await payload.find({
+		collection: "services",
+		limit: 50,
+		sort: "_order",
+		select: {
+			service: true,
+			heroImage: true,
+			slug: true,
+			subtitle: true,
+			description: true,
+			homepage: {
+				tags: true,
+				proofLink: true,
+			},
+		},
+		depth: 2,
+		where: {
+			_status: { equals: "published" },
+		},
+	});
+	return docs;
 };
