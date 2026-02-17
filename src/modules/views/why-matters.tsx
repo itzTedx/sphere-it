@@ -1,9 +1,5 @@
-import type { Route } from "next";
-import Link from "next/link";
-
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
@@ -17,18 +13,11 @@ import { IconArrowRight, IconInfoCircle } from "@/assets/icons";
 import { WHY_MATTERS } from "@/data/constants";
 import type { ServicesPage } from "@/payload-types";
 
+import { CMSLink } from "../cms/components/Link";
+
 import { Clients } from "./clients";
 
 type WhyMattersData = ServicesPage["whyMatters"];
-
-function resolveCtaHref(
-	link: WhyMattersData["ctaLink"] | null | undefined
-): Route {
-	if (!link) return "/about";
-	if (link.type === "page" && link.page) return link.page as Route;
-	if (link.type === "custom" && link.url) return link.url as Route;
-	return "/about";
-}
 
 export const WhyMatters = ({ data }: { data?: WhyMattersData | null }) => {
 	const badge = data?.badge ?? "Why It Matters";
@@ -37,7 +26,6 @@ export const WhyMatters = ({ data }: { data?: WhyMattersData | null }) => {
 		data?.description ??
 		"Because we blend precision with pragmatism, our services deliver results that are accurate, reliable, and practical - helping organizations achieve value faster and grow with confidence.";
 	const ctaLink = data?.ctaLink;
-	const ctaHref = resolveCtaHref(ctaLink);
 	const ctaLabel = ctaLink?.label ?? "Explore our Capabilities";
 	const items = data?.items && data.items.length > 0 ? data.items : WHY_MATTERS;
 
@@ -67,21 +55,30 @@ export const WhyMatters = ({ data }: { data?: WhyMattersData | null }) => {
 							{description}
 						</p>
 					</div>
-					<Button
-						asChild
-						className="shrink-0 self-start bg-stone-alpha-10 lg:self-auto"
-						variant="ghost"
-					>
-						<Link
-							aria-label="Explore our service capabilities and opportunities"
-							href={ctaHref}
+					{ctaLink && (
+						<CMSLink
+							appearance="ghost"
+							className="shrink-0 self-start bg-stone-alpha-10 lg:self-auto"
+							label={ctaLabel}
+							newTab={ctaLink.newTab}
+							reference={
+								ctaLink.type === "reference" ? ctaLink.reference : undefined
+							}
+							size="default"
+							type={ctaLink.type === "reference" ? "reference" : "custom"}
+							url={
+								ctaLink.type === "page"
+									? ctaLink.page ?? undefined
+									: ctaLink.type === "custom"
+										? ctaLink.url ?? undefined
+										: undefined
+							}
 						>
-							{ctaLabel}
 							<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300/50">
 								<IconArrowRight aria-hidden="true" />
 							</span>
-						</Link>
-					</Button>
+						</CMSLink>
+					)}
 				</header>
 
 				{/* Features Grid - Responsive Layout */}

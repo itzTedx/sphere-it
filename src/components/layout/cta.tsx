@@ -6,6 +6,7 @@ import { LogoOutline } from "@/assets/logo";
 
 import { cn } from "@/lib/utils";
 import { QuickEnquiryForm } from "@/modules/form/quick-enquiry-form";
+import { CMSLink } from "@/modules/cms/components/Link";
 
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -57,13 +58,14 @@ export const Cta = ({
 						<p className="text-balance text-primary-300 text-sm sm:text-base lg:text-lg">
 							{description}
 						</p>
-						<Button
-							aria-describedby="cta-description"
+						<CMSLink
+							appearance="default"
 							className="w-full sm:w-auto"
+							label={buttonText}
 							size="lg"
-						>
-							<Link href={buttonLink}>{buttonText}</Link>
-						</Button>
+							type="custom"
+							url={buttonLink}
+						/>
 					</div>
 					<LogoOutline
 						aria-hidden="true"

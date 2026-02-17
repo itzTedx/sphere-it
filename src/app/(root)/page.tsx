@@ -8,6 +8,7 @@ import { generateFAQStructuredData } from "@/modules/seo/faq-jsonld";
 import { Clients, Hero, Services, WhyUs } from "@/modules/views";
 import { Industries } from "@/modules/views/industries";
 import { Partners } from "@/modules/views/partners";
+import { getHomepageGlobal } from "@/modules/global/homepage";
 
 const meta = {
 	title: "Sphere IT - Digital Transformation Partner in UAE & GCC",
@@ -49,7 +50,19 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-	const faqStructuredData = await generateFAQStructuredData("general");
+	const [faqStructuredData, homepage] = await Promise.all([
+		generateFAQStructuredData("general"),
+		getHomepageGlobal(),
+	]);
+
+	const cta = homepage?.cta;
+
+	const ctaButtonLink =
+		cta?.link?.type === "page" && cta.link.page
+			? cta.link.page
+			: cta?.link?.type === "custom" && cta.link.url
+				? (cta.link.url as unknown as import("next").Route)
+				: undefined;
 
 	return (
 		<>
@@ -70,7 +83,16 @@ export default async function Home() {
 				<Partners />
 				{/* <Resources /> */}
 
-				<Cta showForm />
+				{cta && (
+					<Cta
+						badge={cta.badge ?? undefined}
+						buttonLink={ctaButtonLink}
+						buttonText={cta.link?.label ?? "Start the Conversation"}
+						description={cta.description ?? undefined}
+						showForm={cta.showForm ?? false}
+						title={cta.title}
+					/>
+				)}
 			</main>
 		</>
 	);

@@ -1,10 +1,8 @@
-import type { Metadata, Route } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 import {
 	IconArrowRight,
@@ -16,6 +14,7 @@ import {
 
 import { BASE_URL } from "@/data/site-config";
 import { getMethodologyPageGlobal } from "@/modules/global/methodology";
+import { CMSLink } from "@/modules/cms/components/Link";
 
 const AXIS_ICONS = {
 	bullseye: IconBullseye,
@@ -23,16 +22,6 @@ const AXIS_ICONS = {
 	rocket: IconRocket,
 	shield: IconShield,
 } as const;
-
-function resolveCtaHref(link: {
-	type?: string | null;
-	page?: string | null;
-	url?: string | null;
-}): Route {
-	if (link?.type === "page" && link.page) return link.page as Route;
-	if (link?.type === "custom" && link.url) return link.url as Route;
-	return "/services";
-}
 
 const defaultMeta = {
 	title: "AXIS Methodology - IT Strategy & Predictable Delivery Framework",
@@ -118,31 +107,45 @@ export default async function MethodologyPage() {
 
 						{hero?.ctaLink?.label ? (
 							<div className="space-x-4">
-								<Button asChild size="lg" variant="secondary">
-									<Link
-										href={resolveCtaHref(hero.ctaLink)}
-										{...(hero.ctaLink.newTab && {
-											rel: "noopener noreferrer",
-											target: "_blank",
-										})}
-									>
-										{hero.ctaLink.label}
-										<span className="w-7">
-											<IconArrowRight />
-										</span>
-									</Link>
-								</Button>
+								<CMSLink
+									appearance="secondary"
+									label={hero.ctaLink.label}
+									newTab={hero.ctaLink.newTab}
+									reference={
+										hero.ctaLink.type === "reference"
+											? hero.ctaLink.reference
+											: undefined
+									}
+									size="lg"
+									type={
+										hero.ctaLink.type === "reference" ? "reference" : "custom"
+									}
+									url={
+										hero.ctaLink.type === "page"
+											? hero.ctaLink.page ?? undefined
+											: hero.ctaLink.type === "custom"
+												? hero.ctaLink.url ?? undefined
+												: undefined
+									}
+								>
+									<span className="w-7">
+										<IconArrowRight />
+									</span>
+								</CMSLink>
 							</div>
 						) : (
 							<div className="space-x-4">
-								<Button asChild size="lg" variant="secondary">
-									<Link href="/services">
-										Get Started
-										<span className="w-7">
-											<IconArrowRight />
-										</span>
-									</Link>
-								</Button>
+								<CMSLink
+									appearance="secondary"
+									label="Get Started"
+									size="lg"
+									type="custom"
+									url="/services"
+								>
+									<span className="w-7">
+										<IconArrowRight />
+									</span>
+								</CMSLink>
 							</div>
 						)}
 					</div>

@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-import type { Route } from "next";
-import Link from "next/link";
-
 import { motion } from "motion/react";
 
-import { Button } from "@/components/ui/button";
+import type { ButtonBlock as ButtonBlockType } from "src/payload-types";
+
+import { CMSLink } from "../cms/components/Link";
 import {
 	Tabs,
 	TabsContent,
@@ -30,8 +29,7 @@ type Phase = {
 interface AxisCardClientProps {
 	className?: string;
 	title: string;
-	learnMoreUrl: string;
-	learnMoreLabel: string;
+	learnMoreLink: ButtonBlockType["link"];
 	phases: Phase[];
 }
 
@@ -75,8 +73,7 @@ const DEFAULT_PHASES: Phase[] = [
 export function AxisCardClient({
 	className,
 	title,
-	learnMoreUrl,
-	learnMoreLabel,
+	learnMoreLink,
 	phases,
 }: AxisCardClientProps) {
 	const axisPhases = phases.length > 0 ? phases : DEFAULT_PHASES;
@@ -158,9 +155,31 @@ export function AxisCardClient({
 								</TabsTrigger>
 							))}
 						</TabsList>
-						<Button asChild>
-							<Link href={learnMoreUrl as Route}>{learnMoreLabel}</Link>
-						</Button>
+						{learnMoreLink && (
+							<CMSLink
+								appearance="default"
+								label={learnMoreLink.label}
+								newTab={learnMoreLink.newTab}
+								reference={
+									learnMoreLink.type === "reference"
+										? learnMoreLink.reference
+										: undefined
+								}
+								size="default"
+								type={
+									learnMoreLink.type === "reference"
+										? "reference"
+										: "custom"
+								}
+								url={
+									learnMoreLink.type === "page"
+										? (learnMoreLink.page ?? undefined)
+										: learnMoreLink.type === "custom"
+											? (learnMoreLink.url ?? undefined)
+											: undefined
+								}
+							/>
+						)}
 					</div>
 					<TabsContents className="flex-1 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.25))] border bg-stone-alpha-10 p-1">
 						<div className="flex items-center justify-between rounded-xl bg-linear-to-br from-primary-200 to-card p-4 shadow-sm sm:p-6">

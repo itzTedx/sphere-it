@@ -1,14 +1,10 @@
 import { Fragment, type ReactNode } from "react";
-
-import type { Route } from "next";
 import type { Metadata } from "next/dist/types";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
 
 import * as Icons from "@/assets/icons";
@@ -23,6 +19,7 @@ import {
 
 import { TECH_STACKS } from "@/data/constants";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
+import { CMSLink } from "@/modules/cms/components/Link";
 import { Media } from "@/modules/cms/components/Media";
 import RichText from "@/modules/cms/components/RichText";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
@@ -38,16 +35,6 @@ import type { Partner, Service as ServiceDoc } from "@/payload-types";
 
 interface Props {
 	params: Promise<{ slug: string }>;
-}
-
-function resolveCtaHref(link: {
-	type?: string | null;
-	page?: string | null;
-	url?: string | null;
-}): Route {
-	if (link?.type === "page" && link.page) return link.page as Route;
-	if (link?.type === "custom" && link.url) return link.url as Route;
-	return "/contact";
 }
 
 export async function generateStaticParams() {
@@ -175,31 +162,38 @@ export default async function ServicePage({ params }: Props) {
 
 										if (!link?.label) return null;
 
-										const href = resolveCtaHref(link);
 										const isOutline = link.appearance === "outline";
 
 										return (
-											<Button
-												asChild
+											<CMSLink
+												appearance={isOutline ? "outline" : "default"}
+												className=""
 												key={cta.id ?? link.label}
+												label={link.label}
+												newTab={link.newTab}
+												reference={
+													link.type === "reference"
+														? link.reference
+														: undefined
+												}
 												size="lg"
-												variant={isOutline ? "outline" : "default"}
+												type={
+													link.type === "reference" ? "reference" : "custom"
+												}
+												url={
+													link.type === "page"
+														? link.page ?? undefined
+														: link.type === "custom"
+															? link.url ?? undefined
+															: undefined
+												}
 											>
-												<Link
-													href={href}
-													{...(link.newTab && {
-														rel: "noopener noreferrer",
-														target: "_blank",
-													})}
-												>
-													{link.label}
-													{!isOutline && (
-														<span className="w-7">
-															<IconArrowRight />
-														</span>
-													)}
-												</Link>
-											</Button>
+												{!isOutline && (
+													<span className="w-7">
+														<IconArrowRight />
+													</span>
+												)}
+											</CMSLink>
 										);
 									})}
 								{/* <Button asChild size="lg">

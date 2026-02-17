@@ -21,6 +21,7 @@ import { LogoIcon } from "@/assets/logo";
 import { BASE_URL } from "@/data/site-config";
 import { DownloadDeck } from "@/modules/auth/components/download-deck";
 import RichText from "@/modules/cms/components/RichText";
+import { CMSLink } from "@/modules/cms/components/Link";
 import { getAboutPageGlobal } from "@/modules/global/about";
 import { getTeamsGlobal } from "@/modules/global/teams";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
@@ -356,26 +357,36 @@ export default async function AboutPage() {
 								{hiring?.description}
 							</p>
 						</div>
-						{hiring?.ctaLink?.url && (
-							<Button
-								asChild
+						{hiring?.ctaLink && (
+							<CMSLink
+								appearance="ghost"
 								className="justify-between md:justify-center"
-								variant="ghost"
+								label={hiring.ctaLink.label || "Explore open Opportunities"}
+								newTab={hiring.ctaLink.newTab}
+								reference={
+									hiring.ctaLink.type === "reference"
+										? hiring.ctaLink.reference
+										: undefined
+								}
+								size="default"
+								type={
+									hiring.ctaLink.type === "reference" ? "reference" : "custom"
+								}
+								url={
+									hiring.ctaLink.type === "page"
+										? hiring.ctaLink.page ?? undefined
+										: hiring.ctaLink.type === "custom"
+											? hiring.ctaLink.url ?? undefined
+											: undefined
+								}
 							>
-								<Link
-									aria-label="View current job openings and career opportunities"
-									href={hiring.ctaLink.url as "/careers"}
-									title={hiring.ctaLink.label || "Explore open Opportunities"}
-								>
-									{hiring.ctaLink.label || "Explore open Opportunities"}
-									<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
-										<IconArrowRight
-											aria-hidden="true"
-											className="text-stone-500"
-										/>
-									</span>
-								</Link>
-							</Button>
+								<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-stone-300">
+									<IconArrowRight
+										aria-hidden="true"
+										className="text-stone-500"
+									/>
+								</span>
+							</CMSLink>
 						)}
 					</div>
 					<ul

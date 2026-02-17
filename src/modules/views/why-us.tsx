@@ -1,6 +1,4 @@
-import type { Route } from "next";
 import Image from "next/image";
-import Link from "next/link";
 
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +12,10 @@ import { IconLayers } from "@/assets/icons/layers";
 import { TECH_STACKS } from "@/data/constants";
 import { cn } from "@/lib/utils";
 
+import type { ButtonBlock as ButtonBlockType } from "src/payload-types";
+
 import RichText from "../cms/components/RichText";
+import { CMSLink } from "../cms/components/Link";
 import { getHomepageGlobal } from "../global/homepage";
 import { AxisCardClient } from "./why-us-axis-card";
 
@@ -22,23 +23,23 @@ export const WhyUs = async () => {
 	const data = await getHomepageGlobal();
 	const { whyUs } = data;
 
-	// Extract link URL for axis card
-	const axisLearnMoreLink = whyUs?.axisCard?.learnMoreLink;
-	const axisLinkUrl =
-		axisLearnMoreLink?.type === "page"
-			? axisLearnMoreLink.page
-			: axisLearnMoreLink?.type === "custom"
-				? axisLearnMoreLink.url
-				: "/methodology";
+	// Extract link for axis card (including newTab behavior)
+	const axisLearnMoreLink =
+		(whyUs?.axisCard?.learnMoreLink as ButtonBlockType["link"] | undefined) ??
+		({
+			type: "page",
+			page: "/methodology",
+			label: "Learn More",
+		} as ButtonBlockType["link"]);
 
-	// Extract link URL for tech stack card
-	const techStackLink = whyUs?.techStackCard?.ctaLink;
-	const techStackLinkUrl =
-		techStackLink?.type === "page"
-			? techStackLink.page
-			: techStackLink?.type === "custom"
-				? techStackLink.url
-				: "/resources/case-studies";
+	// Extract link for tech stack card (including newTab behavior)
+	const techStackCtaLink =
+		(whyUs?.techStackCard?.ctaLink as ButtonBlockType["link"] | undefined) ??
+		({
+			type: "page",
+			page: "/resources/case-studies",
+			label: "Read case studies",
+		} as ButtonBlockType["link"]);
 
 	return (
 		<section aria-labelledby="why-us-heading" className="relative z-50">
@@ -79,8 +80,7 @@ export const WhyUs = async () => {
 					/>
 					<AxisCardClient
 						className="md:col-span-7"
-						learnMoreLabel={axisLearnMoreLink?.label ?? "Learn More"}
-						learnMoreUrl={axisLinkUrl ?? "/methodology"}
+						learnMoreLink={axisLearnMoreLink}
 						phases={
 							whyUs?.axisCard?.phases?.map((phase) => ({
 								letter: phase.letter,
@@ -93,8 +93,7 @@ export const WhyUs = async () => {
 					<TechStackCard
 						badge={whyUs?.techStackCard?.badge ?? "Results-Driven Delivery"}
 						className="md:col-span-6"
-						ctaLabel={techStackLink?.label ?? "Read case studies"}
-						ctaUrl={techStackLinkUrl ?? "/resources/case-studies"}
+						ctaLink={techStackCtaLink}
 						title={
 							whyUs?.techStackCard?.title ??
 							"Driven by People, Powered by Technology."
@@ -159,16 +158,14 @@ interface TechStackCardProps {
 	className?: string;
 	badge: string;
 	title: string;
-	ctaUrl: string;
-	ctaLabel: string;
+	ctaLink: ButtonBlockType["link"];
 }
 
 function TechStackCard({
 	className,
 	badge,
 	title,
-	ctaUrl,
-	ctaLabel,
+	ctaLink,
 }: TechStackCardProps) {
 	return (
 		<article
@@ -184,9 +181,26 @@ function TechStackCard({
 						{title}
 					</h3>
 				</header>
-				<Button asChild className="w-fit" variant="outline">
-					<Link href={ctaUrl as Route}>{ctaLabel}</Link>
-				</Button>
+				{ctaLink && (
+					<CMSLink
+						appearance="outline"
+						className="w-fit"
+						label={ctaLink.label}
+						newTab={ctaLink.newTab}
+						reference={
+							ctaLink.type === "reference" ? ctaLink.reference : undefined
+						}
+						size="default"
+						type={ctaLink.type === "reference" ? "reference" : "custom"}
+						url={
+							ctaLink.type === "page"
+								? (ctaLink.page ?? undefined)
+								: ctaLink.type === "custom"
+									? (ctaLink.url ?? undefined)
+									: undefined
+						}
+					/>
+				)}
 			</div>
 			<div className="relative">
 				<div className="relative z-10 m-6 mb-0 space-y-3 rounded-t-xl bg-stone-alpha-10 p-3 pb-0 shadow-lg backdrop-blur-md">
