@@ -5,7 +5,6 @@ import { Cta } from "@/components/layout/cta";
 
 import { LEGAL_HANDLING_EMAIL } from "@/data/legal";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { Header } from "../components/header";
 import { SectionTitle } from "../components/section-title";
@@ -99,12 +98,12 @@ export default function PrivacyPage() {
 			/>
 
 			<main aria-label="Privacy Policy" role="main">
-				<Header title="Privacy Policy" />
-				<section className="mx-auto grid max-w-7xl grid-cols-1 justify-center lg:grid-cols-4">
+				<Header />
+				<section className="mx-auto max-w-6xl">
 					{/* Table of Contents - Hidden on mobile, visible on desktop */}
-					<div className="hidden px-4 py-4 lg:block lg:px-9">
+					{/* <div className="hidden px-4 py-4 lg:block lg:px-9">
 						<TableOfContent />
-					</div>
+					</div> */}
 
 					<article
 						aria-label="Privacy Policy Content"

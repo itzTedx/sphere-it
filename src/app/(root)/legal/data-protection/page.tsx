@@ -4,7 +4,6 @@ import { Cta } from "@/components/layout/cta";
 
 import { LEGAL_HANDLING_EMAIL } from "@/data/legal";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { Header } from "../components/header";
 import { SectionTitle } from "../components/section-title";
@@ -99,16 +98,16 @@ export default function DataProtectionPage() {
 			/>
 
 			<main aria-label="Data protection policy" role="main">
-				<Header title="Data protection policy" />
-				<section className="mx-auto grid max-w-7xl grid-cols-1 justify-center lg:grid-cols-4">
+				<Header />
+				<section className="mx-auto max-w-6xl">
 					{/* Table of Contents - Hidden on mobile, visible on desktop */}
-					<div className="hidden px-4 py-4 lg:block lg:px-9">
+					{/* <div className="hidden px-4 py-4 lg:block lg:px-9">
 						<TableOfContent />
-					</div>
+					</div> */}
 
 					<article
 						aria-label="Data protection policy Content"
-						className="prose prose-stone container col-span-1 max-w-none border-l-0 py-6 prose-a:text-primary-600 prose-a:transition-colors prose-a:hover:text-accent lg:col-span-3 lg:border-l lg:py-12"
+						className="prose prose-stone container max-w-none py-6 prose-a:text-primary-600 prose-a:transition-colors prose-a:hover:text-accent"
 					>
 						<div className="-mb-4 relative pt-4">
 							<div className="relative">

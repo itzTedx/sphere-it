@@ -13,7 +13,6 @@ import {
 
 import { LEGAL_HANDLING_EMAIL, SERVICE_DEFINITIONS } from "@/data/legal";
 import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
-import { TableOfContent } from "@/modules/views/components/table-of-content";
 
 import { Header } from "../components/header";
 import { SectionTitle } from "../components/section-title";
@@ -104,12 +103,12 @@ export default function TermsOfServicesPage() {
 			/>
 
 			<main aria-label="Terms of Service" role="main">
-				<Header title="Terms of Service" />
-				<section className="mx-auto grid max-w-7xl grid-cols-1 justify-center lg:grid-cols-4">
+				<Header />
+				<section className="mx-auto max-w-6xl">
 					{/* Table of Contents - Hidden on mobile, visible on desktop */}
-					<div className="hidden px-4 py-4 lg:block lg:px-9">
+					{/* <div className="hidden px-4 py-4 lg:block lg:px-9">
 						<TableOfContent />
-					</div>
+					</div> */}
 
 					<article
 						aria-label="Terms of Service Content"
