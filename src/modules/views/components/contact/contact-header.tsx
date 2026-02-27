@@ -71,7 +71,9 @@ function SalesCard() {
 					demo.
 				</p>
 			</div>
-			<Button className="mt-6 w-fit sm:mt-0">Contact now</Button>
+			<Button asChild className="mt-6 w-fit sm:mt-0">
+				<Link href="/contact#main-content">Contact now</Link>
+			</Button>
 		</article>
 	);
 }
