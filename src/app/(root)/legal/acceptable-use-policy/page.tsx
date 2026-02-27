@@ -107,7 +107,7 @@ export default function AcceptableUsePage() {
 
 					<article
 						aria-label="Acceptable Use Policy Content"
-						className="prose prose-stone container col-span-1 max-w-none border-l-0 py-6 prose-a:text-primary-600 prose-a:transition-colors prose-a:hover:text-accent lg:col-span-3 lg:border-l lg:py-12"
+						className="prose prose-stone container max-w-none py-6 prose-a:text-primary-600 prose-a:transition-colors prose-a:hover:text-accent"
 					>
 						<div className="-mb-4 relative pt-4">
 							<div className="relative">
