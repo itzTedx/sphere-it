@@ -20,6 +20,7 @@ import { Footer } from "./collections/globals/footer";
 import { Industries } from "./collections/globals/industries";
 import { Partners } from "./collections/globals/partners";
 import { Teams } from "./collections/globals/teams";
+import { LegalPages } from "./collections/legal-pages";
 import { Media } from "./collections/Media";
 import { AboutPage } from "./collections/pages/about";
 import { FaqsPage } from "./collections/pages/faqs";
@@ -54,6 +55,20 @@ export default buildConfig({
 			robots: "noindex, nofollow",
 		},
 	},
+
+	globals: [
+		// Pages
+		Homepage,
+		ServicesPage,
+		AboutPage,
+		FaqsPage,
+		InsightsPage,
+		MethodologyPage,
+
+		// Globals
+		Teams,
+		Footer,
+	],
 	collections: [
 		// Services
 		Services,
@@ -69,6 +84,9 @@ export default buildConfig({
 		Enquiries,
 		Media,
 
+		// Legal
+		LegalPages,
+
 		// Employment
 		Careers,
 		Departments,
@@ -81,19 +99,6 @@ export default buildConfig({
 
 		// Auth
 		Users,
-	],
-	globals: [
-		// Pages
-		Homepage,
-		ServicesPage,
-		AboutPage,
-		FaqsPage,
-		InsightsPage,
-		MethodologyPage,
-
-		// Globals
-		Teams,
-		Footer,
 	],
 	email: nodemailerAdapter({
 		defaultFromAddress: env.SMTP_FROM,

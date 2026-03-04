@@ -1,30 +1,22 @@
+import type { Route } from "next";
+
+import { listLegalPages } from "@/modules/legal-pages/actions/query";
+
 import { HeaderLink } from "./links-with-active";
 
-export const Header = () => {
+export const Header = async () => {
+	const legalPages = await listLegalPages();
+
 	return (
 		<header className="border-b bg-card pt-9 sm:pt-12 md:pt-14">
-			{/* <h1 className="pb-16 text-center text-primary-900 text-title-1 sm:pb-20">
-				{title}
-			</h1> */}
-			<ul className="mx-auto flex items-center justify-center gap-1">
-				<li>
-					<HeaderLink href="/legal/privacy">Privacy Policy</HeaderLink>
-				</li>
-				<li>
-					<HeaderLink href="/legal/data-protection">
-						Data protection policy
-					</HeaderLink>
-				</li>
-				<li>
-					<HeaderLink href="/legal/acceptable-use-policy">
-						Acceptable use policy
-					</HeaderLink>
-				</li>
-				<li>
-					<HeaderLink href="/legal/terms-of-services">
-						Terms of Service
-					</HeaderLink>
-				</li>
+			<ul className="mx-auto flex flex-wrap items-center justify-center gap-1">
+				{legalPages.map((page) => (
+					<li key={page.id ?? page.slug}>
+						<HeaderLink href={`/legal/${page.slug}` as Route}>
+							{page.title}
+						</HeaderLink>
+					</li>
+				))}
 			</ul>
 		</header>
 	);

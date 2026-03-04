@@ -13,6 +13,7 @@ import { Logo } from "@/assets/logo";
 
 import { FOOTER } from "@/data/constants";
 import { getFooterGlobal } from "@/modules/global/footer";
+import { listLegalPages } from "@/modules/legal-pages/actions/query";
 import { Footer as FooterType } from "@/payload-types";
 import { FooterNavLink } from "@/types/layout";
 
@@ -20,7 +21,10 @@ import { FooterNavLink } from "@/types/layout";
 const currentYear = new Date().getFullYear();
 
 export const Footer = async () => {
-	const data = await getFooterGlobal();
+	const [data, legalPages] = await Promise.all([
+		getFooterGlobal(),
+		listLegalPages(),
+	]);
 	return (
 		<footer
 			aria-label="Site footer"
@@ -93,46 +97,18 @@ export const Footer = async () => {
 						</p>
 						<nav aria-label="Legal and policy links">
 							<ul className="flex flex-wrap items-center gap-4" role="list">
-								<li>
-									<Link
-										aria-label="Read our Privacy Policy"
-										className="rounded-sm p-2 text-muted-foreground text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
-										href="/legal/privacy"
-										title="Read our Privacy Policy"
-									>
-										Privacy policy
-									</Link>
-								</li>
-								<li>
-									<Link
-										aria-label="Read our Data Protection Policy"
-										className="rounded-sm p-2 text-muted-foreground text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
-										href="/legal/data-protection"
-										title="Read our Data Protection Policy"
-									>
-										Data protection policy
-									</Link>
-								</li>
-								<li>
-									<Link
-										aria-label="Read our Acceptable use policy"
-										className="rounded-sm p-2 text-muted-foreground text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
-										href="/legal/acceptable-use-policy"
-										title="Read our Acceptable use policy"
-									>
-										Acceptable use policy
-									</Link>
-								</li>
-								<li>
-									<Link
-										aria-label="Read our Terms of Service"
-										className="rounded-sm p-2 text-muted-foreground text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
-										href="/legal/terms-of-services"
-										title="Read our Terms of Service"
-									>
-										Terms of service
-									</Link>
-								</li>
+								{legalPages.map((page) => (
+									<li key={page.id ?? page.slug}>
+										<Link
+											aria-label={`Read our ${page.title}`}
+											className="rounded-sm p-2 text-muted-foreground text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
+											href={`/legal/${page.slug}` as Route}
+											title={`Read our ${page.title}`}
+										>
+											{page.title}
+										</Link>
+									</li>
+								))}
 							</ul>
 						</nav>
 					</div>

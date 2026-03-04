@@ -103,6 +103,27 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 			</Link>
 		);
 	},
+	paragraph: ({ node, nodesToJSX }) => {
+		const hasHeadingDescendant = (nodes: DefaultNodeTypes[]): boolean => {
+			return nodes.some((child) => {
+				if (child.type === "heading") return true;
+				if ("children" in child && Array.isArray(child.children)) {
+					return hasHeadingDescendant(child.children as DefaultNodeTypes[]);
+				}
+				return false;
+			});
+		};
+
+		if (hasHeadingDescendant(node.children as DefaultNodeTypes[])) {
+			return <div>{nodesToJSX({ nodes: node.children })}</div>;
+		}
+
+		if (typeof defaultConverters.paragraph === "function") {
+			return defaultConverters.paragraph({ node, nodesToJSX } as never);
+		}
+
+		return <p>{nodesToJSX({ nodes: node.children })}</p>;
+	},
 	text: (args: TextConverterArgs) => {
 		const { node } = args;
 		const primaryColor = node.$?.color === "primary";

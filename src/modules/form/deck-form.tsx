@@ -46,8 +46,25 @@ export const DeckForm = ({
 
 	const form = useForm<DeckType>({
 		resolver: zodResolver(deckSchema),
-		mode: "onBlur",
+		mode: "onSubmit",
 	});
+
+	function triggerDeckDownload(name?: string) {
+		const link = document.createElement("a");
+		link.href = "/pdf/sphere-it-introduction.pdf";
+		link.download = "Sphere IT - Introduction.pdf";
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+
+		const title = name
+			? `Thank you ${name}! Your download has started.`
+			: "Your download has started.";
+
+		toast.success(title, {
+			description: "We'll be in touch soon to discuss your needs.",
+		});
+	}
 
 	function handleSubmit(data: DeckType) {
 		startTransition(async () => {
@@ -59,19 +76,7 @@ export const DeckForm = ({
 				if (result.success) {
 					// Only trigger PDF download if using default handler
 					if (!onSubmit) {
-						const link = document.createElement("a");
-						link.href = "/pdf/sphere-it-introduction.pdf";
-						link.download = "Sphere IT - Introduction.pdf";
-						document.body.appendChild(link);
-						link.click();
-						document.body.removeChild(link);
-
-						toast.success(
-							`Thank you ${"name" in result ? result.name : ""}! Your download has started.`,
-							{
-								description: "We'll be in touch soon to discuss your needs.",
-							}
-						);
+						triggerDeckDownload("name" in result ? result.name : undefined);
 					}
 
 					// Reset form after successful submission
@@ -201,7 +206,13 @@ export const DeckForm = ({
 					<LoadingSwap isLoading={isPending}>{buttonText}</LoadingSwap>
 				</Button>
 
-				<LinkedInAuthButton />
+				<LinkedInAuthButton
+					onSuccess={() => {
+						triggerDeckDownload();
+						form.reset();
+						onSuccess?.();
+					}}
+				/>
 			</FieldGroup>
 		</form>
 	);

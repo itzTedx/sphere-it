@@ -77,6 +77,7 @@ export interface Config {
     'ai-maturity-submissions': AiMaturitySubmission;
     enquiries: Enquiry;
     media: Media;
+    'legal-pages': LegalPage;
     careers: Career;
     departments: Department;
     employeeTestimonials: EmployeeTestimonial;
@@ -106,6 +107,7 @@ export interface Config {
     'ai-maturity-submissions': AiMaturitySubmissionsSelect<false> | AiMaturitySubmissionsSelect<true>;
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'legal-pages': LegalPagesSelect<false> | LegalPagesSelect<true>;
     careers: CareersSelect<false> | CareersSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     employeeTestimonials: EmployeeTestimonialsSelect<false> | EmployeeTestimonialsSelect<true>;
@@ -702,6 +704,45 @@ export interface Enquiry {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legal-pages".
+ */
+export interface LegalPage {
+  id: number;
+  title: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "careers".
  */
 export interface Career {
@@ -1037,6 +1078,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'legal-pages';
+        value: number | LegalPage;
       } | null)
     | ({
         relationTo: 'careers';
@@ -1393,6 +1438,26 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legal-pages_select".
+ */
+export interface LegalPagesSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2880,6 +2945,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'researchPapers';
           value: number | ResearchPaper;
+        } | null)
+      | ({
+          relationTo: 'legal-pages';
+          value: number | LegalPage;
         } | null)
       | ({
           relationTo: 'careers';

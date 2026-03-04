@@ -10,7 +10,15 @@ import { IconSocialLinkedin } from "@/assets/icons";
 
 import { signIn, useSession } from "@/lib/auth/client";
 
-export const LinkedInAuthButton = ({ compact }: { compact?: boolean }) => {
+interface LinkedInAuthButtonProps {
+	compact?: boolean;
+	onSuccess?: () => void;
+}
+
+export const LinkedInAuthButton = ({
+	compact,
+	onSuccess,
+}: LinkedInAuthButtonProps) => {
 	const [isPending, startTransition] = useTransition();
 
 	const { data: session } = useSession();
@@ -22,20 +30,19 @@ export const LinkedInAuthButton = ({ compact }: { compact?: boolean }) => {
 				callbackURL: window.location.href, // Return to current page after auth
 				fetchOptions: {
 					onSuccess(_ctx) {
-						// const account = ctx.data.account;
-						// const user = ctx.data.user;
-						// console.log("[DEBUG] LinkedIn auth successful:", {
-						// 	user: { email: user.email, name: user.name },
-						// 	account: { provider: account.provider },
-						// });
-
 						// Show success message
 						toast.success("Successfully connected with LinkedIn!", {
 							description: "You can now access premium content.",
 						});
 
-						// Reload page to update authentication state
-						window.location.reload();
+						// If a custom success handler is provided, let the caller
+						// handle any follow-up actions (like triggering downloads).
+						// Otherwise, reload the page to update authentication state.
+						if (onSuccess) {
+							onSuccess();
+						} else {
+							window.location.reload();
+						}
 					},
 					onError(ctx) {
 						console.error("[DEBUG] LinkedIn auth failed:", {
