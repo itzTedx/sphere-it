@@ -13,8 +13,8 @@ import {
 } from "@/assets/icons";
 
 import { BASE_URL } from "@/data/site-config";
-import { getMethodologyPageGlobal } from "@/modules/global/methodology";
 import { CMSLink } from "@/modules/cms/components/Link";
+import { getMethodologyPageGlobal } from "@/modules/global/methodology";
 
 const AXIS_ICONS = {
 	bullseye: IconBullseye,

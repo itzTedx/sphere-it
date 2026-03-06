@@ -15,7 +15,7 @@ import { Media } from "@/modules/cms/components/Media";
 import RichText from "@/modules/cms/components/RichText";
 import type { Partner } from "@/payload-types";
 
-const ICONS = {
+const _ICONS = {
 	elevate: IconElevate,
 	automate: IconAutomate,
 	evaluate: IconEvaluate,

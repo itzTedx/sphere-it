@@ -4,11 +4,11 @@ import Script from "next/script";
 import { Cta } from "@/components/layout/cta";
 
 import { BASE_URL } from "@/data/site-config";
+import { getHomepageGlobal } from "@/modules/global/homepage";
 import { generateFAQStructuredData } from "@/modules/seo/faq-jsonld";
 import { Clients, Hero, Services, WhyUs } from "@/modules/views";
 import { Industries } from "@/modules/views/industries";
 import { Partners } from "@/modules/views/partners";
-import { getHomepageGlobal } from "@/modules/global/homepage";
 
 const meta = {
 	title: "Sphere IT - Digital Transformation Partner in UAE & GCC",

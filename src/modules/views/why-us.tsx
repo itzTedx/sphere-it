@@ -1,8 +1,9 @@
 import Image from "next/image";
 
+import type { ButtonBlock as ButtonBlockType } from "src/payload-types";
+
 import { MiniCta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
 import { FlickeringGrid } from "@/components/ui/primitives/animate/flicker-grid";
 
@@ -12,10 +13,8 @@ import { IconLayers } from "@/assets/icons/layers";
 import { TECH_STACKS } from "@/data/constants";
 import { cn } from "@/lib/utils";
 
-import type { ButtonBlock as ButtonBlockType } from "src/payload-types";
-
-import RichText from "../cms/components/RichText";
 import { CMSLink } from "../cms/components/Link";
+import RichText from "../cms/components/RichText";
 import { getHomepageGlobal } from "../global/homepage";
 import { AxisCardClient } from "./why-us-axis-card";
 

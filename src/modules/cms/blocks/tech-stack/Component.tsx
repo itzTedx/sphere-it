@@ -3,7 +3,9 @@ import React from "react";
 import Image from "next/image";
 
 import { Marquee } from "@/components/ui/marquee";
+
 import * as Icons from "@/assets/icons";
+
 import { TECH_STACKS } from "@/data/constants";
 import { cn } from "@/lib/utils";
 

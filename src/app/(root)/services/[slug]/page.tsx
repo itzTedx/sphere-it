@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from "react";
+
 import type { Metadata } from "next/dist/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
