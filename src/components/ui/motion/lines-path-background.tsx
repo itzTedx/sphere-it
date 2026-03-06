@@ -31,7 +31,7 @@ export function PathsBackground({
 		>
 			<svg
 				aria-hidden="true"
-				className="h-full w-full text-stone-alpha-10"
+				className="h-full w-full text-stone-500/30"
 				fill="none"
 				viewBox="0 0 696 316"
 			>

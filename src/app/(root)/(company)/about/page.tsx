@@ -20,8 +20,8 @@ import { LogoIcon } from "@/assets/logo";
 
 import { BASE_URL } from "@/data/site-config";
 import { DownloadDeck } from "@/modules/auth/components/download-deck";
-import RichText from "@/modules/cms/components/RichText";
 import { CMSLink } from "@/modules/cms/components/Link";
+import RichText from "@/modules/cms/components/RichText";
 import { getAboutPageGlobal } from "@/modules/global/about";
 import { getTeamsGlobal } from "@/modules/global/teams";
 import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
@@ -105,15 +105,15 @@ export default async function AboutPage() {
 			/>
 			<main>
 				<header
-					className="relative z-50 h-[calc(100svh-9rem)] overflow-hidden border-b bg-card sm:h-[calc(100lvh-4rem)]"
+					className="relative z-50 h-[calc(100svh-9rem)] overflow-hidden border-b bg-card sm:min-h-[calc(100lvh-4rem)]"
 					role="banner"
 				>
-					<div className="container flex h-full max-w-7xl flex-col justify-between py-9 sm:py-16 md:py-20 xl:py-32">
+					<div className="container flex h-full max-w-7xl flex-col justify-between py-9 md:py-12 lg:py-16 xl:py-20 2xl:py-24">
 						<div className="max-w-2xl">
 							<Badge variant="ghost">{hero?.badge}</Badge>
 							{hero?.title && (
 								<RichText
-									className="prose-h1:text-primary-900 prose-h1:text-title-3 md:prose-h1:text-title-1"
+									className="prose-h1:text-primary-900 prose-h1:text-title-3 prose-h1:leading-none md:prose-h1:text-title-1"
 									data={hero.title}
 									enableGutter={false}
 									enableProse={false}
@@ -374,9 +374,9 @@ export default async function AboutPage() {
 								}
 								url={
 									hiring.ctaLink.type === "page"
-										? hiring.ctaLink.page ?? undefined
+										? (hiring.ctaLink.page ?? undefined)
 										: hiring.ctaLink.type === "custom"
-											? hiring.ctaLink.url ?? undefined
+											? (hiring.ctaLink.url ?? undefined)
 											: undefined
 								}
 							>

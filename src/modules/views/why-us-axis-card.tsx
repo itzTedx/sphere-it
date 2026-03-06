@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 
 import { motion } from "motion/react";
-
 import type { ButtonBlock as ButtonBlockType } from "src/payload-types";
 
-import { CMSLink } from "../cms/components/Link";
 import {
 	Tabs,
 	TabsContent,
@@ -19,6 +17,8 @@ import { IconCheckmark, IconPuzzle, IconSearch } from "@/assets/icons";
 import { IconLayers } from "@/assets/icons/layers";
 
 import { cn } from "@/lib/utils";
+
+import { CMSLink } from "../cms/components/Link";
 
 type Phase = {
 	letter: string;
@@ -167,9 +167,7 @@ export function AxisCardClient({
 								}
 								size="default"
 								type={
-									learnMoreLink.type === "reference"
-										? "reference"
-										: "custom"
+									learnMoreLink.type === "reference" ? "reference" : "custom"
 								}
 								url={
 									learnMoreLink.type === "page"

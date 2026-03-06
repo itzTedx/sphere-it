@@ -48,7 +48,7 @@ export const EnquiryForm = ({
 	const [isPending, startTransition] = React.useTransition();
 	const form = useForm<EnquireType>({
 		resolver: zodResolver(enquirySchema),
-		mode: "onBlur",
+		mode: "onSubmit",
 	});
 
 	const isFormSubmitting = isSubmitting || isPending;
