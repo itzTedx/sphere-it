@@ -70,7 +70,7 @@ export const Services = async () => {
 							className="rounded-3xl bg-card p-4 shadow-md sm:p-6 md:p-8 md:pb-28 xl:px-12 xl:pt-16"
 							mode="auto-height"
 						>
-						{services.map(({ Icon, ...service }) => (
+							{services.map(({ Icon, ...service }) => (
 								<TabsContent
 									aria-labelledby={`${service.id}-tab`}
 									className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-5 md:gap-8"

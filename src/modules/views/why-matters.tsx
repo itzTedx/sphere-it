@@ -68,9 +68,9 @@ export const WhyMatters = ({ data }: { data?: WhyMattersData | null }) => {
 							type={ctaLink.type === "reference" ? "reference" : "custom"}
 							url={
 								ctaLink.type === "page"
-									? ctaLink.page ?? undefined
+									? (ctaLink.page ?? undefined)
 									: ctaLink.type === "custom"
-										? ctaLink.url ?? undefined
+										? (ctaLink.url ?? undefined)
 										: undefined
 							}
 						>

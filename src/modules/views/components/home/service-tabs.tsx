@@ -62,7 +62,9 @@ export const ServicesTabs = ({ children, serviceOrder }: ServicesTabsProps) => {
 
 		const orderedTabs = serviceOrder
 			.map((id) => tabMap.get(id))
-			.filter((tab): tab is (typeof SERVICES_TABS_LISTS)[number] => Boolean(tab));
+			.filter((tab): tab is (typeof SERVICES_TABS_LISTS)[number] =>
+				Boolean(tab)
+			);
 
 		return orderedTabs.length > 0 ? orderedTabs : SERVICES_TABS_LISTS;
 	}, [serviceOrder]);
@@ -71,7 +73,8 @@ export const ServicesTabs = ({ children, serviceOrder }: ServicesTabsProps) => {
 		return new Map(tabs.map((tab, index) => [tab.id, index]));
 	}, [tabs]);
 
-	const currentTab = tabs[activeIndex]?.id ?? tabs[0]?.id ?? SERVICES_TABS_LISTS[0].id;
+	const currentTab =
+		tabs[activeIndex]?.id ?? tabs[0]?.id ?? SERVICES_TABS_LISTS[0].id;
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: Need to rerender when active index changes
 	useEffect(() => {

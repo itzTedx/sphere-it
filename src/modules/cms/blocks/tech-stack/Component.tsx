@@ -62,4 +62,3 @@ function StackCard({ img, name }: (typeof TECH_STACKS)[number]) {
 		</figure>
 	);
 }
-

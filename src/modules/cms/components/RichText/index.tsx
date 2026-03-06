@@ -187,14 +187,14 @@ export const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 				enableGutter={false}
 			/>
 		),
-		certifications: ({ node }: { node: SerializedBlockNode<CertificationsBlockProps> }) => (
-			<CertificationsBlock className="mb-4" {...node.fields} />
-		),
-		techStack: ({
+		certifications: ({
 			node,
 		}: {
-			node: SerializedBlockNode<{ label: string }>;
-		}) => <TechStackBlock className="mb-4" {...node.fields} />,
+			node: SerializedBlockNode<CertificationsBlockProps>;
+		}) => <CertificationsBlock className="mb-4" {...node.fields} />,
+		techStack: ({ node }: { node: SerializedBlockNode<{ label: string }> }) => (
+			<TechStackBlock className="mb-4" {...node.fields} />
+		),
 	},
 });
 

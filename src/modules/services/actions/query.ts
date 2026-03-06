@@ -60,4 +60,3 @@ export const findServiceBySlug = async (
 
 	return (data.docs?.[0] as Service) ?? null;
 };
-

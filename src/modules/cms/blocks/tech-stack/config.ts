@@ -13,4 +13,3 @@ export const TechStackBlock: Block = {
 	],
 	interfaceName: "TechStackBlock",
 };
-

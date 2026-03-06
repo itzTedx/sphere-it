@@ -4,4 +4,3 @@ export type NavService = {
 	description: string;
 	image: string;
 };
-

@@ -172,9 +172,7 @@ export default async function ServicePage({ params }: Props) {
 												label={link.label}
 												newTab={link.newTab}
 												reference={
-													link.type === "reference"
-														? link.reference
-														: undefined
+													link.type === "reference" ? link.reference : undefined
 												}
 												size="lg"
 												type={
@@ -182,9 +180,9 @@ export default async function ServicePage({ params }: Props) {
 												}
 												url={
 													link.type === "page"
-														? link.page ?? undefined
+														? (link.page ?? undefined)
 														: link.type === "custom"
-															? link.url ?? undefined
+															? (link.url ?? undefined)
 															: undefined
 												}
 											>

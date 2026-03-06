@@ -122,9 +122,9 @@ export default async function MethodologyPage() {
 									}
 									url={
 										hero.ctaLink.type === "page"
-											? hero.ctaLink.page ?? undefined
+											? (hero.ctaLink.page ?? undefined)
 											: hero.ctaLink.type === "custom"
-												? hero.ctaLink.url ?? undefined
+												? (hero.ctaLink.url ?? undefined)
 												: undefined
 									}
 								>
