@@ -5,8 +5,8 @@ import { IconAiCloud, IconArrowUpRight } from "@/assets/icons";
 import { LogoOutline } from "@/assets/logo";
 
 import { cn } from "@/lib/utils";
-import { QuickEnquiryForm } from "@/modules/form/quick-enquiry-form";
 import { CMSLink } from "@/modules/cms/components/Link";
+import { QuickEnquiryForm } from "@/modules/form/quick-enquiry-form";
 
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";

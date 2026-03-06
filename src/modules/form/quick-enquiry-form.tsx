@@ -25,6 +25,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { IconEmail } from "@/assets/icons/email";
 import { IconUser } from "@/assets/icons/user";
 
+import { useSession } from "@/lib/auth/client";
 import { env } from "@/lib/env/client";
 
 import { LinkedInAuthButton } from "../auth/components/linkedin-button";
@@ -47,9 +48,10 @@ export const QuickEnquiryForm = ({
 }) => {
 	const form = useForm<QuickEnquireType>({
 		resolver: zodResolver(quickEnquirySchema),
-		mode: "onBlur",
+		mode: "onSubmit",
 	});
 	const pathname = usePathname();
+	const { data: session } = useSession();
 
 	async function onSubmit(data: QuickEnquireType) {
 		try {
@@ -178,6 +180,7 @@ export const QuickEnquiryForm = ({
 									<PhoneInput
 										id={field.name}
 										onChange={field.onChange}
+										placeholder="+971 56 789 4321"
 										value={field.value}
 									/>
 									{/* <InputGroupInput
@@ -239,7 +242,88 @@ export const QuickEnquiryForm = ({
 					{submitText}
 				</Button>
 
-				<LinkedInAuthButton />
+				<LinkedInAuthButton
+					onSuccess={async (ctx) => {
+						try {
+							// Try to get user data from the Better Auth client context first
+							type SocialSuccessContext = {
+								data?: {
+									user?: {
+										name?: string | null;
+										email?: string | null;
+									};
+								};
+							};
+
+							const successCtx = ctx as SocialSuccessContext | undefined;
+							const ctxUser = successCtx?.data?.user;
+
+							const user =
+								ctxUser ??
+								(session?.user as
+									| { name?: string | null; email?: string | null }
+									| undefined);
+
+							if (!user?.email) {
+								toast.error("Unable to send enquiry from LinkedIn", {
+									description:
+										"We couldn't retrieve an email address from your LinkedIn profile.",
+								});
+								return;
+							}
+
+							const enquiryData: QuickEnquireType = {
+								name: user.name || "LinkedIn User",
+								email: user.email,
+								phone: undefined,
+								message: user.name
+									? `New enquiry via LinkedIn – ${user.name} just reached out.`
+									: "New enquiry via LinkedIn – a user just reached out.",
+							};
+
+							const result = await sendEnquiryEmail(
+								enquiryData,
+								route === "CTA"
+									? `${env.NEXT_PUBLIC_BASE_URL}${pathname}`
+									: route
+							);
+
+							if (!result.success) {
+								const errorMessage =
+									"rateLimited" in result && result.rateLimited
+										? "Too many enquiries. Please wait before trying again."
+										: result.error || "Failed to send enquiry";
+								throw new Error(errorMessage);
+							}
+
+							// Mirror the same "access granted" behaviour as the manual form submit
+							localStorage.setItem("research-paper-access", "true");
+							localStorage.setItem(
+								"research-paper-access-timestamp",
+								Date.now().toString()
+							);
+
+							toast.success(
+								"Access granted! You can now view the full research paper.",
+								{
+									description:
+										"Thank you for your interest. The complete paper is now available.",
+								}
+							);
+
+							onSuccess?.();
+						} catch (error) {
+							console.error(
+								"Error submitting enquiry via LinkedIn authentication:",
+								error
+							);
+							toast.error("Failed to submit enquiry. Please try again.", {
+								description:
+									"There was an error sending your details. Please try again later.",
+							});
+						}
+					}}
+				/>
 			</FieldGroup>
 		</form>
 	);

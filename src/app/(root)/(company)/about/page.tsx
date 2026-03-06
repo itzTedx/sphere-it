@@ -88,7 +88,27 @@ export default async function AboutPage() {
 		getTeamsGlobal(),
 	]);
 
-	const { hero, story, values, team, hiring, cta } = pageData;
+	const { hero, story, values, team, hiring, cta: ctaRaw } = pageData;
+
+	const cta = ctaRaw as {
+		badge?: string | null;
+		title?: string | null;
+		description?: string | null;
+		button?: {
+			type?: "page" | "reference" | "custom" | null;
+			page?: string | null;
+			url?: string | null;
+			label?: string | null;
+		} | null;
+		showForm?: boolean | null;
+	};
+
+	const ctaButtonLink =
+		cta?.button?.type === "page" && cta.button.page
+			? (cta.button.page as Route)
+			: cta?.button?.type === "custom" && cta.button.url
+				? (cta.button.url as Route)
+				: undefined;
 	const { leaderships, members } = teamsData;
 
 	return (
@@ -408,7 +428,14 @@ export default async function AboutPage() {
 						))}
 					</ul>
 				</section>
-				<Cta showForm={cta?.showForm ?? true} />
+				<Cta
+					badge={cta?.badge ?? undefined}
+					buttonLink={ctaButtonLink}
+					buttonText={cta?.button?.label ?? undefined}
+					description={cta?.description ?? undefined}
+					showForm={cta?.showForm ?? true}
+					title={cta?.title ?? undefined}
+				/>
 			</main>
 		</>
 	);

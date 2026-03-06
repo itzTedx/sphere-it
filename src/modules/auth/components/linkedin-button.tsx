@@ -12,7 +12,12 @@ import { signIn, useSession } from "@/lib/auth/client";
 
 interface LinkedInAuthButtonProps {
 	compact?: boolean;
-	onSuccess?: () => void;
+	/**
+	 * Called after a successful LinkedIn auth.
+	 * Receives the Better Auth client success context so callers
+	 * can access any returned data (session, user, etc.).
+	 */
+	onSuccess?: (ctx: unknown) => void;
 }
 
 export const LinkedInAuthButton = ({
@@ -29,17 +34,18 @@ export const LinkedInAuthButton = ({
 				provider: "linkedin",
 				callbackURL: window.location.href, // Return to current page after auth
 				fetchOptions: {
-					onSuccess(_ctx) {
+					onSuccess(ctx) {
 						// Show success message
 						toast.success("Successfully connected with LinkedIn!", {
 							description: "You can now access premium content.",
 						});
 
 						// If a custom success handler is provided, let the caller
-						// handle any follow-up actions (like triggering downloads).
+						// handle any follow-up actions (like triggering downloads
+						// or sending enquiry emails using LinkedIn profile data).
 						// Otherwise, reload the page to update authentication state.
 						if (onSuccess) {
-							onSuccess();
+							onSuccess(ctx);
 						} else {
 							window.location.reload();
 						}

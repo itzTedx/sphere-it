@@ -115,7 +115,7 @@ const CountrySelect = ({
 					/>
 					<ChevronsUpDown
 						className={cn(
-							"-mr-2 size-2.5 opacity-50 sm:size-4",
+							"-mr-2 size-2.5 opacity-50",
 							disabled ? "hidden" : "opacity-100"
 						)}
 					/>

@@ -196,6 +196,35 @@ export const AboutPage: GlobalConfig<"about-page"> = {
 							name: "cta",
 							fields: [
 								{
+									name: "badge",
+									type: "text",
+									label: "Badge",
+									defaultValue: "Your IT success story starts here",
+									required: true,
+								},
+								{
+									name: "title",
+									type: "text",
+									label: "Title",
+									defaultValue:
+										"Let's build your next IT success story together.",
+									required: true,
+								},
+								{
+									name: "description",
+									type: "textarea",
+									label: "Description",
+									defaultValue:
+										"Get the accuracy, scalability, and impact your business needs - delivered with precision and pragmatism.",
+									required: true,
+								},
+								link({
+									appearances: false,
+									overrides: {
+										name: "button",
+									},
+								}),
+								{
 									type: "row",
 									fields: [
 										{
