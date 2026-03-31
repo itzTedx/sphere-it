@@ -8,6 +8,40 @@ export type ListingService = Omit<CardService, "Icon" | "lists"> & {
 	lists: Array<Pick<ServiceListItem, "id" | "feature">>;
 };
 
+const REFERENCE_ROUTE_PREFIX: Record<string, string> = {
+	services: "/services",
+	blogs: "/resources/blogs",
+	"case-studies": "/resources/case-studies",
+	researchPapers: "/resources/research-papers",
+};
+
+const resolveProofLink = (
+	proofLinkGroup: Service["homepage"]["proofLink"] | undefined
+): string | undefined => {
+	if (!proofLinkGroup) return undefined;
+
+	if (proofLinkGroup.type === "page" && proofLinkGroup.page) {
+		return proofLinkGroup.page;
+	}
+
+	if (proofLinkGroup.type === "custom" && proofLinkGroup.url) {
+		return proofLinkGroup.url;
+	}
+
+	if (proofLinkGroup.type === "reference" && proofLinkGroup.reference) {
+		const { relationTo, value } = proofLinkGroup.reference;
+		const doc = typeof value === "object" && value !== null ? value : null;
+		const slug = doc && "slug" in doc ? doc.slug : null;
+
+		if (typeof slug === "string" && slug.length > 0) {
+			const prefix = REFERENCE_ROUTE_PREFIX[relationTo] ?? `/${relationTo}`;
+			return `${prefix}/${slug}`;
+		}
+	}
+
+	return undefined;
+};
+
 export const getServicesPageGlobal = async () => {
 	"use cache";
 	cacheTag("global:services-page");
@@ -64,16 +98,7 @@ export const getServicesForListing = async (): Promise<ListingService[]> => {
 					)
 			: [];
 
-		let proof: string | undefined;
-		const proofLinkGroup = homepage?.proofLink;
-
-		if (proofLinkGroup) {
-			if (proofLinkGroup.type === "page" && proofLinkGroup.page) {
-				proof = proofLinkGroup.page;
-			} else if (proofLinkGroup.type === "custom" && proofLinkGroup.url) {
-				proof = proofLinkGroup.url;
-			}
-		}
+		const proof = resolveProofLink(homepage?.proofLink);
 
 		const partners: string[] | undefined =
 			Array.isArray(doc.partners) && doc.partners.length > 0
@@ -104,6 +129,7 @@ export const getServicesForListing = async (): Promise<ListingService[]> => {
 				? heroImage.url
 				: "/images/services/default.webp";
 
+		console.log("proof: ", proof);
 		return {
 			id: slug,
 			serviceTitle,

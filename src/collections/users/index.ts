@@ -46,6 +46,18 @@ export const Users: CollectionConfig<"users"> = {
 		},
 		{ name: "image", type: "text", admin: { hidden: true } },
 		{
+			name: "password",
+			type: "text",
+			admin: {
+				description:
+					"Temporary password; user should change this after first login.",
+			},
+			access: {
+				read: isAdminField(),
+				create: isAdminField(),
+			},
+		},
+		{
 			name: "role",
 			type: "select",
 			defaultValue: "user",

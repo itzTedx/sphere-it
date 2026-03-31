@@ -443,6 +443,10 @@ export interface User {
   emailVerified?: boolean | null;
   name?: string | null;
   image?: string | null;
+  /**
+   * Temporary password; user should change this after first login.
+   */
+  password?: string | null;
   role?: ('user' | 'editor' | 'admin') | null;
   updatedAt: string;
   createdAt: string;
@@ -1550,6 +1554,7 @@ export interface UsersSelect<T extends boolean = true> {
   emailVerified?: T;
   name?: T;
   image?: T;
+  password?: T;
   role?: T;
   updatedAt?: T;
   createdAt?: T;

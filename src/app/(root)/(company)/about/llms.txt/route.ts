@@ -1,85 +1,126 @@
 import { NextResponse } from "next/server";
 
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import { convertLexicalToPlaintext } from "@payloadcms/richtext-lexical/plaintext";
+
 import { env } from "@/lib/env/server";
+import { getAboutPageGlobal } from "@/modules/global/about";
 
 /**
- * GET /about/llms.txt - Generates llms.txt for about page
- * @returns Text response with company information and links
+ * GET /about/llms.txt - Generates llms.txt for the about page
+ * using live content from the Payload CMS global: about-page
  */
 export async function GET() {
 	try {
 		const baseUrl = env.BASE_URL || "https://sphereitglobal.com";
 		const aboutUrl = `${baseUrl}/company/about`;
 
-		// Generate the text content
-		let content = `# About Sphere Global
+		const data = await getAboutPageGlobal();
+		const { hero, story, values, team, hiring, seo } = data ?? {};
 
-> Sphere Global is a premier technology consulting and implementation partner specializing in digital transformation, cloud solutions, and enterprise software development for banking, finance, and enterprise sectors worldwide.
+		const lexicalToPlain = (value: unknown | null | undefined) => {
+			if (!value) return "";
 
-## Company Overview
+			try {
+				const text = convertLexicalToPlaintext({
+					data: value as SerializedEditorState,
+				});
 
-Sphere Global delivers cutting-edge technology solutions that help enterprises modernize their operations, enhance customer experiences, and achieve digital excellence through innovative consulting and implementation services.\n\n`;
+				return text.trim();
+			} catch {
+				return "";
+			}
+		};
 
-		// Add core services and expertise
-		content += `- [Main About Page](${aboutUrl}): Complete overview of Sphere Global's mission, vision, and company information\n`;
-		content += `- [Services](${baseUrl}/services/llms.txt): Explore our comprehensive service offerings including platform assurance, process automation, AI augmentation, and digital elevation\n`;
-		content += `- [Case Studies](${baseUrl}/resources/case-studies/llms.txt): Real-world implementations and success stories from our clients\n`;
-		content += `- [Blog & Insights](${baseUrl}/resources/blogs/llms.txt): Latest thought leadership and industry insights from our experts\n`;
+		const heroTitle =
+			lexicalToPlain(hero?.title) || "About Sphere IT - Technology & Talent";
+		const heroDescription = lexicalToPlain(hero?.description);
+		const storyContent = lexicalToPlain(story?.content);
+		const valuesTitle = lexicalToPlain(values?.title);
+		const teamTitle = lexicalToPlain(team?.title);
+		const hiringTitle = lexicalToPlain(hiring?.title);
 
-		// Add key focus areas
-		content += `\n## Core Expertise Areas
+		let content = `# ${heroTitle}
 
-Our primary technology and service focus:\n\n`;
-		content +=
-			"- Platform Assurance: High-availability systems, disaster recovery, and 24/7 managed services\n";
-		content +=
-			"- Process Automation: Workflow optimization, RPA implementations, and operational efficiency\n";
-		content +=
-			"- AI & Analytics: Machine learning models, predictive analytics, and data-driven insights\n";
-		content +=
-			"- Digital Transformation: Legacy modernization, cloud migration, and digital experience enhancement\n";
-		content +=
-			"- Security & Compliance: Security assessments, compliance frameworks, and risk management\n";
+`;
 
-		// Add industry focus
-		content += `\n## Industry Focus
+		if (heroDescription) {
+			content += `> ${heroDescription}
 
-Specialized expertise in key sectors:\n\n`;
-		content +=
-			"- Banking & Financial Services: Core banking, digital banking platforms, regulatory compliance\n";
-		content +=
-			"- Insurance: Policy management, claims processing, customer experience transformation\n";
-		content +=
-			"- Enterprise & Manufacturing: ERP implementations, supply chain optimization, Industry 4.0\n";
-		content +=
-			"- Government & Public Sector: E-governance, citizen services, public sector digitalization\n";
+`;
+		}
 
-		// Add related resources
-		content += "\n## Learn More About Sphere Global\n\n";
-		content += `- [Careers](${baseUrl}/company/careers/llms.txt): Join our team of technology experts and innovators\n`;
-		content += `- [Contact Us](${baseUrl}/company/contact/llms.txt): Get in touch with our team for consultations and partnerships\n`;
-		content += `- [FAQ](${baseUrl}/resources/faqs/llms.txt): Common questions about our services and approach\n`;
-		content += `- [Research Papers](${baseUrl}/resources/research-papers/llms.txt): In-depth technical research and analysis from our team\n`;
+		content += `## Company Overview
 
-		// Add engagement
-		content += "\n## Connect With Sphere Global\n\n";
-		content +=
-			"- Schedule a consultation to discuss your digital transformation needs\n";
-		content += "- Explore our case studies to see real-world implementations\n";
-		content +=
-			"- Read our blog for the latest industry insights and best practices\n";
-		content +=
-			"- Contact our team to learn how we can help your organization\n";
+${
+	storyContent ||
+	"Sphere IT exists to remove complexity and make technology work for business, combining precision engineering with pragmatic execution."
+}
 
-		// Add metadata
-		content += `\n## Metadata
-Section: About Sphere Global
-Content Type: Company Information & Overview
-Primary Focus: Technology Consulting & Implementation
-Industries Served: Banking, Finance, Enterprise, Government
+`;
+
+		content += `## Core Values
+
+${valuesTitle || values?.badge || "Precision and Pragmatism"}
+
+${values?.description || ""}
+
+`;
+
+		if (values?.items?.length) {
+			content += "### How Our Values Show Up in Practice\n\n";
+			for (const valueItem of values.items) {
+				content += `- **${valueItem.title}**: ${valueItem.description}\n`;
+			}
+			content += "\n";
+		}
+
+		content += `## Our People
+
+${teamTitle || team?.badge || "Our People, Our Precision"}
+
+${team?.description || ""}
+
+`;
+
+		content += `## Careers at Sphere IT
+
+${hiringTitle || hiring?.badge || "We're Hiring"}
+
+${hiring?.description || ""}
+
+`;
+
+		if (hiring?.benefits?.length) {
+			content += "### Why Join Sphere IT\n\n";
+			for (const benefit of hiring.benefits) {
+				content += `- ${benefit.text}\n`;
+			}
+			content += "\n";
+		}
+
+		// Key navigation links
+		content += `## Key Links
+
+- [Main About Page](${aboutUrl}): Full overview of Sphere IT, our mission, story, and values
+- [Careers](${baseUrl}/company/careers/llms.txt): Explore open roles and opportunities
+- [Methodology](${baseUrl}/company/methodology/llms.txt): Learn about our A.X.I.S delivery framework
+- [Services](${baseUrl}/services/llms.txt): Explore our IT services, automation, AI, and managed offerings
+- [Testimonials](${baseUrl}/company/testimonials/llms.txt): Hear from people who power Sphere IT
+
+`;
+
+		// Metadata
+		content += `## Metadata
+Section: About Sphere IT
+Content Source: Payload CMS (global: about-page)
+Meta Title: ${seo?.metaTitle || ""}
+Meta Description: ${seo?.metaDescription || ""}
+Primary Values: Precision, Pragmatism
 Generated: ${new Date().toISOString()}
-Format: LLMs.txt v1.0
-Base URL: ${baseUrl}\n`;
+Format: LLMs.txt v1.1
+Base URL: ${baseUrl}
+`;
 
 		return new NextResponse(content, {
 			headers: {
