@@ -16,6 +16,7 @@ import {
 	UnorderedListFeature,
 	UploadFeature,
 } from "@payloadcms/richtext-lexical";
+import { revalidatePath, revalidateTag } from "next/cache";
 import type { CollectionConfig } from "payload";
 import { slugField } from "payload";
 
@@ -31,6 +32,32 @@ export const LegalPages: CollectionConfig<"legal-pages"> = {
 		read: () => true,
 		update: adminOrEditor,
 		delete: adminOrEditor,
+	},
+	hooks: {
+		afterChange: [
+			({ doc, req: { context } }) => {
+				if (!context.disableRevalidate) {
+					revalidateTag("legal-pages", "max");
+					if (doc.slug) {
+						revalidateTag(`legal-page:${doc.slug}`, "max");
+						revalidatePath(`/legal/${doc.slug}`);
+					}
+				}
+				return doc;
+			},
+		],
+		afterDelete: [
+			({ doc, req: { context } }) => {
+				if (!context.disableRevalidate) {
+					revalidateTag("legal-pages", "max");
+					if (doc.slug) {
+						revalidateTag(`legal-page:${doc.slug}`, "max");
+						revalidatePath(`/legal/${doc.slug}`);
+					}
+				}
+				return doc;
+			},
+		],
 	},
 	defaultPopulate: {
 		title: true,
