@@ -1,12 +1,12 @@
 import type { Route } from "next";
 import Link from "next/link";
 
-import { Facebook, Youtube } from "lucide-react";
-
 import {
 	IconChevronRight,
+	IconSocialFacebook,
 	IconSocialInstagram,
 	IconSocialLinkedin,
+	IconSocialYoutube,
 	IconSocialX,
 } from "@/assets/icons";
 import { Logo } from "@/assets/logo";
@@ -120,10 +120,10 @@ export const Footer = async () => {
 
 // Memoized sub-components for better performance
 const SOCIAL_ICONS = {
-	facebook: Facebook,
+	facebook: IconSocialFacebook,
 	instagram: IconSocialInstagram,
 	linkedin: IconSocialLinkedin,
-	youtube: Youtube,
+	youtube: IconSocialYoutube,
 	x: IconSocialX,
 } as const;
 

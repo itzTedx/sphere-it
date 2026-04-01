@@ -66,9 +66,11 @@ export * from "./services";
 export { IconShield } from "./shield";
 // Social Icons
 export {
+	IconSocialFacebook,
 	IconShare,
 	IconSocialInstagram,
 	IconSocialLinkedin,
+	IconSocialYoutube,
 	IconSocialWhatsapp,
 	IconSocialX,
 } from "./social";

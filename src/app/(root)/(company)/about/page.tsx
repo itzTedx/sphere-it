@@ -4,6 +4,7 @@ import { Route } from "next";
 import { Metadata } from "next/dist/types";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
@@ -113,10 +114,9 @@ export default async function AboutPage() {
 
 	return (
 		<>
-			<script
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-				type="application/ld+json"
-			/>
+			<Script type="application/ld+json">
+				{JSON.stringify(structuredData)}
+			</Script>
 			<BreadcrumbJsonLd
 				items={[
 					{ name: "Home", item: `${BASE_URL}` },
@@ -235,12 +235,12 @@ export default async function AboutPage() {
 						className="my-9 grid grid-cols-1 gap-6 sm:grid-cols-2"
 						role="list"
 					>
-						{values?.items?.map((value, index) => {
+						{values?.items?.map((value) => {
 							const image = value.image as Media;
 							return (
 								<article
 									className="overflow-hidden rounded-2xl bg-card shadow-md"
-									key={index}
+									key={value.id}
 									role="listitem"
 								>
 									<div className="relative flex aspect-[6/4.1] items-end bg-linear-to-b from-primary-950 to-foreground">
@@ -306,7 +306,7 @@ export default async function AboutPage() {
 							className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
 							role="list"
 						>
-							{leaderships?.map((member, i) => {
+							{leaderships?.map((member) => {
 								const picture = member.picture as Media;
 								return (
 									<TeamCard
@@ -316,7 +316,7 @@ export default async function AboutPage() {
 											image: picture?.url || "",
 											linkedin: member.linkedinUrl || undefined,
 										}}
-										key={i}
+										key={member.id}
 									/>
 								);
 							})}
@@ -341,7 +341,7 @@ export default async function AboutPage() {
 							className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-4 lg:grid-cols-4"
 							role="list"
 						>
-							{members?.map((member, i) => {
+							{members?.map((member) => {
 								const picture = member.picture as Media;
 								return (
 									<TeamCard
@@ -351,7 +351,7 @@ export default async function AboutPage() {
 											image: picture?.url || "",
 											linkedin: member.linkedinUrl || undefined,
 										}}
-										key={i}
+										key={member.id}
 									/>
 								);
 							})}
@@ -414,10 +414,10 @@ export default async function AboutPage() {
 						className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
 						role="list"
 					>
-						{hiring?.benefits?.map((benefit, i) => (
+						{hiring?.benefits?.map((benefit) => (
 							<li
 								className="flex items-center gap-2 rounded-2xl bg-card p-3 shadow-md"
-								key={`${i}-${benefit.text}`}
+								key={benefit.id}
 								role="listitem"
 							>
 								<CheckmarkIconBox aria-hidden="true" className="size-11" />

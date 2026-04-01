@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 import { BASE_URL } from "@/data/site-config";
 
 export function StructuredData() {
@@ -132,18 +134,12 @@ export function StructuredData() {
 
 	return (
 		<>
-			<script
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(organizationSchema),
-				}}
-				type="application/ld+json"
-			/>
-			<script
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(websiteSchema),
-				}}
-				type="application/ld+json"
-			/>
+			<Script type="application/ld+json">
+				{JSON.stringify(organizationSchema)}
+			</Script>
+			<Script type="application/ld+json">
+				{JSON.stringify(websiteSchema)}
+			</Script>
 			{/* <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),

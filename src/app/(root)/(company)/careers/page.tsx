@@ -2,6 +2,7 @@ import { Suspense } from "react";
 
 import type { Metadata } from "next/dist/types";
 import Link from "next/link";
+import Script from "next/script";
 
 import { IconBox } from "@/components/icon-box";
 import { Cta } from "@/components/layout/cta";
@@ -112,19 +113,15 @@ export default async function CareersPage() {
 	return (
 		<>
 			{faqStructuredData && (
-				<script
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(faqStructuredData),
-					}}
-					type="application/ld+json"
-				/>
+				<Script type="application/ld+json">
+					{JSON.stringify(faqStructuredData)}
+				</Script>
 			)}
 			{structuredData.map((data, index) => (
-				<script
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-					key={index}
-					type="application/ld+json"
-				/>
+				// biome-ignore lint/suspicious/noArrayIndexKey: we need to use the index as the key
+				<Script key={index} type="application/ld+json">
+					{JSON.stringify(data)}
+				</Script>
 			))}
 			<BreadcrumbJsonLd
 				items={[
@@ -186,7 +183,7 @@ export default async function CareersPage() {
 											className={`relative size-2 rounded-full ${ROLES.length > 0 ? "bg-green-600" : "bg-stone-400"}`}
 										>
 											{ROLES.length > 0 && (
-												<div className="-inset-1 absolute animate-pulse rounded-full bg-green-600/25" />
+												<div className="absolute -inset-1 animate-pulse rounded-full bg-green-600/25" />
 											)}
 										</div>
 										<p className="font-display text-stone-700 text-subhead-sm">
@@ -201,7 +198,7 @@ export default async function CareersPage() {
 									<div className="flex items-center justify-between gap-4 rounded-2xl border bg-background p-4 sm:p-6">
 										<div
 											aria-label="Team members"
-											className="-space-x-2 flex *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-border"
+											className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-border"
 										>
 											{TEAMS.splice(0, 4).map((team) => (
 												<Avatar
@@ -260,6 +257,7 @@ export default async function CareersPage() {
 											className="flex items-center gap-1.5 text-yellow-500 *:size-4"
 										>
 											{Array.from({ length: 5 }).map((_, i) => (
+												// biome-ignore lint/suspicious/noArrayIndexKey: we need to use the index as the key
 												<IconStar aria-hidden="true" key={i} />
 											))}
 										</div>
@@ -278,7 +276,7 @@ export default async function CareersPage() {
 								</div>
 								<IconTrendUp
 									aria-hidden="true"
-									className="-left-[10%] pointer-events-none absolute bottom-0 size-64 text-stone-400 opacity-10 sm:size-80 md:size-96"
+									className="pointer-events-none absolute bottom-0 -left-[10%] size-64 text-stone-400 opacity-10 sm:size-80 md:size-96"
 								/>
 							</div>
 						</section>

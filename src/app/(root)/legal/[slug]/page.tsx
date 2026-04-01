@@ -1,5 +1,6 @@
 import type { Metadata } from "next/dist/types";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
 
@@ -58,23 +59,20 @@ export default async function LegalPage({ params }: Props) {
 	return (
 		<>
 			{/* Generic structured data for legal pages */}
-			<script
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify({
-						"@context": "https://schema.org",
-						"@type": "WebPage",
-						name: page.meta?.title ?? page.title,
-						description: page.meta?.description ?? "",
-						url: `${BASE_URL}/legal/${slug}`,
-						isPartOf: {
-							"@type": "WebSite",
-							name: COMPANY_NAME,
-							url: BASE_URL,
-						},
-					}),
-				}}
-				type="application/ld+json"
-			/>
+			<Script type="application/ld+json">
+				{JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "WebPage",
+					name: page.meta?.title ?? page.title,
+					description: page.meta?.description ?? "",
+					url: `${BASE_URL}/legal/${slug}`,
+					isPartOf: {
+						"@type": "WebSite",
+						name: COMPANY_NAME,
+						url: BASE_URL,
+					},
+				})}
+			</Script>
 
 			<main aria-label={page.title} role="main">
 				<Header />

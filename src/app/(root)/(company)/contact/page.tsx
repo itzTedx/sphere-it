@@ -1,4 +1,5 @@
 import type { Metadata } from "next/dist/types";
+import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
 
@@ -50,10 +51,9 @@ export const metadata: Metadata = {
 export default function ContactPage() {
 	return (
 		<>
-			<script
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-				type="application/ld+json"
-			/>
+			<Script type="application/ld+json">
+				{JSON.stringify(structuredData)}
+			</Script>
 			<BreadcrumbJsonLd
 				items={[
 					{ name: "Home", item: `${BASE_URL}` },

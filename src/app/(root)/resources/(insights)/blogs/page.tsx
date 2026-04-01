@@ -86,11 +86,10 @@ export default function BlogsPage(props: { searchParams: SearchParams }) {
 	return (
 		<InsightsLayout>
 			{structuredData.map((data, index) => (
-				<Script
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-					key={index}
-					type="application/ld+json"
-				/>
+				// biome-ignore lint/suspicious/noArrayIndexKey: we need to use the index as the key
+				<Script key={index} type="application/ld+json">
+					{JSON.stringify(data)}
+				</Script>
 			))}
 			<BreadcrumbJsonLd
 				items={[
@@ -178,6 +177,7 @@ function BlogsMainContentSkeleton() {
 		<main className="mb-12">
 			<article className="grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
 				{Array.from({ length: 6 }).map((_, index) => (
+					// biome-ignore lint/suspicious/noArrayIndexKey: we need to use the index as the key
 					<div className="space-y-3" key={index}>
 						<Skeleton className="aspect-4/3 w-full rounded-xl" />
 						<Skeleton className="h-4 w-3/4" />

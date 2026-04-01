@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next/dist/types";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import Script from "next/script";
 
 import MDXContent from "@/components/markdown";
 import { Button } from "@/components/ui/button";
@@ -45,11 +46,10 @@ async function CareerPageContent({ id }: CareerPageContentProps) {
 	return (
 		<>
 			{structuredData.map((data, index) => (
-				<script
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-					key={index}
-					type="application/ld+json"
-				/>
+				// biome-ignore lint/suspicious/noArrayIndexKey: we need to use the index as the key
+				<Script key={index} type="application/ld+json">
+					{JSON.stringify(data)}
+				</Script>
 			))}
 			<main className="sm:py-9 md:py-12">
 				<section
@@ -68,7 +68,7 @@ async function CareerPageContent({ id }: CareerPageContentProps) {
 									<Link href="/careers">
 										<IconArrowLeft
 											aria-hidden="true"
-											className="group-hover:-translate-x-1 transition-transform"
+											className="transition-transform group-hover:-translate-x-1"
 										/>
 										<span className="hidden sm:block">All Jobs</span>
 									</Link>

@@ -3,6 +3,7 @@ import { Fragment, type ReactNode } from "react";
 import type { Metadata } from "next/dist/types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
@@ -96,17 +97,13 @@ export default async function ServicePage({ params }: Props) {
 	return (
 		<>
 			{faqStructuredData && (
-				<script
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(faqStructuredData),
-					}}
-					type="application/ld+json"
-				/>
+				<Script type="application/ld+json">
+					{JSON.stringify(faqStructuredData)}
+				</Script>
 			)}
-			<script
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-				type="application/ld+json"
-			/>
+			<Script type="application/ld+json">
+				{JSON.stringify(structuredData)}
+			</Script>
 			<BreadcrumbJsonLd
 				items={[
 					{ name: "Home", item: `${BASE_URL}` },
@@ -129,7 +126,7 @@ export default async function ServicePage({ params }: Props) {
 								{service.title}
 							</h1>
 							<RichText
-								className="prose-xl prose-li:before:-left-6 prose-li:relative prose-ul:list-none prose-li:before:absolute prose-li:before:top-[0.7rem] prose-li:before:h-4 prose-li:before:w-4 prose-li:before:bg-[url('/svg/checkbox.svg')] prose-li:before:bg-contain prose-li:before:bg-no-repeat prose-li:before:content-['']"
+								className="prose-xl prose-li:relative prose-ul:list-none prose-li:before:absolute prose-li:before:top-[0.7rem] prose-li:before:-left-6 prose-li:before:h-4 prose-li:before:w-4 prose-li:before:bg-[url('/svg/checkbox.svg')] prose-li:before:bg-contain prose-li:before:bg-no-repeat prose-li:before:content-['']"
 								data={service.description}
 								enableGutter={false}
 							/>

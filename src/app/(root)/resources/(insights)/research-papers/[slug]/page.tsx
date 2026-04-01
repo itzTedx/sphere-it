@@ -166,11 +166,9 @@ export default async function ResearchPaperPage({ params }: Props) {
 
 	return (
 		<>
-			<Script
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				id="case-study-structured-data"
-				type="application/ld+json"
-			/>
+			<Script id="case-study-structured-data" type="application/ld+json">
+				{JSON.stringify(jsonLd)}
+			</Script>
 			<BreadcrumbJsonLd
 				items={[
 					{ name: "Home", item: BASE_URL },
@@ -204,7 +202,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 										<Link href="/resources/research-papers">
 											<IconArrowLeft
 												aria-hidden="true"
-												className="group-hover:-translate-x-1 transition-transform"
+												className="transition-transform group-hover:-translate-x-1"
 											/>
 											<span>All Research papers</span>
 										</Link>
@@ -220,7 +218,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 
 							<ViewTransition name={`image-${study?.slug}`}>
 								<div className="lg:col-span-6">
-									<div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border bg-stone-alpha-10 p-2">
+									<div className="rounded-[calc(var(--radius-xl)+--spacing(2))] border bg-stone-alpha-10 p-2">
 										<div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-xl shadow-lg">
 											{study.heroImage &&
 												typeof study.heroImage !== "number" && (

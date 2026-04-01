@@ -1,4 +1,5 @@
 import { Route } from "next";
+import Script from "next/script";
 
 interface BreadcrumbItem {
 	name: string;
@@ -22,9 +23,8 @@ export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
 	};
 
 	return (
-		<script
-			dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-			type="application/ld+json"
-		/>
+		<Script type="application/ld+json">
+			{JSON.stringify(breadcrumbSchema)}
+		</Script>
 	);
 }

@@ -69,11 +69,11 @@ export const Cta = ({
 					</div>
 					<LogoOutline
 						aria-hidden="true"
-						className="-translate-x-1/4 -translate-y-1/4 lg:-translate-x-1/6 absolute top-4 left-1/2 rotate-30 text-primary-400 opacity-60 max-sm:size-152 sm:top-8 sm:opacity-80 lg:top-12 lg:opacity-100 xl:top-16"
+						className="absolute top-4 left-1/2 -translate-x-1/4 -translate-y-1/4 rotate-30 text-primary-400 opacity-60 max-sm:size-152 sm:top-8 sm:opacity-80 lg:top-12 lg:-translate-x-1/6 lg:opacity-100 xl:top-16"
 					/>
 				</div>
 				{showForm && (
-					<div className="lg:-translate-y-1/2 z-50 mt-5 rounded-2xl bg-card p-9 shadow-md lg:absolute lg:top-1/2 lg:right-9 lg:mt-0 lg:w-lg">
+					<div className="z-50 mt-5 rounded-2xl bg-card p-9 shadow-md lg:absolute lg:top-1/2 lg:right-9 lg:mt-0 lg:w-lg lg:-translate-y-1/2">
 						<h5 className="mb-4 text-stone-800 text-title-4">Shall we talk</h5>
 						<QuickEnquiryForm route="CTA" />
 					</div>
@@ -107,7 +107,7 @@ export const MiniCta = ({
 	return (
 		<div
 			className={cn(
-				"relative z-999 flex flex-col items-center justify-between gap-3 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*3))] bg-foreground p-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 lg:flex-row lg:px-6 lg:py-8",
+				"relative z-999 flex flex-col items-center justify-between gap-3 rounded-[calc(var(--radius-xl)+--spacing(3))] bg-foreground p-4 sm:gap-4 sm:rounded-2xl sm:px-4 sm:py-6 lg:flex-row lg:px-6 lg:py-8",
 				className
 			)}
 		>
@@ -122,10 +122,9 @@ export const MiniCta = ({
 								"flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
 						)}
 					>
-						<h3
-							className="text-balance font-semibold text-card text-xl leading-tight tracking-[0.01em] lg:text-2xl [&>span]:text-accent"
-							dangerouslySetInnerHTML={{ __html: title }}
-						/>
+						<h3 className="text-balance font-semibold text-card text-xl leading-tight tracking-[0.01em] lg:text-2xl [&>span]:text-accent">
+							{title}
+						</h3>
 						{description && (
 							<p
 								className={cn(

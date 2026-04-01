@@ -24,11 +24,11 @@ body, h2, h5 {
   }
 
   &--style-primary.btn--disabled {
-    background-color: oklch(0.6082 0.2247 299.9);
+    background-color: oklch(0.17 0.06 300 / 90%);
   }
 
   &--disabled {
-    background-color: oklch(0.6082 0.2247 299.9);
+    background-color: oklch(0.17 0.06 300 / 90%);
   }
 }
 

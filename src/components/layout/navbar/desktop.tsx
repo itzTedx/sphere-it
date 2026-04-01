@@ -1,6 +1,6 @@
 "use client";
 
-import { type SVGProps, useState } from "react";
+import React, { useState } from "react";
 
 import { Route } from "next";
 import Image from "next/image";
@@ -33,16 +33,14 @@ import { ResourcesSubmenu, SubmenuLink } from "@/types/layout";
 
 import type { NavService } from "./nav-types";
 
-const SERVICE_ICON_MAP: Record<
-	string,
-	(props: SVGProps<SVGSVGElement>) => React.JSX.Element
-> = {
-	elevate: IconElevate,
-	automate: IconAutomate,
-	evaluate: IconEvaluate,
-	assure: IconAssure,
-	augment: IconAugment,
-};
+const SERVICE_ICON_MAP: Record<string, (props: SVGProps) => React.JSX.Element> =
+	{
+		elevate: IconElevate,
+		automate: IconAutomate,
+		evaluate: IconEvaluate,
+		assure: IconAssure,
+		augment: IconAugment,
+	};
 
 const mapServicesToSubmenuLinks = (services: NavService[]): SubmenuLink[] =>
 	services.map((service, index) => {
@@ -153,7 +151,7 @@ function ListItem({
 	href: Route;
 	title: string;
 	hoveredIdx?: string | null;
-	Icon?: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
+	Icon?: (props: SVGProps) => React.JSX.Element;
 }) {
 	const isHovered = hoveredIdx === title;
 

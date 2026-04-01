@@ -1,5 +1,6 @@
 import type { Route } from "next";
 import type { Metadata } from "next/dist/types";
+import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
 import { Badge } from "@/components/ui/badge";
@@ -84,12 +85,10 @@ export default async function FaqsPage() {
 
 	return (
 		<>
-			{structuredData.map((data, index) => (
-				<script
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-					key={index}
-					type="application/ld+json"
-				/>
+			{structuredData.map((data) => (
+				<Script key={JSON.stringify(data)} type="application/ld+json">
+					{JSON.stringify(data)}
+				</Script>
 			))}
 			<BreadcrumbJsonLd
 				items={[

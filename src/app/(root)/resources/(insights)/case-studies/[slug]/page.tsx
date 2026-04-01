@@ -156,11 +156,9 @@ export default async function CaseStudyPage({ params }: Props) {
 
 	return (
 		<>
-			<Script
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				id="case-study-structured-data"
-				type="application/ld+json"
-			/>
+			<Script id="case-study-structured-data" type="application/ld+json">
+				{JSON.stringify(jsonLd)}
+			</Script>
 			<BreadcrumbJsonLd
 				items={[
 					{ name: "Home", item: BASE_URL },
@@ -192,7 +190,7 @@ export default async function CaseStudyPage({ params }: Props) {
 											<Link href="/resources/case-studies">
 												<IconArrowLeft
 													aria-hidden="true"
-													className="group-hover:-translate-x-1 transition-transform"
+													className="transition-transform group-hover:-translate-x-1"
 												/>
 												<span>All Case Studies</span>
 											</Link>
@@ -226,7 +224,7 @@ export default async function CaseStudyPage({ params }: Props) {
 							</div>
 							<ViewTransition name={`image-${study?.slug}`}>
 								<div className="lg:col-span-5">
-									<div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border bg-stone-alpha-10 p-2">
+									<div className="rounded-[calc(var(--radius-xl)+--spacing(2))] border bg-stone-alpha-10 p-2">
 										<div className="relative flex aspect-4/3 items-center justify-center overflow-hidden rounded-xl shadow-lg sm:aspect-5/6">
 											{/* {study.client && (
 												<Image

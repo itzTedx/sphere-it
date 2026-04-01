@@ -108,11 +108,9 @@ export default async function BlogPage({ params }: Props) {
 
 	return (
 		<>
-			<Script
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				id="blog-structured-data"
-				type="application/ld+json"
-			/>
+			<Script id="blog-structured-data" type="application/ld+json">
+				{JSON.stringify(jsonLd)}
+			</Script>
 			<BreadcrumbJsonLd
 				items={[
 					{ name: "Home", item: BASE_URL },
@@ -143,7 +141,7 @@ export default async function BlogPage({ params }: Props) {
 										<Link href="/resources/blogs">
 											<IconArrowLeft
 												aria-hidden="true"
-												className="group-hover:-translate-x-1 transition-transform"
+												className="transition-transform group-hover:-translate-x-1"
 											/>
 											<span>All Blogs</span>
 										</Link>
@@ -197,7 +195,7 @@ export default async function BlogPage({ params }: Props) {
 								</div>
 							</div>
 							<ViewTransition name={`image-${blog.slug}`}>
-								<div className="rounded-[calc(var(--radius-xl)+calc(var(--spacing)*2))] border bg-stone-alpha-10 p-2">
+								<div className="rounded-[calc(var(--radius-xl)+--spacing(2))] border bg-stone-alpha-10 p-2">
 									<div className="relative aspect-4/3 overflow-hidden rounded-xl shadow-lg">
 										{blog.heroImage && typeof blog.heroImage !== "string" && (
 											<Media
