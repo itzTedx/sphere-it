@@ -6,10 +6,11 @@
  */
 
 /** Base URL for the website - used in sitemaps, canonical URLs, and social sharing */
-export const BASE_URL =
-	process.env.NODE_ENV === "development"
-		? "http://localhost:3000"
-		: ("https://sphereitglobal.com" as const);
+// export const BASE_URL =
+// 	process.env.NODE_ENV === "development"
+// 		? "http://localhost:3000"
+// 		: ("https://sphereitglobal.com" as const);
+export const BASE_URL = "https://sphereitglobal.com" as const;
 
 /** General information and support email - used for contact forms and inquiries */
 export const EMAIL_INFO = "info@sphereitglobal.com" as const;

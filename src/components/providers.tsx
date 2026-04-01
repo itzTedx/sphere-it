@@ -6,10 +6,10 @@ import OpenPanelProvider from "./providers/open-panel";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
 	return (
-		<Suspense fallback={null}>
-			<NuqsClientProviders>
-				<OpenPanelProvider>{children}</OpenPanelProvider>
-			</NuqsClientProviders>
-		</Suspense>
+		<OpenPanelProvider>
+			<Suspense fallback={null}>
+				<NuqsClientProviders>{children}</NuqsClientProviders>
+			</Suspense>
+		</OpenPanelProvider>
 	);
 };

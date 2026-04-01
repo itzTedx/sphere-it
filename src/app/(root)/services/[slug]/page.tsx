@@ -40,11 +40,19 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-	const services = await listServices();
+	try {
+		const services = await listServices();
 
-	return services.map((service) => ({
-		slug: service.slug,
-	}));
+		return services.map((service) => ({
+			slug: service.slug,
+		}));
+	} catch (error) {
+		console.warn(
+			"[generateStaticParams] Failed to fetch services during build, falling back to on-demand rendering.",
+			error
+		);
+		return [];
+	}
 }
 
 export default async function ServicePage({ params }: Props) {

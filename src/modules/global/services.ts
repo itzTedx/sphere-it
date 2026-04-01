@@ -129,7 +129,6 @@ export const getServicesForListing = async (): Promise<ListingService[]> => {
 				? heroImage.url
 				: "/images/services/default.webp";
 
-		console.log("proof: ", proof);
 		return {
 			id: slug,
 			serviceTitle,

@@ -144,11 +144,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-	const studies = await listResearchPapers();
+	try {
+		const studies = await listResearchPapers();
 
-	return studies.map((study) => ({
-		slug: study.slug,
-	}));
+		return studies.map((study) => ({
+			slug: study.slug,
+		}));
+	} catch (error) {
+		console.warn(
+			"[generateStaticParams] Failed to fetch research papers during build, falling back to on-demand rendering.",
+			error
+		);
+		return [];
+	}
 }
 
 export default async function ResearchPaperPage({ params }: Props) {
