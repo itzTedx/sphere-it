@@ -1,3 +1,5 @@
+import { revalidatePath, revalidateTag } from "next/cache";
+
 import {
 	MetaDescriptionField,
 	MetaImageField,
@@ -16,7 +18,6 @@ import {
 	UnorderedListFeature,
 	UploadFeature,
 } from "@payloadcms/richtext-lexical";
-import { revalidatePath, revalidateTag } from "next/cache";
 import type { CollectionConfig } from "payload";
 import { slugField } from "payload";
 
