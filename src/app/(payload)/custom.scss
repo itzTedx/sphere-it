@@ -20,15 +20,16 @@ body, h2, h5 {
 .btn {
   &--style-primary {
     background-color: oklch(0.5123 0.2295 297.24);
-    color: var(--theme-elevation-900);
+    color: var(--color-base-0);
   }
 
   &--style-primary.btn--disabled {
-    background-color: oklch(0.17 0.06 300 / 90%);
+    background-color: oklch(0.5 0.2 300 / 20%);
+    color: var(--color-base-500);
   }
 
   &--disabled {
-    background-color: oklch(0.17 0.06 300 / 90%);
+    background-color: oklch(0.5 0.2 300 / 20%);
   }
 }
 
