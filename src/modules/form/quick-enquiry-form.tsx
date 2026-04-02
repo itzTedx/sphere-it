@@ -19,6 +19,7 @@ import {
 	InputGroupAddon,
 	InputGroupInput,
 } from "@/components/ui/input-group";
+import { LoadingSwap } from "@/components/ui/loading-swap";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -238,8 +239,14 @@ export const QuickEnquiryForm = ({
 					/>
 				)}
 
-				<Button className="relative" type="submit">
-					{submitText}
+				<Button
+					className="relative"
+					disabled={form.formState.isSubmitting}
+					type="submit"
+				>
+					<LoadingSwap isLoading={form.formState.isSubmitting}>
+						{submitText}
+					</LoadingSwap>
 				</Button>
 
 				<LinkedInAuthButton

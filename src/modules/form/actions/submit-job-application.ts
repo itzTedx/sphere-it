@@ -7,6 +7,7 @@ import {
 	default as JobApplicationEmail,
 	JobApplicationPlainText,
 } from "@/lib/emails/templates/job-application";
+import { env } from "@/lib/env/server";
 
 import { checkRateLimit } from "../utils/rate-limiter";
 import { jobApplicationSchema } from "../validators/job-application-schema";
@@ -55,6 +56,7 @@ export async function submitJobApplication(formData: FormData) {
 		}
 
 		await sendEmail({
+			receiver: env.CAREERS_EMAIL,
 			email: data.email,
 			subject: `Job Application: ${data.name} - ${data.department || "General"}`,
 			react: JobApplicationEmail({

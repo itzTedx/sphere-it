@@ -231,8 +231,8 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your_app_password
-SMTP_FROM="Sphere Global <noreply@yourdomain.com>"
 RECEIVER_EMAIL=contact@yourdomain.com
+CAREERS_EMAIL=careers@yourdomain.com
 
 # ===============================
 # 🐳 DOCKER CONFIGURATION

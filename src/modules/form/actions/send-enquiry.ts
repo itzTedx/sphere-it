@@ -8,6 +8,7 @@ import EnquiryFormEmail from "@/lib/emails/templates/enquiry-form";
 import InquiryReact, {
 	InquiryPlainText,
 } from "@/lib/emails/templates/quick-enquiry";
+import { env } from "@/lib/env/server";
 
 import { checkRateLimit } from "../utils/rate-limiter";
 import { EnquireType, QuickEnquireType } from "../validators/enquiry-schema";
@@ -36,6 +37,7 @@ export async function sendEnquiryEmail(data: QuickEnquireType, route: string) {
 		});
 
 		await sendEmail({
+			receiver: env.RECEIVER_EMAIL,
 			email: data.email,
 			subject: `New Research Paper Enquiry - ${data.name}`,
 			text: InquiryPlainText({

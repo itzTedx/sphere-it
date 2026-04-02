@@ -101,7 +101,7 @@ export default buildConfig({
 		Users,
 	],
 	email: nodemailerAdapter({
-		defaultFromAddress: env.SMTP_FROM,
+		defaultFromAddress: env.RECEIVER_EMAIL,
 		defaultFromName: "Sphere It",
 
 		transportOptions: {
