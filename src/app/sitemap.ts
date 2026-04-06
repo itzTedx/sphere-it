@@ -39,9 +39,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	// Fetch dynamic content
 	const [blogs, caseStudies, researchPapers, careers, services] =
 		await Promise.all([
-			listBlogs(),
-			listCaseStudies(),
-			listResearchPapers(),
+			listBlogs({
+				limit: 99999,
+			}),
+			listCaseStudies(99999),
+			listResearchPapers(99999),
 			listCareers(),
 			Promise.resolve(listServices()),
 		]);

@@ -9,6 +9,7 @@ export const Header = async () => {
 
 	return (
 		<header className="border-b bg-card pt-9 sm:pt-12 md:pt-14">
+			<h1 className="sr-only">Legal Pages</h1>
 			<ul className="mx-auto flex flex-wrap items-center justify-center gap-1">
 				{legalPages.map((page) => (
 					<li key={page.id ?? page.slug}>

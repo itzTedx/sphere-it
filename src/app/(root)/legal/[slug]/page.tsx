@@ -11,7 +11,6 @@ import {
 	findLegalPageBySlug,
 	listLegalPages,
 } from "@/modules/legal-pages/actions/query";
-import type { LegalPage } from "@/payload-types";
 
 import { Header } from "../components/header";
 
@@ -33,12 +32,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 	if (!page) {
 		return {
-			title: "Policy Not Found",
 			description: "The requested legal policy could not be found.",
+			robots: { follow: false, index: false },
+			title: "Policy Not Found",
 		};
 	}
 
-	return generateMeta({ doc: page as unknown as LegalPage });
+	return generateMeta({
+		canonicalPath: `/legal/${page.slug}`,
+		doc: page,
+	});
 }
 
 export default async function LegalPage({ params }: Props) {

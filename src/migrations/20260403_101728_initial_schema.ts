@@ -1,7 +1,7 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateDownArgs, MigrateUpArgs, sql } from "@payloadcms/db-postgres";
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
-  await db.execute(sql`
+	await db.execute(sql`
    CREATE TYPE "public"."enum_services_cta_buttons_link_type" AS ENUM('page', 'reference', 'custom');
   CREATE TYPE "public"."enum_services_cta_buttons_link_page" AS ENUM('/', '/services', '/about', '/resources/blogs', '/resources/case-studies', '/resources/research-papers', '/resources/faqs', '/careers', '/contact', '/methodology', '/resources/ai-maturity');
   CREATE TYPE "public"."enum_services_cta_buttons_link_appearance" AS ENUM('default', 'outline');
@@ -1671,11 +1671,15 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "footer_socials_order_idx" ON "footer_socials" USING btree ("_order");
   CREATE INDEX "footer_socials_parent_id_idx" ON "footer_socials" USING btree ("_parent_id");
   CREATE INDEX "footer_locations_order_idx" ON "footer_locations" USING btree ("_order");
-  CREATE INDEX "footer_locations_parent_id_idx" ON "footer_locations" USING btree ("_parent_id");`)
+  CREATE INDEX "footer_locations_parent_id_idx" ON "footer_locations" USING btree ("_parent_id");`);
 }
 
-export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
-  await db.execute(sql`
+export async function down({
+	db,
+	payload,
+	req,
+}: MigrateDownArgs): Promise<void> {
+	await db.execute(sql`
    DROP TABLE "services_cta_buttons" CASCADE;
   DROP TABLE "services_homepage_features" CASCADE;
   DROP TABLE "services_homepage_tags" CASCADE;
@@ -1815,5 +1819,5 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_methodology_page_phases_items_icon";
   DROP TYPE "public"."enum_methodology_page_hero_cta_link_type";
   DROP TYPE "public"."enum_methodology_page_hero_cta_link_page";
-  DROP TYPE "public"."enum_footer_socials_platform";`)
+  DROP TYPE "public"."enum_footer_socials_platform";`);
 }

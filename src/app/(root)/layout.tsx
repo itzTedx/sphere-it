@@ -22,7 +22,7 @@ const meta = {
 };
 
 export const metadata: Metadata = {
-	title: "Sphere It Global",
+	title: meta.title,
 	metadataBase: new URL(BASE_URL),
 	keywords: [
 		"AI solutions",
@@ -61,6 +61,9 @@ export const metadata: Metadata = {
 		description: meta.description,
 		images: ["/og-image.jpg"],
 		creator: "@sphereglobal",
+	},
+	alternates: {
+		canonical: BASE_URL,
 	},
 
 	authors: [{ name: COMPANY_NAME }],

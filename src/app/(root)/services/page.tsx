@@ -94,7 +94,7 @@ export default async function ServicesPage() {
 					{ name: "Services", item: `${BASE_URL}/services` },
 				]}
 			/>
-			<main>
+			<main id="main-content">
 				<header className="border-b bg-card py-9 sm:py-12 md:py-16">
 					<div className="container max-w-7xl">
 						<Badge>{hero?.badge ?? "Services"}</Badge>
@@ -128,10 +128,7 @@ export default async function ServicesPage() {
 					</div>
 				</header>
 
-				<section
-					className="container relative z-50 mt-12 max-w-7xl"
-					id="main-content"
-				>
+				<section className="container relative z-50 mt-12 max-w-7xl">
 					<ul className="space-y-8 sm:space-y-12 md:space-y-16">
 						{services.map((service) => (
 							<ServiceCard key={service.id} service={service} />

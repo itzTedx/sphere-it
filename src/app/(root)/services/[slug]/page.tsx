@@ -122,7 +122,7 @@ export default async function ServicePage({ params }: Props) {
 					},
 				]}
 			/>
-			<main>
+			<main id="main-content">
 				<header className="relative z-50 space-y-4 border-b bg-card py-9 sm:space-y-6 sm:py-12 md:py-16">
 					<div className="container grid max-w-7xl gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
 						<div className="space-y-6">
@@ -204,25 +204,6 @@ export default async function ServicePage({ params }: Props) {
 											</CMSLink>
 										);
 									})}
-								{/* <Button asChild size="lg">
-									<Link href="/contact">
-										Get Started
-										<span className="w-7">
-											<IconArrowRight />
-										</span>
-									</Link>
-								</Button>
-								<Button asChild size="lg" variant="ghost">
-									{service.slug === "assure" ? (
-										<Link href="/contact">Request a Assure</Link>
-									) : service.slug === "augment" ? (
-										<Link href="/careers#application">
-											Explore Talent Models
-										</Link>
-									) : (
-										<Link href="/contact">Request a Demo</Link>
-									)}
-								</Button> */}
 							</div>
 						</div>
 						<div className="relative order-first aspect-10/7 lg:order-last">
@@ -264,7 +245,7 @@ export default async function ServicePage({ params }: Props) {
 						</div>
 					)}
 				</header>
-				<article className="mt-12" id="main-content">
+				<article className="mt-12">
 					<RichText
 						className="prose prose-stone container prose-h2:mt-0 prose-h3:mt-4 prose-ol:mt-0 prose-table:mt-0 prose-table:prose-p:mt-0 prose-ul:mt-0 prose-h2:mb-6 prose-h3:mb-4 prose-headings:mb-4 max-w-7xl prose-h2:font-semibold prose-h2:text-title-4 prose-h3:text-title-5 prose-headings:text-primary-900 prose-li:prose-p:text-base prose-li:text-base prose-p:text-base prose-p:leading-normal prose-p:tracking-tight sm:prose-h2:text-title-3 sm:prose-h3:text-title-4 sm:prose-li:prose-p:text-lg sm:prose-li:text-lg sm:prose-p:text-lg lg:prose-h2:text-title-2 lg:prose-h3:text-title-3 lg:prose-p:text-xl"
 						data={service.content}

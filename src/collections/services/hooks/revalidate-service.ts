@@ -5,9 +5,9 @@ import type {
 	CollectionAfterDeleteHook,
 } from "payload";
 
-import { Blog } from "@/payload-types";
+import { Service } from "@/payload-types";
 
-export const revalidateService: CollectionAfterChangeHook<Blog> = ({
+export const revalidateService: CollectionAfterChangeHook<Service> = ({
 	doc,
 	previousDoc,
 	req: { payload, context },
@@ -43,7 +43,7 @@ export const revalidateService: CollectionAfterChangeHook<Blog> = ({
 	return doc;
 };
 
-export const revalidateServiceDelete: CollectionAfterDeleteHook<Blog> = ({
+export const revalidateServiceDelete: CollectionAfterDeleteHook<Service> = ({
 	doc,
 	req: { context },
 }) => {
@@ -52,7 +52,6 @@ export const revalidateServiceDelete: CollectionAfterDeleteHook<Blog> = ({
 
 		revalidatePath(path);
 		revalidatePath("/services");
-		revalidateTag("blogs", "max");
 		revalidateTag("services", "max");
 		if (doc?.slug) {
 			revalidateTag(`service:${doc.slug}`, "max");

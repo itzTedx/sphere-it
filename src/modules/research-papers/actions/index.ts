@@ -16,7 +16,7 @@ export async function listResearchPapersPaged(options?: {
 	return payload.find({
 		collection: "researchPapers",
 		draft: false,
-		depth: 2,
+		depth: 1,
 		limit,
 		page,
 		where: {
@@ -42,8 +42,8 @@ export async function listResearchPapers(limit?: number) {
 	const data = await payload.find({
 		collection: "researchPapers",
 		draft: false,
-		depth: 2,
-		limit: limit ?? 100,
+		depth: 1,
+		limit: limit ?? 24,
 		where: {
 			_status: {
 				equals: "published",

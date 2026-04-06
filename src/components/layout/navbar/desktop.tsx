@@ -73,7 +73,7 @@ export const DesktopNavLinks = ({ services }: DesktopNavLinksProps) => {
 
 	return (
 		<NavigationMenu aria-label="Main navigation" viewport={true}>
-			<NavigationMenuList role="menubar">
+			<NavigationMenuList>
 				{NAV_LINKS.map(({ id, label, href, submenu, resources }) => {
 					const isServices = id === 1;
 
@@ -102,14 +102,8 @@ export const DesktopNavLinks = ({ services }: DesktopNavLinksProps) => {
 											label
 										)}
 									</NavigationMenuTrigger>
-									<NavigationMenuContent
-										aria-label={`${label} submenu`}
-										role="menu"
-									>
-										<ul
-											className="grid gap-2 md:w-[400px] lg:w-[1180px]"
-											role="none"
-										>
+									<NavigationMenuContent aria-label={`${label} submenu`}>
+										<ul className="grid gap-2 md:w-[400px] lg:w-[1180px]">
 											{id === 1 && resolvedSubmenu && (
 												<ServicesMegaMenu data={resolvedSubmenu} />
 											)}
@@ -251,9 +245,14 @@ function ServicesMegaMenu({ data }: { data: SubmenuLink[] }) {
 							transition={{ duration: 0.1, ease: "easeIn" }}
 						>
 							<Image
-								alt="Service Image"
+								alt={
+									hoveredIdx
+										? `${hoveredIdx} service preview`
+										: "Sphere IT services preview"
+								}
 								className={cn("object-cover")}
 								fill
+								sizes="(max-width: 1024px) 100vw, 33vw"
 								src={
 									data.find((menu) => menu.label === hoveredIdx)?.image ||
 									"/images/dubai-city.webp"
@@ -281,7 +280,7 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
 								<Link
 									className="group relative flex aspect-4/3 h-full w-full flex-1 select-none flex-col justify-between overflow-hidden rounded-md border bg-primary-950 p-4 no-underline outline-hidden transition-all duration-200 hover:bg-primary-900 focus:shadow-md group-hover:border-primary-600 group-focus-visible:bg-primary-900 md:p-6"
 									href={link.href}
-									title="Explore our services"
+									title={`Explore ${link.label}`}
 								>
 									<link.Icon className="relative z-10 size-7 text-primary-500 transition-colors group-hover:text-primary-400 group-focus-visible:text-primary-400" />
 									<div className="relative z-10">
@@ -297,6 +296,7 @@ function ResourcesMegaMenu({ data }: { data: ResourcesSubmenu[] }) {
 											alt={link.label}
 											className="object-cover transition-all duration-200 group-hover:scale-105 group-hover:brightness-110"
 											fill
+											sizes="(max-width: 1024px) 50vw, 20vw"
 											src={link.image}
 										/>
 									)}

@@ -35,8 +35,8 @@ export const listCaseStudiesPaged = async (options?: {
 	});
 };
 
-export const listCaseStudies = async () => {
-	const data = await listCaseStudiesPaged({ limit: 100, page: 1 });
+export const listCaseStudies = async (limit?: number) => {
+	const data = await listCaseStudiesPaged({ limit: limit ?? 100, page: 1 });
 	return data.docs;
 };
 

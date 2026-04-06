@@ -49,12 +49,12 @@ export const Cta = ({
 						>
 							{badge}
 						</Badge>
-						<h4
+						<h2
 							className="text-balance text-2xl text-primary-100 leading-tight lg:text-title-2 xl:text-title-3"
 							id="cta-heading"
 						>
 							{title}
-						</h4>
+						</h2>
 						<p className="text-balance text-primary-300 text-sm sm:text-base lg:text-lg">
 							{description}
 						</p>
@@ -74,7 +74,7 @@ export const Cta = ({
 				</div>
 				{showForm && (
 					<div className="z-50 mt-5 rounded-2xl bg-card p-9 shadow-md lg:absolute lg:top-1/2 lg:right-9 lg:mt-0 lg:w-lg lg:-translate-y-1/2">
-						<h5 className="mb-4 text-stone-800 text-title-4">Shall we talk</h5>
+						<h3 className="mb-4 text-stone-800 text-title-4">Shall we talk</h3>
 						<QuickEnquiryForm route="CTA" />
 					</div>
 				)}

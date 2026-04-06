@@ -2,6 +2,7 @@ import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import Script from "next/script";
 
 import { Cta } from "@/components/layout/cta";
@@ -103,6 +104,7 @@ export default async function BlogPage({ params }: Props) {
 	const { slug } = await params;
 
 	const blog = await findBlogBySlug(slug);
+	if (!blog) return notFound();
 
 	const jsonLd = structuredData(blog);
 
@@ -122,7 +124,7 @@ export default async function BlogPage({ params }: Props) {
 					},
 				]}
 			/>
-			<main>
+			<main id="main-content">
 				<header
 					className="border-b bg-card py-6 sm:py-8 md:py-12"
 					role="banner"
@@ -205,13 +207,6 @@ export default async function BlogPage({ params }: Props) {
 												size="33vw"
 											/>
 										)}
-										{/* <Image
-											alt={`${blog.title} - Featured image`}
-											className="object-cover"
-											fill
-											priority
-											src={blog.image}
-										/> */}
 									</div>
 								</div>
 							</ViewTransition>
@@ -233,17 +228,6 @@ export default async function BlogPage({ params }: Props) {
 								data={blog.content}
 								enableGutter={false}
 							/>
-							{/* <MDXContent
-								components={{
-									h1: (props) => <h1 id={slugify(props.children)} {...props} />,
-									h2: (props) => <h2 id={slugify(props.children)} {...props} />,
-									h3: (props) => <h3 id={slugify(props.children)} {...props} />,
-									h4: (props) => <h4 id={slugify(props.children)} {...props} />,
-									h5: (props) => <h5 id={slugify(props.children)} {...props} />,
-									h6: (props) => <h6 id={slugify(props.children)} {...props} />,
-								}}
-								source={blog.content}
-							/> */}
 						</article>
 					</div>
 				</div>

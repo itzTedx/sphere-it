@@ -1,5 +1,7 @@
 "use server";
 
+import { cookies } from "next/headers";
+
 import config from "@payload-config";
 import { getPayload } from "payload";
 
@@ -53,6 +55,17 @@ export async function sendEnquiryEmail(data: QuickEnquireType, route: string) {
 				message: messageText,
 			}),
 		});
+
+		if (route.includes("Research Paper")) {
+			const cookieStore = await cookies();
+			cookieStore.set("research-paper-access", "granted", {
+				httpOnly: true,
+				secure: process.env.NODE_ENV === "production",
+				sameSite: "lax",
+				maxAge: 60 * 60 * 24 * 7,
+				path: "/",
+			});
+		}
 
 		return { success: true };
 	} catch (error) {

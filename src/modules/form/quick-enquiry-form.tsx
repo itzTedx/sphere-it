@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
@@ -52,6 +52,7 @@ export const QuickEnquiryForm = ({
 		mode: "onSubmit",
 	});
 	const pathname = usePathname();
+	const router = useRouter();
 	const { data: session } = useSession();
 
 	async function onSubmit(data: QuickEnquireType) {
@@ -70,13 +71,6 @@ export const QuickEnquiryForm = ({
 				throw new Error(errorMessage);
 			}
 
-			// Store access granted flag in localStorage
-			localStorage.setItem("research-paper-access", "true");
-			localStorage.setItem(
-				"research-paper-access-timestamp",
-				Date.now().toString()
-			);
-
 			toast.success(
 				"Access granted! You can now view the full research paper.",
 				{
@@ -85,7 +79,8 @@ export const QuickEnquiryForm = ({
 				}
 			);
 
-			// Call the success callback if provided
+			router.refresh();
+
 			if (onSuccess) {
 				onSuccess();
 			}
@@ -291,13 +286,6 @@ export const QuickEnquiryForm = ({
 								throw new Error(errorMessage);
 							}
 
-							// Mirror the same "access granted" behaviour as the manual form submit
-							localStorage.setItem("research-paper-access", "true");
-							localStorage.setItem(
-								"research-paper-access-timestamp",
-								Date.now().toString()
-							);
-
 							toast.success(
 								"Access granted! You can now view the full research paper.",
 								{
@@ -306,6 +294,7 @@ export const QuickEnquiryForm = ({
 								}
 							);
 
+							router.refresh();
 							onSuccess?.();
 						} catch (error) {
 							console.error(

@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			: "";
 
 	return {
-		title: `${title} | ${COMPANY_NAME} Case Study`,
+		title,
 		description,
 		keywords: [
 			"case study",
@@ -122,17 +122,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		},
 		alternates: {
 			canonical: `${BASE_URL}/resources/case-studies/${study.slug}`,
-		},
-		robots: {
-			index: true,
-			follow: true,
-			googleBot: {
-				index: true,
-				follow: true,
-				"max-video-preview": -1,
-				"max-image-preview": "large",
-				"max-snippet": -1,
-			},
 		},
 	};
 }

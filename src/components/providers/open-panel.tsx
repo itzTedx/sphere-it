@@ -7,24 +7,23 @@ export default function OpenPanelProvider({
 }) {
 	const apiUrl = process.env.NEXT_PUBLIC_OPENPANEL_API_URL ?? "";
 	const clientId = process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID ?? "";
+	const isEnabled = Boolean(apiUrl && clientId);
 
 	return (
 		<>
-			<OpenPanelComponent
-				apiUrl={apiUrl}
-				clientId={clientId}
-				globalProperties={{
-					environment: process.env.NODE_ENV,
-				}}
-				scriptUrl="https://analytics.zironpro.ae/op1.js"
-				// sessionReplay={{
-				// 	enabled: true,
-				// 	maskAllInputs: true,
-				// }}
-				trackAttributes={true}
-				trackOutgoingLinks={true}
-				trackScreenViews={true}
-			/>
+			{isEnabled && (
+				<OpenPanelComponent
+					apiUrl={apiUrl}
+					clientId={clientId}
+					globalProperties={{
+						environment: process.env.NODE_ENV,
+					}}
+					scriptUrl="https://analytics.zironpro.ae/op1.js"
+					trackAttributes={true}
+					trackOutgoingLinks={true}
+					trackScreenViews={true}
+				/>
+			)}
 			{children}
 		</>
 	);

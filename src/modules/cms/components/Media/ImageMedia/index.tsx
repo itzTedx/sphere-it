@@ -1,7 +1,3 @@
-"use client";
-
-import React from "react";
-
 import type { StaticImageData } from "next/image";
 import NextImage from "next/image";
 
@@ -13,14 +9,12 @@ import type { Props as MediaProps } from "../types";
 
 const { breakpoints } = cssVariables;
 
-export const Image: React.FC<MediaProps> = (props) => {
+export const Image = (props: MediaProps) => {
 	const {
 		alt: altFromProps,
 		fill,
 		height: heightFromProps,
 		imgClassName,
-		onClick,
-		onLoad: onLoadFromProps,
 		priority,
 		quality,
 		resource,
@@ -28,8 +22,6 @@ export const Image: React.FC<MediaProps> = (props) => {
 		src: srcFromProps,
 		width: widthFromProps,
 	} = props;
-
-	const [, setIsLoading] = React.useState(true);
 
 	let width: number | undefined | null;
 	let height: number | undefined | null;
@@ -64,13 +56,6 @@ export const Image: React.FC<MediaProps> = (props) => {
 			className={cn(imgClassName)}
 			fill={fill}
 			height={!fill ? height || heightFromProps : undefined}
-			onClick={onClick}
-			onLoad={() => {
-				setIsLoading(false);
-				if (typeof onLoadFromProps === "function") {
-					onLoadFromProps();
-				}
-			}}
 			priority={priority}
 			quality={quality}
 			sizes={sizes}

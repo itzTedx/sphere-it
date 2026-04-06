@@ -71,7 +71,7 @@ export default async function Home() {
 					{JSON.stringify(faqStructuredData)}
 				</Script>
 			)}
-			<main>
+			<main id="main-content">
 				<Hero />
 				<Services />
 				<Clients />

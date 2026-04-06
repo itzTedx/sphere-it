@@ -17,7 +17,7 @@ import { BreadcrumbJsonLd } from "@/modules/seo/breadcrumb-jsonld";
 import { BlogsSidebar } from "../components/blogs-sidebar";
 import { InsightsLayout } from "../components/insights-layout";
 import { MobileFilters } from "./components/mobile-filters";
-import { structuredData } from "./structured-data";
+import { buildBlogsListingStructuredData } from "./structured-data";
 
 const meta = {
 	title: "Blogs - Technology Insights & Digital Transformation | Sphere IT",
@@ -82,15 +82,30 @@ export const metadata: Metadata = {
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
+async function BlogsListingJsonLd() {
+	const blogs = await listBlogs();
+	const structuredData = buildBlogsListingStructuredData(blogs);
+	return (
+		<>
+			<Script id="blog-list-schema-blog" type="application/ld+json">
+				{JSON.stringify(structuredData[0])}
+			</Script>
+			<Script id="blog-list-schema-collection" type="application/ld+json">
+				{JSON.stringify(structuredData[1])}
+			</Script>
+			<Script id="blog-list-schema-breadcrumb" type="application/ld+json">
+				{JSON.stringify(structuredData[2])}
+			</Script>
+		</>
+	);
+}
+
 export default function BlogsPage(props: { searchParams: SearchParams }) {
 	return (
 		<InsightsLayout>
-			{structuredData.map((data, index) => (
-				// biome-ignore lint/suspicious/noArrayIndexKey: we need to use the index as the key
-				<Script key={index} type="application/ld+json">
-					{JSON.stringify(data)}
-				</Script>
-			))}
+			<Suspense fallback={null}>
+				<BlogsListingJsonLd />
+			</Suspense>
 			<BreadcrumbJsonLd
 				items={[
 					{ name: "Home", item: `${BASE_URL}` },

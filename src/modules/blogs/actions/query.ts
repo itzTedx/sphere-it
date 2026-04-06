@@ -8,12 +8,13 @@ export const listBlogs = async (options?: {
 	search?: string;
 	categories?: string[];
 	isFeatured?: boolean;
+	limit?: number;
 }) => {
 	"use cache";
 	cacheTag("blogs", "blogCategories");
 	cacheLife("hours");
 
-	const { search, categories, isFeatured } = options || {};
+	const { search, categories, isFeatured, limit = 48 } = options || {};
 
 	const where: Where = {
 		and: [],
@@ -77,8 +78,8 @@ export const listBlogs = async (options?: {
 	const doc = await payload.find({
 		collection: "blogs",
 		draft: false,
-		depth: 2,
-		limit: 100,
+		depth: 1,
+		limit,
 		select: {
 			blogCategories: true,
 			title: true,
@@ -182,7 +183,7 @@ export const listBlogsPaged = async (options?: {
 	return payload.find({
 		collection: "blogs",
 		draft: false,
-		depth: 2,
+		depth: 1,
 		limit,
 		page,
 		select: {
@@ -207,8 +208,8 @@ export const listCategories = async () => {
 	const data = await payload.find({
 		collection: "blogCategories",
 		draft: false,
-		depth: 1,
-		limit: 100,
+		depth: 0,
+		limit: 50,
 		select: {
 			category: true,
 			slug: true,

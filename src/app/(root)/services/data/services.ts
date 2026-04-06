@@ -68,8 +68,6 @@ export const SERVICES: Service[] = [
 		},
 		overview: `Elevate is Sphere IT’s AI-powered service that helps organizations adopt and scale Artificial Intelligence with precision and governance. Built in partnership with Grey Chain, Elevate runs on a weaved platform that integrates Retrieval-Augmented Generation (RAG) and vector technology to deliver context-rich insights and business-ready intelligence.
     Our platform connects people, data, and enterprise applications in a conversational way—bridging analytics, automation, and intelligence—so leaders can make faster, smarter, and safer decisions.`,
-		inAction:
-			"<strong>Connect your employees and customers with enterprise knowledge, data, and systems to get work done.</strong><br />Find, analyse, and reason with information and data; perform actions and automate processes through natural conversations - <span>summarize, update, create, send, and process seamlessly across enterprise systems.</span>",
 
 		key: [
 			{
@@ -263,7 +261,7 @@ export const SERVICES: Service[] = [
 		},
 		overview:
 			"Simplify critical processes with low-code automation tailored to regulated industries. By cutting cycle times, reducing errors, and ensuring compliance, we make operations more efficient and auditable-without unnecessary complexity.",
-		inAction: "",
+
 		key: [
 			{
 				id: 1,
@@ -446,7 +444,6 @@ export const SERVICES: Service[] = [
 		},
 		overview:
 			"Turn data into action with real-time insights and proactive monitoring. Our telemetry-driven dashboards provide clarity for decision-makers, ensuring accurate reporting and early resolution of potential issues.",
-		inAction: "",
 		key: [
 			{
 				id: 1,
@@ -643,7 +640,7 @@ export const SERVICES: Service[] = [
 		},
 		overview:
 			"Keep your mission-critical platforms resilient, secure, and compliant. From stability and uptime to optimized infrastructure, we ensure systems perform at their best. So your business never misses a beat.",
-		inAction: "",
+
 		key: [
 			{
 				id: 1,
@@ -839,7 +836,7 @@ export const SERVICES: Service[] = [
 		},
 		overview:
 			"Scale your IT capabilities with flexible talent models. Whether you need niche expertise or long-term support, we provide outcome-aligned professionals who integrate seamlessly into your teams, reducing overhead and accelerating delivery.",
-		inAction: "",
+
 		key: [
 			{
 				id: 1,
@@ -995,7 +992,6 @@ export interface Service {
 		technologies: string[];
 		benefits: string[];
 	};
-	inAction: string;
 	key: KeyFeature[];
 	feature: {
 		title: string;

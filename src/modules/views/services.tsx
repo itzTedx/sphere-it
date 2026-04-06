@@ -1,4 +1,5 @@
 import { Route } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import { MiniCta } from "@/components/layout/cta";
@@ -21,8 +22,14 @@ import { ServiceListItem } from "@/types/service";
 
 import { getHomepageGlobal } from "../global/homepage";
 import { getServicesForListing } from "../global/services";
-import { ServicesTabs } from "./components/home/service-tabs";
 import { ServiceCard } from "./components/service-card";
+
+const ServicesTabs = dynamic(
+	() => import("./components/home/service-tabs").then((mod) => mod.ServicesTabs),
+	{
+		loading: () => <div className="mt-3 rounded-3xl bg-card/70 p-6" />,
+	}
+);
 
 const SERVICE_ICON_MAP = {
 	elevate: IconElevate,

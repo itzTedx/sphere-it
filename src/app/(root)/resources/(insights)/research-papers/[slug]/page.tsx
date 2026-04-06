@@ -1,7 +1,7 @@
 import { ViewTransition } from "react";
 
 import type { Metadata } from "next/dist/types";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
@@ -28,6 +28,23 @@ import { Article } from "./article-component";
 
 interface Props {
 	params: Promise<{ slug: string }>;
+}
+
+function getPreviewContent(content: ResearchPaper["content"]): ResearchPaper["content"] {
+	if (!content || typeof content !== "object") return content;
+	const root =
+		"root" in content && typeof content.root === "object" && content.root
+			? content.root
+			: null;
+	if (!root || !Array.isArray(root.children)) return content;
+
+	return {
+		...content,
+		root: {
+			...root,
+			children: root.children.slice(0, 4),
+		},
+	};
 }
 
 const structuredData = (study: ResearchPaper | null) => {
@@ -161,9 +178,14 @@ export async function generateStaticParams() {
 
 export default async function ResearchPaperPage({ params }: Props) {
 	const { slug } = await params;
-	const session = await getServerSession(payload, await headers());
+	const [session, cookieStore] = await Promise.all([
+		getServerSession(payload, await headers()),
+		cookies(),
+	]);
 
-	const isLoggedIn = !!session?.user;
+	const hasEnquiryAccess =
+		cookieStore.get("research-paper-access")?.value === "granted";
+	const isLoggedIn = Boolean(session?.user) || hasEnquiryAccess;
 
 	const study = await geResearchBySlug(slug);
 	// const otherPapers = await listResearchPapers(3);
@@ -191,7 +213,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 					},
 				]}
 			/>
-			<main>
+			<main id="main-content">
 				<header
 					className="border-b bg-card py-6 sm:py-8 md:py-12"
 					role="banner"
@@ -245,7 +267,7 @@ export default async function ResearchPaperPage({ params }: Props) {
 					</div>
 				</header>
 				<Article
-					content={study.content}
+					content={isLoggedIn ? study.content : getPreviewContent(study.content)}
 					isLoggedIn={isLoggedIn}
 					title={study.title}
 				/>

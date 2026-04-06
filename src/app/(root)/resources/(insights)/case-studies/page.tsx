@@ -1,11 +1,13 @@
 import { Suspense } from "react";
 
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TabsContent } from "@/components/ui/tabs";
 
+import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { listCaseStudiesPaged } from "@/modules/case-studies/actions/query";
 import { CaseStudyCard } from "@/modules/case-studies/components/case-study-card";
 
@@ -13,9 +15,89 @@ import { InsightsLayout } from "../components/insights-layout";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
-export default async function CaseStudiesPage(props: {
+const caseStudiesMeta = {
+	shortTitle: "Case Studies - Client Success & Digital Transformation",
+	description:
+		"Explore Sphere IT case studies: real outcomes in AI, automation, cloud, and digital transformation for enterprises across the UAE, GCC, and beyond.",
+};
+
+const caseStudiesTitle = (page: number) =>
+	page > 1
+		? `${caseStudiesMeta.shortTitle} | Page ${page} | Sphere IT`
+		: `${caseStudiesMeta.shortTitle} | Sphere IT`;
+
+const ogImageUrl = `${BASE_URL}/images/services-og.jpg`;
+
+type CaseStudiesPageProps = {
 	searchParams: SearchParams;
-}) {
+};
+
+export async function generateMetadata({
+	searchParams,
+}: CaseStudiesPageProps): Promise<Metadata> {
+	const sp = await searchParams;
+	const pageParam = typeof sp.page === "string" ? sp.page : undefined;
+	const page = Math.max(1, Number(pageParam || 1) || 1);
+	const canonicalPath = `${BASE_URL}/resources/case-studies`;
+	const canonical = page > 1 ? `${canonicalPath}?page=${page}` : canonicalPath;
+	const title = caseStudiesTitle(page);
+
+	return {
+		title,
+		description: caseStudiesMeta.description,
+		keywords: [
+			"case studies",
+			"IT consulting case studies",
+			"digital transformation case studies",
+			"enterprise AI success stories",
+			"automation case studies",
+			"cloud migration examples",
+			"UAE technology projects",
+			"GCC digital transformation",
+			`${COMPANY_NAME} clients`,
+			"technology implementation outcomes",
+		],
+		authors: [{ name: COMPANY_NAME }],
+		publisher: COMPANY_NAME,
+		openGraph: {
+			title,
+			description: caseStudiesMeta.description,
+			type: "website",
+			url: canonical,
+			siteName: COMPANY_NAME,
+			images: [
+				{
+					url: ogImageUrl,
+					width: 1200,
+					height: 630,
+					alt: `${COMPANY_NAME} case studies and client success stories`,
+				},
+			],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title,
+			description: caseStudiesMeta.description,
+			images: [ogImageUrl],
+		},
+		alternates: {
+			canonical,
+		},
+		robots: {
+			index: true,
+			follow: true,
+			googleBot: {
+				index: true,
+				follow: true,
+				"max-video-preview": -1,
+				"max-image-preview": "large",
+				"max-snippet": -1,
+			},
+		},
+	};
+}
+
+export default async function CaseStudiesPage(props: CaseStudiesPageProps) {
 	return (
 		<InsightsLayout>
 			<Suspense fallback={<CaseStudiesPageSkeleton />}>
@@ -123,7 +205,13 @@ function CaseStudiesMainContentSkeleton() {
 		<main className="mb-8 sm:mb-12">
 			<article className="grid grid-cols-1 gap-4 py-4 sm:grid-cols-2 sm:py-6 lg:grid-cols-3 xl:gap-6">
 				{Array.from({ length: 6 }).map((_, index) => (
-					<div className="space-y-3" key={index}>
+					<div
+						className="space-y-3"
+						key={`case-study-skeleton-${
+							// biome-ignore lint/suspicious/noArrayIndexKey: we need to use the index as the key
+							index + 1
+						}`}
+					>
 						<Skeleton className="aspect-4/3 w-full rounded-xl" />
 						<Skeleton className="h-4 w-3/4" />
 						<Skeleton className="h-3 w-full" />
