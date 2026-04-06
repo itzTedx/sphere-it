@@ -179,7 +179,7 @@ export function AxisCardClient({
 							/>
 						)}
 					</div>
-					<TabsContents className="flex-1 rounded-[calc(var(--radius-xl)+calc(var(--spacing)*1.25))] border bg-stone-alpha-10 p-1">
+					<TabsContents className="flex-1 rounded-[calc(var(--radius-xl)+--spacing(1.25))] border bg-stone-alpha-10 p-1">
 						<div className="flex items-center justify-between rounded-xl bg-linear-to-br from-primary-200 to-card p-4 shadow-sm sm:p-6">
 							{axisPhases.map((phase, index) => (
 								<TabsContent

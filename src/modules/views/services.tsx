@@ -65,7 +65,7 @@ export const Services = async () => {
 		>
 			<div className="relative max-sm:px-0">
 				<ServicesTabs serviceOrder={services.map((service) => service.id)}>
-					<Card className="md:mask-b-from-78% md:mask-b-to-99% mt-3 rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none backdrop-blur-md md:mt-0 md:p-1.5">
+					<Card className="md:mask-b-from-78% md:mask-b-to-99% mt-3 rounded-[calc(var(--radius-3xl)+--spacing(1.5))] border border-stone-alpha-10 bg-stone-alpha-10 p-1 shadow-none backdrop-blur-md md:mt-0 md:p-1.5">
 						<TabsContents
 							className="rounded-3xl bg-card p-4 shadow-md sm:p-6 md:p-8 md:pb-28 xl:px-12 xl:pt-16"
 							mode="auto-height"
@@ -137,7 +137,7 @@ export const Services = async () => {
 						<MiniCta
 							buttonLink={cta.link.page ?? (cta.link.url as Route)}
 							buttonText={cta.link.label}
-							className="md:-mt-20 mt-4 md:mx-14"
+							className="mt-4 md:mx-14 md:-mt-20"
 							linkProps={{
 								title: cta.link.label,
 								...(cta.link.newTab && { target: "_blank" }),

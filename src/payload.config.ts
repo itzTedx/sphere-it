@@ -130,6 +130,10 @@ export default buildConfig({
 		pool: {
 			connectionString: process.env.DATABASE_URL || "",
 		},
+		// Do not mix Drizzle push (dev) with prodMigrations — dev push records batch -1
+		// and production startup/`next build` will prompt (and can hang) in migrate().
+		// push: false,
+		// prodMigrations: migrations,
 	}),
 	sharp,
 	plugins,

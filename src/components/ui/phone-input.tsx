@@ -109,6 +109,7 @@ const CountrySelect = ({
 					type="button"
 					variant="ghost"
 				>
+					<span className="sr-only">Select country</span>
 					<FlagComponent
 						country={selectedCountry}
 						countryName={selectedCountry}

@@ -164,9 +164,6 @@ export function Questionnaire({ className }: QuestionnaireProps) {
 														value={option.value.toString()}
 													/>
 												</div>
-												{/* <span className="font-medium text-stone-500 text-xs">
-													{option.description}
-												</span> */}
 											</label>
 										))}
 									</RadioGroup>

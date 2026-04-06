@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TabsContent } from "@/components/ui/tabs";
 
-import { BASE_URL } from "@/data/site-config";
+import { BASE_URL, COMPANY_NAME } from "@/data/site-config";
 import { listResearchPapersPaged } from "@/modules/research-papers/actions";
 import { PapersCard } from "@/modules/research-papers/components/paper-card";
 
@@ -99,11 +99,20 @@ function ResearchPapersPageSkeleton() {
 }
 
 function ResearchPapersMainContentSkeleton() {
+	const skeletonCardKeys = [
+		"skeleton-card-1",
+		"skeleton-card-2",
+		"skeleton-card-3",
+		"skeleton-card-4",
+		"skeleton-card-5",
+		"skeleton-card-6",
+	];
+
 	return (
 		<main className="mb-12">
 			<article className="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
-				{Array.from({ length: 6 }).map((_, index) => (
-					<div className="space-y-3" key={index}>
+				{skeletonCardKeys.map((skeletonKey) => (
+					<div className="space-y-3" key={skeletonKey}>
 						<Skeleton className="aspect-4/3 w-full rounded-xl" />
 						<Skeleton className="h-4 w-3/4" />
 						<Skeleton className="h-3 w-full" />
@@ -121,35 +130,53 @@ function ResearchPapersMainContentSkeleton() {
 }
 
 const meta = {
-	title: "Sphere IT Research Papers - AI, Automation & Digital Transformation",
+	title:
+		"Research Papers on AI, Automation & Digital Transformation | Sphere IT",
 	description:
-		"Access in-depth research papers from Sphere IT on AI platforms, IT solutions, process automation, and enterprise digital transformation. Learn from real-world insights and innovation.",
+		"Explore Sphere IT research papers covering enterprise AI adoption, process automation, digital transformation strategy, and technology implementation insights for UAE and GCC organizations.",
 };
 
 export const metadata: Metadata = {
 	title: meta.title,
 	description: meta.description,
 	keywords: [
-		"FAQs",
-		"frequently asked questions",
-		"Sphere IT services",
-		"AI platform questions",
-		"automation FAQs",
-		"data management questions",
-		"managed services FAQs",
-		"talent augmentation questions",
-		"IT consulting FAQs",
-		"digital transformation questions",
+		"research papers",
+		"AI research papers",
+		"digital transformation research",
+		"process automation insights",
+		"enterprise AI strategy",
+		"technology thought leadership",
+		"UAE digital transformation",
+		"GCC technology insights",
+		"IT consulting research",
+		`${COMPANY_NAME} research`,
 	],
+	authors: [{ name: COMPANY_NAME }],
+	publisher: COMPANY_NAME,
 	openGraph: {
 		title: meta.title,
 		description: meta.description,
 		type: "website",
-		url: `${BASE_URL}/resources/faqs`,
+		url: `${BASE_URL}/resources/research-papers`,
+		siteName: COMPANY_NAME,
+		images: [
+			{
+				url: `${BASE_URL}/images/services-og.jpg`,
+				width: 1200,
+				height: 630,
+				alt: `${COMPANY_NAME} research papers and insights`,
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: meta.title,
+		description: meta.description,
+		images: [`${BASE_URL}/images/services-og.jpg`],
 	},
 
 	alternates: {
-		canonical: `${BASE_URL}/resources/faqs`,
+		canonical: `${BASE_URL}/resources/research-papers`,
 	},
 	robots: {
 		index: true,

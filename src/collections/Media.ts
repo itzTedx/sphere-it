@@ -14,6 +14,7 @@ export const Media: CollectionConfig<"media"> = {
 	},
 	admin: {
 		group: "Resources",
+		defaultColumns: ["filename", "filesize", "mimeType", "updatedAt"],
 	},
 	fields: [
 		{

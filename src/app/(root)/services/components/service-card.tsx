@@ -51,9 +51,9 @@ export function ServiceCard({ service }: { service: ServicePageType }) {
 							{service.service}
 						</h2>
 					</div>
-					<p className="font-display text-sm text-stone-700 sm:text-lg">
+					<div className="font-display text-sm text-stone-700 sm:text-lg">
 						<RichText data={service.description} enableGutter={false} />
-					</p>
+					</div>
 					<div className="flex items-center gap-2 md:gap-4">
 						<Button asChild className="group">
 							<Link href={`/services/${service.id}`}>

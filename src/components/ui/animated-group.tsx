@@ -1,5 +1,10 @@
 "use client";
-import React, { type JSX, type ReactNode } from "react";
+import React, {
+	Children,
+	isValidElement,
+	type JSX,
+	type ReactNode,
+} from "react";
 
 import { motion, Variants } from "motion/react";
 
@@ -135,8 +140,15 @@ function AnimatedGroup<T extends React.ElementType = "div">({
 			whileInView="visible"
 			{...(rest as Record<string, unknown>)}
 		>
-			{React.Children.map(children, (child, index) => (
-				<MotionChild key={index} variants={itemVariants}>
+			{Children.toArray(children).map((child) => (
+				<MotionChild
+					key={
+						isValidElement(child)
+							? (child.key ?? "animated-group-item")
+							: String(child)
+					}
+					variants={itemVariants}
+				>
 					{child}
 				</MotionChild>
 			))}

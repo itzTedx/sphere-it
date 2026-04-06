@@ -17,6 +17,7 @@
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
+		"payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
 		"generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
 		"generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
 		"auth:generate": "pnpx @better-auth/cli generate --config ./src/lib/auth/server.ts --yes --output ./src/server/schema/auth-generated.ts",
@@ -76,7 +77,6 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.4.10",
 		"@playwright/test": "^1.59.0",
-		"@react-email/preview-server": "5.2.10",
 		"@tailwindcss/postcss": "^4.2.2",
 		"@tailwindcss/typography": "^0.5.19",
 		"@testing-library/react": "^16.3.2",

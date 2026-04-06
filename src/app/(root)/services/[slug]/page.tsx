@@ -151,8 +151,12 @@ export default async function ServicePage({ params }: Props) {
 											)
 											.map((partner) => (
 												<Fragment key={partner.id}>
-													<li>
-														<Media resource={partner.logo} />
+													<li className="relative aspect-6/2 h-8 md:aspect-11/4 md:h-11">
+														<Media
+															fill
+															imgClassName="object-contain"
+															resource={partner.logo}
+														/>
 													</li>
 
 													<li className="h-3 w-px bg-muted-background last:hidden" />
@@ -245,8 +249,12 @@ export default async function ServicePage({ params }: Props) {
 									)
 									.map((partner) => (
 										<Fragment key={partner.id}>
-											<li>
-												<Media resource={partner.logo} />
+											<li className="relative aspect-6/2 h-8 md:aspect-11/4 md:h-10">
+												<Media
+													fill
+													imgClassName="object-contain"
+													resource={partner.logo}
+												/>
 											</li>
 
 											<li className="h-3 w-px bg-muted-background last:hidden" />
@@ -303,7 +311,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			: "";
 
 	return {
-		title: `${title} | ${COMPANY_NAME} Services`,
+		title,
 		description,
 		keywords: [
 			"IT services",

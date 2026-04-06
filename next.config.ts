@@ -108,6 +108,16 @@ const nextConfig: NextConfig = {
 				destination: "/",
 				permanent: true,
 			},
+			{
+				source: "/about-us",
+				destination: "/about",
+				permanent: true,
+			},
+			{
+				source: "/managed-services",
+				destination: "/services",
+				permanent: true,
+			},
 		];
 	},
 };

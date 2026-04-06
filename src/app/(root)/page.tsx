@@ -67,12 +67,9 @@ export default async function Home() {
 	return (
 		<>
 			{faqStructuredData && (
-				<Script
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(faqStructuredData),
-					}}
-					type="application/ld+json"
-				/>
+				<Script type="application/ld+json">
+					{JSON.stringify(faqStructuredData)}
+				</Script>
 			)}
 			<main>
 				<Hero />

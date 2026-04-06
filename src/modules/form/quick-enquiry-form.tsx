@@ -184,18 +184,6 @@ export const QuickEnquiryForm = ({
 										placeholder="+971 56 789 4321"
 										value={field.value}
 									/>
-									{/* <InputGroupInput
-										placeholder="+971 56 789 4321"
-										{...field}
-										aria-describedby={
-											fieldState.invalid ? `${field.name}-error` : undefined
-										}
-										aria-invalid={fieldState.invalid}
-										id={field.name}
-									/>
-									<InputGroupAddon>
-										<IconPhone className="size-3.5" />
-									</InputGroupAddon> */}
 								</InputGroup>
 								{fieldState.invalid && (
 									<FieldError

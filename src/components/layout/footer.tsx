@@ -6,8 +6,8 @@ import {
 	IconSocialFacebook,
 	IconSocialInstagram,
 	IconSocialLinkedin,
-	IconSocialYoutube,
 	IconSocialX,
+	IconSocialYoutube,
 } from "@/assets/icons";
 import { Logo } from "@/assets/logo";
 
@@ -92,16 +92,24 @@ export const Footer = async () => {
 				{/* Bottom section */}
 				<div className="border-t py-6">
 					<div className="container flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-						<p className="text-muted-foreground text-sm">
+						<p className="text-muted text-sm">
 							Copyright © {currentYear} Sphere IT Global. All rights reserved.
 						</p>
+						<div className="sr-only">
+							<p>
+								Website designed and developed by{" "}
+								<Link href="https://zironpro.ae" target="_blank">
+									ZironPro
+								</Link>
+							</p>
+						</div>
 						<nav aria-label="Legal and policy links">
 							<ul className="flex flex-wrap items-center gap-4" role="list">
 								{legalPages.map((page) => (
 									<li key={page.id ?? page.slug}>
 										<Link
 											aria-label={`Read our ${page.title}`}
-											className="rounded-sm p-2 text-muted-foreground text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
+											className="rounded-sm p-2 text-muted text-sm transition-colors duration-300 hover:text-primary-300 focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 focus:ring-offset-foreground"
 											href={`/legal/${page.slug}` as Route}
 											title={`Read our ${page.title}`}
 										>

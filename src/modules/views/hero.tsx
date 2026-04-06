@@ -8,6 +8,7 @@ import { IconArrowDown } from "@/assets/icons";
 
 import RichText from "../cms/components/RichText";
 import { getHomepageGlobal } from "../global/homepage";
+import { HeroVideo } from "./components/hero-video";
 
 export const Hero = async () => {
 	const data = await getHomepageGlobal();
@@ -19,7 +20,7 @@ export const Hero = async () => {
 				aria-labelledby="hero-heading"
 				className="relative z-10 flex min-h-[calc(100svh-4rem)]"
 			>
-				<div className="-translate-x-1/2 container absolute bottom-0 left-1/2 z-50 flex w-full max-w-7xl flex-col items-center gap-6 pt-12 pb-9 text-center md:h-full md:flex-1 md:justify-between md:pt-16 md:pb-16 lg:pt-28">
+				<div className="container absolute bottom-0 left-1/2 z-50 flex w-full max-w-7xl -translate-x-1/2 flex-col items-center gap-6 pt-12 pb-9 text-center md:h-full md:flex-1 md:justify-between md:pt-16 md:pb-16 lg:pt-28">
 					<AnimatedGroup
 						className="mx-auto flex max-w-4xl flex-col items-center justify-center gap-6 text-background md:flex-1"
 						variants={{
@@ -52,18 +53,8 @@ export const Hero = async () => {
 							data={hero.title}
 							enableGutter={false}
 						/>
-						{/* <h1
-							className="text-card text-title-3 md:text-title-2 xl:text-title-1"
-							id="hero-heading"
-						>
-							Driven by People <br />
-							<span className="text-accent">Powered by Technology.</span>
-						</h1> */}
 
 						<p className="text-balance text-lg md:text-xl">
-							{/* Trusted partner driving digital transformation, data and
-							technology services for BFSI and essential industries across the
-							Middle East. */}
 							{hero.description}
 						</p>
 						<AnimatedGroup
@@ -99,7 +90,7 @@ export const Hero = async () => {
 							<Button
 								aria-describedby="hero-description"
 								asChild
-								className="group after:-translate-x-64 relative overflow-hidden after:absolute after:z-50 after:h-[150%] after:w-9 after:rotate-12 after:bg-linear-to-r after:from-transparent after:via-primary-300/20 after:to-transparent after:opacity-0 after:mix-blend-plus-lighter after:transition-[translate_opacity] after:duration-500 after:ease-out after:group-hover:translate-x-64 after:group-hover:opacity-100 max-sm:w-full"
+								className="group relative overflow-hidden after:absolute after:z-50 after:h-[150%] after:w-9 after:-translate-x-64 after:rotate-12 after:bg-linear-to-r after:from-transparent after:via-primary-300/20 after:to-transparent after:opacity-0 after:mix-blend-plus-lighter after:transition-[translate_opacity] after:duration-500 after:ease-out after:group-hover:translate-x-64 after:group-hover:opacity-100 max-sm:w-full"
 							>
 								<Link href="/services">Explore Services</Link>
 							</Button>
@@ -123,18 +114,7 @@ export const Hero = async () => {
 						</span>
 					</Link>
 				</div>
-				<video
-					autoPlay
-					className="mask-b-to-95% pointer-events-none absolute inset-0 h-full w-full object-cover"
-					loop
-					muted
-					playsInline
-					poster="/videos/hero-reel-poster.webp"
-					slot="media"
-				>
-					<source src="/videos/hero-reel.webm" type="video/webm" />
-					Your browser does not support the video tag.
-				</video>
+				<HeroVideo />
 			</section>
 
 			<section
@@ -150,13 +130,6 @@ export const Hero = async () => {
 					data={services.title}
 					enableGutter={false}
 				/>
-				{/* <h2
-					className="text-primary-100 text-title-5 md:text-title-4"
-					id="hero-services-heading"
-				>
-					Delivering Technology That{" "}
-					<span className="text-primary-600">Works for You</span>
-				</h2> */}
 			</section>
 		</header>
 	);

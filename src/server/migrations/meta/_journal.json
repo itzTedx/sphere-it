@@ -1,7 +1,7 @@
 {
-	"version": "7",
-	"dialect": "postgresql",
-	"entries": [
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
 		{
 			"idx": 0,
 			"version": "7",
@@ -9,5 +9,5 @@
 			"tag": "0000_lively_scarlet_witch",
 			"breakpoints": true
 		}
-	]
+  ]
 }

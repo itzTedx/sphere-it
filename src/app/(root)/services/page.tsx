@@ -16,7 +16,7 @@ import { WhyMatters } from "@/modules/views/why-matters";
 import { ServiceCard } from "./components/service-card";
 import { structuredData } from "./structured-data";
 
-const defaultMeta = {
+const meta = {
 	title: "IT Services - AI, Automation & Digital Transformation | Sphere IT",
 	description:
 		"Transform your business with Sphere IT's comprehensive IT services including AI solutions, process automation, data analytics, managed platforms, and talent augmentation. Certified professionals delivering measurable outcomes.",
@@ -26,8 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
 	const data = await getServicesPageGlobal();
 	const { seo } = data ?? {};
 
-	const title = seo?.metaTitle ?? defaultMeta.title;
-	const description = seo?.metaDescription ?? defaultMeta.description;
+	const title = seo?.metaTitle ?? meta.title;
+	const description = seo?.metaDescription ?? meta.description;
 	const ogImage =
 		typeof seo?.ogImage === "object" && seo.ogImage?.url
 			? seo.ogImage.url
@@ -101,7 +101,7 @@ export default async function ServicesPage() {
 						<div className="mt-4 max-w-5xl space-y-4 sm:space-y-6">
 							{hero?.title ? (
 								<RichText
-									className="prose-h1:text-primary-900 prose-h1:text-title-5 prose-strong:text-primary-600 sm:prose-h1:text-title-3 md:prose-h1:text-title-2 lg:prose-h1:text-title-1"
+									className="text-balance prose-h1:text-primary-900 prose-h1:text-title-5 prose-strong:text-primary-600 sm:prose-h1:text-title-3 md:prose-h1:text-title-2 lg:prose-h1:text-title-1"
 									data={hero.title}
 									enableGutter={false}
 									enableProse={false}
