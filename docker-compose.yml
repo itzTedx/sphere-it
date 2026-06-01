@@ -29,10 +29,10 @@ services:
   app:
     build:
       context: .
+      secrets:
+        - env_file
       extra_hosts:
         - "host.docker.internal:host-gateway"
-      args:
-        - DATABASE_URL=${DATABASE_URL}
     container_name: sphereit-site
     ports:
       - "3000:3000"
@@ -58,3 +58,7 @@ services:
 volumes:
   pg-data:
   uploads-data:
+
+secrets:
+  env_file:
+    file: .env

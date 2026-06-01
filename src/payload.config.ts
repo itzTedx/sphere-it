@@ -107,10 +107,14 @@ export default buildConfig({
 		transportOptions: {
 			host: env.SMTP_HOST,
 			port: Number(env.SMTP_PORT),
-			auth: {
-				user: env.SMTP_USER,
-				pass: env.SMTP_PASS,
-			},
+			...(env.SMTP_USER && env.SMTP_PASS
+				? {
+						auth: {
+							user: env.SMTP_USER,
+							pass: env.SMTP_PASS,
+						},
+					}
+				: {}),
 			// debug: process.env.NODE_ENV === "development",
 		},
 	}),
@@ -129,6 +133,9 @@ export default buildConfig({
 	db: postgresAdapter({
 		pool: {
 			connectionString: process.env.DATABASE_URL || "",
+			...(process.env.NEXT_PHASE === "phase-production-build"
+				? { connectionTimeoutMillis: 3_000, idleTimeoutMillis: 3_000 }
+				: {}),
 		},
 		// Do not mix Drizzle push (dev) with prodMigrations — dev push records batch -1
 		// and production startup/`next build` will prompt (and can hang) in migrate().

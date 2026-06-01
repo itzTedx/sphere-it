@@ -1,7 +1,9 @@
+# syntax=docker/dockerfile:1
+
 # ================================
 # Stage 1: Dependencies
 # ================================
-FROM node:20-alpine AS deps
+FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
 
@@ -9,7 +11,7 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 # Copy package files
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install dependencies (including devDependencies for build)
 RUN pnpm install --frozen-lockfile
@@ -20,7 +22,7 @@ RUN pnpm store prune
 # ================================
 # Stage 2: Builder
 # ================================
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 # Install pnpm
@@ -30,21 +32,17 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Set build-time environment variables
-ARG DATABASE_URL
-ENV DATABASE_URL=${DATABASE_URL:-postgres://user:password@localhost:5432/db_name}
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV NODE_ENV=production
-ENV BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET:-dummy-secret-for-builddummy-secret-for-builddummy-secret-for-build}
-ENV BETTER_AUTH_URL=${BETTER_AUTH_URL:-https://sphereitglobal.com}
+ENV NEXT_TELEMETRY_DISABLED=1 \
+    NODE_ENV=production
 
-# Build the application
-RUN pnpm build
+# .env is mounted as a BuildKit secret (see compose build.secrets) — not copied into image layers
+RUN --mount=type=secret,id=env_file,target=/app/.env \
+    pnpm build
 
 # ================================
 # Stage 3: Runner
 # ================================
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -58,7 +56,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy package files for production dependencies
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install only production dependencies
 RUN pnpm install --prod --frozen-lockfile && pnpm store prune

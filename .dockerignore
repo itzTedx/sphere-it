@@ -38,7 +38,8 @@ lerna-debug.log*
 *.swo
 *~
 
-# Debug
+# .env is excluded from context; build mounts it via compose build.secrets (see Dockerfile)
+.env
 .env*.local
 .env.development
 .env.test
@@ -84,4 +85,12 @@ next-env.d.ts
 *.db
 *.sqlite
 *.sqlite3
+*.sql
+
+# Runtime uploads (compose volume: uploads-data → /app/public/uploads)
+public/uploads
+
+# Editor / local tooling
+.cursor
+.fallow
 
